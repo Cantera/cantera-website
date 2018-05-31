@@ -1,0 +1,64 @@
+.. title: index
+.. slug: index
+.. date: 2018-05-30 11:20:56 UTC-04:00
+.. tags:
+.. category:
+.. link:
+.. description:
+.. type: text
+
+.. raw:: html
+
+    <section id="about-cantera">
+        <h1 class="display-4">Welcome!</h1>
+        <div class="jumbotron">
+
+        <p class="lead">Cantera is an open-source suite of object-oriented software tools for problems
+        involving chemical kinetics, thermodynamics, and/or transport processes. The
+        software automates the chemical kinetic, thermodynamic, and transport
+        calculations so that the users can efficiently incorporate detailed chemical
+        thermo-kinetics and transport models into their calculations.</p>
+
+        <p>The code utilizes object-oriented concepts for robust yet flexible phase models,
+        and algorithms are generalized so that users can explore different phase models
+        with minimal changes to their overall code. Currently, Cantera can be used from
+        Python and Matlab, or in applications written in C/C++ and Fortran 90.  Cantera
+        also provides a limited number of solvers for time-dependent reactor networks
+        and steady one-dimensional reacting flows.</p>
+
+        <p>Cantera is currently used for applications including combustion, detonations,
+        electrochemical energy conversion and storage, fuel cells, batteries, aqueous
+        electrolyte solutions, plasmas, and thin film deposition.</p>
+
+        </div>
+    </section>
+    <section id="cards">
+    <div class="container">
+    <div class="card-deck">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title">New? Start here!</h1>
+          </div>
+          <div class="card-footer">
+            <a href="/tutorials.html" class="btn btn-primary">Tutorials</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title">Try Cantera in your Browser!</h1>
+          </div>
+          <div class="card-footer">
+            <a href="/tutorials.html" class="btn btn-primary">Open Binder</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title">What can Cantera do?</h1>
+          </div>
+          <div class="card-footer">
+            <a href="/tutorials.html" class="btn btn-primary">Examples</a>
+          </div>
+          </div>
+    </div>
+    </div>
+    </section>
