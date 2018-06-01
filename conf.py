@@ -134,9 +134,14 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ("/archive.html", "Archive"),
-        ("/categories/", "Tags"),
-        ("/rss.xml", "RSS feed"),
+        ('/install/', 'Install'),
+        ('/about.html', 'About'),
+        ('/community.html', 'Community'),
+        ('/science.html', 'Science'),
+        ('/documentation.html', 'Documentation'),
+        # ("/archive.html", "Archive"),
+        # ("/categories/", "Tags"),
+        # ("/rss.xml", "RSS feed"),
         ("/blog/index.html", "Blog"),
     ),
 }
@@ -338,7 +343,7 @@ COMPILERS = {
 # Nikola supports logo display.  If you have one, you can put the URL here.
 # Final output is <img src="LOGO_URL" id="logo" alt="BLOG_TITLE">.
 # The URL may be relative to the site root.
-LOGO_URL = 'assets/img/cantera-logo.png'
+LOGO_URL = '/assets/img/cantera-logo.png'
 
 # If you want to hide the title of your website (for example, if your logo
 # already contains the text), set this to False.
@@ -1285,7 +1290,8 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 USE_BUNDLES = False
 
 # Plugins you don't want to use. Be careful :-)
-# DISABLED_PLUGINS = ["render_galleries"]
+DISABLED_PLUGINS = ['render_archive', 'classify_archive', 'render_galleries',
+                    'render_listings']
 
 # Special settings to disable only parts of the indexes plugin.
 # Use with care.
