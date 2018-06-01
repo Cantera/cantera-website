@@ -1,0 +1,19 @@
+{% import 'math_helper.tmpl' as math with context %}
+{% import 'ui_helper.tmpl' as ui with context %}
+{% extends 'base.tmpl' %}
+
+{% block extra_head %}
+{{ super() }}
+{{ math.math_styles_ifpost(post) }}
+{% endblock %}
+
+{% block content %}
+    {{ post.text() }}
+    {{ math.math_scripts_ifpost(post) }}
+{% endblock %}
+
+{% block sourcelink %}
+{% if show_sourcelink %}
+    {{ ui.show_sourcelink(post.source_link()) }}
+{% endif %}
+{% endblock %}
