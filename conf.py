@@ -1054,7 +1054,7 @@ PRETTY_URLS = False
 
 # Want to use KaTeX instead of MathJax? While KaTeX may not support every
 # feature yet, it's faster and the output looks better.
-# USE_KATEX = False
+USE_KATEX = True
 
 # KaTeX auto-render settings. If you want support for the $.$ syntax (wihch may
 # conflict with running text!), just use this config:
