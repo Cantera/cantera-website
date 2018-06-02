@@ -134,10 +134,10 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ('/install/', 'Install'),
+        ('/install/index.html', 'Install'),
         ('/about.html', 'About'),
         ('/community.html', 'Community'),
-        ('/science.html', 'Science'),
+        ('/science/index.html', 'Science'),
         ('/documentation.html', 'Documentation'),
         # ("/archive.html", "Archive"),
         # ("/categories/", "Tags"),
