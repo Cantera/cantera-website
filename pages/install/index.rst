@@ -13,3 +13,9 @@ Installation Instructions
     \int \frac{dx}{1+ax}=\frac{1}{a}\ln(1+ax)
 
 And we can do inline :math:`e = mc^2`
+
+.. class:: card
+
+    .. class:: card-body
+
+        New? Start here
