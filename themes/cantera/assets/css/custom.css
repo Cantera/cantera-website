@@ -1,1 +1,5 @@
 #logo { width: 250px; }
+#cards { padding-bottom: 5%; }
+.jumbotron-text { text-align: center; padding-bottom: 32px; }
+.jumbotron { background-color: white; margin-top: 30px; margin-bottom: 0px; padding: 48px 0; }
+.img-container { text-align: center; }
