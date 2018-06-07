@@ -285,7 +285,7 @@ TIMEZONE = "America/New_York"
 # One or more folders containing code listings to be processed and published on
 # the site. The format is a dictionary of {source: relative destination}.
 # Default is:
-# LISTINGS_FOLDERS = {'listings': 'listings'}
+LISTINGS_FOLDERS = {'../cantera/interfaces/cython/cantera/examples': 'examples/python'}
 # Which means process listings from 'listings' into 'output/listings'
 
 # A mapping of languages to file-extensions that represent that language.
@@ -1290,8 +1290,7 @@ SHOW_SOURCELINK = False
 USE_BUNDLES = False
 
 # Plugins you don't want to use. Be careful :-)
-DISABLED_PLUGINS = ['render_archive', 'classify_archive', 'render_galleries',
-                    'render_listings']
+DISABLED_PLUGINS = ['render_archive', 'classify_archive', 'render_galleries', 'render_listings']
 
 # Special settings to disable only parts of the indexes plugin.
 # Use with care.
