@@ -1,7 +1,8 @@
 .. py:currentmodule:: cantera
 
-Tutorial
-========
+
+Python Tutorial
+---------------
 
 Getting Started
 ---------------
