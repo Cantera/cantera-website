@@ -1,6 +1,7 @@
 from pathlib import Path
+import ast
 
-# from collections import defaultdict
+from collections import OrderedDict
 import io
 import os
 import lxml.html
@@ -11,7 +12,6 @@ from nikola import utils
 
 from pygments import highlight
 from pygments.lexers import get_lexer_for_filename, guess_lexer, TextLexer
-import natsort
 
 
 class BuildExamples(Listings):
@@ -19,58 +19,52 @@ class BuildExamples(Listings):
 
     name = "build_examples"
 
+    def set_site(self, site):
+
+        site.register_path_handler('example_index', self.example_index_path)
+        self.example_indices = []
+
+        return super(BuildExamples, self).set_site(site)
+
+    def example_index_path(self, namep, lang):
+        if namep in self.example_indices:
+            return [namep, 'index.html']
+        else:
+            utils.LOGGER.error("Unknown example index name {0}!".format(namep))
+            return ["ERROR"]
+
     def gen_tasks(self):
         """Render pretty code listings."""
         # Things to ignore in listings
-        self.ignored_extensions = (".pyc", ".pyo")
+        self.ignored_extensions = (".pyc", ".pyo", ".cti", ".dat")
 
-        def render_listing_index(type, headers, files, output_file):
+        def render_listing_index(type, headers, output_file):
             def chunks(l, n):
                 """Yield successive n-sized chunks from l.
                 https://stackoverflow.com/a/312464"""
                 for i in range(0, len(l), n):
                     yield l[i:i + n]
 
-            for h in headers:
-                if len(files[h]) > 6:
-                    n_cols = 4
-                else:
-                    n_cols = 3
+            for head, file_dict in headers.items():
+                file_dict['files'] = list(chunks(file_dict['files'], 3))
 
-                files[h] = list(chunks(files[h], n_cols))
-            out_name = os.path.join()
-
-        def render_python_examples(input_folder, output_folder, template_deps):
-            header_map = {'transport': 'Transport', 'reactors': 'Reactor Networks',
-                          'kinetics': 'Kinetics', 'multiphase': 'Multiphase Mixtures',
-                          'onedim': 'One-Dimensional Flames', 'thermo': 'Thermodynamics',
-                          'surface_chemistry': 'Surface Chemistry'}
-            headers = ['Thermodynamics', 'Kinetics', 'Transport', 'Reactor Networks',
-                       'One-Dimensional Flames', 'Multiphase Mixtures', 'Surface Chemistry']
-            files = {}
-            p = Path(input_folder)
-            for dir in p.iterdir():
-                if not dir.is_dir():
-                    continue
-                files[header_map[dir.stem]] = list(dir.iterdir())
-
-            rel_name = os.path.join(rel_path, self.kw['index_file'])
-            # Must define rel_path
-            rel_output_name = os.path.join(output_folder, rel_path, self.kw['index_file'])
-
-            # Render all files
-            out_name = os.path.join(self.kw['output_folder'], rel_output_name)
-            yield utils.apply_filters({
-                'basename': self.name,
-                'name': out_name,
-                'file_dep': template_deps,
-                'targets': [out_name],
-                'actions': [(render_listing_index, [None, out_name, input_folder, output_folder, dirs, files])],  # NOQA: E501
-                # This is necessary to reflect changes in blog title,
-                # sidebar links, etc.
-                'uptodate': [utils.config_changed(uptodate2, 'nikola.plugins.task.listings:folder')],  # NOQA: E501
-                'clean': True,
-            }, self.kw["filters"])
+            permalink = self.site.link(
+                'listing',
+                os.path.join(
+                    input_folder,
+                    os.path.relpath(
+                        output_file[:-5],  # remove '.html'
+                        os.path.join(
+                            self.kw['output_folder'],
+                            output_folder))))
+            context = {
+                'headers': headers,
+                'lang': self.kw['default_lang'],
+                'pagekind': ['listing'],
+                'permalink': permalink,
+                'title': '{} Examples'.format(type).title(),
+            }
+            self.site.render_template('{}-example-index.tmpl'.format(type), output_file, context)
 
         def render_listing(in_name, out_name, input_folder, output_folder, folders=[], files=[]):
             needs_ipython_css = False
@@ -100,9 +94,6 @@ class BuildExamples(Listings):
             else:
                 code = ''
                 title = os.path.split(os.path.dirname(out_name))[1]
-            crumbs = utils.get_crumbs(os.path.relpath(out_name,
-                                                      self.kw['output_folder']),
-                                      is_file=True)
             permalink = self.site.link(
                 'listing',
                 os.path.join(
@@ -119,13 +110,8 @@ class BuildExamples(Listings):
             context = {
                 'code': code,
                 'title': title,
-                'crumbs': crumbs,
                 'permalink': permalink,
                 'lang': self.kw['default_lang'],
-                'folders': natsort.natsorted(
-                    folders, alg=natsort.ns.F | natsort.ns.IC),
-                'files': natsort.natsorted(
-                    files, alg=natsort.ns.F | natsort.ns.IC),
                 'description': title,
                 'source_link': source_link,
                 'pagekind': ['listing'],
@@ -140,16 +126,33 @@ class BuildExamples(Listings):
 
         for input_folder, output_folder in self.kw['listings_folders'].items():
             if 'python' in output_folder:
-                template_deps = self.site.template_system.template_deps('python-listing.tmpl')
-                render_python_examples(input_folder, output_folder, template_deps)
-            elif 'matlab' in output_folder:
-                template_deps = self.site.template_system.template_deps('matlab-listing.tmpl')
-                render_matlab_examples(template_deps)
-            elif 'jupyter' in output_folder:
-                template_deps = self.site.template_system.template_deps('jupyter-listing.tmpl')
-                render_jupyter_examples(template_deps)
-            for root, dirs, files in os.walk(input_folder, followlinks=True):
-                files = [f for f in files if os.path.splitext(f)[-1] not in self.ignored_extensions]
+                # raise Exception("I don't know what I'm doing! {}".format(output_folder))
+                template_deps = self.site.template_system.template_deps('python-example-index.tmpl')
+                # raise Exception("I don't know what I'm doing! (Render_python)")
+                headers = OrderedDict(
+                    thermo={'name': 'Thermodynamics'}, kinetics={'name': 'Kinetics'},
+                    transport={'name': 'Transport'}, reactors={'name': 'Reactor Networks'},
+                    onedim={'name': 'One-Dimensional Flames'},
+                    multiphase={'name': 'Multiphase Mixtures'},
+                    surface_chemistry={'name': 'Surface Chemistry'})
+
+                p = Path(input_folder)
+                files = []
+                for dir in p.iterdir():
+                    if not dir.is_dir():
+                        continue
+                    summaries = {}
+                    for f in dir.iterdir():
+                        files.append(f)
+                        with open(f, 'r') as pyfile:
+                            mod = ast.parse(pyfile.read())
+                        for node in mod.body:
+                            if isinstance(node, ast.Expr) and isinstance(node.value, ast.Str):
+                                doc = node.value.s.strip().split('\n\n')[0].strip()
+                                break
+                        summaries[str(f).split('/')[-1]] = doc
+                    headers[dir.stem]['summaries'] = summaries
+                    headers[dir.stem]['files'] = list(map(str, dir.iterdir()))
 
                 uptodate = {'c': self.site.GLOBAL_CONTEXT}
 
@@ -165,40 +168,37 @@ class BuildExamples(Listings):
                 uptodate['kw'] = self.kw
 
                 uptodate2 = uptodate.copy()
-                uptodate2['f'] = files
-                uptodate2['d'] = dirs
+                uptodate2['d'] = headers.keys()
+                uptodate2['f'] = list(map(str, files))
 
-                # Compute relative path; can't use os.path.relpath() here as it returns "." instead of ""  # NOQA: E501
-                rel_path = root[len(input_folder):]
-                if rel_path[:1] == os.sep:
-                    rel_path = rel_path[1:]
+                rel_output_name = os.path.join(output_folder, self.kw['index_file'])
 
-                rel_name = os.path.join(rel_path, self.kw['index_file'])
-                rel_output_name = os.path.join(output_folder, rel_path, self.kw['index_file'])
+                # Render Python examples index file
+                out_name = os.path.join(self.kw['output_folder'], rel_output_name)
+                self.example_indices.append('python')
+                yield utils.apply_filters({
+                    'basename': self.name,
+                    'name': out_name,
+                    'file_dep': template_deps,
+                    'targets': [out_name],
+                    'actions': [(render_listing_index, ['python', headers, out_name])],
+                    # This is necessary to reflect changes in blog title,
+                    # sidebar links, etc.
+                    'uptodate': [utils.config_changed(uptodate2, 'nikola.plugins.task.listings:folder')],  # NOQA: E501
+                    'clean': True,
+                }, self.kw["filters"])
 
-                # Render all files
-                # out_name = os.path.join(self.kw['output_folder'], rel_output_name)
-                # yield utils.apply_filters({
-                #     'basename': self.name,
-                #     'name': out_name,
-                #     'file_dep': template_deps,
-                #     'targets': [out_name],
-                #     'actions': [(render_listing, [None, out_name, input_folder, output_folder, dirs, files])],  # NOQA: E501
-                #     # This is necessary to reflect changes in blog title,
-                #     # sidebar links, etc.
-                #     'uptodate': [utils.config_changed(uptodate2, 'nikola.plugins.task.listings:folder')],  # NOQA: E501
-                #     'clean': True,
-                # }, self.kw["filters"])
                 for f in files:
-                    if f == '.DS_Store':
+                    if str(f) == '.DS_Store':
                         continue
-                    ext = os.path.splitext(f)[-1]
-                    if ext in self.ignored_extensions:
+                    if f.suffix in self.ignored_extensions:
                         continue
-                    in_name = os.path.join(root, f)
+                    in_name = str(f.resolve())
                     # Record file names
-                    rel_name = os.path.join(rel_path, f + '.html')
-                    rel_output_name = os.path.join(output_folder, rel_path, f + '.html')
+                    parent = str(f.parent.stem)
+                    f_name = str(f.name)
+                    rel_name = os.path.join(parent, f_name + '.html')
+                    rel_output_name = os.path.join(output_folder, parent, f_name + '.html')
                     self.register_output_name(input_folder, rel_name, rel_output_name)
                     # Set up output name
                     out_name = os.path.join(self.kw['output_folder'], rel_output_name)
@@ -215,8 +215,8 @@ class BuildExamples(Listings):
                         'clean': True,
                     }, self.kw["filters"])
 
-                    rel_name = os.path.join(rel_path, f)
-                    rel_output_name = os.path.join(output_folder, rel_path, f)
+                    rel_name = os.path.join(parent, f_name)
+                    rel_output_name = os.path.join(output_folder, parent, f_name)
                     self.register_output_name(input_folder, rel_name, rel_output_name)
                     out_name = os.path.join(self.kw['output_folder'], rel_output_name)
                     yield utils.apply_filters({
@@ -227,3 +227,10 @@ class BuildExamples(Listings):
                         'actions': [(utils.copy_file, [in_name, out_name])],
                         'clean': True,
                     }, self.kw["filters"])
+
+            elif 'matlab' in output_folder:
+                template_deps = self.site.template_system.template_deps('matlab-listing.tmpl')
+                # render_matlab_examples(template_deps)
+            elif 'jupyter' in output_folder:
+                template_deps = self.site.template_system.template_deps('jupyter-listing.tmpl')
+                # render_jupyter_examples(template_deps)
