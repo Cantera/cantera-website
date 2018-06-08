@@ -1,7 +1,9 @@
 language: python
 python:
   - "3.6"
+before_install:
+  - git clone --depth=1 https://github.com/Cantera/cantera ../cantera
+  - git clone --depth=1 https://github.com/Cantera/cantera-jupyter ../cantera-jupyter
+
 script:
-  - git clone https://github.com/Cantera/cantera ../cantera
-  - git clone https://github.com/Cantera/cantera-jupyter ../cantera-jupyter
   - NIKOLA_DEBUG=1 nikola build
