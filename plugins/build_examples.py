@@ -12,6 +12,7 @@ from nikola import utils
 
 from pygments import highlight
 from pygments.lexers import get_lexer_for_filename, guess_lexer, TextLexer
+import natsort
 
 
 class BuildExamples(Listings):
@@ -125,6 +126,10 @@ class BuildExamples(Listings):
         yield self.group_task()
 
         for input_folder, output_folder in self.kw['listings_folders'].items():
+
+            #########################################################
+            # Build the Python examples
+            #########################################################
             if 'python' in output_folder:
                 # raise Exception("I don't know what I'm doing! {}".format(output_folder))
                 template_deps = self.site.template_system.template_deps('python-example-index.tmpl')
@@ -142,17 +147,24 @@ class BuildExamples(Listings):
                     if not dir.is_dir():
                         continue
                     summaries = {}
+                    this_header_files = []
                     for f in dir.iterdir():
+                        if f.suffix in self.ignored_extensions:
+                            continue
                         files.append(f)
+                        this_header_files.append(str(f))
                         with open(f, 'r') as pyfile:
                             mod = ast.parse(pyfile.read())
                         for node in mod.body:
                             if isinstance(node, ast.Expr) and isinstance(node.value, ast.Str):
                                 doc = node.value.s.strip().split('\n\n')[0].strip()
+                                if not doc.endswith('.'):
+                                    doc += '.'
                                 break
                         summaries[str(f).split('/')[-1]] = doc
                     headers[dir.stem]['summaries'] = summaries
-                    headers[dir.stem]['files'] = list(map(str, dir.iterdir()))
+                    this_header_files = natsort.natsorted(this_header_files, alg=natsort.IC)
+                    headers[dir.stem]['files'] = this_header_files
 
                 uptodate = {'c': self.site.GLOBAL_CONTEXT}
 
