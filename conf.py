@@ -380,7 +380,6 @@ WRITE_TAG_CLOUD = False
 # TAG_DESCRIPTIONS = {
 #    DEFAULT_LANG: {
 #        "blogging": "Meta-blog posts about blogging about blogging.",
-#        "open source": "My contributions to my many, varied, ever-changing, and eternal libre software projects."
 #    },
 # }
 
@@ -419,8 +418,8 @@ HIDDEN_TAGS = ['mathjax']
 
 # Final locations are:
 # output / TRANSLATION[lang] / CATEGORY_PATH / index.html (list of categories)
-# output / TRANSLATION[lang] / CATEGORY_PATH / CATEGORY_PREFIX category.html (list of posts for a category)
-# output / TRANSLATION[lang] / CATEGORY_PATH / CATEGORY_PREFIX category RSS_EXTENSION (RSS feed for a category)
+# output / TRANSLATION[lang] / CATEGORY_PATH / CATEGORY_PREFIX category.html (list of posts for a category)  # NOQA: E501
+# output / TRANSLATION[lang] / CATEGORY_PATH / CATEGORY_PREFIX category RSS_EXTENSION (RSS feed for a category)  # NOQA: E501
 # (translatable)
 # CATEGORY_PATH = "categories"
 # CATEGORY_PREFIX = "cat_"
@@ -453,7 +452,6 @@ CATEGORY_OUTPUT_FLAT_HIERARCHY = False
 # CATEGORY_DESCRIPTIONS = {
 #    DEFAULT_LANG: {
 #        "blogging": "Meta-blog posts about blogging about blogging.",
-#        "open source": "My contributions to my many, varied, ever-changing, and eternal libre software projects."
 #    },
 # }
 
@@ -900,8 +898,8 @@ IMAGE_FOLDERS = {'images': 'images'}
 # {link}                        A link to the full post page.
 # {read_more}                   The string “Read more” in the current language.
 # {reading_time}                An estimate of how long it will take to read the post.
-# {remaining_reading_time}      An estimate of how long it will take to read the post, sans the teaser.
-# {min_remaining_read}          The string “{remaining_reading_time} min remaining to read” in the current language.
+# {remaining_reading_time}      An estimate of how long it will take to read the post, sans the teaser.  # NOQA: E501
+# {min_remaining_read}          The string “{remaining_reading_time} min remaining to read” in the current language.  # NOQA: E501
 # {paragraph_count}             The amount of paragraphs in the post.
 # {remaining_paragraph_count}   The amount of paragraphs in the post, sans the teaser.
 # {post_title}                  The title of the post.
@@ -936,7 +934,7 @@ LICENSE = ""
 
 # A small copyright notice for the page footer (in HTML).
 # (translatable)
-CONTENT_FOOTER = 'Contents &copy; {date}         <a href="mailto:{email}">{author}</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         {license}'
+CONTENT_FOOTER = 'Contents &copy; {date}         <a href="mailto:{email}">{author}</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         {license}'  # NOQA: E501
 
 # Things that will be passed to CONTENT_FOOTER.format().  This is done
 # for translatability, as dicts are not formattable.  Nikola will
@@ -1080,7 +1078,8 @@ USE_KATEX = True
 # Note: most Nikola-specific extensions are done via the Nikola plugin system,
 #       with the MarkdownExtension class and should not be added here.
 # The default is ['fenced_code', 'codehilite']
-MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.codehilite', 'markdown.extensions.extra']
+MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.codehilite',
+                       'markdown.extensions.extra']
 
 # Options to be passed to markdown extensions (See https://python-markdown.github.io/reference/)
 # Default is {} (no config at all)
@@ -1099,17 +1098,6 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 # the default right now)
 # (translatable)
 # SOCIAL_BUTTONS_CODE = """
-# <!-- Social buttons -->
-# <div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
-# <a class="addthis_button_more">Share</a>
-# <ul><li><a class="addthis_button_facebook"></a>
-# <li><a class="addthis_button_google_plusone_share"></a>
-# <li><a class="addthis_button_linkedin"></a>
-# <li><a class="addthis_button_twitter"></a>
-# </ul>
-# </div>
-# <script src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script>
-# <!-- End of social buttons -->
 # """
 
 # Show link to source for the posts?
@@ -1178,7 +1166,7 @@ SHOW_SOURCELINK = False
 # If you prefer a Google search form, here's an example that should just work:
 # SEARCH_FORM = """
 # <!-- Google custom search -->
-# <form method="get" action="https://www.google.com/search" class="navbar-form navbar-right" role="search">
+# <form method="get" action="https://www.google.com/search" class="navbar-form navbar-right" role="search">  # NOQA: E501
 # <div class="form-group">
 # <input type="text" name="q" class="form-control" placeholder="Search">
 # </div>
@@ -1257,7 +1245,7 @@ SHOW_SOURCELINK = False
 # METADATA_VALUE_MAPPING = {
 #     "yaml": {"keywords": lambda value: ', '.join(value)},  # yaml: 'keywords' list -> str
 #     "nikola": {
-#         "widgets": lambda value: value.split(', '),  # nikola: 'widgets' comma-separated string -> list
+#         "widgets": lambda value: value.split(', '),  # nikola: 'widgets' comma-separated string -> list  # NOQA: E501
 #         "tags": str.lower  # nikola: force lowercase 'tags' (input would be string)
 #      }
 # }
