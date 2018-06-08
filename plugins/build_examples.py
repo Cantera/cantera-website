@@ -20,20 +20,6 @@ class BuildExamples(Listings):
 
     name = "build_examples"
 
-    def set_site(self, site):
-
-        site.register_path_handler('example_index', self.example_index_path)
-        self.example_indices = []
-
-        return super(BuildExamples, self).set_site(site)
-
-    def example_index_path(self, namep, lang):
-        if namep in self.example_indices:
-            return [namep, 'index.html']
-        else:
-            utils.LOGGER.error("Unknown example index name {0}!".format(namep))
-            return ["ERROR"]
-
     def gen_tasks(self):
         """Render pretty code listings."""
         # Things to ignore in listings
@@ -187,7 +173,6 @@ class BuildExamples(Listings):
 
                 # Render Python examples index file
                 out_name = os.path.join(self.kw['output_folder'], rel_output_name)
-                self.example_indices.append('python')
                 yield utils.apply_filters({
                     'basename': self.name,
                     'name': out_name,
