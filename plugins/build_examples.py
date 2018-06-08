@@ -11,7 +11,7 @@ from nikola.plugins.task.listings import Listings
 from nikola import utils
 
 from pygments import highlight
-from pygments.lexers import get_lexer_for_filename, guess_lexer, TextLexer
+from pygments.lexers import get_lexer_for_filename, guess_lexer, TextLexer, MatlabLexer
 import natsort
 
 
@@ -25,7 +25,7 @@ class BuildExamples(Listings):
         # Things to ignore in listings
         self.ignored_extensions = (".pyc", ".pyo", ".cti", ".dat")
 
-        def render_listing_index(type, headers, output_file):
+        def render_listing_index(type, headers, input_folder, output_folder, output_file):
             def chunks(l, n):
                 """Yield successive n-sized chunks from l.
                 https://stackoverflow.com/a/312464"""
@@ -44,18 +44,20 @@ class BuildExamples(Listings):
                         os.path.join(
                             self.kw['output_folder'],
                             output_folder))))
+            title = '{} Examples'.format(type).title()
             context = {
                 'headers': headers,
                 'lang': self.kw['default_lang'],
                 'pagekind': ['listing'],
                 'permalink': permalink,
-                'title': '{} Examples'.format(type).title(),
+                'title': title,
+                'description': title,
             }
             self.site.render_template('{}-example-index.tmpl'.format(type), output_file, context)
 
-        def render_listing(in_name, out_name, input_folder, output_folder, folders=[], files=[]):
+        def render_listing(in_name, out_name, input_folder, output_folder):
             needs_ipython_css = False
-            if in_name and in_name.endswith('.ipynb'):
+            if in_name.endswith('.ipynb'):
                 # Special handling: render ipynbs in listings (Issue #1900)
                 ipynb_compiler = self.site.plugin_manager.getPluginByName("ipynb", "PageCompiler").plugin_object  # NOQA: E501
                 with io.open(in_name, "r", encoding="utf8") as in_file:
@@ -66,7 +68,12 @@ class BuildExamples(Listings):
                 code = lxml.html.tostring(ipynb_html.xpath('//*[@id="notebook"]')[0], encoding='unicode')  # NOQA: E501
                 title = os.path.basename(in_name)
                 needs_ipython_css = True
-            elif in_name:
+            elif in_name.endswith('.m'):
+                lexer = MatlabLexer()
+                with open(in_name, 'r') as fd:
+                    code = highlight(fd.read(), lexer, utils.NikolaPygmentsHTML(in_name))
+                title = os.path.basename(in_name)
+            else:
                 with open(in_name, 'r') as fd:
                     try:
                         lexer = get_lexer_for_filename(in_name)
@@ -78,9 +85,7 @@ class BuildExamples(Listings):
                         fd.seek(0)
                     code = highlight(fd.read(), lexer, utils.NikolaPygmentsHTML(in_name))
                 title = os.path.basename(in_name)
-            else:
-                code = ''
-                title = os.path.split(os.path.dirname(out_name))[1]
+
             permalink = self.site.link(
                 'listing',
                 os.path.join(
@@ -90,10 +95,7 @@ class BuildExamples(Listings):
                         os.path.join(
                             self.kw['output_folder'],
                             output_folder))))
-            if in_name:
-                source_link = permalink[:-5]  # remove '.html'
-            else:
-                source_link = None
+            source_link = permalink[:-5]  # remove '.html'
             context = {
                 'code': code,
                 'title': title,
@@ -176,7 +178,7 @@ class BuildExamples(Listings):
                     'name': out_name,
                     'file_dep': template_deps,
                     'targets': [out_name],
-                    'actions': [(render_listing_index, ['python', headers, out_name])],
+                    'actions': [(render_listing_index, ['python', headers, input_folder, output_folder, out_name])],
                     # This is necessary to reflect changes in blog title,
                     # sidebar links, etc.
                     'uptodate': [utils.config_changed(uptodate2, 'nikola.plugins.task.listings:folder')],  # NOQA: E501
@@ -223,9 +225,109 @@ class BuildExamples(Listings):
                         'clean': True,
                     }, self.kw["filters"])
 
+            #########################################################
+            # Build the Matlab examples
+            #########################################################
             elif 'matlab' in output_folder:
-                template_deps = self.site.template_system.template_deps('matlab-listing.tmpl')
-                # render_matlab_examples(template_deps)
+                template_deps = self.site.template_system.template_deps('matlab-example-index.tmpl')
+                p = Path(input_folder)
+                headers = {'examples': {'name': 'Examples'}}
+                files = []
+                summaries = {}
+                for file in p.iterdir():
+                    if 'tut' in file.name or file.name == 'README' or 'test' in file.name:
+                        continue
+                    if file.suffix in self.ignored_extensions:
+                        continue
+                    files.append(file)
+                    doc = ''
+                    with open(file) as mfile:
+                        for line in mfile:
+                            line = line.strip()
+                            if line.startswith('%'):
+                                doc = line.strip('%').strip()
+                            if doc:
+                                break
+                    name = file.stem.replace('_', ' ')
+                    if doc.lower().replace('_', ' ').startswith(name):
+                        doc = doc[len(name):].strip()
+                    summaries[file.name] = doc
+                headers['examples']['summaries'] = summaries
+                this_files = list(map(str, files))
+                headers['examples']['files'] = natsort.natsorted(this_files, alg=natsort.IC)
+
+                uptodate = {'c': self.site.GLOBAL_CONTEXT}
+
+                for k, v in self.site.GLOBAL_CONTEXT['template_hooks'].items():
+                    uptodate['||template_hooks|{0}||'.format(k)] = v.calculate_deps()
+
+                for k in self.site._GLOBAL_CONTEXT_TRANSLATABLE:
+                    uptodate[k] = self.site.GLOBAL_CONTEXT[k](self.kw['default_lang'])
+
+                # save navigation links as dependencies
+                uptodate['navigation_links'] = uptodate['c']['navigation_links'](self.kw['default_lang'])  # NOQA: E501
+
+                uptodate['kw'] = self.kw
+
+                uptodate2 = uptodate.copy()
+                uptodate2['d'] = headers.keys()
+                uptodate2['f'] = list(map(str, files))
+
+                rel_output_name = os.path.join(output_folder, self.kw['index_file'])
+
+                # Render Matlab examples index file
+                out_name = os.path.join(self.kw['output_folder'], rel_output_name)
+                yield utils.apply_filters({
+                    'basename': self.name,
+                    'name': out_name,
+                    'file_dep': template_deps,
+                    'targets': [out_name],
+                    'actions': [(render_listing_index, ['matlab', headers, input_folder, output_folder, out_name])],
+                    # This is necessary to reflect changes in blog title,
+                    # sidebar links, etc.
+                    'uptodate': [utils.config_changed(uptodate2, 'nikola.plugins.task.listings:folder')],  # NOQA: E501
+                    'clean': True,
+                }, self.kw["filters"])
+
+                for f in files:
+                    if str(f) == '.DS_Store':
+                        continue
+                    if f.suffix in self.ignored_extensions:
+                        continue
+                    in_name = str(f.resolve())
+                    # Record file names
+                    f_name = str(f.name)
+                    rel_name = os.path.join(f_name + '.html')
+                    rel_output_name = os.path.join(output_folder, f_name + '.html')
+                    self.register_output_name(input_folder, rel_name, rel_output_name)
+                    # Set up output name
+                    out_name = os.path.join(self.kw['output_folder'], rel_output_name)
+                    # Yield task
+                    yield utils.apply_filters({
+                        'basename': self.name,
+                        'name': out_name,
+                        'file_dep': template_deps + [in_name],
+                        'targets': [out_name],
+                        'actions': [(render_listing, [in_name, out_name, input_folder, output_folder])],  # NOQA: E501
+                        # This is necessary to reflect changes in blog title,
+                        # sidebar links, etc.
+                        'uptodate': [utils.config_changed(uptodate, 'nikola.plugins.task.listings:source')],  # NOQA: E501
+                        'clean': True,
+                    }, self.kw["filters"])
+
+                    rel_name = os.path.join(f_name)
+                    rel_output_name = os.path.join(output_folder, f_name)
+                    self.register_output_name(input_folder, rel_name, rel_output_name)
+                    out_name = os.path.join(self.kw['output_folder'], rel_output_name)
+                    yield utils.apply_filters({
+                        'basename': self.name,
+                        'name': out_name,
+                        'file_dep': [in_name],
+                        'targets': [out_name],
+                        'actions': [(utils.copy_file, [in_name, out_name])],
+                        'clean': True,
+                    }, self.kw["filters"])
+
             elif 'jupyter' in output_folder:
                 template_deps = self.site.template_system.template_deps('jupyter-listing.tmpl')
                 # render_jupyter_examples(template_deps)

@@ -285,7 +285,10 @@ TIMEZONE = "America/New_York"
 # One or more folders containing code listings to be processed and published on
 # the site. The format is a dictionary of {source: relative destination}.
 # Default is:
-LISTINGS_FOLDERS = {'../cantera/interfaces/cython/cantera/examples': 'examples/python'}
+LISTINGS_FOLDERS = {
+    '../cantera/interfaces/cython/cantera/examples': 'examples/python',
+    '../cantera/samples/matlab': 'examples/matlab'
+}
 # Which means process listings from 'listings' into 'output/listings'
 
 # A mapping of languages to file-extensions that represent that language.
