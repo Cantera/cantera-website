@@ -2,4 +2,5 @@ language: python
 python:
   - "3.6"
 script:
+  - git clone https://github.com/Cantera/cantera ../cantera
   - NIKOLA_DEBUG=1 nikola build
