@@ -117,9 +117,7 @@ class BuildExamples(Listings):
             # Build the Python examples
             #########################################################
             if 'python' in output_folder:
-                # raise Exception("I don't know what I'm doing! {}".format(output_folder))
                 template_deps = self.site.template_system.template_deps('python-example-index.tmpl')
-                # raise Exception("I don't know what I'm doing! (Render_python)")
                 headers = OrderedDict(
                     thermo={'name': 'Thermodynamics'}, kinetics={'name': 'Kinetics'},
                     transport={'name': 'Transport'}, reactors={'name': 'Reactor Networks'},
