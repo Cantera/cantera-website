@@ -340,7 +340,7 @@ class BuildExamples(Listings):
                 p = Path(input_folder)
                 files = []
                 for dir in p.iterdir():
-                    if not dir.is_dir() or f.name == '.ipynb_checkpoints' or f.suffix in self.ignored_extensions:
+                    if not dir.is_dir() or dir.name.startswith('.') or dir.suffix in self.ignored_extensions:
                         continue
                     summaries = {}
                     this_header_files = []
