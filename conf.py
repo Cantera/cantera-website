@@ -135,6 +135,7 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ('/install/index.html', 'Install'),
+        ('/examples/index.html', 'Examples'),
         ('/about.html', 'About'),
         ('/community.html', 'Community'),
         ('/science/index.html', 'Science'),
