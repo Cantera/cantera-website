@@ -4,12 +4,12 @@
 <h1>Index of Python Examples</h1>
 
 <p>This is an index of the examples included with the Cantera Python module. They
-can be found in the <pre>examples</pre> subdirectory of the Cantera Python module's
+can be found in the <code style="display: inline;">examples</code> subdirectory of the Cantera Python module's
 installation directory. To determine the location of this directory, run the following in your Python interpreter:</p>
 
-<pre>
-    import cantera.examples
-    print(cantera.examples.__path__)
+<pre class="code python">
+<span class="kn">import</span> <span class="nn">cantera</span><span class="o">.</span><span class="nn">examples</span>
+<span class="k">print</span><span class="p">(</span><span class="n">cantera</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">__path__</span><span class="p">)</span>
 </pre>
 
 {% for head, file_dict in headers.items() %}
