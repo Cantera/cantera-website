@@ -24,12 +24,9 @@ installation directory. To determine the location of this directory, run the fol
       {% set fname = file.split('/')[-1] %}
       <!-- <div class="col-sm-4"> -->
         <div class="card">
+          <a href="{{ head }}/{{ fname }}.html"><h5 class="card-header">{{ fname }}</h5></a>
           <div class="card-body">
-            <h5 class="card-title">{{ fname }}</h5>
             <p class="card-text">{{ file_dict['summaries'][fname] }}</p>
-          </div>
-          <div class="card-footer">
-            <a href="python/{{ head }}/{{ fname }}.html" class="btn btn-primary">{{ fname }}</a>
           </div>
         </div>
       <!-- </div> -->
