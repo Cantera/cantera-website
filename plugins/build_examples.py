@@ -5,6 +5,7 @@ from collections import OrderedDict
 import io
 import os
 import lxml.html
+import json
 
 # from nikola.plugin_categories import Task
 from nikola.plugins.task.listings import Listings
@@ -23,7 +24,7 @@ class BuildExamples(Listings):
     def gen_tasks(self):
         """Render pretty code listings."""
         # Things to ignore in listings
-        self.ignored_extensions = (".pyc", ".pyo", ".cti", ".dat")
+        self.ignored_extensions = (".pyc", ".pyo", ".cti", ".dat", ".ipynb_checkpoints")
 
         def render_listing_index(type, headers, input_folder, output_folder, output_file):
             def chunks(l, n):
@@ -65,7 +66,7 @@ class BuildExamples(Listings):
                     ipynb_raw = ipynb_compiler._compile_string(nb_json)
                 ipynb_html = lxml.html.fromstring(ipynb_raw)
                 # The raw HTML contains garbage (scripts and styles), we can’t leave it in
-                code = lxml.html.tostring(ipynb_html.xpath('//*[@id="notebook"]')[0], encoding='unicode')  # NOQA: E501
+                code = lxml.html.tostring(ipynb_html, encoding='unicode')
                 title = os.path.basename(in_name)
                 needs_ipython_css = True
             elif in_name.endswith('.m'):
@@ -329,5 +330,106 @@ class BuildExamples(Listings):
                     }, self.kw["filters"])
 
             elif 'jupyter' in output_folder:
-                template_deps = self.site.template_system.template_deps('jupyter-listing.tmpl')
-                # render_jupyter_examples(template_deps)
+                template_deps = self.site.template_system.template_deps('jupyter-example-index.tmpl')
+                headers = OrderedDict(
+                    thermo={'name': 'Thermodynamics'},
+                    reactors={'name': 'Reactor Networks'},
+                    flames={'name': 'One-Dimensional Flames'},
+                )
+
+                p = Path(input_folder)
+                files = []
+                for dir in p.iterdir():
+                    if not dir.is_dir() or f.name == '.ipynb_checkpoints' or f.suffix in self.ignored_extensions:
+                        continue
+                    summaries = {}
+                    this_header_files = []
+                    for f in dir.iterdir():
+                        if f.suffix in self.ignored_extensions or f.is_dir() or f.name == '.ipynb_checkpoints':
+                            continue
+                        files.append(f)
+                        this_header_files.append(str(f))
+                        with open(f, 'r') as pyfile:
+                            data = json.load(pyfile)
+                        for cell in data['cells']:
+                            if cell['cell_type'] != 'markdown':
+                                continue
+                            doc = cell['source'][0].replace('#', '').strip()
+                            break
+                        summaries[str(f).split('/')[-1]] = doc
+                    headers[dir.stem]['summaries'] = summaries
+                    this_header_files = natsort.natsorted(this_header_files, alg=natsort.IC)
+                    headers[dir.stem]['files'] = this_header_files
+
+                uptodate = {'c': self.site.GLOBAL_CONTEXT}
+
+                for k, v in self.site.GLOBAL_CONTEXT['template_hooks'].items():
+                    uptodate['||template_hooks|{0}||'.format(k)] = v.calculate_deps()
+
+                for k in self.site._GLOBAL_CONTEXT_TRANSLATABLE:
+                    uptodate[k] = self.site.GLOBAL_CONTEXT[k](self.kw['default_lang'])
+
+                # save navigation links as dependencies
+                uptodate['navigation_links'] = uptodate['c']['navigation_links'](self.kw['default_lang'])  # NOQA: E501
+
+                uptodate['kw'] = self.kw
+
+                uptodate2 = uptodate.copy()
+                uptodate2['d'] = headers.keys()
+                uptodate2['f'] = list(map(str, files))
+
+                rel_output_name = os.path.join(output_folder, self.kw['index_file'])
+
+                # Render Python examples index file
+                out_name = os.path.join(self.kw['output_folder'], rel_output_name)
+                yield utils.apply_filters({
+                    'basename': self.name,
+                    'name': out_name,
+                    'file_dep': template_deps,
+                    'targets': [out_name],
+                    'actions': [(render_listing_index, ['jupyter', headers, input_folder, output_folder, out_name])],
+                    # This is necessary to reflect changes in blog title,
+                    # sidebar links, etc.
+                    'uptodate': [utils.config_changed(uptodate2, 'nikola.plugins.task.listings:folder')],  # NOQA: E501
+                    'clean': True,
+                }, self.kw["filters"])
+
+                for f in files:
+                    if str(f) == '.DS_Store':
+                        continue
+                    if f.suffix in self.ignored_extensions:
+                        continue
+                    in_name = str(f.resolve())
+                    # Record file names
+                    parent = str(f.parent.stem)
+                    f_name = str(f.name)
+                    rel_name = os.path.join(parent, f_name + '.html')
+                    rel_output_name = os.path.join(output_folder, parent, f_name + '.html')
+                    self.register_output_name(input_folder, rel_name, rel_output_name)
+                    # Set up output name
+                    out_name = os.path.join(self.kw['output_folder'], rel_output_name)
+                    # Yield task
+                    yield utils.apply_filters({
+                        'basename': self.name,
+                        'name': out_name,
+                        'file_dep': template_deps + [in_name],
+                        'targets': [out_name],
+                        'actions': [(render_listing, [in_name, out_name, input_folder, output_folder])],  # NOQA: E501
+                        # This is necessary to reflect changes in blog title,
+                        # sidebar links, etc.
+                        'uptodate': [utils.config_changed(uptodate, 'nikola.plugins.task.listings:source')],  # NOQA: E501
+                        'clean': True,
+                    }, self.kw["filters"])
+
+                    rel_name = os.path.join(parent, f_name)
+                    rel_output_name = os.path.join(output_folder, parent, f_name)
+                    self.register_output_name(input_folder, rel_name, rel_output_name)
+                    out_name = os.path.join(self.kw['output_folder'], rel_output_name)
+                    yield utils.apply_filters({
+                        'basename': self.name,
+                        'name': out_name,
+                        'file_dep': [in_name],
+                        'targets': [out_name],
+                        'actions': [(utils.copy_file, [in_name, out_name])],
+                        'clean': True,
+                    }, self.kw["filters"])

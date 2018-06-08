@@ -219,12 +219,14 @@ POSTS = (
     ("posts/*.md", "blog", "post.tmpl"),
     ("posts/*.txt", "blog", "post.tmpl"),
     ("posts/*.html", "blog", "post.tmpl"),
+    ("posts/*.ipynb", "blog", "post.tmpl"),
 )
 PAGES = (
     ("pages/*.rst", "", "page.tmpl"),
     ("pages/*.md", "", "page.tmpl"),
     ("pages/*.txt", "", "page.tmpl"),
     ("pages/*.html", "", "page.tmpl"),
+    ("pages/*.ipynb", "", "page.tmpl"),
 )
 
 
@@ -287,6 +289,7 @@ TIMEZONE = "America/New_York"
 # Default is:
 LISTINGS_FOLDERS = {
     '../cantera/interfaces/cython/cantera/examples': 'examples/python',
+    '../cantera-jupyter': 'examples/jupyter',
     '../cantera/samples/matlab': 'examples/matlab'
 }
 # Which means process listings from 'listings' into 'output/listings'

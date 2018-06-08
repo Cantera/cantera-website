@@ -1,0 +1,51 @@
+{#  -*- coding: utf-8 -*- #}
+{% extends 'base.tmpl' %}
+{% block content %}
+<h1>Index of Jupyter Notebook Examples</h1>
+
+<p>Cantera examples in the form of <a href="https://jupyter.org" title="Jupyter">Jupyter</a>
+notebooks. To see the rendered notebooks, browse the files below.</p>
+
+<p><strong>Existing Cantera users</strong>: If you have Cantera and the Jupyter Notebook server
+installed on your local machine, simply download any Jupyter notebook by clicking the "Source" link
+at the top of each example page and you should be able to run it.</p>
+
+<p><strong>New Cantera Users</strong>: If you don't have an exiting Cantera installation and you
+just want to experiment, you can give Cantera a test drive in the cloud. Click on the Binder link
+below to launch an interactive environment where you can run these examples. For this, there is no
+installation required, but you cannot save and resume your work.</p>
+
+<a href="http://mybinder.org:/repo/cantera/cantera-jupyter" rel="nofollow">
+  <img src="https://camo.githubusercontent.com/70c5b4d050d4019f4f20b170d75679a9316ac5e5/687474703a2f2f6d7962696e6465722e6f72672f62616467652e737667" alt="Binder" data-canonical-src="http://mybinder.org/badge.svg" style="max-width:100%;">
+</a>
+
+{% for head, file_dict in headers.items() %}
+  <div class="section" id="python-example-{{ head }}">
+    <h2 class="python-example-header example-header">
+      {{ file_dict['name'] }}
+      <a class="headerlink" href="#python-example-{{ head }}" title="Permalink to this headline">¶</a>
+    </h2>
+    {% for row in file_dict['files'] %}
+    <div class="card-deck python-example-row example-row">
+      {% for file in row %}
+      {% set fname = file.split('/')[-1] %}
+      <!-- <div class="col-sm-4"> -->
+        <div class="card">
+          <a href="{{ head }}/{{ fname }}.html"><h5 class="card-header">{{ fname }}</h5></a>
+          <div class="card-body">
+            <p class="card-text">{{ file_dict['summaries'][fname] }}</p>
+          </div>
+        </div>
+      <!-- </div> -->
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+{% endfor %}
+{% endblock %}
+
+{% block sourcelink %}
+{% if source_link and show_sourcelink %}
+    {{ ui.show_sourcelink(source_link) }}
+{% endif %}
+{% endblock %}
