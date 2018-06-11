@@ -1,6 +1,4 @@
-.. py:currentmodule:: cantera.ctml_writer
 .. slug: input-files
-.. _sec-input-files:
 
 ************************
 Working with Input Files

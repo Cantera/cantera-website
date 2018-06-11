@@ -1,5 +1,4 @@
-.. py:currentmodule:: cantera
-.. slug::python-tutorial
+.. slug: python-tutorial
 
 Python Tutorial
 ===============

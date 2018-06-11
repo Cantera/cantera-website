@@ -1,5 +1,5 @@
 .. highlight:: matlab
-.. slug::matlab-tutorial
+.. slug: matlab-tutorial
 
 
 
@@ -729,5 +729,5 @@ Congratulations -- Next Steps
 
 Congratulations - you have finished the Cantera Matlab tutorial! You should now
 be ready to begin using Cantera on your own.  Please see the 'Next Steps'
-section on the `Getting Started <index.html>`_ page, for assistance with 
+section on the `Getting Started <index.html>`_ page, for assistance with
 intermediate and advanced Cantera functionality.  Good luck!
