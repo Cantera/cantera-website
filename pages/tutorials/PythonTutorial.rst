@@ -1,4 +1,5 @@
 .. slug: python-tutorial
+.. hidetitle: true
 
 Python Tutorial
 ===============
@@ -296,14 +297,14 @@ surface reactions must also be passed as arguments to `Interface`.
 Converting CK-format files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-See the :doc:`Working With Input Files <input-files>` documentation for
+See the `Converting CK-format Files <ck-convert.html>`_ documentation for
 information on how to convert from Ck-format to CTI format.
 
 
 Getting Help
 ============
 
-In addition to the Sphinx-generated :ref:`sec-cython-documentation`,
+In addition to the Sphinx-generated `Python documentation </documentation/index.html#Python>`_,
 documentation of the Python classes and their methods can be accessed from
 within the Python interpreter as well.
 
