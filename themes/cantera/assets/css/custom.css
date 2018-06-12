@@ -3,3 +3,16 @@
 .jumbotron-text { text-align: center; padding-bottom: 32px; }
 .jumbotron { background-color: white; margin-top: 30px; margin-bottom: 0px; padding: 48px 0; }
 .img-container { text-align: center; }
+
+a.headerlink { visibility: hidden; padding: 0 4px 0 4px; }
+h1:hover > a.headerlink,
+h2:hover > a.headerlink,
+h3:hover > a.headerlink,
+h4:hover > a.headerlink,
+h5:hover > a.headerlink,
+h6:hover > a.headerlink {
+    visibility: visible;
+}
+
+.example-header { padding: 20px 0; }
+.example-row { padding-bottom: 20px; }

@@ -1,0 +1,44 @@
+{#  -*- coding: utf-8 -*- #}
+{% extends 'base.tmpl' %}
+{% block content %}
+<h1>Index of Python Examples</h1>
+
+<p>This is an index of the examples included with the Cantera Python module. They
+can be found in the <code style="display: inline;">examples</code> subdirectory of the Cantera Python module's
+installation directory. To determine the location of this directory, run the following in your Python interpreter:</p>
+
+<pre class="code python">
+<span class="kn">import</span> <span class="nn">cantera</span><span class="o">.</span><span class="nn">examples</span>
+<span class="k">print</span><span class="p">(</span><span class="n">cantera</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">__path__</span><span class="p">)</span>
+</pre>
+
+{% for head, file_dict in headers.items() %}
+  <div class="section" id="python-example-{{ head }}">
+    <h2 class="python-example-header example-header">
+      {{ file_dict['name'] }}
+      <a class="headerlink" href="#python-example-{{ head }}" title="Permalink to this headline">¶</a>
+    </h2>
+    {% for row in file_dict['files'] %}
+    <div class="card-deck python-example-row example-row">
+      {% for file in row %}
+      {% set fname = file.split('/')[-1] %}
+      <!-- <div class="col-sm-4"> -->
+        <div class="card">
+          <a href="{{ head }}/{{ fname }}.html"><h5 class="card-header">{{ fname }}</h5></a>
+          <div class="card-body">
+            <p class="card-text">{{ file_dict['summaries'][fname] }}</p>
+          </div>
+        </div>
+      <!-- </div> -->
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+{% endfor %}
+{% endblock %}
+
+{% block sourcelink %}
+{% if source_link and show_sourcelink %}
+    {{ ui.show_sourcelink(source_link) }}
+{% endif %}
+{% endblock %}

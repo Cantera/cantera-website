@@ -1,0 +1,8 @@
+[submodule "api-docs/docs"]
+	path = api-docs/docs
+	url = https://github.com/Cantera/docs
+	shallow = true
+[submodule "api-docs/dev-docs"]
+	path = api-docs/dev-docs
+	url = https://github.com/Cantera/dev-docs
+	shallow = true
