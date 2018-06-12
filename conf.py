@@ -282,7 +282,13 @@ TIMEZONE = "America/New_York"
 # One or more folders containing files to be copied as-is into the output.
 # The format is a dictionary of {source: relative destination}.
 # Default is:
-FILES_FOLDERS = {'api-docs': 'documentation'}
+# This is the "production" version of this dictionary
+# FILES_FOLDERS = {'api-docs': 'documentation'}
+
+# This is the "development" version of this dictionary
+FILES_FOLDERS = {'../cantera/build/docs': 'documentation/docs',
+                 '../cantera/build/dev-docs': 'documentation/dev-docs'}
+
 # Which means copy 'files' into 'output'
 
 # One or more folders containing code listings to be processed and published on
