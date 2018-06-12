@@ -1,28 +1,36 @@
-.. py:currentmodule:: cantera
+.. slug: python-tutorial
 
-Tutorial
-========
+Python Tutorial
+===============
 
 Getting Started
----------------
+===============
 
 Start by opening an interactive Python session, e.g., by running `IPython
-<http://ipython.org/>`_. Import the Cantera Python module and NumPy by running::
+<http://ipython.org/>`_. Import the Cantera Python module and NumPy by running:
+
+.. code:: python
 
     >>> import cantera as ct
     >>> import numpy as np
 
-When using Cantera, the first thing you usually need is an object representing
-some phase of matter. Here, we'll create a gas mixture::
+When using Cantera, the first thing you usually need is an object representing:
+some phase of matter. Here, we'll create a gas mixture
+
+.. code:: python
 
     >>> gas1 = ct.Solution('gri30.xml')
 
 To view the state of the mixture, *call* the `gas1` object as if it were a
-function::
+function:
+
+.. code:: python
 
     >>> gas1()
 
-You should see something like this::
+You should see something like this:
+
+.. code:: python
 
      gri30:
 
@@ -67,12 +75,16 @@ of 1.0, and all of the others will be zero.
 Setting the State
 ~~~~~~~~~~~~~~~~~
 
-The state of the object can easily be changed. For example::
+The state of the object can easily be changed. For example:
+
+.. code:: python
 
     >>> gas1.TP = 1200, 101325
 
 sets the temperature to 1200 K and the pressure to 101325 Pa (Cantera always
-uses SI units). After this statement, calling ``gas1()`` results in::
+uses SI units). After this statement, calling ``gas1()`` results in:
+
+.. code:: python
 
      gri30:
 
@@ -101,7 +113,9 @@ has changed too. The density and composition have not.
 Thermodynamics generally requires that *two* properties in addition to
 composition information be specified to fix the intensive state of a substance
 (or mixture). The state of the mixture can be set using several combinations
-of two properties. The following are all equivalent::
+of two properties. The following are all equivalent:
+
+.. code:: python
 
     >>> gas1.TP = 1200, 101325           # temperature, pressure
     >>> gas1.TD = 1200, 0.0204723        # temperature, density
@@ -113,7 +127,9 @@ of two properties. The following are all equivalent::
 In each case, the values of the extensive properties must be entered *per unit
 mass*.
 
-Properties may be read independently or together::
+Properties may be read independently or together:
+
+.. code:: python
 
     >>> gas1.T
     1200.0
@@ -123,12 +139,16 @@ Properties may be read independently or together::
     (8346188.494954427, 48.8465747765848)
 
 The composition can be set in terms of either mole fractions (``X``) or mass
-fractions (``Y``)::
+fractions (``Y``):
+
+.. code:: python
 
     >>> gas1.X = 'CH4:1, O2:2, N2:7.52'
 
 Mass and mole fractions can also be set using `dict` objects, for cases where
-the composition is stored in a variable or being computed::
+the composition is stored in a variable or being computed:
+
+.. code:: python
 
     >>> phi = 0.8
     >>> gas1.X = {'CH4':1, 'O2':2/phi, 'N2':2*3.76/phi}
@@ -136,12 +156,16 @@ the composition is stored in a variable or being computed::
 When the composition alone is changed, the temperature and density are held
 constant. This means that the pressure and other intensive properties will
 change. The composition can also be set in conjunction with the intensive
-properties of the mixture::
+properties of the mixture:
+
+.. code:: python
 
     >>> gas1.TPX = 1200, 101325, 'CH4:1, O2:2, N2:7.52'
     >>> gas1()
 
-results in::
+results in:
+
+.. code:: python
 
      gri30:
 
@@ -174,21 +198,29 @@ changing ``X`` to ``Y`` in the above statements.
 
 The composition can also be set using an array, which must have the same size
 as the number of species. For example, to set all 53 mole fractions to the
-same value, do this::
+same value, do this:
+
+.. code:: python
 
     >>> gas1.X = np.ones(53) # NumPy array of 53 ones
 
-Or, to set all the mass fractions to equal values::
+Or, to set all the mass fractions to equal values:
+
+.. code:: python
 
     >>> gas1.Y = np.ones(53)
 
 When setting the state, you can control what properties are held constant by
 passing the special value `None` to the property setter. For example, to
-change the specific volume to 2.1 m^3/kg while holding entropy constant::
+change the specific volume to 2.1 m^3/kg while holding entropy constant:
+
+.. code:: python
 
     >>> gas1.SV = None, 2.1
 
-Or to set the mass fractions while holding temperature and pressure constant::
+Or to set the mass fractions while holding temperature and pressure constant:
+
+.. code:: python
 
     >>> gas1.TPX = None, None, 'CH4:1.0, O2:0.5'
 
@@ -201,10 +233,14 @@ Python's "slicing" syntax to select data for just the species of interest. To
 get the mole fractions of just the major species in `gas1`, in the order
 specified, you can write:
 
+.. code:: python
+
     >>> Xmajor = gas1['CH4','O2','CO2','H2O','N2'].X
 
 If you want to use the same set of species repeatedly, you can keep a reference
 to the sliced phase object:
+
+.. code:: python
 
     >>> major = gas1['CH4','O2','CO2','H2O','N2']
     >>> cp_major = major.partial_molar_cp
@@ -214,7 +250,7 @@ The slice object and the original object share the same internal state, so
 modifications to one will affect the other.
 
 Working With Mechanism Files
-----------------------------
+============================
 
 In previous example, we created an object that models an ideal gas mixture
 with the species and reactions of GRI-Mech 3.0, using the ``gri30.xml`` input
@@ -233,16 +269,21 @@ If for some reason Cantera has difficulty finding where these files are on your
 system, set environment variable ``CANTERA_DATA`` to the directory or
 directories (separated using ``;`` on Windows or ``:`` on other operating
 systems) where they are located. Alternatively, you can call function
-`add_directory` to add a directory to the Cantera search path::
+`add_directory` to add a directory to the Cantera search path:
+
+.. code:: python
 
     >>> ct.add_directory('/usr/local/cantera/my_data_files')
 
 Cantera input files are plain text files, and can be created with any text
-editor. See the document :ref:`sec-defining-phases` for more information.
+editor. See the document :doc:`Working With Input Files <input-files>` for more
+information.
 
 A Cantera input file may contain more than one phase specification, or may
 contain specifications of interfaces (surfaces). Here we import definitions of
-two bulk phases and the interface between them from file ``diamond.cti``::
+two bulk phases and the interface between them from file ``diamond.cti``:
+
+.. code:: python
 
     >>> gas2 = ct.Solution('diamond.cti', 'gas')
     >>> diamond = ct.Solution('diamond.cti', 'diamond')
@@ -255,53 +296,70 @@ surface reactions must also be passed as arguments to `Interface`.
 Converting CK-format files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-See :ref:`sec-ck-format-conversion` in the :ref:`sec-input-files` documentation.
+See the :doc:`Working With Input Files <input-files>` documentation for
+information on how to convert from Ck-format to CTI format.
 
 
 Getting Help
-------------
+============
 
 In addition to the Sphinx-generated :ref:`sec-cython-documentation`,
 documentation of the Python classes and their methods can be accessed from
 within the Python interpreter as well.
 
 Suppose you have created a Cantera object and want to know what methods are
-available for it, and get help on using the methods::
+available for it, and get help on using the methods:
+
+.. code:: python
 
     >>> g = ct.Solution('gri30.xml')
 
-To get help on the Python class that this object is an instance of::
+To get help on the Python class that this object is an instance of:
+
+.. code:: python
 
     >>> help(g)
 
-For a simple list of the properties and methods of this object::
+For a simple list of the properties and methods of this object:
+
+.. code:: python
 
     >>> dir(g)
 
-To get help on a specific method, e.g. the ``species_index`` method::
+To get help on a specific method, e.g. the ``species_index`` method:
+
+.. code:: python
 
     >>> help(g.species_index)
 
 For properties, getting the documentation is slightly trickier, as the usual
-method will give you the help for the *result*, e.g.::
+method will give you the help for the *result*, e.g.:
+
+.. code:: python
 
     >>> help(g.T)
 
 will provide help on Python's ``float`` class. To get the help for the
-temperature property, ask for the attribute of the class object itself::
+temperature property, ask for the attribute of the class object itself:
+
+.. code:: python
 
     >>> help(g.__class__.T)
 
 If you are using the IPython shell, help can also be obtained using the `?`
-syntax::
+syntax:
+
+.. code:: python
 
     In[1]: g.species_index?
 
 Chemical Equilibrium
---------------------
+====================
 
 To set a gas mixture to a state of chemical equilibrium, use the equilibrate
-method::
+method:
+
+.. code:: python
 
     >>> import cantera as ct
     >>> g = ct.Solution('gri30.xml')
@@ -310,7 +368,9 @@ method::
 
 The above statement sets the state of object ``g`` to the state of chemical
 equilibrium holding temperature and pressure fixed. Alternatively, the
-specific enthalpy and pressure can be held fixed::
+specific enthalpy and pressure can be held fixed:
+
+.. code:: python
 
     >>> g.TPX = 300.0, ct.one_atm, 'CH4:0.95,O2:2,N2:7.52'
     >>> g.equilibrate('HP')
@@ -324,6 +384,8 @@ Other options are:
 How can you tell if ``equilibrate`` has correctly found the chemical equilibrium
 state? One way is verify that the net rates of progress of all reversible
 reactions are zero. Here is the code to do this:
+
+.. code:: python
 
     >>> g.TPX = 300.0, ct.one_atm, 'CH4:0.95,O2:2,N2:7.52'
     >>> g.equilibrate('HP')
@@ -355,7 +417,7 @@ robust algorithm. If you want to know more about the details, look at the on-
 line documented source code of Cantera C++ class 'ChemEquil.h'.
 
 Chemical Kinetics
------------------
+=================
 
 `Solution` objects are also `Kinetics` objects, and provide all of the methods
 necessary to compute the thermodynamic quantities associated with each reaction,
@@ -367,7 +429,9 @@ are used extensively within Cantera's :ref:`reactor network model
 
 Information about individual reactions that is independent of the thermodynamic
 state can be obtained by accessing `Reaction` objects with the
-`Kinetics.reaction` method::
+`Kinetics.reaction` method:
+
+.. code:: python
 
     >>> g = ct.Solution('gri30.cti')
     >>> r = g.reaction(2) # get a Reaction object
@@ -384,7 +448,9 @@ state can be obtained by accessing `Reaction` objects with the
 If we are interested in only certain types of reactions, we can use this
 information to filter the full list of reactions to find the just the ones of
 interest. For example, here we find the indices of just those reactions which
-convert `CO` into `CO2`::
+convert `CO` into `CO2`:
+
+.. code:: python
 
     >>> II = [i for i,r in enumerate(g.reactions())
               if 'CO' in r.reactants and 'CO2' in r.products]
@@ -398,18 +464,24 @@ convert `CO` into `CO2`::
 (Actually, we should also include reactions where the reaction is written such
 that ``CO2`` is a reactant and ``CO`` is a product, but for this example, we'll
 just stick to this smaller set of reactions.) Now, let's set the composition to
-an interesting equilibrium state::
+an interesting equilibrium state:
+
+.. code:: python
 
     >>> g.TPX = 300, 101325, {'CH4':0.6, 'O2':1.0, 'N2':3.76}
     >>> g.equilibrate('HP')
 
 We can verify that this is an equilibrium state by seeing that the net reaction
-rates are essentially zero::
+rates are essentially zero:
+
+.. code:: python
 
     >>> g.net_rates_of_progress[II]
     array([  4.06576e-20,  -5.50571e-21,   0.00000e+00,  -4.91279e-20])
 
-Now, let's see what happens if we decrease the temperature of the mixture::
+Now, let's see what happens if we decrease the temperature of the mixture:
+
+.. code:: python
 
     >>> g.TP = g.T-100, None
     >>> g.net_rates_of_progress[II]
@@ -417,26 +489,42 @@ Now, let's see what happens if we decrease the temperature of the mixture::
 
 All of the reaction rates are positive, favoring the formation of ``CO2`` from
 ``CO``, with the third reaction, ``CO + OH <=> CO2 + H`` proceeding the fastest.
-If we look at the enthalpy change associated with each of these reactions::
+If we look at the enthalpy change associated with each of these reactions:
+
+.. code:: python
 
     >>> g.delta_enthalpy[II]
     array([ -5.33035e+08,  -2.23249e+07,  -8.76650e+07,  -2.49170e+08])
 
 we see that the change is negative in each case, indicating a net release of
 thermal energy. The total heat release rate can be computed either from the
-reaction rates::
+reaction rates:
+
+.. code:: python
 
     >>> np.dot(g.net_rates_of_progress, g.delta_enthalpy)
     -58013370.720881931
 
-or from the species production rates::
+or from the species production rates:
+
+.. code:: python
 
     >>> np.dot(g.net_production_rates, g.partial_molar_enthalpies)
     -58013370.720881805
 
 The contribution from just the selected reactions is:
 
+.. code:: python
+
     >>> np.dot(g.net_rates_of_progress[II], g.delta_enthalpy[II])
     -9307123.2625651453
 
 Or about 16% of the total heat release rate.
+
+Congratulations -- Next Steps
+=============================
+
+Congratulations - you have finished the Cantera Python tutorial! You should now
+be ready to begin using Cantera on your own.  Please see the 'Next Steps'
+section on the `Getting Started <index.html>`_ page, for assistance with
+intermediate and advanced Cantera functionality.  Good luck!
