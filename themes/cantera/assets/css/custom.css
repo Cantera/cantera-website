@@ -16,3 +16,7 @@ h6:hover > a.headerlink {
 
 .example-header { padding: 20px 0; }
 .example-row { padding-bottom: 20px; }
+
+.tutorials { margin: 40px 0; padding: 0 0 !important; }
+
+section { margin-top: 20px; margin-bottom: 0px; padding: 10px 0; }
