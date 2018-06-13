@@ -78,6 +78,32 @@ and input files.  Please also provide information about your operating system
 and Cantera version. This will enable other members of the group to efficiently
 understand the problem and offer suggestions on how to fix it.
 
+Bug Reporting
+~~~~~~~~~~~~~
+
+**What should I do if I think I've found a bug in Cantera?**
+
+    - Check to see if you're using the most recent version of Cantera, and
+      upgrade if not.
+    - Check the `Issue Tracker
+      <https://github.com/Cantera/cantera/issues>`_ to see if the issue
+      has already been reported.
+    - Try to generate a `minimal, complete, and verifiable example
+      <http://stackoverflow.com/help/mcve>`_ that demonstrates the observed bug.
+    - Create a new issue on the tracker (the "New issue" button is toward the
+      upper right-hand corner, just above the list of open issues). Include as
+      much information as possible about your system configuration (operating
+      system, compiler versions, Python versions, installation method, etc.)
+
+**What information should I include in my bug report?**
+
+    - The version of Cantera are you using, and how you installed it
+    - The operating system you are using
+    - If you compiled Cantera, what compiler you used, and what compilation
+      options you specified
+    - The version of Python or Matlab are you using, if applicable
+    - The necessary *input* to generate the reported behavior
+    - The full text of any error message you receive
 
 Code of Conduct
 ~~~~~~~~~~~~~~~
