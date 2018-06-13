@@ -1,5 +1,6 @@
 .. slug: ck-conversion
 .. hidetitle: true
+.. has_math: true
 
 
 Converting CK-format files
