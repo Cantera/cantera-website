@@ -21,7 +21,7 @@ under a `permissive 3-Clause BSD license
 software will remain open source and available for all to use.
 
 In this vein, Cantera software relies exclusively upon the volunteer
-contributions of its users.  These contributions range from catching and
+contributions of its users.  These contributions range from diagnosing and
 reporting problems/bugs, to helping others learn to use Cantera, to developing
 and implementing new software capabilities.
 
@@ -63,20 +63,78 @@ If you decide to make a post, please include the following information:
 
 For installation/compilation problems, please provide:
 
-  * The contents of cantera.conf and config.log, and the output of the scons
-    build and scons build dump commands (you can direct this output to a file by
-    running scons build >buildlog.txt 2>&1)
-  * The exact version of Cantera you are trying to compile, and how it was
-    obtained (i.e. downloaded source tarball or the specific Git commit).
-  * Your operating system, compiler versions, and the versions of any other
-    relevant software.
+* The contents of cantera.conf and config.log, and the output of the scons
+  build and scons build dump commands (you can direct this output to a file by
+  running scons build >buildlog.txt 2>&1)
+* The exact version of Cantera you are trying to compile, and how it was
+  obtained (i.e. downloaded source tarball or the specific Git commit).
+* Your operating system, compiler versions, and the versions of any other
+  relevant software.
 
 For application problems (i.e. not related to installation or compilation),
-please provide a minimal, complete, and verifiable example that demonstrates
-the problem when making your post; in short this means include a code example
-and input files.  Please also provide information about your operating system
-and Cantera version. This will enable other members of the group to efficiently
-understand the problem and offer suggestions on how to fix it.
+please:
+
+* Provide a minimal, complete, and verifiable example that demonstrates
+  the problem when making your post; in short this means include a code example
+  and input files.
+* Please also provide information about your operating system and Cantera
+  version. This will enable other members of the group to efficiently
+  understand the problem and offer suggestions on how to fix it.
+* Please DO NOT post screenshots of code or error messages!  They cannot be
+  searched by anyone looking to solve a similar problem, and also cannot be
+  read by text readers for visually impaired users.  Instead, please copy and
+  paste any relevant text directly into your message.  Thanks!
+
+Gitter
+~~~~~~
+
+For less formal and not-directly-relevant-to-Cantera discussions, we have set up
+a `Cantera chat room <https://gitter.im/Cantera/Lobby>`_ on Gitter.  This is a
+forum where you can have conversations with other Cantera community members
+which are not directly relevant to the broader Cantera Users' Group.  This may
+involve discussing applications based on Cantera, the scientific theory
+underpinning some of Cantera's functionality, broader questions about the
+scientific computing landscape, or perhaps just conversations to get to know
+other members of the Cantera community.
+
+A few notes:
+
+  * This forum is not directly moderated or supported by the Cantera developers
+    or Steering Committee.  While developers may periodically read or respond to
+    posts, there is no expectation of any ``official`` Cantera support through
+    this forum.
+  * Posts or questions directly relevant to Cantera usage or support should
+    still be directed to the Cantera Users' Group. Having this information in a
+    single, searchable repository is a great benefit to our users, and we do not
+    want Cantera-relevant information spread across multiple venues. 
+
+.. raw:: html
+
+  <br />
+
+Interacting with the Cantera Community
+--------------------------------------
+
+Code of Conduct
+~~~~~~~~~~~~~~~
+
+All online and in-person interactions and communications related to Cantera are
+governed by the `Cantera Code of Conduct
+<https://github.com/Cantera/cantera/blob/master/CODE_OF_CONDUCT.md>`_. This code
+of conduct sets expectations for the community to ensure that users and
+contributors are able to participate in a respectful and welcoming environment.
+
+Contributing Code
+~~~~~~~~~~~~~~~~~
+
+If there is a feature you would like to see added to Cantera, please consider
+becoming part of the developer community and contributing code!
+`Cantera's code repository <https://github.com/Cantera/cantera>`_  is developed
+openly on `GitHub <https://github.com/>`_. Contributions are welcomed from
+anyone in the community; please see the `Contributors' guide
+<https://github.com/Cantera/cantera/blob/master/CONTRIBUTING.md>`_ for
+assistance in getting started.  There are also plenty of current contributors
+who are happy to help, if you do not know how to get started.
 
 Bug Reporting
 ~~~~~~~~~~~~~
@@ -105,14 +163,6 @@ Bug Reporting
     - The necessary *input* to generate the reported behavior
     - The full text of any error message you receive
 
-Code of Conduct
-~~~~~~~~~~~~~~~
-
-All online and in-person interactions and communications related to Cantera are
-governed by the `Cantera Code of Conduct
-<https://github.com/Cantera/cantera/blob/master/CODE_OF_CONDUCT.md>`_. This code
-of conduct sets expectations for the community to ensure that users and
-contributors are able to participate in a respectful and welcoming environment.
 
 .. raw:: html
 
@@ -120,14 +170,6 @@ contributors are able to participate in a respectful and welcoming environment.
 
 Supporting Cantera
 ------------------
-
-Contributing Code to Cantera
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Cantera is developed openly on GitHub. Contributions are welcomed from anyone in
-the community; please see the `Contributors guide
-<https://github.com/Cantera/cantera/blob/master/CONTRIBUTING.md>`_ for
-assistance in getting started.
 
 Citing Cantera
 ~~~~~~~~~~~~~~
