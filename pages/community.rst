@@ -106,7 +106,7 @@ A few notes:
   * Posts or questions directly relevant to Cantera usage or support should
     still be directed to the Cantera Users' Group. Having this information in a
     single, searchable repository is a great benefit to our users, and we do not
-    want Cantera-relevant information spread across multiple venues. 
+    want Cantera-relevant information spread across multiple venues.
 
 .. raw:: html
 
@@ -215,7 +215,7 @@ to support our efforts. All donations will be used exclusively to fund the
 development of Cantera's source code, documentation, or community.
 
 
-.. image:: images/SponsoredProject.png
+.. image:: /images/SponsoredProject.png
     :alt: Powered by NumFOCUS
     :target: https://numfocus.org
     :align: center
