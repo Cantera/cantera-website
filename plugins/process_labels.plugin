@@ -1,0 +1,7 @@
+[Core]
+name = process_labels
+module = process_labels
+
+[Documentation]
+author = Bryan Weber
+version = 1.0

@@ -7,7 +7,6 @@ import os
 import lxml.html
 import json
 
-# from nikola.plugin_categories import Task
 from nikola.plugins.task.listings import Listings
 from nikola import utils
 
