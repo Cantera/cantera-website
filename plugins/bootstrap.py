@@ -4,10 +4,9 @@ Plugin to format Bootstrap directives
 
 from docutils import nodes, utils
 import docutils
-from docutils.parsers.rst import directives, Directive, roles
+from docutils.parsers.rst import directives, Directive
 from nikola.plugin_categories import RestExtension
-# from nikola.plugins.compile.rest import add_node
-from nikola.utils import LOGGER
+# from nikola.utils import LOGGER
 
 
 class Bootstrap(RestExtension):
