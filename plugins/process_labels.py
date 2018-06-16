@@ -66,11 +66,18 @@ class ProcessLabels(Task):
 
 def update_cache(site):
     cached_labels = site.cache.get('ref_labels')
+    anon_cached_labels = site.cache.get('anon_ref_labels')
     if cached_labels is not None:
         cached_labels.update(site.ref_labels)
         site.cache.set('ref_labels', cached_labels)
     else:
         site.cache.set('ref_labels', site.ref_labels)
+
+    if anon_cached_labels is not None:
+        anon_cached_labels.update(site.anon_ref_labels)
+        site.cache.set('anon_ref_labels', anon_cached_labels)
+    else:
+        site.cache.set('anon_ref_labels', site.anon_ref_labels)
 
 
 def process_labels(site, logger, source, post, lang=None):
