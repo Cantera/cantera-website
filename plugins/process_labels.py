@@ -55,11 +55,22 @@ class ProcessLabels(Task):
                     'name': source,
                     'targets': targets,
                     'task_dep': ['process_labels:timeline_changes'],
-                    'actions': [(process_labels, [self.site, self.logger, source, post, lang])],
+                    'actions': [(process_labels, [self.site, self.logger, source, post, lang]),
+                                (update_cache, [self.site]),
+                                ],
                     'uptodate': [config_changed(deps_dict, 'process_labels')] +
                     post.fragment_deps_uptodate(lang),
                 }
                 yield task
+
+
+def update_cache(site):
+    cached_labels = site.cache.get('ref_labels')
+    if cached_labels is not None:
+        cached_labels.update(site.ref_labels)
+        site.cache.set('ref_labels', cached_labels)
+    else:
+        site.cache.set('ref_labels', site.ref_labels)
 
 
 def process_labels(site, logger, source, post, lang=None):
@@ -80,7 +91,7 @@ def process_labels(site, logger, source, post, lang=None):
         if labelid is None:
             continue
         node = document.ids[labelid]
-        if node.tagname == 'tagret' and 'refid' in node:
+        if node.tagname == 'target' and 'refid' in node:
             node = document.ids.get(node['refid'])
             labelid = node['names'][0]
         if node.tagname == 'footnote' or 'refuri' in node or node.tagname.startswith('desc_'):
@@ -89,7 +100,7 @@ def process_labels(site, logger, source, post, lang=None):
             logger.warn('Duplicate label {dup}, other instance in {other}'.format(
                 dup=name, other=site.ref_labels[name][0]
             ))
-        site.anon_ref_labels[name] = post, labelid
+        site.anon_ref_labels[name] = post.permalink(), labelid
 
         def clean_astext(node):
             """Like node.astext(), but ignore images.
@@ -105,4 +116,4 @@ def process_labels(site, logger, source, post, lang=None):
             sectname = clean_astext(node[0])
         else:
             continue
-        site.ref_labels[name] = post, labelid, sectname
+        site.ref_labels[name] = post.permalink(), labelid, sectname

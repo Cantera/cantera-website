@@ -27,19 +27,23 @@ def _ref_link(rawtext, text, options={}, content=[]):
     # If we're just processing the labels, ignore the role
     if ref_role.site.processing_labels:
         return True, True, None, None, None
-    # split link's text and post's slug in role content
+
     has_explicit_title, title, label = split_explicit_title(text)
-    # check if the label given is part of the labels
-    if label not in ref_role.site.ref_labels:
+
+    if ref_role.site.cache.get('ref_labels') is not None:
+        ref_labels = ref_role.site.cache.get('ref_labels').copy()
+    else:
+        ref_labels = ref_role.site.ref_labels.copy()
+    if label not in ref_labels:
         LOGGER.error('Unknown reference label: {}'.format(label))
-        LOGGER.error('ref_labels is: {}'.format(ref_role.site.ref_labels))
+        # LOGGER.error('ref_labels is: {}'.format(ref_role.site.ref_labels))
         return False, False, None, None, label
 
-    post = ref_role.site.ref_labels[label][0]
+    permalink = ref_labels[label][0]
     if not has_explicit_title:
-        title = ref_role.site.ref_labels[label][2]
+        title = ref_labels[label][2]
 
-    permalink = post.permalink() + '#' + label
+    permalink += '#' + label
 
     return True, False, title, permalink, label
 
