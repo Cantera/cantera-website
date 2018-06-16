@@ -161,9 +161,9 @@
 
                - Go to `python.org <https://www.python.org/>`__.
 
-                  - *64-bit*: Download the most recent "Windows X86-64 MSI Installer" for
-                    Python *X.Y*.
-                  - *32-bit*: Download the most recent "Windows x86 MSI Installer" for
+                 - *64-bit*: Download the most recent "Windows X86-64 MSI Installer" for
+                   Python *X.Y*.
+                 - *32-bit*: Download the most recent "Windows x86 MSI Installer" for
                     Python *X.Y*.
 
                - Run the installer. The default installation options should be fine.
@@ -185,9 +185,9 @@
                - Go to the `Microsoft Visual C++ Redistributable Download Page
                  <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__.
 
-                  - *64-bit*: Download ``vc_redist.x64.exe``
+                 - *64-bit*: Download ``vc_redist.x64.exe``
 
-                  - *32-bit*: Download ``vc_redist.x86.exe``
+                 - *32-bit*: Download ``vc_redist.x86.exe``
 
                - Run the installer.
 
