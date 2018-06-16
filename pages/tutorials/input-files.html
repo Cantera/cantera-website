@@ -1,0 +1,144 @@
+<!--
+    .. title: Cantera
+    .. slug: input-files
+    .. date: 2018-05-30 11:20:56 UTC-04:00
+    .. description: Cantera Input File Tutorial page
+    .. type: text
+    .. template: home.tmpl
+-->
+
+<section id="cantera-tutorials">
+  <h1 class="display-4">Working With Input Files</h1>
+  <div class="jumbotron">
+
+  <p class="lead">As covered in the tutorials (<a href="python-tutorial.html">
+  Python </a> and <a href="matlab-tutorial.html"> Matlab </a>), all calculations
+  in Cantera require, at a minimum, an input file to describe the properties of
+  the relevant phase(s) of matter.
+  </p>
+
+  <p>The required input files can be provided via one of three methods:
+
+  <UL>
+    <li> Use one of the pre-existing input files provided with Cantera. </li>
+    <li> Convert a pre-existing mechanism from Chemking (CK) format to Cantera
+      (CTI) format. </li>
+    <li> Create your own CTI file, either from scratch (not recommended) or by
+      editing an existing file.</li>
+  </UL>
+  </p>
+
+  <p align="justify">
+  The first two options will suffice for a majority of Cantera users.  Advanced
+  users may, however, need to edit an existing CTI file in order to define
+  additional species, reactions, or entirely new phases.  Even if you need to
+  create an entirely new CTI file, it is still advisable to start from an existing
+  file, to cut down on syntax errors.
+  </p>
+
+  <p align="justify">
+  Whenever you edit a CTI, it is <i>highly advised</i> that you begin by copying
+  the existing file and saving it under a new name, before then editing the
+  newly-named file.  Editing a file under its original name can easily lead to
+  errors, if one forgets that this file does not represent the original mechanism.
+  </p>
+
+  </div>
+</section>
+
+<section id="cantera-tutorials">
+  <h1 class="display-5">CTI files distributed with Cantera</h1>
+  <div class="jumbotron">
+    <p align="justify">
+    Several reaction mechanism files in the CTI format are included in the
+    Cantera distribution, including ones that model natural gas combustion
+    ('gri30.cti'), high-temperature air ('air.cti'), a hydrogen/oxygen reaction
+    mechanism ('h2o2.cti'), some pure fluids in the liquid-vapor region
+    ('liquidvapor.cti'), and a few surface reaction mechanisms (such as
+    'ptcombust.cti', 'diamond.cti', etc,), among others. Under Windows, these
+    files may be located in 'C:\Program Files\Common Files\Cantera', or in
+    'C:\cantera\data', depending on how you installed Cantera and the options
+    you specified.  On a unix/linux/Mac OSX machine, they are usually kept in
+    the 'data' subdirectory within the Cantera installation directory.
+  </p>
+
+  <p align="justify">
+    Please see the tutorials for <a href="python-tutorial.html"> Python </a> and
+    <a href="matlab-tutorial.html"> Matlab </a> for instructions on how to
+    import from these pre-existing files.
+
+  </div>
+</section>
+
+<section id="cantera-tutorials">
+  <h1 class="display-5">Converting or Creating New CTI Files</h1>
+  <div class="jumbotron">
+    <p align="justify">
+      If you want to model a phase not available in the CTI files distributed
+      with Cantera, you will need to either procure a new CTI file (there are a
+      limited number of CTI files available on the web), or create a new one.
+    </p>
+    <p align="justify">
+      There are two primary options for creating a new CTI file:
+    </p>
+  </div>
+</section>
+
+<section id="cards">
+  <div class="container">
+    <div class="card-deck">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Conversion from Chemkin</h1>
+          <p>
+            Convert a Chemkin-formatted ('CK') file to the CTI input format.
+          </p>
+        </div>
+        <div class="card-footer">
+          <a href="ck-conversion.html" class="btn btn-primary">ck2cti.exe
+            Tutorial</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Create a new CTI file.</h1>
+          <p>
+            Create a completely new mechanism, by defining new species, phases,
+            and/or reactions.
+          </p>
+        </div>
+        <div class="card-footer">
+          <a href="cti/defining-phases.html" class="btn btn-primary">Defining Phases
+          Tutorial</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="cantera-tutorials">
+  <h1 class="display-6">Understanding CTI Syntax</h1>
+</section>
+
+<section id="cards">
+  <div class="container">
+    <div class="card-deck">
+      <div class="card">
+        <div class="card-body">
+          <p>
+            For any of these options (adpating an external CTI file, converting from
+            CK, or creating a new CTI file), it can be helpful to understand the CTI
+            syntax requirements. Clearly, anyone writing directly in the CTI format
+            must conform to these standards.  But also, when importing an
+            externally-provided CTI file or converting from CK format, understanding
+            the CTI file syntax can help diagnose and correct any conversion errors
+            (although many/most of the CK conversion errors will be related to errors
+            in the CK syntax formatting).
+          </p>
+        </div>
+        <div class="card-footer">
+          <a href="cti/cti-syntax.html" class="btn btn-primary">CTI Syntax Tutorial</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,6 +1,7 @@
-.. highlight:: matlab
-.. slug: matlab-tutorial
 
+.. slug: matlab-tutorial
+.. highlight:: matlab
+.. hidetitle: true
 
 
 Matlab Tutorial
@@ -208,7 +209,25 @@ To set the mass fractions to equal values:
 
     >> set(gas1, 'Y', x)
 
-This clears all Matlab objects created:
+Importing multiple phases or interfaces
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A Cantera input file may contain more than one phase specification,
+or may contain specifications of interfaces (surfaces). Here we
+import definitions of two bulk phases and the interface between them
+from file diamond.cti:
+
+.. code:: matlab
+
+    >> gas2 = Solution('diamond.cti', 'gas');        % a gas
+    >> diamond = Solution('diamond.cti','diamond');  % bulk diamond
+    >> diamonnd_surf = importInterface('diamond.cti','diamond_100',...
+                                    gas2, diamond);
+
+Note that the bulk (i.e., 3D) phases that participate in the surface
+reactions must also be passed as arguments to importInterface.
+
+The following command clears all Matlab objects created:
 
 .. code:: matlab
 
@@ -262,23 +281,27 @@ them in again:
 To learn more about the cti files already available with Cantera and how to
 create new cti files, see :doc:`Working With Input Files <input-files>`
 
-Importing multiple phases or interfaces
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CTI files distributed with Cantera
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A Cantera input file may contain more than one phase specification,
-or may contain specifications of interfaces (surfaces). Here we
-import definitions of two bulk phases and the interface between them
-from file diamond.cti:
+Several reaction mechanism files in this format are included in the
+Cantera distribution, including ones that model high-temperature
+air, a hydrogen/oxygen reaction mechanism, and a few surface
+reaction mechanisms. Under Windows, these files may be located in
+'C:\Program Files\Common Files\Cantera', or in 'C:\cantera\data',
+depending on how you installed Cantera and the options you
+specified.  On a unix/linux/Mac OSX machine, they are usually kept
+in the 'data' subdirectory within the Cantera installation
+directory.
+
+If for some reason Cantera has difficulty finding where these files
+are on your system, set environment variable CANTERA_DATA to the
+directory where they are located. Alternatively, you can call function
+adddir to add a directory to the Cantera search path:
 
 .. code:: matlab
 
-    >> gas2 = Solution('diamond.cti', 'gas');        % a gas
-    >> diamond = Solution('diamond.cti','diamond');  % bulk diamond
-    >> diamonnd_surf = importInterface('diamond.cti','diamond_100',...
-                                    gas2, diamond);
-
-Note that the bulk (i.e., 3D) phases that participate in the surface
-reactions must also be passed as arguments to importInterface.
+  >> adddir('/usr/local/cantera/my_data_files');
 
 
 XML files
