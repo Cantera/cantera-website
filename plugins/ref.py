@@ -40,6 +40,8 @@ def _ref_link(rawtext, text, options={}, content=[]):
         return False, False, None, None, label
 
     permalink = ref_labels[label][0]
+    if permalink.endswith('/'):
+        permalink += 'index.html'
     if not has_explicit_title:
         title = ref_labels[label][2]
 
