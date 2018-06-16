@@ -183,7 +183,7 @@ follows:
 
     David G. Goodwin, Harry K. Moffat, and Raymond L. Speth. *Cantera: An
     object-oriented software toolkit for chemical kinetics, thermodynamics, and
-    transport processes*. http://www.cantera.org, 2017. Version 2.4.0.
+    transport processes*. http://www.cantera.org, 2018. Version 2.4.0.
     doi:10.5281/zenodo.170284
 
 The following BibTeX entry may also be used:
