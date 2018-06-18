@@ -283,11 +283,24 @@ TIMEZONE = "America/New_York"
 # The format is a dictionary of {source: relative destination}.
 # Default is:
 # This is the "production" version of this dictionary
-# FILES_FOLDERS = {'api-docs': 'documentation'}
+CURRENT_CANTERA_VERSION = '2.4'
+
+# FILES_FOLDERS = {'api-docs/docs': 'documentation/docs-{}'.format(CURRENT_CANTERA_VERSION),
+#                  'api-docs/dev-docs': 'documentation/dev',
+#                  'api-docs/docs-2.0': 'documentation/docs-2.0',
+#                  'api-docs/docs-2.1': 'documentation/docs-2.1',
+#                  'api-docs/docs-2.2': 'documentation/docs-2.2',
+#                  'api-docs/docs-2.3': 'documentation/docs-2.3',
+#                  }
 
 # This is the "development" version of this dictionary
-FILES_FOLDERS = {'../cantera/build/docs': 'documentation/docs',
-                 '../cantera/build/dev-docs': 'documentation/dev-docs'}
+FILES_FOLDERS = {'../cantera/build/docs': 'documentation/docs-{}'.format(CURRENT_CANTERA_VERSION),
+                 '../cantera/build/dev-docs': 'documentation/dev',
+                 'api-docs/docs-2.0': 'documentation/docs-2.0',
+                 'api-docs/docs-2.1': 'documentation/docs-2.1',
+                 'api-docs/docs-2.2': 'documentation/docs-2.2',
+                 'api-docs/docs-2.3': 'documentation/docs-2.3',
+                 }
 
 # Which means copy 'files' into 'output'
 
