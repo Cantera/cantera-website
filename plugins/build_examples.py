@@ -135,7 +135,7 @@ class BuildExamples(Listings):
                     summaries = {}
                     this_header_files = []
                     for f in dir.iterdir():
-                        if f.suffix in self.ignored_extensions:
+                        if f.suffix in self.ignored_extensions or f.name == '.DS_Store':
                             continue
                         files.append(f)
                         this_header_files.append(str(f))
@@ -237,7 +237,7 @@ class BuildExamples(Listings):
                 for file in p.iterdir():
                     if 'tut' in file.name or file.name == 'README' or 'test' in file.name:
                         continue
-                    if file.suffix in self.ignored_extensions:
+                    if file.suffix in self.ignored_extensions or file.name == '.DS_Store':
                         continue
                     files.append(file)
                     doc = ''
@@ -328,6 +328,9 @@ class BuildExamples(Listings):
                         'clean': True,
                     }, self.kw["filters"])
 
+            #########################################################
+            # Build the Jupyter examples
+            #########################################################
             elif 'jupyter' in output_folder:
                 template_deps = self.site.template_system.template_deps('jupyter-example-index.tmpl')
                 headers = OrderedDict(
@@ -339,12 +342,16 @@ class BuildExamples(Listings):
                 p = Path(input_folder)
                 files = []
                 for dir in p.iterdir():
-                    if not dir.is_dir() or dir.name.startswith('.') or dir.suffix in self.ignored_extensions:
+                    if not dir.is_dir() or dir.name.startswith('.'):
+                        continue
+                    if dir.suffix in self.ignored_extensions:
                         continue
                     summaries = {}
                     this_header_files = []
                     for f in dir.iterdir():
-                        if f.suffix in self.ignored_extensions or f.is_dir() or f.name == '.ipynb_checkpoints':
+                        if f.suffix in self.ignored_extensions or f.is_dir():
+                            continue
+                        if f.name == '.ipynb_checkpoints' or f.name == '.DS_Store':
                             continue
                         files.append(f)
                         this_header_files.append(str(f))
