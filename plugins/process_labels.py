@@ -84,7 +84,13 @@ def process_labels(site, logger, source, post, lang=None):
     site.processing_labels = True
     pub = Publisher(reader=Reader(), parser=None, writer=None)
     pub.set_components(None, 'restructuredtext', 'html')
-    pub.process_programmatic_settings(None, None, None)
+    # Reading the file will generate output/errors that we don't care about
+    # at this stage. The report_level = 5 means no output
+    pub.process_programmatic_settings(
+        settings_spec=None,
+        settings_overrides={'report_level': 5},
+        config_section=None,
+    )
     pub.set_source(None, source)
     pub.publish()
     document = pub.document

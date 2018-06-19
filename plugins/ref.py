@@ -10,7 +10,7 @@ from nikola.plugin_categories import RestExtension
 
 
 class Plugin(RestExtension):
-    """Plugin for doc role."""
+    """Plugin for ref role."""
 
     name = 'rest_ref'
 
