@@ -1,0 +1,175 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Defining Phases &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction" href="intro.html" />
+    <link rel="prev" title="Language Interfaces" href="../language-interfaces.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../language-interfaces.html" title="Language Interfaces"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../language-interfaces.html"
+                        title="previous chapter">Language Interfaces</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="intro.html"
+                        title="next chapter">Introduction</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/cti/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="defining-phases">
+<span id="sec-defining-phases"></span><h1>Defining Phases<a class="headerlink" href="#defining-phases" title="Permalink to this headline">¶</a></h1>
+<p><em>A guide to Cantera’s input file format</em></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input-files.html">Working with Input Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input-files.html#input-file-syntax">Input File Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input-files.html#dimensional-values">Dimensional Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input-files.html#processing-input-files">Processing Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input-files.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input-files.html#converting-ck-format-files">Converting CK-format files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="phases.html">Phases and their Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="phases.html#phases">Phases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phases.html#interfaces">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phases.html#the-state-entry">The <code class="docutils literal"><span class="pre">state</span></code> entry</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="species.html">Elements and Species</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="species.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="species.html#species">Species</a></li>
+<li class="toctree-l2"><a class="reference internal" href="species.html#thermodynamic-property-models">Thermodynamic Property Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reactions.html">Reactions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reactions.html#common-attributes">Common Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reactions.html#reactions-with-pressure-independent-rate">Reactions with Pressure-Independent Rate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reactions.html#three-body-reactions">Three-Body Reactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reactions.html#falloff-reactions">Falloff Reactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reactions.html#chemically-activated-reactions">Chemically-Activated Reactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reactions.html#pressure-dependent-arrhenius-rate-expressions-p-log">Pressure-Dependent Arrhenius Rate Expressions (P-Log)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reactions.html#chebyshev-reaction-rate-expressions">Chebyshev Reaction Rate Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reactions.html#surface-reactions">Surface Reactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reactions.html#additional-options">Additional Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">CTI Class Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#basic-classes-functions">Basic Classes &amp; Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#phases-of-matter">Phases of Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#elements-and-species">Elements and Species</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#thermodynamic-properties">Thermodynamic Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#transport-properties">Transport Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#reactions">Reactions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example-combustion.html">Example: Hydrogen Combustion</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../language-interfaces.html" title="Language Interfaces"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+:orphan:
+
+.. _matlab-example-ignite.m:
+
+ignite.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/ignite.m
+   :language: matlab

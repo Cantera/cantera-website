@@ -1,0 +1,9 @@
+:orphan:
+
+.. _matlab-example-cantera_demos.m:
+
+cantera_demos.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/cantera_demos.m
+   :language: matlab

@@ -1,0 +1,9 @@
+:orphan:
+
+.. _matlab-example-flame2.m:
+
+flame2.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/flame2.m
+   :language: matlab

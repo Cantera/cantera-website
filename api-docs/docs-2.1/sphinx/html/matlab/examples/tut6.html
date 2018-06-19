@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tut6.m &mdash; Cantera 2.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.1.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.1.2 documentation" href="../../index.html" />
+    <link rel="up" title="Index of Examples" href="../examples.html" />
+    <link rel="next" title="tut7.m" href="tut7.html" />
+    <link rel="prev" title="tut5.m" href="tut5.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tut7.html" title="tut7.m"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tut5.html" title="tut5.m"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
+          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tut5.html"
+                        title="previous chapter">tut5.m</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tut7.html"
+                        title="next chapter">tut7.m</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/matlab/examples/tut6.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tut6-m">
+<h1>tut6.m<a class="headerlink" href="#tut6-m" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-matlab"><div class="highlight"><pre><span class="c">% Tutorial 6:   Transport properties</span>
+<span class="c">%</span>
+<span class="c">%    Topics:</span>
+<span class="c">%       - mixture-averaged and multicomponent models</span>
+<span class="c">%       - viscosity</span>
+<span class="c">%       - thermal conductivity</span>
+<span class="c">%       - binary diffusion coefficients</span>
+<span class="c">%       - mixture-averaged diffusion coefficients</span>
+<span class="c">%       - multicomponent diffusion coefficients</span>
+<span class="c">%       - thermal diffusion coefficients</span>
+<span class="c">%</span>
+
+<span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+<span class="c">% Methods are provided to compute transport properties. By</span>
+<span class="c">% default, calculation of transport properties is not enabled. If</span>
+<span class="c">% transport properties are required, the transport model must be</span>
+<span class="c">% specified when the gas mixture object is constructed.</span>
+
+<span class="c">% Currently, two models are implemented. Both are based on kinetic</span>
+<span class="c">% theory expressions, and follow the approach described in Dixon-Lewis</span>
+<span class="c">% (1968) and Kee, Coltrin, and Glarborg (2002). The first is a full</span>
+<span class="c">% multicomponent formulation, and the second is a simplification that</span>
+<span class="c">% uses expressions derived for mixtures with a small number of species</span>
+<span class="c">% (1 to 3), using approximate mixture rules to average over</span>
+<span class="c">% composition.</span>
+
+<span class="c">% To use the multicomponent model with GRI-Mech 3.0, call function</span>
+<span class="c">% GRI30 as follows:</span>
+
+<span class="n">g1</span> <span class="p">=</span> <span class="n">GRI30</span><span class="p">(</span><span class="s">&#39;Multi&#39;</span><span class="p">)</span>
+
+<span class="c">% To use the mixture-averaged model:</span>
+
+<span class="n">g2</span> <span class="p">=</span> <span class="n">GRI30</span><span class="p">(</span><span class="s">&#39;Mix&#39;</span><span class="p">)</span>
+
+
+<span class="c">% Both models use a mixture-averaged formulation for the viscosity.</span>
+<span class="n">visc</span> <span class="p">=</span> <span class="p">[</span><span class="n">viscosity</span><span class="p">(</span><span class="n">g1</span><span class="p">),</span> <span class="n">viscosity</span><span class="p">(</span><span class="n">g2</span><span class="p">)]</span>
+
+<span class="c">% The thermal conductivity differs, however.</span>
+<span class="n">lambda</span> <span class="p">=</span> <span class="p">[</span><span class="n">thermalConductivity</span><span class="p">(</span><span class="n">g1</span><span class="p">),</span> <span class="n">thermalConductivity</span><span class="p">(</span><span class="n">g2</span><span class="p">)]</span>
+
+<span class="c">% Binary diffusion coefficients</span>
+<span class="n">bdiff1</span> <span class="p">=</span> <span class="n">binDiffCoeffs</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+<span class="n">bdiff2</span> <span class="p">=</span> <span class="n">binDiffCoeffs</span><span class="p">(</span><span class="n">g2</span><span class="p">)</span>
+
+<span class="c">% Mixture-averaged diffusion coefficients. For convenience, the</span>
+<span class="c">% multicomponent model implements mixture-averaged diffusion</span>
+<span class="c">% coefficients too.</span>
+<span class="n">dmix2</span> <span class="p">=</span> <span class="n">mixDiffCoeffs</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+<span class="n">dmix1</span> <span class="p">=</span> <span class="n">mixDiffCoeffs</span><span class="p">(</span><span class="n">g2</span><span class="p">)</span>
+
+<span class="c">% Multicomponent diffusion coefficients. These are only implemented</span>
+<span class="c">% if the multicomponent model is used. </span>
+<span class="n">dmulti</span> <span class="p">=</span> <span class="n">multiDiffCoeffs</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+
+<span class="c">% Thermal diffusion coefficients. These are only implemented with the</span>
+<span class="c">% multicomponent model.  These will be very close to zero, since</span>
+<span class="c">% the composition is pure H2.</span>
+<span class="n">dt</span> <span class="p">=</span> <span class="n">thermalDiffCoeffs</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+
+<span class="c">% Now change the composition and re-evaluate</span>
+<span class="n">set</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">,</span><span class="nb">ones</span><span class="p">(</span><span class="n">nSpecies</span><span class="p">(</span><span class="n">g1</span><span class="p">),</span><span class="mi">1</span><span class="p">));</span>
+<span class="n">dt</span> <span class="p">=</span> <span class="n">thermalDiffCoeffs</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+
+<span class="c">% Note that there are no singularities for pure gases. This is</span>
+<span class="c">% because a very small positive value is added to all mole</span>
+<span class="c">% fractions for the purpose of computing transport properties. </span>
+
+<span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="n">clear</span> <span class="n">all</span>
+<span class="n">cleanup</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tut7.html" title="tut7.m"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tut5.html" title="tut5.m"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
+          <li><a href="../examples.html" >Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

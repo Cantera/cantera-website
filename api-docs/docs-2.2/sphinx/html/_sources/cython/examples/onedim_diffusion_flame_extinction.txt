@@ -1,0 +1,6 @@
+.. _py-example-diffusion_flame_extinction.py:
+
+diffusion_flame_extinction.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/onedim/diffusion_flame_extinction.py

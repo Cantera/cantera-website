@@ -1,0 +1,9 @@
+:orphan:
+
+.. _matlab-example-equil.m:
+
+equil.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/equil.m
+   :language: matlab

@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>reaction_path.py &mdash; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../../index.html" />
+    <link rel="up" title="Index of Examples" href="../examples.html" />
+    <link rel="next" title="dusty_gas.py" href="transport_dusty_gas.html" />
+    <link rel="prev" title="mechanism_reduction.py" href="kinetics_mechanism_reduction.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="transport_dusty_gas.html" title="dusty_gas.py"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kinetics_mechanism_reduction.html" title="mechanism_reduction.py"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Python Module Documentation</a> &raquo;</li>
+          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="kinetics_mechanism_reduction.html"
+                        title="previous chapter">mechanism_reduction.py</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="transport_dusty_gas.html"
+                        title="next chapter">dusty_gas.py</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/cython/examples/kinetics_reaction_path.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="reaction-path-py">
+<span id="py-example-reaction-path-py"></span><h1>reaction_path.py<a class="headerlink" href="#reaction-path-py" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Viewing a reaction path diagram.</span>
+
+<span class="sd">This script uses Graphviz to generate an image. You must have Graphviz installed</span>
+<span class="sd">and the program &#39;dot&#39; must be on your path for this example to work.</span>
+<span class="sd">Graphviz can be obtained from http://www.graphviz.org/ or (possibly) installed</span>
+<span class="sd">using your operating system&#39;s package manager.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">cantera</span> <span class="kn">as</span> <span class="nn">ct</span>
+
+<span class="c"># these lines can be replaced by any commands that generate</span>
+<span class="c"># an object of a class derived from class Kinetics in some state.</span>
+<span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">&#39;gri30.xml&#39;</span><span class="p">)</span>
+<span class="n">gas</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="mf">1300.0</span><span class="p">,</span> <span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span><span class="p">,</span> <span class="s">&#39;CH4:0.4, O2:1, N2:3.76&#39;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">IdealGasReactor</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+<span class="n">net</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">ReactorNet</span><span class="p">([</span><span class="n">r</span><span class="p">])</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">T</span>
+<span class="k">while</span> <span class="n">T</span> <span class="o">&lt;</span> <span class="mi">1900</span><span class="p">:</span>
+    <span class="n">net</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">element</span> <span class="o">=</span> <span class="s">&#39;N&#39;</span>
+
+<span class="n">diagram</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">ReactionPathDiagram</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
+<span class="n">diagram</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s">&#39;Reaction path diagram following {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="n">diagram</span><span class="o">.</span><span class="n">label_threshold</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="n">dot_file</span> <span class="o">=</span> <span class="s">&#39;rxnpath.dot&#39;</span>
+<span class="n">img_file</span> <span class="o">=</span> <span class="s">&#39;rxnpath.png&#39;</span>
+<span class="n">img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">img_file</span><span class="p">)</span>
+
+<span class="n">diagram</span><span class="o">.</span><span class="n">write_dot</span><span class="p">(</span><span class="n">dot_file</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">diagram</span><span class="o">.</span><span class="n">get_data</span><span class="p">())</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Wrote graphviz input file to &#39;{0}&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">dot_file</span><span class="p">)))</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&#39;dot {0} -Tpng -o{1} -Gdpi=200&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dot_file</span><span class="p">,</span> <span class="n">img_file</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Wrote graphviz output file to &#39;{0}&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">img_path</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="s">&quot;-view&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">webbrowser</span>
+    <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;file:///&#39;</span> <span class="o">+</span> <span class="n">img_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="transport_dusty_gas.html" title="dusty_gas.py"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kinetics_mechanism_reduction.html" title="mechanism_reduction.py"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Python Module Documentation</a> &raquo;</li>
+          <li><a href="../examples.html" >Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

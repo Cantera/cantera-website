@@ -1,0 +1,7 @@
+.. _matlab-example-flame1.m:
+
+flame1.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/flame1.m
+   :language: matlab

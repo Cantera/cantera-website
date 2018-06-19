@@ -1,0 +1,191 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Tutorial: Working with input files &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Importing Phase Objects" href="code-docs/importing.html" />
+    <link rel="prev" title="Matlab Interface User’s Guide" href="index.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="code-docs/importing.html" title="Importing Phase Objects"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Matlab Interface User’s Guide"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Matlab Interface User’s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial: Working with input files</a><ul>
+<li><a class="reference internal" href="#cti-files">CTI files</a></li>
+<li><a class="reference internal" href="#cti-files-distributed-with-cantera">CTI files distributed with Cantera</a></li>
+<li><a class="reference internal" href="#importing-multiple-phases-or-interfaces">Importing multiple phases or interfaces</a></li>
+<li><a class="reference internal" href="#converting-ck-format-files">Converting CK-format files</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Matlab Interface User’s Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="code-docs/importing.html"
+                        title="next chapter">Importing Phase Objects</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/matlab/input-tutorial.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-working-with-input-files">
+<h1>Tutorial: Working with input files<a class="headerlink" href="#tutorial-working-with-input-files" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="cti-files">
+<h2>CTI files<a class="headerlink" href="#cti-files" title="Permalink to this headline">¶</a></h2>
+<p>This is the typical way to create a Cantera “phase” object in Matlab:</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">gas1</span> <span class="p">=</span> <span class="n">Solution</span><span class="p">(</span><span class="s">&#39;gri30.cti&#39;</span><span class="p">,</span> <span class="s">&#39;gri30&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This statement constructs a <code class="docutils literal"><span class="pre">Solution</span></code> object representing a phase of matter by
+reading in attributes of the phase from a file, which in this case is
+<code class="docutils literal"><span class="pre">gri30.cti</span></code>. This file contains several phase specifications; the one we want
+here is <code class="docutils literal"><span class="pre">gri30</span></code>, which is specified by the second argument. This file contains
+a complete specification of the GRI-Mech 3.0 reaction mechanism, including
+element data (name, atomic weight), species data (name, elemental composition,
+coefficients to compute thermodynamic and transport properties), and reaction
+data (stoichiometry, rate coefficient parameters). The file is written in a
+format understood by Cantera, which is described in <a class="reference internal" href="../cti/index.html#sec-defining-phases"><span class="std std-ref">Defining Phases</span></a>.</p>
+</div>
+<div class="section" id="cti-files-distributed-with-cantera">
+<h2>CTI files distributed with Cantera<a class="headerlink" href="#cti-files-distributed-with-cantera" title="Permalink to this headline">¶</a></h2>
+<p>Several reaction mechanism files in this format are included in the Cantera
+distribution, including ones that model high-temperature air, a hydrogen/oxygen
+reaction mechanism, and a few surface reaction mechanisms.  These files are kept
+in the <code class="docutils literal"><span class="pre">data</span></code> subdirectory within the Cantera installation directory.</p>
+<p>If for some reason Cantera has difficulty finding where these files are on your
+system, set environment variable <code class="docutils literal"><span class="pre">CANTERA_DATA</span></code> to the directory or
+directories (separated using <code class="docutils literal"><span class="pre">;</span></code> on Windows or <code class="docutils literal"><span class="pre">:</span></code> on other operating
+systems) where they are located. Alternatively, you can call function
+<code class="xref py py-obj docutils literal"><span class="pre">add_directory</span></code> to add a directory to the Cantera search path:</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">addDirectory</span><span class="p">(</span><span class="s">&#39;/usr/local/cantera/my_data_files&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Cantera input files are plain text files, and can be created with any text
+editor. See <a class="reference internal" href="../cti/index.html#sec-defining-phases"><span class="std std-ref">Defining Phases</span></a> for more information.</p>
+</div>
+<div class="section" id="importing-multiple-phases-or-interfaces">
+<h2>Importing multiple phases or interfaces<a class="headerlink" href="#importing-multiple-phases-or-interfaces" title="Permalink to this headline">¶</a></h2>
+<p>A Cantera input file may contain more than one phase specification, or may
+contain specifications of interfaces (surfaces). Here we import definitions of
+two bulk phases and the interface between them from file <code class="docutils literal"><span class="pre">diamond.cti</span></code>:</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">gas2</span> <span class="p">=</span> <span class="n">Solution</span><span class="p">(</span><span class="s">&#39;diamond.cti&#39;</span><span class="p">,</span> <span class="s">&#39;gas&#39;</span><span class="p">);</span>                   <span class="c">% a gas</span>
+<span class="n">diamond</span> <span class="p">=</span> <span class="n">Solution</span><span class="p">(</span><span class="s">&#39;diamond.cti&#39;</span><span class="p">,</span> <span class="s">&#39;diamond&#39;</span><span class="p">);</span>             <span class="c">% bulk diamond</span>
+<span class="n">diamond_surf</span> <span class="p">=</span> <span class="n">importInterface</span><span class="p">(</span><span class="s">&#39;diamond.cti&#39;</span><span class="p">,</span> <span class="s">&#39;diamond_100&#39;</span><span class="p">,</span> <span class="c">...</span>
+                               <span class="n">gas2</span><span class="p">,</span> <span class="n">diamond</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Note that the bulk (i.e., 3D) phases that participate in the surface reactions
+must also be passed as arguments to importInterface.</p>
+</div>
+<div class="section" id="converting-ck-format-files">
+<h2>Converting CK-format files<a class="headerlink" href="#converting-ck-format-files" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="../cti/input-files.html#sec-ck-format-conversion"><span class="std std-ref">Converting CK-format files</span></a> in the <a class="reference internal" href="../cti/input-files.html#sec-input-files"><span class="std std-ref">Working with Input Files</span></a> documentation.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="code-docs/importing.html" title="Importing Phase Objects"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Matlab Interface User’s Guide"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Matlab Interface User’s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

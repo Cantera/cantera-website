@@ -1,0 +1,107 @@
+.. _sec-matlab-examples:
+
+Index of Matlab Examples
+========================
+
+This is an index of the examples included with the Cantera Matlab Toolbox.
+
+Tutorials
+---------
+
+:doc:`tut1.m <examples/tut1>`:
+Tutorial 1:  Getting started
+
+:doc:`tut2.m <examples/tut2>`:
+Tutorial 2: Working with input files
+
+:doc:`tut3.m <examples/tut3>`:
+Tutorial 3:   Getting Help
+
+:doc:`tut4.m <examples/tut4>`:
+Tutorial 4:   Chemical Equilibrium
+
+:doc:`tut5.m <examples/tut5>`:
+Tutorial 5:   Reaction information and rates
+
+:doc:`tut6.m <examples/tut6>`:
+Tutorial 6:   Transport properties
+
+:doc:`tut7.m <examples/tut7>`:
+Tutorial 7: Thermodynamic Properties
+
+
+Examples
+--------
+
+:doc:`cantera_demos.m <examples/cantera_demos>`:
+Run all examples
+
+:doc:`catcomb.m <examples/catcomb>`:
+Catalytic combustion of a stagnation flow on a platinum surface
+
+:doc:`conhp.m <examples/conhp>`:
+ODE system for a constant-pressure, adiabatic reactor.
+
+:doc:`conuv.m <examples/conuv>`:
+ODE system for a constant-volume, adiabatic reactor.
+
+:doc:`diffflame.m <examples/diffflame>`:
+- A non-premixed opposed-jet flame.
+
+:doc:`equil.m <examples/equil>`:
+a chemical equilibrium example.
+
+:doc:`flame.m <examples/flame>`:
+- create a flame object.
+
+:doc:`flame1.m <examples/flame1>`:
+- A burner-stabilized flat flame
+
+:doc:`flame2.m <examples/flame2>`:
+An axisymmetric stagnation-point non-premixed flame
+
+:doc:`ignite.m <examples/ignite>`:
+Zero-dimensional kinetics: adiabatic, constant pressure.
+
+:doc:`ignite_hp.m <examples/ignite_hp>`:
+Solves the same ignition problem as 'ignite', but uses function
+
+:doc:`ignite_uv.m <examples/ignite_uv>`:
+Solves the same ignition problem as 'ignite2', except
+
+:doc:`isentropic.m <examples/isentropic>`:
+isentropic, adiabatic flow example
+
+:doc:`periodic_cstr.m <examples/periodic_cstr>`:
+A CSTR with steady inputs but periodic interior state.
+
+:doc:`prandtl1.m <examples/prandtl1>`:
+Prandtl number for an equilibrium H/O gas mixture.
+
+:doc:`prandtl2.m <examples/prandtl2>`:
+Prandtl number for an equilibrium H/O gas mixture.
+
+:doc:`rankine.m <examples/rankine>`:
+This example computes the efficiency of a simple vapor power cycle.
+
+:doc:`reactor1.m <examples/reactor1>`:
+Zero-dimensional kinetics: adiabatic, constant pressure.
+
+:doc:`reactor2.m <examples/reactor2>`:
+Zero-dimensional kinetics: adiabatic, constant volume.
+
+:doc:`reactor_ode.m <examples/reactor_ode>`:
+system for a generic zero-dimensional reactor.
+
+:doc:`run_examples.m <examples/run_examples>`:
+runs all examples
+
+:doc:`surfreactor.m <examples/surfreactor>`:
+Zero-dimensional reactor with surface chemistry
+
+:doc:`test_examples.m <examples/test_examples>`:
+runs selected examples without pausing
+
+:doc:`transport1.m <examples/transport1>`:
+mixture-averaged transport properties
+

@@ -1,0 +1,5 @@
+ignite.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/ignite.m
+   :language: matlab

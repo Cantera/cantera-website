@@ -1,0 +1,8 @@
+:orphan:
+
+.. _py-example-ic_engine.py:
+
+ic_engine.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/reactors/ic_engine.py

@@ -1,0 +1,8 @@
+:orphan:
+
+.. _py-example-adiabatic.py:
+
+adiabatic.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/multiphase/adiabatic.py

@@ -1,0 +1,6 @@
+.. _py-example-custom.py:
+
+custom.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/reactors/custom.py

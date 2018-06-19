@@ -1,0 +1,180 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>flame_fixed_T.py &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/cython/examples/onedim_flame_fixed_T.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="flame-fixed-t-py">
+<span id="py-example-flame-fixed-t-py"></span><h1>flame_fixed_T.py<a class="headerlink" href="#flame-fixed-t-py" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A burner-stabilized, premixed methane/air flat flame with multicomponent</span>
+<span class="sd">transport properties and a specified temperature profile.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">cantera</span> <span class="k">as</span> <span class="nn">ct</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">################################################################</span>
+<span class="c1"># parameter values</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span>  <span class="c1"># pressure</span>
+<span class="n">tburner</span> <span class="o">=</span> <span class="mf">373.7</span>  <span class="c1"># burner temperature</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="mf">0.04</span>  <span class="c1"># kg/m^2/s</span>
+<span class="n">comp</span> <span class="o">=</span> <span class="s1">&#39;CH4:0.65, O2:1, N2:3.76&#39;</span>  <span class="c1"># premixed gas composition</span>
+
+<span class="c1"># The solution domain is chosen to be 1 cm</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># m</span>
+
+<span class="n">loglevel</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># amount of diagnostic output (0 to 5)</span>
+<span class="n">refine_grid</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># &#39;True&#39; to enable refinement</span>
+
+<span class="c1">################ create the gas object ########################</span>
+<span class="c1">#</span>
+<span class="c1"># This object will be used to evaluate all thermodynamic, kinetic, and</span>
+<span class="c1"># transport properties. It is created with two transport managers, to enable</span>
+<span class="c1"># switching from mixture-averaged to multicomponent transport on the last</span>
+<span class="c1"># solution.</span>
+<span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;gri30_mix&#39;</span><span class="p">)</span>
+
+<span class="c1"># set its state to that of the unburned gas at the burner</span>
+<span class="n">gas</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="n">tburner</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">comp</span>
+
+<span class="c1"># create the BurnerFlame object.</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">BurnerFlame</span><span class="p">(</span><span class="n">gas</span><span class="o">=</span><span class="n">gas</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
+
+<span class="c1"># set the mass flow rate at the burner</span>
+<span class="n">f</span><span class="o">.</span><span class="n">burner</span><span class="o">.</span><span class="n">mdot</span> <span class="o">=</span> <span class="n">mdot</span>
+
+<span class="c1"># read temperature vs. position data from a file.</span>
+<span class="c1"># The file is assumed to have one z, T pair per line, separated by a comma.</span>
+<span class="n">zloc</span><span class="p">,</span> <span class="n">tvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s1">&#39;tdata.dat&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">zloc</span> <span class="o">/=</span> <span class="nb">max</span><span class="p">(</span><span class="n">zloc</span><span class="p">)</span>
+
+<span class="c1"># set the temperature profile to the values read in</span>
+<span class="n">f</span><span class="o">.</span><span class="n">flame</span><span class="o">.</span><span class="n">set_fixed_temp_profile</span><span class="p">(</span><span class="n">zloc</span><span class="p">,</span> <span class="n">tvalues</span><span class="p">)</span>
+
+<span class="c1"># show the initial estimate for the solution</span>
+<span class="n">f</span><span class="o">.</span><span class="n">show_solution</span><span class="p">()</span>
+
+<span class="c1"># don&#39;t solve the energy equation</span>
+<span class="n">f</span><span class="o">.</span><span class="n">energy_enabled</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># first solve the flame with mixture-averaged transport properties</span>
+<span class="n">f</span><span class="o">.</span><span class="n">transport_model</span> <span class="o">=</span> <span class="s1">&#39;Mix&#39;</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_refine_criteria</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">curve</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">f</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">loglevel</span><span class="p">,</span> <span class="n">refine_grid</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;ch4_flame_fixed_T.xml&#39;</span><span class="p">,</span><span class="s1">&#39;mixav&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;solution with mixture-averaged transport&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1"> switching to multicomponent transport...</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">transport_model</span> <span class="o">=</span> <span class="s1">&#39;Multi&#39;</span>
+
+<span class="n">f</span><span class="o">.</span><span class="n">set_refine_criteria</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">curve</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">loglevel</span><span class="p">,</span> <span class="n">refine_grid</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;ch4_flame_fixed_T.xml&#39;</span><span class="p">,</span><span class="s1">&#39;multi&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;solution with  multicomponent transport&#39;</span><span class="p">)</span>
+
+<span class="c1"># write the velocity, temperature, density, and mole fractions to a CSV file</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write_csv</span><span class="p">(</span><span class="s1">&#39;flame_fixed_T.csv&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">show_stats</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

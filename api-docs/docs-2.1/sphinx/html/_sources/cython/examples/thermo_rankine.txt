@@ -1,0 +1,4 @@
+rankine.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/thermo/rankine.py

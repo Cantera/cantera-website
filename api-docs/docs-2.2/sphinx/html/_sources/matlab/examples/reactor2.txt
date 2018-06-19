@@ -1,0 +1,7 @@
+.. _matlab-example-reactor2.m:
+
+reactor2.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/reactor2.m
+   :language: matlab

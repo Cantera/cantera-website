@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>piston.py &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/cython/examples/reactors_piston.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="piston-py">
+<span id="py-example-piston-py"></span><h1>piston.py<a class="headerlink" href="#piston-py" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Two reactors separated by a piston</span>
+
+<span class="sd">Gas 1: a stoichiometric H2/O2/Ar mixture</span>
+<span class="sd">Gas 2: a wet CO/O2 mixture</span>
+
+<span class="sd">    -------------------------------------</span>
+<span class="sd">    |          ||                       |</span>
+<span class="sd">    |          ||                       |</span>
+<span class="sd">    |  gas 1   ||        gas 2          |</span>
+<span class="sd">    |          ||                       |</span>
+<span class="sd">    |          ||                       |</span>
+<span class="sd">    -------------------------------------</span>
+
+<span class="sd">The two volumes are connected by an adiabatic free piston. The piston speed is</span>
+<span class="sd">proportional to the pressure difference between the two chambers.</span>
+
+<span class="sd">Note that each side uses a *different* reaction mechanism</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">cantera</span> <span class="k">as</span> <span class="nn">ct</span>
+
+<span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%10.3f</span><span class="s1">  </span><span class="si">%10.1f</span><span class="s1">  </span><span class="si">%10.4f</span><span class="s1">  </span><span class="si">%10.4g</span><span class="s1">  </span><span class="si">%10.4g</span><span class="s1">  </span><span class="si">%10.4g</span><span class="s1">  </span><span class="si">%10.4g</span><span class="s1">&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%10s</span><span class="s1">  </span><span class="si">%10s</span><span class="s1">  </span><span class="si">%10s</span><span class="s1">  </span><span class="si">%10s</span><span class="s1">  </span><span class="si">%10s</span><span class="s1">  </span><span class="si">%10s</span><span class="s1"> </span><span class="si">%10s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;time [s]&#39;</span><span class="p">,</span><span class="s1">&#39;T1 [K]&#39;</span><span class="p">,</span><span class="s1">&#39;T2 [K]&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;V1 [m^3]&#39;</span><span class="p">,</span> <span class="s1">&#39;V2 [m^3]&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;V1+V2 [m^3]&#39;</span><span class="p">,</span><span class="s1">&#39;X(CO)&#39;</span><span class="p">))</span>
+
+<span class="n">gas1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;h2o2.cti&#39;</span><span class="p">)</span>
+<span class="n">gas1</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="mf">900.0</span><span class="p">,</span> <span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span><span class="p">,</span> <span class="s1">&#39;H2:2, O2:1, AR:20&#39;</span>
+
+<span class="n">gas2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.xml&#39;</span><span class="p">)</span>
+<span class="n">gas2</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="mf">900.0</span><span class="p">,</span> <span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span><span class="p">,</span> <span class="s1">&#39;CO:2, H2O:0.01, O2:5&#39;</span>
+
+<span class="n">r1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">IdealGasReactor</span><span class="p">(</span><span class="n">gas1</span><span class="p">)</span>
+<span class="n">r1</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">IdealGasReactor</span><span class="p">(</span><span class="n">gas2</span><span class="p">)</span>
+<span class="n">r2</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="c1"># The wall is held fixed until t = 0.1 s, then released to allow the pressure to</span>
+<span class="c1"># equilibrate.</span>
+<span class="k">def</span> <span class="nf">v</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">r1</span><span class="o">.</span><span class="n">thermo</span><span class="o">.</span><span class="n">P</span> <span class="o">-</span> <span class="n">r2</span><span class="o">.</span><span class="n">thermo</span><span class="o">.</span><span class="n">P</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e-4</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Wall</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="n">v</span><span class="p">)</span>
+
+<span class="n">net</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">ReactorNet</span><span class="p">([</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">])</span>
+
+<span class="n">states1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">SolutionArray</span><span class="p">(</span><span class="n">r1</span><span class="o">.</span><span class="n">thermo</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="s1">&#39;v&#39;</span><span class="p">])</span>
+<span class="n">states2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">SolutionArray</span><span class="p">(</span><span class="n">r2</span><span class="o">.</span><span class="n">thermo</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="s1">&#39;v&#39;</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">):</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mf">0.001</span>
+    <span class="n">net</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">r1</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">r2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">r1</span><span class="o">.</span><span class="n">volume</span><span class="p">,</span> <span class="n">r2</span><span class="o">.</span><span class="n">volume</span><span class="p">,</span>
+                     <span class="n">r1</span><span class="o">.</span><span class="n">volume</span> <span class="o">+</span> <span class="n">r2</span><span class="o">.</span><span class="n">volume</span><span class="p">,</span> <span class="n">r2</span><span class="o">.</span><span class="n">thermo</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="n">states1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r1</span><span class="o">.</span><span class="n">thermo</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1000</span><span class="o">*</span><span class="n">time</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">r1</span><span class="o">.</span><span class="n">volume</span><span class="p">)</span>
+    <span class="n">states2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r2</span><span class="o">.</span><span class="n">thermo</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1000</span><span class="o">*</span><span class="n">time</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">r2</span><span class="o">.</span><span class="n">volume</span><span class="p">)</span>
+
+<span class="c1"># plot the results if matplotlib is installed.</span>
+<span class="k">if</span> <span class="s1">&#39;--plot&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states1</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">states1</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">states2</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">states2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (ms)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states1</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">states1</span><span class="o">.</span><span class="n">v</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">states2</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">states2</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span>
+             <span class="n">states1</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">states1</span><span class="o">.</span><span class="n">v</span> <span class="o">+</span> <span class="n">states2</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (ms)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Volume (m3)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states2</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">states2</span><span class="p">(</span><span class="s1">&#39;CO&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (ms)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;CO Mole Fraction (right)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states1</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">states1</span><span class="p">(</span><span class="s1">&#39;H2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (ms)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;H2 Mole Fraction (left)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;To view a plot of these results, run this script with the option --plot&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cantera Compilation Guide &mdash; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.2.1 documentation" href="index.html" />
+    <link rel="next" title="Configuring Cantera" href="configuring.html" />
+    <link rel="prev" title="Installing Cantera" href="install.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html">
+<img src="_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="configuring.html" title="Configuring Cantera"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installing Cantera"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Cantera</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cantera Compilation Guide</a><ul>
+<li><a class="reference internal" href="#installation-prerequisites">Installation Prerequisites</a><ul>
+<li><a class="reference internal" href="#linux">Linux</a></li>
+<li><a class="reference internal" href="#windows">Windows</a></li>
+<li><a class="reference internal" href="#os-x">OS X</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#downloading-the-cantera-source-code">Downloading the Cantera source code</a><ul>
+<li><a class="reference internal" href="#stable-release">Stable Release</a></li>
+<li><a class="reference internal" href="#development-version">Development Version</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#determine-configuration-options">Determine configuration options</a><ul>
+<li><a class="reference internal" href="#general">General</a></li>
+<li><a class="reference internal" href="#python-module">Python Module</a><ul>
+<li><a class="reference internal" href="#building-for-python-2">Building for Python 2</a></li>
+<li><a class="reference internal" href="#building-for-python-3">Building for Python 3</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#windows-msvc">Windows (MSVC)</a></li>
+<li><a class="reference internal" href="#windows-mingw">Windows (MinGW)</a></li>
+<li><a class="reference internal" href="#id1">OS X</a></li>
+<li><a class="reference internal" href="#intel-compilers">Intel Compilers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compile-cantera-test">Compile Cantera &amp; Test</a><ul>
+<li><a class="reference internal" href="#building-documentation">Building Documentation</a></li>
+<li><a class="reference internal" href="#mingw-compilation-problems">MinGW Compilation problems</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#software-used-by-cantera">Software used by Cantera</a><ul>
+<li><a class="reference internal" href="#compilers">Compilers</a></li>
+<li><a class="reference internal" href="#other-required-software">Other Required Software</a></li>
+<li><a class="reference internal" href="#optional-programs">Optional Programs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="previous chapter">Installing Cantera</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="configuring.html"
+                        title="next chapter">Configuring Cantera</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/compiling.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cantera-compilation-guide">
+<span id="sec-compiling"></span><h1>Cantera Compilation Guide<a class="headerlink" href="#cantera-compilation-guide" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>This guide contains instructions for compiling Cantera on the following
+operating systems:</p>
+<ul class="simple">
+<li>Linux<ul>
+<li>Ubuntu 12.04 LTS (Lucid Lynx) or newer</li>
+<li>Debian 6.0 (Squeeze) or newer</li>
+</ul>
+</li>
+<li>Windows Vista, Windows 7, or Windows 8 (32-bit or 64-bit versions)</li>
+<li>OS X 10.9 (Mavericks) or OS X 10.10 (Yosemite).</li>
+</ul>
+<p>In addition to the above operating systems, Cantera should work on any
+Unix-like system where the necessary prerequisites are available, but some
+additional configuration may be required.</p>
+<div class="section" id="installation-prerequisites">
+<h2>Installation Prerequisites<a class="headerlink" href="#installation-prerequisites" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">For Ubuntu or Debian users, the following packages should be installed using
+your choice of package manager:</p>
+<div class="highlight-python"><div class="highlight"><pre>g++ python scons libboost-all-dev libsundials-serial-dev
+</pre></div>
+</div>
+</li>
+<li><p class="first">Building the python module also requires:</p>
+<div class="highlight-python"><div class="highlight"><pre>cython python-dev python-numpy python-numpy-dev
+</pre></div>
+</div>
+</li>
+<li><p class="first">Checking out the source code from version control requires Git (install
+<tt class="docutils literal"><span class="pre">git</span></tt>).</p>
+</li>
+<li><p class="first">The minimum compatible Cython version is 0.19. If your distribution does not
+contain a suitable version, you may be able to install a more recent version
+using <tt class="xref py py-obj docutils literal"><span class="pre">easy_install</span></tt> or <tt class="xref py py-obj docutils literal"><span class="pre">pip</span></tt>.</p>
+</li>
+<li><p class="first">Building the Fortran interface also requires gfortran or another supported
+Fortran compiler.</p>
+</li>
+<li><p class="first">Users of other distributions should install the equivalent packages, which
+may have slightly different names.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<p>There are a number of requirements for the versions of software to install
+depending on which interfaces (Python, Matlab) you want to build and what
+architecture (32-bit or 64-bit) you want to use. See <a class="reference internal" href="#sec-dependencies"><em>Software used by Cantera</em></a> for
+the full list of dependencies.</p>
+<ul>
+<li><p class="first">The build process will produce a Python module compatible with the version of
+Python used for the compilation. To generate different modules for other
+versions of Python, you will need to install those versions of Python and
+recompile.</p>
+</li>
+<li><p class="first">If you want to build the Matlab toolbox and you have a 64-bit copy of
+Windows, by default you will be using a 64-bit copy of Matlab, and therefore
+you need to compile Cantera in 64-bit mode. For simplicity, it is highly
+recommended that you use a 64-bit version of Python to handle this
+automatically.</p>
+</li>
+<li><p class="first">There is no 64-bit installer for SCons under Windows, so you will need to
+download the ZIP version. After extracting it, start a command prompt in the
+unzipped folder and run:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py install
+</pre></div>
+</div>
+</li>
+<li><p class="first">It is generally helpful to have SCons and Python in your PATH. This can
+usually be accomplished by adding the top-level Python directory
+(e.g. <tt class="docutils literal"><span class="pre">C:\Python27</span></tt>) to your PATH. This is accessible from:</p>
+<div class="highlight-python"><div class="highlight"><pre>Control Panel &gt; System and Security &gt; System &gt; Advanced System Settings &gt; Environment Variables
+</pre></div>
+</div>
+</li>
+<li><p class="first">In order to use SCons to install Cantera to a system folder (e.g. <tt class="docutils literal"><span class="pre">C:\Program</span>
+<span class="pre">Files\Cantera</span></tt>) you must run the <tt class="docutils literal"><span class="pre">scons</span> <span class="pre">install</span></tt> command in a command
+prompt that has been launched by selecting the <em>run as administrator</em> option.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="os-x">
+<h3>OS X<a class="headerlink" href="#os-x" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Download and install Xcode from the App Store</p>
+</li>
+<li><p class="first">From a Terminal, run:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo xcode-select --install
+</pre></div>
+</div>
+<p>and agree to the Xcode license agreement</p>
+</li>
+<li><p class="first">If you don&#8217;t have numpy version &gt;= 1.4, you can install a recent version with:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo easy_install -U numpy
+</pre></div>
+</div>
+</li>
+<li><p class="first">If you want to build Cantera with Fortran 90 support, download gfortran from:</p>
+<div class="highlight-python"><div class="highlight"><pre>http://gcc.gnu.org/wiki/GFortranBinaries#MacOS
+</pre></div>
+</div>
+</li>
+<li><p class="first">Download scons-2.x.y.tar.gz from scons.org and extract the contents. Install with either:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo python setup.py install
+</pre></div>
+</div>
+<p>to install for all users, or:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py install --user
+</pre></div>
+</div>
+<p>to install to a location in your home directory.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="downloading-the-cantera-source-code">
+<h2>Downloading the Cantera source code<a class="headerlink" href="#downloading-the-cantera-source-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="stable-release">
+<h3>Stable Release<a class="headerlink" href="#stable-release" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Option 1: Download the most recent source tarball from <a class="reference external" href="https://sourceforge.net/projects/cantera/files/cantera/">SourceForge</a> and extract the
+contents.</p>
+</li>
+<li><p class="first">Option 2: Check out the code using Git:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/Cantera/cantera.git
+cd cantera
+git checkout 2.2
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="development-version">
+<h3>Development Version<a class="headerlink" href="#development-version" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Check out the code using Git:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/Cantera/cantera.git
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="determine-configuration-options">
+<h2>Determine configuration options<a class="headerlink" href="#determine-configuration-options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general">
+<h3>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">run <tt class="docutils literal"><span class="pre">scons</span> <span class="pre">help</span></tt> to see a list all configuration options for Cantera, or
+see <a class="reference internal" href="configuring.html#scons-config"><em>Configuring Cantera</em></a>.</p>
+</li>
+<li><p class="first">Configuration options are specified as additional arguments to the <tt class="docutils literal"><span class="pre">scons</span></tt>
+command, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre>scons build -j4 blas_lapack_libs=lapack,blas
+</pre></div>
+</div>
+</li>
+<li><p class="first">If the prerequisites are installed in standard locations, the default values
+should work.</p>
+</li>
+<li><p class="first">If you installed Sundials to a non-standard location (e.g. the libraries
+aren&#8217;t in /usr/lib), you will need to specify the options:</p>
+<div class="highlight-python"><div class="highlight"><pre>sundials_include=/path/to/sundials/include
+sundials_libdir=/path/to/sundials/lib
+</pre></div>
+</div>
+</li>
+<li><p class="first">If you want to build the Matlab toolbox, you will need to specify the path
+to the Matlab installation, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre>matlab_path=/opt/MATLAB/R2011a
+matlab_path=&quot;C:\Program Files\MATLAB\R2011a&quot;
+matlab_path=/Applications/MATLAB_R2011a.app
+</pre></div>
+</div>
+<p>The above paths are typical defaults on Linux, Windows, and OS X,
+respectively.</p>
+</li>
+<li><p class="first">SCons saves configuration options specified on the command line in the file
+<strong>cantera.conf</strong> in the root directory of the source tree, so generally it is
+not necessary to respecify configuration options when rebuilding Cantera. To
+unset a previously set configuration option, either remove the corresponding
+line from cantera.conf or use the syntax:</p>
+<div class="highlight-python"><div class="highlight"><pre>option_name=
+</pre></div>
+</div>
+</li>
+<li><p class="first">Sometimes, changes in your environment can cause SCons&#8217;s configuration tests
+(e.g. checking for libraries or compiler capabilities) to unexpectedly fail.
+To force SCons to re-run these tests rather than trusting the cached results,
+run scons with the option <tt class="docutils literal"><span class="pre">--config=force</span></tt>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="python-module">
+<h3>Python Module<a class="headerlink" href="#python-module" title="Permalink to this headline">¶</a></h3>
+<p>Cantera 2.1 introduces a new Python module implemented using Cython. This new
+module provides support for both Python 2.x and Python 3.x. It also features a
+redesigned API that simplifies many operations and aims to provide a more
+&#8220;Pythonic&#8221; interface to Cantera.</p>
+<p>Building the new Python module requires the Cython package for Python.</p>
+<p>The Cython module is compatible with the following Python versions: 2.6, 2.7,
+3.1, 3.2, and 3.3. Support for Python 2.6 and Python 3.1 requires the <tt class="docutils literal"><span class="pre">scipy</span></tt>
+and <tt class="docutils literal"><span class="pre">unittest2</span></tt> packages to be installed as well (see <a class="reference internal" href="#sec-dependencies"><em>Software used by Cantera</em></a>)
+to provide certain features that are included in the standard
+library in more recent versions.</p>
+<div class="section" id="building-for-python-2">
+<h4>Building for Python 2<a class="headerlink" href="#building-for-python-2" title="Permalink to this headline">¶</a></h4>
+<p>By default, SCons will attempt to build the Cython-based Python module for
+Python 2, if both Numpy and Cython are installed.</p>
+</div>
+<div class="section" id="building-for-python-3">
+<h4>Building for Python 3<a class="headerlink" href="#building-for-python-3" title="Permalink to this headline">¶</a></h4>
+<p>If SCons detects a Python 3 interpreter installed in a default location
+(i.e. <tt class="docutils literal"><span class="pre">python3</span></tt> is on the path), it will try to build the new Python module
+for Python 3. The following SCons options control how the Python 3 module is
+built:</p>
+<div class="highlight-python"><div class="highlight"><pre>python3_package=[y|n]
+python3_cmd=/path/to/python3/interpreter
+python3_array_home=/path/to/numpy
+python3_prefix=/path/to/cantera/module
+</pre></div>
+</div>
+<p>Note that even when building the Python 3 Cantera module, you should still use
+Python 2 with SCons, as SCons does not currently support Python 3.</p>
+</div>
+</div>
+<div class="section" id="windows-msvc">
+<h3>Windows (MSVC)<a class="headerlink" href="#windows-msvc" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>In Windows there aren&#8217;t any proper default locations for many of the packages
+that Cantera depends on, so you will need to specify these paths explicitly.</li>
+<li>Remember to put double quotes around any paths with spaces in them, e.g.
+&#8220;C:Program Files&#8221;.</li>
+<li>By default, SCons attempts to use the same architecture as the copy of Python
+that is running SCons, and the most recent installed version of the Visual
+Studio compiler. If you aren&#8217;t building the Python module, you can override
+this with the configuration options <tt class="docutils literal"><span class="pre">target_arch</span></tt> and <tt class="docutils literal"><span class="pre">msvc_version</span></tt>.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">cantera.conf</span></tt> file uses the backslash character <tt class="docutils literal"><span class="pre">\</span></tt> as an escape
+character. When modifying this file, backslashes in paths need to be escaped
+like this: <tt class="docutils literal"><span class="pre">boost_inc_dir</span> <span class="pre">=</span> <span class="pre">'C:\\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\\boost\\include'</span></tt>
+This does not apply to paths specified on the command line. Alternatively,
+you can use forward slashes in paths.</p>
+</div>
+</div>
+<div class="section" id="windows-mingw">
+<h3>Windows (MinGW)<a class="headerlink" href="#windows-mingw" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">To compile with MinGW, use the SCons command line option:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">toolchain</span><span class="o">=</span><span class="n">mingw</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">The version of MinGW from <a class="reference external" href="http://www.mingw.org">http://www.mingw.org</a> is 32-bit only, and therefore
+cannot be used to build a 64-bit Python module. Versions of MinGW that provide
+a 64-bit compiler are available from <a class="reference external" href="http://mingw-w64.sourceforge.net/">http://mingw-w64.sourceforge.net/</a> .</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>OS X<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The Accelerate framework is automatically used to provide optimized versions
+of BLAS and LAPACK, so the <tt class="docutils literal"><span class="pre">blas_lapack_libs</span></tt> option should generally be
+left unspecified.</li>
+</ul>
+</div>
+<div class="section" id="intel-compilers">
+<h3>Intel Compilers<a class="headerlink" href="#intel-compilers" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Before compiling Cantera, you may need to set up the appropriate environment
+variables for the Intel compiler suite, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre>source /opt/intel/bin/compilervars.sh intel64
+</pre></div>
+</div>
+</li>
+<li><p class="first">For the Intel compiler to work with SCons, these environment variables need
+to be passed through SCons by using the command line option:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">env_vars</span><span class="o">=</span><span class="nb">all</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If you want to use the Intel MKL versions of BLAS and LAPACK, you will need
+to provide additional options. The following are typically correct on
+64-bit Linux systems:</p>
+<div class="highlight-python"><div class="highlight"><pre>blas_lapack_libs=mkl_rt blas_lapack_dir=$(MKLROOT)/lib/intel64
+</pre></div>
+</div>
+<p>Your final SCons call might then look something like:</p>
+<div class="highlight-python"><div class="highlight"><pre>scons build env_vars=all CC=icc CXX=icpc F90=ifort F77=ifort blas_lapack_libs=mkl_rt blas_lapack_dir=$(MKLROOT)/lib/intel64
+</pre></div>
+</div>
+<p>When installing Cantera after building with the Intel compiler, the normal
+method of using <tt class="docutils literal"><span class="pre">sudo</span></tt> to install Cantera will not work because <tt class="docutils literal"><span class="pre">sudo</span></tt>
+does not pass the environment variables needed by the Intel compiler.
+Instead, you will need to do something like:</p>
+<div class="highlight-python"><div class="highlight"><pre>scons build ...
+sudo -s
+source /path/to/compilervars.sh intel64
+scons install
+exit
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="compile-cantera-test">
+<h2>Compile Cantera &amp; Test<a class="headerlink" href="#compile-cantera-test" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Run scons with the list of desired configuration options, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre>scons build optimize=n blas_lapack_libs=blas,lapack prefix=/opt/cantera
+</pre></div>
+</div>
+</li>
+<li><p class="first">If Cantera compiles successfully, you should see a message that looks like:</p>
+<div class="highlight-python"><div class="highlight"><pre>*******************************************************
+Compilation completed successfully.
+
+- To run the test suite, type &#39;scons test&#39;.
+- To install, type &#39;[sudo] scons install&#39;.
+*******************************************************
+</pre></div>
+</div>
+</li>
+<li><p class="first">If you do not see this message, check the output for errors to see what went
+wrong.</p>
+</li>
+<li><p class="first">Cantera has a series of tests that can be run with the command:</p>
+<div class="highlight-python"><div class="highlight"><pre>scons test
+</pre></div>
+</div>
+</li>
+<li><p class="first">When the tests finish, you should see a summary indicating the number of
+tests that passed and failed.</p>
+</li>
+<li><p class="first">If you have tests that fail, try looking at the following to determine the
+source of the error:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Messages printed to the console while running scons test</li>
+<li>Output files generated by the tests</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="section" id="building-documentation">
+<h3>Building Documentation<a class="headerlink" href="#building-documentation" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">To build the Cantera HTML documentation, run the commands:</p>
+<div class="highlight-python"><div class="highlight"><pre>scons doxygen
+scons sphinx
+</pre></div>
+</div>
+<p>or append the options <tt class="xref py py-obj docutils literal"><span class="pre">sphinx_docs=y</span></tt> and <tt class="xref py py-obj docutils literal"><span class="pre">doxygen_docs=y</span></tt> to the build
+command, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre>scons build doxygen_docs=y sphinx_docs=y
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="mingw-compilation-problems">
+<h3>MinGW Compilation problems<a class="headerlink" href="#mingw-compilation-problems" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">If you get a compiler error while compiling some of the &#8220;f2c&#8221; code, then your
+version of MinGW has a problem with the order of its internal include paths,
+such that it sees the GCC float.h before its own special version. To fix this
+problem edit the GCC float.h located at (roughly):</p>
+<div class="highlight-python"><div class="highlight"><pre>c:\MinGW\lib\gcc\mingw32\4.6.1\include\float.h
+</pre></div>
+</div>
+<p>and add the following just before the end (before the final #endif)</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="cp">#ifndef _MINGW_FLOAT_H_</span>
+<span class="cp">#include_next &lt;float.h&gt;</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="software-used-by-cantera">
+<span id="sec-dependencies"></span><h2>Software used by Cantera<a class="headerlink" href="#software-used-by-cantera" title="Permalink to this headline">¶</a></h2>
+<p>This section lists the versions of third-party software that are required to
+build and use Cantera.</p>
+<div class="section" id="compilers">
+<h3>Compilers<a class="headerlink" href="#compilers" title="Permalink to this headline">¶</a></h3>
+<p>You must have one of the following C++ compilers installed on your system. A
+Fortran compiler is required only if you plan to use Cantera from a Fortran
+program.</p>
+<ul class="simple">
+<li>GNU compilers (C/C++/Fortran)<ul>
+<li>Known to work with version 4.8; Expected to work with version &gt;= 4.4</li>
+</ul>
+</li>
+<li>Clang/LLVM (C/C++)<ul>
+<li>Known to work with versions 3.3 through 3.5. Expected to work with version
+&gt;= 2.9.</li>
+<li>Works with the versions included with Xcode 5.1 and Xcode 6.1.</li>
+</ul>
+</li>
+<li>Intel compilers (C/C++/Fortran)<ul>
+<li>Known to work with version 11.0 and 12.1; Expected to work with
+versions &gt;= 11.0</li>
+</ul>
+</li>
+<li>Microsoft compilers (C/C++)<ul>
+<li>Known to work with versions 9.0 (Visual Studio 2008) through 12.0 (Visual
+Studio 2013).</li>
+<li>The &#8220;Express&#8221; editions of Visual Studio 2008 and 2010 do not include a
+64-bit compiler. To compile Cantera with 64-bit support, you must install
+the corresponding version of the Windows SDK, available as a free download.</li>
+<li>Windows SDK, equivalent to Visual Studio 2008:
+<a class="reference external" href="http://www.microsoft.com/download/en/details.aspx?id=3138">http://www.microsoft.com/download/en/details.aspx?id=3138</a></li>
+<li>Windows SDK, equivalent to Visual Studio 2010:
+<a class="reference external" href="http://www.microsoft.com/en-us/download/details.aspx?id=8279">http://www.microsoft.com/en-us/download/details.aspx?id=8279</a></li>
+</ul>
+</li>
+<li>MinGW (C/C++/Fortran)<ul>
+<li><a class="reference external" href="http://www.mingw.org">http://www.mingw.org</a> (32-bit only)</li>
+<li><a class="reference external" href="http://mingw-w64.sourceforge.net/">http://mingw-w64.sourceforge.net/</a> (64-bit and 32-bit)</li>
+<li>Known to work with Mingw-w64 3.0, which provides GCC 4.8. Expected to work
+with any version that provides a supported version of GCC.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="other-required-software">
+<h3>Other Required Software<a class="headerlink" href="#other-required-software" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SCons:<ul>
+<li><a class="reference external" href="http://www.scons.org/download.php">http://www.scons.org/download.php</a></li>
+<li>Known to work with SCons 2.3.0; Expected to work with versions &gt;= 1.0.0</li>
+<li>Version 2.3.2 or newer is required to use Visual Studio 2013.</li>
+</ul>
+</li>
+<li>Python:<ul>
+<li><a class="reference external" href="http://python.org/download/">http://python.org/download/</a></li>
+<li>Known to work with 2.6 and 2.7; Expected to work with versions &gt;= 2.6.</li>
+<li>The Cython module supports Python 2.x and 3.x. However, SCons requires
+Python 2.x, so compilation of the Python 3 module requires two Python
+installations.</li>
+</ul>
+</li>
+<li>Boost<ul>
+<li><a class="reference external" href="http://www.boost.org/users/download/">http://www.boost.org/users/download/</a></li>
+<li>Known to work with version 1.54; Expected to work with versions &gt;= 1.41</li>
+<li>Only the &#8220;header-only&#8221; portions of Boost are required. Cantera does not
+currently depend on any of the compiled Boost libraries.</li>
+<li>The compiled Boost.Thread library is required to build a thread-safe version
+of Cantera (using the <tt class="docutils literal"><span class="pre">build_thread_safe</span></tt> option to SCons.</li>
+<li>Pre-built Binaries for Windows are available from <a class="reference external" href="http://boost.teeks99.com/">http://boost.teeks99.com/</a> .
+Make sure to download the file corresponding to your architecture and
+Visual Studio version.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="optional-programs">
+<h3>Optional Programs<a class="headerlink" href="#optional-programs" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Numpy</p>
+<ul class="simple">
+<li>Required to build the Cantera Python module, and to run significant portions
+of the test suite.</li>
+<li><a class="reference external" href="http://sourceforge.net/projects/numpy/">http://sourceforge.net/projects/numpy/</a></li>
+<li>Known to work with versions 1.7-1.9; Expected to work with version &gt;= 1.4</li>
+</ul>
+</li>
+<li><p class="first"><a class="reference external" href="http://cython.org/">Cython</a></p>
+<ul class="simple">
+<li>Required version &gt;=0.19 to build the Python module</li>
+<li>Known to work with versions 0.19 and 0.20.</li>
+<li>Tested with Python 2.7, 3.3, and 3.4. Expected to work with versions 2.6 and
+3.1+ as well.</li>
+</ul>
+</li>
+<li><p class="first"><a class="reference external" href="http://pypi.python.org/pypi/3to2">3to2</a></p>
+<ul class="simple">
+<li>Used to convert Cython examples to Python 2 syntax.</li>
+<li>Known to work with version 1.0</li>
+</ul>
+</li>
+<li><p class="first"><a class="reference external" href="http://scipy.org/install.html">Scipy</a></p>
+<ul class="simple">
+<li>Required in order to use the Python module with Python 2.6 or 3.1.</li>
+</ul>
+</li>
+<li><p class="first">Unittest2</p>
+<ul class="simple">
+<li>Required in order to run the test suite for the Python module with
+Python 2.6 or Python 3.1.</li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/unittest2">https://pypi.python.org/pypi/unittest2</a> (Python 2.6)</li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/unittest2py3k">https://pypi.python.org/pypi/unittest2py3k</a> (Python 3.1)</li>
+</ul>
+</li>
+<li><p class="first">Matlab</p>
+<ul class="simple">
+<li>Required to build the Cantera Matlab toolbox.</li>
+<li>Known to work with 2009a and 2014b. Expected to work with versions &gt;= 2009a.</li>
+</ul>
+</li>
+<li><p class="first">Sundials</p>
+<ul>
+<li><p class="first">Required to enable some features such as sensitivity analysis.</p>
+</li>
+<li><p class="first">Strongly recommended if using reactor network or 1D simulation capabilities.</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://computation.llnl.gov/casc/sundials/download/download.html">https://computation.llnl.gov/casc/sundials/download/download.html</a></p>
+</li>
+<li><p class="first">Known to work with versions 2.4, 2.5 and 2.6.</p>
+</li>
+<li><p class="first">To use Sundials with Cantera on a Linux/Unix system, it must be compiled
+with the <tt class="docutils literal"><span class="pre">-fPIC</span></tt> flag. You can specify this flag when configuring
+Sundials (2.4 or 2.5):</p>
+<div class="highlight-python"><div class="highlight"><pre>configure --with-cflags=-fPIC
+</pre></div>
+</div>
+<p>or Sundials 2.6:</p>
+<div class="highlight-python"><div class="highlight"><pre>cmake -DCMAKE_C_FLAGS=-fPIC &lt;other command-line options&gt;
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you are compiling Sundials 2.5.0 on Windows using CMake, you need
+to edit the <tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt> file first and change the lines:</p>
+<div class="highlight-python"><div class="highlight"><pre>SET(PACKAGE_STRING &quot;SUNDIALS 2.4.0&quot;)
+SET(PACKAGE_VERSION &quot;2.4.0&quot;)
+</pre></div>
+</div>
+<p>to read:</p>
+<div class="highlight-python"><div class="highlight"><pre>SET(PACKAGE_STRING &quot;SUNDIALS 2.5.0&quot;)
+SET(PACKAGE_VERSION &quot;2.5.0&quot;)
+</pre></div>
+</div>
+<p class="last">instead, so that Cantera can correctly identify the version of
+Sundials.</p>
+</div>
+</li>
+<li><p class="first"><a class="reference external" href="http://wixtoolset.org/">Windows Installer XML (WiX) toolset</a></p>
+<ul class="simple">
+<li>Required to build MSI installers on Windows.</li>
+<li>Known to work with versions 3.5 and 3.8.</li>
+</ul>
+</li>
+<li><p class="first"><a class="reference external" href="http://pypi.python.org/pypi/distribute">Distribute</a> (Python)</p>
+<ul class="simple">
+<li>Provides the <tt class="docutils literal"><span class="pre">easy_install</span></tt> command which can be used to install most of
+the other Python modules.</li>
+</ul>
+</li>
+<li><p class="first">Packages required for building Sphinx documentation</p>
+<ul class="simple">
+<li><a class="reference external" href="http://sphinx.pocoo.org/">Sphinx</a> (install with <tt class="docutils literal"><span class="pre">easy_install</span> <span class="pre">-U</span> <span class="pre">Sphinx</span></tt>)</li>
+<li><a class="reference external" href="http://pygments.org/">Pygments</a> (install with <tt class="docutils literal"><span class="pre">easy_install</span> <span class="pre">-U</span> <span class="pre">pygments</span></tt>)</li>
+<li><a class="reference external" href="http://sourceforge.net/projects/pyparsing/">pyparsing</a> (install with <tt class="docutils literal"><span class="pre">easy_install</span> <span class="pre">-U</span> <span class="pre">pyparsing</span></tt>)</li>
+<li><a class="reference external" href="http://pypi.python.org/pypi/sphinxcontrib-doxylink/">doxylink</a> (install with <tt class="docutils literal"><span class="pre">easy_install</span> <span class="pre">sphinxcontrib-doxylink</span></tt>)</li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-matlabdomain">matlabdomain</a> (install with <tt class="docutils literal"><span class="pre">easy_install</span> <span class="pre">sphinxcontrib-matlabdomain</span></tt>)</li>
+</ul>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a></p>
+<ul class="simple">
+<li>Required for building the C++ API Documentation</li>
+<li>Version 1.8 or newer is recommended.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="configuring.html" title="Configuring Cantera"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installing Cantera"
+             >previous</a> |</li>
+        <li><a href="index.html">Cantera</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

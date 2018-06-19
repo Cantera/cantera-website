@@ -1,0 +1,7 @@
+.. _matlab-example-transport1.m:
+
+transport1.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/transport1.m
+   :language: matlab

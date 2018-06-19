@@ -1,0 +1,1031 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Zero-Dimensional Reactors &mdash; Cantera 2.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.1.2 documentation" href="../index.html" />
+    <link rel="up" title="Python Module Documentation (Legacy)" href="index.html" />
+    <link rel="next" title="One-Dimensional Reacting Flows" href="onedim.html" />
+    <link rel="prev" title="Composite Classes" href="composite.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="onedim.html" title="One-Dimensional Reacting Flows"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="composite.html" title="Composite Classes"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Python Module Documentation (Legacy)</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Zero-Dimensional Reactors</a><ul>
+<li><a class="reference internal" href="#base-classes">Base Classes</a></li>
+<li><a class="reference internal" href="#reactor-networks">Reactor Networks</a></li>
+<li><a class="reference internal" href="#flow-reactors">Flow Reactors</a></li>
+<li><a class="reference internal" href="#flow-controllers">Flow Controllers</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="composite.html"
+                        title="previous chapter">Composite Classes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="onedim.html"
+                        title="next chapter">One-Dimensional Reacting Flows</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/python/zerodim.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-Cantera.Reactor">
+<span id="zero-dimensional-reactors"></span><h1>Zero-Dimensional Reactors<a class="headerlink" href="#module-Cantera.Reactor" title="Permalink to this headline">¶</a></h1>
+<p>Zero-dimensional reactors.</p>
+<div class="section" id="base-classes">
+<h2>Base Classes<a class="headerlink" href="#base-classes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Cantera.Reactor.ReactorBase">
+<em class="property">class </em><tt class="descclassname">Cantera.Reactor.</tt><tt class="descname">ReactorBase</tt><big>(</big><em>name=''</em>, <em>contents=None</em>, <em>volume=1.0</em>, <em>energy='on'</em>, <em>type=-1</em>, <em>verbose=0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for reactors and reservoirs.</p>
+<p>Classes Reactor and Reservoir derive from a common base class
+ReactorBase. They have the same set of methods, which are all
+inherited from ReactorBase.</p>
+<p>(This is not quite true in the corresponding classes in the
+Cantera C++ kernel. There class Reactor defines some methods that
+class Reservoir doesn&#8217;t. These are used internally by the
+ReactorNet instance that integrates the system of ODEs describing
+the network to evaluate the portion of the ODE system associated
+with that reactor.)</p>
+<p>See <a class="reference internal" href="#Cantera.Reactor.Reactor" title="Cantera.Reactor.Reactor"><tt class="xref py py-class docutils literal"><span class="pre">Reactor</span></tt></a> for a description of the constructor parameters.
+The <em>type</em> parameter specifies whether a <a class="reference internal" href="#Cantera.Reactor.Reactor" title="Cantera.Reactor.Reactor"><tt class="xref py py-class docutils literal"><span class="pre">Reactor</span></tt></a> (type = 2) or
+<a class="reference internal" href="#Cantera.Reactor.Reservoir" title="Cantera.Reactor.Reservoir"><tt class="xref py py-class docutils literal"><span class="pre">Reservoir</span></tt></a> (type = 1) will be created.</p>
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.addSensitivityReaction">
+<tt class="descname">addSensitivityReaction</tt><big>(</big><em>reactions=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.addSensitivityReaction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.contents">
+<tt class="descname">contents</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.contents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an object representing the reactor contents, after first
+synchronizing its state with the current reactor state. This method
+is useful when some property of the fluid in the reactor is
+needed that is not provided by a method of <a class="reference internal" href="#Cantera.Reactor.Reactor" title="Cantera.Reactor.Reactor"><tt class="xref py py-class docutils literal"><span class="pre">Reactor</span></tt></a>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">statements</span> <span class="n">that</span> <span class="n">change</span> <span class="n">the</span> <span class="n">state</span> <span class="n">of</span> <span class="nb">object</span> <span class="s">&#39;gas&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">contents</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">c</span><span class="o">.</span><span class="n">gibbs_mole</span><span class="p">(),</span> <span class="n">c</span><span class="o">.</span><span class="n">chemPotentials</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Note that after calling <a class="reference internal" href="#Cantera.Reactor.ReactorBase.contents" title="Cantera.Reactor.ReactorBase.contents"><tt class="xref py py-meth docutils literal"><span class="pre">contents()</span></tt></a>, object <em>c</em>
+references the same underlying kernel object as object <em>gas</em>
+does. Therefore, all properties of <em>c</em> and <em>gas</em> are
+identical. (Remember that Python objects are really C
+pointers; at the C level, both point to the same data
+structure.)
+It is also allowed to write</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">contents</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.density">
+<tt class="descname">density</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.density" title="Permalink to this definition">¶</a></dt>
+<dd><p>The density of the fluid in the reactor [kg/m^3].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.enthalpy_mass">
+<tt class="descname">enthalpy_mass</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.enthalpy_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The specific enthalpy of the fluid in the reactor [J/kg].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.inlets">
+<tt class="descname">inlets</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.inlets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of flow devices installed on inlets to this reactor.
+This method can be used to access information about the flows entering
+the reactor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">inlets</span><span class="p">():</span>
+<span class="gp">... </span>   <span class="k">print</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">n</span><span class="o">.</span><span class="n">massFlowRate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>See: <a class="reference internal" href="#Cantera.Reactor.MassFlowController" title="Cantera.Reactor.MassFlowController"><tt class="xref py py-class docutils literal"><span class="pre">MassFlowController</span></tt></a>, <a class="reference internal" href="#Cantera.Reactor.Valve" title="Cantera.Reactor.Valve"><tt class="xref py py-class docutils literal"><span class="pre">Valve</span></tt></a>,
+<a class="reference internal" href="#Cantera.Reactor.PressureController" title="Cantera.Reactor.PressureController"><tt class="xref py py-class docutils literal"><span class="pre">PressureController</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.insert">
+<tt class="descname">insert</tt><big>(</big><em>contents</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert <em>contents</em> into the reactor. Sets the objects used to compute
+thermodynamic properties and kinetic rates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.intEnergy_mass">
+<tt class="descname">intEnergy_mass</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.intEnergy_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The specific internal energy of the fluid in the reactor [J/kg].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.mass">
+<tt class="descname">mass</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total mass of fluid in the reactor [kg].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.massFraction">
+<tt class="descname">massFraction</tt><big>(</big><em>s</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.massFraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mass fraction of species <em>s</em>, specified either by name or
+index number.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y1</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">massFraction</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">0.02</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y2</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">massFraction</span><span class="p">(</span><span class="s">&#39;CH3O&#39;</span><span class="p">)</span>
+<span class="go">0.02</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.massFractions">
+<tt class="descname">massFractions</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.massFractions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an array of the species mass fractions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.moleFraction">
+<tt class="descname">moleFraction</tt><big>(</big><em>s</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.moleFraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mole fraction of species s, specified either by name or
+index number.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">moleFraction</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="go">0.00012</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x2</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">moleFraction</span><span class="p">(</span><span class="s">&#39;CH3&#39;</span><span class="p">)</span>
+<span class="go">0.00012</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.moleFractions">
+<tt class="descname">moleFractions</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.moleFractions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an array of the species mole fractions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.nSensParams">
+<tt class="descname">nSensParams</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.nSensParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of sensitivity parameters for this reactor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.name">
+<tt class="descname">name</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the reactor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.outlets">
+<tt class="descname">outlets</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.outlets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of flow devices installed on outlets
+on this reactor.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">outlets</span><span class="p">():</span>
+<span class="gp">... </span>   <span class="k">print</span> <span class="n">o</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">o</span><span class="o">.</span><span class="n">massFlowRate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>See: <a class="reference internal" href="#Cantera.Reactor.MassFlowController" title="Cantera.Reactor.MassFlowController"><tt class="xref py py-class docutils literal"><span class="pre">MassFlowController</span></tt></a>, <a class="reference internal" href="#Cantera.Reactor.Valve" title="Cantera.Reactor.Valve"><tt class="xref py py-class docutils literal"><span class="pre">Valve</span></tt></a>,
+<a class="reference internal" href="#Cantera.Reactor.PressureController" title="Cantera.Reactor.PressureController"><tt class="xref py py-class docutils literal"><span class="pre">PressureController</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.pressure">
+<tt class="descname">pressure</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>The pressure in the reactor [Pa].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.reactor_id">
+<tt class="descname">reactor_id</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.reactor_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The integer index used to access the kernel reactor
+object. For internal use.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.sensParamName">
+<tt class="descname">sensParamName</tt><big>(</big><em>n=-1</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.sensParamName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.syncContents">
+<tt class="descname">syncContents</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.syncContents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the state of the object representing the reactor contents
+to the current reactor state.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">statements</span> <span class="n">that</span> <span class="n">change</span> <span class="n">the</span> <span class="n">state</span> <span class="n">of</span> <span class="nb">object</span> <span class="s">&#39;gas&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">syncContents</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After this statement, the state of object &#8216;gas&#8217; is synchronized
+with the reactor state.
+See <a class="reference internal" href="#Cantera.Reactor.ReactorBase.contents" title="Cantera.Reactor.ReactorBase.contents"><tt class="xref py py-meth docutils literal"><span class="pre">contents()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.temperature">
+<tt class="descname">temperature</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>The temperature in the reactor [K].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.volume">
+<tt class="descname">volume</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total reactor volume [m^3]. The volume may change with time
+if non-rigid walls are installed on the reactor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorBase.walls">
+<tt class="descname">walls</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorBase.walls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of walls installed on this reactor.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">walls</span><span class="p">():</span>
+<span class="gp">... </span>   <span class="k">print</span> <span class="n">w</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>See: <a class="reference internal" href="#Cantera.Reactor.Wall" title="Cantera.Reactor.Wall"><tt class="xref py py-class docutils literal"><span class="pre">Wall</span></tt></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Reactor.Reactor">
+<em class="property">class </em><tt class="descclassname">Cantera.Reactor.</tt><tt class="descname">Reactor</tt><big>(</big><em>contents=None</em>, <em>name=''</em>, <em>volume=1.0</em>, <em>energy='on'</em>, <em>verbose=0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Reactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Cantera.Reactor.ReactorBase" title="Cantera.Reactor.ReactorBase"><tt class="xref py py-class docutils literal"><span class="pre">Cantera.Reactor.ReactorBase</span></tt></a></p>
+<p>Zero-dimensional reactors. Instances of class Reactor represent
+zero-dimensional reactors. By default, they are closed (no inlets or
+outlets), have fixed volume, and have adiabatic, chemically-inert walls.
+These properties may all be changed by adding appropriate components.
+See <a class="reference internal" href="#Cantera.Reactor.Wall" title="Cantera.Reactor.Wall"><tt class="xref py py-class docutils literal"><span class="pre">Wall</span></tt></a>, <a class="reference internal" href="#Cantera.Reactor.MassFlowController" title="Cantera.Reactor.MassFlowController"><tt class="xref py py-class docutils literal"><span class="pre">MassFlowController</span></tt></a>, and <a class="reference internal" href="#Cantera.Reactor.Valve" title="Cantera.Reactor.Valve"><tt class="xref py py-class docutils literal"><span class="pre">Valve</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>contents</strong> &#8211; Reactor contents. If not specified, the reactor is initially empty.
+In this case, call <a class="reference internal" href="../cython/zerodim.html#cantera.ReactorBase.insert" title="cantera.ReactorBase.insert"><tt class="xref py py-meth docutils literal"><span class="pre">insert()</span></tt></a> to specify the contents.</li>
+<li><strong>name</strong> &#8211; Used only to identify this reactor in output. If not specified,
+defaults to <tt class="docutils literal"><span class="pre">'Reactor_n'</span></tt>, where <em>n</em> is an integer assigned in
+the order <a class="reference internal" href="#Cantera.Reactor.Reactor" title="Cantera.Reactor.Reactor"><tt class="xref py py-class docutils literal"><span class="pre">Reactor</span></tt></a> objects are created.</li>
+<li><strong>volume</strong> &#8211; Initial reactor volume. Defaults to 1 m^3.</li>
+<li><strong>energy</strong> &#8211; Set to <tt class="docutils literal"><span class="pre">'on'</span></tt> or <tt class="docutils literal"><span class="pre">'off'</span></tt>. If set to <tt class="docutils literal"><span class="pre">'off'</span></tt>, the energy
+equation is not solved, and the temperature is held at its
+initial value. The default in <tt class="docutils literal"><span class="pre">'on'</span></tt>.</li>
+<li><strong>verbose</strong> &#8211; If set to a non-zero value, additional diagnostic information
+will be printed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Some examples showing how to create <a class="reference internal" href="#Cantera.Reactor.Reactor" title="Cantera.Reactor.Reactor"><tt class="xref py py-class docutils literal"><span class="pre">Reactor</span></tt></a> objects are
+shown below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span> <span class="o">=</span> <span class="n">GRI30</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Arguments may be specified using keywords in any order:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">contents</span> <span class="o">=</span> <span class="n">gas</span><span class="p">,</span> <span class="n">energy</span> <span class="o">=</span> <span class="s">&#39;off&#39;</span><span class="p">,</span>
+<span class="gp">... </span>             <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;isothermal_reactor&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r3</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">contents</span> <span class="o">=</span> <span class="n">gas</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;adiabatic_reactor&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here&#8217;s an array of reactors:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reactor_array</span> <span class="o">=</span> <span class="p">[</span><span class="n">Reactor</span><span class="p">(),</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas</span><span class="p">),</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">Air</span><span class="p">())]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Reactor.FlowDevice">
+<em class="property">class </em><tt class="descclassname">Cantera.Reactor.</tt><tt class="descname">FlowDevice</tt><big>(</big><em>type</em>, <em>name</em>, <em>verbose</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.FlowDevice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for devices that regulate the flow rate in a fluid line.</p>
+<p>Create a new instance of type <em>type</em></p>
+<dl class="method">
+<dt id="Cantera.Reactor.FlowDevice.flowdev_id">
+<tt class="descname">flowdev_id</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.FlowDevice.flowdev_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.FlowDevice.install">
+<tt class="descname">install</tt><big>(</big><em>upstream</em>, <em>downstream</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.FlowDevice.install" title="Permalink to this definition">¶</a></dt>
+<dd><p>Install the device between the upstream and downstream
+reactors or reservoirs.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="n">upstream</span><span class="o">=</span><span class="n">reactor1</span><span class="p">,</span> <span class="n">downstream</span><span class="o">=</span><span class="n">reservoir2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.FlowDevice.massFlowRate">
+<tt class="descname">massFlowRate</tt><big>(</big><em>time=-999.0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.FlowDevice.massFlowRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass flow rate (kg/s).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.FlowDevice.name">
+<tt class="descname">name</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.FlowDevice.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name specified when initially constructed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.FlowDevice.ready">
+<tt class="descname">ready</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.FlowDevice.ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated. Returns true if the device is ready to use.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.FlowDevice.setFunction">
+<tt class="descname">setFunction</tt><big>(</big><em>f</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.FlowDevice.setFunction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="reactor-networks">
+<h2>Reactor Networks<a class="headerlink" href="#reactor-networks" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Cantera.Reactor.ReactorNet">
+<em class="property">class </em><tt class="descclassname">Cantera.Reactor.</tt><tt class="descname">ReactorNet</tt><big>(</big><em>reactorlist=None</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Networks of reactors. ReactorNet objects are used to
+simultaneously advance the state of a set of coupled reactors.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">&lt;...</span> <span class="n">install</span> <span class="n">walls</span><span class="p">,</span> <span class="n">inlets</span><span class="p">,</span> <span class="n">outlets</span><span class="p">,</span> <span class="n">etc</span><span class="o">...&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reactor_network</span> <span class="o">=</span> <span class="n">ReactorNet</span><span class="p">([</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reactor_network</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a new ReactorNet instance. If a list of reactors is supplied,
+these will be added to the network.</p>
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorNet.add">
+<tt class="descname">add</tt><big>(</big><em>reactor</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorNet.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a reactor to the network.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorNet.advance">
+<tt class="descname">advance</tt><big>(</big><em>time</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorNet.advance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Advance the state of the reactor network in time from the current
+time to time &#8216;time&#8217;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorNet.nSensParams">
+<tt class="descname">nSensParams</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorNet.nSensParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of sensitivity parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorNet.reactornet_id">
+<tt class="descname">reactornet_id</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorNet.reactornet_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The integer index used to access the
+kernel reactornet object. For internal use.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorNet.reactors">
+<tt class="descname">reactors</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorNet.reactors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of reactors in the network.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorNet.sensitivity">
+<tt class="descname">sensitivity</tt><big>(</big><em>component=''</em>, <em>parameter=-1</em>, <em>reactor=''</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorNet.sensitivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sensitivity of solution component <em>component</em> with respect
+to one or more parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>component</strong> &#8211; name of the species or other variable for which sensitivity
+information is desired.</li>
+<li><strong>parameter</strong> &#8211; single integer or sequence of integers specifying the parameters.
+The parameters are numbered from zero, beginning with the parameters
+for the first reactor and continuing through those for the last
+reactor in the network. If omitted, the sensitivity with respect
+to all parameters will be returned.</li>
+<li><strong>reactor</strong> &#8211; reactor containing the desired component.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorNet.setInitialTime">
+<tt class="descname">setInitialTime</tt><big>(</big><em>t0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorNet.setInitialTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the initial time. Restarts integration from this time
+using the current state as the initial condition. Default: 0.0 s</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorNet.setTolerances">
+<tt class="descname">setTolerances</tt><big>(</big><em>rtol=1e-09</em>, <em>atol=1e-20</em>, <em>rtolsens=-1.0</em>, <em>atolsens=-1.0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorNet.setTolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the relative and absolute error tolerances used in
+integrating the reactor equations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorNet.step">
+<tt class="descname">step</tt><big>(</big><em>time</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorNet.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take a single internal time step toward time <em>time</em>.
+The time after taking the step is returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.ReactorNet.time">
+<tt class="descname">time</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.ReactorNet.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current time [s].</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="flow-reactors">
+<h2>Flow Reactors<a class="headerlink" href="#flow-reactors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Cantera.Reactor.FlowReactor">
+<em class="property">class </em><tt class="descclassname">Cantera.Reactor.</tt><tt class="descname">FlowReactor</tt><big>(</big><em>contents=None</em>, <em>name=''</em>, <em>volume=1.0</em>, <em>energy='on'</em>, <em>mdot=-1.0</em>, <em>verbose=0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.FlowReactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Cantera.Reactor.ReactorBase" title="Cantera.Reactor.ReactorBase"><tt class="xref py py-class docutils literal"><span class="pre">Cantera.Reactor.ReactorBase</span></tt></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>contents</strong> &#8211; Reactor contents. If not specified, the reactor is initially empty.
+In this case, call <a class="reference internal" href="../cython/zerodim.html#cantera.ReactorBase.insert" title="cantera.ReactorBase.insert"><tt class="xref py py-meth docutils literal"><span class="pre">insert()</span></tt></a> to specify the contents.</li>
+<li><strong>name</strong> &#8211; Used only to identify this reactor in output. If not specified,
+defaults to <tt class="docutils literal"><span class="pre">Reactor_n</span></tt>, where n is an integer assigned in the
+order Reactor objects are created.</li>
+<li><strong>volume</strong> &#8211; Initial reactor volume. Defaults to 1 m^3.</li>
+<li><strong>energy</strong> &#8211; Set to <tt class="docutils literal"><span class="pre">'on'</span></tt> or <tt class="docutils literal"><span class="pre">'off'</span></tt>. If set to <tt class="docutils literal"><span class="pre">'off'</span></tt>, the energy
+equation is not solved, and the temperature is held at its
+initial value. The default in <tt class="docutils literal"><span class="pre">'on'</span></tt>.</li>
+<li><strong>verbose</strong> &#8211; if set to a non-zero value, additional diagnostic information
+will be printed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Cantera.Reactor.FlowReactor.setMassFlowRate">
+<tt class="descname">setMassFlowRate</tt><big>(</big><em>mdot</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.FlowReactor.setMassFlowRate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Reactor.ConstPressureReactor">
+<em class="property">class </em><tt class="descclassname">Cantera.Reactor.</tt><tt class="descname">ConstPressureReactor</tt><big>(</big><em>contents=None</em>, <em>name=''</em>, <em>volume=1.0</em>, <em>energy='on'</em>, <em>verbose=0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.ConstPressureReactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Cantera.Reactor.ReactorBase" title="Cantera.Reactor.ReactorBase"><tt class="xref py py-class docutils literal"><span class="pre">Cantera.Reactor.ReactorBase</span></tt></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>contents</strong> &#8211; Reactor contents. If not specified, the reactor is
+initially empty. In this case, call <a class="reference internal" href="../cython/zerodim.html#cantera.ReactorBase.insert" title="cantera.ReactorBase.insert"><tt class="xref py py-meth docutils literal"><span class="pre">insert()</span></tt></a> to specify
+the contents.</li>
+<li><strong>name</strong> &#8211; Used only to identify this reactor in output. If not specified,
+defaults to <tt class="docutils literal"><span class="pre">'Reactor_n'</span></tt>, where n is an integer assigned in the
+order <a class="reference internal" href="#Cantera.Reactor.Reactor" title="Cantera.Reactor.Reactor"><tt class="xref py py-class docutils literal"><span class="pre">Reactor</span></tt></a> objects are created.</li>
+<li><strong>volume</strong> &#8211; Initial reactor volume. Defaults to 1 m^3.</li>
+<li><strong>energy</strong> &#8211; Set to <tt class="docutils literal"><span class="pre">'on'</span></tt> or <tt class="docutils literal"><span class="pre">'off'</span></tt>. If set to <tt class="docutils literal"><span class="pre">'off'</span></tt>, the energy
+equation is not solved, and the temperature is held at its
+initial value. The default in <tt class="docutils literal"><span class="pre">'on'</span></tt>.</li>
+<li><strong>verbose</strong> &#8211; If set to a non-zero value, additional diagnostic
+information will be printed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Reactor.Reservoir">
+<em class="property">class </em><tt class="descclassname">Cantera.Reactor.</tt><tt class="descname">Reservoir</tt><big>(</big><em>contents=None</em>, <em>name=''</em>, <em>verbose=0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Reservoir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Cantera.Reactor.ReactorBase" title="Cantera.Reactor.ReactorBase"><tt class="xref py py-class docutils literal"><span class="pre">Cantera.Reactor.ReactorBase</span></tt></a></p>
+<p>A reservoir is a reactor with a constant state. The temperature,
+pressure, and chemical composition in a reservoir never change from
+their initial values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>contents</strong> &#8211; Reservoir contents. If not specified, the reservoir is initially
+empty. In this case, call <a class="reference internal" href="../cython/zerodim.html#cantera.ReactorBase.insert" title="cantera.ReactorBase.insert"><tt class="xref py py-meth docutils literal"><span class="pre">insert()</span></tt></a> to specify the contents.</li>
+<li><strong>name</strong> &#8211; Used only to identify this reservoir in output. If not specified,
+defaults to <tt class="docutils literal"><span class="pre">'Reservoir_n'</span></tt>, where n is an integer assigned in
+the order Reservoir objects are created.</li>
+<li><strong>verbose</strong> &#8211; if set to a non-zero value, additional diagnostic information will
+be printed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Some examples showing how to create Reservoir objects are shown below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span> <span class="o">=</span> <span class="n">GRI30</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res1</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">res1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res1</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Arguments may be specified using keywords in any order:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">res2</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="n">Air</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;environment&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res3</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="n">gas</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;upstream_state&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Cantera.Reactor.Reservoir.advance">
+<tt class="descname">advance</tt><big>(</big><em>time</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Reservoir.advance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated. Do nothing.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="flow-controllers">
+<h2>Flow Controllers<a class="headerlink" href="#flow-controllers" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Cantera.Reactor.MassFlowController">
+<em class="property">class </em><tt class="descclassname">Cantera.Reactor.</tt><tt class="descname">MassFlowController</tt><big>(</big><em>upstream=None</em>, <em>downstream=None</em>, <em>name=''</em>, <em>verbose=0</em>, <em>mdot=0.0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.MassFlowController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Cantera.Reactor.FlowDevice" title="Cantera.Reactor.FlowDevice"><tt class="xref py py-class docutils literal"><span class="pre">Cantera.Reactor.FlowDevice</span></tt></a></p>
+<p>Mass flow controllers. A mass flow controller maintains a specified mass
+flow rate independent of upstream and downstream conditions. The equation
+used to compute the mass flow rate is</p>
+<div class="math">
+\[\dot m = \max(\dot m_0, 0.0),\]</div>
+<p>where <span class="math">\(\dot m_0\)</span> is either a constant value or a function of time.
+Note that if <span class="math">\(\dot m_0 &lt; 0\)</span>, the mass flow rate will be set to zero,
+since reversal of the flow direction is not allowed.</p>
+<p>Unlike a real mass flow controller, a MassFlowController object will
+maintain the flow even if the downstream pressure is greater than the
+upstream pressure.  This allows simple implementation of loops, in which
+exhaust gas from a reactor is fed back into it through an inlet. But note
+that this capability should be used with caution, since no account is
+taken of the work required to do this.</p>
+<p>A mass flow controller is assumed to be adiabatic, non-reactive, and have
+negligible volume, so that it is internally always in steady-state even if
+the upstream and downstream reactors are not. The fluid enthalpy, chemical
+composition, and mass flow rate are constant across a mass flow controller,
+and the pressure difference equals the difference in pressure between the
+upstream and downstream reactors.</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mfc1</span> <span class="o">=</span> <span class="n">MassFlowController</span><span class="p">(</span><span class="n">upstream</span><span class="o">=</span><span class="n">res1</span><span class="p">,</span> <span class="n">downstream</span><span class="o">=</span><span class="n">reactr</span><span class="p">,</span>
+<span class="gp">... </span>                          <span class="n">name</span><span class="o">=</span><span class="s">&#39;fuel_mfc&#39;</span><span class="p">,</span> <span class="n">mdot</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">air_mdot</span> <span class="o">=</span> <span class="n">Gaussian</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">FWHM</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mfc2</span> <span class="o">=</span> <span class="n">MassFlowController</span><span class="p">(</span><span class="n">upstream</span><span class="o">=</span><span class="n">res2</span><span class="p">,</span> <span class="n">downstream</span><span class="o">=</span><span class="n">reactr</span><span class="p">,</span>
+<span class="gp">... </span>                          <span class="n">name</span><span class="o">=</span><span class="s">&#39;air_mfc&#39;</span><span class="p">,</span> <span class="n">mdot</span><span class="o">=</span><span class="n">air_mdot</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>upstream</strong> &#8211; upstream reactor or reservoir.</li>
+<li><strong>downstream</strong> &#8211; downstream reactor or reservoir.</li>
+<li><strong>name</strong> &#8211; name used to identify the mass flow controller in output. If no
+name is specified, it defaults to <tt class="docutils literal"><span class="pre">MFC_n</span></tt>, where n is an integer
+assigned in the order the MassFlowController object was created.</li>
+<li><strong>mdot</strong> &#8211; Mass flow rate [kg/s]. This mass flow rate, which may be a constant
+or a function of time, will be maintained, independent of upstream
+and downstream conditions, unless reset by calling method
+<a class="reference internal" href="#Cantera.Reactor.MassFlowController.set" title="Cantera.Reactor.MassFlowController.set"><tt class="xref py py-meth docutils literal"><span class="pre">set()</span></tt></a>.</li>
+<li><strong>verbose</strong> &#8211; if set to a positive integer, additional diagnostic information
+will be printed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Cantera.Reactor.MassFlowController.set">
+<tt class="descname">set</tt><big>(</big><em>mdot=0.0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.MassFlowController.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the mass flow rate [kg/s]. May be called at any time to
+change the mass flow rate to a new value, or to a new function
+of time.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mfc</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">mdot</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Reactor.Valve">
+<em class="property">class </em><tt class="descclassname">Cantera.Reactor.</tt><tt class="descname">Valve</tt><big>(</big><em>upstream=None</em>, <em>downstream=None</em>, <em>name=''</em>, <em>Kv=0.0</em>, <em>mdot0=0.0</em>, <em>verbose=0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Valve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Cantera.Reactor.FlowDevice" title="Cantera.Reactor.FlowDevice"><tt class="xref py py-class docutils literal"><span class="pre">Cantera.Reactor.FlowDevice</span></tt></a></p>
+<p>Valves. In Cantera, a Valve object is a flow devices with mass
+flow rate that is a function of the pressure drop across it. The default behavior
+is linear:</p>
+<div class="math">
+\[\dot m = K_v (P_1 - P_2)\]</div>
+<p>if <span class="math">\(P_1 &gt; P_2.\)</span> Otherwise, <span class="math">\(\dot m = 0\)</span>.
+However, an arbitrary function can also be specified, such that</p>
+<div class="math">
+\[\dot m = F(P_1 - P_2)\]</div>
+<p>if <span class="math">\(P_1 &gt; P_2\)</span>, or <span class="math">\(\dot m = 0\)</span> otherwise.
+It is never possible for the flow to reverse and go from the downstream
+to the upstream reactor/reservoir through a line containing a Valve object.</p>
+<p><a class="reference internal" href="#Cantera.Reactor.Valve" title="Cantera.Reactor.Valve"><tt class="xref py py-class docutils literal"><span class="pre">Valve</span></tt></a> objects are often used between an upstream reactor and a
+downstream reactor or reservoir to maintain them both at nearly the same
+pressure. By setting the constant <span class="math">\(K_v\)</span> to a sufficiently large
+value, very small pressure differences will result in flow between the
+reactors that counteracts the pressure difference.</p>
+<p>A Valve is assumed to be adiabatic, non-reactive, and have negligible
+internal volume, so that it is internally always in steady-state even if
+the upstream and downstream reactors are not. The fluid enthalpy, chemical
+composition, and mass flow rate are constant across a Valve, and the
+pressure difference equals the difference in pressure between the upstream
+and downstream reactors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>upstream</strong> &#8211; upstream reactor or reservoir.</li>
+<li><strong>downstream</strong> &#8211; downstream reactor or reservoir.</li>
+<li><strong>name</strong> &#8211; name used to identify the valve in output. If no name is specified,
+it defaults to <tt class="docutils literal"><span class="pre">Valve_n</span></tt>, where n is an integer assigned in the
+order the Valve object was created.</li>
+<li><strong>Kv</strong> &#8211; the constant in the mass flow rate equation.</li>
+<li><strong>verbose</strong> &#8211; if set to a positive integer, additional diagnostic information
+will be printed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Cantera.Reactor.Valve.set">
+<tt class="descname">set</tt><big>(</big><em>Kv=-1.0</em>, <em>F=None</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Valve.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set or reset valve properties. All keywords are optional.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>Kv</strong> &#8211; constant in linear mass flow rate equation.</li>
+<li><strong>F</strong> &#8211; function of <span class="math">\(\Delta P\)</span>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Valve.setValveCoeff">
+<tt class="descname">setValveCoeff</tt><big>(</big><em>Kv=-1.0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Valve.setValveCoeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set or reset the valve coefficient <span class="math">\(K_v\)</span>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Reactor.PressureController">
+<em class="property">class </em><tt class="descclassname">Cantera.Reactor.</tt><tt class="descname">PressureController</tt><big>(</big><em>upstream=None</em>, <em>downstream=None</em>, <em>name=''</em>, <em>master=None</em>, <em>Kv=0.0</em>, <em>verbose=0</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.PressureController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Cantera.Reactor.FlowDevice" title="Cantera.Reactor.FlowDevice"><tt class="xref py py-class docutils literal"><span class="pre">Cantera.Reactor.FlowDevice</span></tt></a></p>
+<p>A PressureController is designed to be used in conjunction with another
+&#8216;master&#8217; flow controller, typically a <a class="reference internal" href="#Cantera.Reactor.MassFlowController" title="Cantera.Reactor.MassFlowController"><tt class="xref py py-class docutils literal"><span class="pre">MassFlowController</span></tt></a>. The
+master flow controller is installed on the inlet of the reactor, and the
+corresponding <a class="reference internal" href="#Cantera.Reactor.PressureController" title="Cantera.Reactor.PressureController"><tt class="xref py py-class docutils literal"><span class="pre">PressureController</span></tt></a> is installed on on outlet of the
+reactor. The <a class="reference internal" href="#Cantera.Reactor.PressureController" title="Cantera.Reactor.PressureController"><tt class="xref py py-class docutils literal"><span class="pre">PressureController</span></tt></a> mass flow rate is equal to the
+master mass flow rate, plus a small correction dependent on the pressure
+difference:</p>
+<div class="math">
+\[\dot m = \dot m_{\rm master} + K_v(P_1 - P_2).\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>upstream</strong> &#8211; upstream reactor or reservoir.</li>
+<li><strong>downstream</strong> &#8211; downstream reactor or reservoir.</li>
+<li><strong>name</strong> &#8211; name used to identify the pressure controller in output.  If no
+name is specified, it defaults to <tt class="docutils literal"><span class="pre">PressureController_n</span></tt>, where
+n is an integer assigned in the order the PressureController
+object was created.</li>
+<li><strong>Kv</strong> &#8211; the constant in the mass flow rate equation.</li>
+<li><strong>verbose</strong> &#8211; if set to a positive integer, additional diagnostic information
+will be printed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Cantera.Reactor.PressureController.set">
+<tt class="descname">set</tt><big>(</big><em>Kv=-1.0</em>, <em>master=None</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.PressureController.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.PressureController.setMaster">
+<tt class="descname">setMaster</tt><big>(</big><em>master</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.PressureController.setMaster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the master flow controller.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.PressureController.setPressureCoeff">
+<tt class="descname">setPressureCoeff</tt><big>(</big><em>Kv</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.PressureController.setPressureCoeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set or reset the pressure coefficient <span class="math">\(K_v\)</span>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Reactor.Wall">
+<em class="property">class </em><tt class="descclassname">Cantera.Reactor.</tt><tt class="descname">Wall</tt><big>(</big><em>left, right, name='', A=1.0, K=0.0, U=0.0, Q=None, velocity=None, kinetics=[None, None]</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reactor walls.</p>
+<p>A Wall separates two reactors, or a reactor and a reservoir. A wall has a
+finite area, may conduct or radiate heat between the two reactors on either
+side, and may move like a piston.</p>
+<p>Walls are stateless objects in Cantera, meaning that no differential
+equation is integrated to determine any wall property. Since it is the wall
+(piston) velocity that enters the energy equation, this means that it is
+the velocity, not the acceleration or displacement, that is specified.
+The wall velocity is computed from</p>
+<div class="math">
+\[v = K(P_{\rm left} - P_{\rm right}) + v_0(t),\]</div>
+<p>where <span class="math">\(K\)</span> is a non-negative constant, and <span class="math">\(v_0(t)\)</span> is a
+specified function of time. The velocity is positive if the wall is
+moving to the right.</p>
+<p>The heat flux through the wall is computed from</p>
+<div class="math">
+\[q = U(T_{\rm left} - T_{\rm right}) + \epsilon\sigma (T_{\rm left}^4 - T_{\rm right}^4) + q_0(t),\]</div>
+<p>where <span class="math">\(U\)</span> is the overall heat transfer coefficient for
+conduction/convection, and <span class="math">\(\epsilon\)</span> is the emissivity. The function
+<span class="math">\(q_0(t)\)</span> is a specified function of time. The heat flux is positive
+when heat flows from the reactor on the left to the reactor on the right.</p>
+<p>A heterogeneous reaction mechanism may be specified for one or both of the
+wall surfaces. The mechanism object (typically an instance of class
+<a class="reference internal" href="../cython/importing.html#cantera.Interface" title="cantera.Interface"><tt class="xref py py-class docutils literal"><span class="pre">Interface</span></tt></a>) must be constructed so that it is properly linked to
+the object representing the fluid in the reactor the surface in question
+faces. The surface temperature on each side is taken to be equal to the
+temperature of the reactor it faces.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>left</strong> &#8211; Reactor or reservoir on the left. Required.</li>
+<li><strong>right</strong> &#8211; Reactor or reservoir on the right. Required.</li>
+<li><strong>name</strong> &#8211; Name string. If omitted, the name is <tt class="docutils literal"><span class="pre">'Wall_n'</span></tt>, where <tt class="docutils literal"><span class="pre">'n'</span></tt>
+is an integer assigned in the order walls are created.</li>
+<li><strong>A</strong> &#8211; Wall area [m^2]. Defaults to 1.0 m^2.</li>
+<li><strong>K</strong> &#8211; Wall expansion rate parameter [m/s/Pa]. Defaults to 0.0.</li>
+<li><strong>U</strong> &#8211; Overall heat transfer coefficient [W/m^2]. Defaults to 0.0
+(adiabatic wall).</li>
+<li><strong>Q</strong> &#8211; Heat flux function <span class="math">\(q_0(t)\)</span> [W/m^2]. Optional. Default:
+<span class="math">\(q_0(t) = 0.0\)</span>.</li>
+<li><strong>velocity</strong> &#8211; Wall velocity function <span class="math">\(v_0(t)\)</span> [m/s].
+Default: <span class="math">\(v_0(t) = 0.0\)</span>.</li>
+<li><strong>kinetics</strong> &#8211; Surface reaction mechanisms for the left-facing and right-facing
+surface, respectively. These must be instances of class Kinetics,
+or of a class derived from Kinetics, such as Interface. If
+chemistry occurs on only one side, enter <tt class="docutils literal"><span class="pre">None</span></tt> for the
+non-reactive side.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.addSensitivityReaction">
+<tt class="descname">addSensitivityReaction</tt><big>(</big><em>side='unknown'</em>, <em>reactions=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.addSensitivityReaction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.area">
+<tt class="descname">area</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.area" title="Permalink to this definition">¶</a></dt>
+<dd><p>The wall area (m^2).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.heatFlowRate">
+<tt class="descname">heatFlowRate</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.heatFlowRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rate of heat flow through the wall. A positive value
+corresponds to heat flowing from the left-hand reactor to the
+right-hand one.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.heatFlux">
+<tt class="descname">heatFlux</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.heatFlux" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.install">
+<tt class="descname">install</tt><big>(</big><em>left</em>, <em>right</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.install" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.kinetics">
+<tt class="descname">kinetics</tt><big>(</big><em>side='left'</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.kinetics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.ready">
+<tt class="descname">ready</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 1 if the wall instance is ready for use, 0 otherwise. Deprecated.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.set">
+<tt class="descname">set</tt><big>(</big><em>**p</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set various wall parameters: <em>A</em>, <em>U</em>, <em>K</em>, <em>Q</em>, <em>velocity</em>.
+These have the same meanings as in the constructor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.setArea">
+<tt class="descname">setArea</tt><big>(</big><em>a</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.setArea" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the area (m^2). The wall area may be changed manually at any time
+during a simulation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.setEmissivity">
+<tt class="descname">setEmissivity</tt><big>(</big><em>epsilon</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.setEmissivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the emissivity.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.setExpansionRateCoeff">
+<tt class="descname">setExpansionRateCoeff</tt><big>(</big><em>k</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.setExpansionRateCoeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the coefficient K that determines the expansion rate
+resulting from a unit pressure drop.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.setHeatFlux">
+<tt class="descname">setHeatFlux</tt><big>(</big><em>qfunc</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.setHeatFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the time-dependent heat flux function [W/m2].
+<em>qfunc</em> must be a functor (an instance of <a class="reference internal" href="func.html#Cantera.Func.Func1" title="Cantera.Func.Func1"><tt class="xref py py-class docutils literal"><span class="pre">Func1</span></tt></a>).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.setHeatTransferCoeff">
+<tt class="descname">setHeatTransferCoeff</tt><big>(</big><em>u</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.setHeatTransferCoeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the overall heat transfer coefficient [W/m^2/K]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.setKinetics">
+<tt class="descname">setKinetics</tt><big>(</big><em>left</em>, <em>right</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.setKinetics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify surface reaction mechanisms for the left and right sides of the wall.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.setThermalResistance">
+<tt class="descname">setThermalResistance</tt><big>(</big><em>rth</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.setThermalResistance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.setVelocity">
+<tt class="descname">setVelocity</tt><big>(</big><em>vfunc</em><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.setVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the velocity function [m/s]. <em>vfunc</em> must
+be a functor (an instance of <a class="reference internal" href="func.html#Cantera.Func.Func1" title="Cantera.Func.Func1"><tt class="xref py py-class docutils literal"><span class="pre">Func1</span></tt></a>)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.vdot">
+<tt class="descname">vdot</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.vdot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rate of volume change [m^3]. A positive value corresponds
+to the left-hand reactor volume increasing, and the right-hand
+reactor volume decreasing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Reactor.Wall.velocity">
+<tt class="descname">velocity</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Reactor.Wall.velocity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="onedim.html" title="One-Dimensional Reacting Flows"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="composite.html" title="Composite Classes"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li>
+          <li><a href="index.html" >Python Module Documentation (Legacy)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

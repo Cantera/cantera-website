@@ -1,0 +1,6 @@
+.. _py-example-dusty_gas.py:
+
+dusty_gas.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/transport/dusty_gas.py

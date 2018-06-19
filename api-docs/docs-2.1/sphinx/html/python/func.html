@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Func Module &mdash; Cantera 2.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.1.2 documentation" href="../index.html" />
+    <link rel="up" title="Python Module Documentation (Legacy)" href="index.html" />
+    <link rel="next" title="Error Handling" href="error-handling.html" />
+    <link rel="prev" title="One-Dimensional Reacting Flows" href="onedim.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="error-handling.html" title="Error Handling"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="onedim.html" title="One-Dimensional Reacting Flows"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Python Module Documentation (Legacy)</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="onedim.html"
+                        title="previous chapter">One-Dimensional Reacting Flows</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="error-handling.html"
+                        title="next chapter">Error Handling</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/python/func.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="func-module">
+<h1>Func Module<a class="headerlink" href="#func-module" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Quick links:</dt>
+<dd><ul class="first last simple">
+<li><tt class="xref py py-class docutils literal"><span class="pre">Polynomial</span></tt></li>
+<li><tt class="xref py py-class docutils literal"><span class="pre">Gaussian</span></tt></li>
+<li><tt class="xref py py-class docutils literal"><span class="pre">Fourier</span></tt></li>
+<li><tt class="xref py py-class docutils literal"><span class="pre">Arrhenius</span></tt></li>
+</ul>
+</dd>
+</dl>
+<span class="target" id="module-Cantera.Func"></span><p>The classes in this module are designed to allow constructing
+user-defined functions of one variable in Python that can be used with the
+Cantera C++ kernel. These classes are mostly shadow classes for
+corresponding classes in the C++ kernel.</p>
+<dl class="class">
+<dt id="Cantera.Func.Func1">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">Func1</tt><big>(</big><em>typ</em>, <em>n</em>, <em>coeffs=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Cantera.Func.Func1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Functors of one variable.</p>
+<p>A Functor is an object that behaves like a function. <a class="reference internal" href="#Cantera.Func.Func1" title="Cantera.Func.Func1"><tt class="xref py py-class docutils literal"><span class="pre">Func1</span></tt></a>
+is the base class from which several functor classes derive. These
+classes are designed to allow specifying functions of time from Python
+that can be used by the C++ kernel.</p>
+<p>Functors can be added, multiplied, and divided to yield new functors.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>  <span class="c"># 3*t*t + 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="go">13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>      <span class="c"># 2*t - 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f3</span> <span class="o">=</span> <span class="n">f1</span><span class="o">/</span><span class="n">f2</span>                        <span class="c"># (3*t*t + 1)/(2*t - 1)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f3</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="go">4.3333333</span>
+</pre></div>
+</div>
+<p>The constructor is meant to be called from constructors of subclasses
+of Func1: <a class="reference internal" href="#Cantera.Func.Polynomial" title="Cantera.Func.Polynomial"><tt class="xref py py-class docutils literal"><span class="pre">Polynomial</span></tt></a>, <a class="reference internal" href="#Cantera.Func.Gaussian" title="Cantera.Func.Gaussian"><tt class="xref py py-class docutils literal"><span class="pre">Gaussian</span></tt></a>, <a class="reference internal" href="#Cantera.Func.Arrhenius" title="Cantera.Func.Arrhenius"><tt class="xref py py-class docutils literal"><span class="pre">Arrhenius</span></tt></a>,
+<a class="reference internal" href="#Cantera.Func.Fourier" title="Cantera.Func.Fourier"><tt class="xref py py-class docutils literal"><span class="pre">Fourier</span></tt></a>, <a class="reference internal" href="#Cantera.Func.Const" title="Cantera.Func.Const"><tt class="xref py py-class docutils literal"><span class="pre">Const</span></tt></a>, <a class="reference internal" href="#Cantera.Func.PeriodicFunction" title="Cantera.Func.PeriodicFunction"><tt class="xref py py-class docutils literal"><span class="pre">PeriodicFunction</span></tt></a>.</p>
+<dl class="method">
+<dt id="Cantera.Func.Func1.func_id">
+<tt class="descname">func_id</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Func.Func1.func_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal. Return the integer index used internally to access the
+kernel-level object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Func.Func1.write">
+<tt class="descname">write</tt><big>(</big><em>arg='x'</em>, <em>length=1000</em><big>)</big><a class="headerlink" href="#Cantera.Func.Func1.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.Sin">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">Sin</tt><big>(</big><em>omega=1.0</em><big>)</big><a class="headerlink" href="#Cantera.Func.Sin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.Cos">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">Cos</tt><big>(</big><em>omega=1.0</em><big>)</big><a class="headerlink" href="#Cantera.Func.Cos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.Exp">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">Exp</tt><big>(</big><em>A=1.0</em><big>)</big><a class="headerlink" href="#Cantera.Func.Exp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.Pow">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">Pow</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#Cantera.Func.Pow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.Polynomial">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">Polynomial</tt><big>(</big><em>coeffs=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Cantera.Func.Polynomial" title="Permalink to this definition">¶</a></dt>
+<dd><p>A polynomial.
+Instances of class &#8216;Polynomial&#8217; evaluate</p>
+<div class="math">
+\[f(t) = \sum_{n = 0}^N a_n t^n .\]</div>
+<p>The coefficients are supplied as a list, beginning with <span class="math">\(a_N\)</span> and
+ending with <span class="math">\(a_0\)</span>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>   <span class="c">#    3t^2 - 2t + 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span>         <span class="c">#    8t + 6</span>
+</pre></div>
+</div>
+<p>coeffs - polynomial coefficients</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.Gaussian">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">Gaussian</tt><big>(</big><em>A</em>, <em>t0</em>, <em>FWHM</em><big>)</big><a class="headerlink" href="#Cantera.Func.Gaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Gaussian pulse. Instances of class &#8216;Gaussian&#8217; evaluate</p>
+<div class="math">
+\[f(t) = A \exp[-(t - t_0) / \tau]\]</div>
+<p>where</p>
+<div class="math">
+\[\tau = \frac{\mbox{FWHM}}{2.0\sqrt{\ln(2.0)}}\]</div>
+<p>&#8216;FWHM&#8217; denotes the full width at half maximum.</p>
+<p>As an example, here is how to create a Gaussian pulse with peak amplitude
+10.0, centered at time 2.0, with full-width at half max = 0.2:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Gaussian</span><span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span> <span class="n">t0</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">FWHM</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="go">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mf">1.9</span><span class="p">)</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mf">2.1</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.Fourier">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">Fourier</tt><big>(</big><em>omega</em>, <em>coefficients</em><big>)</big><a class="headerlink" href="#Cantera.Func.Fourier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fourier series. Instances of class &#8216;Fourier&#8217; evaluate the Fourier series</p>
+<div class="math">
+\[f(t) = \frac{a_0}{2} +
+    \sum_{n=1}^N [a_n \cos(n\omega t) + b_n \sin(n \omega t)]\]</div>
+<p>where</p>
+<div class="math">
+\[a_n = \frac{\omega}{\pi}
+\int_{-\pi/\omega}^{\pi/\omega} f(t) \cos(n \omega t) dt\]\[b_n = \frac{\omega}{\pi}
+\int_{-\pi/\omega}^{\pi/\omega} f(t) \sin(n \omega t) dt.\]</div>
+<p>The function <span class="math">\(f(t)\)</span> is periodic, with period <span class="math">\(T = 2\pi/\omega\)</span>.</p>
+<p>As an example, a function with Fourier components up to the second harmonic
+is constructed as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">coeffs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a0</span><span class="p">,</span> <span class="n">b0</span><span class="p">),</span> <span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">),</span> <span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">b2</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Fourier</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">coeffs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that <tt class="docutils literal"><span class="pre">b0</span></tt> must be specified, but is not used. The value of <tt class="docutils literal"><span class="pre">b0</span></tt>
+is arbitrary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>omega</strong> &#8211; fundamental frequency [radians/sec].</li>
+<li><strong>coefficients</strong> &#8211; List of (a,b) pairs, beginning with n = 0.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.Arrhenius">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">Arrhenius</tt><big>(</big><em>coefficients</em><big>)</big><a class="headerlink" href="#Cantera.Func.Arrhenius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sum of modified Arrhenius terms. Instances of class &#8216;Arrhenius&#8217; evaluate</p>
+<div class="math">
+\[f(T) = \sum_{n=1}^N A_n T^{b_n}\exp(-E_n/T)\]</div>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Arrhenius</span><span class="p">([(</span><span class="n">a0</span><span class="p">,</span> <span class="n">b0</span><span class="p">,</span> <span class="n">e0</span><span class="p">),</span> <span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">e1</span><span class="p">)])</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>coefficients</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>sequence of (<em>A</em>, <em>b</em>, <em>E</em>) triplets.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.Const">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">Const</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#Cantera.Func.Const" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constant function.
+Objects created by function Const act as functions that have a constant
+value. These are used internally whenever a statement like</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Gausian</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">4.0</span>
+</pre></div>
+</div>
+<p>is encountered. The addition operator of class Func1 is defined so that
+this is equivalent to</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">SumFunction</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="n">Const</span><span class="p">(</span><span class="mf">4.0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Function Const returns instances of class Polynomial that have
+degree zero, with the constant term set to the desired value.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.PeriodicFunction">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">PeriodicFunction</tt><big>(</big><em>func</em>, <em>T</em><big>)</big><a class="headerlink" href="#Cantera.Func.PeriodicFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a function into a periodic function with period T.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>func</strong> &#8211; initial non-periodic function</li>
+<li><strong>T</strong> &#8211; period [s]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.ComboFunc1">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">ComboFunc1</tt><big>(</big><em>typ</em>, <em>f1</em>, <em>f2</em><big>)</big><a class="headerlink" href="#Cantera.Func.ComboFunc1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combines two functions.
+This class is the base class for functors that combine two
+other functors in a binary operation.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.SumFunction">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">SumFunction</tt><big>(</big><em>f1</em>, <em>f2</em><big>)</big><a class="headerlink" href="#Cantera.Func.SumFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sum of two functions.
+Instances of class SumFunction evaluate the sum of two supplied functors.
+It is not necessary to explicitly create an instance of SumFunction, since
+the addition operator of the base class is overloaded to return a SumFunction
+instance.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f3</span> <span class="o">=</span> <span class="n">f1</span> <span class="o">+</span> <span class="n">f2</span>     <span class="c"># functor to evaluate (2t + 1) + (3t - 5)</span>
+</pre></div>
+</div>
+<p>In this example, object &#8216;f3&#8217; is a functor of class&#8217;SumFunction&#8217; that calls
+f1 and f2 and returns their sum.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>f1</strong> &#8211; first functor.</li>
+<li><strong>f2</strong> &#8211; second functor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.DiffFunction">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">DiffFunction</tt><big>(</big><em>f1</em>, <em>f2</em><big>)</big><a class="headerlink" href="#Cantera.Func.DiffFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Difference of two functions.
+Instances of class DiffFunction evaluate the difference of two supplied
+functors. It is not necessary to explicitly create an instance of
+DiffFunction, since the subtraction operator of the base class is
+overloaded to return a DiffFunction instance.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f3</span> <span class="o">=</span> <span class="n">f1</span> <span class="o">-</span> <span class="n">f2</span>     <span class="c"># functor to evaluate (2t + 1) - (3t - 5)</span>
+</pre></div>
+</div>
+<p>In this example, object &#8216;f3&#8217; is a functor of class&#8217;DiffFunction&#8217; that
+calls f1 and f2 and returns their difference.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>f1</strong> &#8211; first functor.</li>
+<li><strong>f2</strong> &#8211; second functor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.ProdFunction">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">ProdFunction</tt><big>(</big><em>f1</em>, <em>f2</em><big>)</big><a class="headerlink" href="#Cantera.Func.ProdFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Product of two functions.  Instances of class ProdFunction
+evaluate the product of two supplied functors.  It is not
+necessary to explicitly create an instance of &#8216;ProdFunction&#8217;,
+since the multiplication operator of the base class is overloaded
+to return a &#8216;ProdFunction&#8217; instance.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f3</span> <span class="o">=</span> <span class="n">f1</span> <span class="o">*</span> <span class="n">f2</span>     <span class="c"># functor to evaluate (2t + 1)*(3t - 5)</span>
+</pre></div>
+</div>
+<p>In this example, object &#8216;f3&#8217; is a functor of class&#8217;ProdFunction&#8217;
+that calls f1 and f2 and returns their product.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>f1</strong> &#8211; first functor.</li>
+<li><strong>f2</strong> &#8211; second functor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.RatioFunction">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">RatioFunction</tt><big>(</big><em>f1</em>, <em>f2</em><big>)</big><a class="headerlink" href="#Cantera.Func.RatioFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ratio of two functions.
+Instances of class RatioFunction evaluate the ratio of two supplied functors.
+It  is not necessary to explicitly create an instance of &#8216;RatioFunction&#8217;, since
+the division operator of the base class is overloaded to return a RatioFunction
+instance.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f3</span> <span class="o">=</span> <span class="n">f1</span> <span class="o">/</span> <span class="n">f2</span>     <span class="c"># functor to evaluate (2t + 1)/(3t - 5)</span>
+</pre></div>
+</div>
+<p>In this example, object &#8216;f3&#8217; is a functor of class&#8217;RatioFunction&#8217; that
+calls f1 and f2 and returns their ratio.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>f1</strong> &#8211; first functor.</li>
+<li><strong>f2</strong> &#8211; second functor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.CompositeFunction">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">CompositeFunction</tt><big>(</big><em>f1</em>, <em>f2</em><big>)</big><a class="headerlink" href="#Cantera.Func.CompositeFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function of a function.
+Instances of class CompositeFunction evaluate f(g(t)) for two supplied
+functors f and g. It  is not necessary to explicitly create an instance
+of &#8216;CompositeFunction&#8217;, since the () operator of the base class is
+overloaded to return a CompositeFunction when called with a functor
+argument.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f3</span> <span class="o">=</span> <span class="n">f1</span><span class="p">(</span><span class="n">f2</span><span class="p">)</span>     <span class="c"># functor to evaluate 2(3t - 5) + 1</span>
+</pre></div>
+</div>
+<p>In this example, object &#8216;f3&#8217; is a functor of class&#8217;CompositeFunction&#8217;
+that calls f1 and f2 and returns f1(f2(t)).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>f1</strong> &#8211; first functor.</li>
+<li><strong>f2</strong> &#8211; second functor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.Func.DerivativeFunction">
+<em class="property">class </em><tt class="descclassname">Cantera.Func.</tt><tt class="descname">DerivativeFunction</tt><big>(</big><em>f</em><big>)</big><a class="headerlink" href="#Cantera.Func.DerivativeFunction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Cantera.Func.derivative">
+<tt class="descclassname">Cantera.Func.</tt><tt class="descname">derivative</tt><big>(</big><em>f</em><big>)</big><a class="headerlink" href="#Cantera.Func.derivative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the derivative of a functor <em>f</em></p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="error-handling.html" title="Error Handling"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="onedim.html" title="One-Dimensional Reacting Flows"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li>
+          <li><a href="index.html" >Python Module Documentation (Legacy)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

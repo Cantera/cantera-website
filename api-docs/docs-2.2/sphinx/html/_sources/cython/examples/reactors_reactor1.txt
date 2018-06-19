@@ -1,0 +1,6 @@
+.. _py-example-reactor1.py:
+
+reactor1.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/reactors/reactor1.py

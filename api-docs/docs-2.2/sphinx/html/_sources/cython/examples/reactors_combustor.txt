@@ -1,0 +1,6 @@
+.. _py-example-combustor.py:
+
+combustor.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/reactors/combustor.py

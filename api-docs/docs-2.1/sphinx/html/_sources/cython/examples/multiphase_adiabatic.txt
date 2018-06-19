@@ -1,0 +1,4 @@
+adiabatic.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/multiphase/adiabatic.py

@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Chemical Equilibrium Example Program &mdash; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../index.html" />
+    <link rel="up" title="C++ Interface User’s Guide" href="index.html" />
+    <link rel="next" title="Glossary" href="../glossary.html" />
+    <link rel="prev" title="A Very Simple C++ Program" href="simple-example.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../glossary.html" title="Glossary"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="simple-example.html" title="A Very Simple C++ Program"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">C++ Interface User&#8217;s Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="simple-example.html"
+                        title="previous chapter">A Very Simple C++ Program</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../glossary.html"
+                        title="next chapter">Glossary</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/cxx-guide/equil-example.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="chemical-equilibrium-example-program">
+<h1>Chemical Equilibrium Example Program<a class="headerlink" href="#chemical-equilibrium-example-program" title="Permalink to this headline">¶</a></h1>
+<p>In the program below, the <tt class="xref py py-obj docutils literal"><span class="pre">equilibrate</span></tt> method is called to set the gas to a
+state of chemical equilibrium, holding the temperature and pressure fixed.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="cp">#include &quot;cantera/thermo.h&quot;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">Cantera</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">equil_demo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">auto_ptr</span><span class="o">&lt;</span><span class="n">ThermoPhase</span><span class="o">&gt;</span> <span class="n">gas</span><span class="p">(</span><span class="n">newPhase</span><span class="p">(</span><span class="s">&quot;h2o2.cti&quot;</span><span class="p">,</span><span class="s">&quot;ohmech&quot;</span><span class="p">));</span>
+    <span class="n">gas</span><span class="o">-&gt;</span><span class="n">setState_TPX</span><span class="p">(</span><span class="mf">1500.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">OneAtm</span><span class="p">,</span> <span class="s">&quot;O2:1.0, H2:3.0, AR:1.0&quot;</span><span class="p">);</span>
+    <span class="n">gas</span><span class="o">-&gt;</span><span class="n">equilibrate</span><span class="p">(</span><span class="s">&quot;TP&quot;</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">gas</span><span class="o">-&gt;</span><span class="n">report</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+    <span class="n">try</span> <span class="p">{</span>
+        <span class="n">equil_demo</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">CanteraError</span><span class="o">&amp;</span> <span class="n">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">err</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The program output is:</p>
+<div class="highlight-python"><div class="highlight"><pre>      temperature            1500  K
+         pressure          202650  Pa
+          density        0.316828  kg/m^3
+ mean mol. weight         19.4985  amu
+
+                         1 kg            1 kmol
+                      -----------      ------------
+         enthalpy    -4.17903e+06       -8.149e+07     J
+  internal energy    -4.81866e+06       -9.396e+07     J
+          entropy         11283.3          2.2e+05     J/K
+   Gibbs function     -2.1104e+07       -4.115e+08     J
+heat capacity c_p         1893.06        3.691e+04     J/K
+heat capacity c_v         1466.65         2.86e+04     J/K
+
+                          X                 Y          Chem. Pot. / RT
+                    -------------     ------------     ------------
+               H2       0.249996        0.0258462         -19.2954
+                H    6.22521e-06        3.218e-07         -9.64768
+                O    7.66933e-12      6.29302e-12         -26.3767
+               O2     7.1586e-12      1.17479e-11         -52.7533
+               OH    3.55353e-07      3.09952e-07         -36.0243
+              H2O       0.499998         0.461963          -45.672
+              HO2    7.30338e-15       1.2363e-14          -62.401
+             H2O2    3.95781e-13      6.90429e-13         -72.0487
+               AR       0.249999          0.51219         -21.3391
+</pre></div>
+</div>
+<p>How can we tell that this is really a state of chemical equilibrium? Well, by
+applying the equation of reaction equilibrium to formation reactions from the
+elements, it is straightforward to show that:</p>
+<div class="math">
+\[\mu_k = \sum_m \lambda_m a_{km}.\]</div>
+<p>where <span class="math">\(\mu_k\)</span> is the chemical potential of species <em>k</em>, <span class="math">\(a_{km}\)</span> is
+the number of atoms of element <em>m</em> in species <em>k</em>, and <span class="math">\(\lambda_m\)</span> is the
+chemical potential of the elemental species per atom (the so-called &#8220;element
+potential&#8221;). In other words, the chemical potential of each species in an
+equilibrium state is a linear sum of contributions from each atom. We see that
+this is true in the output above&#8212;the chemical potential of H2 is exactly
+twice that of H, the chemical potential for OH is the sum of the values for H
+and O, the value for H2O2 is twice as large as the value for OH, and so on.</p>
+<p>We&#8217;ll see later how the <span>equilibrate</span>
+function really works.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../glossary.html" title="Glossary"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="simple-example.html" title="A Very Simple C++ Program"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li>
+          <li><a href="index.html" >C++ Interface User&#8217;s Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

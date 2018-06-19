@@ -1,0 +1,704 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Chemical Kinetics &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Transport Properties" href="transport.html" />
+    <link rel="prev" title="Thermodynamic Properties" href="thermodynamics.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="transport.html" title="Transport Properties"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thermodynamics.html" title="Thermodynamic Properties"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Matlab Interface User’s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Chemical Kinetics</a><ul>
+<li><a class="reference internal" href="#kinetics">Kinetics</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="thermodynamics.html"
+                        title="previous chapter">Thermodynamic Properties</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="transport.html"
+                        title="next chapter">Transport Properties</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/matlab/code-docs/kinetics.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="chemical-kinetics">
+<h1>Chemical Kinetics<a class="headerlink" href="#chemical-kinetics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="kinetics">
+<h2>Kinetics<a class="headerlink" href="#kinetics" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Kinetics">
+<em class="property">class </em><code class="descname">Kinetics</code><span class="sig-paren">(</span><em>r</em>, <em>ph</em>, <em>neighbor1</em>, <em>neighbor2</em>, <em>neighbor3</em>, <em>neighbor4</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kinetics class constructor.</p>
+<p>Class Kinetics represents kinetics managers, which are classes
+that manage reaction mechanisms.  The reaction mechanism
+attributes are specified in a CTML file.
+Instances of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> are responsible for evaluating reaction rates
+of progress, species production rates, and other quantities pertaining to
+a reaction mechanism.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>r</strong> – If <code class="docutils literal"><span class="pre">r</span></code> is an instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a>, a copy of the instance
+is returned. In this case, <code class="docutils literal"><span class="pre">r</span></code> should be the only argument. Otherwise, <code class="docutils literal"><span class="pre">r</span></code>
+must be an instance of class <a class="reference internal" href="utilities.html#XML_Node" title="XML_Node"><code class="xref mat mat-func docutils literal"><span class="pre">XML_Node()</span></code></a>.</li>
+<li><strong>ph</strong> – If <code class="docutils literal"><span class="pre">r</span></code> is an instance of <a class="reference internal" href="utilities.html#XML_Node" title="XML_Node"><code class="xref mat mat-func docutils literal"><span class="pre">XML_Node()</span></code></a>, <code class="docutils literal"><span class="pre">ph</span></code> is an instance of class
+<a class="reference internal" href="thermodynamics.html#ThermoPhase" title="ThermoPhase"><code class="xref mat mat-func docutils literal"><span class="pre">ThermoPhase()</span></code></a>. Otherwise, optional.</li>
+<li><strong>neighbor1</strong> – Instance of class <a class="reference internal" href="thermodynamics.html#ThermoPhase" title="ThermoPhase"><code class="xref mat mat-func docutils literal"><span class="pre">ThermoPhase()</span></code></a> or <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal"><span class="pre">Solution()</span></code></a> representing a
+neighboring phase.</li>
+<li><strong>neighbor2</strong> – Instance of class <a class="reference internal" href="thermodynamics.html#ThermoPhase" title="ThermoPhase"><code class="xref mat mat-func docutils literal"><span class="pre">ThermoPhase()</span></code></a> or <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal"><span class="pre">Solution()</span></code></a> representing a
+neighboring phase.</li>
+<li><strong>neighbor3</strong> – Instance of class <a class="reference internal" href="thermodynamics.html#ThermoPhase" title="ThermoPhase"><code class="xref mat mat-func docutils literal"><span class="pre">ThermoPhase()</span></code></a> or <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal"><span class="pre">Solution()</span></code></a> representing a
+neighboring phase.</li>
+<li><strong>neighbor4</strong> – Instance of class <a class="reference internal" href="thermodynamics.html#ThermoPhase" title="ThermoPhase"><code class="xref mat mat-func docutils literal"><span class="pre">ThermoPhase()</span></code></a> or <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal"><span class="pre">Solution()</span></code></a> representing a
+neighboring phase.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="Kinetics.advanceCoverages">
+<code class="descname">advanceCoverages</code><span class="sig-paren">(</span><em>k</em>, <em>dt</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.advanceCoverages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Advance the surface coverages forward in time.</p>
+<p>The bulk phase concentrations are held fixed during this operation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>k</strong> – Instance of class <a class="reference internal" href="interface.html#Interface" title="Interface"><code class="xref mat mat-func docutils literal"><span class="pre">Interface()</span></code></a> with an associated
+<a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> object.</li>
+<li><strong>dt</strong> – Time interval by which the coverages should be advanced</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.creationRates">
+<code class="descname">creationRates</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.creationRates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the chemical creation rates.</p>
+<p>See also: <a class="reference internal" href="#Kinetics.destructionRates" title="Kinetics.destructionRates"><code class="xref mat mat-func docutils literal"><span class="pre">destructionRates()</span></code></a>, <a class="reference internal" href="#Kinetics.netProdRates" title="Kinetics.netProdRates"><code class="xref mat mat-func docutils literal"><span class="pre">netProdRates()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which creation rates are desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a column vector of the creation rates of all
+species. If the output is not assigned to a variable, a
+bar graph is produced. Units: kmol/m**3-s</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.destructionRates">
+<code class="descname">destructionRates</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.destructionRates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the chemical destruction rates.</p>
+<p>See also: <a class="reference internal" href="#Kinetics.creationRates" title="Kinetics.creationRates"><code class="xref mat mat-func docutils literal"><span class="pre">creationRates()</span></code></a>, <a class="reference internal" href="#Kinetics.netProdRates" title="Kinetics.netProdRates"><code class="xref mat mat-func docutils literal"><span class="pre">netProdRates()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which destruction rates are desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a column vector of the destruction rates of all
+species. If the output is not assigned to a variable, a
+bar graph is produced. Units: kmol/m**3-s</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.destruction_rates">
+<code class="descname">destruction_rates</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.destruction_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the chemical destruction rates.</p>
+<p>This function is deprecated in favor of the function
+<a class="reference internal" href="#Kinetics.destructionRates" title="Kinetics.destructionRates"><code class="xref mat mat-func docutils literal"><span class="pre">destructionRates()</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.equil_Kc">
+<code class="descname">equil_Kc</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.equil_Kc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the equilibrium constants for all reactions</p>
+<p>See also: <a class="reference internal" href="#Kinetics.fwdRateConstants" title="Kinetics.fwdRateConstants"><code class="xref mat mat-func docutils literal"><span class="pre">fwdRateConstants()</span></code></a>, <a class="reference internal" href="#Kinetics.revRateConstants" title="Kinetics.revRateConstants"><code class="xref mat mat-func docutils literal"><span class="pre">revRateConstants()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which equilibrium constants are desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a column vector of the equilibrium constants
+for all reactions. The vector has an entry for every
+reaction, whether reversible or not, but non-zero values
+occur only for the reversible reactions. If the output is
+not assigned to a variable, a bar graph is produced instead.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.fwdRateConstants">
+<code class="descname">fwdRateConstants</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.fwdRateConstants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the forward reaction rate constants.</p>
+<p>see also: <a class="reference internal" href="#Kinetics.revRateConstants" title="Kinetics.revRateConstants"><code class="xref mat mat-func docutils literal"><span class="pre">revRateConstants()</span></code></a>, <a class="reference internal" href="#Kinetics.equil_Kc" title="Kinetics.equil_Kc"><code class="xref mat mat-func docutils literal"><span class="pre">equil_Kc()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which forward rate constants are desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a column vector of the forward rate constants of
+all of the reactions.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.isReversible">
+<code class="descname">isReversible</code><span class="sig-paren">(</span><em>a</em>, <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.isReversible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an array of flags indicating reversibility of a reaction.</p>
+<p>A reversible reaction is one that runs in both the forward
+direction (reactants -&gt; products) and in the reverse direction
+(products -&gt; reactants). The reverse rate for reversible
+reactions can computed from thermochemistry, so that the
+reaction satisfies detailed balance, and the net rate of
+progress is zero in states of chemical equilibrium. The reverse
+rate can also be specified directly by a rate expression. An
+irreversible reaction is one whose reverse reaction rate is
+zero.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which the reversible flags are desired.</li>
+<li><strong>i</strong> – Integer reaction number</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">1 if reaction number <code class="docutils literal"><span class="pre">i</span></code> is
+reversible, and 0 if it is irreversible.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.multiplier">
+<code class="descname">multiplier</code><span class="sig-paren">(</span><em>a</em>, <em>irxn</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.multiplier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the multiplier for reaction rate of progress.</p>
+<p>The multiplier multiplies the reaction rate of progress. It may
+be used to implement sensitivity analysis, or to selectively
+disable reactions.  For reversible reactions, it multiplies both
+the forward and reverse rates. By default, the multiplier value
+is 1.0, but it may be set to any other value by calling method
+<a class="reference internal" href="#Kinetics.setMultiplier" title="Kinetics.setMultiplier"><code class="xref mat mat-func docutils literal"><span class="pre">setMultiplier()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which the multipliers are desired.</li>
+<li><strong>irxn</strong> – Integer reaction number for which the multiplier is desired.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Multiplier of the rate of progress of reaction number <code class="docutils literal"><span class="pre">irxn</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.nReactions">
+<code class="descname">nReactions</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.nReactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of reactions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which the number of reactions is desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Integer number of reactions</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.nTotalSpecies">
+<code class="descname">nTotalSpecies</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.nTotalSpecies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the total number of species.</p>
+<p>The total number of species, summed over all
+participating phases.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which the number of species is desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Integer total number of species</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.netProdRates">
+<code class="descname">netProdRates</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.netProdRates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the net chemical production rates for all species.</p>
+<p>See also: <a class="reference internal" href="#Kinetics.creationRates" title="Kinetics.creationRates"><code class="xref mat mat-func docutils literal"><span class="pre">creationRates()</span></code></a>, <a class="reference internal" href="#Kinetics.destructionRates" title="Kinetics.destructionRates"><code class="xref mat mat-func docutils literal"><span class="pre">destructionRates()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which net production rates are desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a column vector of the net production (creation -
+destruction) rates of all species. If the output is not
+assigned to a variable, a bar plot is produced.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.reactionEqn">
+<code class="descname">reactionEqn</code><span class="sig-paren">(</span><em>a</em>, <em>irxn</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.reactionEqn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the reaction equation of a reaction.</p>
+<p>If only the first argument
+is given, the reaction equations of all of the reactions are
+returned in a cell array. Otherwise, <code class="docutils literal"><span class="pre">irxn</span></code> must be an integer
+or vector of integers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which the reaction equations are desired.</li>
+<li><strong>irxn</strong> – Optional. Integer or vector of integer reaction numbers.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">String or cell array of strings of the reaction equations.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.revRateConstants">
+<code class="descname">revRateConstants</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.revRateConstants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the reverse reaction rate constants.</p>
+<p>See also: <a class="reference internal" href="#Kinetics.fwdRateConstants" title="Kinetics.fwdRateConstants"><code class="xref mat mat-func docutils literal"><span class="pre">fwdRateConstants()</span></code></a>, <code class="xref mat mat-func docutils literal"><span class="pre">equil_KC()</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which reverse rate constants are desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a column vector of the reverse rate constants of
+all of the reactions.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.rop">
+<code class="descname">rop</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.rop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the forward and reverse rates of progress.</p>
+<p>See also: <a class="reference internal" href="#Kinetics.rop_f" title="Kinetics.rop_f"><code class="xref mat mat-func docutils literal"><span class="pre">rop_f()</span></code></a>, <a class="reference internal" href="#Kinetics.rop_r" title="Kinetics.rop_r"><code class="xref mat mat-func docutils literal"><span class="pre">rop_r()</span></code></a>, <a class="reference internal" href="#Kinetics.rop_net" title="Kinetics.rop_net"><code class="xref mat mat-func docutils literal"><span class="pre">rop_net()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which forward and reverse rates of progress are desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns an I x 2 array of reaction rates of
+progress, where I is the number of reactions. The first
+column contains the forward rates of progress, and the
+second column the reverse rates. If this function
+is called with no output argument, a bar graph is produced.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.rop_f">
+<code class="descname">rop_f</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.rop_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward rates of progress for all reactions.</p>
+<blockquote>
+<div>See also: <a class="reference internal" href="#Kinetics.rop_r" title="Kinetics.rop_r"><code class="xref mat mat-func docutils literal"><span class="pre">rop_r()</span></code></a>, <a class="reference internal" href="#Kinetics.rop_net" title="Kinetics.rop_net"><code class="xref mat mat-func docutils literal"><span class="pre">rop_net()</span></code></a>, <a class="reference internal" href="#Kinetics.rop" title="Kinetics.rop"><code class="xref mat mat-func docutils literal"><span class="pre">rop()</span></code></a></div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which forward rates of progress are desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a column vector of the forward rates of progress
+for all reactions. If this function
+is called with no output argument, a bar graph is produced.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.rop_net">
+<code class="descname">rop_net</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.rop_net" title="Permalink to this definition">¶</a></dt>
+<dd><p>Net rates of progress for all reactions.</p>
+<p>See also: <a class="reference internal" href="#Kinetics.rop_f" title="Kinetics.rop_f"><code class="xref mat mat-func docutils literal"><span class="pre">rop_f()</span></code></a>, <a class="reference internal" href="#Kinetics.rop_r" title="Kinetics.rop_r"><code class="xref mat mat-func docutils literal"><span class="pre">rop_r()</span></code></a>, <a class="reference internal" href="#Kinetics.rop" title="Kinetics.rop"><code class="xref mat mat-func docutils literal"><span class="pre">rop()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which the net rates of progress are desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a column vector of the net rates of progress
+for all reactions. If this function
+is called with no output argument, a bar graph is produced.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.rop_r">
+<code class="descname">rop_r</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.rop_r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the reverse rates of progress for all reactions.</p>
+<blockquote>
+<div>See also: <a class="reference internal" href="#Kinetics.rop_f" title="Kinetics.rop_f"><code class="xref mat mat-func docutils literal"><span class="pre">rop_f()</span></code></a>, <a class="reference internal" href="#Kinetics.rop_net" title="Kinetics.rop_net"><code class="xref mat mat-func docutils literal"><span class="pre">rop_net()</span></code></a>, <a class="reference internal" href="#Kinetics.rop" title="Kinetics.rop"><code class="xref mat mat-func docutils literal"><span class="pre">rop()</span></code></a></div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which reverse rates of progress are desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a column vector of the reverse rates of progress
+for all reactions. If this function
+is called with no output argument, a bar graph is produced.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.setMultiplier">
+<code class="descname">setMultiplier</code><span class="sig-paren">(</span><em>a</em>, <em>irxn</em>, <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.setMultiplier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the multiplier for the reaction rate of progress.</p>
+<p>The multiplier multiplies the reaction rate of progress. It may
+be used to implement sensitivity analysis, or to selectively
+disable reactions.  For reversible reactions, it multiplies both
+the forward and reverse rates. By default, the multiplier value
+is 1.0, but the current value may be checked by calling method
+<a class="reference internal" href="#Kinetics.multiplier" title="Kinetics.multiplier"><code class="xref mat mat-func docutils literal"><span class="pre">multiplier()</span></code></a>.</p>
+<p>If only two arguments are given, it is assumed that the second is
+the desired multiplication factor for all of the reactions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which the multipliers should be set.</li>
+<li><strong>irxn</strong> – Integer or vector of integers. Reaction number(s) for which
+the multiplier should be set. Optional.</li>
+<li><strong>v</strong> – Value by which the reaction rate of progress should be multiplied</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.stoich_net">
+<code class="descname">stoich_net</code><span class="sig-paren">(</span><em>a</em>, <em>species</em>, <em>rxns</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.stoich_net" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the net stoichiometric coefficients.</p>
+<p>See also: <a class="reference internal" href="#Kinetics.stoich_r" title="Kinetics.stoich_r"><code class="xref mat mat-func docutils literal"><span class="pre">stoich_r()</span></code></a>, <a class="reference internal" href="#Kinetics.stoich_p" title="Kinetics.stoich_p"><code class="xref mat mat-func docutils literal"><span class="pre">stoich_p()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which the net stoichiometric coefficients are desired.</li>
+<li><strong>species</strong> – Species indices for which net stoichiometric coefficients
+should be retrieved. Optional argument; if specified, <code class="docutils literal"><span class="pre">rxns</span></code>
+must be specified as well.</li>
+<li><strong>rxns</strong> – Reaction indices for which net stoichiometric coefficients
+should be retrieved. Optional argument; if specified, <code class="docutils literal"><span class="pre">species</span></code>
+must be specified as well.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Returns a sparse matrix of all net stoichiometric
+coefficients. The matrix element <code class="docutils literal"><span class="pre">nu(k,i)</span></code> is the
+stoichiometric coefficient of species k as a net in
+reaction i. If <code class="docutils literal"><span class="pre">species</span></code> and <code class="docutils literal"><span class="pre">rxns</span></code> are specified, the matrix
+will contain only entries for the specified species and
+reactions. For example, <code class="docutils literal"><span class="pre">stoich_p(a,3,[1</span> <span class="pre">3</span> <span class="pre">5</span> <span class="pre">7])</span></code> returns a
+sparse matrix containing only the coefficients for species 3
+in reactions 1, 3, 5, and 7.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.stoich_p">
+<code class="descname">stoich_p</code><span class="sig-paren">(</span><em>a</em>, <em>species</em>, <em>rxns</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.stoich_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the product stoichiometric coefficients.</p>
+<p>See also: <a class="reference internal" href="#Kinetics.stoich_r" title="Kinetics.stoich_r"><code class="xref mat mat-func docutils literal"><span class="pre">stoich_r()</span></code></a>, <a class="reference internal" href="#Kinetics.stoich_net" title="Kinetics.stoich_net"><code class="xref mat mat-func docutils literal"><span class="pre">stoich_net()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which the product stoichiometric coefficients are desired.</li>
+<li><strong>species</strong> – Species indices for which product stoichiometric coefficients
+should be retrieved. Optional argument; if specified, <code class="docutils literal"><span class="pre">rxns</span></code>
+must be specified as well.</li>
+<li><strong>rxns</strong> – Reaction indices for which product stoichiometric coefficients
+should be retrieved. Optional argument; if specified, <code class="docutils literal"><span class="pre">species</span></code>
+must be specified as well.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Returns a sparse matrix of all product stoichiometric
+coefficients. The matrix element <code class="docutils literal"><span class="pre">nu(k,i)</span></code> is the
+stoichiometric coefficient of species k as a product in
+reaction i. If <code class="docutils literal"><span class="pre">species</span></code> and <code class="docutils literal"><span class="pre">rxns</span></code> are specified, the matrix
+will contain only entries for the specified species and
+reactions. For example, <code class="docutils literal"><span class="pre">stoich_p(a,3,[1</span> <span class="pre">3</span> <span class="pre">5</span> <span class="pre">7])</span></code> returns a
+sparse matrix containing only the coefficients for species 3
+in reactions 1, 3, 5, and 7.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.stoich_r">
+<code class="descname">stoich_r</code><span class="sig-paren">(</span><em>a</em>, <em>species</em>, <em>rxns</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.stoich_r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the reactant stoichiometric coefficients.</p>
+<p>See also: <a class="reference internal" href="#Kinetics.stoich_p" title="Kinetics.stoich_p"><code class="xref mat mat-func docutils literal"><span class="pre">stoich_p()</span></code></a>, <a class="reference internal" href="#Kinetics.stoich_net" title="Kinetics.stoich_net"><code class="xref mat mat-func docutils literal"><span class="pre">stoich_net()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which the reactant stoichiometric coefficients are desired.</li>
+<li><strong>species</strong> – Species indices for which reactant stoichiometric coefficients
+should be retrieved. Optional argument; if specified, <code class="docutils literal"><span class="pre">rxns</span></code>
+must be specified as well.</li>
+<li><strong>rxns</strong> – Reaction indices for which reactant stoichiometric coefficients
+should be retrieved. Optional argument; if specified, <code class="docutils literal"><span class="pre">species</span></code>
+must be specified as well.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Returns a sparse matrix of all reactant stoichiometric
+coefficients. The matrix element <code class="docutils literal"><span class="pre">nu(k,i)</span></code> is the
+stoichiometric coefficient of species k as a reactant in
+reaction i. If <code class="docutils literal"><span class="pre">species</span></code> and <code class="docutils literal"><span class="pre">rxns</span></code> are specified, the matrix
+will contain only entries for the specified species and
+reactions. For example, <code class="docutils literal"><span class="pre">stoich_r(a,3,[1</span> <span class="pre">3</span> <span class="pre">5</span> <span class="pre">7])</span></code> returns a
+sparse matrix containing only the coefficients for species 3
+in reactions 1, 3, 5, and 7.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Kinetics.ydot">
+<code class="descname">ydot</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Kinetics.ydot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the mass production rates of the species.</p>
+<p>Evaluates the source term <span class="math">\(\dot{\omega}_k M_k /\rho\)</span></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> – Instance of class <a class="reference internal" href="#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal"><span class="pre">Kinetics()</span></code></a> (or another
+object deriving from Kinetics)
+for which the ydots are desired.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a vector of length nSpecies. Units: kg/s</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="transport.html" title="Transport Properties"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="thermodynamics.html" title="Thermodynamic Properties"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Matlab Interface User’s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

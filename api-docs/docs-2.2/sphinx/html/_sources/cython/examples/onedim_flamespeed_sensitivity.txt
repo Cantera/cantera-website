@@ -1,0 +1,6 @@
+.. _py-example-flamespeed_sensitivity.py:
+
+flamespeed_sensitivity.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/onedim/flamespeed_sensitivity.py

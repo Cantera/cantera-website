@@ -1,0 +1,275 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>diffusion_flame_extinction.py &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/cython/examples/onedim_diffusion_flame_extinction.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="diffusion-flame-extinction-py">
+<span id="py-example-diffusion-flame-extinction-py"></span><h1>diffusion_flame_extinction.py<a class="headerlink" href="#diffusion-flame-extinction-py" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1"># This file is part of Cantera. See License.txt in the top-level directory or</span>
+<span class="c1"># at http://www.cantera.org/license.txt for license and copyright information.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This example computes the extinction point of a counterflow diffusion flame.</span>
+<span class="sd">A hydrogen-oxygen diffusion flame at 1 bar is studied.</span>
+
+<span class="sd">The tutorial makes use of the scaling rules derived by Fiala and Sattelmayer</span>
+<span class="sd">(doi:10.1155/2014/484372). Please refer to this publication for a detailed</span>
+<span class="sd">explanation. Also, please don&#39;t forget to cite it if you make use of it.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">cantera</span> <span class="k">as</span> <span class="nn">ct</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Create directory for output data files</span>
+<span class="n">data_directory</span> <span class="o">=</span> <span class="s1">&#39;diffusion_flame_extinction_data/&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">data_directory</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">data_directory</span><span class="p">)</span>
+
+<span class="c1"># PART 1: INITIALIZATION</span>
+
+<span class="c1"># Set up an initial hydrogen-oxygen counterflow flame at 1 bar and low strain</span>
+<span class="c1"># rate (maximum axial velocity gradient = 2414 1/s)</span>
+
+<span class="n">reaction_mechanism</span> <span class="o">=</span> <span class="s1">&#39;h2o2.xml&#39;</span>
+<span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="n">reaction_mechanism</span><span class="p">)</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">18.e-3</span> <span class="c1"># 18mm wide</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">CounterflowDiffusionFlame</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
+
+<span class="c1"># Define the operating pressure and boundary conditions</span>
+<span class="n">f</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="mf">1.e5</span>  <span class="c1"># 1 bar</span>
+<span class="n">f</span><span class="o">.</span><span class="n">fuel_inlet</span><span class="o">.</span><span class="n">mdot</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># kg/m^2/s</span>
+<span class="n">f</span><span class="o">.</span><span class="n">fuel_inlet</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;H2:1&#39;</span>
+<span class="n">f</span><span class="o">.</span><span class="n">fuel_inlet</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="mi">300</span>  <span class="c1"># K</span>
+<span class="n">f</span><span class="o">.</span><span class="n">oxidizer_inlet</span><span class="o">.</span><span class="n">mdot</span> <span class="o">=</span> <span class="mf">3.0</span>  <span class="c1"># kg/m^2/s</span>
+<span class="n">f</span><span class="o">.</span><span class="n">oxidizer_inlet</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;O2:1&#39;</span>
+<span class="n">f</span><span class="o">.</span><span class="n">oxidizer_inlet</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="mi">500</span>  <span class="c1"># K</span>
+
+<span class="c1"># Set refinement parameters</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_refine_criteria</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">curve</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">prune</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+
+<span class="c1"># Define a limit for the maximum temperature below which the flame is</span>
+<span class="c1"># considered as extinguished and the computation is aborted</span>
+<span class="n">temperature_limit_extinction</span> <span class="o">=</span> <span class="mi">500</span>  <span class="c1"># K</span>
+
+<span class="c1"># Initialize and solve</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Creating the initial solution&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">loglevel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">auto</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Save to data directory</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;initial_solution.xml&#39;</span>
+<span class="n">f</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data_directory</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;solution&#39;</span><span class="p">,</span>
+       <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Cantera version &#39;</span> <span class="o">+</span> <span class="n">ct</span><span class="o">.</span><span class="n">__version__</span> <span class="o">+</span>
+       <span class="s1">&#39;, reaction mechanism &#39;</span> <span class="o">+</span> <span class="n">reaction_mechanism</span><span class="p">)</span>
+
+
+<span class="c1"># PART 2: COMPUTE EXTINCTION STRAIN</span>
+
+<span class="c1"># Exponents for the initial solution variation with changes in strain rate</span>
+<span class="c1"># Taken from Fiala and Sattelmayer (2014)</span>
+<span class="n">exp_d_a</span> <span class="o">=</span> <span class="o">-</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span>
+<span class="n">exp_u_a</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span>
+<span class="n">exp_V_a</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">exp_lam_a</span> <span class="o">=</span> <span class="mf">2.</span>
+<span class="n">exp_mdot_a</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span>
+
+<span class="c1"># Set normalized initial strain rate</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">]</span>
+<span class="c1"># Initial relative strain rate increase</span>
+<span class="n">delta_alpha</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="c1"># Factor of refinement of the strain rate increase</span>
+<span class="n">delta_alpha_factor</span> <span class="o">=</span> <span class="mf">50.</span>
+<span class="c1"># Limit of the refinement: Minimum normalized strain rate increase</span>
+<span class="n">delta_alpha_min</span> <span class="o">=</span> <span class="o">.</span><span class="mi">001</span>
+<span class="c1"># Limit of the Temperature decrease</span>
+<span class="n">delta_T_min</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># K</span>
+
+<span class="c1"># Iteration indicator</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># Indicator of the latest flame still burning</span>
+<span class="n">n_last_burning</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># List of peak temperatures</span>
+<span class="n">T_max</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">T</span><span class="p">)]</span>
+<span class="c1"># List of maximum axial velocity gradients</span>
+<span class="n">a_max</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">u</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">grid</span><span class="p">)))]</span>
+
+<span class="c1"># Simulate counterflow flames at increasing strain rates until the flame is</span>
+<span class="c1"># extinguished. To achieve a fast simulation, an initial coarse strain rate</span>
+<span class="c1"># increase is set. This increase is reduced after an extinction event and</span>
+<span class="c1"># the simulation is again started based on the last burning solution.</span>
+<span class="c1"># The extinction point is considered to be reached if the abortion criteria</span>
+<span class="c1"># on strain rate increase and peak temperature decrease are fulfilled.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># Update relative strain rates</span>
+    <span class="n">alpha</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alpha</span><span class="p">[</span><span class="n">n_last_burning</span><span class="p">]</span> <span class="o">+</span> <span class="n">delta_alpha</span><span class="p">)</span>
+    <span class="n">strain_factor</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">alpha</span><span class="p">[</span><span class="n">n_last_burning</span><span class="p">]</span>
+    <span class="c1"># Create an initial guess based on the previous solution</span>
+    <span class="c1"># Update grid</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">flame</span><span class="o">.</span><span class="n">grid</span> <span class="o">*=</span> <span class="n">strain_factor</span> <span class="o">**</span> <span class="n">exp_d_a</span>
+    <span class="n">normalized_grid</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">grid</span> <span class="o">/</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1"># Update mass fluxes</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">fuel_inlet</span><span class="o">.</span><span class="n">mdot</span> <span class="o">*=</span> <span class="n">strain_factor</span> <span class="o">**</span> <span class="n">exp_mdot_a</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">oxidizer_inlet</span><span class="o">.</span><span class="n">mdot</span> <span class="o">*=</span> <span class="n">strain_factor</span> <span class="o">**</span> <span class="n">exp_mdot_a</span>
+    <span class="c1"># Update velocities</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">set_profile</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">normalized_grid</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">u</span> <span class="o">*</span> <span class="n">strain_factor</span> <span class="o">**</span> <span class="n">exp_u_a</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">set_profile</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">normalized_grid</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">V</span> <span class="o">*</span> <span class="n">strain_factor</span> <span class="o">**</span> <span class="n">exp_V_a</span><span class="p">)</span>
+    <span class="c1"># Update pressure curvature</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">set_profile</span><span class="p">(</span><span class="s1">&#39;lambda&#39;</span><span class="p">,</span> <span class="n">normalized_grid</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">L</span> <span class="o">*</span> <span class="n">strain_factor</span> <span class="o">**</span> <span class="n">exp_lam_a</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">loglevel</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># Throw Exception if solution fails</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error: Did not converge at n =&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">temperature_limit_extinction</span><span class="p">:</span>
+        <span class="c1"># Flame still burning, so go to next strain rate</span>
+        <span class="n">n_last_burning</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;extinction_</span><span class="si">{0:04d}</span><span class="s1">.xml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data_directory</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;solution&#39;</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+               <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Cantera version &#39;</span> <span class="o">+</span> <span class="n">ct</span><span class="o">.</span><span class="n">__version__</span> <span class="o">+</span>
+               <span class="s1">&#39;, reaction mechanism &#39;</span> <span class="o">+</span> <span class="n">reaction_mechanism</span><span class="p">)</span>
+        <span class="n">T_max</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+        <span class="n">a_max</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">u</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">grid</span><span class="p">))))</span>
+        <span class="c1"># If the temperature difference is too small and the minimum relative</span>
+        <span class="c1"># strain rate increase is reached, abort</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">T_max</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">T_max</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">delta_T_min</span><span class="p">)</span> <span class="o">&amp;</span>
+                <span class="p">(</span><span class="n">delta_alpha</span> <span class="o">&lt;</span> <span class="n">delta_alpha_min</span><span class="p">)):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Flame extinguished at n = </span><span class="si">{0}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">),</span>
+                  <span class="s1">&#39;Abortion criterion satisfied.&#39;</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Procedure if flame extinguished but abortion criterion is not satisfied</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Flame extinguished at n = </span><span class="si">{0}</span><span class="s1">. Restoring n = </span><span class="si">{1}</span><span class="s1"> with alpha = </span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+              <span class="n">n</span><span class="p">,</span> <span class="n">n_last_burning</span><span class="p">,</span> <span class="n">alpha</span><span class="p">[</span><span class="n">n_last_burning</span><span class="p">]))</span>
+        <span class="c1"># Reduce relative strain rate increase</span>
+        <span class="n">delta_alpha</span> <span class="o">=</span> <span class="n">delta_alpha</span> <span class="o">/</span> <span class="n">delta_alpha_factor</span>
+        <span class="c1"># Restore last burning solution</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;extinction_</span><span class="si">{0:04d}</span><span class="s1">.xml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_last_burning</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">data_directory</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;solution&#39;</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="c1"># Print some parameters at the extinction point</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----------------------------------------------------------------------&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Parameters at the extinction point:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pressure p=</span><span class="si">{0}</span><span class="s1"> bar&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">P</span> <span class="o">/</span> <span class="mf">1e5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Peak temperature T=</span><span class="si">{0:4.0f}</span><span class="s1"> K&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">T</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean axial strain rate a_mean=</span><span class="si">{0:.2e}</span><span class="s1"> 1/s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">strain_rate</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum axial strain rate a_max=</span><span class="si">{0:.2e}</span><span class="s1"> 1/s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">strain_rate</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fuel inlet potential flow axial strain rate a_fuel=</span><span class="si">{0:.2e}</span><span class="s1"> 1/s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+      <span class="n">f</span><span class="o">.</span><span class="n">strain_rate</span><span class="p">(</span><span class="s1">&#39;potential_flow_fuel&#39;</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Oxidizer inlet potential flow axial strain rate a_ox=</span><span class="si">{0:.2e}</span><span class="s1"> 1/s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+      <span class="n">f</span><span class="o">.</span><span class="n">strain_rate</span><span class="p">(</span><span class="s1">&#39;potential_flow_oxidizer&#39;</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Axial strain rate at stoichiometric surface a_stoich=</span><span class="si">{0:.2e}</span><span class="s1"> 1/s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+      <span class="n">f</span><span class="o">.</span><span class="n">strain_rate</span><span class="p">(</span><span class="s1">&#39;stoichiometric&#39;</span><span class="p">,</span> <span class="n">fuel</span><span class="o">=</span><span class="s1">&#39;H2&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Plot the maximum temperature over the maximum axial velocity gradient</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">a_max</span><span class="p">,</span> <span class="n">T_max</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$a_</span><span class="si">{max}</span><span class="s1">$ [1/s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$T_</span><span class="si">{max}</span><span class="s1">$ [K]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">data_directory</span> <span class="o">+</span> <span class="s1">&#39;figure_T_max_a_max.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

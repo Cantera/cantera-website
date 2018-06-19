@@ -1,0 +1,279 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>One-Dimensional Flames &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python Module Documentation" href="cython/index.html" />
+    <link rel="prev" title="Reactors and Reactor Networks" href="reactors.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html">
+<img src="_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="cython/index.html" title="Python Module Documentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="reactors.html" title="Reactors and Reactor Networks"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">One-Dimensional Flames</a><ul>
+<li><a class="reference internal" href="#stagnation-flow-governing-equations">Stagnation Flow Governing Equations</a><ul>
+<li><a class="reference internal" href="#diffusive-fluxes">Diffusive Fluxes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a><ul>
+<li><a class="reference internal" href="#inlet-boundary">Inlet boundary</a></li>
+<li><a class="reference internal" href="#outlet-boundary">Outlet boundary</a></li>
+<li><a class="reference internal" href="#symmetry-boundary">Symmetry boundary</a></li>
+<li><a class="reference internal" href="#reacting-surface">Reacting surface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="reactors.html"
+                        title="previous chapter">Reactors and Reactor Networks</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cython/index.html"
+                        title="next chapter">Python Module Documentation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/flames.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="one-dimensional-flames">
+<h1>One-Dimensional Flames<a class="headerlink" href="#one-dimensional-flames" title="Permalink to this headline">¶</a></h1>
+<p>Cantera includes a set of models for representing steady-state, quasi-one-
+dimensional reacting flows, which can be used to simulate a number of common
+flames, such as:</p>
+<ul class="simple">
+<li>freely-propagating premixed laminar flames</li>
+<li>burner-stabilized premixed flames</li>
+<li>counterflow diffusion flames</li>
+<li>counterflow (strained) premixed flames</li>
+</ul>
+<p>Additional capabilities include simulation of surface reactions, which can be
+used to represent processes such as combustion on a catalytic surface or
+chemical vapor deposition processes.</p>
+<p>All of these configurations are simulated using a common set of governing
+equations within a 1D “flow” domain, with the differences between the models
+being represented by differences in the boundary conditions applied. Here, we
+describe the governing equations and the various boundary conditions which can
+be applied.</p>
+<div class="section" id="stagnation-flow-governing-equations">
+<h2>Stagnation Flow Governing Equations<a class="headerlink" href="#stagnation-flow-governing-equations" title="Permalink to this headline">¶</a></h2>
+<p>Cantera models flames which are stabilized in an axisymmetric stagnation flow,
+and computes the solution along the stagnation streamline (<span class="math">\(r=0\)</span>), using a
+similarity solution to reduce the three-dimensional governing equations to a
+single dimension.</p>
+<p>The governing equations for a steady axisymmetric stagnation flow follow those
+derived in Section 6.2 of <a class="reference internal" href="reactors.html#kcg2003" id="id1">[KCG2003]</a>:</p>
+<p><em>Continuity</em>:</p>
+<div class="math">
+\[\frac{\partial\rho u}{\partial z} + 2 \rho V = 0\]</div>
+<p><em>Radial momentum</em>:</p>
+<div class="math">
+\[\rho u \frac{\partial V}{\partial z} + \rho V^2 =
+    - \Lambda
+    + \frac{\partial}{\partial z}\left(\mu \frac{\partial V}{\partial z}\right)\]</div>
+<p><em>Energy</em>:</p>
+<div class="math">
+\[\rho c_p u \frac{\partial T}{\partial z} =
+    \frac{\partial}{\partial z}\left(\lambda \frac{\partial T}{\partial z}\right)
+    - \sum_k j_k c_{p,k} \frac{\partial T}{\partial z}
+    - \sum_k h_k W_k \dot{\omega}_k\]</div>
+<p><em>Species</em>:</p>
+<div class="math">
+\[\rho u \frac{\partial Y_k}{\partial z} = - \frac{\partial j_k}{\partial z}
+    + W_k \dot{\omega}_k\]</div>
+<p>where <span class="math">\(\rho\)</span> is the density, <span class="math">\(u\)</span> is the axial velocity, <span class="math">\(v\)</span> is the radial
+velocity, <span class="math">\(V = v/r\)</span> is the scaled radial velocity, <span class="math">\(\Lambda\)</span> is the pressure
+eigenvalue (independent of <span class="math">\(z\)</span>), <span class="math">\(\mu\)</span> is the dynamic viscosity, <span class="math">\(c_p\)</span> is the
+heat capacity at constant pressure, <span class="math">\(T\)</span> is the temperature, <span class="math">\(\lambda\)</span> is the
+thermal conductivity, <span class="math">\(Y_k\)</span> is the mass fraction of species <span class="math">\(k\)</span>, <span class="math">\(j_k\)</span> is the
+diffusive mass flux of species <span class="math">\(k\)</span>, <span class="math">\(c_{p,k}\)</span> is the specific heat capacity of
+species <span class="math">\(k\)</span>, <span class="math">\(h_k\)</span> is the enthalpy of species <span class="math">\(k\)</span>, <span class="math">\(W_k\)</span> is the molecular weight
+of species <span class="math">\(k\)</span>, and <span class="math">\(\dot{\omega}_k\)</span> is the molar production rate of species
+<span class="math">\(k\)</span>.</p>
+<p>The tangential velocity <span class="math">\(w\)</span> has been assumed to be zero, and the fluid has been
+assumed to behave as an ideal gas.</p>
+<p>To help in the solution of the discretized problem, it is convenient to write a
+differential equation for the scalar <span class="math">\(\Lambda\)</span>:</p>
+<div class="math">
+\[\frac{d\Lambda}{dz} = 0\]</div>
+<div class="section" id="diffusive-fluxes">
+<h3>Diffusive Fluxes<a class="headerlink" href="#diffusive-fluxes" title="Permalink to this headline">¶</a></h3>
+<p>The species diffusive mass fluxes <span class="math">\(j_k\)</span> are computed according to either a
+mixture-averaged or multicomponent formulation. If the mixture-averaged
+formulation is used, the calculation performed is:</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}j_k^* = \rho \frac{W_k}{\overline{W}} D_{k,m} \frac{\partial X_k}{\partial z}\\j_k = j_k^* - Y_k \sum_i j_i^*\end{aligned}\end{align} \]</div>
+<p>where <span class="math">\(\overline{W}\)</span> is the mean molecular weight of the mixture, <span class="math">\(D_{k,m}\)</span> is the
+mixture-averaged diffusion coefficient for species <span class="math">\(k\)</span>, and <span class="math">\(X_k\)</span> is the mole
+fraction for species <span class="math">\(k\)</span>. The diffusion coefficients used here are those
+computed by the method <a class="reference external" href="./../../doxygen/html/classCantera_1_1GasTransport.html#a699001499937e42f790551f01bce4424">GasTransport::getMixDiffCoeffs()</a>. The correction
+applied by the second equation ensures that the sum of the mass fluxes is zero,
+a condition which is not inherently guaranteed by the mixture-averaged
+formulation.</p>
+<p>When using the multicomponent formulation, the mass fluxes are computed
+according to:</p>
+<div class="math">
+\[j_k = \frac{\rho W_k}{\overline{W}^2} \sum_i W_i D_{ki} \frac{\partial X_i}{\partial z}
+      - \frac{D_k^T}{T} \frac{\partial T}{\partial z}\]</div>
+<p>where <span class="math">\(D_{ki}\)</span> is the multicomponent diffusion coefficient and <span class="math">\(D_k^T\)</span> is the
+Soret diffusion coefficient (used only if calculation of this term is
+specifically enabled).</p>
+</div>
+</div>
+<div class="section" id="boundary-conditions">
+<h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="inlet-boundary">
+<h3>Inlet boundary<a class="headerlink" href="#inlet-boundary" title="Permalink to this headline">¶</a></h3>
+<p>For a boundary located at a point <span class="math">\(z_0\)</span> where there is an inflow, values are
+supplied for the temperature <span class="math">\(T_0\)</span>, the species mass fractions <span class="math">\(Y_{k,0}\)</span> the
+scaled radial velocity <span class="math">\(V_0\)</span>, and the mass flow rate <span class="math">\(\dot{m}_0\)</span> (except in the
+case of the freely-propagating flame).</p>
+<p>The following equations are solved at the point <span class="math">\(z = z_0\)</span>:</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}T(z_0) = T_0\\V(z_0) = V_0\\\dot{m}_0 Y_{k,0} - j_k(z_0) - \rho(z_0) u(z_0) Y_k(z_0) = 0\end{aligned}\end{align} \]</div>
+<p>If the mass flow rate is specified, we also solve:</p>
+<div class="math">
+\[\rho(z_0) u(z_0) = \dot{m}_0\]</div>
+<p>Otherwise, we solve:</p>
+<div class="math">
+\[\Lambda(z_0) = 0\]</div>
+</div>
+<div class="section" id="outlet-boundary">
+<h3>Outlet boundary<a class="headerlink" href="#outlet-boundary" title="Permalink to this headline">¶</a></h3>
+<p>For a boundary located at a point <span class="math">\(z_0\)</span> where there is an outflow, we solve:</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}\Lambda(z_0) = 0\\\left.\frac{\partial T}{\partial z}\right|_{z_0} = 0\\\left.\frac{\partial Y_k}{\partial z}\right|_{z_0} = 0\\V(z_0) = 0\end{aligned}\end{align} \]</div>
+</div>
+<div class="section" id="symmetry-boundary">
+<h3>Symmetry boundary<a class="headerlink" href="#symmetry-boundary" title="Permalink to this headline">¶</a></h3>
+<p>For a symmetry boundary located at a point <span class="math">\(z_0\)</span>, we solve:</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}\rho(z_0) u(z_0) = 0\\\left.\frac{\partial V}{\partial z}\right|_{z_0} = 0\\\left.\frac{\partial T}{\partial z}\right|_{z_0} = 0\\j_k(z_0) = 0\end{aligned}\end{align} \]</div>
+</div>
+<div class="section" id="reacting-surface">
+<h3>Reacting surface<a class="headerlink" href="#reacting-surface" title="Permalink to this headline">¶</a></h3>
+<p>For a surface boundary located at a point <span class="math">\(z_0\)</span> on which reactions may occur,
+the temperature <span class="math">\(T_0\)</span> is specified. We solve:</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}\rho(z_0) u(z_0) = 0\\V(z_0) = 0\\T(z_0) = T_0\\j_k(z_0) + \dot{s}_k W_k = 0\end{aligned}\end{align} \]</div>
+<p>where <span class="math">\(\dot{s}_k\)</span> is the molar production rate of the gas-phase species <span class="math">\(k\)</span> on
+the surface. In addition, the surface coverages <span class="math">\(\theta_i\)</span> for each surface
+species <span class="math">\(i\)</span> are computed such that <span class="math">\(\dot{s}_i = 0\)</span>.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<table class="docutils citation" frame="void" id="kcg2003" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[KCG2003]</a></td><td>Kee, Coltrin, Glarborg: <em>Chemically Reacting Flow</em>.
+Wiley-Interscience, 2003</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="cython/index.html" title="Python Module Documentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="reactors.html" title="Reactors and Reactor Networks"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

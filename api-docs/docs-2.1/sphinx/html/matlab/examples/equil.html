@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>equil.m &mdash; Cantera 2.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.1.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.1.2 documentation" href="../../index.html" />
+    <link rel="up" title="Index of Examples" href="../examples.html" />
+    <link rel="next" title="flame.m" href="flame.html" />
+    <link rel="prev" title="diffflame.m" href="diffflame.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="flame.html" title="flame.m"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="diffflame.html" title="diffflame.m"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
+          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="diffflame.html"
+                        title="previous chapter">diffflame.m</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="flame.html"
+                        title="next chapter">flame.m</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/matlab/examples/equil.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="equil-m">
+<h1>equil.m<a class="headerlink" href="#equil-m" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-matlab"><div class="highlight"><pre><span class="k">function</span><span class="w"> </span><span class="nf">equil</span><span class="p">(</span>g<span class="p">)</span><span class="w"></span>
+<span class="c">% EQUIL  a chemical equilibrium example.</span>
+<span class="c">%</span>
+<span class="c">%    This example computes the adiabatic flame temperature and</span>
+<span class="c">%    equilibrium composition for a methane/air mixture as a function of</span>
+<span class="c">%    equivalence ratio.</span>
+<span class="n">help</span> <span class="n">equil</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="n">nargin</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;</span> <span class="n">isa</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="s">&#39;GasMix&#39;</span><span class="p">)</span>
+   <span class="n">gas</span> <span class="p">=</span> <span class="n">g</span><span class="p">;</span>
+<span class="k">else</span>
+   <span class="n">gas</span> <span class="p">=</span> <span class="n">IdealGasMix</span><span class="p">(</span><span class="s">&#39;gri30.cti&#39;</span><span class="p">);</span>
+<span class="k">end</span>
+
+<span class="n">nsp</span> <span class="p">=</span> <span class="n">nSpecies</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
+<span class="n">phi</span> <span class="p">=</span> <span class="p">[];</span>
+
+<span class="c">% find methane, nitrogen, and oxygen indices</span>
+<span class="n">ich4</span> <span class="p">=</span> <span class="n">speciesIndex</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">&#39;CH4&#39;</span><span class="p">);</span>
+<span class="n">io2</span>  <span class="p">=</span> <span class="n">speciesIndex</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">&#39;O2&#39;</span><span class="p">);</span>
+<span class="n">in2</span>  <span class="p">=</span> <span class="n">speciesIndex</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">&#39;N2&#39;</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">50</span>
+   <span class="n">phi</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mf">0.2</span> <span class="o">+</span> <span class="mf">0.05</span><span class="o">*</span><span class="nb">i</span><span class="p">;</span>
+   <span class="n">x</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">nsp</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+   <span class="n">x</span><span class="p">(</span><span class="n">ich4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">phi</span><span class="p">(</span><span class="nb">i</span><span class="p">);</span>
+   <span class="n">x</span><span class="p">(</span><span class="n">io2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mf">2.0</span><span class="p">;</span>
+   <span class="n">x</span><span class="p">(</span><span class="n">in2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mf">7.52</span><span class="p">;</span>
+   <span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">&#39;Temperature&#39;</span><span class="p">,</span><span class="mf">300.0</span><span class="p">,</span><span class="s">&#39;Pressure&#39;</span><span class="p">,</span><span class="mf">101325.0</span><span class="p">,</span><span class="s">&#39;MoleFractions&#39;</span><span class="p">,</span> <span class="c">...</span>
+	   <span class="n">x</span><span class="p">);</span>
+   <span class="n">equilibrate</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">&#39;HP&#39;</span><span class="p">);</span>
+   <span class="n">tad</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">temperature</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
+   <span class="n">xeq</span><span class="p">(:,</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">moleFractions</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
+<span class="k">end</span>
+
+<span class="c">% make plots</span>
+<span class="n">clf</span><span class="p">;</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span><span class="n">tad</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Equivalence Ratio&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Temperature (K)&#39;</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;Adiabatic Flame Temperature&#39;</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">semilogy</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span><span class="n">xeq</span><span class="p">);</span>
+<span class="n">axis</span><span class="p">([</span><span class="n">phi</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">phi</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="mf">1.0e-14</span> <span class="mi">1</span><span class="p">]);</span>
+<span class="c">%legend(speciesName(gas,1:nsp),1);</span>
+<span class="nb">j</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">k</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">nsp</span>
+    <span class="n">text</span><span class="p">(</span><span class="n">phi</span><span class="p">(</span><span class="nb">j</span><span class="p">),</span><span class="mf">1.5</span><span class="o">*</span><span class="n">xeq</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="nb">j</span><span class="p">),</span><span class="n">speciesName</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="n">k</span><span class="p">))</span>
+    <span class="nb">j</span> <span class="p">=</span> <span class="nb">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">if</span> <span class="nb">j</span> <span class="o">&gt;</span> <span class="mi">46</span>
+        <span class="nb">j</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Equivalence Ratio&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Mole Fraction&#39;</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;Equilibrium Composition&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="flame.html" title="flame.m"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="diffflame.html" title="diffflame.m"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
+          <li><a href="../examples.html" >Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

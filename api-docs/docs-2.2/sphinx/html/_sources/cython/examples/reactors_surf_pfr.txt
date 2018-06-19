@@ -1,0 +1,6 @@
+.. _py-example-surf_pfr.py:
+
+surf_pfr.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/reactors/surf_pfr.py

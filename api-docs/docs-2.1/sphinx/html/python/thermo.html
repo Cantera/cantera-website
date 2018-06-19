@@ -1,0 +1,830 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Thermodyamic Properties &mdash; Cantera 2.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.1.2 documentation" href="../index.html" />
+    <link rel="up" title="Python Module Documentation (Legacy)" href="index.html" />
+    <link rel="next" title="Chemical Kinetics" href="kinetics.html" />
+    <link rel="prev" title="Importing Phase Objects" href="importing.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kinetics.html" title="Chemical Kinetics"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="importing.html" title="Importing Phase Objects"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Python Module Documentation (Legacy)</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="importing.html"
+                        title="previous chapter">Importing Phase Objects</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="kinetics.html"
+                        title="next chapter">Chemical Kinetics</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/python/thermo.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="thermodyamic-properties">
+<h1>Thermodyamic Properties<a class="headerlink" href="#thermodyamic-properties" title="Permalink to this headline">¶</a></h1>
+<p>These classes are used to describe the thermodynamic state of a system.</p>
+<dl class="class">
+<dt id="Cantera.Phase.Phase">
+<em class="property">class </em><tt class="descclassname">Cantera.Phase.</tt><tt class="descname">Phase</tt><a class="headerlink" href="#Cantera.Phase.Phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Phases of matter.</p>
+<p>Class Phase manages basic state and constituent property
+information for a homogeneous phase of matter. It handles only
+those properties that do not require the equation of state, namely
+the temperature, density, chemical composition, and attributes of
+the elements and species.</p>
+<p>It does not know about the pressure, or any other thermodynamic property
+requiring the equation of state &#8211; class ThermoPhase derives from Phase
+and adds those properties.</p>
+<p>Class Phase is not usually instantiated directly. It is used as a
+base class for class ThermoPhase.</p>
+<dl class="method">
+<dt id="Cantera.Phase.Phase.atomicWeights">
+<tt class="descname">atomicWeights</tt><big>(</big><em>elements=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.atomicWeights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of element molar masses [kg/kmol].</p>
+<p>If a sequence of element symbols is supplied, only the values
+for those elements are returned, ordered as in the
+list. Otherwise, the values are for all elements in the phase,
+ordered as in the input file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.density">
+<tt class="descname">density</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.density" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass density [kg/m^3].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.elementIndex">
+<tt class="descname">elementIndex</tt><big>(</big><em>element</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.elementIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of element <em>element</em>, which may be specified as
+a string or an integer index. In the latter case, the index is
+checked for validity and returned. If no such element is
+present, an exception is thrown.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.elementName">
+<tt class="descname">elementName</tt><big>(</big><em>m</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.elementName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the element with index number <em>m</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.elementNames">
+<tt class="descname">elementNames</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.elementNames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of all element names.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.massFraction">
+<tt class="descname">massFraction</tt><big>(</big><em>species</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.massFraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass fraction of one species, referenced by name or
+index number.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ph</span><span class="o">.</span><span class="n">massFraction</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ph</span><span class="o">.</span><span class="n">massFraction</span><span class="p">(</span><span class="s">&#39;CH4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.massFractions">
+<tt class="descname">massFractions</tt><big>(</big><em>species=None</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.massFractions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Species mass fraction array.
+If optional argument <em>species</em> is supplied, then only the values for
+the selected species are returned.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y1</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">massFractions</span><span class="p">()</span>   <span class="c"># all species</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y2</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">massFractions</span><span class="p">([</span><span class="s">&#39;OH&#39;</span><span class="p">,</span> <span class="s">&#39;CH3&#39;</span><span class="o">.</span> <span class="s">&#39;O2&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.meanMolarMass">
+<tt class="descname">meanMolarMass</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.meanMolarMass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean molar mass [kg/kmol].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.meanMolecularWeight">
+<tt class="descname">meanMolecularWeight</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.meanMolecularWeight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean molar mass [kg/kmol].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.molarDensity">
+<tt class="descname">molarDensity</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.molarDensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Molar density [kmol/m^3].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.molarMasses">
+<tt class="descname">molarMasses</tt><big>(</big><em>species=None</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.molarMasses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of species molar masses [kg/kmol].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.moleFraction">
+<tt class="descname">moleFraction</tt><big>(</big><em>species</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.moleFraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mole fraction of a species, referenced by name or index number.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ph</span><span class="o">.</span><span class="n">moleFraction</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ph</span><span class="o">.</span><span class="n">moleFraction</span><span class="p">(</span><span class="s">&#39;CH4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.moleFractions">
+<tt class="descname">moleFractions</tt><big>(</big><em>species=None</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.moleFractions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Species mole fraction array.
+If optional argument <em>species</em> is supplied, then only the values
+for the selected species are returned.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">moleFractions</span><span class="p">()</span>   <span class="c"># all species</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x2</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">moleFractions</span><span class="p">([</span><span class="s">&#39;OH&#39;</span><span class="p">,</span> <span class="s">&#39;CH3&#39;</span><span class="o">.</span> <span class="s">&#39;O2&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.molecularWeights">
+<tt class="descname">molecularWeights</tt><big>(</big><em>species=None</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.molecularWeights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of species molar masses [kg/kmol].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.nAtoms">
+<tt class="descname">nAtoms</tt><big>(</big><em>species=None</em>, <em>element=None</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.nAtoms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of atoms of element <em>element</em> in species <em>species</em>.
+The  element and species may be specified by name or by number.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ph</span><span class="o">.</span><span class="n">nAtoms</span><span class="p">(</span><span class="s">&#39;CH4&#39;</span><span class="p">,</span><span class="s">&#39;H&#39;</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.nElements">
+<tt class="descname">nElements</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.nElements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of elements.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.nSpecies">
+<tt class="descname">nSpecies</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.nSpecies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of species.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.phase_id">
+<tt class="descname">phase_id</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.phase_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The integer index used to access the kernel-level object.
+Internal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.selectElements">
+<tt class="descname">selectElements</tt><big>(</big><em>f</em>, <em>elements</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.selectElements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an array <em>f</em> of floating-point element properties, return a
+those values corresponding to elements listed in <em>elements</em>. Returns an
+array if <em>elements</em> is a sequence, or a scalar if <em>elements</em> is a
+scalar.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">elementPotentials</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lam_o</span><span class="p">,</span> <span class="n">lam_h</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">selectElements</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;O&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lam_h</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">selectElements</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.selectSpecies">
+<tt class="descname">selectSpecies</tt><big>(</big><em>f</em>, <em>species</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.selectSpecies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an array <em>f</em> of floating-point species properties, return
+those values corresponding to species listed in <em>species</em>. Returns an
+array if <em>species</em> is a sequence, or a scalar if <em>species</em> is a
+scalar. This method is used internally to implement species selection
+in methods like moleFractions, massFractions, etc.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">chemPotentials</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">muo2</span><span class="p">,</span> <span class="n">muh2</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">selectSpecies</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;O2&#39;</span><span class="p">,</span> <span class="s">&#39;H2&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">muh2</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">selectSpecies</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">&#39;H2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.setDensity">
+<tt class="descname">setDensity</tt><big>(</big><em>rho</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.setDensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the density [kg/m3].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.setMassFractions">
+<tt class="descname">setMassFractions</tt><big>(</big><em>x</em>, <em>norm=1</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.setMassFractions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the mass fractions.
+See <a class="reference internal" href="#Cantera.Phase.Phase.setMoleFractions" title="Cantera.Phase.Phase.setMoleFractions"><tt class="xref py py-meth docutils literal"><span class="pre">setMoleFractions()</span></tt></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.setMolarDensity">
+<tt class="descname">setMolarDensity</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.setMolarDensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the density [kmol/m3].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.setMoleFractions">
+<tt class="descname">setMoleFractions</tt><big>(</big><em>x</em>, <em>norm=1</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.setMoleFractions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the mole fractions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; string or array of mole fraction values</li>
+<li><strong>norm</strong> &#8211; If non-zero (default), array values will be scaled to sum to 1.0.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ph</span><span class="o">.</span><span class="n">setMoleFractions</span><span class="p">(</span><span class="s">&#39;CO:1, H2:7, H2O:7.8&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]</span><span class="o">*</span><span class="n">ph</span><span class="o">.</span><span class="n">nSpecies</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ph</span><span class="o">.</span><span class="n">setMoleFractions</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ph</span><span class="o">.</span><span class="n">setMoleFractions</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>  <span class="c"># don&#39;t normalize values</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.setState_TNX">
+<tt class="descname">setState_TNX</tt><big>(</big><em>t</em>, <em>n</em>, <em>x</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.setState_TNX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the temperature, molardensity, and mole fractions. The mole
+fractions may be entered as a string or array,</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ph</span><span class="o">.</span><span class="n">setState_TNX</span><span class="p">(</span><span class="mf">600.0</span><span class="p">,</span> <span class="mf">2.0e-3</span><span class="p">,</span> <span class="s">&#39;CH4:0.4, O2:0.6&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.setState_TR">
+<tt class="descname">setState_TR</tt><big>(</big><em>t</em>, <em>rho</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.setState_TR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the temperature and density, leaving the composition
+unchanged.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.setState_TRX">
+<tt class="descname">setState_TRX</tt><big>(</big><em>t</em>, <em>rho</em>, <em>x</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.setState_TRX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the temperature, density, and mole fractions. The mole
+fractions may be entered as a string or array,
+&gt;&gt;&gt; ph.setState_TRX(600.0, 2.0e-3, &#8216;CH4:0.4, O2:0.6&#8217;)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.setState_TRY">
+<tt class="descname">setState_TRY</tt><big>(</big><em>t</em>, <em>rho</em>, <em>y</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.setState_TRY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the temperature, density, and mass fractions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.setTemperature">
+<tt class="descname">setTemperature</tt><big>(</big><em>t</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.setTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the temperature [K].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.speciesIndex">
+<tt class="descname">speciesIndex</tt><big>(</big><em>species</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.speciesIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of species <em>species</em>, which may be specified as
+a string or an integer index. In the latter case, the index is
+checked for validity and returned. If no such species is
+present, an exception is thrown.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.speciesName">
+<tt class="descname">speciesName</tt><big>(</big><em>k</em><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.speciesName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the species with index <em>k</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.speciesNames">
+<tt class="descname">speciesNames</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.speciesNames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of all species names.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.temperature">
+<tt class="descname">temperature</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Temperature [K].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.Phase.Phase.volume_mass">
+<tt class="descname">volume_mass</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Phase.Phase.volume_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific volume [m^3/kg].</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.ThermoPhase.ThermoPhase">
+<em class="property">class </em><tt class="descclassname">Cantera.ThermoPhase.</tt><tt class="descname">ThermoPhase</tt><big>(</big><em>xml_phase=None</em>, <em>index=-1</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Cantera.Phase.Phase" title="Cantera.Phase.Phase"><tt class="xref py py-class docutils literal"><span class="pre">Cantera.Phase.Phase</span></tt></a></p>
+<p>A phase with an equation of state.</p>
+<p>Class ThermoPhase may be used to represent the intensive
+thermodynamic state of a phase of matter, which might be a gas,
+liquid, or solid.  Class ThermoPhase extends class Phase by
+providing methods that require knowledge of the equation of state.</p>
+<p>Class ThermoPhase is not usually instantiated directly. It is used
+as base class for classes <a class="reference internal" href="composite.html#Cantera.Solution" title="Cantera.Solution"><tt class="xref py py-class docutils literal"><span class="pre">Solution</span></tt></a> and
+<a class="reference internal" href="composite.html#Cantera.Interface.Interface" title="Cantera.Interface.Interface"><tt class="xref py py-class docutils literal"><span class="pre">Interface</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>xml_phase</strong> &#8211; CTML node specifying the attributes of this phase</li>
+<li><strong>index</strong> &#8211; optional. If positive, create only a Python wrapper for an existing
+kernel object, instead of creating a new kernel object. The value
+of <em>index</em> is the integer index number to reference the existing
+kernel object.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.chemPotentials">
+<tt class="descname">chemPotentials</tt><big>(</big><em>species=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.chemPotentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Species chemical potentials.</p>
+<p>This method returns an array containing the species
+chemical potentials [J/kmol]. The expressions used to
+compute these depend on the model implemented by the
+underlying kernel thermo manager.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.cp_R">
+<tt class="descname">cp_R</tt><big>(</big><em>species=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.cp_R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pure species non-dimensional heat capacities
+at constant pressure.</p>
+<p>This method returns an array containing the pure-species
+standard-state heat capacities divided by R. For gaseous
+species, these values are ideal gas heat capacities.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.cp_mass">
+<tt class="descname">cp_mass</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.cp_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific heat at constant pressure [J/kg/K].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.cp_mole">
+<tt class="descname">cp_mole</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.cp_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>The molar heat capacity at constant pressure [J/kmol/K].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.cv_mass">
+<tt class="descname">cv_mass</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.cv_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific heat at constant volume [J/kg/K].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.cv_mole">
+<tt class="descname">cv_mole</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.cv_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>The molar heat capacity at constant volume [J/kmol/K].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.electricPotential">
+<tt class="descname">electricPotential</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.electricPotential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Electric potential [V].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.elementPotentials">
+<tt class="descname">elementPotentials</tt><big>(</big><em>elements=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.elementPotentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Element potentials of the elements.</p>
+<p>This method returns an array containing the element potentials
+[J/kmol]. The element potentials are only defined for
+equilibrium states. This method first sets the composition to
+a state of equilibrium holding T and P constant, then computes
+the element potentials for this equilibrium state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.enthalpies_RT">
+<tt class="descname">enthalpies_RT</tt><big>(</big><em>species=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.enthalpies_RT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pure species non-dimensional reference state enthalpies.</p>
+<p>This method returns an array containing the pure-species
+standard-state enthalpies divided by RT. For gaseous species,
+these values are ideal gas enthalpies.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.enthalpy_mass">
+<tt class="descname">enthalpy_mass</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.enthalpy_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific enthalpy [J/kg].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.enthalpy_mole">
+<tt class="descname">enthalpy_mole</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.enthalpy_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>The molar enthalpy [J/kmol].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.entropies_R">
+<tt class="descname">entropies_R</tt><big>(</big><em>species=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.entropies_R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pure species non-dimensional entropies.</p>
+<p>This method returns an array containing the pure-species
+standard-state entropies divided by R. For gaseous species,
+these values are ideal gas entropies.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.entropy_mass">
+<tt class="descname">entropy_mass</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.entropy_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific entropy [J/kg/K].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.entropy_mole">
+<tt class="descname">entropy_mole</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.entropy_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>The molar entropy [J/kmol/K].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.equilibrate">
+<tt class="descname">equilibrate</tt><big>(</big><em>XY</em>, <em>solver=-1</em>, <em>rtol=1e-09</em>, <em>maxsteps=1000</em>, <em>maxiter=100</em>, <em>loglevel=0</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.equilibrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set to a state of chemical equilibrium holding property pair
+<em>XY</em> constant.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>XY</strong> &#8211; <p>A two-letter string, which must be one of the set:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">&#39;TP&#39;</span><span class="p">,</span><span class="s">&#39;TV&#39;</span><span class="p">,</span><span class="s">&#39;HP&#39;</span><span class="p">,</span><span class="s">&#39;SP&#39;</span><span class="p">,</span><span class="s">&#39;SV&#39;</span><span class="p">,</span><span class="s">&#39;UV&#39;</span><span class="p">,</span><span class="s">&#39;PT&#39;</span><span class="p">,</span><span class="s">&#39;VT&#39;</span><span class="p">,</span><span class="s">&#39;PH&#39;</span><span class="p">,</span><span class="s">&#39;PS&#39;</span><span class="p">,</span><span class="s">&#39;VS&#39;</span><span class="p">,</span><span class="s">&#39;VU&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>If H, U, S, or V is specified, the value must be the specific
+value (per unit mass)</p>
+</li>
+<li><strong>solver</strong> &#8211; Specifies the equilibrium solver to use. If solver = 0, a fast
+solver using the element potential method will be used. If
+solver &gt; 0, a slower but more robust Gibbs minimization solver
+will be used. If solver &lt; 0 or unspecified, the fast solver will
+be tried first, then if it fails the other will be tried.</li>
+<li><strong>rtol</strong> &#8211; the relative error tolerance.</li>
+<li><strong>maxsteps</strong> &#8211; maximum number of steps in composition to take to find a converged
+solution.</li>
+<li><strong>maxiter</strong> &#8211; For the Gibbs minimization solver only, this specifies the number
+of &#8216;outer&#8217; iterations on T or P when some property pair other than
+TP is specified.</li>
+<li><strong>loglevel</strong> &#8211; Set to a value &gt; 0 to write diagnostic output to a file in HTML
+format. Larger values generate more detailed information. The file
+will be named <tt class="docutils literal"><span class="pre">equilibrate_log.html.</span></tt> Subsequent files will be
+named <tt class="docutils literal"><span class="pre">equilibrate_log1.html</span></tt>, etc., so that log files are
+not overwritten.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.gibbs_RT">
+<tt class="descname">gibbs_RT</tt><big>(</big><em>species=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.gibbs_RT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pure species non-dimensional Gibbs free energies.</p>
+<p>This method returns an array containing the pure-species
+standard-state Gibbs free energies divided by R.
+For gaseous species, these are ideal gas values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.gibbs_mass">
+<tt class="descname">gibbs_mass</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.gibbs_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific Gibbs free energy [J/kg].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.gibbs_mole">
+<tt class="descname">gibbs_mole</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.gibbs_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>The molar Gibbs function [J/kmol].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.intEnergy_mass">
+<tt class="descname">intEnergy_mass</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.intEnergy_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific internal energy [J/kg].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.intEnergy_mole">
+<tt class="descname">intEnergy_mole</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.intEnergy_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>The molar internal energy [J/kmol].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.maxTemp">
+<tt class="descname">maxTemp</tt><big>(</big><em>sp=None</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.maxTemp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum temperature for which thermodynamic property fits
+are valid.  If a species is specified (by name or number),
+then the maximum temperature is for only this
+species. Otherwise it is the highest temperature for which the
+properties are valid for all species.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.minTemp">
+<tt class="descname">minTemp</tt><big>(</big><em>sp=None</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.minTemp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum temperature for which thermodynamic property fits
+are valid.  If a species is specified (by name or number),
+then the minimum temperature is for only this
+species. Otherwise it is the lowest temperature for which the
+properties are valid for all species.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.name">
+<tt class="descname">name</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name assigned to the phase. The default value is the name
+attribute from the CTI file. But method setName can be used to
+set the name to anything desired, e.g. &#8216;gas at inlet&#8217; or &#8216;exhaust&#8217;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.pressure">
+<tt class="descname">pressure</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>The pressure [Pa].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.refPressure">
+<tt class="descname">refPressure</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.refPressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference pressure [Pa].
+All standard-state thermodynamic properties are for this pressure.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.restoreState">
+<tt class="descname">restoreState</tt><big>(</big><em>s</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.restoreState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore the state to that stored in array s.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.saveState">
+<tt class="descname">saveState</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.saveState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an array with state information that can later be
+used to restore the state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setElectricPotential">
+<tt class="descname">setElectricPotential</tt><big>(</big><em>v</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setElectricPotential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the electric potential.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setName">
+<tt class="descname">setName</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the name attribute. This can be any string</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setPressure">
+<tt class="descname">setPressure</tt><big>(</big><em>p</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setPressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the pressure [Pa].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setState_HP">
+<tt class="descname">setState_HP</tt><big>(</big><em>h</em>, <em>p</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setState_HP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the state by specifying the specific enthalpy and
+the pressure.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setState_PX">
+<tt class="descname">setState_PX</tt><big>(</big><em>p</em>, <em>x</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setState_PX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the pressure [Pa], and mole fractions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setState_PY">
+<tt class="descname">setState_PY</tt><big>(</big><em>p</em>, <em>y</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setState_PY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the pressure [Pa], and mass fractions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setState_SP">
+<tt class="descname">setState_SP</tt><big>(</big><em>s</em>, <em>p</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setState_SP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the state by specifying the specific entropy
+energy and the pressure.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setState_SV">
+<tt class="descname">setState_SV</tt><big>(</big><em>s</em>, <em>v</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setState_SV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the state by specifying the specific entropy
+and the specific volume.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setState_TP">
+<tt class="descname">setState_TP</tt><big>(</big><em>t</em>, <em>p</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setState_TP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the temperature [K] and pressure [Pa].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setState_TPX">
+<tt class="descname">setState_TPX</tt><big>(</big><em>t</em>, <em>p</em>, <em>x</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setState_TPX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the temperature [K], pressure [Pa], and
+mole fractions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setState_TPY">
+<tt class="descname">setState_TPY</tt><big>(</big><em>t</em>, <em>p</em>, <em>y</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setState_TPY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the temperature [K], pressure [Pa], and
+mass fractions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.setState_UV">
+<tt class="descname">setState_UV</tt><big>(</big><em>u</em>, <em>v</em><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.setState_UV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the state by specifying the specific internal
+energy and the specific volume.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.thermo_hndl">
+<tt class="descname">thermo_hndl</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.thermo_hndl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the integer index that is used to
+reference the kernel object. For internal use.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.ThermoPhase.ThermoPhase.thermophase">
+<tt class="descname">thermophase</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.ThermoPhase.ThermoPhase.thermophase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the integer index that is used to
+reference the kernel object. For internal use.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.SurfacePhase.EdgePhase">
+<em class="property">class </em><tt class="descclassname">Cantera.SurfacePhase.</tt><tt class="descname">EdgePhase</tt><big>(</big><em>xml_phase=None</em>, <em>index=-1</em><big>)</big><a class="headerlink" href="#Cantera.SurfacePhase.EdgePhase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Cantera.SurfacePhase.SurfacePhase" title="Cantera.SurfacePhase.SurfacePhase"><tt class="xref py py-class docutils literal"><span class="pre">Cantera.SurfacePhase.SurfacePhase</span></tt></a></p>
+<p>A one-dimensonal edge.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Cantera.SurfacePhase.SurfacePhase">
+<em class="property">class </em><tt class="descclassname">Cantera.SurfacePhase.</tt><tt class="descname">SurfacePhase</tt><big>(</big><em>xml_phase=None</em>, <em>index=-1</em><big>)</big><a class="headerlink" href="#Cantera.SurfacePhase.SurfacePhase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Cantera.ThermoPhase.ThermoPhase" title="Cantera.ThermoPhase.ThermoPhase"><tt class="xref py py-class docutils literal"><span class="pre">Cantera.ThermoPhase.ThermoPhase</span></tt></a></p>
+<p>A class for surface phases.</p>
+<dl class="method">
+<dt id="Cantera.SurfacePhase.SurfacePhase.concentrations">
+<tt class="descname">concentrations</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.SurfacePhase.SurfacePhase.concentrations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the array of surface concentrations [kmol/m2].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.SurfacePhase.SurfacePhase.coverages">
+<tt class="descname">coverages</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.SurfacePhase.SurfacePhase.coverages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the array of surface coverages.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.SurfacePhase.SurfacePhase.setConcentrations">
+<tt class="descname">setConcentrations</tt><big>(</big><em>conc</em><big>)</big><a class="headerlink" href="#Cantera.SurfacePhase.SurfacePhase.setConcentrations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the surface concentrations to the values in
+array <em>conc</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.SurfacePhase.SurfacePhase.setCoverages">
+<tt class="descname">setCoverages</tt><big>(</big><em>theta</em><big>)</big><a class="headerlink" href="#Cantera.SurfacePhase.SurfacePhase.setCoverages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the surface coverages to the values in array <em>theta</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.SurfacePhase.SurfacePhase.setSiteDensity">
+<tt class="descname">setSiteDensity</tt><big>(</big><em>n0</em><big>)</big><a class="headerlink" href="#Cantera.SurfacePhase.SurfacePhase.setSiteDensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the site density.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cantera.SurfacePhase.SurfacePhase.siteDensity">
+<tt class="descname">siteDensity</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.SurfacePhase.SurfacePhase.siteDensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Site density [kmol/m2]</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kinetics.html" title="Chemical Kinetics"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="importing.html" title="Importing Phase Objects"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li>
+          <li><a href="index.html" >Python Module Documentation (Legacy)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

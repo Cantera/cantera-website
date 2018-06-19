@@ -1,0 +1,236 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>tut2.m &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/matlab/examples/tut2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tut2-m">
+<span id="matlab-example-tut2-m"></span><h1>tut2.m<a class="headerlink" href="#tut2-m" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="c">% Tutorial 2: Working with input files</span>
+<span class="c">%</span>
+<span class="c">%   Topics:</span>
+<span class="c">%     - using functions &#39;importPhase&#39; and &#39;importInterface&#39;</span>
+<span class="c">%     - input files distributed with Cantera</span>
+<span class="c">%     - the Cantera search path</span>
+<span class="c">%     - CTML files</span>
+<span class="c">%     - converting from CK format</span>
+<span class="c">%</span>
+<span class="n">help</span> <span class="n">tut2</span>
+
+<span class="n">t0</span> <span class="p">=</span> <span class="n">cputime</span><span class="p">;</span>
+
+<span class="c">% In the last tutorial, we used function GRI30 to create an object</span>
+<span class="c">% that models an ideal gas mixture with the species and reactions of</span>
+<span class="c">% GRI-Mech 3.0. Another way to do this is shown here, with statements</span>
+<span class="c">% added to measure how long this takes:</span>
+
+<span class="n">gas1</span> <span class="p">=</span> <span class="n">importPhase</span><span class="p">(</span><span class="s">&#39;gri30.cti&#39;</span><span class="p">,</span> <span class="s">&#39;gri30&#39;</span><span class="p">);</span>
+<span class="n">msg</span> <span class="p">=</span> <span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;time to create gas1: %f&#39;</span><span class="p">,</span> <span class="n">cputime</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
+
+<span class="c">% Function &#39;importPhase&#39; constructs an object representing a phase of</span>
+<span class="c">% matter by reading in attributes of the phase from a file, which in</span>
+<span class="c">% this case is &#39;gri30.cti&#39;. This file contains several phase</span>
+<span class="c">% spcifications; the one we want here is &#39;gri30&#39;, which is specified</span>
+<span class="c">% by the second argument.  This file contains a complete specification</span>
+<span class="c">% of the GRI-Mech 3.0 reaction mechanism, including element data</span>
+<span class="c">% (name, atomic weight), species data (name, elemental composition,</span>
+<span class="c">% coefficients to compute thermodynamic and transport properties), and</span>
+<span class="c">% reaction data (stoichiometry, rate coefficient parameters). The file</span>
+<span class="c">% is written in a format understood by Cantera, which is described in</span>
+<span class="c">% the document &quot;Defining Phases and Interfaces.&quot;</span>
+
+<span class="c">% On some systems, processing long CTI files like gri30.cti can be a</span>
+<span class="c">% little slow. For example, using a typical laptop computer running</span>
+<span class="c">% Windows 2000, the statement above takes more than 4 s, while on a</span>
+<span class="c">% Mac Powerbook G4 of similar CPU speed it takes only 0.3 s. In any</span>
+<span class="c">% case, running it again takes much less time, because Cantera</span>
+<span class="c">% &#39;remembers&#39; files it has already processed and doesn&#39;t need to read</span>
+<span class="c">% them in again:</span>
+
+<span class="n">t0</span> <span class="p">=</span> <span class="n">cputime</span><span class="p">;</span>
+<span class="n">gas1b</span> <span class="p">=</span> <span class="n">importPhase</span><span class="p">(</span><span class="s">&#39;gri30.cti&#39;</span><span class="p">,</span> <span class="s">&#39;gri30&#39;</span><span class="p">);</span>
+<span class="n">msg</span> <span class="p">=</span> <span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;time to create gas1b: %f&#39;</span><span class="p">,</span> <span class="n">cputime</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
+
+
+<span class="c">% CTI files distributed with Cantera</span>
+<span class="c">%-----------------------------------</span>
+
+<span class="c">% Several reaction mechanism files in this format are included in the</span>
+<span class="c">% Cantera distribution, including ones that model high-temperature</span>
+<span class="c">% air, a hydrogen/oxygen reaction mechanism, and a few surface</span>
+<span class="c">% reaction mechanisms. Under Windows, these files may be located in</span>
+<span class="c">% &#39;C:\Program Files\Common Files\Cantera&#39;, or in &#39;C:\cantera\data&#39;,</span>
+<span class="c">% depending on how you installed Cantera and the options you</span>
+<span class="c">% specified.  On a unix/linux/Mac OSX machine, they are usually kept</span>
+<span class="c">% in the &#39;data&#39; subdirectory within the Cantera installation</span>
+<span class="c">% directory.</span>
+
+<span class="c">% If for some reason Cantera has difficulty finding where these files</span>
+<span class="c">% are on your system, set environment variable CANTERA_DATA to the</span>
+<span class="c">% directory where they are located. Alternatively, you can call function</span>
+<span class="c">% adddir to add a directory to the Cantera search path:</span>
+<span class="n">adddir</span><span class="p">(</span><span class="s">&#39;/usr/local/cantera/my_data_files&#39;</span><span class="p">);</span>
+
+<span class="c">% Cantera input files are plain text files, and can be created with</span>
+<span class="c">% any text editor. See the document &#39;Defining Phases and Interfaces&#39;</span>
+<span class="c">% for more information.</span>
+
+
+<span class="c">% Importing multiple phases or interfaces</span>
+<span class="c">% ---------------------------------------</span>
+
+<span class="c">% A Cantera input file may contain more than one phase specification,</span>
+<span class="c">% or may contain specifications of interfaces (surfaces). Here we</span>
+<span class="c">% import definitions of two bulk phases and the interface between them</span>
+<span class="c">% from file diamond.cti:</span>
+
+<span class="n">gas2</span> <span class="p">=</span> <span class="n">importPhase</span><span class="p">(</span><span class="s">&#39;diamond.cti&#39;</span><span class="p">,</span> <span class="s">&#39;gas&#39;</span><span class="p">);</span>        <span class="c">% a gas</span>
+
+<span class="n">diamond</span> <span class="p">=</span> <span class="n">importPhase</span><span class="p">(</span><span class="s">&#39;diamond.cti&#39;</span><span class="p">,</span><span class="s">&#39;diamond&#39;</span><span class="p">);</span>  <span class="c">% bulk diamond</span>
+
+<span class="n">diamonnd_surf</span> <span class="p">=</span> <span class="n">importInterface</span><span class="p">(</span><span class="s">&#39;diamond.cti&#39;</span><span class="p">,</span><span class="s">&#39;diamond_100&#39;</span><span class="p">,</span><span class="c">...</span>
+                                <span class="n">gas2</span><span class="p">,</span> <span class="n">diamond</span><span class="p">);</span>
+
+<span class="c">% Note that the bulk (i.e., 3D) phases that participate in the surface</span>
+<span class="c">% reactions must also be passed as arguments to importInterface.</span>
+
+
+<span class="c">% CTML files</span>
+<span class="c">% ----------</span>
+
+<span class="c">% Note that when Cantera reads a .cti input file, wherever it is</span>
+<span class="c">% located, it always writes a file of the same name but with extension</span>
+<span class="c">% .xml *in the local directory*. If you happen to have some other file</span>
+<span class="c">% by that name, it will be overwritten. Once the XML file is created,</span>
+<span class="c">% you can use it instead of the .cti file, which will result in</span>
+<span class="c">% somewhat faster startup.</span>
+
+<span class="n">gas4</span> <span class="p">=</span> <span class="n">importPhase</span><span class="p">(</span><span class="s">&#39;gri30.xml&#39;</span><span class="p">,</span><span class="s">&#39;gri30&#39;</span><span class="p">);</span>
+
+<span class="c">% Interfaces can be imported from XML files too.</span>
+<span class="n">diamonnd_surf2</span> <span class="p">=</span> <span class="n">importInterface</span><span class="p">(</span><span class="s">&#39;diamond.xml&#39;</span><span class="p">,</span><span class="s">&#39;diamond_100&#39;</span><span class="p">,</span><span class="c">...</span>
+                                 <span class="n">gas2</span><span class="p">,</span> <span class="n">diamond</span><span class="p">);</span>
+
+
+<span class="c">% Converting CK-format files</span>
+<span class="c">% --------------------------</span>
+
+<span class="c">% Many existing reaction mechanism files are in &quot;CK format,&quot; by which</span>
+<span class="c">% we mean the input file format developed for use with the Chemkin-II</span>
+<span class="c">% software package. [See R. J. Kee, F. M. Rupley, and J. A. Miller,</span>
+<span class="c">% Sandia National Laboratories Report SAND89-8009 (1989).]</span>
+
+<span class="c">% Cantera comes with a converter utility program &#39;ck2cti&#39; (or</span>
+<span class="c">% &#39;ck2cti.exe&#39;) that converts CK format into Cantera format. This</span>
+<span class="c">% program should be run from the command line first to convert any CK</span>
+<span class="c">% files you plan to use into Cantera format. This utility program can</span>
+<span class="c">% also be downloaded from the Cantera User&#39;s Group web site.</span>
+<span class="c">%</span>
+<span class="c">% Here&#39;s an example of how to use it:</span>
+<span class="c">%</span>
+<span class="c">% ck2cti -i mech.inp -t therm.dat -tr tran.dat -id mymech</span>
+<span class="c">%</span>
+
+<span class="n">clear</span> <span class="n">all</span>
+<span class="n">cleanup</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,210 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Python Module Documentation &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="One-Dimensional Flames" href="../flames.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../flames.html" title="One-Dimensional Flames"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../flames.html"
+                        title="previous chapter">One-Dimensional Flames</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tutorial.html"
+                        title="next chapter">Tutorial</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/cython/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="python-module-documentation">
+<span id="sec-cython-documentation"></span><h1>Python Module Documentation<a class="headerlink" href="#python-module-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#working-with-mechanism-files">Working With Mechanism Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#chemical-equilibrium">Chemical Equilibrium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#chemical-kinetics">Chemical Kinetics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="importing.html">Objects Representing Phases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="importing.html#composite-phase-objects">Composite Phase Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="importing.html#pure-fluid-phases">Pure Fluid Phases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="importing.html#representing-quantities-of-phases">Representing Quantities of Phases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="importing.html#representing-multiple-states">Representing Multiple States</a></li>
+<li class="toctree-l2"><a class="reference internal" href="importing.html#utility-functions">Utility Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="thermo.html">Thermodynamic Properties</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="thermo.html#phases">Phases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thermo.html#mixture">Mixture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thermo.html#species">Species</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thermo.html#species-thermodynamic-properties">Species Thermodynamic Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thermo.html#element">Element</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kinetics.html">Chemical Kinetics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kinetics.html#kinetics-managers">Kinetics Managers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kinetics.html#reactions">Reactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kinetics.html#auxilliary-reaction-data">Auxilliary Reaction Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kinetics.html#reaction-path-analysis">Reaction Path Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transport.html">Transport Properties</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transport.html#species-transport-properties">Species Transport Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="zerodim.html">Zero-Dimensional Reactor Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="zerodim.html#defining-functions">Defining Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerodim.html#base-classes">Base Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerodim.html#reactor-networks">Reactor Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerodim.html#reactors">Reactors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerodim.html#walls">Walls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerodim.html#surfaces">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zerodim.html#flow-controllers">Flow Controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="onedim.html">One-dimensional Reacting Flows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="onedim.html#composite-domains">Composite Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onedim.html#flow-domains">Flow Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onedim.html#boundaries">Boundaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onedim.html#base-classes">Base Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Physical Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Index of Python Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#thermodynamics">Thermodynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#kinetics">Kinetics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#transport">Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#reactor-networks">Reactor Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#one-dimensional-flames">One-dimensional Flames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#multiphase-mixtures">Multiphase Mixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#surface-chemistry">Surface Chemistry</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migrating.html">Migrating from the Old Python Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migrating.html#importing-the-python-module">Importing the Python Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating.html#naming-conventions">Naming Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating.html#importing-phases">Importing Phases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating.html#accessing-properties">Accessing Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating.html#setting-thermodynamic-state">Setting Thermodynamic State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating.html#printing-phase-summaries">Printing Phase Summaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating.html#getting-properties-for-a-subset-of-species">Getting Properties for a Subset of Species</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating.html#transport-models">Transport Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating.html#reactor-networks">Reactor Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating.html#elimination-of-the-func-module">Elimination of the <code class="docutils literal"><span class="pre">Func</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating.html#one-dimensional-reacting-flows">One-Dimensional Reacting Flows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Cantera/cantera-jupyter#cantera-jupyter">Application Examples as Jupyter Notebooks</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../flames.html" title="One-Dimensional Flames"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

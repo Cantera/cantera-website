@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tut1.m &mdash; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../../index.html" />
+    <link rel="up" title="Index of Examples" href="../examples.html" />
+    <link rel="next" title="tut2.m" href="tut2.html" />
+    <link rel="prev" title="Index of Examples" href="../examples.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tut2.html" title="tut2.m"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../examples.html" title="Index of Examples"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
+          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../examples.html"
+                        title="previous chapter">Index of Examples</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tut2.html"
+                        title="next chapter">tut2.m</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/matlab/tutorials/tut1.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tut1-m">
+<span id="matlab-example-tut1-m"></span><h1>tut1.m<a class="headerlink" href="#tut1-m" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-matlab"><div class="highlight"><pre><span class="c">% Tutorial 1:  Getting started</span>
+<span class="c">%   </span>
+<span class="c">%  Topics:</span>
+<span class="c">%    - creating a gas mixture</span>
+<span class="c">%    - setting the state</span>
+<span class="c">%    - cleaning up</span>
+<span class="c">%</span>
+<span class="n">help</span> <span class="n">tut1</span>
+
+<span class="c">% Start MATLAB, and at the prompt type:</span>
+
+<span class="n">gas1</span> <span class="p">=</span> <span class="n">GRI30</span>
+
+<span class="c">% If you have successfully installed the Cantera toolbox, you should</span>
+<span class="c">%see something like this:</span>
+<span class="c">%         temperature             300  K</span>
+<span class="c">%            pressure          101325  Pa</span>
+<span class="c">%             density        0.081889  kg/m^3</span>
+<span class="c">%    mean mol. weight         2.01588  amu</span>
+<span class="c">%   </span>
+<span class="c">%                            1 kg            1 kmol</span>
+<span class="c">%                         -----------      ------------</span>
+<span class="c">%            enthalpy         26470.1        5.336e+04     J</span>
+<span class="c">%     internal energy    -1.21088e+06       -2.441e+06     J</span>
+<span class="c">%             entropy           64914        1.309e+05     J/K</span>
+<span class="c">%      Gibbs function    -1.94477e+07        -3.92e+07     J</span>
+<span class="c">%   heat capacity c_p         14311.8        2.885e+04     J/K</span>
+<span class="c">%   heat capacity c_v         10187.3        2.054e+04     J/K</span>
+<span class="c">%   </span>
+<span class="c">%                             X                 Y          Chem. Pot. / RT    </span>
+<span class="c">%                       -------------     ------------     ------------</span>
+<span class="c">%                  H2              1                1         -15.7173</span>
+<span class="c">%       [  +52 minor]              0                0</span>
+<span class="c">%</span>
+<span class="c">% What you have just done is to create an object (&quot;gas1&quot;) that</span>
+<span class="c">% implements GRI-Mech 3.0, the 53-species, 325-reaction natural gas</span>
+<span class="c">% combustion mechanism developed by Gregory P. Smith, David M. Golden,</span>
+<span class="c">% Michael Frenklach, Nigel W. Moriarty, Boris Eiteneer, Mikhail</span>
+<span class="c">% Goldenberg, C. Thomas Bowman, Ronald K. Hanson, Soonho Song, William</span>
+<span class="c">% C. Gardiner, Jr., Vitali V. Lissianski, and Zhiwei Qin. (See</span>
+<span class="c">% http://www.me.berkeley.edu/gri_mech/ for more information about</span>
+<span class="c">% GRI-Mech 3.0.)</span>
+<span class="c">%</span>
+<span class="c">% The object created by GI30 has properties you would expect for a gas</span>
+<span class="c">% mixture - it has a temperature, a pressure, species mole and mass</span>
+<span class="c">% fractions, etc. As we&#39;ll soon see, it has many other properties too.</span>
+<span class="c">%</span>
+<span class="c">% The summary of the state of &#39;gas1&#39; printed above shows that new</span>
+<span class="c">% objects created by function GRI30 start out with a temperature of</span>
+<span class="c">% 300 K, a pressure of 1 atm, and have a composition that consists of</span>
+<span class="c">% only one species, in this case hydrogen. There is nothing special</span>
+<span class="c">% about H2 - it just happens to be the first species listed in the</span>
+<span class="c">% input file defining GRI-Mech 3.0 that the &#39;GRI30&#39; function reads. In</span>
+<span class="c">% general, the species listed first will initially have a mole</span>
+<span class="c">% fraction of 1.0, and all of the others will be zero.</span>
+
+<span class="c">%  Setting the state</span>
+<span class="c">%  -----------------</span>
+
+<span class="c">% The state of the object can be easily changed. For example,</span>
+
+<span class="n">setTemperature</span><span class="p">(</span><span class="n">gas1</span><span class="p">,</span> <span class="mi">1200</span><span class="p">)</span>
+
+<span class="c">% sets the temperature to 1200 K. (Cantera always uses SI units.)</span>
+
+<span class="c">% Notice in the summary of properties that MATLAB prints after this</span>
+<span class="c">% command is executed that the temperature has been changed as</span>
+<span class="c">% requested, but the pressure has changed too. The density and</span>
+<span class="c">% composition have not. </span>
+<span class="c">%</span>
+<span class="c">% When setting properties individually, some convention needs to be</span>
+<span class="c">% adopted to specify which other properties are held constant. This is</span>
+<span class="c">% because thermodynamics requires that *two* properties (not one) in</span>
+<span class="c">% addition to composition information be specified to fix the</span>
+<span class="c">% intensive state of a substance (or mixture).</span>
+<span class="c">%</span>
+<span class="c">% Cantera adopts the following convention: only one of the set</span>
+<span class="c">% (temperature, density, mass fractions) is altered by setting any</span>
+<span class="c">% single property. In particular:</span>
+<span class="c">%</span>
+<span class="c">% a) Setting the temperature is done holding density and</span>
+<span class="c">%    composition  fixed. (The pressure changes.)</span>
+
+<span class="c">% b) Setting the pressure is done holding temperature and</span>
+<span class="c">%    composition fixed. (The density changes.)</span>
+<span class="c">% </span>
+<span class="c">% c) Setting the composition is done holding temperature</span>
+<span class="c">%    and density fixed. (The pressure changes).</span>
+<span class="c">%</span>
+
+
+<span class="c">% Setting multiple properties: the &#39;set&#39; method</span>
+<span class="c">% ---------------------------------------------</span>
+
+<span class="c">% If you want to set multiple properties at once, use the &#39;set&#39;</span>
+<span class="c">% method. (Note: a &#39;method&#39; is just the term for a function that acts</span>
+<span class="c">% on an object. In MATLAB, methods take the object as the first</span>
+<span class="c">% argument.)</span>
+
+<span class="n">set</span><span class="p">(</span><span class="n">gas1</span><span class="p">,</span> <span class="s">&#39;Temperature&#39;</span><span class="p">,</span> <span class="mf">900.0</span><span class="p">,</span> <span class="s">&#39;Pressure&#39;</span><span class="p">,</span> <span class="mf">1.e5</span><span class="p">);</span>
+
+<span class="c">% This statement sets both temperature and pressure at the same</span>
+<span class="c">% time. Any number of property/value pairs can be specified in a</span>
+<span class="c">% call to &#39;set&#39;. For example, the following sets the mole fractions</span>
+<span class="c">% too:</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gas1</span><span class="p">,</span> <span class="s">&#39;Temperature&#39;</span><span class="p">,</span> <span class="mf">900.0</span><span class="p">,</span> <span class="s">&#39;Pressure&#39;</span><span class="p">,</span> <span class="mf">1.e5</span><span class="p">,</span> <span class="s">&#39;MoleFractions&#39;</span><span class="p">,</span> <span class="c">...</span>
+	  <span class="s">&#39;CH4:1,O2:2,N2:7.52&#39;</span><span class="p">);</span>
+
+<span class="c">% The &#39;set&#39; method also accepts abbreviated property names:</span>
+
+<span class="n">set</span><span class="p">(</span><span class="n">gas1</span><span class="p">,</span><span class="s">&#39;T&#39;</span><span class="p">,</span><span class="mf">900.0</span><span class="p">,</span><span class="s">&#39;P&#39;</span><span class="p">,</span><span class="mf">1.e5</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">,</span><span class="s">&#39;CH4:1,O2:2,N2:7.52&#39;</span><span class="p">)</span>
+
+<span class="c">% Either version results in</span>
+<span class="c">%</span>
+<span class="c">%         temperature             900  K</span>
+<span class="c">%            pressure          100000  Pa</span>
+<span class="c">%             density        0.369279  kg/m^3</span>
+<span class="c">%    mean mol. weight         27.6332  amu</span>
+<span class="c">%   </span>
+<span class="c">%                            1 kg            1 kmol</span>
+<span class="c">%                         -----------      ------------</span>
+<span class="c">%            enthalpy          455660        1.259e+07     J</span>
+<span class="c">%     internal energy          184862        5.108e+06     J</span>
+<span class="c">%             entropy         8529.31        2.357e+05     J/K</span>
+<span class="c">%      Gibbs function    -7.22072e+06       -1.995e+08     J</span>
+<span class="c">%   heat capacity c_p          1304.4        3.604e+04     J/K</span>
+<span class="c">%   heat capacity c_v         1003.52        2.773e+04     J/K</span>
+<span class="c">%   </span>
+<span class="c">%                             X                 Y          Chem. Pot. / RT    </span>
+<span class="c">%                       -------------     ------------     ------------</span>
+<span class="c">%                  O2       0.190114         0.220149         -27.9596</span>
+<span class="c">%                 CH4       0.095057        0.0551863         -37.0813</span>
+<span class="c">%                  N2       0.714829         0.724665          -24.935</span>
+<span class="c">%       [  +50 minor]              0                0</span>
+
+<span class="c">% Other properties may also be set using &#39;set&#39;, including some that</span>
+<span class="c">% can&#39;t be set individually. The following property pairs may be</span>
+<span class="c">% set: (Enthalpy, Pressure), (IntEnergy, Volume), (Entropy,</span>
+<span class="c">% Volume), (Entropy, Pressure). In each case, the values of the</span>
+<span class="c">% extensive properties must be entered *per unit mass*. </span>
+
+<span class="c">% Setting the enthalpy and pressure:</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gas1</span><span class="p">,</span> <span class="s">&#39;Enthalpy&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">enthalpy_mass</span><span class="p">(</span><span class="n">gas1</span><span class="p">),</span> <span class="s">&#39;Pressure&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">oneatm</span><span class="p">);</span>
+
+
+<span class="c">% The composition above was specified using a string. The format is a</span>
+<span class="c">% comma-separated list of &lt;species name&gt;:&lt;relative mole numbers&gt;</span>
+<span class="c">% pairs. The mole numbers will be normalized to produce the mole</span>
+<span class="c">% fractions, and therefore they are &#39;relative&#39; mole numbers.  Mass</span>
+<span class="c">% fractions can be set in this way too by changing &#39;X&#39; to &#39;Y&#39; in the</span>
+<span class="c">% above statement.</span>
+
+<span class="c">% The composition can also be set using an array, which can be</span>
+<span class="c">% either a column vector or a row vector but must have the same</span>
+<span class="c">% size as the number of species. For example, to set all 53 mole</span>
+<span class="c">% fractions to the same value, do this:</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">53</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>   <span class="c">% a column vector of 53 ones</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gas1</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c">% To set the mass fractions to equal values:</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gas1</span><span class="p">,</span> <span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+
+<span class="c">% This clears all Matlab objects created</span>
+<span class="n">clear</span> <span class="n">all</span>
+
+<span class="c">% and this clears all Cantera objects created</span>
+<span class="n">cleanup</span>
+
+<span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="c">%   end of tutorial 1</span>
+<span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tut2.html" title="tut2.m"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../examples.html" title="Index of Examples"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
+          <li><a href="../examples.html" >Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

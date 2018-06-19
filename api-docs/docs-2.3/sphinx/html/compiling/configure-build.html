@@ -1,0 +1,448 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Determine configuration options &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Software used by Cantera" href="dependencies.html" />
+    <link rel="prev" title="Downloading the Cantera source code" href="source-code.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="dependencies.html" title="Software used by Cantera"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="source-code.html" title="Downloading the Cantera source code"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Cantera Compilation Guide</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Determine configuration options</a><ul>
+<li><a class="reference internal" href="#common-options">Common Options</a></li>
+<li><a class="reference internal" href="#python-2-module-options">Python 2 Module Options</a></li>
+<li><a class="reference internal" href="#python-3-module-options">Python 3 Module Options</a></li>
+<li><a class="reference internal" href="#windows-only-options">Windows Only Options</a></li>
+<li><a class="reference internal" href="#matlab-toolbox-options">MATLAB Toolbox Options</a></li>
+<li><a class="reference internal" href="#fortran-module-options">Fortran Module Options</a></li>
+<li><a class="reference internal" href="#documentation-options">Documentation Options</a></li>
+<li><a class="reference internal" href="#less-common-options">Less Common Options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#build-commands">Build Commands</a></li>
+<li><a class="reference internal" href="#compile-cantera-test">Compile Cantera &amp; Test</a><ul>
+<li><a class="reference internal" href="#building-documentation">Building Documentation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="source-code.html"
+                        title="previous chapter">Downloading the Cantera source code</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dependencies.html"
+                        title="next chapter">Software used by Cantera</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/compiling/configure-build.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="determine-configuration-options">
+<span id="sec-determine-config"></span><h1>Determine configuration options<a class="headerlink" href="#determine-configuration-options" title="Permalink to this headline">¶</a></h1>
+<ul>
+<li><p class="first">Run <code class="docutils literal"><span class="pre">scons</span> <span class="pre">help</span></code> to see a list all configuration options for Cantera, or
+see <a class="reference internal" href="config-options.html#scons-config"><span class="std std-ref">Configuration Options</span></a>.</p>
+</li>
+<li><p class="first">Configuration options are specified as additional arguments to the <code class="docutils literal"><span class="pre">scons</span></code>
+command, e.g.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scons</span> <span class="n">command</span> <span class="n">option</span><span class="o">=</span><span class="n">value</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal"><span class="pre">scons</span></code> is the program that manages the build steps, and <code class="docutils literal"><span class="pre">command</span></code>
+is most commonly one of</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">build</span></code></li>
+<li><code class="docutils literal"><span class="pre">test</span></code></li>
+<li><code class="docutils literal"><span class="pre">clean</span></code></li>
+</ul>
+</div></blockquote>
+<p>Other commands are possible, and are explained in <a class="reference internal" href="#sec-build-commands"><span class="std std-ref">Build Commands</span></a>.</p>
+</li>
+<li><p class="first">SCons saves configuration options specified on the command line in the file
+<code class="docutils literal"><span class="pre">cantera.conf</span></code> in the root directory of the source tree, so generally it is
+not necessary to respecify configuration options when rebuilding Cantera. To
+unset a previously set configuration option, either remove the corresponding
+line from <code class="docutils literal"><span class="pre">cantera.conf</span></code> or use the syntax:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scons</span> <span class="n">command</span> <span class="n">option_name</span><span class="o">=</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Sometimes, changes in your environment can cause SCons’s configuration tests
+(e.g., checking for libraries or compiler capabilities) to unexpectedly fail.
+To force SCons to re-run these tests rather than trusting the cached results,
+run scons with the option <code class="docutils literal"><span class="pre">--config=force</span></code>.</p>
+</li>
+<li><p class="first">The following lists of options are not complete, they show only some commonly
+used options. The entire list of options can be found in <a class="reference internal" href="config-options.html#scons-config"><span class="std std-ref">Configuration Options</span></a>.</p>
+</li>
+</ul>
+<div class="section" id="common-options">
+<h2>Common Options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="config-options.html#blas-lapack-libs"><span class="std std-ref">blas_lapack_libs</span></a><ul>
+<li>On OS X, the Accelerate framework is automatically used to provide
+optimized versions of BLAS and LAPACK, so the <code class="docutils literal"><span class="pre">blas_lapack_libs</span></code>
+option should generally be left unspecified.</li>
+</ul>
+</li>
+<li><a class="reference internal" href="config-options.html#blas-lapack-dir"><span class="std std-ref">blas_lapack_dir</span></a></li>
+<li><a class="reference internal" href="config-options.html#boost-inc-dir"><span class="std std-ref">boost_inc_dir</span></a></li>
+<li><a class="reference internal" href="config-options.html#debug"><span class="std std-ref">debug</span></a></li>
+<li><a class="reference internal" href="config-options.html#optimize"><span class="std std-ref">optimize</span></a></li>
+<li><a class="reference internal" href="config-options.html#prefix"><span class="std std-ref">prefix</span></a></li>
+<li><a class="reference internal" href="config-options.html#sundials-include"><span class="std std-ref">sundials_include</span></a></li>
+<li><a class="reference internal" href="config-options.html#sundials-libdir"><span class="std std-ref">sundials_libdir</span></a></li>
+</ul>
+</div>
+<div class="section" id="python-2-module-options">
+<h2>Python 2 Module Options<a class="headerlink" href="#python-2-module-options" title="Permalink to this headline">¶</a></h2>
+<p>By default, SCons will attempt to build the Cython-based Python module for
+Python 2, if both Numpy and Cython are installed. The following options control
+how the Python 2 module is built:</p>
+<ul class="simple">
+<li><a class="reference internal" href="config-options.html#python-cmd"><span class="std std-ref">python_cmd</span></a></li>
+<li><a class="reference internal" href="config-options.html#python-package"><span class="std std-ref">python_package</span></a></li>
+<li><a class="reference internal" href="config-options.html#python-prefix"><span class="std std-ref">python_prefix</span></a></li>
+</ul>
+</div>
+<div class="section" id="python-3-module-options">
+<h2>Python 3 Module Options<a class="headerlink" href="#python-3-module-options" title="Permalink to this headline">¶</a></h2>
+<p>If SCons detects a Python 3 interpreter installed in a default location
+(i.e., <code class="docutils literal"><span class="pre">python3</span></code> is on the <code class="docutils literal"><span class="pre">PATH</span></code> environment variable) or
+<code class="docutils literal"><span class="pre">python3_package</span></code> is <code class="docutils literal"><span class="pre">y</span></code>, SCons will try to build the Python module
+for Python 3. The following SCons options control how the Python 3 module is
+built:</p>
+<ul class="simple">
+<li><a class="reference internal" href="config-options.html#python3-cmd"><span class="std std-ref">python3_cmd</span></a></li>
+<li><a class="reference internal" href="config-options.html#python3-package"><span class="std std-ref">python3_package</span></a></li>
+<li><a class="reference internal" href="config-options.html#python3-prefix"><span class="std std-ref">python3_prefix</span></a></li>
+</ul>
+<p>Note that even when building the Python 3 Cantera module, you should still use
+Python 2 with SCons, as SCons does not currently support Python 3.</p>
+</div>
+<div class="section" id="windows-only-options">
+<h2>Windows Only Options<a class="headerlink" href="#windows-only-options" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <code class="docutils literal"><span class="pre">cantera.conf</span></code> file uses the backslash character <code class="docutils literal"><span class="pre">\</span></code> as an escape
+character. When modifying this file, backslashes in paths need to be escaped
+like this: <code class="docutils literal"><span class="pre">boost_inc_dir</span> <span class="pre">=</span> <span class="pre">'C:\\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\\boost\\include'</span></code>
+This does not apply to paths specified on the command line. Alternatively,
+you can use forward slashes (<code class="docutils literal"><span class="pre">/</span></code>) in paths.</p>
+</div>
+<ul>
+<li><p class="first">In Windows there aren’t any proper default locations for many of the packages
+that Cantera depends on, so you will need to specify these paths explicitly.</p>
+</li>
+<li><p class="first">Remember to put double quotes around any paths with spaces in them, e.g.
+<code class="docutils literal"><span class="pre">&quot;C:\Program</span> <span class="pre">Files&quot;</span></code>.</p>
+</li>
+<li><p class="first">By default, SCons attempts to use the same architecture as the copy of Python
+that is running SCons, and the most recent installed version of the Visual
+Studio compiler. If you aren’t building the Python module, you can override
+this with the configuration options <code class="docutils literal"><span class="pre">target_arch</span></code> and <code class="docutils literal"><span class="pre">msvc_version</span></code>.</p>
+</li>
+<li><p class="first">To compile with MinGW, specify the <a class="reference internal" href="config-options.html#toolchain"><span class="std std-ref">toolchain</span></a> option:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">toolchain</span><span class="o">=</span><span class="n">mingw</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="config-options.html#msvc-version"><span class="std std-ref">msvc_version</span></a></p>
+</li>
+<li><p class="first"><a class="reference internal" href="config-options.html#target-arch"><span class="std std-ref">target_arch</span></a></p>
+</li>
+<li><p class="first"><a class="reference internal" href="config-options.html#toolchain"><span class="std std-ref">toolchain</span></a></p>
+</li>
+</ul>
+</div>
+<div class="section" id="matlab-toolbox-options">
+<h2>MATLAB Toolbox Options<a class="headerlink" href="#matlab-toolbox-options" title="Permalink to this headline">¶</a></h2>
+<p>Building the MATLAB toolbox requires an installed copy of MATLAB, and the path
+to the directory where MATLAB is installed must be specified using the following
+option:</p>
+<ul class="simple">
+<li><a class="reference internal" href="config-options.html#matlab-path"><span class="std std-ref">matlab_path</span></a></li>
+</ul>
+</div>
+<div class="section" id="fortran-module-options">
+<h2>Fortran Module Options<a class="headerlink" href="#fortran-module-options" title="Permalink to this headline">¶</a></h2>
+<p>Building the Fortran module requires a compatible Fortran comiler. SCons will
+attempt to find a compatible compiler by default in the <code class="docutils literal"><span class="pre">PATH</span></code> environment
+variable. The following options control how the Fortran module is built:</p>
+<ul class="simple">
+<li><a class="reference internal" href="config-options.html#f90-interface"><span class="std std-ref">f90_interface</span></a></li>
+<li><a class="reference internal" href="config-options.html#fortran"><span class="std std-ref">FORTRAN</span></a></li>
+</ul>
+</div>
+<div class="section" id="documentation-options">
+<h2>Documentation Options<a class="headerlink" href="#documentation-options" title="Permalink to this headline">¶</a></h2>
+<p>The following options control if the documentation is built:</p>
+<ul class="simple">
+<li><a class="reference internal" href="config-options.html#doxygen-docs"><span class="std std-ref">doxygen_docs</span></a></li>
+<li><a class="reference internal" href="config-options.html#sphinx-docs"><span class="std std-ref">sphinx_docs</span></a></li>
+</ul>
+</div>
+<div class="section" id="less-common-options">
+<h2>Less Common Options<a class="headerlink" href="#less-common-options" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="config-options.html#cc"><span class="std std-ref">CC</span></a></li>
+<li><a class="reference internal" href="config-options.html#cxx"><span class="std std-ref">CXX</span></a></li>
+<li><a class="reference internal" href="config-options.html#env-vars"><span class="std std-ref">env_vars</span></a></li>
+<li><a class="reference internal" href="config-options.html#layout"><span class="std std-ref">layout</span></a></li>
+<li><a class="reference internal" href="config-options.html#verbose"><span class="std std-ref">VERBOSE</span></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="build-commands">
+<span id="sec-build-commands"></span><h1>Build Commands<a class="headerlink" href="#build-commands" title="Permalink to this headline">¶</a></h1>
+<p>The following options are possible as commands to SCons, i.e., the first
+argument after <code class="docutils literal"><span class="pre">scons</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scons</span> <span class="n">command</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">help</span></code></dt>
+<dd>Print a description of user-specifiable options.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">build</span></code></dt>
+<dd>Compile Cantera and the language interfaces using
+default options.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">clean</span></code></dt>
+<dd>Delete files created while building Cantera.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">[sudo]</span> <span class="pre">scons</span> <span class="pre">install</span></code></dt>
+<dd>Install Cantera.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">[sudo]</span> <span class="pre">scons</span> <span class="pre">uninstall</span></code></dt>
+<dd>Uninstall Cantera.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">test</span></code></dt>
+<dd>Run all tests which did not previously pass or for which the
+results may have changed.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">test-reset</span></code></dt>
+<dd>Reset the passing status of all tests.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">test-clean</span></code></dt>
+<dd>Delete files created while running the tests.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">test-help</span></code></dt>
+<dd>List available tests.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">test-NAME</span></code></dt>
+<dd>Run the test named “NAME”.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">&lt;command&gt;</span> <span class="pre">dump</span></code></dt>
+<dd>Dump the state of the SCons environment to the
+screen instead of doing <code class="docutils literal"><span class="pre">&lt;command&gt;</span></code>, e.g.
+<code class="docutils literal"><span class="pre">scons</span> <span class="pre">build</span> <span class="pre">dump</span></code>. For debugging purposes.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">samples</span></code></dt>
+<dd>Compile the C++ and Fortran samples.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">msi</span></code></dt>
+<dd>Build a Windows installer (.msi) for Cantera.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">sphinx</span></code></dt>
+<dd>Build the Sphinx documentation</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">scons</span> <span class="pre">doxygen</span></code></dt>
+<dd>Build the Doxygen documentation</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="compile-cantera-test">
+<h1>Compile Cantera &amp; Test<a class="headerlink" href="#compile-cantera-test" title="Permalink to this headline">¶</a></h1>
+<ul>
+<li><p class="first">Run SCons with the list of desired configuration options:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scons</span> <span class="n">build</span> <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If Cantera compiles successfully, you should see a message that looks like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*******************************************************</span>
+<span class="n">Compilation</span> <span class="n">completed</span> <span class="n">successfully</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">To</span> <span class="n">run</span> <span class="n">the</span> <span class="n">test</span> <span class="n">suite</span><span class="p">,</span> <span class="nb">type</span> <span class="s1">&#39;scons test&#39;</span><span class="o">.</span>
+<span class="o">-</span> <span class="n">To</span> <span class="n">install</span><span class="p">,</span> <span class="nb">type</span> <span class="s1">&#39;[sudo] scons install&#39;</span><span class="o">.</span>
+<span class="o">*******************************************************</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If you do not see this message, check the output for errors to see what went
+wrong.</p>
+</li>
+<li><p class="first">Cantera has a series of tests that can be run with the command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scons</span> <span class="n">test</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">When the tests finish, you should see a summary indicating the number of
+tests that passed and failed.</p>
+</li>
+<li><p class="first">If you have tests that fail, try looking at the following to determine the
+source of the error:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Messages printed to the console while running <code class="docutils literal"><span class="pre">scons</span> <span class="pre">test</span></code></li>
+<li>Output files generated by the tests</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="section" id="building-documentation">
+<h2>Building Documentation<a class="headerlink" href="#building-documentation" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">To build the Cantera HTML documentation, run the commands:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scons</span> <span class="n">doxygen</span>
+<span class="n">scons</span> <span class="n">sphinx</span>
+</pre></div>
+</div>
+<p>or append the options <code class="docutils literal"><span class="pre">sphinx_docs=y</span></code> and <code class="docutils literal"><span class="pre">doxygen_docs=y</span></code> to the build
+command, e.g.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scons</span> <span class="n">build</span> <span class="n">doxygen_docs</span><span class="o">=</span><span class="n">y</span> <span class="n">sphinx_docs</span><span class="o">=</span><span class="n">y</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="dependencies.html" title="Software used by Cantera"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="source-code.html" title="Downloading the Cantera source code"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Cantera Compilation Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

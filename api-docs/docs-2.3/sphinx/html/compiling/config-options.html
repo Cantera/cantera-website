@@ -1,0 +1,819 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Configuration Options &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Language Interfaces" href="../language-interfaces.html" />
+    <link rel="prev" title="Special Compiling Cases" href="special-cases.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../language-interfaces.html" title="Language Interfaces"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="special-cases.html" title="Special Compiling Cases"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Cantera Compilation Guide</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Configuration Options</a><ul>
+<li><a class="reference internal" href="#options-list">Options List</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="special-cases.html"
+                        title="previous chapter">Special Compiling Cases</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../language-interfaces.html"
+                        title="next chapter">Language Interfaces</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/compiling/config-options.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configuration-options">
+<span id="scons-config"></span><h1>Configuration Options<a class="headerlink" href="#configuration-options" title="Permalink to this headline">¶</a></h1>
+<p>This document lists the options available for compiling Cantera with SCons. The
+default values are operating-system dependent. To see the defaults for your
+current operating system, run the command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scons</span> <span class="n">help</span>
+</pre></div>
+</div>
+<p>from the command prompt.</p>
+<p>The following options can be passed to SCons to customize the Cantera
+build process. They should be given in the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scons</span> <span class="n">build</span> <span class="n">option1</span><span class="o">=</span><span class="n">value1</span> <span class="n">option2</span><span class="o">=</span><span class="n">value2</span>
+</pre></div>
+</div>
+<p>Variables set in this way will be stored in the <code class="docutils literal"><span class="pre">cantera.conf</span></code> file and reused
+automatically on subsequent invocations of SCons. Alternatively, the
+configuration options can be entered directly into <code class="docutils literal"><span class="pre">cantera.conf</span></code> before
+running <code class="docutils literal"><span class="pre">scons</span> <span class="pre">build</span></code>. The format of this file is:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">option1</span> <span class="o">=</span> <span class="s1">&#39;value1&#39;</span>
+<span class="n">option2</span> <span class="o">=</span> <span class="s1">&#39;value2&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="options-list">
+<h2>Options List<a class="headerlink" href="#options-list" title="Permalink to this headline">¶</a></h2>
+<ul class="simple" id="msvc-version">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">msvc_version</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Version of Visual Studio to use. The default is the newest
+installed version. Specify <code class="docutils literal"><span class="pre">12.0</span></code> for Visual Studio 2013 or <code class="docutils literal"><span class="pre">14.0</span></code>
+for Visual Studio 2015. Windows MSVC only.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="target-arch">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">target_arch</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Target architecture. The default is the same architecture as the
+installed version of Python. Windows only.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="toolchain">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">toolchain</span></code>: [ <code class="docutils literal"><span class="pre">msvc</span></code> | <code class="docutils literal"><span class="pre">mingw</span></code> | <code class="docutils literal"><span class="pre">intel</span></code> ]</dt>
+<dd>The preferred compiler toolchain. Windows only.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'msvc'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="cxx">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">CXX</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>The C++ compiler to use.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="cc">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">CC</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>The C compiler to use. This is only used to compile CVODE.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="prefix">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">prefix</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/prefix</span></code> ]</dt>
+<dd>Set this to the directory where Cantera should be installed.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="python-package">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">python_package</span></code>: [ <code class="docutils literal"><span class="pre">new</span></code> | <code class="docutils literal"><span class="pre">full</span></code> | <code class="docutils literal"><span class="pre">minimal</span></code> | <code class="docutils literal"><span class="pre">none</span></code> | <code class="docutils literal"><span class="pre">default</span></code> ]</dt>
+<dd>If you plan to work in Python 2, then you need the <code class="docutils literal"><span class="pre">full</span></code> Cantera Python
+package. If, on the other hand, you will only use Cantera from some
+other language (e.g. MATLAB or Fortran 90/95) and only need Python
+to process CTI files, then you only need a <code class="docutils literal"><span class="pre">minimal</span></code> subset of the
+package and Cython and NumPy are not necessary. The <code class="docutils literal"><span class="pre">none</span></code> option
+doesn’t install any components of the Python interface. The default
+behavior is to build the full Python 2 module if the required
+prerequisites (NumPy and Cython) are installed.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'default'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="python-cmd">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">python_cmd</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/python_cmd</span></code> ]</dt>
+<dd>Cantera needs to know where to find the Python interpreter. If the
+<code class="docutils literal"><span class="pre">python_cmd</span></code> option is not set, then the configuration
+process will use the same Python interpreter being used by SCons.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="python-array-home">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">python_array_home</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/python_array_home</span></code> ]</dt>
+<dd>If NumPy was installed using the <code class="docutils literal"><span class="pre">--home</span></code> option, set this to the home
+directory for NumPy for Python 2.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="python-prefix">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">python_prefix</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/python_prefix</span></code> ]</dt>
+<dd>Use this option if you want to install the Cantera Python 2 package to
+an alternate location. On Unix-like systems, the default is the same
+as the <code class="docutils literal"><span class="pre">prefix</span></code> option. If the <code class="docutils literal"><span class="pre">python_prefix</span></code> option is set to
+the empty string or the <code class="docutils literal"><span class="pre">prefix</span></code> option is not set, then the package
+will be installed to the system default <code class="docutils literal"><span class="pre">site-packages</span></code> directory.
+To install to the current user’s <code class="docutils literal"><span class="pre">site-packages</span></code> directory, use
+<code class="docutils literal"><span class="pre">python_prefix=USER</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="python3-package">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">python3_package</span></code>: [ <code class="docutils literal"><span class="pre">y</span></code> | <code class="docutils literal"><span class="pre">n</span></code> | <code class="docutils literal"><span class="pre">default</span></code> ]</dt>
+<dd>Controls whether or not the Python 3 module will be built. By
+default, the module will be built if the Python 3 interpreter
+and the required dependencies (NumPy for Python 3 and Cython
+for the version of Python for which SCons is installed) can be
+found.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'default'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="python3-cmd">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">python3_cmd</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/python3_cmd</span></code> ]</dt>
+<dd>The path to the Python 3 interpreter. The default is
+<code class="docutils literal"><span class="pre">python3</span></code>; if this executable cannot be found, this
+value must be specified to build the Python 3 module.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'python3'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="python3-array-home">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">python3_array_home</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/python3_array_home</span></code> ]</dt>
+<dd>If NumPy was installed using the <code class="docutils literal"><span class="pre">--home</span></code> option, set this to the home
+directory for NumPy for Python 3.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="python3-prefix">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">python3_prefix</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/python3_prefix</span></code> ]</dt>
+<dd>Use this option if you want to install the Cantera Python 3 package to
+an alternate location. On Unix-like systems, the default is the same
+as the <code class="docutils literal"><span class="pre">prefix</span></code> option. If the <code class="docutils literal"><span class="pre">python_prefix</span></code> option is set to
+the empty string or the <code class="docutils literal"><span class="pre">prefix</span></code> option is not set, then the package
+will be installed to the system default <code class="docutils literal"><span class="pre">site-packages</span></code> directory.
+To install to the current user’s <code class="docutils literal"><span class="pre">site-packages</span></code> directory, use
+<code class="docutils literal"><span class="pre">python_prefix=USER</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="matlab-toolbox">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">matlab_toolbox</span></code>: [ <code class="docutils literal"><span class="pre">y</span></code> | <code class="docutils literal"><span class="pre">n</span></code> | <code class="docutils literal"><span class="pre">default</span></code> ]</dt>
+<dd>This variable controls whether the MATLAB toolbox will be built. If
+set to <code class="docutils literal"><span class="pre">y</span></code>, you will also need to set the value of the <code class="docutils literal"><span class="pre">matlab_path</span></code>
+variable. If <code class="docutils literal"><span class="pre">matlab_toolbox</span></code> is set to <code class="docutils literal"><span class="pre">default</span></code>, the MATLAB toolbox
+will be built if <code class="docutils literal"><span class="pre">matlab_path</span></code> is set.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'default'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="matlab-path">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">matlab_path</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/matlab_path</span></code> ]</dt>
+<dd>Path to the MATLAB install directory. This should be the directory
+containing the <code class="docutils literal"><span class="pre">extern</span></code>, <code class="docutils literal"><span class="pre">bin</span></code>, etc. subdirectories. Typical values
+are: <code class="docutils literal"><span class="pre">C:/Program</span> <span class="pre">Files/MATLAB/R2011a</span></code> on Windows,
+<code class="docutils literal"><span class="pre">/Applications/MATLAB_R2011a.app</span></code> on OS X, or <code class="docutils literal"><span class="pre">/opt/MATLAB/R2011a</span></code>
+on Linux.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="f90-interface">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">f90_interface</span></code>: [ <code class="docutils literal"><span class="pre">y</span></code> | <code class="docutils literal"><span class="pre">n</span></code> | <code class="docutils literal"><span class="pre">default</span></code> ]</dt>
+<dd>This variable controls whether the Fortran 90/95 interface will be
+built. If set to <code class="docutils literal"><span class="pre">default</span></code>, the builder will look for a compatible
+Fortran compiler in the <code class="docutils literal"><span class="pre">PATH</span></code> environment variable, and compile
+the Fortran 90 interface if one is found.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'default'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="fortran">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">FORTRAN</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/FORTRAN</span></code> ]</dt>
+<dd>The Fortran (90) compiler. If unspecified, the builder will look for
+a compatible compiler (gfortran, ifort, g95) in the <code class="docutils literal"><span class="pre">PATH</span></code> environment
+variable. Used only for compiling the Fortran 90 interface.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="fortranflags">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">FORTRANFLAGS</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Compilation options for the Fortran (90) compiler.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'-O3'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="coverage">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">coverage</span></code>: [ <code class="docutils literal"><span class="pre">yes</span></code> | <code class="docutils literal"><span class="pre">no</span></code> ]</dt>
+<dd>Enable collection of code coverage information with gcov. Available
+only when compiling with gcc.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'no'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="doxygen-docs">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">doxygen_docs</span></code>: [ <code class="docutils literal"><span class="pre">yes</span></code> | <code class="docutils literal"><span class="pre">no</span></code> ]</dt>
+<dd>Build HTML documentation for the C++ interface using Doxygen.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'no'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="sphinx-docs">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">sphinx_docs</span></code>: [ <code class="docutils literal"><span class="pre">yes</span></code> | <code class="docutils literal"><span class="pre">no</span></code> ]</dt>
+<dd>Build HTML documentation for Cantera using Sphinx.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'no'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="sphinx-cmd">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">sphinx_cmd</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/sphinx_cmd</span></code> ]</dt>
+<dd>Command to use for building the Sphinx documentation.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'sphinx-build'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="system-eigen">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">system_eigen</span></code>: [ <code class="docutils literal"><span class="pre">default</span></code> | <code class="docutils literal"><span class="pre">y</span></code> | <code class="docutils literal"><span class="pre">n</span></code> ]</dt>
+<dd>Select whether to use Eigen from a system installation (<code class="docutils literal"><span class="pre">y</span></code>), from a
+Git submodule (<code class="docutils literal"><span class="pre">n</span></code>), or to decide automatically (<code class="docutils literal"><span class="pre">default</span></code>). If
+Eigen is not installed directly into a system include directory,
+e.g. it is installed in <code class="docutils literal"><span class="pre">/opt/include/eigen3/Eigen</span></code>, then you will
+need to add <code class="docutils literal"><span class="pre">/opt/include/eigen3</span></code> to the <code class="docutils literal"><span class="pre">extra_inc_dirs</span></code> option.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'default'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="system-fmt">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">system_fmt</span></code>: [ <code class="docutils literal"><span class="pre">default</span></code> | <code class="docutils literal"><span class="pre">y</span></code> | <code class="docutils literal"><span class="pre">n</span></code> ]</dt>
+<dd>Select whether to use the fmt library from a system installation
+(<code class="docutils literal"><span class="pre">y</span></code>), from a Git submodule (<code class="docutils literal"><span class="pre">n</span></code>), or to decide automatically
+(<code class="docutils literal"><span class="pre">default</span></code>).<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'default'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="system-sundials">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">system_sundials</span></code>: [ <code class="docutils literal"><span class="pre">default</span></code> | <code class="docutils literal"><span class="pre">y</span></code> | <code class="docutils literal"><span class="pre">n</span></code> ]</dt>
+<dd>Select whether to use SUNDIALS from a system installation (<code class="docutils literal"><span class="pre">y</span></code>),
+from a Git submodule (<code class="docutils literal"><span class="pre">n</span></code>), or to decide automatically (<code class="docutils literal"><span class="pre">default</span></code>).
+Specifying <code class="docutils literal"><span class="pre">sundials_include</span></code> or <code class="docutils literal"><span class="pre">sundials_libdir</span></code> changes the
+default to <code class="docutils literal"><span class="pre">y</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'default'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="sundials-include">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">sundials_include</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/sundials_include</span></code> ]</dt>
+<dd>The directory where the SUNDIALS header files are installed. This
+should be the directory that contains the <code class="docutils literal"><span class="pre">cvodes</span></code>, <code class="docutils literal"><span class="pre">nvector</span></code>, etc.
+subdirectories. Not needed if the headers are installed in a
+standard location, e.g., <code class="docutils literal"><span class="pre">/usr/include</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="sundials-libdir">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">sundials_libdir</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/sundials_libdir</span></code> ]</dt>
+<dd>The directory where the SUNDIALS static libraries are installed. Not
+needed if the libraries are installed in a standard location, e.g.,
+<code class="docutils literal"><span class="pre">/usr/lib</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="blas-lapack-libs">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">blas_lapack_libs</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Cantera can use BLAS and LAPACK libraries available on your system
+if you have optimized versions available (e.g., Intel MKL).
+Otherwise, Cantera will use Eigen for linear algebra support. To use
+BLAS and LAPACK, set <code class="docutils literal"><span class="pre">blas_lapack_libs</span></code> to the the list of libraries
+that should be passed to the linker, separated by commas, e.g.,
+<code class="docutils literal"><span class="pre">&quot;lapack,blas&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;lapack,f77blas,cblas,atlas&quot;</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="blas-lapack-dir">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">blas_lapack_dir</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/blas_lapack_dir</span></code> ]</dt>
+<dd>Directory containing the libraries specified by <code class="docutils literal"><span class="pre">blas_lapack_libs</span></code>. Not
+needed if the libraries are installed in a standard location, e.g.
+<code class="docutils literal"><span class="pre">/usr/lib</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="lapack-names">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">lapack_names</span></code>: [ <code class="docutils literal"><span class="pre">lower</span></code> | <code class="docutils literal"><span class="pre">upper</span></code> ]</dt>
+<dd>Set depending on whether the procedure names in the specified
+libraries are lowercase or uppercase. If you don’t know, run <code class="docutils literal"><span class="pre">nm</span></code> on
+the library file (e.g., <code class="docutils literal"><span class="pre">nm</span> <span class="pre">libblas.a</span></code>).<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'lower'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="lapack-ftn-trailing-underscore">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">lapack_ftn_trailing_underscore</span></code>: [ <code class="docutils literal"><span class="pre">yes</span></code> | <code class="docutils literal"><span class="pre">no</span></code> ]</dt>
+<dd>Controls whether the LAPACK functions have a trailing underscore
+in the Fortran libraries.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'yes'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="lapack-ftn-string-len-at-end">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">lapack_ftn_string_len_at_end</span></code>: [ <code class="docutils literal"><span class="pre">yes</span></code> | <code class="docutils literal"><span class="pre">no</span></code> ]</dt>
+<dd>Controls whether the LAPACK functions have the string length
+argument at the end of the argument list (<code class="docutils literal"><span class="pre">yes</span></code>) or after
+each argument (<code class="docutils literal"><span class="pre">no</span></code>) in the Fortran libraries.
+- default: ‘yes’</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="system-googletest">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">system_googletest</span></code>: [ <code class="docutils literal"><span class="pre">default</span></code> | <code class="docutils literal"><span class="pre">y</span></code> | <code class="docutils literal"><span class="pre">n</span></code> ]</dt>
+<dd>Select whether to use gtest from system installation (<code class="docutils literal"><span class="pre">y</span></code>), from a
+Git submodule (<code class="docutils literal"><span class="pre">n</span></code>), or to decide automatically (<code class="docutils literal"><span class="pre">default</span></code>).
+- default: ‘default’</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="env-vars">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">env_vars</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Environment variables to propagate through to SCons. Either the
+string <code class="docutils literal"><span class="pre">all</span></code> or a comma separated list of variable names, e.g.
+<code class="docutils literal"><span class="pre">LD_LIBRARY_PATH,HOME</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'LD_LIBRARY_PATH,PYTHONPATH'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="use-pch">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">use_pch</span></code>: [ <code class="docutils literal"><span class="pre">yes</span></code> | <code class="docutils literal"><span class="pre">no</span></code> ]</dt>
+<dd>Use a precompiled-header to speed up compilation<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'yes'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="cxx-flags">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">cxx_flags</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Compiler flags passed to the C++ compiler only. Separate multiple
+options with spaces, e.g., <code class="docutils literal"><span class="pre">cxx_flags='-g</span> <span class="pre">-Wextra</span> <span class="pre">-O3</span> <span class="pre">--std=c++11'</span></code><ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="cc-flags">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">cc_flags</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Compiler flags passed to both the C and C++ compilers, regardless of
+optimization level<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="thread-flags">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">thread_flags</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Compiler and linker flags for POSIX multithreading support.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="optimize">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">optimize</span></code>: [ <code class="docutils literal"><span class="pre">yes</span></code> | <code class="docutils literal"><span class="pre">no</span></code> ]</dt>
+<dd>Enable extra compiler optimizations specified by the
+<code class="docutils literal"><span class="pre">optimize_flags</span></code> variable, instead of the flags specified by the
+<code class="docutils literal"><span class="pre">no_optimize_flags</span></code> variable.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'yes'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="optimize-flags">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">optimize_flags</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Additional compiler flags passed to the C/C++ compiler when
+<code class="docutils literal"><span class="pre">optimize=yes</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="no-optimize-flags">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">no_optimize_flags</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Additional compiler flags passed to the C/C++ compiler when
+<code class="docutils literal"><span class="pre">optimize=no</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="debug">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">debug</span></code>: [ <code class="docutils literal"><span class="pre">yes</span></code> | <code class="docutils literal"><span class="pre">no</span></code> ]</dt>
+<dd>Enable compiler debugging symbols.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'yes'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="debug-flags">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">debug_flags</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Additional compiler flags passed to the C/C++ compiler when
+<code class="docutils literal"><span class="pre">debug=yes</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="no-debug-flags">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">no_debug_flags</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Additional compiler flags passed to the C/C++ compiler when
+<code class="docutils literal"><span class="pre">debug=no</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="debug-linker-flags">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">debug_linker_flags</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Additional options passed to the linker when <code class="docutils literal"><span class="pre">debug=yes</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="no-debug-linker-flags">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">no_debug_linker_flags</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Additional options passed to the linker when <code class="docutils literal"><span class="pre">debug=no</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="warning-flags">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">warning_flags</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Additional compiler flags passed to the C/C++ compiler to enable
+extra warnings. Used only when compiling source code that is part of
+Cantera (e.g. excluding code in the ‘ext’ directory).<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="extra-inc-dirs">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">extra_inc_dirs</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Additional directories to search for header files (colon-separated
+list).<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="extra-lib-dirs">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">extra_lib_dirs</span></code>: [ <code class="docutils literal"><span class="pre">string</span></code> ]</dt>
+<dd>Additional directories to search for libraries (colon-separated
+list).<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="boost-inc-dir">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">boost_inc_dir</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/boost_inc_dir</span></code> ]</dt>
+<dd>Location of the Boost header files. Not needed if the headers are
+installed in a standard location, e.g. <code class="docutils literal"><span class="pre">/usr/include</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="stage-dir">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">stage_dir</span></code>: [ <code class="docutils literal"><span class="pre">/path/to/stage_dir</span></code> ]</dt>
+<dd>Directory relative to the Cantera source directory to be used as a
+staging area for building e.g., a Debian package. If specified,
+<code class="docutils literal"><span class="pre">scons</span> <span class="pre">install</span></code> will install files to <code class="docutils literal"><span class="pre">stage_dir/prefix/...</span></code>.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">''</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="verbose">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">VERBOSE</span></code>: [ <code class="docutils literal"><span class="pre">yes</span></code> | <code class="docutils literal"><span class="pre">no</span></code> ]</dt>
+<dd>Create verbose output about what SCons is doing.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'no'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="renamed-shared-libraries">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">renamed_shared_libraries</span></code>: [ <code class="docutils literal"><span class="pre">yes</span></code> | <code class="docutils literal"><span class="pre">no</span></code> ]</dt>
+<dd>If this option is turned on, the shared libraries that are created
+will be renamed to have a <code class="docutils literal"><span class="pre">_shared</span></code> extension added to their base
+name. If not, the base names will be the same as the static
+libraries. In some cases this simplifies subsequent linking
+environments with static libraries and avoids a bug with using
+valgrind with the <code class="docutils literal"><span class="pre">-static</span></code> linking flag.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'yes'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="versioned-shared-library">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">versioned_shared_library</span></code>: [ <code class="docutils literal"><span class="pre">yes</span></code> | <code class="docutils literal"><span class="pre">no</span></code> ]</dt>
+<dd>If enabled, create a versioned shared library, with symlinks to the
+more generic library name, e.g. <code class="docutils literal"><span class="pre">libcantera_shared.so.2.3.0</span></code> as the
+actual library and <code class="docutils literal"><span class="pre">libcantera_shared.so</span></code> and <code class="docutils literal"><span class="pre">libcantera_shared.so.2</span></code>
+as symlinks.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'no'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="layout">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">layout</span></code>: [ <code class="docutils literal"><span class="pre">standard</span></code> | <code class="docutils literal"><span class="pre">compact</span></code> | <code class="docutils literal"><span class="pre">debian</span></code> ]</dt>
+<dd>The layout of the directory structure. ‘standard’ installs files to
+several subdirectories under ‘prefix’, e.g. $prefix/bin,
+$prefix/include/cantera, $prefix/lib. This layout is best used in
+conjunction with ‘prefix’=’/usr/local’. ‘compact’ puts all installed
+files in the subdirectory defined by ‘prefix’. This layout is best
+with a prefix like ‘/opt/cantera’. ‘debian’ installs to the
+stage directory in a layout used for generating Debian packages.<ul class="last">
+<li>default: <code class="docutils literal"><span class="pre">'standard'</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../language-interfaces.html" title="Language Interfaces"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="special-cases.html" title="Special Compiling Cases"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Cantera Compilation Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

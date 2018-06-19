@@ -1,0 +1,6 @@
+.. _py-example-flame_fixed_T.py:
+
+flame_fixed_T.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/onedim/flame_fixed_T.py

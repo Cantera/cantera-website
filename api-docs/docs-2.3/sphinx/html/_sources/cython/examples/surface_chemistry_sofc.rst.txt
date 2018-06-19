@@ -1,0 +1,8 @@
+:orphan:
+
+.. _py-example-sofc.py:
+
+sofc.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/surface_chemistry/sofc.py

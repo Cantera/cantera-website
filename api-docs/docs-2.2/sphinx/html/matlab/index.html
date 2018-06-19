@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Matlab Interface User’s Guide &mdash; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../index.html" />
+    <link rel="next" title="Tutorial: Working with input files" href="input-tutorial.html" />
+    <link rel="prev" title="sofc.py" href="../cython/examples/surface_chemistry_sofc.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="input-tutorial.html" title="Tutorial: Working with input files"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../cython/examples/surface_chemistry_sofc.html" title="sofc.py"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../cython/examples/surface_chemistry_sofc.html"
+                        title="previous chapter">sofc.py</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="input-tutorial.html"
+                        title="next chapter">Tutorial: Working with input files</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/matlab/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="matlab-interface-user-s-guide">
+<h1>Matlab Interface User&#8217;s Guide<a class="headerlink" href="#matlab-interface-user-s-guide" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="input-tutorial.html">Tutorial: Working with input files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input-tutorial.html#cti-files">CTI files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input-tutorial.html#cti-files-distributed-with-cantera">CTI files distributed with Cantera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input-tutorial.html#importing-multiple-phases-or-interfaces">Importing multiple phases or interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input-tutorial.html#converting-ck-format-files">Converting CK-format files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code-docs/importing.html">Importing Phase Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/importing.html#solution">Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/importing.html#mixture">Mixture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code-docs/interface.html">Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/interface.html#interface">Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code-docs/thermodynamics.html">Thermodynamic Properties</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/thermodynamics.html#thermophase">ThermoPhase</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code-docs/kinetics.html">Chemical Kinetics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/kinetics.html#kinetics">Kinetics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code-docs/transport.html">Transport Properties</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/transport.html#transport">Transport</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code-docs/zero-dim.html">Zero-Dimensional Reactor Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/zero-dim.html#func">Func</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/zero-dim.html#reactor">Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/zero-dim.html#reactornet">ReactorNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/zero-dim.html#flowdevice">FlowDevice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/zero-dim.html#wall">Wall</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code-docs/one-dim.html">One-Dimensional Reacting Flows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/one-dim.html#domain1d">Domain1D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/one-dim.html#stack">Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code-docs/data.html">Built-In Thermochemical Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/data.html#data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code-docs/utilities.html">Utility Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/utilities.html#utilities">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-docs/utilities.html#xml-node">XML_Node</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Index of Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="input-tutorial.html" title="Tutorial: Working with input files"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../cython/examples/surface_chemistry_sofc.html" title="sofc.py"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

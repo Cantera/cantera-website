@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>reactor1.m &mdash; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../../index.html" />
+    <link rel="up" title="Index of Examples" href="../examples.html" />
+    <link rel="next" title="reactor2.m" href="reactor2.html" />
+    <link rel="prev" title="rankine.m" href="rankine.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="reactor2.html" title="reactor2.m"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rankine.html" title="rankine.m"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
+          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rankine.html"
+                        title="previous chapter">rankine.m</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="reactor2.html"
+                        title="next chapter">reactor2.m</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/matlab/examples/reactor1.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="reactor1-m">
+<span id="matlab-example-reactor1-m"></span><h1>reactor1.m<a class="headerlink" href="#reactor1-m" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-matlab"><div class="highlight"><pre><span class="k">function</span><span class="w"> </span><span class="nf">reactor1</span><span class="p">(</span>g<span class="p">)</span><span class="w"></span>
+<span class="c">% REACTOR1 Zero-dimensional kinetics: adiabatic, constant pressure.</span>
+<span class="c">%</span>
+<span class="c">%    &gt;&gt;&gt;&gt;  For a simpler way to carry out a constant-pressure simulation, </span>
+<span class="c">%    see example reactor3.m &lt;&lt;&lt;&lt;&lt;</span>
+<span class="c">%</span>
+<span class="c">%    This example illustrates how to use class &#39;Reactor&#39; for</span>
+<span class="c">%    zero-dimensional kinetics simulations. Here the parameters are</span>
+<span class="c">%    set so that the reactor is adiabatic and very close to constant</span>
+<span class="c">%    pressure.</span>
+<span class="c">%</span>
+
+<span class="n">help</span> <span class="n">reactor1</span>
+
+<span class="k">if</span> <span class="n">nargin</span> <span class="o">==</span> <span class="mi">1</span>
+   <span class="n">gas</span> <span class="p">=</span> <span class="n">g</span><span class="p">;</span>
+<span class="k">else</span>
+   <span class="n">gas</span> <span class="p">=</span> <span class="n">GRI30</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="n">nsp</span> <span class="p">=</span> <span class="n">nSpecies</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
+
+<span class="n">P</span> <span class="p">=</span> <span class="n">oneatm</span>
+<span class="c">% set the initial conditions</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">&#39;T&#39;</span><span class="p">,</span><span class="mf">1001.0</span><span class="p">,</span><span class="s">&#39;P&#39;</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">,</span><span class="s">&#39;H2:2,O2:1,N2:4&#39;</span><span class="p">);</span>
+
+<span class="c">% create a reactor, and insert the gas</span>
+<span class="n">r</span> <span class="p">=</span> <span class="n">IdealGasReactor</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
+
+<span class="c">% create a reservoir to represent the environment</span>
+<span class="n">a</span> <span class="p">=</span> <span class="n">IdealGasMix</span><span class="p">(</span><span class="s">&#39;air.cti&#39;</span><span class="p">);</span>
+<span class="n">set</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="s">&#39;P&#39;</span><span class="p">,</span><span class="n">P</span><span class="p">)</span>
+<span class="n">env</span> <span class="p">=</span> <span class="n">Reservoir</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+
+<span class="c">% Define a wall between the reactor and the environment and</span>
+<span class="c">% make it flexible, so that the pressure in the reactor is held</span>
+<span class="c">% at the environment pressure.</span>
+<span class="n">w</span> <span class="p">=</span> <span class="n">Wall</span><span class="p">;</span>
+<span class="n">install</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">env</span><span class="p">);</span>
+
+<span class="c">% set expansion parameter. dV/dt = KA(P_1 - P_2)</span>
+<span class="n">setExpansionRateCoeff</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mf">1.0e6</span><span class="p">);</span>
+
+<span class="c">% set wall area</span>
+<span class="n">setArea</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+
+<span class="c">% create a reactor network and insert the reactor:</span>
+<span class="n">network</span> <span class="p">=</span> <span class="n">ReactorNet</span><span class="p">({</span><span class="n">r</span><span class="p">});</span>
+
+<span class="n">t</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">1.0e-5</span><span class="p">;</span>
+<span class="n">t0</span> <span class="p">=</span> <span class="n">cputime</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">n</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">100</span>
+  <span class="n">t</span> <span class="p">=</span> <span class="n">t</span> <span class="o">+</span> <span class="n">dt</span><span class="p">;</span>
+  <span class="n">advance</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+  <span class="n">tim</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="n">time</span><span class="p">(</span><span class="n">network</span><span class="p">);</span>
+  <span class="n">temp</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="n">temperature</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>  
+  <span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">)</span> <span class="p">=</span> <span class="n">moleFraction</span><span class="p">(</span><span class="n">gas</span><span class="p">,{</span><span class="s">&#39;OH&#39;</span><span class="p">,</span><span class="s">&#39;H&#39;</span><span class="p">,</span><span class="s">&#39;H2&#39;</span><span class="p">});</span>
+<span class="k">end</span>
+<span class="nb">disp</span><span class="p">([</span><span class="s">&#39;CPU time = &#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">cputime</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)]);</span>
+
+<span class="n">clf</span><span class="p">;</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">tim</span><span class="p">,</span><span class="n">temp</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Temperature (K)&#39;</span><span class="p">);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">tim</span><span class="p">,</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">));</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;OH Mole Fraction (K)&#39;</span><span class="p">);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">tim</span><span class="p">,</span><span class="n">x</span><span class="p">(:,</span><span class="mi">2</span><span class="p">));</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;H Mole Fraction (K)&#39;</span><span class="p">);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">tim</span><span class="p">,</span><span class="n">x</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;H2 Mole Fraction (K)&#39;</span><span class="p">);</span>
+<span class="n">clear</span> <span class="n">all</span>
+<span class="n">cleanup</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="reactor2.html" title="reactor2.m"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rankine.html" title="rankine.m"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
+          <li><a href="../examples.html" >Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

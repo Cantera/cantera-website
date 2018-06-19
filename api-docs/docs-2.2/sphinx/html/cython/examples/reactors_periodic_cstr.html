@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>periodic_cstr.py &mdash; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../../index.html" />
+    <link rel="up" title="Index of Examples" href="../examples.html" />
+    <link rel="next" title="piston.py" href="reactors_piston.html" />
+    <link rel="prev" title="mix1.py" href="reactors_mix1.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="reactors_piston.html" title="piston.py"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="reactors_mix1.html" title="mix1.py"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Python Module Documentation</a> &raquo;</li>
+          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="reactors_mix1.html"
+                        title="previous chapter">mix1.py</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="reactors_piston.html"
+                        title="next chapter">piston.py</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/cython/examples/reactors_periodic_cstr.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="periodic-cstr-py">
+<span id="py-example-periodic-cstr-py"></span><h1>periodic_cstr.py<a class="headerlink" href="#periodic-cstr-py" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Periodic CSTR</span>
+
+<span class="sd">This example illustrates a CSTR with steady inputs but periodic interior state.</span>
+<span class="sd">A stoichiometric hydrogen/oxygen mixture is introduced and reacts to produce</span>
+<span class="sd">water.  But since water has a large efficiency as a third body in the chain</span>
+<span class="sd">termination reaction</span>
+
+<span class="sd">       H + O2 + M = HO2 + M</span>
+
+<span class="sd">as soon as a significant amount of water is produced the reaction stops. After</span>
+<span class="sd">enough time has passed that the water is exhausted from the reactor, the mixture</span>
+<span class="sd">explodes again and the process repeats. This explanation can be verified by</span>
+<span class="sd">decreasing the rate for reaction 7 in file &#39;h2o2.cti&#39; and re-running the</span>
+<span class="sd">example.</span>
+
+<span class="sd">Acknowledgments: The idea for this example and an estimate of the conditions</span>
+<span class="sd">needed to see the oscillations came from Bob Kee, Colorado School of Mines</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">cantera</span> <span class="kn">as</span> <span class="nn">ct</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="c"># create the gas mixture</span>
+<span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">&#39;h2o2.cti&#39;</span><span class="p">)</span>
+
+<span class="c"># pressure = 60 Torr, T = 770 K</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">60.0</span><span class="o">*</span><span class="mf">133.3</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mf">770.0</span>
+
+<span class="n">gas</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s">&#39;H2:2, O2:1&#39;</span>
+
+<span class="c"># create an upstream reservoir that will supply the reactor. The temperature,</span>
+<span class="c"># pressure, and composition of the upstream reservoir are set to those of the</span>
+<span class="c"># &#39;gas&#39; object at the time the reservoir is created.</span>
+<span class="n">upstream</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reservoir</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+
+<span class="c"># Now create the reactor object with the same initial state</span>
+<span class="n">cstr</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">IdealGasReactor</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+
+<span class="c"># Set its volume to 10 cm^3. In this problem, the reactor volume is fixed, so</span>
+<span class="c"># the initial volume is the volume at all later times.</span>
+<span class="n">cstr</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">*</span><span class="mf">1.0e-6</span>
+
+<span class="c"># We need to have heat loss to see the oscillations. Create a reservoir to</span>
+<span class="c"># represent the environment, and initialize its temperature to the reactor</span>
+<span class="c"># temperature.</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reservoir</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+
+<span class="c"># Create a heat-conducting wall between the reactor and the environment. Set its</span>
+<span class="c"># area, and its overall heat transfer coefficient. Larger U causes the reactor</span>
+<span class="c"># to be closer to isothermal. If U is too small, the gas ignites, and the</span>
+<span class="c"># temperature spikes and stays high.</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Wall</span><span class="p">(</span><span class="n">cstr</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+
+<span class="c"># Connect the upstream reservoir to the reactor with a mass flow controller</span>
+<span class="c"># (constant mdot). Set the mass flow rate to 1.25 sccm.</span>
+<span class="n">sccm</span> <span class="o">=</span> <span class="mf">1.25</span>
+<span class="n">vdot</span> <span class="o">=</span> <span class="n">sccm</span> <span class="o">*</span> <span class="mf">1.0e-6</span><span class="o">/</span><span class="mf">60.0</span> <span class="o">*</span> <span class="p">((</span><span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span> <span class="o">/</span> <span class="n">gas</span><span class="o">.</span><span class="n">P</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span> <span class="n">gas</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="mf">273.15</span><span class="p">))</span> <span class="c"># m^3/s</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">density</span> <span class="o">*</span> <span class="n">vdot</span> <span class="c"># kg/s</span>
+<span class="n">mfc</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">MassFlowController</span><span class="p">(</span><span class="n">upstream</span><span class="p">,</span> <span class="n">cstr</span><span class="p">,</span> <span class="n">mdot</span><span class="o">=</span><span class="n">mdot</span><span class="p">)</span>
+
+<span class="c"># now create a downstream reservoir to exhaust into.</span>
+<span class="n">downstream</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reservoir</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+
+<span class="c"># connect the reactor to the downstream reservoir with a valve, and set the</span>
+<span class="c"># coefficient sufficiently large to keep the reactor pressure close to the</span>
+<span class="c"># downstream pressure of 60 Torr.</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Valve</span><span class="p">(</span><span class="n">cstr</span><span class="p">,</span> <span class="n">downstream</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">1.0e-9</span><span class="p">)</span>
+
+<span class="c"># create the network</span>
+<span class="n">network</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">ReactorNet</span><span class="p">([</span><span class="n">cstr</span><span class="p">])</span>
+
+<span class="c"># now integrate in time</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">dt</span>   <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">tm</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">while</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mf">300.0</span><span class="p">:</span>
+    <span class="n">t</span> <span class="o">+=</span> <span class="n">dt</span>
+    <span class="n">network</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">tm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cstr</span><span class="o">.</span><span class="n">thermo</span><span class="p">[</span><span class="s">&#39;H2&#39;</span><span class="p">,</span><span class="s">&#39;O2&#39;</span><span class="p">,</span><span class="s">&#39;H2O&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">__doc__</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tm</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s">&#39;H2&#39;</span><span class="p">,</span><span class="s">&#39;O2&#39;</span><span class="p">,</span><span class="s">&#39;H2O&#39;</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Mass Fractions&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Matplotlib not found. Unable to plot results.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="reactors_piston.html" title="piston.py"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="reactors_mix1.html" title="mix1.py"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Python Module Documentation</a> &raquo;</li>
+          <li><a href="../examples.html" >Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

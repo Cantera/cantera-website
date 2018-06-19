@@ -1,0 +1,175 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Cantera Compilation Guide &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installation Prerequisites" href="installation-reqs.html" />
+    <link rel="prev" title="Installing Cantera" href="../install.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="installation-reqs.html" title="Installation Prerequisites"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../install.html" title="Installing Cantera"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../install.html"
+                        title="previous chapter">Installing Cantera</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation-reqs.html"
+                        title="next chapter">Installation Prerequisites</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/compiling/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cantera-compilation-guide">
+<span id="sec-compiling"></span><h1>Cantera Compilation Guide<a class="headerlink" href="#cantera-compilation-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide contains instructions for compiling Cantera on supported operating
+systems and provides some detail of the possible configuration options.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation-reqs.html">Installation Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation-reqs.html#linux">Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-reqs.html#windows">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-reqs.html#os-x-macos">OS X &amp; macOS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="source-code.html">Downloading the Cantera source code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source-code.html#stable-release">Stable Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source-code.html#beta-release">Beta Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source-code.html#development-version">Development Version</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configure-build.html">Determine configuration options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configure-build.html#common-options">Common Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure-build.html#python-2-module-options">Python 2 Module Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure-build.html#python-3-module-options">Python 3 Module Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure-build.html#windows-only-options">Windows Only Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure-build.html#matlab-toolbox-options">MATLAB Toolbox Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure-build.html#fortran-module-options">Fortran Module Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure-build.html#documentation-options">Documentation Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure-build.html#less-common-options">Less Common Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configure-build.html#build-commands">Build Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure-build.html#compile-cantera-test">Compile Cantera &amp; Test</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configure-build.html#building-documentation">Building Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">Software used by Cantera</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html#compilers">Compilers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html#other-required-software">Other Required Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies.html#optional-programs">Optional Programs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="special-cases.html">Special Compiling Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="special-cases.html#intel-compilers">Intel Compilers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config-options.html">Configuration Options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config-options.html#options-list">Options List</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="installation-reqs.html" title="Installation Prerequisites"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../install.html" title="Installing Cantera"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

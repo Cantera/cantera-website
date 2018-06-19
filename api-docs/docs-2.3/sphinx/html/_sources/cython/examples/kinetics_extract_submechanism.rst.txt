@@ -1,0 +1,8 @@
+:orphan:
+
+.. _py-example-extract_submechanism.py:
+
+extract_submechanism.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/kinetics/extract_submechanism.py

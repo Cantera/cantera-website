@@ -1,0 +1,6 @@
+.. _py-example-stagnation_flame.py:
+
+stagnation_flame.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/onedim/stagnation_flame.py

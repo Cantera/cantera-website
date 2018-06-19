@@ -1,0 +1,6 @@
+.. _py-example-critical_properties.py:
+
+critical_properties.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/thermo/critical_properties.py

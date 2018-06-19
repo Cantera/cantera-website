@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>flame.m &mdash; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../../index.html" />
+    <link rel="up" title="Index of Examples" href="../examples.html" />
+    <link rel="next" title="flame1.m" href="flame1.html" />
+    <link rel="prev" title="equil.m" href="equil.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html">
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="flame1.html" title="flame1.m"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="equil.html" title="equil.m"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
+          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="equil.html"
+                        title="previous chapter">equil.m</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="flame1.html"
+                        title="next chapter">flame1.m</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/matlab/examples/flame.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="flame-m">
+<span id="matlab-example-flame-m"></span><h1>flame.m<a class="headerlink" href="#flame-m" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-matlab"><div class="highlight"><pre><span class="k">function</span><span class="w"> </span>f <span class="p">=</span><span class="w"> </span><span class="nf">flame</span><span class="p">(</span>gas, left, flow, right<span class="p">)</span><span class="w"></span>
+<span class="c">%  FLAME - create a flame object.</span>
+<span class="c">%</span>
+<span class="c">%    gas     --  object representing the gas. This object will be used to</span>
+<span class="c">%                compute all required thermodynamic, kinetic, and transport</span>
+<span class="c">%                properties. The state of this object should be set</span>
+<span class="c">%                to an estimate of the gas state emerging from the</span>
+<span class="c">%                burner before calling StagnationFlame.</span>
+<span class="c">%</span>
+<span class="c">%    left    --  object representing the burner, which must be</span>
+<span class="c">%                created using function Inlet.</span>
+<span class="c">%</span>
+<span class="c">%    flow    --  object representing the flow, created with</span>
+<span class="c">%                function AxisymmetricFlow.</span>
+<span class="c">%</span>
+<span class="c">%    right   --  object representing the surface.</span>
+<span class="c">%</span>
+
+<span class="c">% Check input parameters</span>
+<span class="k">if</span> <span class="n">nargin</span> <span class="o">~=</span> <span class="mi">4</span>
+  <span class="n">error</span><span class="p">(</span><span class="s">&#39;wrong number of input arguments.&#39;</span><span class="p">);</span>
+<span class="k">end</span>
+
+<span class="k">if</span> <span class="o">~</span><span class="n">isIdealGas</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+  <span class="n">error</span><span class="p">(</span><span class="s">&#39;gas object must represent an ideal gas mixture.&#39;</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="k">if</span> <span class="o">~</span><span class="n">isInlet</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+  <span class="n">error</span><span class="p">(</span><span class="s">&#39;burner object of wrong type.&#39;</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="k">if</span> <span class="o">~</span><span class="n">isFlow</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
+  <span class="n">error</span><span class="p">(</span><span class="s">&#39;flow object of wrong type.&#39;</span><span class="p">);</span>
+<span class="k">end</span>
+
+<span class="n">flametype</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">if</span> <span class="n">isSurface</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+  <span class="n">flametype</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">elseif</span> <span class="n">isInlet</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+  <span class="n">flametype</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="k">end</span>
+
+
+<span class="c">% create the container object</span>
+<span class="n">f</span> <span class="p">=</span> <span class="n">Stack</span><span class="p">([</span><span class="n">left</span> <span class="n">flow</span> <span class="n">right</span><span class="p">]);</span>
+
+<span class="c">% set default initial profiles.</span>
+<span class="n">rho0</span> <span class="p">=</span> <span class="n">density</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
+
+<span class="c">% find the adiabatic flame temperature and corresponding</span>
+<span class="c">% equilibrium composition</span>
+<span class="n">equilibrate</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="s">&#39;HP&#39;</span><span class="p">);</span>
+<span class="n">teq</span> <span class="p">=</span> <span class="n">temperature</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
+<span class="n">yeq</span> <span class="p">=</span> <span class="n">massFractions</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
+<span class="n">rhoeq</span> <span class="p">=</span> <span class="n">density</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
+
+<span class="n">z1</span> <span class="p">=</span> <span class="mf">0.2</span><span class="p">;</span>
+<span class="n">mdot0</span> <span class="p">=</span> <span class="n">massFlux</span><span class="p">(</span><span class="n">left</span><span class="p">);</span>
+<span class="n">mdot1</span> <span class="p">=</span> <span class="n">massFlux</span><span class="p">(</span><span class="n">right</span><span class="p">);</span>
+<span class="n">t0</span> <span class="p">=</span> <span class="n">temperature</span><span class="p">(</span><span class="n">left</span><span class="p">);</span>
+<span class="k">if</span> <span class="n">flametype</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="n">t1</span> <span class="p">=</span> <span class="n">teq</span><span class="p">;</span>
+  <span class="n">mdot1</span> <span class="p">=</span> <span class="o">-</span><span class="n">mdot0</span><span class="p">;</span>
+<span class="k">else</span>
+  <span class="n">t1</span> <span class="p">=</span> <span class="n">temperature</span><span class="p">(</span><span class="n">right</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="n">zz</span> <span class="p">=</span> <span class="n">z</span><span class="p">(</span><span class="n">flow</span><span class="p">);</span>
+<span class="n">dz</span> <span class="p">=</span> <span class="n">zz</span><span class="p">(</span><span class="k">end</span><span class="p">)</span> <span class="o">-</span> <span class="n">zz</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">setProfile</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">},</span> <span class="p">[</span><span class="mf">0.0</span>            <span class="mf">1.0</span>
+	 	              <span class="n">mdot0</span><span class="o">/</span><span class="n">rho0</span>     <span class="o">-</span><span class="n">mdot1</span><span class="o">/</span><span class="n">rho0</span>
+  		              <span class="mf">0.0</span>            <span class="mf">0.0</span><span class="p">]);</span>
+<span class="n">setProfile</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span> <span class="n">z1</span> <span class="mf">1.0</span><span class="p">;</span> <span class="n">t0</span> <span class="mf">2000.0</span> <span class="n">t1</span><span class="p">]);</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">nSpecies</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+  <span class="n">nm</span> <span class="p">=</span> <span class="n">speciesName</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+  <span class="k">if</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">&#39;H&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">&#39;OH&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">&#39;O&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="c">...</span>
+  	<span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">&#39;HO2&#39;</span><span class="p">)</span>
+    <span class="n">yint</span> <span class="p">=</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">yeq</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">yint</span> <span class="p">=</span> <span class="n">yeq</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="n">flametype</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="n">y1</span> <span class="p">=</span> <span class="n">massFraction</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">y1</span> <span class="p">=</span> <span class="n">yeq</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+  <span class="k">end</span>
+  <span class="n">setProfile</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nm</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span>  <span class="n">z1</span>   <span class="mi">1</span>
+		    <span class="n">massFraction</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>   <span class="n">yint</span>  <span class="n">y1</span><span class="p">]);</span>
+<span class="k">end</span>
+
+<span class="c">% set minimal grid refinement criteria </span>
+<span class="n">setRefineCriteria</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="flame1.html" title="flame1.m"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="equil.html" title="equil.m"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &raquo;</li>
+          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
+          <li><a href="../examples.html" >Index of Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

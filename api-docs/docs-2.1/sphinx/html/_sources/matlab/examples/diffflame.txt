@@ -1,0 +1,5 @@
+diffflame.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/diffflame.m
+   :language: matlab

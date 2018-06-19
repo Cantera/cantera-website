@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Importing Phase Objects &mdash; Cantera 2.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/site.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="Cantera 2.1.2 documentation" href="../index.html" />
+    <link rel="up" title="Python Module Documentation" href="index.html" />
+    <link rel="next" title="Thermodynamic Properties" href="thermo.html" />
+    <link rel="prev" title="Tutorial" href="tutorial.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="thermo.html" title="Thermodynamic Properties"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Python Module Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Importing Phase Objects</a><ul>
+<li><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tutorial.html"
+                        title="previous chapter">Tutorial</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="thermo.html"
+                        title="next chapter">Thermodynamic Properties</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/cython/importing.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="importing-phase-objects">
+<h1>Importing Phase Objects<a class="headerlink" href="#importing-phase-objects" title="Permalink to this headline">¶</a></h1>
+<p>These classes are composite representations of a substance which has
+thermodynamic, chemical kinetic, and (optionally) transport properties.</p>
+<dl class="class">
+<dt id="cantera.Solution">
+<em class="property">class </em><tt class="descclassname">cantera.</tt><tt class="descname">Solution</tt><a class="headerlink" href="#cantera.Solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.ThermoPhase</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.Kinetics</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.Transport</span></tt></p>
+<p>A class for chemically-reacting solutions.</p>
+<p>Instances can be created to represent any type of solution &#8211; a
+mixture of gases, a liquid solution, or a solid solution, for
+example.</p>
+<p>Class Solution derives from classes <a class="reference internal" href="thermo.html#cantera.ThermoPhase" title="cantera.ThermoPhase"><tt class="xref py py-obj docutils literal"><span class="pre">ThermoPhase</span></tt></a>, <a class="reference internal" href="kinetics.html#cantera.Kinetics" title="cantera.Kinetics"><tt class="xref py py-obj docutils literal"><span class="pre">Kinetics</span></tt></a>, and
+<a class="reference internal" href="transport.html#cantera.Transport" title="cantera.Transport"><tt class="xref py py-obj docutils literal"><span class="pre">Transport</span></tt></a>.  It defines very few methods of its own, and is provided so
+that a single object can be used to compute thermodynamic, kinetic, and
+transport properties of a solution.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cantera.Interface">
+<em class="property">class </em><tt class="descclassname">cantera.</tt><tt class="descname">Interface</tt><a class="headerlink" href="#cantera.Interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.InterfacePhase</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.InterfaceKinetics</span></tt></p>
+<p>Two-dimensional interfaces.</p>
+<p>Instances of class Interface represent reacting 2D interfaces
+between bulk 3D phases. Class Interface defines no methods of its
+own. All of its methods derive from either <a class="reference internal" href="thermo.html#cantera.InterfacePhase" title="cantera.InterfacePhase"><tt class="xref py py-obj docutils literal"><span class="pre">InterfacePhase</span></tt></a> or
+<tt class="xref py py-obj docutils literal"><span class="pre">InterfaceKinetics</span></tt>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cantera.DustyGas">
+<em class="property">class </em><tt class="descclassname">cantera.</tt><tt class="descname">DustyGas</tt><a class="headerlink" href="#cantera.DustyGas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.ThermoPhase</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.Kinetics</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.DustyGasTransport</span></tt></p>
+<p>A composite class which models a gas in a stationary, solid, porous medium.</p>
+<p>The only transport properties computed are the multicomponent diffusion
+coefficients. The model does not compute viscosity or thermal conductivity.</p>
+</dd></dl>
+
+<div class="section" id="utility-functions">
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="cantera.add_directory">
+<tt class="descclassname">cantera.</tt><tt class="descname">add_directory</tt><big>(</big><em>directory</em><big>)</big><a class="headerlink" href="#cantera.add_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a directory to search for Cantera data files.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="thermo.html" title="Thermodynamic Properties"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &raquo;</li>
+          <li><a href="index.html" >Python Module Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

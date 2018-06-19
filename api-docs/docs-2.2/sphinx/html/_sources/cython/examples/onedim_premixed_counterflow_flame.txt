@@ -1,0 +1,6 @@
+.. _py-example-premixed_counterflow_flame.py:
+
+premixed_counterflow_flame.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/onedim/premixed_counterflow_flame.py

@@ -1,0 +1,171 @@
+
+============================
+Built-In Thermochemical Data
+============================
+
+Data
+----
+
+    .. mat:function:: air
+
+        Create an object representing air.
+
+        Air is modeled as an ideal gas mixture. The specification is taken
+        from file air.cti. Several reactions among oxygen and nitrogen are
+        defined.
+        
+        :return:
+            Instance of class :mat:func:`Solution`
+        
+
+    .. mat:function:: constants
+
+        Get the values of important constants.
+
+        :return:
+            If one output argument is given, returns one atmosphere in
+            Pascals. If two output arguments are given, returns one
+            atmosphere in Pascals and the universal gas constant in
+            J/kmol-K.
+        
+
+    .. mat:function:: gasconstant
+
+        Get the universal gas constant in J/kmol-K.
+
+        :return:
+            The universal gas constant in J/kmol-K.
+        
+
+    .. mat:function:: GRI30(tr)
+
+        Create an object with the GRI-Mech 3.0 reaction mechanism.
+
+        Create a Solution instance representing
+        reaction mechanism GRI-Mech 3.0.
+        
+        GRI-Mech 3.0 is a widely-used reaction mechanism for natural gas
+        combustion. It contains 53 species composed of the elements H,
+        C, O, N, and/or Ar, and 325 reactions, most of which are
+        reversible. GRI-Mech 3.0, like most combustion mechanisms, is
+        designed for use at pressures where the ideal gas law holds.
+        GRI-Mech 3.0 is available from http://www.me.berkeley.edu/gri_mech/
+        
+        Function :mat:func:`GRI30` creates the solution according to the
+        specifications in file gri30.cti. The ideal gas equation of
+        state is used. Transport property evaluation is disabled by
+        default. To enable transport properties, supply the name of
+        the transport model to use.
+        
+        .. code-block:: matlab
+        
+            g1 = GRI30           % no transport properties
+            g2 = GRI30('Mix')    % mixture-averaged transport properties
+            g3 = GRI30('Multi')  % miulticomponent transport properties
+        
+        :param tr:
+            Transport modeling, 'Mix' or 'Multi'
+        :return:
+            Instance of class :mat:func:`Solution`
+        
+
+    .. mat:function:: Hydrogen()
+
+        Return an object representing hydrogen.
+
+        The object returned by this method implements an accurate equation of
+        state for hydrogen that can be used in the liquid, vapor, saturated
+        liquid/vapor, and supercritical regions of the phase diagram. The
+        equation of state is taken from
+        
+        Reynolds, W. C. *Thermodynamic Properties in SI: graphs, tables, and
+        computational equations for forty substances* Stanford: Stanford
+        University, 1979. Print.
+        
+        For more details, see classes Cantera::PureFluid and tpx::hydrogen in the
+        Cantera C++ source code documentation.
+        
+        :return:
+            Instance of class :mat:func:`Solution`
+        
+
+    .. mat:function:: Methane()
+
+        Return an object representing methane.
+
+        The object returned by this method implements an accurate equation of
+        state for methane that can be used in the liquid, vapor, saturated
+        liquid/vapor, and supercritical regions of the phase diagram.  The
+        equation of state is taken from
+        
+        Reynolds, W. C. *Thermodynamic Properties in SI: graphs, tables, and
+        computational equations for forty substances* Stanford: Stanford
+        University, 1979. Print.
+        
+        :return:
+            Instance of class :mat:func:`Solution`
+        
+
+    .. mat:function:: Nitrogen()
+
+        Return an object representing nitrogen.
+
+        The object returned by this method implements an accurate equation of
+        state for nitrogen that can be used in the liquid, vapor, saturated
+        liquid/vapor, and supercritical regions of the phase diagram. The
+        equation of state is taken from
+        
+        Reynolds, W. C. *Thermodynamic Properties in SI: graphs, tables, and
+        computational equations for forty substances* Stanford: Stanford
+        University, 1979. Print.
+        
+        :return:
+            Instance of class :mat:func:`Solution`
+        
+
+    .. mat:function:: oneatm
+
+        Get one atmosphere in Pa.
+
+        :return:
+            One atmosphere in Pascals.
+        
+
+    .. mat:function:: Oxygen()
+
+        Return an object representing oxygen.
+
+        The object returned by this method implements an accurate equation of
+        state for oxygen that can be used in the liquid, vapor, saturated
+        liquid/vapor, and supercritical regions of the phase diagram.  The
+        equation of state is taken from
+        
+        Reynolds, W. C. *Thermodynamic Properties in SI: graphs, tables, and
+        computational equations for forty substances* Stanford: Stanford
+        University, 1979. Print.
+        
+        :return:
+            Instance of class :mat:func:`Solution`
+        
+
+    .. mat:function:: Water()
+
+        Return an object representing water.
+
+        The object returned by this method implements an accurate equation of
+        state for water that can be used in the liquid, vapor, saturated
+        liquid/vapor, and supercritical regions of the phase diagram. The
+        equation of state is taken from
+        
+        Reynolds, W. C. *Thermodynamic Properties in SI: graphs, tables, and
+        computational equations for forty substances.* Stanford: Stanford
+        University, 1979. Print.
+        
+        For more details, see classes Cantera::PureFluid and tpx::water in the
+        Cantera C++ source code documentation.
+        
+        :return:
+            Instance of class :mat:func:`Solution`
+        
+
+

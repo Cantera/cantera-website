@@ -1,0 +1,4 @@
+reaction_path.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/kinetics/reaction_path.py

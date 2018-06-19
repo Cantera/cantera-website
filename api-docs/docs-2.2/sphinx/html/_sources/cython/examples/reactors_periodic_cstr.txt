@@ -1,0 +1,6 @@
+.. _py-example-periodic_cstr.py:
+
+periodic_cstr.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/reactors/periodic_cstr.py

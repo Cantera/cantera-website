@@ -1,0 +1,9 @@
+:orphan:
+
+.. _matlab-example-reactor1.m:
+
+reactor1.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/reactor1.m
+   :language: matlab

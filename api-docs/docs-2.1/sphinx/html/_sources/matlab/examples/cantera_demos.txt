@@ -1,0 +1,5 @@
+cantera_demos.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/cantera_demos.m
+   :language: matlab

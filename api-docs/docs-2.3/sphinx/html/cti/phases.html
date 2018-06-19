@@ -1,0 +1,626 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Phases and their Interfaces &#8212; Cantera 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Elements and Species" href="species.html" />
+    <link rel="prev" title="Working with Input Files" href="input-files.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html">
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="species.html" title="Elements and Species"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="input-files.html" title="Working with Input Files"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Defining Phases</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Phases and their Interfaces</a><ul>
+<li><a class="reference internal" href="#phases">Phases</a><ul>
+<li><a class="reference internal" href="#phase-attributes">Phase Attributes</a><ul>
+<li><a class="reference internal" href="#phase-name">Phase Name</a></li>
+<li><a class="reference internal" href="#declaring-the-elements">Declaring the Elements</a></li>
+<li><a class="reference internal" href="#defining-the-species">Defining the Species</a></li>
+<li><a class="reference internal" href="#declaring-the-reactions">Declaring the Reactions</a></li>
+<li><a class="reference internal" href="#the-kinetics-model">The Kinetics Model</a></li>
+<li><a class="reference internal" href="#the-transport-model">The Transport Model</a></li>
+<li><a class="reference internal" href="#the-initial-state">The Initial State</a></li>
+<li><a class="reference internal" href="#special-processing-options">Special Processing Options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ideal-gas-mixtures">Ideal Gas Mixtures</a><ul>
+<li><a class="reference internal" href="#transport-models">Transport Models</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#stoichiometric-solid">Stoichiometric Solid</a></li>
+<li><a class="reference internal" href="#stoichiometric-liquid">Stoichiometric Liquid</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#interfaces">Interfaces</a></li>
+<li><a class="reference internal" href="#the-state-entry">The <code class="docutils literal"><span class="pre">state</span></code> entry</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="input-files.html"
+                        title="previous chapter">Working with Input Files</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="species.html"
+                        title="next chapter">Elements and Species</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/cti/phases.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="phases-and-their-interfaces">
+<span id="sec-phases"></span><h1>Phases and their Interfaces<a class="headerlink" href="#phases-and-their-interfaces" title="Permalink to this headline">¶</a></h1>
+<p>Now that we have covered how to write syntactically-correct input files, we can
+turn our attention to the content of the file. We’ll start by describing the
+entries for phases of various types, and the look at how to define interfaces
+between phases.</p>
+<div class="section" id="phases">
+<h2>Phases<a class="headerlink" href="#phases" title="Permalink to this headline">¶</a></h2>
+<p>For each phase that appears in a problem, a corresponding entry should be
+present in the input file(s). For example, suppose we want to conduct a
+simulation with detailed chemistry of an idealized solid-oxide fuel cell shown
+below.  The problem involves three solid phases (A nickel anode, a
+platinum cathode, and an oxygen-conducting yttrium-stabilized zirconia
+electrolyte), and two different gas phases (a fuel mixture on the anode side,
+and air on the cathode side). The problem also involves a number of interfaces
+at which heterogeneous chemistry may occur—two gas-metal interfaces, two
+gas-electrolyte interfaces, and two metal-electrolyte interfaces.</p>
+<div class="figure align-center" id="id4">
+<img alt="../_images/sofc-phases.png" src="../_images/sofc-phases.png" />
+<p class="caption"><span class="caption-text"><strong>Phases entering into a hypothetical microkinetic simulation of an
+idealized solid-oxide fuel cell.</strong></span></p>
+</div>
+<p>How to carry out this fuel cell simulation is beyond the scope of this document;
+we introduce it here only to give an example of the types of phases and
+interfaces that might need to be defined in order to carry out a simulation. (Of
+course, many simulations with Cantera only require defining a single phase.)</p>
+<p>There are several different types of entries, corresponding to different types
+of phases. Phases are created using one of the directives corresponding to an
+implemented phase type:</p>
+<ul class="simple">
+<li><a class="reference internal" href="classes.html#cantera.ctml_writer.ideal_gas" title="cantera.ctml_writer.ideal_gas"><code class="xref py py-class docutils literal"><span class="pre">ideal_gas</span></code></a></li>
+<li><a class="reference internal" href="classes.html#cantera.ctml_writer.stoichiometric_solid" title="cantera.ctml_writer.stoichiometric_solid"><code class="xref py py-class docutils literal"><span class="pre">stoichiometric_solid</span></code></a></li>
+<li><a class="reference internal" href="classes.html#cantera.ctml_writer.stoichiometric_liquid" title="cantera.ctml_writer.stoichiometric_liquid"><code class="xref py py-class docutils literal"><span class="pre">stoichiometric_liquid</span></code></a></li>
+<li><a class="reference internal" href="classes.html#cantera.ctml_writer.metal" title="cantera.ctml_writer.metal"><code class="xref py py-class docutils literal"><span class="pre">metal</span></code></a></li>
+<li><a class="reference internal" href="classes.html#cantera.ctml_writer.semiconductor" title="cantera.ctml_writer.semiconductor"><code class="xref py py-class docutils literal"><span class="pre">semiconductor</span></code></a></li>
+<li><a class="reference internal" href="classes.html#cantera.ctml_writer.incompressible_solid" title="cantera.ctml_writer.incompressible_solid"><code class="xref py py-class docutils literal"><span class="pre">incompressible_solid</span></code></a></li>
+<li><a class="reference internal" href="classes.html#cantera.ctml_writer.lattice" title="cantera.ctml_writer.lattice"><code class="xref py py-class docutils literal"><span class="pre">lattice</span></code></a></li>
+<li><a class="reference internal" href="classes.html#cantera.ctml_writer.lattice_solid" title="cantera.ctml_writer.lattice_solid"><code class="xref py py-class docutils literal"><span class="pre">lattice_solid</span></code></a></li>
+<li><a class="reference internal" href="classes.html#cantera.ctml_writer.liquid_vapor" title="cantera.ctml_writer.liquid_vapor"><code class="xref py py-class docutils literal"><span class="pre">liquid_vapor</span></code></a></li>
+<li><code class="xref py py-class docutils literal"><span class="pre">redlich_kwong</span></code></li>
+<li><a class="reference internal" href="classes.html#cantera.ctml_writer.ideal_interface" title="cantera.ctml_writer.ideal_interface"><code class="xref py py-class docutils literal"><span class="pre">ideal_interface</span></code></a></li>
+<li><a class="reference internal" href="classes.html#cantera.ctml_writer.edge" title="cantera.ctml_writer.edge"><code class="xref py py-class docutils literal"><span class="pre">edge</span></code></a></li>
+</ul>
+<p>These phase typese share many common features, however, and so we will begin by
+discussing those aspects common to all entries for phases. The <a class="reference internal" href="classes.html#cantera.ctml_writer.phase" title="cantera.ctml_writer.phase"><code class="xref py py-class docutils literal"><span class="pre">phase</span></code></a>
+class contains the features common to all phase types.</p>
+<div class="section" id="phase-attributes">
+<h3>Phase Attributes<a class="headerlink" href="#phase-attributes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="phase-name">
+<h4>Phase Name<a class="headerlink" href="#phase-name" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal"><span class="pre">name</span></code> field is a string that identifies the phase. It must not contain
+any whitespace characters or reserved XML characters, and must be unique within
+the file among all phase definitions of any type.</p>
+<p>Phases are referenced by name when importing them into an application program,
+or when defining an interface between phases.</p>
+</div>
+<div class="section" id="declaring-the-elements">
+<h4>Declaring the Elements<a class="headerlink" href="#declaring-the-elements" title="Permalink to this headline">¶</a></h4>
+<p>The elements that may be present in the phase are declared in the elements
+field. This must be a string of element symbols separated by spaces. Each symbol
+must either match one listed in the database file <code class="docutils literal"><span class="pre">elements.xml</span></code>, or else
+match the symbol of an element entry defined elsewhere in the input file (See
+<a class="reference internal" href="species.html#sec-elements"><span class="std std-ref">Elements</span></a>).</p>
+<p>The <code class="docutils literal"><span class="pre">elements.xml</span></code> database contains most elements of the periodic table, with
+their natural-abundance atomic masses. It also contains a few isotopes (D, Tr),
+and an “element” for an electron (E). This pseudo-element can be used to specify
+the composition of charged species. Note that two-character symbols should have
+an uppercase first letter, and a lowercase second letter (e.g. <code class="docutils literal"><span class="pre">Cu</span></code>, not <code class="docutils literal"><span class="pre">CU</span></code>).</p>
+<p>It should be noted that the order of the element symbols in the string
+determines the order in which they are stored internally by Cantera. For
+example, if a phase definition specifies the elements as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ideal_gas</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;gasmix&quot;</span><span class="p">,</span>
+          <span class="n">elements</span> <span class="o">=</span> <span class="s2">&quot;H C O N Ar&quot;</span><span class="p">,</span>
+          <span class="c1"># ...</span>
+          <span class="p">)</span>
+</pre></div>
+</div>
+<p>then when this definition is imported by an application, element-specific
+properties will be ordered in the same way:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cantera</span> <span class="k">as</span> <span class="nn">ct</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;example.cti&#39;</span><span class="p">,</span> <span class="s1">&#39;gasmix&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gas</span><span class="o">.</span><span class="n">nElements</span><span class="p">()):</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="n">n</span><span class="p">,</span> <span class="n">gas</span><span class="o">.</span><span class="n">elementSymbol</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="go">0 H</span>
+<span class="go">1 C</span>
+<span class="go">2 O</span>
+<span class="go">3 N</span>
+<span class="go">4 Ar</span>
+</pre></div>
+</div>
+<p>For some calculations, such as multi-phase chemical equilibrium, it is important
+to synchronize the elements among multiple phases, so that each phase contains
+the same elements with the same ordering. In such cases, simply use the same
+string in the elements field for all phases.</p>
+</div>
+<div class="section" id="defining-the-species">
+<span id="sec-defining-species"></span><h4>Defining the Species<a class="headerlink" href="#defining-the-species" title="Permalink to this headline">¶</a></h4>
+<p>The species in the phase are declared in the species field. They are not defined
+there, only declared. Species definitions may be imported from other files, or
+species may be defined locally using species entries elsewhere in the file.</p>
+<p>If a single string of species symbols is given, then it is assumed that these
+are locally defined. For each one, a corresponding species entry must be present
+somewhere in the file, either preceding or following the phase entry.  Note that
+the string may extend over multiple lines by delimiting it with triple quotes:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">species</span> <span class="o">=</span> <span class="s1">&#39;AR SI Si2 SiH SiH2 SiH3 SiH4&#39;</span>
+
+<span class="c1"># include all species defined in this file</span>
+<span class="n">species</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span>
+
+<span class="c1"># a multi-line species declaration</span>
+<span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; H2 H O O2 OH H2O HO2 H2O2 C CH</span>
+<span class="s2">              CH2 CH2(S) CH3 CH4 CO CO2 HCO CH2O CH2OH CH3O</span>
+<span class="s2">              CH3OH C2H C2H2 C2H3 C2H4 C2H5 C2H6 HCCO CH2CO HCCOH</span>
+<span class="s2">              N NH NH2 NH3 NNH NO NO2 N2O HNO CN</span>
+<span class="s2">              HCN H2CN HCNN HCNO HOCN HNCO NCO N2 AR C3H7</span>
+<span class="s2">              C3H8 CH2CHO CH3CHO &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>If the species are imported from another file, instead of being defined locally,
+then the string should begin with the file name (without extension), followed by
+a colon:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># import selected species from silicon.xml</span>
+<span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;silicon: SI SI2 SIH SIH2 SIH3 SIH4 SI2H6&quot;</span>
+
+<span class="c1"># import all species from silicon.xml</span>
+<span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;silicon: all&quot;</span>
+</pre></div>
+</div>
+<p>In this case, the species definitions will be taken from file <code class="docutils literal"><span class="pre">silicon.xml</span></code>,
+which must exist either in the local directory or somewhere on the Cantera
+search path.</p>
+<p>It is also possible to import species from several sources, or mix local
+definitions with imported ones, by specifying a sequence of strings:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">species</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CL2 CL F F2 HF HCL&quot;</span><span class="p">,</span> <span class="c1"># defined in this file</span>
+           <span class="s2">&quot;air: O2 N2 NO&quot;</span><span class="p">,</span> <span class="c1"># imported from &#39;air.xml&#39;</span>
+           <span class="s2">&quot;ions: CL- F-&quot;</span><span class="p">]</span> <span class="c1"># imported from &#39;ions.xml&#39;</span>
+</pre></div>
+</div>
+<p>Note that the strings must be separated by commas, and enclosed in square
+brackets or parentheses.</p>
+</div>
+<div class="section" id="declaring-the-reactions">
+<span id="sec-declaring-reactions"></span><h4>Declaring the Reactions<a class="headerlink" href="#declaring-the-reactions" title="Permalink to this headline">¶</a></h4>
+<p>The reactions among the species are declared in the <code class="docutils literal"><span class="pre">reactions</span></code> field. Just as
+with species, reactions may be defined locally in the file, or may be imported
+from one or more other files. All reactions must only involve species that have
+been declared for the phase.</p>
+<p>Unlike species, reactions do not have a name, but do have an optional <code class="docutils literal"><span class="pre">ID</span></code>
+field. If the <code class="docutils literal"><span class="pre">ID</span></code> field is not assigned a value, then when the reaction entry
+is read it will be assigned a four-digit string encoding the reaction number,
+beginning with <code class="docutils literal"><span class="pre">'0001'</span></code> for the first reaction in the file, and incrementing
+by one for each new reaction.</p>
+<p>If all reactions defined locally in the input file are to be included in the
+phase definition, then assign the <code class="docutils literal"><span class="pre">reactions</span></code> field the string <code class="docutils literal"><span class="pre">'all'</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">reactions</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span>
+</pre></div>
+</div>
+<p>If, on the other hand, only some of the reactions defined in the file are to be
+included, then a range can be specified using the reaction <code class="docutils literal"><span class="pre">ID</span></code> fields:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">reactions</span> <span class="o">=</span> <span class="s1">&#39;nox-12 to nox-24&#39;</span>
+</pre></div>
+</div>
+<p>In determining which reactions to include, a lexical comparison of id strings is
+performed. This means, for example, that <code class="docutils literal"><span class="pre">'nox-8'</span></code> is greater than
+<code class="docutils literal"><span class="pre">'nox-24'</span></code>. (If it is rewritten <code class="docutils literal"><span class="pre">'nox-08'</span></code>, however, then it would be lexically
+less than <code class="docutils literal"><span class="pre">'nox-24'</span></code>.)</p>
+<p>Just as described above for species, reactions can be imported from another
+file, and reactions may be imported from several sources. Examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># import all reactions defined in this file</span>
+<span class="n">reactions</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
+
+<span class="c1"># import all reactions defined in rxns.xml</span>
+<span class="n">reactions</span> <span class="o">=</span> <span class="s2">&quot;rxns: all&quot;</span>
+
+<span class="c1"># import reactions 1-14 in rxns.xml</span>
+<span class="n">reactions</span> <span class="o">=</span> <span class="s2">&quot;rxns: 0001 to 0014&quot;</span>
+
+<span class="c1"># import reactions from several sources</span>
+<span class="n">reactions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>              <span class="c1"># all local reactions</span>
+             <span class="s2">&quot;gas: all&quot;</span><span class="p">,</span>         <span class="c1"># all reactions in gas.xml</span>
+             <span class="s2">&quot;nox: n005 to n008&quot;</span><span class="p">]</span> <span class="c1"># reactions 5 to 8 in nox.xml</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kinetics-model">
+<h4>The Kinetics Model<a class="headerlink" href="#the-kinetics-model" title="Permalink to this headline">¶</a></h4>
+<p>A <em>kinetics model</em> is a set of equations to use to compute reaction rates. In
+most cases, each type of phase has an associated kinetics model that is used by
+default, and so the <code class="docutils literal"><span class="pre">kinetics</span></code> field does not need to be assigned a value. For
+example, the <a class="reference internal" href="classes.html#cantera.ctml_writer.ideal_gas" title="cantera.ctml_writer.ideal_gas"><code class="xref py py-class docutils literal"><span class="pre">ideal_gas</span></code></a> entry has an associated kinetics model called
+<code class="docutils literal"><span class="pre">GasKinetics</span></code> that implements mass-action kinetics, computes reverse rates
+from thermochemistry for reversible reactions, and provides various
+pressure-independent and pressure-dependent reaction types. Other models could
+be implemented, and this field would then be used to select the desired
+model. For now, the <code class="docutils literal"><span class="pre">kinetics</span></code> field can be safely ignored.</p>
+</div>
+<div class="section" id="the-transport-model">
+<h4>The Transport Model<a class="headerlink" href="#the-transport-model" title="Permalink to this headline">¶</a></h4>
+<p>A <em>transport model</em> is a set of equations used to compute transport
+properties. For <a class="reference internal" href="classes.html#cantera.ctml_writer.ideal_gas" title="cantera.ctml_writer.ideal_gas"><code class="xref py py-class docutils literal"><span class="pre">ideal_gas</span></code></a> phases, multiple transport models are
+available; the one desired can be selected by assigning a string to this
+field. See <a class="reference internal" href="#sec-gas-transport-models"><span class="std std-ref">Transport Models</span></a> for more details.</p>
+</div>
+<div class="section" id="the-initial-state">
+<h4>The Initial State<a class="headerlink" href="#the-initial-state" title="Permalink to this headline">¶</a></h4>
+<p>The phase may be assigned an initial state to which it will be set when the
+definition is imported into an application and an object created. This is done
+by assigning field <code class="docutils literal"><span class="pre">initial_state</span></code> an embedded entry of type <a class="reference internal" href="classes.html#cantera.ctml_writer.state" title="cantera.ctml_writer.state"><code class="xref py py-class docutils literal"><span class="pre">state</span></code></a>,
+described in <a class="reference internal" href="#sec-state-entry"><span class="std std-ref">The state entry</span></a>.</p>
+<p>Most of the attributes defined here are “immutable,” meaning that once the
+definition has been imported into an application, they cannot be changed by the
+application. For example, it is not possible to change the elements or the
+species. The temperature, pressure, and composition, however, are “mutable”—
+they can be changed. This is why the field defining the state is called the
+<code class="docutils literal"><span class="pre">initial_state</span></code>; the object in the application will be initially set to this
+state, but it may be changed at any time.</p>
+</div>
+<div class="section" id="special-processing-options">
+<span id="sec-phase-options"></span><h4>Special Processing Options<a class="headerlink" href="#special-processing-options" title="Permalink to this headline">¶</a></h4>
+<p>The options field is used to indicate how certain conditions should be handled
+when importing the phase definition.  The options field may be assigned a string
+or a sequence of strings from the table below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option String</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">'skip_undeclared_elements'</span></code></td>
+<td>When importing species, skip any containing undeclared
+elements, rather than flagging them as an error.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">'skip_undeclared_species'</span></code></td>
+<td>When importing reactions, skip any containing undeclared
+species, rather than flagging them as an error.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">'skip_undeclared_third_bodies'</span></code></td>
+<td>When importing reactions with third body efficiencies,
+ignore any efficiencies for undeclared species, rather
+than flagging them as an error.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">'allow_discontinuous_thermo'</span></code></td>
+<td>Disable the automatic adjustment of NASA polynomials to
+eliminate discontinuities in enthalpy and entropy at the
+midpoint temperature.</td>
+</tr>
+</tbody>
+</table>
+<p>Using the <code class="docutils literal"><span class="pre">options</span></code> field, it is possible to extract a sub-mechanism from a large
+reaction mechanism, as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ideal_gas</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;hydrogen_mech&#39;</span><span class="p">,</span>
+          <span class="n">elements</span> <span class="o">=</span> <span class="s1">&#39;H O&#39;</span><span class="p">,</span>
+          <span class="n">species</span> <span class="o">=</span> <span class="s1">&#39;gri30:all&#39;</span><span class="p">,</span>
+          <span class="n">reactions</span> <span class="o">=</span> <span class="s1">&#39;gri30:all&#39;</span><span class="p">,</span>
+          <span class="n">options</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;skip_undeclared_elements&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;skip_undeclared_species&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;skip_undeclared_third_bodies&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>If we import this into Matlab, for example, we get a gas mixture containing the
+8 species (out of 53 total) that contain only H and O:</p>
+<div class="highlight-matlabsession"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">gas</span> <span class="p">=</span> <span class="n">Solution</span><span class="p">(</span><span class="s">&#39;gas.cti&#39;</span><span class="p">,</span> <span class="s">&#39;hydrogen_mech&#39;</span><span class="p">)</span>
+
+<span class="go">  hydrogen_mech:</span>
+
+<span class="go">       temperature           0.001  K</span>
+<span class="go">          pressure      0.00412448  Pa</span>
+<span class="go">           density           0.001  kg/m^3</span>
+<span class="go">  mean mol. weight         2.01588  amu</span>
+
+<span class="go">                          1 kg            1 kmol</span>
+<span class="go">                       -----------      ------------</span>
+<span class="go">          enthalpy     -3.786e+006      -7.632e+006     J</span>
+<span class="go">   internal energy     -3.786e+006      -7.632e+006     J</span>
+<span class="go">           entropy         6210.88       1.252e+004     J/K</span>
+<span class="go">    Gibbs function     -3.786e+006      -7.632e+006     J</span>
+<span class="go"> heat capacity c_p         9669.19       1.949e+004     J/K</span>
+<span class="go"> heat capacity c_v          5544.7       1.118e+004     J/K</span>
+
+<span class="go">                           X                 Y          Chem. Pot. / RT</span>
+<span class="go">                     -------------     ------------     ------------</span>
+<span class="go">                H2              1                1          -917934</span>
+<span class="go">     [   +7 minor]              0                0</span>
+
+<span class="gp">&gt;&gt; </span><span class="n">eqs</span> <span class="p">=</span> <span class="n">reactionEqn</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+
+<span class="go">eqs =</span>
+
+<span class="go">    &#39;2 O + M &lt;=&gt; O2 + M&#39;</span>
+<span class="go">    &#39;O + H + M &lt;=&gt; OH + M&#39;</span>
+<span class="go">    &#39;O + H2 &lt;=&gt; H + OH&#39;</span>
+<span class="go">    &#39;O + HO2 &lt;=&gt; OH + O2&#39;</span>
+<span class="go">    &#39;O + H2O2 &lt;=&gt; OH + HO2&#39;</span>
+<span class="go">    &#39;H + O2 + M &lt;=&gt; HO2 + M&#39;</span>
+<span class="go">    &#39;H + 2 O2 &lt;=&gt; HO2 + O2&#39;</span>
+<span class="go">    &#39;H + O2 + H2O &lt;=&gt; HO2 + H2O&#39;</span>
+<span class="go">    &#39;H + O2 &lt;=&gt; O + OH&#39;</span>
+<span class="go">    &#39;2 H + M &lt;=&gt; H2 + M&#39;</span>
+<span class="go">    &#39;2 H + H2 &lt;=&gt; 2 H2&#39;</span>
+<span class="go">    &#39;2 H + H2O &lt;=&gt; H2 + H2O&#39;</span>
+<span class="go">    &#39;H + OH + M &lt;=&gt; H2O + M&#39;</span>
+<span class="go">    &#39;H + HO2 &lt;=&gt; O + H2O&#39;</span>
+<span class="go">    &#39;H + HO2 &lt;=&gt; O2 + H2&#39;</span>
+<span class="go">    &#39;H + HO2 &lt;=&gt; 2 OH&#39;</span>
+<span class="go">    &#39;H + H2O2 &lt;=&gt; HO2 + H2&#39;</span>
+<span class="go">    &#39;H + H2O2 &lt;=&gt; OH + H2O&#39;</span>
+<span class="go">    &#39;OH + H2 &lt;=&gt; H + H2O&#39;</span>
+<span class="go">    &#39;2 OH (+ M) &lt;=&gt; H2O2 (+ M)&#39;</span>
+<span class="go">    &#39;2 OH &lt;=&gt; O + H2O&#39;</span>
+<span class="go">    &#39;OH + HO2 &lt;=&gt; O2 + H2O&#39;</span>
+<span class="go">    &#39;OH + H2O2 &lt;=&gt; HO2 + H2O&#39;</span>
+<span class="go">    &#39;OH + H2O2 &lt;=&gt; HO2 + H2O&#39;</span>
+<span class="go">    &#39;2 HO2 &lt;=&gt; O2 + H2O2&#39;</span>
+<span class="go">    &#39;2 HO2 &lt;=&gt; O2 + H2O2&#39;</span>
+<span class="go">    &#39;OH + HO2 &lt;=&gt; O2 + H2O&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ideal-gas-mixtures">
+<h3>Ideal Gas Mixtures<a class="headerlink" href="#ideal-gas-mixtures" title="Permalink to this headline">¶</a></h3>
+<p>Now we turn to the specific entry types for phases, beginning with
+<a class="reference internal" href="classes.html#cantera.ctml_writer.ideal_gas" title="cantera.ctml_writer.ideal_gas"><code class="xref py py-class docutils literal"><span class="pre">ideal_gas</span></code></a>.</p>
+<p>Many combustion and CVD simulations make use of reacting ideal gas
+mixtures. These can be defined using the <a class="reference internal" href="classes.html#cantera.ctml_writer.ideal_gas" title="cantera.ctml_writer.ideal_gas"><code class="xref py py-class docutils literal"><span class="pre">ideal_gas</span></code></a> entry. The Cantera
+ideal gas model allows any number of species, and any number of reactions among
+them. It supports all of the options in the widely-used model described by Kee
+et al. <a class="footnote-reference" href="#kee1989" id="id1">[1]</a>, plus some additional options for species thermodynamic
+properties and reaction rate expressions.</p>
+<p>An example of an <code class="docutils literal"><span class="pre">ideal_gas</span></code> entry is shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ideal_gas</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;air8&#39;</span><span class="p">,</span>
+          <span class="n">elements</span><span class="o">=</span><span class="s1">&#39;N O Ar&#39;</span><span class="p">,</span>
+          <span class="n">species</span><span class="o">=</span><span class="s1">&#39;gri30: N2 O2 N O NO NO2 N2O AR&#39;</span><span class="p">,</span>
+          <span class="n">reactions</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span>
+          <span class="n">transport</span><span class="o">=</span><span class="s1">&#39;Mix&#39;</span><span class="p">,</span>
+          <span class="n">initial_state</span><span class="o">=</span><span class="n">state</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mf">500.0</span><span class="p">,</span>
+                              <span class="n">pressure</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;atm&#39;</span><span class="p">),</span>
+                              <span class="n">mole_fractions</span><span class="o">=</span><span class="s1">&#39;N2:0.78, O2:0.21, AR:0.01&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This entry defines an ideal gas mixture that contains 8 species, the definitions
+of which are imported from dataset gri30 (file <code class="docutils literal"><span class="pre">gri30.xml</span></code>). All reactions
+defined in the file are to be included, transport properties are to be computed
+using mixture rules, and the state of the gas is to be set initially to 500 K, 1
+atm, and a composition that corresponds to air.</p>
+<div class="section" id="transport-models">
+<span id="sec-gas-transport-models"></span><h4>Transport Models<a class="headerlink" href="#transport-models" title="Permalink to this headline">¶</a></h4>
+<p>Two transport models are available for use with ideal gas mixtures. The first is
+a multicomponent transport model that is based on the model described by
+Dixon-Lewis <a class="footnote-reference" href="#dl68" id="id2">[2]</a> (see also Kee et al. <a class="footnote-reference" href="#kee2003" id="id3">[3]</a>). The second is a model that uses
+mixture rules. To select the multicomponent model, set the transport field to
+the string <code class="docutils literal"><span class="pre">'Multi'</span></code>, and to select the mixture-averaged model, set it to the
+string <code class="docutils literal"><span class="pre">'Mix'</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ideal_gas</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;gas1&quot;</span><span class="p">,</span>
+          <span class="c1"># ...</span>
+          <span class="n">transport</span><span class="o">=</span><span class="s2">&quot;Multi&quot;</span><span class="p">,</span> <span class="c1"># use multicomponent formulation</span>
+          <span class="c1"># ...</span>
+          <span class="p">)</span>
+
+<span class="n">ideal_gas</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;gas2&quot;</span><span class="p">,</span>
+          <span class="c1"># ...</span>
+          <span class="n">transport</span><span class="o">=</span><span class="s2">&quot;Mix&quot;</span><span class="p">,</span> <span class="c1"># use mixture-averaged formulation</span>
+          <span class="c1"># ...</span>
+          <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="stoichiometric-solid">
+<h3>Stoichiometric Solid<a class="headerlink" href="#stoichiometric-solid" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference internal" href="classes.html#cantera.ctml_writer.stoichiometric_solid" title="cantera.ctml_writer.stoichiometric_solid"><code class="xref py py-class docutils literal"><span class="pre">stoichiometric_solid</span></code></a> is one that is modeled as having a precise,
+fixed composition, given by the composition of the one species present. A
+stoichiometric solid can be used to define a condensed phase that can
+participate in heterogeneous reactions. (Of course, there cannot be homogeneous
+reactions, since the composition is fixed.)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">stoichiometric_solid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;graphite&#39;</span><span class="p">,</span>
+                     <span class="n">elements</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span>
+                     <span class="n">species</span><span class="o">=</span><span class="s1">&#39;C(gr)&#39;</span><span class="p">,</span>
+                     <span class="n">density</span><span class="o">=</span><span class="p">(</span><span class="mf">2.2</span><span class="p">,</span> <span class="s1">&#39;g/cm3&#39;</span><span class="p">),</span>
+                     <span class="n">initial_state</span><span class="o">=</span><span class="n">state</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mf">300.0</span><span class="p">,</span>
+                                         <span class="n">pressure</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;atm&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>In the example above, the definition of the species <code class="docutils literal"><span class="pre">'C(gr)'</span></code> must appear
+elsewhere in the input file.</p>
+</div>
+<div class="section" id="stoichiometric-liquid">
+<h3>Stoichiometric Liquid<a class="headerlink" href="#stoichiometric-liquid" title="Permalink to this headline">¶</a></h3>
+<p>A stoichiometric liquid differs from a stoichiometric solid in only one respect:
+the transport manager computes the viscosity as well as the thermal
+conductivity.</p>
+</div>
+</div>
+<div class="section" id="interfaces">
+<span id="sec-interfaces"></span><h2>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have seen how to define bulk, three-dimensional phases, we can
+describe the procedure to define an interface between phases.</p>
+<p>Cantera presently implements a simple model for an interface that treats it as a
+two-dimensional ideal solution of interfacial species. There is a fixed site
+density <span class="math">\(n^0\)</span>, and each site may be occupied by one of several adsorbates,
+or may be empty. The chemical potential of each species is computed using the
+expression for an ideal solution:</p>
+<div class="math">
+\[\mu_k = \mu^0_k + \hat{R}T \log \theta_k,\]</div>
+<p>where <span class="math">\(\theta_k\)</span> is the coverage of species <span class="math">\(k\)</span> on the surface. The
+coverage is related to the surface concentration <span class="math">\(C_k\)</span> by</p>
+<div class="math">
+\[\theta_k = \frac{C_k n_k}{n^0} ,\]</div>
+<p>where <span class="math">\(n_k\)</span> is the number of sites covered or blocked by species
+<span class="math">\(k\)</span>.</p>
+<p>The entry type for this interface model is
+<a class="reference internal" href="classes.html#cantera.ctml_writer.ideal_interface" title="cantera.ctml_writer.ideal_interface"><code class="xref py py-class docutils literal"><span class="pre">ideal_interface</span></code></a>. (Additional interface models may be added to allow
+non-ideal, coverage-dependent properties.)</p>
+<p>Defining an interface is much like defining a phase. There are two new fields:
+<code class="docutils literal"><span class="pre">phases</span></code> and <code class="docutils literal"><span class="pre">site_density</span></code>. The <code class="docutils literal"><span class="pre">phases</span></code> field specifies the bulk phases that
+participate in the heterogeneous reactions. Although in most cases this string
+will list one or two phases, no limit is placed on the number. This is
+particularly useful in some electrochemical problems, where reactions take place
+near the triple-phase boundary where a gas, an electrolyte, and a metal all meet.</p>
+<p>The <code class="docutils literal"><span class="pre">site_density</span></code> field is the number of adsorption sites per unit area.</p>
+<p>Another new aspect is in the embedded <a class="reference internal" href="classes.html#cantera.ctml_writer.state" title="cantera.ctml_writer.state"><code class="xref py py-class docutils literal"><span class="pre">state</span></code></a> entry in the
+<code class="docutils literal"><span class="pre">initial_state</span></code> field. When specifying the initial state of an interface, the
+<a class="reference internal" href="classes.html#cantera.ctml_writer.state" title="cantera.ctml_writer.state"><code class="xref py py-class docutils literal"><span class="pre">state</span></code></a> entry has a field <em>coverages</em>, which can be assigned a string
+specifying the initial surface species coverages:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ideal_interface</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;silicon_surface&#39;</span><span class="p">,</span>
+                <span class="n">elements</span><span class="o">=</span><span class="s1">&#39;Si H&#39;</span><span class="p">,</span>
+                <span class="n">species</span><span class="o">=</span><span class="s1">&#39;s* s-SiH3 s-H&#39;</span><span class="p">,</span>
+                <span class="n">reactions</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span>
+                <span class="n">phases</span><span class="o">=</span><span class="s1">&#39;gas bulk-Si&#39;</span><span class="p">,</span>
+                <span class="n">site_density</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0e15</span><span class="p">,</span> <span class="s1">&#39;molec/cm2&#39;</span><span class="p">),</span>
+                <span class="n">initial_state</span><span class="o">=</span><span class="n">state</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mf">1200.0</span><span class="p">,</span>
+                                    <span class="n">coverages</span><span class="o">=</span><span class="s1">&#39;s-H:1&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-state-entry">
+<span id="sec-state-entry"></span><h2>The <a class="reference internal" href="classes.html#cantera.ctml_writer.state" title="cantera.ctml_writer.state"><code class="xref py py-class docutils literal"><span class="pre">state</span></code></a> entry<a class="headerlink" href="#the-state-entry" title="Permalink to this headline">¶</a></h2>
+<p>The initial state of either a phase or an interface may be set using an embedded
+<a class="reference internal" href="classes.html#cantera.ctml_writer.state" title="cantera.ctml_writer.state"><code class="xref py py-class docutils literal"><span class="pre">state</span></code></a> entry. Note that only one of (<code class="docutils literal"><span class="pre">pressure</span></code>, <code class="docutils literal"><span class="pre">density</span></code>) may be
+specified, and only one of (<code class="docutils literal"><span class="pre">mole_fractions</span></code>, <code class="docutils literal"><span class="pre">mass_fractions</span></code>, <code class="docutils literal"><span class="pre">coverages</span></code>).</p>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="kee1989" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>R. J. Kee, F. M. Rupley, and J. A. Miller. Chemkin-II: A Fortran
+chemical kinetics package for the analysis of gasphase chemical
+kinetics. Technical Report SAND89-8009, Sandia National Laboratories, 1989.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="dl68" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>G. Dixon-Lewis. Flame structure and flame reaction kinetics,
+II: Transport phenomena in multicomponent systems. <em>Proc. Roy. Soc. A</em>,
+307:111–135, 1968.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="kee2003" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>R. J. Kee, M. E. Coltrin, and P. Glarborg. <em>Chemically Reacting
+Flow: Theory and Practice</em>. John Wiley and Sons, 2003.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="species.html" title="Elements and Species"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="input-files.html" title="Working with Input Files"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Defining Phases</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2018, Cantera Developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

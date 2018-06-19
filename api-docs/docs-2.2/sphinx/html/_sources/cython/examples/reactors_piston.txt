@@ -1,0 +1,6 @@
+.. _py-example-piston.py:
+
+piston.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/reactors/piston.py

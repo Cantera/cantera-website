@@ -1,0 +1,8 @@
+:orphan:
+
+.. _py-example-diffusion_flame_batch.py:
+
+diffusion_flame_batch.py
+=======================================================================
+
+.. literalinclude:: ../../../../interfaces/cython/cantera/examples/onedim/diffusion_flame_batch.py

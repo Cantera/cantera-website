@@ -1,0 +1,5 @@
+test_examples.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/test_examples.m
+   :language: matlab

@@ -1,0 +1,5 @@
+isentropic.m
+=======================================================================
+
+.. literalinclude:: ../../../../samples/matlab/isentropic.m
+   :language: matlab
