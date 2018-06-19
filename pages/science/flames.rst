@@ -1,10 +1,12 @@
-.. default-role:: math
+.. slug: flames
+.. title: One-dimensional Flames
+.. has_math: true
 
-.. py:currentmodule:: cantera
+.. jumbotron::
 
-**********************
-One-Dimensional Flames
-**********************
+    .. raw:: html
+
+        <h1 class="display-4">One-Dimensional Flames</h1>
 
 Cantera includes a set of models for representing steady-state, quasi-one-
 dimensional reacting flows, which can be used to simulate a number of common
@@ -34,7 +36,7 @@ similarity solution to reduce the three-dimensional governing equations to a
 single dimension.
 
 The governing equations for a steady axisymmetric stagnation flow follow those
-derived in Section 6.2 of [KCG2003]_:
+derived in Section 6.2 of [1]_:
 
 *Continuity*:
 
@@ -67,21 +69,22 @@ derived in Section 6.2 of [KCG2003]_:
     \rho u \frac{\partial Y_k}{\partial z} = - \frac{\partial j_k}{\partial z}
         + W_k \dot{\omega}_k
 
-where `\rho` is the density, `u` is the axial velocity, `v` is the radial
-velocity, `V = v/r` is the scaled radial velocity, `\Lambda` is the pressure
-eigenvalue (independent of `z`), `\mu` is the dynamic viscosity, `c_p` is the
-heat capacity at constant pressure, `T` is the temperature, `\lambda` is the
-thermal conductivity, `Y_k` is the mass fraction of species `k`, `j_k` is the
-diffusive mass flux of species `k`, `c_{p,k}` is the specific heat capacity of
-species `k`, `h_k` is the enthalpy of species `k`, `W_k` is the molecular weight
-of species `k`, and `\dot{\omega}_k` is the molar production rate of species
-`k`.
+where :math:`\rho` is the density, :math:`u` is the axial velocity, :math:`v` is
+the radial velocity, :math:`V = v/r` is the scaled radial velocity,
+:math:`\Lambda` is the pressure eigenvalue (independent of :math:`z`),
+:math:`\mu` is the dynamic viscosity, :math:`c_p` is the heat capacity at
+constant pressure, :math:`T` is the temperature, :math:`\lambda` is the thermal
+conductivity, :math:`Y_k` is the mass fraction of species :math:`k`, :math:`j_k`
+is the diffusive mass flux of species :math:`k`, :math:`c_{p,k}` is the specific
+heat capacity of species :math:`k`, :math:`h_k` is the enthalpy of species
+:math:`k`, :math:`W_k` is the molecular weight of species :math:`k`, and
+:math:`\dot{\omega}_k` is the molar production rate of species :math:`k`.
 
-The tangential velocity `w` has been assumed to be zero, and the fluid has been
-assumed to behave as an ideal gas.
+The tangential velocity :math:`w` has been assumed to be zero, and the fluid has
+been assumed to behave as an ideal gas.
 
 To help in the solution of the discretized problem, it is convenient to write a
-differential equation for the scalar `\Lambda`:
+differential equation for the scalar :math:`\Lambda`:
 
 .. math::
 
@@ -90,7 +93,7 @@ differential equation for the scalar `\Lambda`:
 Diffusive Fluxes
 ----------------
 
-The species diffusive mass fluxes `j_k` are computed according to either a
+The species diffusive mass fluxes :math:`j_k` are computed according to either a
 mixture-averaged or multicomponent formulation. If the mixture-averaged
 formulation is used, the calculation performed is:
 
@@ -100,13 +103,13 @@ formulation is used, the calculation performed is:
 
     j_k = j_k^* - Y_k \sum_i j_i^*
 
-where `\overline{W}` is the mean molecular weight of the mixture, `D_{km}^\prime` is the
-mixture-averaged diffusion coefficient for species `k`, and `X_k` is the mole
-fraction for species `k`. The diffusion coefficients used here are those
-computed by the method :ct:`GasTransport::getMixDiffCoeffs`. The correction
-applied by the second equation ensures that the sum of the mass fluxes is zero,
-a condition which is not inherently guaranteed by the mixture-averaged
-formulation.
+where :math:`\overline{W}` is the mean molecular weight of the mixture,
+:math:`D_{km}^\prime` is the mixture-averaged diffusion coefficient for species
+:math:`k`, and :math:`X_k` is the mole fraction for species :math:`k`. The
+diffusion coefficients used here are those computed by the method
+:ct:`GasTransport::getMixDiffCoeffs`. The correction applied by the second
+equation ensures that the sum of the mass fluxes is zero, a condition which is
+not inherently guaranteed by the mixture-averaged formulation.
 
 When using the multicomponent formulation, the mass fluxes are computed
 according to:
@@ -116,9 +119,9 @@ according to:
     j_k = \frac{\rho W_k}{\overline{W}^2} \sum_i W_i D_{ki} \frac{\partial X_i}{\partial z}
           - \frac{D_k^T}{T} \frac{\partial T}{\partial z}
 
-where `D_{ki}` is the multicomponent diffusion coefficient and `D_k^T` is the
-Soret diffusion coefficient (used only if calculation of this term is
-specifically enabled).
+where :math:`D_{ki}` is the multicomponent diffusion coefficient and
+:math:`D_k^T` is the Soret diffusion coefficient (used only if calculation of
+this term is specifically enabled).
 
 Boundary Conditions
 ===================
@@ -126,12 +129,12 @@ Boundary Conditions
 Inlet boundary
 --------------
 
-For a boundary located at a point `z_0` where there is an inflow, values are
-supplied for the temperature `T_0`, the species mass fractions `Y_{k,0}` the
-scaled radial velocity `V_0`, and the mass flow rate `\dot{m}_0` (except in the
-case of the freely-propagating flame).
+For a boundary located at a point :math:`z_0` where there is an inflow, values
+are supplied for the temperature :math:`T_0`, the species mass fractions
+:math:`Y_{k,0}` the scaled radial velocity :math:`V_0`, and the mass flow rate
+:math:`\dot{m}_0` (except in the case of the freely-propagating flame).
 
-The following equations are solved at the point `z = z_0`:
+The following equations are solved at the point :math:`z = z_0`:
 
 .. math::
 
@@ -156,7 +159,8 @@ Otherwise, we solve:
 Outlet boundary
 ---------------
 
-For a boundary located at a point `z_0` where there is an outflow, we solve:
+For a boundary located at a point :math:`z_0` where there is an outflow, we
+solve:
 
 .. math::
 
@@ -172,7 +176,7 @@ For a boundary located at a point `z_0` where there is an outflow, we solve:
 Symmetry boundary
 -----------------
 
-For a symmetry boundary located at a point `z_0`, we solve:
+For a symmetry boundary located at a point :math:`z_0`, we solve:
 
 .. math::
 
@@ -187,8 +191,8 @@ For a symmetry boundary located at a point `z_0`, we solve:
 Reacting surface
 ----------------
 
-For a surface boundary located at a point `z_0` on which reactions may occur,
-the temperature `T_0` is specified. We solve:
+For a surface boundary located at a point :math:`z_0` on which reactions may
+occur, the temperature :math:`T_0` is specified. We solve:
 
 .. math::
 
@@ -200,14 +204,13 @@ the temperature `T_0` is specified. We solve:
 
     j_k(z_0) + \dot{s}_k W_k = 0
 
-where `\dot{s}_k` is the molar production rate of the gas-phase species `k` on
-the surface. In addition, the surface coverages `\theta_i` for each surface
-species `i` are computed such that `\dot{s}_i = 0`.
+where :math:`\dot{s}_k` is the molar production rate of the gas-phase species
+:math:`k` on the surface. In addition, the surface coverages :math:`\theta_i`
+for each surface species :math:`i` are computed such that :math:`\dot{s}_i = 0`.
 
 
 References
 ==========
 
-.. [KCG2003] Kee, Coltrin, Glarborg: *Chemically Reacting Flow*.
+.. [1] Kee, Coltrin, Glarborg: *Chemically Reacting Flow*.
              Wiley-Interscience, 2003
-
