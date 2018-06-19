@@ -1,0 +1,8 @@
+[Core]
+Name = parse_docs
+Module = parse_docs
+
+[Documentation]
+Author = Bryan Weber
+Version = 0.1
+Description = Parse the Cantera documentation to build link trees

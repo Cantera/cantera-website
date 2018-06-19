@@ -282,9 +282,10 @@ TIMEZONE = "America/New_York"
 # The format is a dictionary of {source: relative destination}.
 # Default is:
 # This is the "production" version of this dictionary
-CURRENT_CANTERA_VERSION = '2.4'
+CANTERA_VERSION = '2.4'
+DEFAULT_CONTEXT = 'py'
 
-# FILES_FOLDERS = {'api-docs/docs': 'documentation/docs-{}'.format(CURRENT_CANTERA_VERSION),
+# FILES_FOLDERS = {'api-docs/docs': 'documentation/docs-{}'.format(CANTERA_VERSION),
 #                  'api-docs/dev-docs': 'documentation/dev',
 #                  'api-docs/docs-2.0': 'documentation/docs-2.0',
 #                  'api-docs/docs-2.1': 'documentation/docs-2.1',
@@ -293,7 +294,7 @@ CURRENT_CANTERA_VERSION = '2.4'
 #                  }
 
 # This is the "development" version of this dictionary
-FILES_FOLDERS = {'../cantera/build/docs': 'documentation/docs-{}'.format(CURRENT_CANTERA_VERSION),
+FILES_FOLDERS = {'../cantera/build/docs': 'documentation/docs-{}'.format(CANTERA_VERSION),
                  '../cantera/build/dev-docs': 'documentation/dev',
                  'api-docs/docs-2.0': 'documentation/docs-2.0',
                  'api-docs/docs-2.1': 'documentation/docs-2.1',
