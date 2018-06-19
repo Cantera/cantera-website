@@ -140,7 +140,11 @@ class BuildExamples(Listings):
                         files.append(f)
                         this_header_files.append(str(f))
                         with open(f, 'r') as pyfile:
-                            mod = ast.parse(pyfile.read())
+                            try:
+                                mod = ast.parse(pyfile.read())
+                            except UnicodeDecodeError:
+                                raise Exception('The file is {}'.format(f))
+                            #mod = ast.parse(pyfile.read())
                         for node in mod.body:
                             if isinstance(node, ast.Expr) and isinstance(node.value, ast.Str):
                                 doc = node.value.s.strip().split('\n\n')[0].strip()

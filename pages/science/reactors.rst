@@ -1,18 +1,20 @@
-.. default-role:: math
+.. slug: reactors
+.. title: Reactor Models in Cantera
+.. has_math: true
 
-.. py:currentmodule:: cantera
+.. jumbotron::
 
-*****************************
-Reactors and Reactor Networks
-*****************************
+    .. raw:: html
 
-A Cantera Reactor represents the simplest form of a chemically reacting system.
-It corresponds to an extensive thermodynamic control volume `V`, in which all
-state variables are homogeneously distributed. The system is generally unsteady,
-i.e. all states are functions of time. In particular, transient state changes
-due to chemical reactions are possible. However, thermodynamic (but not
-chemical) equilibrium is assumed to be present throughout the reactor at all
-instants of time.
+        <h1 class="display-4">Reactors and Reactor Networks</h1>
+
+A Cantera Reactor represents the simplest form of a chemically reacting
+system. It corresponds to an extensive thermodynamic control volume `V`,
+in which all state variables are homogeneously distributed. The system
+is generally unsteady, i.e. all states are functions of time. In
+particular, transient state changes due to chemical reactions are
+possible. However, thermodynamic (but not chemical) equilibrium is
+assumed to be present throughout the reactor at all instants of time.
 
 Reactors can interact with the surrounding environment in multiple ways:
 
@@ -45,20 +47,20 @@ Governing Equations for Single Reactors
 
 The state variables for Cantera's general reactor model are
 
-- `m`, the mass of the reactor's contents (in kg)
-- `V`, the reactor volume (in m\ :sup:`3`) (not a state variable for
+- :math:`m`, the mass of the reactor's contents (in kg)
+- :math:`V`, the reactor volume (in m\ :sup:`3`) (not a state variable for
   *Constant Pressure Reactor* and *Ideal Gas Constant Pressure Reactor*)
 - A state variable describing the energy of the system, depending on the
   configuration (see `Energy Conservation`_ for further explanation):
 
-  - General *Reactor*: `U`, the total internal energy of the reactors
+  - General *Reactor*: :math:`U`, the total internal energy of the reactors
     contents (in J)
-  - *Constant Pressure Reactor*: `H`, the total enthalpy of the reactors
+  - *Constant Pressure Reactor*: :math:`H`, the total enthalpy of the reactors
     contents (in J)
-  - *Ideal Gas Reactor* and *Ideal Gas Constant Pressure Reactor*: `T`, the
-    temperature (in K)
+  - *Ideal Gas Reactor* and *Ideal Gas Constant Pressure Reactor*: :math:`T`,
+    the temperature (in K)
 
-- `Y_k`, the mass fractions for each species (dimensionless)
+- :math:`Y_k`, the mass fractions for each species (dimensionless)
 
 Mass Conservation
 -----------------
@@ -75,9 +77,9 @@ on the reactor walls:
 Species Conservation
 --------------------
 
-The rate at which species `k` is generated through homogeneous phase reactions
-is `V \dot{\omega}_k W_k`, and the total rate at which species `k` is generated
-is:
+The rate at which species :math:`k` is generated through homogeneous phase
+reactions is :math:`V \dot{\omega}_k W_k`, and the total rate at which species
+:math:`k` is generated is:
 
 .. math::
 
@@ -92,7 +94,7 @@ The rate of change in the mass of each species is:
                          \dot{m}_{k,gen}
 
 Expanding the derivative on the left hand side and substituting the equation
-for `dm/dt`, the equation for each homogeneous phase species is:
+for :math:`dm/dt`, the equation for each homogeneous phase species is:
 
 .. math::
 
@@ -110,9 +112,9 @@ more walls:
 
     \frac{dV}{dt} = \sum_w f_w A_w v_w(t)
 
-where `f_w = \pm 1` indicates the facing of the wall, `A_w` is the surface
-area of the wall, and `v_w(t)` is the velocity of the wall as a function of
-time.
+where :math:`f_w = \pm 1` indicates the facing of the wall, :math:`A_w` is the
+surface area of the wall, and :math:`v_w(t)` is the velocity of the wall as a
+function of time.
 
 For *Constant Pressure Reactor* and *Ideal Gas Constant Pressure Reactor*, the
 volume is not a state variable, but instead takes on whatever value is
@@ -153,7 +155,7 @@ as a state variable. Using the definition of the total enthalpy:
 
     \frac{d H}{d t} = \frac{d U}{d t} + p \frac{dV}{dt} + V \frac{dp}{dt}
 
-Noting that `dp/dt = 0` and substituting into the energy equation yields:
+Noting that :math:`dp/dt = 0` and substituting into the energy equation yields:
 
 .. math::
 
@@ -164,10 +166,10 @@ Noting that `dp/dt = 0` and substituting into the energy equation yields:
 Ideal Gas Reactor
 *****************
 
-In case of the Ideal Gas Reactor Model, the reactor temperature `T` is used
-instead of the total internal energy `U` as a state variable. For an ideal gas,
-we can rewrite the total internal energy in terms of the mass fractions and
-temperature:
+In case of the Ideal Gas Reactor Model, the reactor temperature :math:`T` is
+used instead of the total internal energy :math:`U` as a state variable. For an
+ideal gas, we can rewrite the total internal energy in terms of the mass
+fractions and temperature:
 
 .. math::
 
@@ -224,51 +226,52 @@ The total rate of heat transfer through all walls is:
 
     \dot{Q} = \sum_w f_w \dot{Q}_w
 
-where `f_w = \pm 1` indicates the facing of the wall (+1 for the reactor on the
-left, -1 for the reactor on the right). The heat flux `\dot{Q}_w` through a wall
-`k` connecting reactors "left" and "right" is computed as:
+where :math:`f_w = \pm 1` indicates the facing of the wall (+1 for the reactor
+on the left, -1 for the reactor on the right). The heat flux :math:`\dot{Q}_w`
+through a wall :math:`k` connecting reactors "left" and "right" is computed as:
 
 .. math::
 
-    \dot{Q}_w = U A (T_{\rm left} - T_{\rm right})
-              + \epsilon\sigma A (T_{\rm left}^4 - T_{\rm right}^4)
+    \dot{Q}_w = U A (T_{\mathrm{left}} - T_{\mathrm{right}})
+              + \epsilon\sigma A (T_{\mathrm{left}}^4 - T_{\mathrm{right}}^4)
               + A q_0(t)
 
-where `U` is a user-specified heat transfer coefficient (W/m^2-K), `A` is the
-wall area (m^2), `\epsilon` is the user-specified emissivity, `\sigma` is the
-Stefan-Boltzmann radiation constant, and `q_0(t)` is a user-specified,
-time-dependent heat flux (W/m^2). This definition is such that positive `q_0(t)`
-implies heat transfer from the "left" reactor to the "right" reactor. Each of
-the user-specified terms defaults to 0.
+where :math:`U` is a user-specified heat transfer coefficient (W/m\ :sup:`2`-K),
+:math:`A` is the wall area (m\ :sup:`2`), :math:`\epsilon` is the user-specified
+emissivity, :math:`\sigma` is the Stefan-Boltzmann radiation constant, and
+:math:`q_0(t)` is a user-specified, time-dependent heat flux (W/m\ :sup:`2`).
+This definition is such that positive :math:`q_0(t)` implies heat transfer from
+the "left" reactor to the "right" reactor. Each of the user-specified terms
+defaults to 0.
 
 In case of surface reactions, there can be a net generation (or destruction) of
 homogeneous (gas) phase species at the wall. The molar rate of production for
-each homogeneous phase species `k` on wall `w` is `\dot{s}_{k,w}` (in
-kmol/s/m^2). The total (mass) production rate for homogeneous phase species `k`
-on all walls is:
+each homogeneous phase species :math:`k` on wall :math:`w` is
+:math:`\dot{s}_{k,w}` (in kmol/s/m\ :sup:`2`). The total (mass) production rate
+for homogeneous phase species :math:`k` on all walls is:
 
 .. math::
 
     \dot{m}_{k,wall} = W_k \sum_w A_w \dot{s}_{k,w}
 
-where `W_k` is the molecular weight of species `k` and `A_w` is the area of
-each wall. The net mass flux from all walls is then:
+where :math:`W_k` is the molecular weight of species :math:`k` and :math:`A_w`
+is the area of each wall. The net mass flux from all walls is then:
 
 .. math::
 
     \dot{m}_{wall} = \sum_k \dot{m}_{k,wall}
 
 
-For each surface species `i`, the rate of change of the site fraction
-`\theta_{i,w}` on each wall `w` is integrated with time:
+For each surface species :math:`i`, the rate of change of the site fraction
+:math:`\theta_{i,w}` on each wall :math:`w` is integrated with time:
 
 .. math::
 
     \frac{d\theta_{i,w}}{dt} = \frac{\dot{s}_{i,w} n_i}{\Gamma_w}
 
-where `\Gamma_w` is the total surface site density on wall `w` and `n_i` is the
-number of surface sites occupied by a molecule of species `i` (sometimes
-referred to within Cantera as the molecule's "size").
+where :math:`\Gamma_w` is the total surface site density on wall :math:`w` and
+:math:`n_i` is the number of surface sites occupied by a molecule of species
+:math:`i` (sometimes referred to within Cantera as the molecule's "size").
 
 Reactor Networks and Devices
 ============================
@@ -301,15 +304,16 @@ to the reactors previously mentioned:
   not the acceleration or displacement, that is specified. The wall velocity is
   computed from
 
-  .. math:: v = K(P_{\rm left} - P_{\rm right}) + v_0(t),
+  .. math:: v = K(P_{\mathrm{left}} - P_{\mathrm{right}}) + v_0(t),
 
   where :math:`K` is a non-negative constant, and :math:`v_0(t)` is a specified
   function of time. The velocity is positive if the wall is moving to the right.
 
   The heat flux through the wall is computed from
 
-  .. math:: q = U(T_{\rm left} - T_{\rm right}) + \epsilon\sigma (T_{\rm left}^4
-                - T_{\rm right}^4) + q_0(t),
+  .. math:: q = U(T_{\mathrm{left}} - T_{\mathrm{right}})
+                + \epsilon\sigma (T_{\mathrm{left}}^4
+                - T_{\mathrm{right}}^4) + q_0(t),
 
   where :math:`U` is the overall heat transfer coefficient for
   conduction/convection, and :math:`\epsilon` is the emissivity. The function
@@ -323,7 +327,7 @@ to the reactors previously mentioned:
   temperature on each side is taken to be equal to the temperature of the
   reactor it faces.
 
-  Source: `Python <cython/zerodim.html#wall>`_ | :ct:`C++ <Wall>`
+Source: `Python <cython/zerodim.html#wall>`_ | :ct:`C++ <Wall>`
 
 - **Valve**: A valve is a flow devices with mass flow rate that is a function of
   the pressure drop across it. The default behavior is linear:
@@ -370,7 +374,7 @@ to the reactors previously mentioned:
   master mass flow rate, plus a small correction dependent on the pressure
   difference:
 
-  .. math:: \dot m = \dot m_{\rm master} + K_v(P_1 - P_2).
+  .. math:: \dot m = \dot m_{\mathrm{master}} + K_v(P_1 - P_2).
 
 Time Integration
 ----------------
@@ -381,25 +385,27 @@ used. Starting off the current state of the system, it can be advanced in time
 by one of the following methods:
 
 - ``step()``: The step method computes the state of the system at the a priori
-  unspecified time `t_{\rm new}`. The time `t_{\rm new}` is internally computed
-  so that all states of the system only change within a (specifiable) band of
-  absolute and relative tolerances. Additionally, the time step must not be
-  larger than a predefined maximum time step `\Delta t_{\rm max}`. The new time
-  `t_{\rm new}` is returned by this function.
+  unspecified time :math:`t_{\mathrm{new}}`. The time :math:`t_{\mathrm{new}}`
+  is internally computed so that all states of the system only change within a
+  (specifiable) band of absolute and relative tolerances. Additionally, the time
+  step must not be larger than a predefined maximum time step
+  :math:`\Delta t_{\mathrm{max}}`. The new time :math:`t_{\mathrm{new}}` is
+  returned by this function.
 
-- ``advance``\ `(t_{\rm new})`: This method computes the state of the system at
-  time `t_{\rm new}`. `t_{\rm new}` describes the absolute time from the initial
-  time of the system. By calling this method in a for loop for pre-defined
-  times, the state of the system is obtained for exactly the times specified.
-  Internally, several ``step()`` calls are typically performed to reach the
-  accurate state at time `t_{\rm new}`.
+- ``advance``\ :math:`(t_{\mathrm{new}})`: This method computes the state of the
+  system at time :math:`t_{\mathrm{new}}`. :math:`t_{\mathrm{new}}` describes
+  the absolute time from the initial time of the system. By calling this method
+  in a for loop for pre-defined times, the state of the system is obtained for
+  exactly the times specified. Internally, several ``step()`` calls are
+  typically performed to reach the accurate state at time
+  :math:`t_{\mathrm{new}}`.
 
 - ``advance_to_steady_state(max_steps, residual_threshold, atol,
   write_residuals)`` [Python interface only]: If the steady state solution of a
   reactor network is of interest, this method can be used. Internally, the
   steady state is approached by time stepping. The network is considered to be
   at steady state if the feature-scaled residual of the state vector is below a
-  given threshold value (which by default is 10 times the time step rtol).
+  given threshold value (which by default is 10 times the time step ``rtol``).
 
 The use of the ``advance`` method in a loop has the advantage that it produces
 results corresponding to a predefined time series. These are associated with a
@@ -449,7 +455,8 @@ states are converged (see e.g. example :ref:`py-example-surf_pfr.py`,
 :ref:`py-example-combustor.py`).
 
 Cantera comes with a broad variety of well-commented example scrips for reactor
-networks. Please refer to them for further information (:ref:`Python <sec-cython-examples>`, :ref:`Matlab <sec-matlab-examples>`).
+networks. Please see the `Cantera Examples </examples/index.html>`_ for further
+information.
 
 Common Reactor Types and their Implementation in Cantera
 ========================================================
@@ -521,7 +528,7 @@ of the gas is allowed to change. However, all diffusion processes are neglected.
 Plug-Flow Reactors are often used to simulate ignition delay times, emission
 formation, and catalytic processes.
 
-The governing equations of Plug-Flow Reactors are [KCG2003]_:
+The governing equations of Plug-Flow Reactors are [1]_:
 
 - Mass conservation:
 
@@ -618,8 +625,5 @@ Literature
 
 For further reading, the following books are recommended:
 
-.. [KCG2003] Kee, Coltrin, Glarborg: *Chemically Reacting Flow*.
+.. [1] Kee, Coltrin, Glarborg: *Chemically Reacting Flow*.
              Wiley-Interscience, 2003
-
-.. [Tur2000] Turns: *An Introduction to Combustion: Concepts and Applications*,
-             McGraw Hill, 2000
