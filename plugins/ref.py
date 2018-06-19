@@ -8,6 +8,8 @@ from docutils.parsers.rst import roles
 from nikola.utils import split_explicit_title, get_logger
 from nikola.plugin_categories import RestExtension
 
+LOGGER = get_logger('rest_ref')
+
 
 class Plugin(RestExtension):
     """Plugin for ref role."""
@@ -17,7 +19,6 @@ class Plugin(RestExtension):
     def set_site(self, site):
         """Set Nikola site."""
         self.site = site
-        self.site.logger = get_logger(self.name)
         roles.register_canonical_role('ref', ref_role)
         ref_role.site = site
         return super(Plugin, self).set_site(site)
@@ -42,7 +43,7 @@ def _ref_link(rawtext, text, options={}, content=[]):
         anon_ref_labels = ref_role.site.anon_ref_labels.copy()
 
     if label not in ref_labels and (label in anon_ref_labels and not has_explicit_title):
-        ref_role.site.logger.error('Anonymous targets must have a link text: {}'.format(label))
+        LOGGER.error('Anonymous targets must have a link text: {}'.format(label))
         return False, False, None, None, label
     elif label in anon_ref_labels:
         permalink = anon_ref_labels[label][0]
@@ -53,13 +54,13 @@ def _ref_link(rawtext, text, options={}, content=[]):
 
         return True, False, title, permalink, label
     else:
-        ref_role.site.logger.error('Unknown reference label: {}'.format(label))
-        # ref_role.site.logger.error('ref_labels is: {}'.format(ref_role.site.ref_labels))
+        LOGGER.error('Unknown reference label: {}'.format(label))
+        # LOGGER.error('ref_labels is: {}'.format(ref_role.site.ref_labels))
         return False, False, None, None, label
 
     if label not in ref_labels:
-        ref_role.site.logger.error('Unknown reference label: {}'.format(label))
-        # ref_role.site.logger.error('ref_labels is: {}'.format(ref_role.site.ref_labels))
+        LOGGER.error('Unknown reference label: {}'.format(label))
+        # LOGGER.error('ref_labels is: {}'.format(ref_role.site.ref_labels))
         return False, False, None, None, label
 
     permalink = ref_labels[label][0]

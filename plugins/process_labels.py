@@ -55,7 +55,7 @@ class ProcessLabels(Task):
                     'name': source,
                     'targets': targets,
                     'task_dep': ['process_labels:timeline_changes'],
-                    'actions': [(process_labels, [self.site, self.logger, source, post, lang]),
+                    'actions': [(process_labels, [self.site, self.logger, source, post]),
                                 (update_cache, [self.site]),
                                 ],
                     'uptodate': [config_changed(deps_dict, 'process_labels')] +
@@ -80,7 +80,7 @@ def update_cache(site):
         site.cache.set('anon_ref_labels', site.anon_ref_labels)
 
 
-def process_labels(site, logger, source, post, lang=None):
+def process_labels(site, logger, source, post):
     site.processing_labels = True
     pub = Publisher(reader=Reader(), parser=None, writer=None)
     pub.set_components(None, 'restructuredtext', 'html')
