@@ -20,3 +20,9 @@ h6:hover > a.headerlink {
 .tutorials { margin: 40px 0; padding: 0 0 !important; }
 
 section { margin-top: 20px; margin-bottom: 0px; padding: 10px 0; }
+
+a.docs:hover { background-color: #007994; color: #ffffff; }
+a.docs, a.dev-docs { color: #000000; }
+a.dev-docs:hover { background-color: #fd7f03; color: #ffffff; }
+
+.row { margin: 0 0 20px; }

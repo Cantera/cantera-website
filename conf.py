@@ -138,7 +138,7 @@ NAVIGATION_LINKS = {
         ('/examples/index.html', 'Examples'),
         ('/community.html', 'Community'),
         ('/science/index.html', 'Science'),
-        ('/documentation.html', 'Documentation'),
+        ('/documentation/index.html', 'Documentation'),
         # ("/archive.html", "Archive"),
         # ("/categories/", "Tags"),
         # ("/rss.xml", "RSS feed"),
@@ -281,7 +281,26 @@ TIMEZONE = "America/New_York"
 # One or more folders containing files to be copied as-is into the output.
 # The format is a dictionary of {source: relative destination}.
 # Default is:
-# FILES_FOLDERS = {'files': ''}
+# This is the "production" version of this dictionary
+CURRENT_CANTERA_VERSION = '2.4'
+
+# FILES_FOLDERS = {'api-docs/docs': 'documentation/docs-{}'.format(CURRENT_CANTERA_VERSION),
+#                  'api-docs/dev-docs': 'documentation/dev',
+#                  'api-docs/docs-2.0': 'documentation/docs-2.0',
+#                  'api-docs/docs-2.1': 'documentation/docs-2.1',
+#                  'api-docs/docs-2.2': 'documentation/docs-2.2',
+#                  'api-docs/docs-2.3': 'documentation/docs-2.3',
+#                  }
+
+# This is the "development" version of this dictionary
+FILES_FOLDERS = {'../cantera/build/docs': 'documentation/docs-{}'.format(CURRENT_CANTERA_VERSION),
+                 '../cantera/build/dev-docs': 'documentation/dev',
+                 'api-docs/docs-2.0': 'documentation/docs-2.0',
+                 'api-docs/docs-2.1': 'documentation/docs-2.1',
+                 'api-docs/docs-2.2': 'documentation/docs-2.2',
+                 'api-docs/docs-2.3': 'documentation/docs-2.3',
+                 }
+
 # Which means copy 'files' into 'output'
 
 # One or more folders containing code listings to be processed and published on
@@ -891,10 +910,10 @@ IMAGE_FOLDERS = {'images': 'images'}
 # FAVICONS contains (name, file, size) tuples.
 # Used to create favicon link like this:
 # <link rel="name" href="file" sizes="size"/>
-# FAVICONS = (
-#     ("icon", "/favicon.ico", "16x16"),
-#     ("icon", "/icon_128x128.png", "128x128"),
-# )
+FAVICONS = (
+    ("icon", "/assets/img/favicon.ico", "16x16"),
+    # ("icon", "/icon_128x128.png", "128x128"),
+)
 
 # Show teasers (instead of full posts) in indexes? Defaults to False.
 # INDEX_TEASERS = False
