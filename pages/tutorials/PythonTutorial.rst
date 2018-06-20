@@ -420,7 +420,7 @@ line documented source code of Cantera C++ class 'ChemEquil.h'.
 Chemical Kinetics
 =================
 
-`Solution` objects are also `Kinetics` objects, and provide all of the methods
+:class:`Solution` objects are also :class:`Kinetics` objects, and provide all of the methods
 necessary to compute the thermodynamic quantities associated with each reaction,
 reaction rates, and species creation and destruction rates. They also provide
 methods to inspect the quantities that define each reaction such as the rate
