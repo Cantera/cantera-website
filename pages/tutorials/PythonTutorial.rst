@@ -297,7 +297,7 @@ surface reactions must also be passed as arguments to `Interface`.
 Converting CK-format files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-See the `Converting CK-format Files <ck-convert.html>`_ documentation for
+See the `Converting CK-format Files <ck-conversion.html>`_ documentation for
 information on how to convert from Ck-format to CTI format.
 
 
@@ -420,13 +420,14 @@ line documented source code of Cantera C++ class 'ChemEquil.h'.
 Chemical Kinetics
 =================
 
-`Solution` objects are also `Kinetics` objects, and provide all of the methods
+:class:`Solution` objects are also :class:`Kinetics` objects, and provide all of the methods
 necessary to compute the thermodynamic quantities associated with each reaction,
 reaction rates, and species creation and destruction rates. They also provide
 methods to inspect the quantities that define each reaction such as the rate
 constants and the stoichiometric coefficients. The rate calculation functions
-are used extensively within Cantera's :ref:`reactor network model
-<sec-cython-zerodim>` and :ref:`1D flame model <sec-cython-onedim>`.
+are used extensively within Cantera's
+`reactor network model </api-docs/docs/sphinx/html/cython/zerodim.html#sec-cython-zerodim>`_
+and `1D flame model </api-docs/docs/sphinx/html/cython/onedim.html#sec-cython-onedim>`_.
 
 Information about individual reactions that is independent of the thermodynamic
 state can be obtained by accessing `Reaction` objects with the
