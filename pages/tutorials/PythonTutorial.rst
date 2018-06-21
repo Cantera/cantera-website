@@ -1,11 +1,13 @@
 .. slug: python-tutorial
 .. hidetitle: true
 
-Python Tutorial
-===============
+.. jumbotron::
 
-Getting Started
-===============
+    .. raw:: html
+
+        <h1 class="display-4">Python Tutorial</h1>
+        <h2 class="display-5">Getting Started</h2>
+
 
 Start by opening an interactive Python session, e.g., by running `IPython
 <http://ipython.org/>`_. Import the Cantera Python module and NumPy by running:

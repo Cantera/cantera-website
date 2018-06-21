@@ -3,12 +3,13 @@
 .. highlight:: matlab
 .. hidetitle: true
 
+.. jumbotron::
 
-Matlab Tutorial
-===============
+    .. raw:: html
 
-Getting Started
-===============
+        <h1 class="display-4">Matlab Tutorial</h1>
+        <h2 class="display-5">Getting Started</h2>
+        
 
 When using Cantera, the first thing you usually need is an object representing
 some phase of matter. Here, we'll create a gas mixture.  Start MATLAB, and at
