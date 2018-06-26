@@ -2,30 +2,34 @@
 .. slug: defining-phases
 .. hidetitle: true
 
+.. jumbotron::
 
-Defining Phases
-===============
-A guide to Cantera's input file format
-=========================================
+    .. raw:: html
 
-Virtually every Cantera simulation involves one or more phases of
-matter. Depending on the calculation being performed, it may be necessary to
-evaluate thermodynamic properties, transport properties, and/or homogeneous
-reaction rates for the phase(s) present. Before the properties can be evaluated,
-each phase must be defined, meaning that the models to use to compute its
-properties and reaction rates must be specified, along with any parameters the
-models require.
+        <h1 class="display-4">Defining Phases</h1>
+        <h2 class="display-5">A guide to Cantera's input file format</h2>
 
-Because the amount of data required can be quite large, this data is imported
-from a text file that can be read by the application, so that a given
-phase model can be re-used for other simulations.  This is the Cantera
-Input (CTI) file.
+    .. class:: lead
 
-This guide describes how to write such files to define phases and interfaces for
-use in Cantera simulations.  Each link below represents a standalone module -
-while you certainly can read them in order, you can also jump to whichever
-section addresses your current needs.  If you need tips on troubleshooting the
-CTI file syntax rules, please go `here <cti-syntax.html>`_.
+        Virtually every Cantera simulation involves one or more phases of
+        matter. Depending on the calculation being performed, it may be necessary to
+        evaluate thermodynamic properties, transport properties, and/or homogeneous
+        reaction rates for the phase(s) present. Before the properties can be evaluated,
+        each phase must be defined, meaning that the models to use to compute its
+        properties and reaction rates must be specified, along with any parameters the
+        models require.
+
+        Because the amount of data required can be quite large, this data is imported
+        from a text file that can be read by the application, so that a given
+        phase model can be re-used for other simulations.  This is the Cantera
+        Input (CTI) file.
+
+        This guide describes how to write such files to define phases and interfaces for
+        use in Cantera simulations.  Each link below represents a standalone module -
+        while you certainly can read them in order, you can also jump to whichever
+        section addresses your current needs.  If you need tips on troubleshooting the
+        CTI file syntax rules, please go `here <cti-syntax.html>`_.
+
 
 .....
 

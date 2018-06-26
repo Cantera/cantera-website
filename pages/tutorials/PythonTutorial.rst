@@ -1,11 +1,13 @@
 .. slug: python-tutorial
 .. hidetitle: true
 
-Python Tutorial
-===============
+.. jumbotron::
 
-Getting Started
-===============
+    .. raw:: html
+
+        <h1 class="display-4">Python Tutorial</h1>
+        <h2 class="display-5">Getting Started</h2>
+
 
 Start by opening an interactive Python session, e.g., by running `IPython
 <http://ipython.org/>`_. Import the Cantera Python module and NumPy by running:
@@ -420,7 +422,7 @@ line documented source code of Cantera C++ class 'ChemEquil.h'.
 Chemical Kinetics
 =================
 
-`Solution` objects are also `Kinetics` objects, and provide all of the methods
+:class:`Solution` objects are also :class:`Kinetics` objects, and provide all of the methods
 necessary to compute the thermodynamic quantities associated with each reaction,
 reaction rates, and species creation and destruction rates. They also provide
 methods to inspect the quantities that define each reaction such as the rate
