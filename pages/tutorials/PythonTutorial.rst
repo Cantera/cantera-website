@@ -10,7 +10,7 @@
 
 
 Start by opening an interactive Python session, e.g., by running `IPython
-<http://ipython.org/>`_. Import the Cantera Python module and NumPy by running:
+<http://ipython.org/>`__. Import the Cantera Python module and NumPy by running:
 
 .. code:: python
 
@@ -24,7 +24,7 @@ some phase of matter. Here, we'll create a gas mixture
 
     >>> gas1 = ct.Solution('gri30.xml')
 
-To view the state of the mixture, *call* the `gas1` object as if it were a
+To view the state of the mixture, *call* the ``gas1`` object as if it were a
 function:
 
 .. code:: python
@@ -56,19 +56,19 @@ You should see something like this:
                    H2              1                1         -15.7173
         [  +52 minor]              0                0
 
-What you have just done is to create an object, `gas1` that implements GRI-
+What you have just done is to create an object, ``gas1`` that implements GRI-
 Mech 3.0, the 53-species, 325-reaction natural gas combustion mechanism
 developed by Gregory P. Smith, David M. Golden, Michael Frenklach, Nigel W.
 Moriarty, Boris Eiteneer, Mikhail Goldenberg, C. Thomas Bowman, Ronald K.
 Hanson, Soonho Song, William C. Gardiner, Jr., Vitali V. Lissianski, and
 Zhiwei Qin. See http://www.me.berkeley.edu/gri_mech/ for more information.
 
-The `gas1` object has properties you would expect for a gas mixture - it has a
+The ``gas1`` object has properties you would expect for a gas mixture - it has a
 temperature, a pressure, species mole and mass fractions, etc. As we'll soon
 see, it has many more properties.
 
-The summary of the state of `gas1` printed above shows that new objects
-created from the `gri30.xml` input file start out with a temperature of 300 K,
+The summary of the state of ``gas1`` printed above shows that new objects
+created from the ``gri30.xml`` input file start out with a temperature of 300 K,
 a pressure of 1 atm, and have a composition that consists of only one species,
 in this case hydrogen. There is nothing special about H2 - it just happens to
 be the first species listed in the input file defining GRI-Mech 3.0. In
@@ -110,9 +110,6 @@ uses SI units). After this statement, calling ``gas1()`` results in:
                    H2              1                1         -17.9775
         [  +52 minor]              0                0
 
-Notice that the temperature has been changed as requested, but the pressure
-has changed too. The density and composition have not.
-
 Thermodynamics generally requires that *two* properties in addition to
 composition information be specified to fix the intensive state of a substance
 (or mixture). The state of the mixture can be set using several combinations
@@ -148,7 +145,7 @@ fractions (``Y``):
 
     >>> gas1.X = 'CH4:1, O2:2, N2:7.52'
 
-Mass and mole fractions can also be set using `dict` objects, for cases where
+Mass and mole fractions can also be set using ``dict`` objects, which is convenient in cases where
 the composition is stored in a variable or being computed:
 
 .. code:: python
@@ -205,7 +202,7 @@ same value, do this:
 
 .. code:: python
 
-    >>> gas1.X = np.ones(53) # NumPy array of 53 ones
+    >>> gas1.X = np.ones(53)  # NumPy array of 53 ones
 
 Or, to set all the mass fractions to equal values:
 
@@ -214,8 +211,8 @@ Or, to set all the mass fractions to equal values:
     >>> gas1.Y = np.ones(53)
 
 When setting the state, you can control what properties are held constant by
-passing the special value `None` to the property setter. For example, to
-change the specific volume to 2.1 m^3/kg while holding entropy constant:
+passing the special value ``None`` to the property setter. For example, to
+change the specific volume to 2.1 m\ :sup:`3`\ /kg while holding entropy constant:
 
 .. code:: python
 
@@ -230,10 +227,10 @@ Or to set the mass fractions while holding temperature and pressure constant:
 Working with a Subset of Species
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Many properties of a `Solution` provide values for each species present in the
+Many properties of a :py:class:`Solution` provide values for each species present in the
 phase. If you want to get values only for a subset of these species, you can use
 Python's "slicing" syntax to select data for just the species of interest. To
-get the mole fractions of just the major species in `gas1`, in the order
+get the mole fractions of just the major species in ``gas1``, in the order
 specified, you can write:
 
 .. code:: python
@@ -276,7 +273,7 @@ systems) where they are located. Alternatively, you can call function
 
 .. code:: python
 
-    >>> ct.add_directory('/usr/local/cantera/my_data_files')
+    >>> ct.add_directory('~/cantera/my_data_files')
 
 Cantera input files are plain text files, and can be created with any text
 editor. See the document :doc:`Working With Input Files <input-files>` for more
@@ -294,19 +291,19 @@ two bulk phases and the interface between them from file ``diamond.cti``:
                                     [gas2, diamond])
 
 Note that the bulk (i.e., 3D or homogeneous) phases that participate in the
-surface reactions must also be passed as arguments to `Interface`.
+surface reactions must also be passed as arguments to :py:class:`Interface`.
 
 Converting CK-format files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-See the `Converting CK-format Files <ck-conversion.html>`_ documentation for
+See the `Converting CK-format Files <ck-conversion.html>`__ documentation for
 information on how to convert from Ck-format to CTI format.
 
 
 Getting Help
 ============
 
-In addition to the Sphinx-generated `Python documentation </documentation/index.html#Python>`_,
+In addition to the Sphinx-generated `Python documentation </documentation/index.html#Python>`__,
 documentation of the Python classes and their methods can be accessed from
 within the Python interpreter as well.
 
@@ -380,9 +377,9 @@ specific enthalpy and pressure can be held fixed:
 
 Other options are:
 
-    - 'UV'   fixed specific internal energy and specific volume
-    - 'SV'   fixed specific entropy and specific volume
-    - 'SP'   fixed specific entropy and pressure
+    - ``UV`` fixed specific internal energy and specific volume
+    - ``SV`` fixed specific entropy and specific volume
+    - ``SP`` fixed specific entropy and pressure
 
 How can you tell if ``equilibrate`` has correctly found the chemical equilibrium
 state? One way is verify that the net rates of progress of all reversible
@@ -407,33 +404,33 @@ You might be wondering how ``equilibrate`` works. (Then again, you might not).
 Method ``equilibrate`` invokes Cantera's chemical equilibrium solver, which uses
 an element potential method. The element potential method is one of a class of
 equivalent *nonstoichiometric* methods that all have the characteristic that
-the problem reduces to solving a set of M nonlinear algebraic equations, where
-M is the number of elements (not species). The so-called *stoichiometric*
-methods, on the other hand, (including Gibbs minimization), require solving K
-nonlinear equations, where K is the number of species (usually K >> M). See
+the problem reduces to solving a set of :math:`M` nonlinear algebraic equations, where
+:math:`M` is the number of elements (not species). The so-called *stoichiometric*
+methods, on the other hand, (including Gibbs minimization), require solving :math:`K`
+nonlinear equations, where :math:`K` is the number of species (usually :math:`K >> M`). See
 Smith and Missen, "Chemical Reaction Equilibrium Analysis" for more
 information on the various algorithms and their characteristics.
 
 Cantera uses a damped Newton method to solve these equations, and does a few
 other things to generate a good starting guess and to produce a reasonably
-robust algorithm. If you want to know more about the details, look at the on-
-line documented source code of Cantera C++ class 'ChemEquil.h'.
+robust algorithm. If you want to know more about the details, look at the
+C++ code in `ChemEquil.h </documentation/docs-2.4/doxygen/html/ChemEquil_8h.html>`__.
 
 Chemical Kinetics
 =================
 
-:class:`Solution` objects are also :class:`Kinetics` objects, and provide all of the methods
+:py:class:`Solution` objects are also :py:class:`Kinetics` objects, and provide all of the methods
 necessary to compute the thermodynamic quantities associated with each reaction,
 reaction rates, and species creation and destruction rates. They also provide
 methods to inspect the quantities that define each reaction such as the rate
 constants and the stoichiometric coefficients. The rate calculation functions
 are used extensively within Cantera's
-`reactor network model </api-docs/docs/sphinx/html/cython/zerodim.html#sec-cython-zerodim>`_
-and `1D flame model </api-docs/docs/sphinx/html/cython/onedim.html#sec-cython-onedim>`_.
+`reactor network model </documentation/docs-2.4/sphinx/html/cython/zerodim.html#sec-cython-zerodim>`_
+and `1D flame model </documentation/docs-2.4/sphinx/html/cython/onedim.html#sec-cython-onedim>`_.
 
 Information about individual reactions that is independent of the thermodynamic
-state can be obtained by accessing `Reaction` objects with the
-`Kinetics.reaction` method:
+state can be obtained by accessing :py:class:`Reaction` objects with the
+:py:func:`Kinetics.reaction` method:
 
 .. code:: python
 
@@ -452,7 +449,7 @@ state can be obtained by accessing `Reaction` objects with the
 If we are interested in only certain types of reactions, we can use this
 information to filter the full list of reactions to find the just the ones of
 interest. For example, here we find the indices of just those reactions which
-convert `CO` into `CO2`:
+convert ``CO`` into ``CO2``:
 
 .. code:: python
 
@@ -530,5 +527,5 @@ Congratulations -- Next Steps
 
 Congratulations - you have finished the Cantera Python tutorial! You should now
 be ready to begin using Cantera on your own.  Please see the Next Steps
-section on the `Getting Started <index.html#cantera-next-steps>`_ page, for assistance with
+section on the `Getting Started <index.html#cantera-next-steps>`__ page, for assistance with
 intermediate and advanced Cantera functionality.  Good luck!
