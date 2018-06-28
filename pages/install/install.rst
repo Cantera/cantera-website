@@ -33,7 +33,7 @@
                       aria-controls=collapse-conda
          :tagname: a
 
-         Conda Install Instructions
+         Conda Install Instructions (Highly recommended for all users)
 
       .. container:: collapse
          :attributes: id=collapse-conda
