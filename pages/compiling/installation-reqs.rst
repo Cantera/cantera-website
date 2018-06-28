@@ -18,6 +18,9 @@
       <div class="container">
          <div class="row">
             <div class="col">
+               <a class="btn btn-secondary" href="#sec-conda">Conda</a>
+            </div>
+            <div class="col">
                <a class="btn btn-secondary" href="#sec-ubuntu-debian-reqs">Ubuntu & Debian</a>
             </div>
             <div class="col">
@@ -35,6 +38,112 @@
          </div>
       </div>
 
+
+.. _sec-conda:
+
+Conda & Anaconda
+----------------
+
+General Notes
+^^^^^^^^^^^^^
+
+* These instructions will set you up to build Cantera with the dependencies installed in a Conda
+  environment
+
+* You will need to install compilers for your system by following the instructions in the sections
+  below to install the compiler for your operating system.
+
+.. _sec-conda-reqs:
+
+Conda Requirements
+^^^^^^^^^^^^^^^^^^
+
+* Install `Anaconda <https://www.anaconda.com/download>`__ or
+  `Miniconda <https://conda.io/miniconda.html>`__. We highly recommend using the Python 3 version
+  unless you have a specific reason not to.
+
+* On macOS and Linux, add the following code to your ``.bash_profile`` file (macOS) or your
+  ``.bashrc`` file (Linux) and restart your terminal or shell afterwards:
+
+  .. code:: bash
+
+     source /path/to/conda/install/folder/etc/profile.d/conda.sh
+     conda activate
+
+  On Windows, use the Anaconda Prompt (available from the Start Menu).
+
+* Create an environment with the dependencies to build Cantera
+
+  .. code:: bash
+
+     conda create --name cantera python=3 scons cython boost numpy
+     conda activate cantera
+
+* (Optional) If you also want to build the documentation, after you've created the environment and
+  activated it, you'll also need to install the following dependencies
+
+  .. code:: bash
+
+     conda install --name cantera sphinx doxygen graphviz
+     pip install sphinxcontrib-matlabdomain sphinxcontrib-katex sphinxcontrib-doxylink
+
+* (Optional) If you also want to build the Python 2 interface (this is unlikely), create another
+  environment for those dependencies:
+
+  .. code:: bash
+
+     conda create --name py2k python=2 numpy
+     conda activate py2k
+     pip install 3to2
+     conda activate cantera
+
+  and after you've :ref:`cloned the source code <sec-source-code>`, add the following lines to a
+  file called ``cantera.conf``  in the root of the source directory (creating the file if it
+  doesn't exist):
+
+  .. code:: python
+
+     python2_package = 'full'
+     python2_cmd = '/path/to/conda/install/folder/envs/py2k/bin/python'
+
+  Note that it is not possible to simultaneously install the Python 2 and Python 3 interfaces;
+  you'll have to use separate builds if you want to install both (however, this is an unlikely
+  scenario). For every-day development and testing, the setup described here works well.
+
+* After you've :ref:`cloned the source code <sec-source-code>`, configure the Cantera build by
+  adding the following options to a file called ``cantera.conf`` in the root of the source directory
+  (creating the file if it doesn't exist):
+
+  .. code:: python
+
+     python3_package = 'full'
+     boost_inc_dir = '/path/to/conda/install/folder/envs/cantera/include'
+
+* Now you can build Cantera with
+
+  .. code:: bash
+
+     scons build
+
+* To install Cantera, use the command
+
+  .. code:: bash
+
+     scons install prefix=$CONDA_PREFIX
+
+  to make sure that the files end up in the right directory
+
+.. container:: container
+
+  .. container:: row
+
+     .. container:: col-12 text-right
+
+        .. container:: btn btn-primary
+           :tagname: a
+           :attributes: href=source-code.html
+
+           Next: Download the Source Code
 
 .. _sec-linux:
 
