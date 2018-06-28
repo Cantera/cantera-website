@@ -26,3 +26,14 @@ a.docs, a.dev-docs { color: #000000; }
 a.dev-docs:hover { background-color: #fd7f03; color: #ffffff; }
 
 .row { margin: 0 0 20px; }
+
+tt {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 1em;
+    font-size: 87.5%;
+    word-break: break-word;
+}
+
+a > tt {
+    color: inherit;
+}
