@@ -547,3 +547,80 @@
             platforms, or if you want to use an interface other than the Python interface,
             you'll have to compile and install Cantera yourself. Instructions for that are
             in the :ref:`Compiling section <sec-compiling>`.
+
+   .. container:: card
+
+      .. container:: card-header btn btn-link text-left
+         :attributes: id=heading-compiling
+                      data-toggle=collapse
+                      href=#collapse-compiling
+                      aria-expanded=false
+                      aria-controls=collapse-compiling
+         :tagname: a
+
+         Compiling Cantera from Source
+
+      .. container:: collapse
+         :attributes: id=collapse-compiling
+                      aria-labelledby=heading-compiling
+                      data-parents=#accordion
+
+         .. container:: card-body
+
+            **Compiling Cantera from Source: Quickstart**
+
+            Compiling Cantera from source code uses the SCons build system and a C/C++ compiler. If
+            you also want to build the Python, Matlab, or Fortran interfaces, you'll need Cython +
+            Numpy, Matlab, or a Fortran compiler installed, respectively. Specific instructions to
+            install these things are platform-dependent, and more detail is provided in the sections
+            linked below.
+
+            The recommended way to obtain a copy of the source code is directly from the main
+            version control repository on GitHub via the command
+
+            .. code:: bash
+
+               git clone https://github.com/Cantera/cantera.git
+               cd cantera
+
+            which clones the code into a folder called ``cantera`` and changes into that directory.
+            At this point, you can run
+
+            .. code:: bash
+
+               scons help
+
+            to see a list of all of the configuration options, including their defaults. On
+            \*nix-type systems, the defaults will usually pick up the appropriate compilers and
+            Python versions. The command
+
+            .. code:: bash
+
+               scons build
+
+            will build Cantera using all the default options; additional options can be specified
+            by
+
+            .. code:: bash
+
+               scons build option=value option=value
+
+            Installing Cantera into the default directories is done by
+
+            .. code:: bash
+
+               scons install
+
+            which may require super-user permissions if the installation directory is protected.
+
+            **Compiling Cantera from Source: The Detailed Way**
+
+            If you want or need more detail, the following sections go into depth on all of the
+            options and requirements to build Cantera from source.
+
+            * :ref:`Installation Requirements <sec-installation-reqs>`
+            * :ref:`Getting the Source Code <sec-source-code>`
+            * :ref:`Determine Configuration Options <sec-determine-config>`
+            * :ref:`Cantera's Dependencies <sec-dependencies>`
+            * :ref:`Special Compiling Cases <sec-special-compiling-cases>`
+            * :ref:`Show me all of the configuration options <scons-config>`
