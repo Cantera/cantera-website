@@ -5,8 +5,8 @@
 
     .. raw:: html
 
-        <h1 class="display-4">Python Tutorial</h1>
-        <h2 class="display-5">Getting Started</h2>
+        <h1 class="display-3">Python Tutorial</h1>
+        <h2 class="display-4">Getting Started</h2>
 
 
 Start by opening an interactive Python session, e.g., by running `IPython
@@ -522,10 +522,10 @@ The contribution from just the selected reactions is:
 
 Or about 16% of the total heat release rate.
 
-Congratulations -- Next Steps
+Congratulations – Next Steps
 =============================
 
-Congratulations - you have finished the Cantera Python tutorial! You should now
+Congratulations – you have finished the Cantera Python tutorial! You should now
 be ready to begin using Cantera on your own.  Please see the Next Steps
 section on the `Getting Started <index.html#cantera-next-steps>`__ page, for assistance with
 intermediate and advanced Cantera functionality.  Good luck!
