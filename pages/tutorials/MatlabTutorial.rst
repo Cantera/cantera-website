@@ -1,5 +1,5 @@
 .. slug: matlab-tutorial
-.. hidetitle: true
+.. title: Matlab Tutorial
 
 .. jumbotron::
 

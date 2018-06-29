@@ -1,5 +1,5 @@
 .. slug: python-tutorial
-.. hidetitle: true
+.. title: Python Tutorial
 
 .. jumbotron::
 
