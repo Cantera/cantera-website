@@ -32,7 +32,7 @@ Species
 =======
 
 For each species, a :cti:class:`species` entry is required. Species are defined at
-the top-level of the input file - their definitions are not embedded in a phase
+the top-level of the input file—their definitions are not embedded in a phase
 or interface entry.
 
 Species Name
