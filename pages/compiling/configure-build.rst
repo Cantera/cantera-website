@@ -256,6 +256,17 @@ Compile Cantera & Test
 
      scons build ...
 
+.. caution::
+
+   If you are compiling with a version of SCons installed by Homebrew on macOS, the appropriate
+   way to perform any commands with SCons is
+
+   .. code:: bash
+
+      python3 /usr/local/bin/scons command ...
+
+   This ensures that the dependencies are chosen from the correct version of Python.
+
 * If Cantera compiles successfully, you should see a message that looks like::
 
     *******************************************************
