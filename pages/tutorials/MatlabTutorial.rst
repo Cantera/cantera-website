@@ -1,18 +1,15 @@
-
 .. slug: matlab-tutorial
-.. highlight:: matlab
 .. hidetitle: true
 
 .. jumbotron::
 
     .. raw:: html
 
-        <h1 class="display-4">Matlab Tutorial</h1>
-        <h2 class="display-5">Getting Started</h2>
-        
+        <h1 class="display-3">Matlab Tutorial</h1>
+        <h2 class="display-4">Getting Started</h2>
 
 When using Cantera, the first thing you usually need is an object representing
-some phase of matter. Here, we'll create a gas mixture.  Start MATLAB, and at
+some phase of matter. Here, we'll create a gas mixture. Start MATLAB, and at
 the prompt type:
 
 .. code:: matlab
@@ -22,7 +19,7 @@ the prompt type:
 If you have successfully installed the Cantera toolbox, you should see something
 like this:
 
-.. code:: matlab
+.. code::
 
     gri30:
 
@@ -47,7 +44,7 @@ like this:
 
 
 
-What you have just done is to create an object ("gas1") that
+What you have just done is to create an object (``gas1``) that
 implements GRI-Mech 3.0, the 53-species, 325-reaction natural gas
 combustion mechanism developed by Gregory P. Smith, David M. Golden,
 Michael Frenklach, Nigel W. Moriarty, Boris Eiteneer, Mikhail
@@ -56,14 +53,14 @@ C. Gardiner, Jr., Vitali V. Lissianski, and Zhiwei Qin. (See
 http://www.me.berkeley.edu/gri_mech/ for more information about
 GRI-Mech 3.0.)
 
-The `gas1` object has properties you would expect for a gas mixture - it has a
+The ``gas1`` object has properties you would expect for a gas mixture—it has a
 temperature, a pressure, species mole and mass fractions, etc. As we'll soon
 see, it has many more properties.
 
-The summary of the state of `gas1` printed above shows that new objects
-created from the `gri30.cti` input file start out with a temperature of 300 K,
+The summary of the state of ``gas1`` printed above shows that new objects
+created from the ``gri30.cti`` input file start out with a temperature of 300 K,
 a pressure of 1 atm, and have a composition that consists of only one species,
-in this case hydrogen. There is nothing special about H2 - it just happens to
+in this case hydrogen. There is nothing special about H2, it just happens to
 be the first species listed in the input file defining GRI-Mech 3.0. In
 general, whichever species is listed first will initially have a mole fraction
 of 1.0, and all of the others will be zero.
@@ -78,9 +75,9 @@ The state of the object can easily be changed. For example:
     >> setTemperature(gas1, 1200);
 
 sets the temperature to 1200 K (Cantera always uses SI units). After this
-statement, calling ``gas1`` results in:
+statement, calling ``gas1()`` results in:
 
-.. code:: matlab
+.. code::
 
     gri30:
 
@@ -117,15 +114,15 @@ Cantera adopts the following convention: only one of the set
 (temperature, density, mass fractions) is altered by setting any
 single property. In particular:
 
-- Setting the temperature is done holding density and composition  fixed.
+- Setting the temperature is done holding density and composition fixed.
   (The pressure changes.)
 - Setting the pressure is done holding temperature and
   composition fixed. (The density changes.)
 - Setting the composition is done holding temperature
   and density fixed. (The pressure changes).
 
-If you want to set multiple properties at once, use the 'set' method. (Note: a
-'method' is just the term for a function that acts on an object. In MATLAB,
+If you want to set multiple properties at once, use the :mat:func:`ThermoPhase.set` method. (Note: a
+*method* is just the term for a function that acts on an object. In MATLAB,
 methods take the object as the first argument.):
 
 .. code:: matlab
@@ -134,7 +131,7 @@ methods take the object as the first argument.):
 
 This statement sets both temperature and pressure at the same
 time. Any number of property/value pairs can be specified in a
-call to 'set'. For example, the following sets the mole fractions
+call to :mat:func:`ThermoPhase.set`. For example, the following sets the mole fractions
 too:
 
 .. code:: matlab
@@ -142,7 +139,7 @@ too:
     >> set(gas1, 'Temperature', 900.0, 'Pressure', 1.e5, 'MoleFractions',...
                                        'CH4:1,O2:2,N2:7.52');
 
-The 'set' method also accepts abbreviated property names:
+The :mat:func:`ThermoPhase.set` method also accepts abbreviated property names:
 
 .. code:: matlab
 
@@ -150,7 +147,7 @@ The 'set' method also accepts abbreviated property names:
 
 Either version results in:
 
-.. code:: matlab
+.. code::
 
     gri30:
 
@@ -175,7 +172,7 @@ Either version results in:
                    N2       0.714829         0.724665          -24.935
         [  +50 minor]              0                0
 
-Other properties may also be set using 'set', including some that
+Other properties may also be set using :mat:func:`ThermoPhase.set`, including some that
 can't be set individually. The following property pairs may be
 set: (Enthalpy, Pressure), (IntEnergy, Volume), (Entropy,
 Volume), (Entropy, Pressure). In each case, the values of the
@@ -190,8 +187,8 @@ Setting the enthalpy and pressure:
 The composition above was specified using a string. The format is a
 comma-separated list of <species name>:<relative mole numbers>
 pairs. The mole numbers will be normalized to produce the mole
-fractions, and therefore they are 'relative' mole numbers.  Mass
-fractions can be set in this way too by changing 'X' to 'Y' in the
+fractions, and therefore they are 'relative' mole numbers. Mass
+fractions can be set in this way too by changing ``'X'`` to ``'Y'`` in the
 above statement.
 
 The composition can also be set using an array, which can be
@@ -216,7 +213,7 @@ Importing multiple phases or interfaces
 A Cantera input file may contain more than one phase specification,
 or may contain specifications of interfaces (surfaces). Here we
 import definitions of two bulk phases and the interface between them
-from file diamond.cti:
+from file ``diamond.cti``:
 
 .. code:: matlab
 
@@ -226,7 +223,7 @@ from file diamond.cti:
                                     gas2, diamond);
 
 Note that the bulk (i.e., 3D) phases that participate in the surface
-reactions must also be passed as arguments to importInterface.
+reactions must also be passed as arguments to :mat:func:`importInterface`.
 
 The following command clears all Matlab objects created:
 
@@ -243,44 +240,23 @@ and this clears all Cantera objects created:
 Working with input files
 ========================
 
-Previously, we used the function GRI30 to create an object that models an ideal
+Previously, we used the function :mat:func:`GRI30` to create an object that models an ideal
 gas mixture with the species and reactions of GRI-Mech 3.0. Another way to do
-this is shown here, with statements added to measure how long this takes:
+this is shown here:
 
 .. code:: matlab
 
-  >> t0 = cputime;
-  >> gas1 = Solution('gri30.cti', 'gri30');
-  >> msg = sprintf('time to create gas1: %f', cputime - t0)
+    >> gas1 = Solution('gri30.cti', 'gri30');
 
-Function 'Solution' constructs an object representing a phase of
+Function :mat:func:`Solution` constructs an object representing a phase of
 matter by reading in attributes of the phase from a file, which in
-this case is 'gri30.cti'. This file contains several phase
-spcifications; the one we want here is 'gri30', which is specified
-by the second argument.  This file contains a complete specification
+this case is ``gri30.cti``. This file contains several phase
+specifications; the one we want here is ``gri30``, which is specified
+by the second argument. This file contains a complete specification
 of the GRI-Mech 3.0 reaction mechanism, including element data
 (name, atomic weight), species data (name, elemental composition,
 coefficients to compute thermodynamic and transport properties), and
-reaction data (stoichiometry, rate coefficient parameters). The file
-is written in a format understood by Cantera, which is described in
-the document "Defining Phases and Interfaces."
-
-On some systems, processing long CTI files like gri30.cti can be a
-little slow. For example, using a typical laptop computer running
-Windows 2000, the statement above takes more than 4 s, while on a
-Mac Powerbook G4 of similar CPU speed it takes only 0.3 s. In any
-case, running it again takes much less time, because Cantera
-'remembers' files it has already processed and doesn't need to read
-them in again:
-
-.. code:: matlab
-
-  >> t0 = cputime;
-  >> gas1b = Solution('gri30.cti', 'gri30');
-  >> msg = sprintf('time to create gas1b: %f', cputime - t0)
-
-To learn more about the cti files already available with Cantera and how to
-create new cti files, see :doc:`Working With Input Files <input-files>`
+reaction data (stoichiometry, rate coefficient parameters).
 
 CTI files distributed with Cantera
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -289,31 +265,30 @@ Several reaction mechanism files in this format are included in the
 Cantera distribution, including ones that model high-temperature
 air, a hydrogen/oxygen reaction mechanism, and a few surface
 reaction mechanisms. Under Windows, these files may be located in
-'C:\Program Files\Common Files\Cantera', or in 'C:\cantera\data',
+'``C:\Program Files\Cantera\data``'
 depending on how you installed Cantera and the options you
-specified.  On a unix/linux/Mac OSX machine, they are usually kept
-in the 'data' subdirectory within the Cantera installation
+specified. On a Unix/linux/macOS machine, they are usually kept
+in the ``data`` subdirectory within the Cantera installation
 directory.
 
 If for some reason Cantera has difficulty finding where these files
-are on your system, set environment variable CANTERA_DATA to the
+are on your system, set the environment variable ``CANTERA_DATA`` to the
 directory where they are located. Alternatively, you can call function
-adddir to add a directory to the Cantera search path:
+:mat:func:`adddir` to add a directory to the Cantera search path:
 
 .. code:: matlab
 
-  >> adddir('/usr/local/cantera/my_data_files');
-
+    >> adddir('/usr/local/cantera/my_data_files');
 
 XML files
 ~~~~~~~~~
 
-Note that when Cantera reads a .cti input file, wherever it is
-located, it always writes a file of the same name but with extension
-.xml *in the local directory*. If you happen to have some other file
-by that name, it will be overwritten. Once the XML file is created,
-you can use it instead of the .cti file, which will result in
-somewhat faster startup:
+Note that Cantera has two input formats for data, the human-readable and -writable
+CTI format, and the lower-level XML format. All of the CTI files distributed with
+Cantera are also available as XML files; using the XML files may be somewhat faster
+and does not invoke the Python interpreter to read the CTI file. More information
+on why Cantera uses two file formats is available in the
+:ref:`input files tutorial <sec-two-file-formats>`.
 
 .. code:: matlab
 
@@ -330,8 +305,11 @@ Let's clear out all our Matlab and Cantera objects, before we move on:
 
 .. code:: matlab
 
-  >> clear all
-  >> cleanup
+    >> clear all
+    >> cleanup
+
+To learn more about the cti files already available with Cantera and how to
+create new cti files, see :doc:`Working With Input Files <input-files>`
 
 Getting Help
 ============
@@ -341,106 +319,98 @@ methods are available for it, and get help on using the methods.
 
 .. code:: matlab
 
-  >> g = GRI30
+    >> g = GRI30
 
-The first thing you need to know is the MATLAB class object g
+The first thing you need to know is the MATLAB class object ``g``
 belongs to. Type:
 
 .. code:: matlab
 
-  >> class(g)
+    >> class(g)
 
-This tells you that g belongs to a class called 'Solution'. To find
+This tells you that ``g`` belongs to a class called ``Solution``. To find
 the methods for this class, type
 
 .. code:: matlab
 
-  >> methods Solution
+    >> methods Solution
 
 This command returns only a few method names. These are the ones
-directly defined in this class. But solution inherits many other
+directly defined in this class. But ``Solution`` inherits many other
 methods from base classes. To see all of its methods, type
 
 .. code:: matlab
 
-  >> methods Solution -full
+    >> methods Solution -full
 
 Now a long list is printed, along with a specification of the class
-the method is inherited from. For example, 'setPressure' is
-inherited from a class 'ThermoPhase'. Don't be concerned at this
-point about what these base classes are - we'll come back to them
+the method is inherited from. For example, ``setPressure`` is
+inherited from a class ``ThermoPhase``. Don't be concerned at this
+point about what these base classes are—we'll come back to them
 later.
 
-Now that you see what methods are available, you can type 'help
-<method_name>' to print help text for any method. For example,
+Now that you see what methods are available, you can type ``help
+<method_name>`` to print help text for any method. For example,
 
 .. code:: matlab
 
-  >> help setTemperature
-  >> help setMassFractions
-  >> help rop_net
+    >> help setTemperature
+    >> help setMassFractions
+    >> help rop_net
 
-For help on how to construct objects of a given class, type 'help
-<classname>'
+For help on how to construct objects of a given class, type ``help
+<classname>``
 
 .. code:: matlab
 
-  >> help Solution
+    >> help Solution
 
 Now that you know how to get help when you need it, you can
 explore using the Cantera Toolbox on your own. But there are a
 few more useful things to know, which are described in the next
 few sections.
 
-
-
 Chemical Equilibrium
 ====================
 
 To set a gas mixture to a state of chemical equilibrium, use the
-'equilibrate' method.
+:mat:func:`ThermoPhase.equilibrate` method.
 
 .. code:: matlab
 
-  >> set(g,'T',1200.0,'P',oneatm,'X','CH4:0.95,O2:2,N2:7.52')
-  >> equilibrate(g,'TP')
+    >> set(g,'T',1200.0,'P',oneatm,'X','CH4:0.95,O2:2,N2:7.52')
+    >> equilibrate(g,'TP')
 
-The above statement sets the state of object 'g' to the state of
+The statement above sets the state of object ``g`` to the state of
 chemical equilibrium holding temperature and pressure
 fixed. Alternatively, the specific enthalpy and pressure can be held
 fixed:
 
 .. code:: matlab
 
-  >> disp('fixed H and P:');
-  >> set(g,'T',1200.0,'P',oneatm,'X','CH4:0.95,O2:2.0,N2:7.52');
-  >> equilibrate(g,'HP')
+    >> disp('fixed H and P:');
+    >> set(g,'T',1200.0,'P',oneatm,'X','CH4:0.95,O2:2.0,N2:7.52');
+    >> equilibrate(g,'HP')
 
 Other options are:
 
-  - 'UV'   fixed specific internal energy and specific volume
-  - 'SV'   fixed specific entropy and specific volume
-  - 'SP'   fixed specific entropy and pressure
+- ``UV`` fixed specific internal energy and specific volume
+- ``SV`` fixed specific entropy and specific volume
+- ``SP`` fixed specific entropy and pressure
 
 .. code:: matlab
 
-  >> disp('fixed U and V:');
-  >> set(g,'T',1200.0,'P',oneatm,'X','CH4:0.95,O2:2,N2:7.52');
-  >> equilibrate(g,'UV')
+    >> disp('fixed U and V:');
+    >> set(g,'T',1200.0,'P',oneatm,'X','CH4:0.95,O2:2,N2:7.52');
+    >> equilibrate(g,'UV')
+    >> disp('fixed S and V:');
+    >> set(g,'T',1200.0,'P',oneatm,'X','CH4:0.95,O2:2,N2:7.52');
+    >> equilibrate(g,'SV')
+    >> disp('fixed S and P:');
+    >> set(g,'T',1200.0,'P',oneatm,'X','CH4:0.95,O2:2,N2:7.52');
+    >> equilibrate(g,'SP')
 
-.. code:: matlab
-
-  >> disp('fixed S and V:');
-  >> set(g,'T',1200.0,'P',oneatm,'X','CH4:0.95,O2:2,N2:7.52');
-  >> equilibrate(g,'SV')
-
-.. code:: matlab
-
-  >> disp('fixed S and P:');
-  >> set(g,'T',1200.0,'P',oneatm,'X','CH4:0.95,O2:2,N2:7.52');
-  >> equilibrate(g,'SP')
-
-How can you tell if 'equilibrate' has correctly found the
+How can you tell if :mat:func:`ThermoPhase.equilibrate` has correctly found the
 chemical equilibrium state? One way is verify that the net rates of
 progress of all reversible reactions are zero.
 
@@ -448,35 +418,32 @@ Here is the code to do this:
 
 .. code:: matlab
 
-  >> set(g,'T',2000.0,'P',oneatm,'X','CH4:0.95,O2:2,N2:7.52');
-  >> equilibrate(g,'TP')
-  >> rf = rop_f(g);
-  >> rr = rop_r(g);
-  >> format short e;
-  >> for i = 1:nReactions(g)
-  >>  if isReversible(g,i)
-  >>    disp([i, rf(i), rr(i), (rf(i) - rr(i))/rf(i)]);
-  >>    end
-  >> end
+    >> set(g,'T',2000.0,'P',oneatm,'X','CH4:0.95,O2:2,N2:7.52');
+    >> equilibrate(g,'TP')
+    >> rf = rop_f(g);
+    >> rr = rop_r(g);
+    >> format short e;
+    >> for i = 1:nReactions(g)
+    >>  if isReversible(g,i)
+    >>    disp([i, rf(i), rr(i), (rf(i) - rr(i))/rf(i)]);
+    >>    end
+    >> end
 
-You might be wondering how 'equilibrate' works. (Then again, you might
-not, in which case you can go on to the next tutorial now.)  Method
-'equilibrate' invokes Cantera's chemical equilibrium solver, which
-uses an element potential method. The element potential method is
-one of a class of equivalent 'nonstoichiometric' methods that all
-have the characteristic that the problem reduces to solving a set of
-M nonlinear algebraic equations, where M is the number of elements
-(not species). The so-called 'stoichiometric' methods, on the other
-hand, (including Gibbs minimization), require solving K nonlinear
-equations, where K is the number of species (usually K >> M). See
-Smith and Missen, "Chemical Reaction Equilibrium Analysis" for more
-information on the various algorithms and their characteristics.
+You might be wondering how :mat:func:`ThermoPhase.equilibrate` works. (Then again, you might not.)
+Method :mat:func:`ThermoPhase.equilibrate` invokes Cantera's chemical equilibrium solver, which uses
+an element potential method. The element potential method is one of a class of equivalent
+'nonstoichiometric' methods that all have the characteristic that the problem reduces to solving a
+set of :math:`M` nonlinear algebraic equations, where :math:`M` is the number of elements (not
+species). The so-called 'stoichiometric' methods, on the other hand, (including Gibbs minimization),
+require solving K nonlinear equations, where :math:`K` is the number of species (usually :math:`K >>
+M`). See Smith and Missen, "Chemical Reaction Equilibrium Analysis" for more information on the
+various algorithms and their characteristics.
 
 Cantera uses a damped Newton method to solve these equations, and
 does a few other things to generate a good starting guess and to
 produce a reasonably robust algorithm. If you want to know more
-about the details, look at the on-line documented source code of
-Cantera C++ class 'ChemEquil' at `<http://www.cantera.org>`_.
+about the details, look at the
+C++ code in `ChemEquil.h </documentation/docs-2.4/doxygen/html/ChemEquil_8h.html>`__.
 
 Reaction information and rates
 ==============================
@@ -489,61 +456,60 @@ Stoichiometric coefficients
 
 .. code:: matlab
 
-  >> set(g,'T',1500,'P',oneatm,'X',ones(nSpecies(g),1));
-  >> nu_r   = stoich_r(g)    % reactant stoichiometric coefficient mstix
-  >> nu_p   = stoich_p(g)    % product stoichiometric coefficient mstix
-  >> nu_net = stoich_net(g)  % net (product - reactant) stoichiometric
-                             % coefficient mstix
+    >> set(g,'T',1500,'P',oneatm,'X',ones(nSpecies(g),1));
+    >> nu_r   = stoich_r(g)    % reactant stoichiometric coefficient mstix
+    >> nu_p   = stoich_p(g)    % product stoichiometric coefficient mstix
+    >> nu_net = stoich_net(g)  % net (product - reactant) stoichiometric
+                               % coefficient mstix
 
-For any of these, the (k,i) matrix element is the stoichiometric
-coefficient of species k in reaction i. Since these coefficient
+For any of these, the ``(k,i)`` matrix element is the stoichiometric
+coefficient of species :math:`k` in reaction :math:`i`. Since these coefficient
 matrices are very sparse, they are implemented as MATLAB sparse
 matrices.
-
 
 Reaction rates of progress
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Methods rop_f, rop_r, and rop_net return column vectors containing
-the forward, reverse, and net (forward - reverse) rates of
-progress, respectively, for all reactions.
+Methods :mat:func:`rop_f`, :mat:func:`rop_r`, and :mat:func:`rop_net` return column vectors
+containing the forward, reverse, and net (forward - reverse) rates of progress, respectively, for
+all reactions.
 
 .. code:: matlab
 
-  >> qf = rop_f(g);
-  >> qr = rop_r(g);
-  >> qn = rop_net(g);
-  >> rop = [qf, qr, qn]
+    >> qf = rop_f(g);
+    >> qr = rop_r(g);
+    >> qn = rop_net(g);
+    >> rop = [qf, qr, qn]
 
 This plots the rates of progress
 
 .. code:: matlab
 
-  >> figure(1);
-  >> bar(rop);
-  >> legend('forward','reverse','net');
+    >> figure(1);
+    >> bar(rop);
+    >> legend('forward','reverse','net');
 
 Species production rates
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Methods creationRates, destructionRates, and netProdRates return
+Methods :mat:func:`creationRates`, :mat:func:`destructionRates`, and :mat:func:`netProdRates` return
 column vectors containing the creation, destruction, and net
 production (creation - destruction) rates, respectively, for all species.
 
 .. code:: matlab
 
-  >> cdot = creationRates(g);
-  >> ddot = destructionRates(g);
-  >> wdot = netProdRates(g);
-  >> rates = [cdot, ddot, wdot]
+    >> cdot = creationRates(g);
+    >> ddot = destructionRates(g);
+    >> wdot = netProdRates(g);
+    >> rates = [cdot, ddot, wdot]
 
 This plots the production rates:
 
 .. code:: matlab
 
-  >> figure(2);
-  >> bar(rates);
-  >> legend('creation','destruction','net');
+    >> figure(2);
+    >> bar(rates);
+    >> legend('creation','destruction','net');
 
 For comparison, the production rates may also be computed
 directly from the rates of progress and stoichiometric
@@ -551,16 +517,10 @@ coefficients.
 
 .. code:: matlab
 
-  >> cdot2 = nu_p*qf + nu_r*qr;
-  >> creation = [cdot, cdot2, cdot - cdot2]
-
-.. code:: matlab
-
+    >> cdot2 = nu_p*qf + nu_r*qr;
+    >> creation = [cdot, cdot2, cdot - cdot2]
     >> ddot2 = nu_r*qf + nu_p*qr;
     >> destruction = [ddot, ddot2, ddot - ddot2]
-
-.. code:: matlab
-
     >> wdot2 = nu_net * qn;
     >> net = [wdot, wdot2, wdot - wdot2]
 
@@ -569,9 +529,9 @@ Reaction equations
 
 .. code:: matlab
 
-  >> e8    = reactionEqn(g,8)             % equation for reaction 8
-  >> e1_10 = reactionEqn(g,1:10)          % equation for rxns 1 - 10
-  >> eqs   = reactionEqn(g)               % all equations
+    >> e8    = reactionEqn(g,8)     % equation for reaction 8
+    >> e1_10 = reactionEqn(g,1:10)  % equation for rxns 1 - 10
+    >> eqs   = reactionEqn(g)       % all equations
 
 Equilibrium constants
 ~~~~~~~~~~~~~~~~~~~~~
@@ -581,10 +541,10 @@ with concentrations in kmol/m^3.
 
 .. code:: matlab
 
-  >> kc = equil_Kc(g);
-  >> for i = 1:nReactions(g)
-  >>      disp(sprintf('%50s  %13.5g', eqs{i}, kc(i)))
-  >> end
+    >> kc = equil_Kc(g);
+    >> for i = 1:nReactions(g)
+    >>      disp(sprintf('%50s  %13.5g', eqs{i}, kc(i)))
+    >> end
 
 Multipliers
 ~~~~~~~~~~~
@@ -595,17 +555,17 @@ to the forward rate coefficient. By default, the multiplier is
 
 .. code:: matlab
 
-  >> for i = 1:nReactions(g)
-  >>      setMultiplier(g, i, 2*i);
-  >>      m = multiplier(g, i);
-  >> end
+    >> for i = 1:nReactions(g)
+    >>      setMultiplier(g, i, 2*i);
+    >>      m = multiplier(g, i);
+    >> end
 
 Let's clear out the Matlab and Cantera objects, before moving on:
 
 .. code:: matlab
 
-  >> clear all
-  >> cleanup
+    >> clear all
+    >> cleanup
 
 Transport Properties
 ====================
@@ -628,32 +588,32 @@ GRI30 as follows:
 
 .. code:: matlab
 
-  >> g1 = GRI30('Multi')
+    >> g1 = GRI30('Multi')
 
 To use the mixture-averaged model:
 
 .. code:: matlab
 
-  >> g2 = GRI30('Mix')
+    >> g2 = GRI30('Mix')
 
 Both models use a mixture-averaged formulation for the viscosity.
 
 .. code:: matlab
 
-  >> visc = [viscosity(g1), viscosity(g2)]
+    >> visc = [viscosity(g1), viscosity(g2)]
 
 The thermal conductivity differs, however.
 
 .. code:: matlab
 
-  >> lambda = [thermalConductivity(g1), thermalConductivity(g2)]
+    >> lambda = [thermalConductivity(g1), thermalConductivity(g2)]
 
 Binary diffusion coefficients
 
 .. code:: matlab
 
-  >> bdiff1 = binDiffCoeffs(g1)
-  >> bdiff2 = binDiffCoeffs(g2)
+    >> bdiff1 = binDiffCoeffs(g1)
+    >> bdiff2 = binDiffCoeffs(g2)
 
 Mixture-averaged diffusion coefficients. For convenience, the
 multicomponent model implements mixture-averaged diffusion
@@ -661,42 +621,41 @@ coefficients too.
 
 .. code:: matlab
 
-  >> dmix2 = mixDiffCoeffs(g1)
-  >> dmix1 = mixDiffCoeffs(g2)
+    >> dmix2 = mixDiffCoeffs(g1)
+    >> dmix1 = mixDiffCoeffs(g2)
 
 Multicomponent diffusion coefficients. These are only implemented
 if the multicomponent model is used.
 
 .. code:: matlab
 
-  >> dmulti = multiDiffCoeffs(g1)
+    >> dmulti = multiDiffCoeffs(g1)
 
 Thermal diffusion coefficients. These are only implemented with the
-multicomponent model.  These will be very close to zero, since
+multicomponent model. These will be very close to zero, since
 the composition is pure H2.
 
 .. code:: matlab
 
-  >> dt = thermalDiffCoeffs(g1)
+    >> dt = thermalDiffCoeffs(g1)
 
 Now change the composition and re-evaluate
 
 .. code:: matlab
 
-  >> set(g1,'X',ones(nSpecies(g1),1));
-  >> dt = thermalDiffCoeffs(g1)
+    >> set(g1,'X',ones(nSpecies(g1),1));
+    >> dt = thermalDiffCoeffs(g1)
 
 Note that there are no singularities for pure gases. This is
 because a very small positive value is added to all mole
 fractions for the purpose of computing transport properties.
 
-
 Let's clear out the Matlab and Cantera objects, before moving on:
 
 .. code:: matlab
 
-  >> clear all
-  >> cleanup
+    >> clear all
+    >> cleanup
 
 Thermodynamic Properties
 ========================
@@ -705,53 +664,53 @@ A variety of thermodynamic property methods are provided.
 
 .. code:: matlab
 
-  >> gas = air
-  >> set(gas,'T',800,'P',oneatm)
+    >> gas = air
+    >> set(gas,'T',800,'P',oneatm)
 
 Temperature, pressure, density:
 
 .. code:: matlab
 
-  >> T = temperature(gas)
-  >> P = pressure(gas)
-  >> rho = density(gas)
-  >> n = molarDensity(gas)
+    >> T = temperature(gas)
+    >> P = pressure(gas)
+    >> rho = density(gas)
+    >> n = molarDensity(gas)
 
 Species non-dimensional properties:
 
 .. code:: matlab
 
-  >> hrt = enthalpies_RT(gas)            % vector of h_k/RT
+    >> hrt = enthalpies_RT(gas)  % vector of h_k/RT
 
 Mixture properties per mole:
 
 .. code:: matlab
 
-  >> hmole = enthalpy_mole(gas)
-  >> umole = intEnergy_mole(gas)
-  >> smole = entropy_mole(gas)
-  >> gmole = gibbs_mole(gas)
+    >> hmole = enthalpy_mole(gas)
+    >> umole = intEnergy_mole(gas)
+    >> smole = entropy_mole(gas)
+    >> gmole = gibbs_mole(gas)
 
 Mixture properties per unit mass:
 
 .. code:: matlab
 
-  >> hmass = enthalpy_mass(gas)
-  >> umass = intEnergy_mass(gas)
-  >> smass = entropy_mass(gas)
-  >> gmass = gibbs_mass(gas)
+    >> hmass = enthalpy_mass(gas)
+    >> umass = intEnergy_mass(gas)
+    >> smass = entropy_mass(gas)
+    >> gmass = gibbs_mass(gas)
 
 Le'ts do one final clearing of the workspace:
 
 .. code:: matlab
 
-  >> clear all
-  >> cleanup
+    >> clear all
+    >> cleanup
 
-Congratulations -- Next Steps
+Congratulations – Next Steps
 =============================
 
-Congratulations - you have finished the Cantera Matlab tutorial! You should now
-be ready to begin using Cantera on your own.  Please see the Next Steps
+Congratulations—you have finished the Cantera Matlab tutorial! You should now
+be ready to begin using Cantera on your own. Please see the Next Steps
 section on the `Getting Started <index.html#cantera-next-steps>`_ page, for assistance with
-intermediate and advanced Cantera functionality.  Good luck!
+intermediate and advanced Cantera functionality. Good luck!

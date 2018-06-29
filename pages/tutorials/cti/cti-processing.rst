@@ -18,6 +18,8 @@ a string that contains the same information but in an XML-based format called
 CTML. After the preprocessor finishes, Cantera imports the phase definition from
 this CTML data.
 
+.. _sec-two-file-formats:
+
 Two File Formats
 ----------------
 
