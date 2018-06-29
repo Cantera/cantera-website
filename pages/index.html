@@ -22,61 +22,121 @@
   <div class="row">
     <div class="col-md-12">
       <div class="col-md-8 offset-md-2">
-    <h4 class="jumbotron-text">Cantera is an open-source suite of tools for problems
-    involving chemical kinetics, thermodynamics, and transport processes.</h4>
+        <p class="jumbotron-text">Cantera is an open-source suite of tools for problems
+        involving chemical kinetics, thermodynamics, and transport processes.</p>
+      </div>
     </div>
-  </div>
   </div>
 </section>
 
-<section id="cards">
+<section id="intro-cards">
   <div class="container">
     <div class="card-deck">
       <div class="card">
         <a href="/tutorials/index.html" title="Tutorials">
-          <h5 class="card-header">Tutorials</h5>
+          <div class="card-header section-card">Tutorials</div>
         </a>
         <div class="card-body">
-          <div class="card-text">
-            <h5 class="display-5">New? Start here!</h5>
-          </div>
+          <h5 class="card-title">New? Start here!</h5>
+          <p class="card-text">
+            The tutorials linked below will get you started using Cantera on your own machine.
+          </p>
+          <a href="/install/index.html" class="card-link" title="Installation Instructions">Install</a>
+          <a href="/tutorials/python-tutorial.html" class="card-link" title="Python Tutorial">Python</a>
+          <!-- <a href="/tutorials/matlab-tutorial.html" class="card-link" title="Matlab Tutorial">Matlab</a> -->
+          <a href="/tutorials/ck2cti-tutorial.html" class="card-link" title="CK2CTI Tutorial">Convert Input Files</a>
         </div>
       </div>
       <div class="card">
-        <a href="/tutorials.html" title="Binder">
-          <h5 class="card-header">Open Binder</h5>
+        <a href="http://mybinder.org:/repo/cantera/cantera-jupyter" rel="nofollow" title="Binder">
+          <div class="card-header section-card">Open Binder</div>
         </a>
         <div class="card-body">
-          <div class="card-text">
-            <h5 class="display-5">Try Cantera in your Browser!</h5>
-          </div>
+          <h5 class="card-title">
+            Try Cantera in your Browser!
+          </h5>
+          <p class="card-text">
+            Cantera can be used online via the Binder service. Please note that you will not be able
+            to save and resume your work on Binder.
+          </p>
         </div>
       </div>
       <div class="card">
         <a href="/examples/index.html" title="Examples">
-          <h5 class="card-header">Examples</h5>
+          <div class="card-header section-card">Examples</div>
         </a>
         <div class="card-body">
-          <div class="card-text">
-            <h5 class="display-5">What can Cantera do?</h5>
-          </div>
+          <h5 class="card-title">What can Cantera do?</h5>
+          <p class="card-text">
+            We have a number of examples demonstrating the use of Cantera some of our interfaces.
+          </p>
+          <a href="/examples/python/index.html" class="card-link" title="Python Examples">Python</a>
+          <a href="/examples/matlab/index.html" class="card-link" title="Matlab Examples">Matlab</a>
+          <a href="/examples/jupyter/index.html" class="card-link" title="Jupyter Notebook Examples">Jupyter Notebook</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="jumbotron">
+<section id="what-is-cantera">
 
-  <p> Cantera automates the chemical kinetic, thermodynamic, and transport calculations so that the
-  users can efficiently incorporate detailed chemical thermo-kinetics and transport models into
-  their calculations. The code utilizes object-oriented concepts for robust yet flexible phase
-  models, and algorithms are generalized so that users can explore different phase models with
-  minimal changes to their overall code. Currently, Cantera can be used from Python and Matlab, or
-  in applications written in C/C++ and Fortran 90.  Cantera also provides a limited number of
-  solvers for time-dependent reactor networks and steady one-dimensional reacting flows.</p>
+<h2 style="margin-bottom: 20px;" class="text-center">What is Cantera?</h2>
 
-  <p>Cantera is currently used for applications including combustion, detonations, electrochemical
-  energy conversion and storage, fuel cells, batteries, aqueous electrolyte solutions, plasmas, and
-  thin film deposition.</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Automation</h4>
+      <p>
+        Cantera automates the chemical kinetic, thermodynamic, and transport calculations so that the
+        users can efficiently incorporate detailed chemical thermo-kinetics and transport models into
+        their calculations.
+      </p>
+    </div>
+    <div class="col-md-3">
+      <h4>Object-Oriented</h4>
+      <p>
+        Cantera utilizes object-oriented concepts for robust yet flexible phase
+        models, and algorithms are generalized so that users can explore different phase models with
+        minimal changes to their overall code.
+      </p>
+    </div>
+    <div class="col-md-3">
+      <h4>Multiple Interfaces</h4>
+      <p>
+        Cantera can be used from Python and Matlab, or
+        in applications written in C/C++ and Fortran 90.
+      </p>
+    </div>
+    <div class="col-md-3">
+      <h4>Broad Applications</h4>
+      <p>
+        Cantera is currently used for applications including combustion, detonations, electrochemical
+        energy conversion and storage, fuel cells, batteries, aqueous electrolyte solutions, plasmas, and
+        thin film deposition.
+      </p>
+    </div>
+  </div>
 </div>
+</section>
+
+<section id="numfocus">
+  <h2 class="text-center" style="margin-bottom: 20px;">NumFOCUS</h2>
+  <p>
+    Cantera is a fiscally sponsored project of NumFOCUS, a 501(c)3 nonprofit dedicated to
+    supporting the open source scientific computing community. If you have found
+    Cantera to be useful to your research or company, please consider making a
+    <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=" title="Donate to Cantera" rel="nofollow">donation</a>
+    to support our efforts. All donations will be used exclusively to fund the
+    development of Cantera's source code, documentation, or community.
+  </p>
+
+  <a href="https://numfocus.org">
+    <img alt="Powered by NumFOCUS" class="align-center" src="/images/SponsoredProject.png" style="width: 250px;">
+  </a>
+  <div class="text-center">
+    <a class="btn btn-primary" rel="nofollow" href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=" title="Donate to Cantera">
+      Donate to Cantera
+    </a>
+  </div>
+</section>

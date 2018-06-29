@@ -209,7 +209,6 @@ Cantera to be useful to your research or company, please consider making a
 to support our efforts. All donations will be used exclusively to fund the
 development of Cantera's source code, documentation, or community.
 
-
 .. image:: /images/SponsoredProject.png
     :alt: Powered by NumFOCUS
     :target: https://numfocus.org
@@ -222,5 +221,6 @@ development of Cantera's source code, documentation, or community.
       :tagname: a
       :attributes: href=https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=
                    title="Donate to Cantera"
+                   rel=nofollow
 
       Donate to Cantera

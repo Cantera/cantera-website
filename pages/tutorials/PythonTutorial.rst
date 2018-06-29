@@ -6,8 +6,9 @@
     .. raw:: html
 
         <h1 class="display-3">Python Tutorial</h1>
-        <h2 class="display-4">Getting Started</h2>
 
+Getting Started
+===============
 
 Start by opening an interactive Python session, e.g., by running `IPython
 <http://ipython.org/>`__. Import the Cantera Python module and NumPy by running:

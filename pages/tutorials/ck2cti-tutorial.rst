@@ -1,5 +1,5 @@
 .. title: Converting Chemkin Format Files
-.. slug: ck-conversion
+.. slug: ck2cti-tutorial
 .. has_math: true
 
 .. jumbotron::
