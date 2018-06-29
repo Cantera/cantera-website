@@ -63,8 +63,18 @@
         <!--End of body content-->
 
         <footer id="footer">
-            {{ content_footer }}
+          <div class="footer" role="navigation">
+            <div class="navbar-text">
+              <ul class="footer-text">
+                <li><a href="/index.html">Home</a></li>
+                {% for url, text in navigation_links["en"] %}
+                <li><a href="{{ url }}">{{ text }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            <p>{{ content_footer }}</p>
             {{ template_hooks['page_footer']() }}
+          </div>
         </footer>
     </div>
 </div>

@@ -42,3 +42,18 @@ a > tt {
     font-size: 1.25rem;
     font-weight: 500;
 }
+
+.footer li {
+    display: inline-block;
+    text-decoration: none;
+}
+.footer li::after {
+    content: " |";
+}
+.footer li:last-of-type::after {
+    content: "";
+}
+.footer-text {
+    margin-left: 0;
+    padding-left: 0;
+}
