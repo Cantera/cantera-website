@@ -10,7 +10,7 @@
 
     .. raw:: html
 
-        <h1 class="display-4">Installing Cantera</h1>
+        <h1 class="display-3">Installing Cantera</h1>
 
     .. class:: lead
 
@@ -546,7 +546,8 @@
             all Linux distributions (for instance, RHEL 6 is not supported). For these
             platforms, or if you want to use an interface other than the Python interface,
             you'll have to compile and install Cantera yourself. Instructions for that are
-            in the :ref:`Compiling section <sec-compiling>`.
+            in the :html:`<a href=#collapse-compiling data-toggle=collapse>Compiling section</a>`
+            below.
 
    .. container:: card
 
