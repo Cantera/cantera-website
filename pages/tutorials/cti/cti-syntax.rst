@@ -327,7 +327,7 @@ pressure     ``'Pa', 'atm', 'bar'``
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=/documentation/doc/sphinx/html/cti/classes.html
+            :attributes: href={{% ct_docs sphinx/html/cti/classes.html %}}
                          title="CTI Class Reference"
 
             Next: CTI Class Reference

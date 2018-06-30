@@ -134,7 +134,7 @@ Additional Information
 
       .. container::
          :tagname: a
-         :attributes: href=/documentation/doc/sphinx/html/cti/classes.html
+         :attributes: href={{% ct_docs sphinx/html/cti/classes.html %}}
                       title="CTI Class Reference"
 
          .. container:: card-header section-card

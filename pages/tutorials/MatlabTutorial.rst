@@ -445,7 +445,7 @@ Cantera uses a damped Newton method to solve these equations, and
 does a few other things to generate a good starting guess and to
 produce a reasonably robust algorithm. If you want to know more
 about the details, look at the
-C++ code in `ChemEquil.h </documentation/docs-2.4/doxygen/html/ChemEquil_8h.html>`__.
+C++ code in `ChemEquil.h <{{% ct_docs doxygen/html/ChemEquil_8h.html %}}>`__.
 
 Reaction information and rates
 ==============================

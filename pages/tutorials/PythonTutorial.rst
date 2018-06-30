@@ -415,7 +415,7 @@ information on the various algorithms and their characteristics.
 Cantera uses a damped Newton method to solve these equations, and does a few
 other things to generate a good starting guess and to produce a reasonably
 robust algorithm. If you want to know more about the details, look at the
-C++ code in `ChemEquil.h </documentation/docs-2.4/doxygen/html/ChemEquil_8h.html>`__.
+C++ code in `ChemEquil.h <{{% ct_docs doxygen/html/ChemEquil_8h.html %}}>`__.
 
 Chemical Kinetics
 =================
@@ -426,8 +426,8 @@ reaction rates, and species creation and destruction rates. They also provide
 methods to inspect the quantities that define each reaction such as the rate
 constants and the stoichiometric coefficients. The rate calculation functions
 are used extensively within Cantera's
-`reactor network model </documentation/docs-2.4/sphinx/html/cython/zerodim.html#sec-cython-zerodim>`_
-and `1D flame model </documentation/docs-2.4/sphinx/html/cython/onedim.html#sec-cython-onedim>`_.
+`reactor network model <{{% ct_docs sphinx/html/cython/zerodim.html#sec-cython-zerodim %}}>`__
+and `1D flame model <{{% ct_docs sphinx/html/cython/onedim.html#sec-cython-onedim %}}>`__.
 
 Information about individual reactions that is independent of the thermodynamic
 state can be obtained by accessing :py:class:`Reaction` objects with the
