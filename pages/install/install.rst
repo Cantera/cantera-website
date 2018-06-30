@@ -46,8 +46,8 @@
 
             **Conda**
 
-            `Anaconda <https://www.continuum.io/downloads>`_ and `Miniconda
-            <http://conda.pydata.org/miniconda.html>`_ are Python distributions for which
+            `Anaconda <https://www.anaconda.com/downloads>`_ and `Miniconda
+            <https://conda.io/miniconda.html>`_ are Python distributions for which
             Cantera is available through the ``conda`` package manager. Both distributions are
             available for Linux, macOS, and Windows. The base Anaconda distribution includes
             a large number of Python packages that are widely used in scientific
@@ -58,7 +58,7 @@
             options below.
 
             For more details on how to use conda, see the `conda documentation
-            <http://conda.pydata.org/docs/intro.html>`_.
+            <https://conda.io/docs/intro.html>`_.
 
             **Option 1: Create a new environment for Cantera**
 
@@ -172,7 +172,7 @@
                  not using the Python interface to Cantera.
 
                - Cantera can also be used with alternative Python distributions such as the
-                 Enthought `Canopy <https://www.enthought.com/products/canopy/>`_
+                 Enthought `Canopy <https://www.enthought.com/product/canopy/>`_
                  distribution. These distributions will generally be based on the 64-bit
                  version of Python 2.7, and will include Numpy as well as many other
                  packages useful for scientific users.
@@ -328,7 +328,7 @@
 
                  and agree to the Xcode license agreement.
 
-               - Install `Homebrew <http://brew.sh/>`_ by running the following command in a
+               - Install `Homebrew <https://brew.sh/>`_ by running the following command in a
                  Terminal::
 
                    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -512,7 +512,7 @@
 
             You may need to install ``pip`` first; instructions can be found on the `pip
             installation instructions.
-            <https://pip.pypa.io/en/latest/installing.html#install-pip>`_ You may need to
+            <https://pip.pypa.io/en/latest/installing/index.html#install-pip>`_ You may need to
             have superuser access to install packages into the system directories.
             Alternatively, you can add ``--user`` after ``pip install`` but before the
             package names to install into your local user directory.

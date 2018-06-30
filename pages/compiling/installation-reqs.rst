@@ -58,7 +58,7 @@ General Notes
 Conda Requirements
 ^^^^^^^^^^^^^^^^^^
 
-* Install `Anaconda <https://www.anaconda.com/download>`__ or
+* Install `Anaconda <https://www.anaconda.com/download/>`__ or
   `Miniconda <https://conda.io/miniconda.html>`__. We highly recommend using the Python 3 version
   unless you have a specific reason not to.
 
@@ -327,7 +327,7 @@ General Notes
   recompile.
 
 * The following instructions use the versions of Python downloaded from
-  https://www.python.org/downloads, but alternate installations such as the
+  https://www.python.org/downloads/, but alternate installations such as the
   Anaconda distribution of Python can be used as well.
 
 * If you want to build the Matlab toolbox and you have a 64-bit copy of Windows,
@@ -374,7 +374,7 @@ Windows Requirements
 
   * SCons
 
-    * https://pypi.python.org/pypi/SCons
+    * https://pypi.org/project/SCons/
 
     * Be sure to choose the appropriate architecture for your system - either
       32-bit or 64-bit
@@ -383,7 +383,7 @@ Windows Requirements
 
     * Microsoft compilers
 
-      * https://www.visualstudio.com/downloads/
+      * https://visualstudio.microsoft.com/downloads/
 
       * Known to work with Visual Studio 2013 (MSVC 12.0) and Visual Studio 2015
         (MSVC 14.0)
@@ -403,7 +403,7 @@ Windows Requirements
 
   * The Boost headers
 
-    * http://www.boost.org/doc/libs/1_63_0/more/getting_started/windows.html#get-boost
+    * https://www.boost.org/doc/libs/1_63_0/more/getting_started/windows.html#get-boost
 
     * It is not necessary to compile the Boost libraries since Cantera only uses
       the headers from Boost
@@ -538,7 +538,7 @@ OS X & macOS Requirements
 
   * Homebrew
 
-    * http://brew.sh
+    * https://brew.sh
 
     * From a Terminal, run:
 
