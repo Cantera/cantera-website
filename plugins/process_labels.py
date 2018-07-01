@@ -5,6 +5,8 @@ from docutils import nodes
 from docutils.readers.standalone import Reader
 from docutils.core import Publisher
 from copy import copy
+from doit import create_after
+from nikola.plugins.task.posts import RenderPosts
 
 
 class ProcessLabels(Task):
@@ -13,6 +15,12 @@ class ProcessLabels(Task):
     name = "process_labels"
 
     def set_site(self, site):
+
+        # Ensure that this Task is run before the posts are rendered
+        # We need to enforce this order because rendering the posts
+        # requires the targets that we generate here
+        RenderPosts.gen_tasks = create_after(executed='process_labels')(RenderPosts.gen_tasks)
+
         self.site = site
         self.logger = get_logger(self.name)
         self.site.anon_ref_labels = {}
@@ -48,13 +56,10 @@ class ProcessLabels(Task):
             for post in self.site.timeline:
                 if not post.source_ext() == '.rst':
                     continue
-                # self.logger.error('The post fragment is {}'.format(post.fragment_deps(lang)))
-                targets = [p for p in post.fragment_deps(lang) if not p.startswith("####MAGIC####")]
                 source = post.translated_source_path(lang)
                 task = {
                     'basename': self.name,
                     'name': source,
-                    'targets': targets,
                     'task_dep': ['process_labels:timeline_changes'],
                     'actions': [(process_labels, [self.site, self.logger, source, post]),
                                 (update_cache, [self.site]),
