@@ -63,6 +63,23 @@ preference for the vast majority of Cantera users.
 
          I want to learn about Cantera via the Matlab toolbox
 
+   .. container:: card
+
+      .. container::
+         :tagname: a
+         :attributes: href=cxx-guide/compiling.html
+                      title="C++ Guide"
+
+         .. container:: card-header section-card
+
+            Advanced: C++ Tutorial
+
+      .. container:: card-body
+
+         .. container:: card-text
+
+         I want to learn about Cantera via the C++ interface
+
 .. jumbotron::
 
    .. raw:: html
