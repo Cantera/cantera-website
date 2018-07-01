@@ -10,6 +10,9 @@
 Getting Started
 ===============
 
+First, you'll need to install Cantera on your computer. We have instructions for
+many platforms in our `Installation section </install/index.html>`__.
+
 When using Cantera, the first thing you usually need is an object representing
 some phase of matter. Here, we'll create a gas mixture. Start MATLAB, and at
 the prompt type:

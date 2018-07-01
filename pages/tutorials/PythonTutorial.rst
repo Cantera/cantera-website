@@ -10,6 +10,9 @@
 Getting Started
 ===============
 
+First, you'll need to install Cantera on your computer. We have instructions for
+many platforms in our `Installation section </install/index.html>`__.
+
 Start by opening an interactive Python session, e.g., by running `IPython
 <http://ipython.org/>`__. Import the Cantera Python module and NumPy by running:
 
