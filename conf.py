@@ -308,7 +308,7 @@ FILES_FOLDERS = {'../cantera/build/docs': 'documentation/docs-{}'.format(CANTERA
 # One or more folders containing code listings to be processed and published on
 # the site. The format is a dictionary of {source: relative destination}.
 # Default is:
-LISTINGS_FOLDERS = {
+EXAMPLES_FOLDERS = {
     '../cantera/interfaces/cython/cantera/examples': 'examples/python',
     '../cantera-jupyter': 'examples/jupyter',
     '../cantera/samples/matlab': 'examples/matlab'

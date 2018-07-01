@@ -1,7 +1,7 @@
 from pathlib import Path
 import ast
 
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 import io
 import os
 import lxml.html
@@ -20,6 +20,61 @@ class BuildExamples(Listings):
 
     name = "build_examples"
 
+    def set_site(self, site):
+        """Set Nikola site."""
+        site.register_path_handler('example', self.listing_path)
+        site.register_path_handler('example_source', self.listing_source_path)
+
+        # We need to prepare some things for the listings path handler to work.
+
+        self.kw = {
+            "default_lang": site.config["DEFAULT_LANG"],
+            "listings_folders": site.config["EXAMPLES_FOLDERS"],
+            "output_folder": site.config["OUTPUT_FOLDER"],
+            "index_file": site.config["INDEX_FILE"],
+            "strip_indexes": site.config['STRIP_INDEXES'],
+            "filters": site.config["FILTERS"],
+        }
+
+        # Verify that no folder in LISTINGS_FOLDERS appears twice (on output side)
+        appearing_paths = set()
+        for source, dest in self.kw['listings_folders'].items():
+            if source in appearing_paths or dest in appearing_paths:
+                problem = source if source in appearing_paths else dest
+                utils.LOGGER.error("The listings input or output folder '{0}' appears in more than one entry in LISTINGS_FOLDERS, exiting.".format(problem))
+                continue
+            appearing_paths.add(source)
+            appearing_paths.add(dest)
+
+        # improper_input_file_mapping maps a relative input file (relative to
+        # its corresponding input directory) to a list of the output files.
+        # Since several input directories can contain files of the same name,
+        # a list is needed. This is needed for compatibility to previous Nikola
+        # versions, where there was no need to specify the input directory name
+        # when asking for a link via site.link('listing', ...).
+        self.improper_input_file_mapping = defaultdict(set)
+
+        # proper_input_file_mapping maps relative input file (relative to CWD)
+        # to a generated output file. Since we don't allow an input directory
+        # to appear more than once in LISTINGS_FOLDERS, we can map directly to
+        # a file name (and not a list of files).
+        self.proper_input_file_mapping = {}
+
+        for input_folder, output_folder in self.kw['listings_folders'].items():
+            for root, _, files in os.walk(input_folder, followlinks=True):
+                # Compute relative path; can't use os.path.relpath() here as it returns "." instead of ""
+                rel_path = root[len(input_folder):]
+                if rel_path[:1] == os.sep:
+                    rel_path = rel_path[1:]
+
+                for f in files + [self.kw['index_file']]:
+                    rel_name = os.path.join(rel_path, f)
+                    rel_output_name = os.path.join(output_folder, rel_path, f)
+                    # Register file names in the mapping.
+                    self.register_output_name(input_folder, rel_name, rel_output_name)
+
+        return super(Listings, self).set_site(site)
+
     def gen_tasks(self):
         """Render pretty code listings."""
         # Things to ignore in listings
@@ -36,7 +91,7 @@ class BuildExamples(Listings):
                 file_dict['files'] = list(chunks(file_dict['files'], 3))
 
             permalink = self.site.link(
-                'listing',
+                'example',
                 os.path.join(
                     input_folder,
                     os.path.relpath(
@@ -48,7 +103,7 @@ class BuildExamples(Listings):
             context = {
                 'headers': headers,
                 'lang': self.kw['default_lang'],
-                'pagekind': ['listing'],
+                'pagekind': ['example'],
                 'permalink': permalink,
                 'title': title,
                 'description': title,
@@ -87,7 +142,7 @@ class BuildExamples(Listings):
                 title = os.path.basename(in_name)
 
             permalink = self.site.link(
-                'listing',
+                'example',
                 os.path.join(
                     input_folder,
                     os.path.relpath(
@@ -103,7 +158,7 @@ class BuildExamples(Listings):
                 'lang': self.kw['default_lang'],
                 'description': title,
                 'source_link': source_link,
-                'pagekind': ['listing'],
+                'pagekind': ['example'],
             }
             if needs_ipython_css:
                 # If someone does not have ipynb posts and only listings, we
