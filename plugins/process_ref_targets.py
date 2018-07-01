@@ -9,26 +9,26 @@ from doit import create_after
 from nikola.plugins.task.posts import RenderPosts
 
 
-class ProcessLabels(Task):
-    """Find and process labels in reST files"""
+class ProcessRefTargets(Task):
+    """Find and process targets in reST files"""
 
-    name = "process_labels"
+    name = "process_ref_targets"
 
     def set_site(self, site):
 
         # Ensure that this Task is run before the posts are rendered
         # We need to enforce this order because rendering the posts
         # requires the targets that we generate here
-        RenderPosts.gen_tasks = create_after(executed='process_labels')(RenderPosts.gen_tasks)
+        RenderPosts.gen_tasks = create_after(executed=self.name)(RenderPosts.gen_tasks)
 
         self.site = site
         self.logger = get_logger(self.name)
-        self.site.anon_ref_labels = {}
-        self.site.ref_labels = {}
-        # This attribute is set to True when the labels are being
-        # processed to avoid spurious warnings about missing labels
-        self.site.processing_labels = False
-        return super(ProcessLabels, self).set_site(site)
+        self.site.anon_ref_targets = {}
+        self.site.ref_targets = {}
+        # This attribute is set to True when the targets are being
+        # processed to avoid spurious warnings about missing targets
+        self.site.processing_targets = False
+        return super(ProcessRefTargets, self).set_site(site)
 
     def gen_tasks(self):
         self.site.scan_posts()
@@ -60,34 +60,34 @@ class ProcessLabels(Task):
                 task = {
                     'basename': self.name,
                     'name': source,
-                    'task_dep': ['process_labels:timeline_changes'],
-                    'actions': [(process_labels, [self.site, self.logger, source, post]),
+                    'task_dep': ['process_ref_targets:timeline_changes'],
+                    'actions': [(process_targets, [self.site, self.logger, source, post]),
                                 (update_cache, [self.site]),
                                 ],
-                    'uptodate': [config_changed(deps_dict, 'process_labels')] +
+                    'uptodate': [config_changed(deps_dict, 'process_ref_targets')] +
                     post.fragment_deps_uptodate(lang),
                 }
                 yield task
 
 
 def update_cache(site):
-    cached_labels = site.cache.get('ref_labels')
-    anon_cached_labels = site.cache.get('anon_ref_labels')
-    if cached_labels is not None:
-        cached_labels.update(site.ref_labels)
-        site.cache.set('ref_labels', cached_labels)
+    cached_targets = site.cache.get('ref_targets')
+    anon_cached_targets = site.cache.get('anon_ref_targets')
+    if cached_targets is not None:
+        cached_targets.update(site.ref_targets)
+        site.cache.set('ref_targets', cached_targets)
     else:
-        site.cache.set('ref_labels', site.ref_labels)
+        site.cache.set('ref_targets', site.ref_targets)
 
-    if anon_cached_labels is not None:
-        anon_cached_labels.update(site.anon_ref_labels)
-        site.cache.set('anon_ref_labels', anon_cached_labels)
+    if anon_cached_targets is not None:
+        anon_cached_targets.update(site.anon_ref_targets)
+        site.cache.set('anon_ref_targets', anon_cached_targets)
     else:
-        site.cache.set('anon_ref_labels', site.anon_ref_labels)
+        site.cache.set('anon_ref_targets', site.anon_ref_targets)
 
 
-def process_labels(site, logger, source, post):
-    site.processing_labels = True
+def process_targets(site, logger, source, post):
+    site.processing_targets = True
     reader = Reader()
     reader.l_settings = {'source': source}
     with open(source, 'r') as in_file:
@@ -107,7 +107,7 @@ def process_labels(site, logger, source, post):
     pub.set_destination(None, None)
     pub.publish()
     document = pub.document
-    site.processing_labels = False
+    site.processing_targets = False
 
     # Code based on Sphinx std domain
     for name, is_explicit in document.nametypes.items():
@@ -122,11 +122,11 @@ def process_labels(site, logger, source, post):
             labelid = node['names'][0]
         if node.tagname == 'footnote' or 'refuri' in node or node.tagname.startswith('desc_'):
             continue
-        if name in site.ref_labels:
+        if name in site.ref_targets:
             logger.warn('Duplicate label {dup}, other instance in {other}'.format(
-                dup=name, other=site.ref_labels[name][0]
+                dup=name, other=site.ref_targets[name][0]
             ))
-        site.anon_ref_labels[name] = post.permalink(), labelid
+        site.anon_ref_targets[name] = post.permalink(), labelid
 
         def clean_astext(node):
             """Like node.astext(), but ignore images.
@@ -142,4 +142,4 @@ def process_labels(site, logger, source, post):
             sectname = clean_astext(node[0])
         else:
             continue
-        site.ref_labels[name] = post.permalink(), labelid, sectname
+        site.ref_targets[name] = post.permalink(), labelid, sectname
