@@ -1,5 +1,6 @@
 from nikola.plugin_categories import Task
 from nikola.utils import get_logger, config_changed
+from docutils.io import StringInput, StringOutput
 from docutils import nodes
 from docutils.readers.standalone import Reader
 from docutils.core import Publisher
@@ -82,7 +83,13 @@ def update_cache(site):
 
 def process_labels(site, logger, source, post):
     site.processing_labels = True
-    pub = Publisher(reader=Reader(), parser=None, writer=None)
+    reader = Reader()
+    reader.l_settings = {'source': source}
+    with open(source, 'r') as in_file:
+        data = in_file.read()
+    pub = Publisher(reader=reader, parser=None, writer=None, settings=None,
+                    source_class=StringInput,
+                    destination_class=StringOutput)
     pub.set_components(None, 'restructuredtext', 'html')
     # Reading the file will generate output/errors that we don't care about
     # at this stage. The report_level = 5 means no output
@@ -91,7 +98,8 @@ def process_labels(site, logger, source, post):
         settings_overrides={'report_level': 5},
         config_section=None,
     )
-    pub.set_source(None, source)
+    pub.set_source(data, None)
+    pub.set_destination(None, None)
     pub.publish()
     document = pub.document
     site.processing_labels = False
