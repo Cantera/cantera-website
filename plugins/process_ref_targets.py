@@ -5,8 +5,6 @@ from docutils import nodes
 from docutils.readers.standalone import Reader
 from docutils.core import Publisher
 from copy import copy
-from doit import create_after
-from nikola.plugins.task.posts import RenderPosts
 
 
 class ProcessRefTargets(Task):
@@ -16,11 +14,6 @@ class ProcessRefTargets(Task):
 
     def set_site(self, site):
 
-        # Ensure that this Task is run before the posts are rendered
-        # We need to enforce this order because rendering the posts
-        # requires the targets that we generate here
-        RenderPosts.gen_tasks = create_after(executed=self.name)(RenderPosts.gen_tasks)
-
         self.site = site
         self.logger = get_logger(self.name)
         self.site.anon_ref_targets = {}
@@ -28,6 +21,12 @@ class ProcessRefTargets(Task):
         # This attribute is set to True when the targets are being
         # processed to avoid spurious warnings about missing targets
         self.site.processing_targets = False
+
+        # Ensure that this Task is run before the posts are rendered
+        # We need to enforce this order because rendering the posts
+        # requires the targets that we generate here
+        self.inject_dependency('render_posts', self.name)
+
         return super(ProcessRefTargets, self).set_site(site)
 
     def gen_tasks(self):
