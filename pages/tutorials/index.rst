@@ -67,7 +67,7 @@ preference for the vast majority of Cantera users.
 
       .. container::
          :tagname: a
-         :attributes: href=cxx-guide/compiling.html
+         :attributes: href=cxx-guide/index.html
                       title="C++ Guide"
 
          .. container:: card-header section-card
@@ -84,7 +84,7 @@ preference for the vast majority of Cantera users.
 
    .. raw:: html
 
-      <h2 class="display-4" id="cantera-next-steps">Next steps</h2>
+      <h2 class="display-4" id="cantera-next-steps">Next Steps</h2>
 
    .. class:: lead
 

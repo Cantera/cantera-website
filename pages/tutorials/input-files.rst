@@ -62,7 +62,7 @@ There are two primary options for creating a new CTI file:
 
          .. container::
             :tagname: a
-            :attributes: href=ck-conversion.html
+            :attributes: href=ck2cti-tutorial.html
                          title="Chemkin File Conversion"
 
             .. container:: card-header section-card

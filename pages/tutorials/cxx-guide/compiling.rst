@@ -153,10 +153,30 @@ contained in ``Cantera.mak``:
    all: sample
 
    kinetics1: $(OBJS)
-	   $(CXX) $(LDFLAGS) -o sample $(OBJS) $(LDLIBS)
+		$(CXX) $(LDFLAGS) -o sample $(OBJS) $(LDLIBS)
 
    clean:
-	   $(RM) $(OBJS)
+		$(RM) $(OBJS)
 
    dist-clean: clean
-	   $(RM) *~
+		$(RM) *~
+
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-4 text-center offset-4
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=index.html
+
+            Return: C++ Interface Tutorial
+
+      .. container:: col-4 text-right
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=headers.html
+
+            Next: C++ Header Files

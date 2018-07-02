@@ -47,3 +47,34 @@ included by the Cantera core. The headers and their functions are:
 
 ``zerodim.h``
     Zero-dimensional reactor networks.
+
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-4 text-left
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=compiling.html
+                         title="Compiling Cantera C++ Applications"
+
+            Previous: Compiling Cantera C++ Applications
+
+      .. container:: col-4 text-center
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=index.html
+                         title="C++ Interface Tutorial"
+
+            Return: C++ Interface Tutorial
+
+      .. container:: col-4 text-right
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=simple-example.html
+                         title="A Very Simple C++ Program"
+
+            Next: A Very Simple C++ Program

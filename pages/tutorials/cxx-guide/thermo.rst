@@ -1,5 +1,5 @@
 .. title: Computing Thermodynamic Properties
-.. hasmath: true
+.. has_math: true
 
 .. jumbotron::
 
@@ -134,3 +134,34 @@ See `ThermoPhase`_ for the full list of available thermodynamic properties.
 
 .. _ThermoPhase: {{% ct_docs doxygen/html/classCantera_1_1ThermoPhase.html %}}
 .. _IdealGasPhase: {{% ct_docs doxygen/html/classCantera_1_1IdealGasPhase.html %}}
+
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-4 text-left
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=simple-example.html
+                         title="A Very Simple C++ Program"
+
+            Previous: A Very Simple C++ Program
+
+      .. container:: col-4 text-center
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=index.html
+                         title="C++ Interface Tutorial"
+
+            Return: C++ Interface Tutorial
+
+      .. container:: col-4 text-right
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=equil-example.html
+                         title="Equilibrium Example Program"
+
+            Next: Equilibrium Example Program

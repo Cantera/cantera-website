@@ -4,7 +4,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Creating ThermoPhase, Kinetics, and Transport objects</h1>
+      <h1 class="display-3">Creating ``ThermoPhase``, ``Kinetics``, and ``Transport`` objects</h1>
 
    .. class:: lead
 
@@ -54,3 +54,25 @@ This program produces the output below::
     500.0    2.4681e-05    6.2451e-02
     600.0    2.8218e-05    7.2157e-02
     700.0    3.1534e-05    8.1754e-02
+
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-4 text-left
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=equil-example.html
+                         title="Equilibrium Example Program"
+
+            Previous: Equilibrium Example Program
+
+      .. container:: col-4 text-center
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=index.html
+                         title="C++ Interface Tutorial"
+
+            Return: C++ Interface Tutorial

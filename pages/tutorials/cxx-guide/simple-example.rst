@@ -86,3 +86,34 @@ This is handy particularly when doing equilibrium calculations. This function
 is very useful to see at a glance the state of some phase.
 
 .. _CanteraError: {{% ct_docs doxygen/html/classCantera_1_1CanteraError.html %}}
+
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-4 text-left
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=headers.html
+                         title="C++ Header Files"
+
+            Previous: C++ Header Files
+
+      .. container:: col-4 text-center
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=index.html
+                         title="C++ Interface Tutorial"
+
+            Return: C++ Interface Tutorial
+
+      .. container:: col-4 text-right
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=thermo.html
+                         title="Computing Properties"
+
+            Next: Computing Properties

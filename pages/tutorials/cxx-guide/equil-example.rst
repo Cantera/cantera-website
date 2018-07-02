@@ -1,5 +1,5 @@
 .. title: Chemical Equilibrium Example Program
-.. hasmath: true
+.. has_math: true
 
 .. jumbotron::
 
@@ -65,3 +65,34 @@ twice that of H, the chemical potential for OH is the sum of the values for H
 and O, the value for H2O2 is twice as large as the value for OH, and so on.
 
 We'll see later how the ``equilibrate`` function really works.
+
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-lg-4 text-left
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=thermo.html
+                         title="Computing Properties"
+
+            Previous: Computing Properties
+
+      .. container:: col-lg-4 text-center
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=index.html
+                         title="C++ Interface Tutorial"
+
+            Return: C++ Interface Tutorial
+
+      .. container:: col-lg-4 text-right
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=factories.html
+                         title="Creating Cantera Phase objects"
+
+            Next: Creating Cantera Phase objects
