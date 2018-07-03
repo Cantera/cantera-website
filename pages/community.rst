@@ -209,7 +209,7 @@ Cantera to be useful to your research or company, please consider making a
 to support our efforts. All donations will be used exclusively to fund the
 development of Cantera's source code, documentation, or community.
 
-.. image:: /images/SponsoredProject.png
+.. image:: /assets/img/SponsoredProject.png
     :alt: Powered by NumFOCUS
     :target: https://numfocus.org
     :align: center
