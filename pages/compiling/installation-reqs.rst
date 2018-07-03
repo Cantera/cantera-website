@@ -1,11 +1,149 @@
-
-.. contents::
-   :local:
+.. title: Compilation Requirements
 
 .. _sec-installation-reqs:
 
-Installation Prerequisites
-==========================
+.. jumbotron::
+
+   .. raw:: html
+
+      <h1 class="display-3"> Compilation Requirements</h1>
+
+   .. class:: lead
+
+      Click the buttons below to see the required software that you must install to
+      compile Cantera on your operating system.
+
+   .. raw:: html
+
+      <div class="container">
+         <div class="row">
+            <div class="col">
+               <a class="btn btn-secondary" href="#sec-conda">Conda</a>
+            </div>
+            <div class="col">
+               <a class="btn btn-secondary" href="#sec-ubuntu-debian-reqs">Ubuntu & Debian</a>
+            </div>
+            <div class="col">
+               <a class="btn btn-secondary" href="#sec-fedora-reqs">Fedora & RHEL</a>
+            </div>
+            <div class="col">
+               <a class="btn btn-secondary" href="#sec-opensuse-reqs">OpenSUSE & SLE</a>
+            </div>
+            <div class="col">
+               <a class="btn btn-secondary" href="#sec-windows">Windows</a>
+            </div>
+            <div class="col">
+               <a class="btn btn-secondary" href="#sec-macos">macOS</a>
+            </div>
+         </div>
+      </div>
+
+
+.. _sec-conda:
+
+Conda & Anaconda
+----------------
+
+General Notes
+^^^^^^^^^^^^^
+
+* These instructions will set you up to build Cantera with the dependencies installed in a Conda
+  environment
+
+* You will need to install compilers for your system by following the instructions in the sections
+  below to install the compiler for your operating system.
+
+.. _sec-conda-reqs:
+
+Conda Requirements
+^^^^^^^^^^^^^^^^^^
+
+* Install `Anaconda <https://www.anaconda.com/download/>`__ or
+  `Miniconda <https://conda.io/miniconda.html>`__. We highly recommend using the Python 3 version
+  unless you have a specific reason not to.
+
+* On macOS and Linux, add the following code to your ``.bash_profile`` file (macOS) or your
+  ``.bashrc`` file (Linux) and restart your terminal or shell afterwards:
+
+  .. code:: bash
+
+     source /path/to/conda/install/folder/etc/profile.d/conda.sh
+     conda activate
+
+  On Windows, use the Anaconda Prompt (available from the Start Menu).
+
+* Create an environment with the dependencies to build Cantera
+
+  .. code:: bash
+
+     conda create --name cantera python=3 scons cython boost numpy
+     conda activate cantera
+
+* (Optional) If you also want to build the documentation, after you've created the environment and
+  activated it, you'll also need to install the following dependencies
+
+  .. code:: bash
+
+     conda install --name cantera sphinx doxygen graphviz
+     pip install sphinxcontrib-matlabdomain sphinxcontrib-katex sphinxcontrib-doxylink
+
+* (Optional) If you also want to build the Python 2 interface (this is unlikely), create another
+  environment for those dependencies:
+
+  .. code:: bash
+
+     conda create --name py2k python=2 numpy
+     conda activate py2k
+     pip install 3to2
+     conda activate cantera
+
+  and after you've :ref:`cloned the source code <sec-source-code>`, add the following lines to a
+  file called ``cantera.conf``  in the root of the source directory (creating the file if it
+  doesn't exist):
+
+  .. code:: python
+
+     python2_package = 'full'
+     python2_cmd = '/path/to/conda/install/folder/envs/py2k/bin/python'
+
+  Note that it is not possible to simultaneously install the Python 2 and Python 3 interfaces;
+  you'll have to use separate builds if you want to install both (however, this is an unlikely
+  scenario). For every-day development and testing, the setup described here works well.
+
+* After you've :ref:`cloned the source code <sec-source-code>`, configure the Cantera build by
+  adding the following options to a file called ``cantera.conf`` in the root of the source directory
+  (creating the file if it doesn't exist):
+
+  .. code:: python
+
+     python3_package = 'full'
+     boost_inc_dir = '/path/to/conda/install/folder/envs/cantera/include'
+
+* Now you can build Cantera with
+
+  .. code:: bash
+
+     scons build
+
+* To install Cantera, use the command
+
+  .. code:: bash
+
+     scons install prefix=$CONDA_PREFIX
+
+  to make sure that the files end up in the right directory
+
+.. container:: container
+
+  .. container:: row
+
+     .. container:: col-12 text-right
+
+        .. container:: btn btn-primary
+           :tagname: a
+           :attributes: href=source-code.html
+
+           Next: Download the Source Code
 
 .. _sec-linux:
 
@@ -15,11 +153,8 @@ Linux
 General Notes
 ^^^^^^^^^^^^^
 
-* To download the source code, installing ``git`` is highly recommended.
-
-* SCons is only available for Python 2, so building the Python 3 module requires
-  two installations of Python (one of Python 2 and one of Python 3), even if you
-  do not intend to build the Python 2 module.
+* To download the source code, installing ``git`` is highly recommended in addition
+  to the requirements listed below.
 
 * The following instructions use the system-installed versions of Python, but
   alternate installations such as the Anaconda distribution of Python can be
@@ -27,7 +162,7 @@ General Notes
 
 * Cython is only required to be installed for the version of Python that also
   has SCons installed; following the instructions below will install Cython for
-  the version of Python 2 installed in the system directories. The minimum
+  the version of Python installed in the system directories. The minimum
   compatible Cython version is 0.23. If your distribution does not contain a
   suitable version, you may be able to install a more recent version using
   ``pip``.
@@ -35,7 +170,7 @@ General Notes
 * Users of other distributions should install the equivalent packages, which
   may have slightly different names.
 
-* In addition to the below operating systems, Cantera should work on any
+* In addition to the operating systems below, Cantera should work on any
   Unix-like system where the necessary prerequisites are available, but some
   additional configuration may be required.
 
@@ -44,10 +179,10 @@ General Notes
 Ubuntu & Debian
 ^^^^^^^^^^^^^^^
 
-* Ubuntu 12.04 LTS (Precise Pangolin) or newer is required; 16.04 LTS (Xenial Xerus)
+* Ubuntu 14.04 LTS (Trusty Tahr) or newer is required; 18.04 LTS (Bionic Beaver)
   or newer is recommended
 
-* Debian 7.0 (Wheezy) or newer; 8.0 (Jessie) or newer is recommended
+* Debian 7.0 (Wheezy) or newer; 9.0 (Stretch) or newer is recommended
 
 * The following packages must be installed to build any of the Cantera modules using
   your choice of package manager::
@@ -75,6 +210,18 @@ Ubuntu & Debian
         /opt/MATLAB/R20YYn
 
       where ``YY`` is a two digit year and ``n`` is either ``a`` or ``b``
+
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-12 text-right
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=source-code.html
+
+            Next: Download the Source Code
 
 .. _sec-fedora-reqs:
 
@@ -107,6 +254,18 @@ Fedora & RHEL
         /opt/MATLAB/R20YYn
 
       where ``YY`` is a two digit year and ``n`` is either ``a`` or ``b``
+
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-12 text-right
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=source-code.html
+
+            Next: Download the Source Code
 
 .. _sec-opensuse-reqs:
 
@@ -142,6 +301,18 @@ OpenSUSE & SUSE Linux Enterprise
 
       where ``YY`` is a two digit year and ``n`` is either ``a`` or ``b``
 
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-12 text-right
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=source-code.html
+
+            Next: Download the Source Code
+
 .. _sec-windows:
 
 Windows
@@ -150,17 +321,13 @@ Windows
 General Notes
 ^^^^^^^^^^^^^
 
-* SCons is only available for Python 2, so building the Python 3 module requires
-  two installations of Python (one of Python 2 and one of Python 3), even if you
-  do not intend to build the Python 2 module.
-
 * The build process will produce a Python module compatible with the version of
   Python used for the compilation. To generate different modules for other
   versions of Python, you will need to install those versions of Python and
   recompile.
 
 * The following instructions use the versions of Python downloaded from
-  https://www.python.org/downloads, but alternate installations such as the
+  https://www.python.org/downloads/, but alternate installations such as the
   Anaconda distribution of Python can be used as well.
 
 * If you want to build the Matlab toolbox and you have a 64-bit copy of Windows,
@@ -175,7 +342,7 @@ General Notes
   variable. This can be done by checking the appropriate box during the
   installation of Python or can be accomplished by adding the top-level Python
   directory and the ``Scripts`` subdirectory (e.g.,
-  ``C:\Python27;C:\Python27\Scripts``) to your ``PATH``. The dialog to change
+  ``C:\Python36;C:\Python36\Scripts``) to your ``PATH``. The dialog to change
   the ``PATH`` is accessible from::
 
       Control Panel > System and Security > System > Advanced System Settings > Environment Variables
@@ -196,7 +363,7 @@ Windows Requirements
 
 * To build any of the Cantera modules, you will need to install
 
-  * Python 2.7
+  * Python
 
     * https://www.python.org/downloads/
 
@@ -207,7 +374,7 @@ Windows Requirements
 
   * SCons
 
-    * https://pypi.python.org/pypi/SCons
+    * https://pypi.org/project/SCons/
 
     * Be sure to choose the appropriate architecture for your system - either
       32-bit or 64-bit
@@ -216,7 +383,7 @@ Windows Requirements
 
     * Microsoft compilers
 
-      * https://www.visualstudio.com/downloads/
+      * https://visualstudio.microsoft.com/downloads/
 
       * Known to work with Visual Studio 2013 (MSVC 12.0) and Visual Studio 2015
         (MSVC 14.0)
@@ -236,18 +403,14 @@ Windows Requirements
 
   * The Boost headers
 
-    * http://www.boost.org/doc/libs/1_63_0/more/getting_started/windows.html#get-boost
+    * https://www.boost.org/doc/libs/1_63_0/more/getting_started/windows.html#get-boost
 
     * It is not necessary to compile the Boost libraries since Cantera only uses
       the headers from Boost
 
-* In addition to the general software, building the Python 2 module also requires
+* In addition to the general software, building the Python module also requires
 
   * Pip
-
-    * Pip should be distributed with Python version 2.7.9 and higher.
-      If you are using an older version of Python, see
-      `these instructions to install pip <http://stackoverflow.com/a/12476379>`_
 
     * Most packages will be downloaded as Wheel (``*.whl``) files. To install
       these files, type::
@@ -259,7 +422,8 @@ Windows Requirements
     * http://www.lfd.uci.edu/~gohlke/pythonlibs/#cython
 
     * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
-      and Python 2.7 (indicated by ``cp27`` in the file name).
+      and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
+      major and minor versions of the Python where you installed SCons.
 
     * Cython must be installed in the version of Python that has SCons installed
 
@@ -268,7 +432,8 @@ Windows Requirements
     * http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
 
     * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
-      and Python 2.7 (indicated by ``cp27`` in the file name).
+      and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
+      major and minor versions of Python.
 
 * In addition to the general software, building the Python 3 module also requires
 
@@ -281,36 +446,33 @@ Windows Requirements
     * Be sure to choose the appropriate architecture for your system - either
       32-bit or 64-bit
 
-    * Be careful that the installation of Python 3 does not come before Python 2
-      on your ``PATH`` environment variable
+    * Be careful that the installation of Python with SCons installed comes before the one without,
+      if you have multiple versions of Python installed.
 
   * Pip
-
-    * Pip should be distributed with Python version 3.4 and higher.
-      If you are using an older version of Python, see
-      `these instructions to install pip <http://stackoverflow.com/a/12476379>`_
 
     * Most packages will be downloaded as Wheel (``*.whl``) files. To install
       these files, type::
 
           pip3 install C:\Path\to\downloaded\file\package-file-name.whl
 
-  * Cython
+   * Cython
 
-    * http://www.lfd.uci.edu/~gohlke/pythonlibs/#cython
+     * http://www.lfd.uci.edu/~gohlke/pythonlibs/#cython
 
-    * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
-      and Python 2.7 (indicated by ``cp27`` in the file name).
+     * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
+       and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
+       major and minor versions of the Python where you installed SCons.
 
-    * Cython must be installed in the version of Python that has SCons installed
+     * Cython must be installed in the version of Python that has SCons installed
 
-  * NumPy
+   * NumPy
 
-    * http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
+     * http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
 
-    * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
-      and Python 3.x (indicated by ``cp3x`` in the file name, where x matches
-      your version of Python).
+     * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
+       and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
+       major and minor versions of Python.
 
 * In addition to the general software, building the MATLAB toolbox also requires:
 
@@ -320,7 +482,19 @@ Windows Requirements
 
         C:\Program Files\MATLAB\R20YYn
 
-      where ``YY`` is a two digit year and ``n`` is either ``a`` or ``b``/Applications/MATLAB_R2011a.app
+      where ``YY`` is a two digit year and ``n`` is either ``a`` or ``b``
+
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-12 text-right
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=source-code.html
+
+            Next: Download the Source Code
 
 .. _sec-macos:
 
@@ -335,10 +509,6 @@ General Notes
   separate copy of Python, independent from the system Python.
 
 * To download the source code, installing ``git`` via HomeBrew is highly recommended.
-
-* SCons is only available for Python 2, so building the Python 3 module requires
-  two installations of Python (one of Python 2 and one of Python 3), even if you
-  do not intend to build the Python 2 module.
 
 * Cython is only required to be installed for the version of Python that also
   has SCons installed; following the instructions below will install Cython for
@@ -358,40 +528,54 @@ OS X & macOS Requirements
 
     * Download and install from the App Store
 
-    * From a Terminal, run::
+    * From a Terminal, run:
 
-        sudo xcode-select --install
+      .. code:: bash
+
+         sudo xcode-select --install
 
       and agree to the Xcode license agreement
 
   * Homebrew
 
-    * http://brew.sh
+    * https://brew.sh
 
-    * From a Terminal, run::
+    * From a Terminal, run:
 
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      .. code:: bash
 
-  * Once Homebrew is installed, the rest of the dependencies can be installed with::
+         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-      brew install python scons boost
+  * Once Homebrew is installed, the rest of the dependencies can be installed with:
 
-* In addition to the general software, building the Python 2 module also requires::
+    .. code:: bash
 
-    pip install cython numpy
+       brew install python scons boost
 
-* In addition to the general software, building the Python 3 module also requires::
+    Note that brew installs Python 3 by default, but does not over-write the existing system Python.
+    When you want to use the brew-installed Python, you should use ``python3``.
 
-    brew install python3
-    pip install cython
-    pip3 install numpy
+* In addition to the general software, building the Python 2 module also requires:
+
+  .. code:: bash
+
+     brew install python@2
+     pip install numpy
+
+* In addition to the general software, building the Python 3 module also requires:
+
+  .. code:: bash
+
+     pip3 install cython numpy
 
   Note that Cython should be installed into the version of Python that has SCons
   installed.
 
-* In addition to the general software, building the Fortran module also requires::
+* In addition to the general software, building the Fortran module also requires:
 
-    brew install gcc
+  .. code:: bash
+
+     brew install gcc
 
 * In addition to the general software, building the MATLAB toolbox also requires:
 
@@ -402,3 +586,15 @@ OS X & macOS Requirements
         /Applications/MATLAB_R20YYn.app
 
       where ``YY`` is a two digit year and ``n`` is either ``a`` or ``b``
+
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-12 text-right
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=source-code.html
+
+            Next: Download the Source Code

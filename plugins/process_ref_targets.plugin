@@ -1,6 +1,6 @@
 [Core]
-name = process_labels
-module = process_labels
+name = process_ref_targets
+module = process_ref_targets
 
 [Documentation]
 author = Bryan Weber

@@ -1,17 +1,16 @@
 .. title: Community
 .. description: All about the Cantera community and how to contribute
 .. slug: community
-.. hidetitle: true
 
+.. jumbotron::
 
-The Cantera Community
-=====================
+   .. raw:: html
 
-This section provides resources to help you participate in the community of
-Cantera users and developers. It gives an overview of the community, provides
-resources for connecting to other users and developers, describes the rules
-that govern our interactions as a community, and describes how to contribute to
-and otherwise support the code and the community.
+      <h1 class="display-3">The Cantera Community</h1>
+
+   .. class:: lead
+
+      Resources to help you participate in the community of Cantera users and developers
 
 About the Cantera Community
 ---------------------------
@@ -148,7 +147,7 @@ Bug Reporting
   <https://github.com/Cantera/cantera/issues>`_ to see if the issue
   has already been reported.
 - Try to generate a `minimal, complete, and verifiable example
-  <http://stackoverflow.com/help/mcve>`_ that demonstrates the observed bug.
+  <https://stackoverflow.com/help/mcve>`_ that demonstrates the observed bug.
 - Create a new issue on the tracker (the "New issue" button is toward the
   upper right-hand corner, just above the list of open issues). Include as
   much information as possible about your system configuration (operating
@@ -210,17 +209,18 @@ Cantera to be useful to your research or company, please consider making a
 to support our efforts. All donations will be used exclusively to fund the
 development of Cantera's source code, documentation, or community.
 
-
 .. image:: /images/SponsoredProject.png
     :alt: Powered by NumFOCUS
     :target: https://numfocus.org
     :align: center
     :width: 250px
 
-.. raw:: html
+.. container:: text-center
 
-    <div style="text-align:center">
-    <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=" class="btn btn-primary">Donate to Cantera</a>
-    </div>
+   .. container:: btn btn-primary
+      :tagname: a
+      :attributes: href=https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=
+                   title="Donate to Cantera"
+                   rel=nofollow
 
-    <br />
+      Donate to Cantera

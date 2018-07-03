@@ -34,7 +34,7 @@ class Plugin(RestExtension):
 
 def _class_link(name, rawtext, text):
     """Handle the class role."""
-    if class_role.site.processing_labels:
+    if class_role.site.processing_targets:
         return True, True, None, None, None, None
 
     context_map = {'py': 'cython', 'mat': 'matlab', 'cti': 'cti'}

@@ -1,25 +1,33 @@
 from nikola.plugin_categories import Task
 from nikola.utils import get_logger, config_changed
+from docutils.io import StringInput, StringOutput
 from docutils import nodes
 from docutils.readers.standalone import Reader
 from docutils.core import Publisher
 from copy import copy
 
 
-class ProcessLabels(Task):
-    """Find and process labels in reST files"""
+class ProcessRefTargets(Task):
+    """Find and process targets in reST files"""
 
-    name = "process_labels"
+    name = "process_ref_targets"
 
     def set_site(self, site):
+
         self.site = site
         self.logger = get_logger(self.name)
-        self.site.anon_ref_labels = {}
-        self.site.ref_labels = {}
-        # This attribute is set to True when the labels are being
-        # processed to avoid spurious warnings about missing labels
-        self.site.processing_labels = False
-        return super(ProcessLabels, self).set_site(site)
+        self.site.anon_ref_targets = {}
+        self.site.ref_targets = {}
+        # This attribute is set to True when the targets are being
+        # processed to avoid spurious warnings about missing targets
+        self.site.processing_targets = False
+
+        # Ensure that this Task is run before the posts are rendered
+        # We need to enforce this order because rendering the posts
+        # requires the targets that we generate here
+        self.inject_dependency('render_posts', self.name)
+
+        return super(ProcessRefTargets, self).set_site(site)
 
     def gen_tasks(self):
         self.site.scan_posts()
@@ -47,42 +55,45 @@ class ProcessLabels(Task):
             for post in self.site.timeline:
                 if not post.source_ext() == '.rst':
                     continue
-                # self.logger.error('The post fragment is {}'.format(post.fragment_deps(lang)))
-                targets = [p for p in post.fragment_deps(lang) if not p.startswith("####MAGIC####")]
                 source = post.translated_source_path(lang)
                 task = {
                     'basename': self.name,
                     'name': source,
-                    'targets': targets,
-                    'task_dep': ['process_labels:timeline_changes'],
-                    'actions': [(process_labels, [self.site, self.logger, source, post]),
+                    'task_dep': ['process_ref_targets:timeline_changes'],
+                    'actions': [(process_targets, [self.site, self.logger, source, post]),
                                 (update_cache, [self.site]),
                                 ],
-                    'uptodate': [config_changed(deps_dict, 'process_labels')] +
+                    'uptodate': [config_changed(deps_dict, 'process_ref_targets')] +
                     post.fragment_deps_uptodate(lang),
                 }
                 yield task
 
 
 def update_cache(site):
-    cached_labels = site.cache.get('ref_labels')
-    anon_cached_labels = site.cache.get('anon_ref_labels')
-    if cached_labels is not None:
-        cached_labels.update(site.ref_labels)
-        site.cache.set('ref_labels', cached_labels)
+    cached_targets = site.cache.get('ref_targets')
+    anon_cached_targets = site.cache.get('anon_ref_targets')
+    if cached_targets is not None:
+        cached_targets.update(site.ref_targets)
+        site.cache.set('ref_targets', cached_targets)
     else:
-        site.cache.set('ref_labels', site.ref_labels)
+        site.cache.set('ref_targets', site.ref_targets)
 
-    if anon_cached_labels is not None:
-        anon_cached_labels.update(site.anon_ref_labels)
-        site.cache.set('anon_ref_labels', anon_cached_labels)
+    if anon_cached_targets is not None:
+        anon_cached_targets.update(site.anon_ref_targets)
+        site.cache.set('anon_ref_targets', anon_cached_targets)
     else:
-        site.cache.set('anon_ref_labels', site.anon_ref_labels)
+        site.cache.set('anon_ref_targets', site.anon_ref_targets)
 
 
-def process_labels(site, logger, source, post):
-    site.processing_labels = True
-    pub = Publisher(reader=Reader(), parser=None, writer=None)
+def process_targets(site, logger, source, post):
+    site.processing_targets = True
+    reader = Reader()
+    reader.l_settings = {'source': source}
+    with open(source, 'r') as in_file:
+        data = in_file.read()
+    pub = Publisher(reader=reader, parser=None, writer=None, settings=None,
+                    source_class=StringInput,
+                    destination_class=StringOutput)
     pub.set_components(None, 'restructuredtext', 'html')
     # Reading the file will generate output/errors that we don't care about
     # at this stage. The report_level = 5 means no output
@@ -91,10 +102,11 @@ def process_labels(site, logger, source, post):
         settings_overrides={'report_level': 5},
         config_section=None,
     )
-    pub.set_source(None, source)
+    pub.set_source(data, None)
+    pub.set_destination(None, None)
     pub.publish()
     document = pub.document
-    site.processing_labels = False
+    site.processing_targets = False
 
     # Code based on Sphinx std domain
     for name, is_explicit in document.nametypes.items():
@@ -109,11 +121,11 @@ def process_labels(site, logger, source, post):
             labelid = node['names'][0]
         if node.tagname == 'footnote' or 'refuri' in node or node.tagname.startswith('desc_'):
             continue
-        if name in site.ref_labels:
+        if name in site.ref_targets:
             logger.warn('Duplicate label {dup}, other instance in {other}'.format(
-                dup=name, other=site.ref_labels[name][0]
+                dup=name, other=site.ref_targets[name][0]
             ))
-        site.anon_ref_labels[name] = post.permalink(), labelid
+        site.anon_ref_targets[name] = post.permalink(), labelid
 
         def clean_astext(node):
             """Like node.astext(), but ignore images.
@@ -129,4 +141,4 @@ def process_labels(site, logger, source, post):
             sectname = clean_astext(node[0])
         else:
             continue
-        site.ref_labels[name] = post.permalink(), labelid, sectname
+        site.ref_targets[name] = post.permalink(), labelid, sectname

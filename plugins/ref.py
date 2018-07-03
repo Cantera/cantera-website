@@ -26,57 +26,57 @@ class Plugin(RestExtension):
 
 def _ref_link(rawtext, text, options={}, content=[]):
     """Handle the ref role."""
-    # If we're just processing the labels, ignore the role
-    if ref_role.site.processing_labels:
+    # If we're just processing the targets, ignore the role
+    if ref_role.site.processing_targets:
         return True, True, None, None, None
 
-    has_explicit_title, title, label = split_explicit_title(text)
+    has_explicit_title, title, target = split_explicit_title(text)
 
-    if ref_role.site.cache.get('ref_labels') is not None:
-        ref_labels = ref_role.site.cache.get('ref_labels').copy()
+    if ref_role.site.cache.get('ref_targets') is not None:
+        ref_targets = ref_role.site.cache.get('ref_targets').copy()
     else:
-        ref_labels = ref_role.site.ref_labels.copy()
+        ref_targets = ref_role.site.ref_targets.copy()
 
-    if ref_role.site.cache.get('anon_ref_labels') is not None:
-        anon_ref_labels = ref_role.site.cache.get('anon_ref_labels').copy()
+    if ref_role.site.cache.get('anon_ref_targets') is not None:
+        anon_ref_targets = ref_role.site.cache.get('anon_ref_targets').copy()
     else:
-        anon_ref_labels = ref_role.site.anon_ref_labels.copy()
+        anon_ref_targets = ref_role.site.anon_ref_targets.copy()
 
-    if label not in ref_labels and (label in anon_ref_labels and not has_explicit_title):
-        LOGGER.error('Anonymous targets must have a link text: {}'.format(label))
-        return False, False, None, None, label
-    elif label in anon_ref_labels:
-        permalink = anon_ref_labels[label][0]
+    if target not in ref_targets and (target in anon_ref_targets and not has_explicit_title):
+        LOGGER.error('Anonymous targets must have a link text: {}'.format(target))
+        return False, False, None, None, target
+    elif target in anon_ref_targets:
+        permalink = anon_ref_targets[target][0]
         if permalink.endswith('/'):
             permalink += 'index.html'
 
-        permalink += '#' + label
+        permalink += '#' + target
 
-        return True, False, title, permalink, label
+        return True, False, title, permalink, target
     else:
-        LOGGER.error('Unknown reference label: {}'.format(label))
-        # LOGGER.error('ref_labels is: {}'.format(ref_role.site.ref_labels))
-        return False, False, None, None, label
+        LOGGER.error('Unknown reference target: {}'.format(target))
+        # LOGGER.error('ref_targets is: {}'.format(ref_role.site.ref_targets))
+        return False, False, None, None, target
 
-    if label not in ref_labels:
-        LOGGER.error('Unknown reference label: {}'.format(label))
-        # LOGGER.error('ref_labels is: {}'.format(ref_role.site.ref_labels))
-        return False, False, None, None, label
+    if target not in ref_targets:
+        LOGGER.error('Unknown reference target: {}'.format(target))
+        # LOGGER.error('ref_targets is: {}'.format(ref_role.site.ref_targets))
+        return False, False, None, None, target
 
-    permalink = ref_labels[label][0]
+    permalink = ref_targets[target][0]
     if permalink.endswith('/'):
         permalink += 'index.html'
     if not has_explicit_title:
-        title = ref_labels[label][2]
+        title = ref_targets[target][2]
 
-    permalink += '#' + label
+    permalink += '#' + target
 
-    return True, False, title, permalink, label
+    return True, False, title, permalink, target
 
 
 def ref_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     """Handle the ref role."""
-    success, processing, title, permalink, label = _ref_link(rawtext, text, options, content)
+    success, processing, title, permalink, target = _ref_link(rawtext, text, options, content)
     if processing:
         return [nodes.raw('', text, format='html')], []
     if success:
@@ -84,7 +84,7 @@ def ref_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
         return [node], []
     else:
         msg = inliner.reporter.warning(
-            'Unknown reference label: {0}"'.format(label), line=lineno)
+            'Unknown reference target: {0}"'.format(target), line=lineno)
         prb = inliner.problematic(rawtext, rawtext, msg)
         return [prb], [msg]
 

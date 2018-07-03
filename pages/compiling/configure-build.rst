@@ -1,16 +1,25 @@
+.. title: Configure & Build
+
+.. jumbotron::
+
+   .. raw:: html
+
+      <h1 class="display-3">Configure & Build Cantera</h1>
 
 .. _sec-determine-config:
 
 Determine configuration options
 ===============================
 
-* Run ``scons help`` to see a list all configuration options for Cantera, or
-  see :ref:`scons-config`.
+* Run ``scons help`` to see a list of all of the configuration options for Cantera, or
+  see all of the options on the :ref:`Configuration Options <scons-config>` page.
 
 * Configuration options are specified as additional arguments to the ``scons``
-  command, e.g.::
+  command, e.g.:
 
-    scons command option=value
+  .. code:: bash
+
+     scons command option_name=value
 
   where ``scons`` is the program that manages the build steps, and ``command``
   is most commonly one of
@@ -19,15 +28,18 @@ Determine configuration options
     * ``test``
     * ``clean``
 
-  Other commands are possible, and are explained in :ref:`sec-build-commands`.
+  Other commands are possible, and are explained in the :ref:`Build Commands <sec-build-commands>`
+  section.
 
 * SCons saves configuration options specified on the command line in the file
   ``cantera.conf`` in the root directory of the source tree, so generally it is
   not necessary to respecify configuration options when rebuilding Cantera. To
   unset a previously set configuration option, either remove the corresponding
-  line from ``cantera.conf`` or use the syntax::
+  line from ``cantera.conf`` or use the syntax:
 
-    scons command option_name=
+  .. code:: bash
+
+     scons command option_name=
 
 * Sometimes, changes in your environment can cause SCons's configuration tests
   (e.g., checking for libraries or compiler capabilities) to unexpectedly fail.
@@ -35,7 +47,8 @@ Determine configuration options
   run scons with the option ``--config=force``.
 
 * The following lists of options are not complete, they show only some commonly
-  used options. The entire list of options can be found in :ref:`scons-config`.
+  used options. The entire list of options can be found on the
+  :ref:`Configuration options <scons-config>` page.
 
 Common Options
 ^^^^^^^^^^^^^^^
@@ -70,9 +83,9 @@ options control how the Python module is built:
 Note that these general options should not be used at the same time
 as the Python-version specific options discussed below. If SCons
 detects that it is being run with Python 2, and the
-:ref:`python2_package <python2-package` option is set, the build will
+:ref:`python2_package <python2-package>` option is set, the build will
 raise an error and exit; or if SCons detects that it is being run with
-Python 3, and the :ref:`python3_package <python3-package` option is
+Python 3, and the :ref:`python3_package <python3-package>` option is
 set, the build will raise an error and exit.
 
 If a user wishes to build multiple Python interfaces, or a Python
@@ -153,7 +166,7 @@ attempt to find a compatible compiler by default in the ``PATH`` environment
 variable. The following options control how the Fortran module is built:
 
 * :ref:`f90_interface <f90-interface>`
-* :ref:`FORTRAN <FORTRAN>`
+* :ref:`FORTRAN <fortran>`
 
 Documentation Options
 ^^^^^^^^^^^^^^^^^^^^^
@@ -166,11 +179,11 @@ The following options control if the documentation is built:
 Less Common Options
 ^^^^^^^^^^^^^^^^^^^
 
-* :ref:`CC <CC>`
-* :ref:`CXX <CXX>`
+* :ref:`CC <cc>`
+* :ref:`CXX <cxx>`
 * :ref:`env_vars <env-vars>`
 * :ref:`layout <layout>`
-* :ref:`VERBOSE <VERBOSE>`
+* :ref:`VERBOSE <verbose>`
 * :ref:`gtest_flags <gtest-flags>`
 
 .. _sec-build-commands:
@@ -179,9 +192,11 @@ Build Commands
 ==============
 
 The following options are possible as commands to SCons, i.e., the first
-argument after ``scons``::
+argument after ``scons``:
 
-    scons command
+.. code:: bash
+
+   scons command
 
 * ``scons help``
     Print a description of user-specifiable options.
@@ -213,7 +228,7 @@ argument after ``scons``::
     List available tests.
 
 * ``scons test-NAME``
-    Run the test named "NAME".
+    Run the test named ``NAME``.
 
 * ``scons <command> dump``
     Dump the state of the SCons environment to the
@@ -235,9 +250,22 @@ argument after ``scons``::
 Compile Cantera & Test
 ======================
 
-* Run SCons with the list of desired configuration options::
+* Run SCons with the list of desired configuration options:
 
-    scons build ...
+  .. code:: bash
+
+     scons build ...
+
+.. caution::
+
+   If you are compiling with a version of SCons installed by Homebrew on macOS, the appropriate
+   way to perform any commands with SCons is
+
+   .. code:: bash
+
+      python3 /usr/local/bin/scons command ...
+
+   This ensures that the dependencies are chosen from the correct version of Python.
 
 * If Cantera compiles successfully, you should see a message that looks like::
 
@@ -251,9 +279,11 @@ Compile Cantera & Test
 * If you do not see this message, check the output for errors to see what went
   wrong.
 
-* Cantera has a series of tests that can be run with the command::
+* Cantera has a series of tests that can be run with the command:
 
-    scons test
+.. code:: bash
+
+   scons test
 
 * When the tests finish, you should see a summary indicating the number of
   tests that passed and failed.
@@ -261,18 +291,43 @@ Compile Cantera & Test
 * If you have tests that fail, try looking at the following to determine the
   source of the error:
 
-    * Messages printed to the console while running ``scons test``
-    * Output files generated by the tests
+  * Messages printed to the console while running ``scons test``
+  * Output files generated by the tests
 
 Building Documentation
 ^^^^^^^^^^^^^^^^^^^^^^
 
-* To build the Cantera HTML documentation, run the commands::
+To build the Cantera HTML documentation, run the commands:
 
-    scons doxygen
-    scons sphinx
+.. code:: bash
 
-  or append the options ``sphinx_docs=y`` and ``doxygen_docs=y`` to the build
-  command, e.g.::
+   scons doxygen
+   scons sphinx
 
-    scons build doxygen_docs=y sphinx_docs=y
+or append the options ``sphinx_docs=y`` and ``doxygen_docs=y`` to the build
+command:
+
+.. code:: bash
+
+   scons build doxygen_docs=y sphinx_docs=y
+
+.. container:: container
+
+   .. container:: row
+
+      .. container:: col-6 text-left
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=source-code.html
+
+            Previous: Download the Source Code
+
+
+      .. container:: col-6 text-right
+
+         .. container:: btn btn-primary
+            :tagname: a
+            :attributes: href=dependencies.html
+
+            Next: Dependencies

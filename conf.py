@@ -27,6 +27,13 @@ SITE_URL = "https://cantera.org/"
 BLOG_EMAIL = "steering@cantera.org"
 BLOG_DESCRIPTION = "This site is for the Cantera software"  # (translatable)
 
+# The most recent major release version of Cantera
+CANTERA_VERSION = '2.4'
+
+# The default context used when looking up :class: or :func: roles
+# Options are 'py', 'cti', or 'mat'
+DEFAULT_CONTEXT = 'py'
+
 # Nikola is multilingual!
 #
 # Currently supported languages are:
@@ -135,6 +142,7 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ('/install/index.html', 'Install'),
+        ('/tutorials/index.html', 'Tutorials'),
         ('/examples/index.html', 'Examples'),
         ('/community.html', 'Community'),
         ('/science/index.html', 'Science'),
@@ -282,8 +290,6 @@ TIMEZONE = "America/New_York"
 # The format is a dictionary of {source: relative destination}.
 # Default is:
 # This is the "production" version of this dictionary
-CANTERA_VERSION = '2.4'
-DEFAULT_CONTEXT = 'py'
 
 # FILES_FOLDERS = {'api-docs/docs': 'documentation/docs-{}'.format(CANTERA_VERSION),
 #                  'api-docs/dev-docs': 'documentation/dev',
@@ -307,7 +313,7 @@ FILES_FOLDERS = {'../cantera/build/docs': 'documentation/docs-{}'.format(CANTERA
 # One or more folders containing code listings to be processed and published on
 # the site. The format is a dictionary of {source: relative destination}.
 # Default is:
-LISTINGS_FOLDERS = {
+EXAMPLES_FOLDERS = {
     '../cantera/interfaces/cython/cantera/examples': 'examples/python',
     '../cantera-jupyter': 'examples/jupyter',
     '../cantera/samples/matlab': 'examples/matlab'
@@ -917,7 +923,7 @@ FAVICONS = (
 )
 
 # Show teasers (instead of full posts) in indexes? Defaults to False.
-# INDEX_TEASERS = False
+INDEX_TEASERS = True
 
 # HTML fragments with the Read more... links.
 # The following tags exist and are replaced for you:

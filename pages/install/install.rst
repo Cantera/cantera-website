@@ -10,7 +10,7 @@
 
     .. raw:: html
 
-        <h1 class="display-4">Installing Cantera</h1>
+        <h1 class="display-3">Installing Cantera</h1>
 
     .. class:: lead
 
@@ -33,7 +33,7 @@
                       aria-controls=collapse-conda
          :tagname: a
 
-         Conda Install Instructions
+         Conda Install Instructions (Highly recommended for all users)
 
       .. container:: collapse
          :attributes: id=collapse-conda
@@ -46,8 +46,8 @@
 
             **Conda**
 
-            `Anaconda <https://www.continuum.io/downloads>`_ and `Miniconda
-            <http://conda.pydata.org/miniconda.html>`_ are Python distributions for which
+            `Anaconda <https://www.anaconda.com/downloads>`_ and `Miniconda
+            <https://conda.io/miniconda.html>`_ are Python distributions for which
             Cantera is available through the ``conda`` package manager. Both distributions are
             available for Linux, macOS, and Windows. The base Anaconda distribution includes
             a large number of Python packages that are widely used in scientific
@@ -58,7 +58,7 @@
             options below.
 
             For more details on how to use conda, see the `conda documentation
-            <http://conda.pydata.org/docs/intro.html>`_.
+            <https://conda.io/docs/intro.html>`_.
 
             **Option 1: Create a new environment for Cantera**
 
@@ -172,7 +172,7 @@
                  not using the Python interface to Cantera.
 
                - Cantera can also be used with alternative Python distributions such as the
-                 Enthought `Canopy <https://www.enthought.com/products/canopy/>`_
+                 Enthought `Canopy <https://www.enthought.com/product/canopy/>`_
                  distribution. These distributions will generally be based on the 64-bit
                  version of Python 2.7, and will include Numpy as well as many other
                  packages useful for scientific users.
@@ -328,7 +328,7 @@
 
                  and agree to the Xcode license agreement.
 
-               - Install `Homebrew <http://brew.sh/>`_ by running the following command in a
+               - Install `Homebrew <https://brew.sh/>`_ by running the following command in a
                  Terminal::
 
                    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -512,7 +512,7 @@
 
             You may need to install ``pip`` first; instructions can be found on the `pip
             installation instructions.
-            <https://pip.pypa.io/en/latest/installing.html#install-pip>`_ You may need to
+            <https://pip.pypa.io/en/latest/installing/index.html#install-pip>`_ You may need to
             have superuser access to install packages into the system directories.
             Alternatively, you can add ``--user`` after ``pip install`` but before the
             package names to install into your local user directory.
@@ -546,4 +546,82 @@
             all Linux distributions (for instance, RHEL 6 is not supported). For these
             platforms, or if you want to use an interface other than the Python interface,
             you'll have to compile and install Cantera yourself. Instructions for that are
-            in the :ref:`Compiling section <sec-compiling>`.
+            in the :html:`<a href=#collapse-compiling data-toggle=collapse>Compiling section</a>`
+            below.
+
+   .. container:: card
+
+      .. container:: card-header btn btn-link text-left
+         :attributes: id=heading-compiling
+                      data-toggle=collapse
+                      href=#collapse-compiling
+                      aria-expanded=false
+                      aria-controls=collapse-compiling
+         :tagname: a
+
+         Compiling Cantera from Source
+
+      .. container:: collapse
+         :attributes: id=collapse-compiling
+                      aria-labelledby=heading-compiling
+                      data-parents=#accordion
+
+         .. container:: card-body
+
+            **Compiling Cantera from Source: Quickstart**
+
+            Compiling Cantera from source code uses the SCons build system and a C/C++ compiler. If
+            you also want to build the Python, Matlab, or Fortran interfaces, you'll need Cython +
+            Numpy, Matlab, or a Fortran compiler installed, respectively. Specific instructions to
+            install these things are platform-dependent, and more detail is provided in the sections
+            linked below.
+
+            The recommended way to obtain a copy of the source code is directly from the main
+            version control repository on GitHub via the command
+
+            .. code:: bash
+
+               git clone https://github.com/Cantera/cantera.git
+               cd cantera
+
+            which clones the code into a folder called ``cantera`` and changes into that directory.
+            At this point, you can run
+
+            .. code:: bash
+
+               scons help
+
+            to see a list of all of the configuration options, including their defaults. On
+            \*nix-type systems, the defaults will usually pick up the appropriate compilers and
+            Python versions. The command
+
+            .. code:: bash
+
+               scons build
+
+            will build Cantera using all the default options; additional options can be specified
+            by
+
+            .. code:: bash
+
+               scons build option=value option=value
+
+            Installing Cantera into the default directories is done by
+
+            .. code:: bash
+
+               scons install
+
+            which may require super-user permissions if the installation directory is protected.
+
+            **Compiling Cantera from Source: The Detailed Way**
+
+            If you want or need more detail, the following sections go into depth on all of the
+            options and requirements to build Cantera from source.
+
+            * :ref:`Installation Requirements <sec-installation-reqs>`
+            * :ref:`Getting the Source Code <sec-source-code>`
+            * :ref:`Determine Configuration Options <sec-determine-config>`
+            * :ref:`Cantera's Dependencies <sec-dependencies>`
+            * :ref:`Special Compiling Cases <sec-special-compiling-cases>`
+            * :ref:`Show me all of the configuration options <scons-config>`

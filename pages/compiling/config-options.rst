@@ -1,30 +1,42 @@
+.. title: Configuration Options
 
 .. _scons-config:
 
-*********************
-Configuration Options
-*********************
+.. jumbotron::
 
-This document lists the options available for compiling Cantera with SCons. The
-default values are operating-system dependent. To see the defaults for your
-current operating system, run the command::
+   .. raw:: html
 
-    scons help
+      <h1 class="display-3">Configuration Options</h1>
 
-from the command prompt.
+   .. class:: lead
 
-The following options can be passed to SCons to customize the Cantera
-build process. They should be given in the form::
+      This document lists the options available for compiling Cantera with SCons.
 
-        scons build option1=value1 option2=value2
+   The default values are operating-system dependent. To see the defaults for your current operating
+   system, run the command:
 
-Variables set in this way will be stored in the ``cantera.conf`` file and reused
-automatically on subsequent invocations of SCons. Alternatively, the
-configuration options can be entered directly into ``cantera.conf`` before
-running ``scons build``. The format of this file is::
+   .. code:: bash
 
-    option1 = 'value1'
-    option2 = 'value2'
+      scons help
+
+   from the command prompt.
+
+   The following options can be passed to SCons to customize the Cantera
+   build process. They should be given in the form:
+
+   .. code:: bash
+
+      scons build option1=value1 option2=value2
+
+   Variables set in this way will be stored in the ``cantera.conf`` file and reused
+   automatically on subsequent invocations of SCons. Alternatively, the
+   configuration options can be entered directly into ``cantera.conf`` before
+   running ``scons build``. The format of this file is:
+
+   .. code:: python
+
+      option1 = 'value1'
+      option2 = 'value2'
 
 Options List
 ^^^^^^^^^^^^
@@ -53,14 +65,14 @@ Options List
 
     - default: ``'msvc'``
 
-.. _CXX:
+.. _cxx:
 
 * ``CXX``: [ ``string`` ]
     The C++ compiler to use.
 
     - default: ``''``
 
-.. _CC:
+.. _cc:
 
 * ``CC``: [ ``string`` ]
     The C compiler to use. This is only used to compile CVODE.
@@ -233,7 +245,7 @@ Options List
 
     - default: ``'default'``
 
-.. _FORTRAN:
+.. _fortran:
 
 * ``FORTRAN``: [ ``/path/to/FORTRAN`` ]
     The Fortran (90) compiler. If unspecified, the builder will look for
@@ -523,7 +535,7 @@ Options List
 
     - default: ``''``
 
-.. _VERBOSE:
+.. _verbose:
 
 * ``VERBOSE``: [ ``yes`` | ``no`` ]
     Create verbose output about what SCons is doing.
