@@ -27,6 +27,13 @@ SITE_URL = "https://cantera.org/"
 BLOG_EMAIL = "steering@cantera.org"
 BLOG_DESCRIPTION = "This site is for the Cantera software"  # (translatable)
 
+# The most recent major release version of Cantera
+CANTERA_VERSION = '2.4'
+
+# The default context used when looking up :class: or :func: roles
+# Options are 'py', 'cti', or 'mat'
+DEFAULT_CONTEXT = 'py'
+
 # Nikola is multilingual!
 #
 # Currently supported languages are:
@@ -283,8 +290,6 @@ TIMEZONE = "America/New_York"
 # The format is a dictionary of {source: relative destination}.
 # Default is:
 # This is the "production" version of this dictionary
-CANTERA_VERSION = '2.4'
-DEFAULT_CONTEXT = 'py'
 
 # FILES_FOLDERS = {'api-docs/docs': 'documentation/docs-{}'.format(CANTERA_VERSION),
 #                  'api-docs/dev-docs': 'documentation/dev',
