@@ -70,7 +70,7 @@ where :math:`C_{\mathrm{k}}` is the concentration of species :math:`\mathrm{k}`.
 collision efficiency can be absorbed into the rate coefficient :math:`k_f(T)`, the default collision
 efficiency is 1.0.
 
-A three-body reaction may be defined using the :class:`three_body_reaction`
+A three-body reaction may be defined using the :cti:class:`three_body_reaction`
 entry. The equation string for a three-body reaction must contain an ``'M'`` or
 ``'m'`` on both the reactant and product sides of the equation. The collision
 efficiencies are specified as a string, with the species name followed by a

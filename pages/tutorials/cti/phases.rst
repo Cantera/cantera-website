@@ -46,7 +46,7 @@ The elements that may be present in the phase are declared in the elements
 field. This must be a string of element symbols separated by spaces. Each symbol
 must either match one listed in the database file ``elements.xml``, or else
 match the symbol of an element entry defined elsewhere in the input file (See
-the :doc:`Elements and Species <species>` documentation).
+the :doc:`cti-species` documentation).
 
 The ``elements.xml`` database contains most elements of the periodic table, with
 their natural-abundance atomic masses. It also contains a few isotopes (D, Tr),

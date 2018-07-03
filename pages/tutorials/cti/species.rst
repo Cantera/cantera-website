@@ -1,4 +1,4 @@
-.. slug: species
+.. slug: cti-species
 .. title: Elements and Species
 .. has_math: true
 

@@ -1,4 +1,4 @@
-.. slug: species
+.. slug: science-species
 .. has_math: true
 .. title: Elements and Species
 
@@ -111,12 +111,12 @@ effect of each species on the transport properties of the phase. The
 ``transport`` field may be assigned an embedded entry that provides
 species-specific coefficients.
 
-Currently, the only entry type is :class:`gas_transport`, which supplies
+Currently, the only entry type is :cti:class:`gas_transport`, which supplies
 parameters needed by the ideal-gas transport property models. The field values
-and their units of the :class:`gas_transport` entry are compatible with the
+and their units of the :cti:class:`gas_transport` entry are compatible with the
 transport database parameters described by Kee et al. [#Kee1986]_. Entries in
 transport databases in the format described in their report can be used directly
-in the fields of the :class:`gas_transport` entry, without requiring any unit
+in the fields of the :cti:class:`gas_transport` entry, without requiring any unit
 conversion. The numeric field values should all be entered as pure numbers, with
 no attached units string.
 
