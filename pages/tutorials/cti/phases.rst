@@ -402,7 +402,7 @@ If we import this into Matlab, for example, we get a gas mixture containing the
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=species.html
+            :attributes: href=cti-species.html
 
             Next: Elements and Species
 

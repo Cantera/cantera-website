@@ -55,7 +55,7 @@ CTI file syntax rules, please look at the :doc:`CTI syntax tutorial <cti-syntax>
 
       .. container::
          :tagname: a
-         :attributes: href=species.html
+         :attributes: href=cti-species.html
                       title="Elements and Species"
 
          .. container:: card-header section-card

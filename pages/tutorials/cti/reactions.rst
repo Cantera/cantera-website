@@ -214,7 +214,7 @@ should add ``nonreactant_orders`` to the reaction options to use this feature:
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=species.html
+            :attributes: href=cti-species.html
                          title="Elements and Species"
 
             Previous: Elements and Species
