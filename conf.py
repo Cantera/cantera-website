@@ -1216,13 +1216,13 @@ SHOW_SOURCELINK = False
 # Bootstrap is served from BootstrapCDN (provided by MaxCDN)
 # Set this to False if you want to host your site without requiring access to
 # external resources.
-# USE_CDN = False
+USE_CDN = True
 
 # Check for USE_CDN compatibility.
 # If you are using custom themes, have configured the CSS properly and are
 # receiving warnings about incompatibility but believe they are incorrect, you
 # can set this to False.
-# USE_CDN_WARNING = True
+USE_CDN_WARNING = False
 
 # Extra things you want in the pages HEAD tag. This will be added right
 # before </head>
