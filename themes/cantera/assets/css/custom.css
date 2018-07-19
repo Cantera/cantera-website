@@ -1,6 +1,6 @@
 #logo { width: 250px; }
 #cards { padding-bottom: 5%; }
-.jumbotron-text { text-align: center; padding-bottom: 32px; font-size: 1.5rem; font-weight: 500; }
+.jumbotron-text { text-align: center; padding-bottom: 16px; font-size: 1.5rem; font-weight: 500; }
 .jumbotron { background-color: white; margin-top: 30px; margin-bottom: 48px; padding: 0 0; }
 .img-container { text-align: center; }
 
@@ -19,7 +19,7 @@ h6:hover > a.headerlink {
 
 .tutorials { margin: 40px 0; padding: 0 0 !important; }
 
-section { margin-top: 20px; margin-bottom: 20px; padding: 10px 0; }
+section { margin-top: 20px; margin-bottom: 20px; padding: 0 0; }
 
 a.docs:hover { background-color: #007994; color: #ffffff; }
 a.docs, a.dev-docs { color: #000000; }
