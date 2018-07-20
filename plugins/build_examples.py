@@ -1,5 +1,8 @@
 from pathlib import Path
 import ast
+import re
+import base64
+import mimetypes
 
 from collections import OrderedDict
 import io
@@ -329,7 +332,16 @@ class BuildExamples(Task):
                     flames={'name': 'One-Dimensional Flames'},
                 )
 
+                def get_b64_str(p, dir, img_fname):
+                    img_path = p/dir/img_fname
+                    with open(img_path, 'rb') as img_file:
+                        b64_str = base64.b64encode(img_file.read()).decode('utf-8')
+                    mime = mimetypes.guess_type(img_path.name)[0]
+                    b64_str = 'data:{mime};base64,{b64_str}'.format(mime=mime, b64_str=b64_str)
+                    return b64_str
+
                 p = Path(input_folder)
+                cache_folder = Path(self.kw['cache_folder'])
                 files = []
                 for dir in p.iterdir():
                     if not dir.is_dir() or dir.name.startswith('.'):
@@ -343,15 +355,47 @@ class BuildExamples(Task):
                             continue
                         if f.name == '.ipynb_checkpoints' or f.name == '.DS_Store':
                             continue
-                        files.append(f)
                         this_header_files.append(str(f))
                         with open(f, 'r') as pyfile:
                             data = json.load(pyfile)
+                        doc = ''
                         for cell in data['cells']:
                             if cell['cell_type'] != 'markdown':
                                 continue
-                            doc = cell['source'][0].replace('#', '').strip()
-                            break
+                            if not doc:
+                                doc = cell['source'][0].replace('#', '').strip()
+                            for i, s in enumerate(cell['source']):
+                                if 'img' in s:
+                                    img = lxml.html.fromstring(s)
+                                    img_fname = img.attrib['src']
+                                    b64_str = get_b64_str(p, dir, img_fname)
+                                    img.attrib['src'] = b64_str
+                                    new_img = lxml.html.tostring(img).decode('utf-8')
+                                    cell['source'][i] = re.sub('<img.*/>', new_img, s)
+                                elif '![' in s:
+                                    img_alt, img_fname = re.findall('!\[(.*?)\]\((.*?)\)', s)[0]
+                                    if 'attachment' in img_fname:
+                                        img_fname = img_fname.split(':', 1)[1]
+                                        mime = mimetypes.guess_type(img_fname)[0]
+                                        b64_src = cell['attachments'][img_fname][mime]
+                                        b64_str = 'data:{mime};base64,{b64_src}'.format(
+                                            mime=mime, b64_src=b64_src,
+                                        )
+                                    else:
+                                        b64_str = get_b64_str(p, dir, img_fname)
+
+                                    new_img = '<img src="{b64_str}" alt="{img_alt}"/>'.format(
+                                        b64_str=b64_str, img_alt=img_alt,
+                                    )
+                                    cell['source'][i] = re.sub('!\[.*?\]\(.*?\)', new_img, s)
+                                else:
+                                    continue
+
+                        cache_file = cache_folder/example_folder/f.parent.stem/f.name
+                        cache_file.parent.mkdir(parents=True, exist_ok=True)
+                        files.append(cache_file)
+                        with open(cache_file, 'w') as jfile:
+                            json.dump(data, jfile)
                         summaries[str(f).split('/')[-1]] = doc
                     headers[dir.stem]['summaries'] = summaries
                     this_header_files = natsort.natsorted(this_header_files, alg=natsort.IC)
