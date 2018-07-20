@@ -17,7 +17,7 @@
 The required input files can be provided via one of three methods:
 
 - Use one of the pre-existing input files provided with Cantera
-- Convert a pre-existing mechanism from Chemking (CK) format to Cantera (CTI) format
+- Convert a pre-existing mechanism from Chemkin (CK) format to Cantera (CTI) format
 - Create your own CTI file, either from scratch (not recommended) or by editing an existing file
 
 The first two options will suffice for a majority of Cantera users. Advanced
