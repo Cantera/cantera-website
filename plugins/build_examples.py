@@ -1,13 +1,13 @@
 from pathlib import Path
 import ast
 
-from collections import OrderedDict, defaultdict
+from collections import OrderedDict
 import io
 import os
 import lxml.html
 import json
 
-from nikola.plugins.task.listings import Listings
+from nikola.plugin_categories import Task
 from nikola import utils
 
 from pygments import highlight
@@ -15,72 +15,42 @@ from pygments.lexers import get_lexer_for_filename, guess_lexer, TextLexer, Matl
 import natsort
 
 
-class BuildExamples(Listings):
+class BuildExamples(Task):
     """Build the Cantera examples into the documentation"""
 
     name = "build_examples"
 
     def set_site(self, site):
         """Set Nikola site."""
-        site.register_path_handler('example', self.listing_path)
-        site.register_path_handler('example_source', self.listing_source_path)
-
-        # We need to prepare some things for the listings path handler to work.
 
         self.kw = {
             "default_lang": site.config["DEFAULT_LANG"],
-            "listings_folders": site.config["EXAMPLES_FOLDERS"],
+            "examples_folders": site.config["EXAMPLES_FOLDERS"],
             "output_folder": site.config["OUTPUT_FOLDER"],
             "index_file": site.config["INDEX_FILE"],
             "strip_indexes": site.config['STRIP_INDEXES'],
-            "filters": site.config["FILTERS"],
+            "cache_folder": site.config['CACHE_FOLDER']
         }
 
-        # Verify that no folder in LISTINGS_FOLDERS appears twice (on output side)
+        # Verify that no folder in EXAMPLES_FOLDERS appears twice (on output side)
         appearing_paths = set()
-        for source, dest in self.kw['listings_folders'].items():
+        for source, dest in self.kw['examples_folders'].items():
             if source in appearing_paths or dest in appearing_paths:
                 problem = source if source in appearing_paths else dest
-                utils.LOGGER.error("The listings input or output folder '{0}' appears in more than one entry in LISTINGS_FOLDERS, exiting.".format(problem))
+                utils.LOGGER.error("The listings input or output folder '{0}' appears in more "
+                                   "than one entry in LISTINGS_FOLDERS, exiting.".format(problem))
                 continue
             appearing_paths.add(source)
             appearing_paths.add(dest)
 
-        # improper_input_file_mapping maps a relative input file (relative to
-        # its corresponding input directory) to a list of the output files.
-        # Since several input directories can contain files of the same name,
-        # a list is needed. This is needed for compatibility to previous Nikola
-        # versions, where there was no need to specify the input directory name
-        # when asking for a link via site.link('listing', ...).
-        self.improper_input_file_mapping = defaultdict(set)
-
-        # proper_input_file_mapping maps relative input file (relative to CWD)
-        # to a generated output file. Since we don't allow an input directory
-        # to appear more than once in LISTINGS_FOLDERS, we can map directly to
-        # a file name (and not a list of files).
-        self.proper_input_file_mapping = {}
-
-        for input_folder, output_folder in self.kw['listings_folders'].items():
-            for root, _, files in os.walk(input_folder, followlinks=True):
-                # Compute relative path; can't use os.path.relpath() here as it returns "." instead of ""
-                rel_path = root[len(input_folder):]
-                if rel_path[:1] == os.sep:
-                    rel_path = rel_path[1:]
-
-                for f in files + [self.kw['index_file']]:
-                    rel_name = os.path.join(rel_path, f)
-                    rel_output_name = os.path.join(output_folder, rel_path, f)
-                    # Register file names in the mapping.
-                    self.register_output_name(input_folder, rel_name, rel_output_name)
-
-        return super(Listings, self).set_site(site)
+        return super(BuildExamples, self).set_site(site)
 
     def gen_tasks(self):
-        """Render pretty code listings."""
-        # Things to ignore in listings
+        """Render examples."""
+        # Things to ignore in examples
         self.ignored_extensions = (".pyc", ".pyo", ".cti", ".dat", ".ipynb_checkpoints")
 
-        def render_listing_index(type, headers, input_folder, output_folder, output_file):
+        def render_example_index(type, headers, input_folder, output_folder, output_file):
             def chunks(l, n):
                 """Yield successive n-sized chunks from l.
                 https://stackoverflow.com/a/312464"""
@@ -90,15 +60,7 @@ class BuildExamples(Listings):
             for head, file_dict in headers.items():
                 file_dict['files'] = list(chunks(file_dict['files'], 3))
 
-            permalink = self.site.link(
-                'example',
-                os.path.join(
-                    input_folder,
-                    os.path.relpath(
-                        output_file[:-5],  # remove '.html'
-                        os.path.join(
-                            self.kw['output_folder'],
-                            output_folder))))
+            permalink = os.path.relpath(output_file, self.kw['output_folder'])
             title = '{} Examples'.format(type).title()
             context = {
                 'headers': headers,
@@ -121,13 +83,11 @@ class BuildExamples(Listings):
                 ipynb_html = lxml.html.fromstring(ipynb_raw)
                 # The raw HTML contains garbage (scripts and styles), we can’t leave it in
                 code = lxml.html.tostring(ipynb_html, encoding='unicode')
-                title = os.path.basename(in_name)
                 needs_ipython_css = True
             elif in_name.endswith('.m'):
                 lexer = MatlabLexer()
                 with open(in_name, 'r') as fd:
                     code = highlight(fd.read(), lexer, utils.NikolaPygmentsHTML(in_name))
-                title = os.path.basename(in_name)
             else:
                 with open(in_name, 'r') as fd:
                     try:
@@ -139,18 +99,11 @@ class BuildExamples(Listings):
                             lexer = TextLexer()
                         fd.seek(0)
                     code = highlight(fd.read(), lexer, utils.NikolaPygmentsHTML(in_name))
-                title = os.path.basename(in_name)
 
-            permalink = self.site.link(
-                'example',
-                os.path.join(
-                    input_folder,
-                    os.path.relpath(
-                        out_name[:-5],  # remove '.html'
-                        os.path.join(
-                            self.kw['output_folder'],
-                            output_folder))))
-            source_link = permalink[:-5]  # remove '.html'
+            title = os.path.basename(in_name)
+
+            permalink = os.path.relpath(out_name, self.kw['output_folder'])
+            source_link = os.path.basename(permalink)[:-5]  # remove '.html'
             context = {
                 'code': code,
                 'title': title,
@@ -168,19 +121,33 @@ class BuildExamples(Listings):
 
         yield self.group_task()
 
-        for input_folder, output_folder in self.kw['listings_folders'].items():
+        for input_folder, example_folder in self.kw['examples_folders'].items():
+
+            uptodate = {'c': self.site.GLOBAL_CONTEXT}
+
+            for k, v in self.site.GLOBAL_CONTEXT['template_hooks'].items():
+                uptodate['||template_hooks|{0}||'.format(k)] = v.calculate_deps()
+
+            for k in self.site._GLOBAL_CONTEXT_TRANSLATABLE:
+                uptodate[k] = self.site.GLOBAL_CONTEXT[k](self.kw['default_lang'])
+
+            # save navigation links as dependencies
+            uptodate['nav_links'] = uptodate['c']['navigation_links'](self.kw['default_lang'])
+
+            uptodate['kw'] = self.kw
 
             #########################################################
             # Build the Python examples
             #########################################################
-            if 'python' in output_folder:
+            if 'python' in example_folder:
                 template_deps = self.site.template_system.template_deps('python-example-index.tmpl')
                 headers = OrderedDict(
                     thermo={'name': 'Thermodynamics'}, kinetics={'name': 'Kinetics'},
                     transport={'name': 'Transport'}, reactors={'name': 'Reactor Networks'},
                     onedim={'name': 'One-Dimensional Flames'},
                     multiphase={'name': 'Multiphase Mixtures'},
-                    surface_chemistry={'name': 'Surface Chemistry'})
+                    surface_chemistry={'name': 'Surface Chemistry'},
+                )
 
                 p = Path(input_folder)
                 files = []
@@ -195,99 +162,78 @@ class BuildExamples(Listings):
                         files.append(f)
                         this_header_files.append(str(f))
                         with open(f, 'r') as pyfile:
-                            try:
-                                mod = ast.parse(pyfile.read())
-                            except UnicodeDecodeError:
-                                raise Exception('The file is {}'.format(f))
-                            #mod = ast.parse(pyfile.read())
+                            mod = ast.parse(pyfile.read())
                         for node in mod.body:
                             if isinstance(node, ast.Expr) and isinstance(node.value, ast.Str):
                                 doc = node.value.s.strip().split('\n\n')[0].strip()
                                 if not doc.endswith('.'):
                                     doc += '.'
                                 break
-                        summaries[str(f).split('/')[-1]] = doc
+                        summaries[f.name] = doc
                     headers[dir.stem]['summaries'] = summaries
                     this_header_files = natsort.natsorted(this_header_files, alg=natsort.IC)
                     headers[dir.stem]['files'] = this_header_files
-
-                uptodate = {'c': self.site.GLOBAL_CONTEXT}
-
-                for k, v in self.site.GLOBAL_CONTEXT['template_hooks'].items():
-                    uptodate['||template_hooks|{0}||'.format(k)] = v.calculate_deps()
-
-                for k in self.site._GLOBAL_CONTEXT_TRANSLATABLE:
-                    uptodate[k] = self.site.GLOBAL_CONTEXT[k](self.kw['default_lang'])
-
-                # save navigation links as dependencies
-                uptodate['navigation_links'] = uptodate['c']['navigation_links'](self.kw['default_lang'])  # NOQA: E501
-
-                uptodate['kw'] = self.kw
 
                 uptodate2 = uptodate.copy()
                 uptodate2['d'] = headers.keys()
                 uptodate2['f'] = list(map(str, files))
 
-                rel_output_name = os.path.join(output_folder, self.kw['index_file'])
+                rel_output_name = os.path.join(example_folder, self.kw['index_file'])
 
                 # Render Python examples index file
                 out_name = os.path.join(self.kw['output_folder'], rel_output_name)
-                yield utils.apply_filters({
+                yield {
                     'basename': self.name,
                     'name': out_name,
                     'file_dep': template_deps,
                     'targets': [out_name],
-                    'actions': [(render_listing_index, ['python', headers, input_folder, output_folder, out_name])],
+                    'actions': [(render_example_index, ['python', headers, input_folder,
+                                                        example_folder, out_name])],
                     # This is necessary to reflect changes in blog title,
                     # sidebar links, etc.
-                    'uptodate': [utils.config_changed(uptodate2, 'nikola.plugins.task.listings:folder')],  # NOQA: E501
+                    'uptodate': [utils.config_changed(uptodate2, 'build_examples:folder')],
                     'clean': True,
-                }, self.kw["filters"])
+                }
 
                 for f in files:
-                    if str(f) == '.DS_Store':
-                        continue
-                    if f.suffix in self.ignored_extensions:
+                    if str(f) == '.DS_Store' or f.suffix in self.ignored_extensions:
                         continue
                     in_name = str(f.resolve())
                     # Record file names
                     parent = str(f.parent.stem)
                     f_name = str(f.name)
-                    rel_name = os.path.join(parent, f_name + '.html')
-                    rel_output_name = os.path.join(output_folder, parent, f_name + '.html')
-                    self.register_output_name(input_folder, rel_name, rel_output_name)
+                    rel_output_name = os.path.join(example_folder, parent, f_name + '.html')
                     # Set up output name
                     out_name = os.path.join(self.kw['output_folder'], rel_output_name)
                     # Yield task
-                    yield utils.apply_filters({
+                    yield {
                         'basename': self.name,
                         'name': out_name,
                         'file_dep': template_deps + [in_name],
                         'targets': [out_name],
-                        'actions': [(render_listing, [in_name, out_name, input_folder, output_folder])],  # NOQA: E501
+                        'actions': [(render_listing, [in_name, out_name,
+                                                      input_folder, example_folder])],
                         # This is necessary to reflect changes in blog title,
                         # sidebar links, etc.
-                        'uptodate': [utils.config_changed(uptodate, 'nikola.plugins.task.listings:source')],  # NOQA: E501
+                        'uptodate': [utils.config_changed(uptodate, 'build_examples:source')],
                         'clean': True,
-                    }, self.kw["filters"])
+                    }
 
-                    rel_name = os.path.join(parent, f_name)
-                    rel_output_name = os.path.join(output_folder, parent, f_name)
-                    self.register_output_name(input_folder, rel_name, rel_output_name)
+                    rel_output_name = os.path.join(example_folder, parent, f_name)
                     out_name = os.path.join(self.kw['output_folder'], rel_output_name)
-                    yield utils.apply_filters({
+                    yield {
                         'basename': self.name,
                         'name': out_name,
                         'file_dep': [in_name],
                         'targets': [out_name],
                         'actions': [(utils.copy_file, [in_name, out_name])],
                         'clean': True,
-                    }, self.kw["filters"])
+                    }
 
             #########################################################
             # Build the Matlab examples
             #########################################################
-            elif 'matlab' in output_folder:
+            elif 'matlab' in example_folder:
                 template_deps = self.site.template_system.template_deps('matlab-example-index.tmpl')
                 p = Path(input_folder)
                 headers = {'examples': {'name': 'Examples'}}
@@ -315,38 +261,26 @@ class BuildExamples(Listings):
                 this_files = list(map(str, files))
                 headers['examples']['files'] = natsort.natsorted(this_files, alg=natsort.IC)
 
-                uptodate = {'c': self.site.GLOBAL_CONTEXT}
-
-                for k, v in self.site.GLOBAL_CONTEXT['template_hooks'].items():
-                    uptodate['||template_hooks|{0}||'.format(k)] = v.calculate_deps()
-
-                for k in self.site._GLOBAL_CONTEXT_TRANSLATABLE:
-                    uptodate[k] = self.site.GLOBAL_CONTEXT[k](self.kw['default_lang'])
-
-                # save navigation links as dependencies
-                uptodate['navigation_links'] = uptodate['c']['navigation_links'](self.kw['default_lang'])  # NOQA: E501
-
-                uptodate['kw'] = self.kw
-
                 uptodate2 = uptodate.copy()
                 uptodate2['d'] = headers.keys()
                 uptodate2['f'] = list(map(str, files))
 
-                rel_output_name = os.path.join(output_folder, self.kw['index_file'])
+                rel_output_name = os.path.join(example_folder, self.kw['index_file'])
 
                 # Render Matlab examples index file
                 out_name = os.path.join(self.kw['output_folder'], rel_output_name)
-                yield utils.apply_filters({
+                yield {
                     'basename': self.name,
                     'name': out_name,
                     'file_dep': template_deps,
                     'targets': [out_name],
-                    'actions': [(render_listing_index, ['matlab', headers, input_folder, output_folder, out_name])],
+                    'actions': [(render_example_index, ['matlab', headers, input_folder,
+                                                        example_folder, out_name])],
                     # This is necessary to reflect changes in blog title,
                     # sidebar links, etc.
-                    'uptodate': [utils.config_changed(uptodate2, 'nikola.plugins.task.listings:folder')],  # NOQA: E501
+                    'uptodate': [utils.config_changed(uptodate2, 'build_examples:folder')],
                     'clean': True,
-                }, self.kw["filters"])
+                }
 
                 for f in files:
                     if str(f) == '.DS_Store':
@@ -356,42 +290,39 @@ class BuildExamples(Listings):
                     in_name = str(f.resolve())
                     # Record file names
                     f_name = str(f.name)
-                    rel_name = os.path.join(f_name + '.html')
-                    rel_output_name = os.path.join(output_folder, f_name + '.html')
-                    self.register_output_name(input_folder, rel_name, rel_output_name)
+                    rel_output_name = os.path.join(example_folder, f_name + '.html')
                     # Set up output name
                     out_name = os.path.join(self.kw['output_folder'], rel_output_name)
                     # Yield task
-                    yield utils.apply_filters({
+                    yield {
                         'basename': self.name,
                         'name': out_name,
                         'file_dep': template_deps + [in_name],
                         'targets': [out_name],
-                        'actions': [(render_listing, [in_name, out_name, input_folder, output_folder])],  # NOQA: E501
+                        'actions': [(render_listing, [in_name, out_name, input_folder,
+                                                      example_folder])],
                         # This is necessary to reflect changes in blog title,
                         # sidebar links, etc.
-                        'uptodate': [utils.config_changed(uptodate, 'nikola.plugins.task.listings:source')],  # NOQA: E501
+                        'uptodate': [utils.config_changed(uptodate, 'build_examples:source')],
                         'clean': True,
-                    }, self.kw["filters"])
+                    }
 
-                    rel_name = os.path.join(f_name)
-                    rel_output_name = os.path.join(output_folder, f_name)
-                    self.register_output_name(input_folder, rel_name, rel_output_name)
+                    rel_output_name = os.path.join(example_folder, f_name)
                     out_name = os.path.join(self.kw['output_folder'], rel_output_name)
-                    yield utils.apply_filters({
+                    yield {
                         'basename': self.name,
                         'name': out_name,
                         'file_dep': [in_name],
                         'targets': [out_name],
                         'actions': [(utils.copy_file, [in_name, out_name])],
                         'clean': True,
-                    }, self.kw["filters"])
+                    }
 
             #########################################################
             # Build the Jupyter examples
             #########################################################
-            elif 'jupyter' in output_folder:
-                template_deps = self.site.template_system.template_deps('jupyter-example-index.tmpl')
+            elif 'jupyter' in example_folder:
+                template_deps = self.site.template_system.template_deps('jupyter-example-index.tmpl')  # NOQA: E501
                 headers = OrderedDict(
                     thermo={'name': 'Thermodynamics'},
                     reactors={'name': 'Reactor Networks'},
@@ -426,38 +357,26 @@ class BuildExamples(Listings):
                     this_header_files = natsort.natsorted(this_header_files, alg=natsort.IC)
                     headers[dir.stem]['files'] = this_header_files
 
-                uptodate = {'c': self.site.GLOBAL_CONTEXT}
-
-                for k, v in self.site.GLOBAL_CONTEXT['template_hooks'].items():
-                    uptodate['||template_hooks|{0}||'.format(k)] = v.calculate_deps()
-
-                for k in self.site._GLOBAL_CONTEXT_TRANSLATABLE:
-                    uptodate[k] = self.site.GLOBAL_CONTEXT[k](self.kw['default_lang'])
-
-                # save navigation links as dependencies
-                uptodate['navigation_links'] = uptodate['c']['navigation_links'](self.kw['default_lang'])  # NOQA: E501
-
-                uptodate['kw'] = self.kw
-
                 uptodate2 = uptodate.copy()
                 uptodate2['d'] = headers.keys()
                 uptodate2['f'] = list(map(str, files))
 
-                rel_output_name = os.path.join(output_folder, self.kw['index_file'])
+                rel_output_name = os.path.join(example_folder, self.kw['index_file'])
 
-                # Render Python examples index file
+                # Render Jupyter examples index file
                 out_name = os.path.join(self.kw['output_folder'], rel_output_name)
-                yield utils.apply_filters({
+                yield {
                     'basename': self.name,
                     'name': out_name,
                     'file_dep': template_deps,
                     'targets': [out_name],
-                    'actions': [(render_listing_index, ['jupyter', headers, input_folder, output_folder, out_name])],
+                    'actions': [(render_example_index, ['jupyter', headers, input_folder,
+                                                        example_folder, out_name])],
                     # This is necessary to reflect changes in blog title,
                     # sidebar links, etc.
-                    'uptodate': [utils.config_changed(uptodate2, 'nikola.plugins.task.listings:folder')],  # NOQA: E501
+                    'uptodate': [utils.config_changed(uptodate2, 'build_examples:folder')],
                     'clean': True,
-                }, self.kw["filters"])
+                }
 
                 for f in files:
                     if str(f) == '.DS_Store':
@@ -468,33 +387,31 @@ class BuildExamples(Listings):
                     # Record file names
                     parent = str(f.parent.stem)
                     f_name = str(f.name)
-                    rel_name = os.path.join(parent, f_name + '.html')
-                    rel_output_name = os.path.join(output_folder, parent, f_name + '.html')
-                    self.register_output_name(input_folder, rel_name, rel_output_name)
+                    rel_output_name = os.path.join(example_folder, parent, f_name + '.html')
                     # Set up output name
                     out_name = os.path.join(self.kw['output_folder'], rel_output_name)
                     # Yield task
-                    yield utils.apply_filters({
+                    yield {
                         'basename': self.name,
                         'name': out_name,
                         'file_dep': template_deps + [in_name],
                         'targets': [out_name],
-                        'actions': [(render_listing, [in_name, out_name, input_folder, output_folder])],  # NOQA: E501
+                        'actions': [(render_listing, [in_name, out_name, input_folder,
+                                                      example_folder])],
                         # This is necessary to reflect changes in blog title,
                         # sidebar links, etc.
-                        'uptodate': [utils.config_changed(uptodate, 'nikola.plugins.task.listings:source')],  # NOQA: E501
+                        'uptodate': [utils.config_changed(uptodate, 'build_examples:source')],
                         'clean': True,
-                    }, self.kw["filters"])
+                    }
 
-                    rel_name = os.path.join(parent, f_name)
-                    rel_output_name = os.path.join(output_folder, parent, f_name)
-                    self.register_output_name(input_folder, rel_name, rel_output_name)
+                    src_in_name = str((p/parent/f_name).resolve())
+                    rel_output_name = os.path.join(example_folder, parent, f_name)
                     out_name = os.path.join(self.kw['output_folder'], rel_output_name)
-                    yield utils.apply_filters({
+                    yield {
                         'basename': self.name,
                         'name': out_name,
-                        'file_dep': [in_name],
+                        'file_dep': [src_in_name, in_name],
                         'targets': [out_name],
-                        'actions': [(utils.copy_file, [in_name, out_name])],
+                        'actions': [(utils.copy_file, [src_in_name, out_name])],
                         'clean': True,
-                    }, self.kw["filters"])
+                    }
