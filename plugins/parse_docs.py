@@ -5,43 +5,53 @@ from pathlib import Path
 
 from nikola.plugin_categories import Task
 from nikola.utils import get_logger
-import lxml
-from lxml.html import tostring
+from lxml.html import tostring, parse
 
 
 class ParseDocs(Task):
     """
-    Parse the documentation to find link targets. Since this
-    has to be done before any posts are read (so that the targets
-    dictionaries are available to the class roles), put it in
-    set_site so it runs when the plugin is loaded. Hack suggested
-    in a Nikola issue:
-    https://github.com/getnikola/nikola/issues/1553#issuecomment-68594294
+    Parse the documentation to find link targets.
     """
 
     name = 'parse_docs'
 
     def set_site(self, site):
         self.site = site
+
+        # Ensure that this Task is run before the posts are rendered
+        # We need to enforce this order because rendering the posts
+        # requires the targets that we generate here
+        self.inject_dependency('render_posts', self.name)
+
         self.logger = get_logger(self.name)
         self.site.cython_targets = {}
         self.site.cti_targets = {}
         self.site.matlab_targets = {}
 
-        base_dir = Path('api-docs/docs/sphinx/html')
-        # This needs to be just 'matlab' after changes are merged to Cantera
-        dirs = ['cython', 'matlab/code-docs', 'cti']
-        for dir in dirs:
-            target_name = '{}_targets'.format(dir.split('/')[0])
+        self.kw = {
+            'output_folder': site.config['OUTPUT_FOLDER'],
+            'docs_folders': site.config['FILES_FOLDERS'],
+            'cantera_version': site.config['CANTERA_VERSION']
+        }
+
+        return super(ParseDocs, self).set_site(site)
+
+    def gen_tasks(self):
+
+        def process_targets(dirname, base_dir, docs_folder):
+            files = (base_dir/dirname).glob('*.html')
+
+            target_name = '{}_targets'.format(dirname)
             targets_dict = getattr(self.site, target_name)
-            files = (base_dir/dir).glob('*.html')
+
             duplicate_targets = []
+
             for file in files:
-
+                file = Path(file)
                 with open(file, 'r') as html_file:
-                    tree = lxml.html.parse(html_file)
+                    tree = parse(html_file)
 
-                location = str(file.relative_to('api-docs/docs'))
+                location = str(file.relative_to(docs_folder))
                 for elem in tree.xpath('//dt'):
                     if elem.get('id') is None:
                         continue
@@ -69,17 +79,29 @@ class ParseDocs(Task):
                         else:
                             targets_dict[target] = (location, elem_id, title)
 
-        for dir in dirs:
-            target_name = '{}_targets'.format(dir.split('/')[0])
-            cached_target = site.cache.get(target_name)
+            cached_target = self.site.cache.get(target_name)
             if cached_target is not None:
-                cached_target.update(getattr(site, target_name))
-                site.cache.set(target_name, cached_target)
+                cached_target.update(getattr(self.site, target_name))
+                self.site.cache.set(target_name, cached_target)
             else:
-                site.cache.set(target_name, getattr(site, target_name))
+                self.site.cache.set(target_name, getattr(self.site, target_name))
 
-        return super(ParseDocs, self).set_site(site)
-
-    def gen_tasks(self):
         # Make sure that this task is created, even if nothing ends up needing to be done
         yield self.group_task()
+
+        output_folder = Path(self.kw['output_folder'])
+        # Uncomment these two lines when 2.4 is released and put into the api-docs folder
+        # cantera_version = self.kw['cantera_version']
+        # docs_folder = self.kw['docs_folders']['api-docs/docs-{}'.format(cantera_version)]
+        docs_folder = Path(self.kw['docs_folders']['../cantera/build/docs'])
+
+        base_dir = output_folder/docs_folder/'sphinx'/'html'
+
+        dirs = ['cython', 'matlab', 'cti']
+        for dirname in dirs:
+            yield {
+                'basename': self.name,
+                'name': dirname,
+                'task_dep': ['copy_files'],
+                'actions': [(process_targets, [dirname, base_dir, output_folder/docs_folder])],
+            }
