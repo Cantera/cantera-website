@@ -14,7 +14,7 @@ script:
   - export NIKOLA_OUTPUT_DIR=output
   - NIKOLA_DEBUG=1 nikola build
   - |
-    if [[ "${TRAVIS_PULL_REQUEST}" == "false" ]] && [[ "${TRAVIS_BRANCH} == "master" ]]; then
+    if [[ "${TRAVIS_PULL_REQUEST}" == "false" ]] && [[ "${TRAVIS_BRANCH}" == "master" ]]; then
       openssl aes-256-cbc -k "${ctdeploy_pass}" -in ./.ci_support/ctdeploy_key.enc -out ./.ci_support/ctdeploy_key -d;
       chmod 0600 ctdeploy_key;
       rsync -av -e "ssh -i ./.ci_support/ctdeploy_key" --delete --delete-excluded --filter="P /mw_headers.git" --exclude="*.map" --exclude="*.md5" "${NIKOLA_OUTPUT_DIR}/" ctdeploy@cantera.org:testing.cantera.org;
