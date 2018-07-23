@@ -5,6 +5,10 @@ env:
   global:
     secure: m0ET3WLaR7/VQ0QoK0+w5LkA6hlFUDqdToY9VZCP9aCPg7CeBNSumCbmm1379zSc5ohqLsmLEPXzFLAcrwlPd14lSlHn2oJezi51Wduz7aQEaabOOTgu4FXm8iAr3HO/v1p5+viAz7BeBjUY/by9hseeT7BWRZz7+Tsj184EgSCpSWVhcWWLFrsALItFXfwhQn+lmqLulsO0VAHRuTj5HlbgHF1+YuLzpT7JsQKtuyt7GxLyntijLbvZhE6OZkUR6LS9NZpNEWdO2QBkrUllEeAoaZoE96ogMneP7bUgLrMD42ZuRHLlIjooQg7PjPvIR+TOy9TjTQq4/Nh7LxH3Ei7fYX7vEqu7yTenyX0kCNcoHPjGbAOJYEXv45bEwJEpbxBXtPvix7bJxY3DfvuU/Ow3fT2BO2UNVpU5aGM7hnS/C2JYlEFUw6KRZw3BWyp54K7aHfLphDpIcOl4JamLVg8KpVcQX7uaYG/+3NA8I3maNLG9xwljPjwzJFnkpJBaMyQeNE5xUEVEZRy6GNMViB0KIDSDzxdP3CF3lREX70r8Db1PX8HkjAQU9/u7lGesoG6DcziuTsiG+wjL/22WVygPpFC5H5B1g8DVxaOoXJYAnP2suUx5rhBX7vomP62QCOoS6vL5vW12h/juBHcLqsA+hwoA5vBJRwk6ZGzgozM=
 
+addons:
+  ssh_known_hosts:
+    - cantera.org
+
 before_install:
   - git clone --depth=1 https://github.com/Cantera/cantera ../cantera
   - git clone --depth=1 https://github.com/Cantera/cantera-jupyter ../cantera-jupyter
