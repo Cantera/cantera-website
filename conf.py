@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import time
+import os
 
 # !! This is the configuration of Nikola. !! #
 # !!  You should edit it to your liking.  !! #
@@ -20,10 +21,11 @@ BLOG_AUTHOR = "Cantera Developers"  # (translatable)
 BLOG_TITLE = "Cantera"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "https://cantera.org/"
+SITE_URL = "https://testing.cantera.org/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
-# BASE_URL = "https://cantera.org/"
+# Don't forget the protocol and trailing slash
+BASE_URL = "https://testing.cantera.org/"
 BLOG_EMAIL = "steering@cantera.org"
 BLOG_DESCRIPTION = "This site is for the Cantera software"  # (translatable)
 
@@ -689,7 +691,7 @@ GITHUB_COMMIT_SOURCE = True
 # Where the output site should be located
 # If you don't use an absolute path, it will be considered as relative
 # to the location of conf.py
-# OUTPUT_FOLDER = 'output'
+OUTPUT_FOLDER = os.getenv('NIKOLA_OUTPUT_DIR', 'output')
 
 # where the "cache" of partial generated content should be located
 # default: 'cache'

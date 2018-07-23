@@ -1,9 +1,21 @@
 language: python
 python:
   - "3.6"
+env:
+global:
+  secure: d7QrJoByttj76lXPNsX+p01C/EzSXCadIiJErN4bfge4VVTb0XhOigXPdU+A8nAT6P1PexwHPMkiwLQo5Z/6u/wB6HTtjroibmimTcnGzP7dM95tBMRCtncM2vL9KEfvoZ9G7sSZQWygwT8UcJR4devOYj1YFEbm8PYPx12jc2idDWsdrYxrZAcGBu8RcvKrjFxxYSASkZ657BQ/K9MG61KHGUk9D6CWmrR5L3OFijgfufRlNfvcfWOE1kIIcOP8sJ6bVUYJHqYZy/4Og8mYA/CO9e0wv2rrJQ2JrbbvXoViCdGnwIFm8vlTwMX9TQWZt2oQnaFRLtgNC8UBN6MKHVcf0yxJn4qdEVTNustBnTVpc5/73yM6mYu86foHEUlGogCN2nx+rVO7h604grBZvtfZhoSuI0tvVL3Te93y8MGwKtK13YmQsvZ5OGyiqQRTU/c/DS6/R5iRN4nJW82VVBPZSCIrQZbH4M0nDPjgTPyUQm3aLgJsVwG8jkbHOJZGDp4W1u5+0bu+rWX94E3wvIa1TjDm+Mrzc63cH8wGhKRLYSlbPM+5mzVJn0GKGP3LF7jF9D8/wnZQNtz4j2Drg/c1Oe3YVSqQpdos9+JIBQPVWdaB9yih0XT0YVjtirpR2XCq1zDjjeDG8VHGe9ijYKA8U9ddPROnEpdcY0/I1J0=
+
 before_install:
   - git clone --depth=1 https://github.com/Cantera/cantera ../cantera
   - git clone --depth=1 https://github.com/Cantera/cantera-jupyter ../cantera-jupyter
 
 script:
+  - set -e
+  - export NIKOLA_OUTPUT_DIR=output
   - NIKOLA_DEBUG=1 nikola build
+  - |
+    if [[ "${TRAVIS_PULL_REQUEST}" == "false" ]] && [[ "${TRAVIS_BRANCH} == "master" ]]; then
+      openssl aes-256-cbc -k "${ctdeploy_pass}" -in ./.ci_support/ctdeploy_key.enc -out ./.ci_support/ctdeploy_key -d;
+      chmod 0600 ctdeploy_key;
+      rsync -av -e "ssh -i ./.ci_support/ctdeploy_key" --exclude="*.map" --exclude="*.md5" "${NIKOLA_OUTPUT_DIR}/" ctdeploy@cantera.org:testing.cantera.org;
+    fi
