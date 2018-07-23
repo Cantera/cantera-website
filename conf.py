@@ -1312,7 +1312,8 @@ USE_CDN_WARNING = False
 USE_BUNDLES = False
 
 # Plugins you don't want to use. Be careful :-)
-DISABLED_PLUGINS = ['render_archive', 'classify_archive', 'render_galleries', 'render_listings']
+DISABLED_PLUGINS = ['render_archive', 'classify_archive', 'render_galleries', 'render_listings',
+                    'copy_files']
 
 # Special settings to disable only parts of the indexes plugin.
 # Use with care.
