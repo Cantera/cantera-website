@@ -1,0 +1,2746 @@
+
+
+<!DOCTYPE html>
+
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+"
+lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>One-dimensional Reacting Flows | Cantera </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/katex-math.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/contrib/auto-render.min.js"></script>
+    <script type="text/javascript" src="../_static/katex_autorenderer.js"></script>
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" sizes="16x16"/>
+    
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body>
+  <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+  <!-- Menubar -->
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light static-top mb-4">
+      <div class="container"><!-- This keeps the margins nice -->
+          <a class="navbar-brand" href="/index.html">
+          <img src="/assets/img/cantera-logo.png" alt="Cantera" id="logo" class="d-inline-block align-top">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a href="/install/index.html" class="nav-link">Install</a>
+              </li>
+              <li class="nav-item">
+                <a href="/examples/index.html" class="nav-link">Examples</a>
+              </li>
+              <li class="nav-item">
+                <a href="/about.html" class="nav-link">About</a>
+              </li>
+              <li class="nav-item">
+                <a href="/community.html" class="nav-link">Community</a>
+              </li>
+              <li class="nav-item">
+                <a href="/science/index.html" class="nav-link">Science</a>
+              </li>
+              <li class="nav-item">
+                <a href="/documentation/index.html" class="nav-link">Documentation</a>
+              </li>
+              <li class="nav-item">
+                <a href="/blog/index.html" class="nav-link">Blog</a>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+  </nav>
+  <!-- End of Menubar -->
+
+  <div class="container" id="content">
+      <div class="body-content">
+          <!--Body content-->
+          
+          <div class="document">
+            
+            <div class="documentwrapper">
+                <div class="bodywrapper">
+                <div class="body" role="main">
+                  
+  <div class="section" id="one-dimensional-reacting-flows">
+<span id="sec-cython-onedim"></span><h1>One-dimensional Reacting Flows<a class="headerlink" href="#one-dimensional-reacting-flows" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#composite-domains" id="id13">Composite Domains</a><ul>
+<li><a class="reference internal" href="#freeflame" id="id14">FreeFlame</a></li>
+<li><a class="reference internal" href="#burnerflame" id="id15">BurnerFlame</a></li>
+<li><a class="reference internal" href="#counterflowdiffusionflame" id="id16">CounterflowDiffusionFlame</a></li>
+<li><a class="reference internal" href="#counterflowpremixedflame" id="id17">CounterflowPremixedFlame</a></li>
+<li><a class="reference internal" href="#impingingjet" id="id18">ImpingingJet</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#flow-domains" id="id19">Flow Domains</a><ul>
+<li><a class="reference internal" href="#freeflow" id="id20">FreeFlow</a></li>
+<li><a class="reference internal" href="#axisymmetricstagnationflow" id="id21">AxisymmetricStagnationFlow</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundaries" id="id22">Boundaries</a><ul>
+<li><a class="reference internal" href="#inlet1d" id="id23">Inlet1D</a></li>
+<li><a class="reference internal" href="#outlet1d" id="id24">Outlet1D</a></li>
+<li><a class="reference internal" href="#outletreservoir1d" id="id25">OutletReservoir1D</a></li>
+<li><a class="reference internal" href="#symmetryplane1d" id="id26">SymmetryPlane1D</a></li>
+<li><a class="reference internal" href="#surface1d" id="id27">Surface1D</a></li>
+<li><a class="reference internal" href="#reactingsurface1d" id="id28">ReactingSurface1D</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#base-classes" id="id29">Base Classes</a><ul>
+<li><a class="reference internal" href="#domain1d" id="id30">Domain1D</a></li>
+<li><a class="reference internal" href="#boundary1d" id="id31">Boundary1D</a></li>
+<li><a class="reference internal" href="#sim1d" id="id32">Sim1D</a></li>
+<li><a class="reference internal" href="#flamebase" id="id33">FlameBase</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="composite-domains">
+<h2><a class="toc-backref" href="#id13">Composite Domains</a><a class="headerlink" href="#composite-domains" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="freeflame">
+<h3><a class="toc-backref" href="#id14">FreeFlame</a><a class="headerlink" href="#freeflame" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.FreeFlame">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">FreeFlame</code><span class="sig-paren">(</span><em>gas</em>, <em>grid=None</em>, <em>width=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera.onedim.FlameBase</span></code></p>
+<p>A freely-propagating flat flame.</p>
+<p>A domain of type FreeFlow named ‘flame’ will be created to represent
+the flame. The three domains comprising the stack are stored as
+<code class="docutils literal notranslate"><span class="pre">self.inlet</span></code>, <code class="docutils literal notranslate"><span class="pre">self.flame</span></code>, and <code class="docutils literal notranslate"><span class="pre">self.outlet</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>grid</strong> – A list of points to be used as the initial grid. Not recommended
+unless solving only on a fixed grid; Use the <code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code> parameter
+instead.</li>
+<li><strong>width</strong> – Defines a grid on the interval [0, width] with internal points
+determined automatically by the solver.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="cantera.FreeFlame.flame">
+<code class="descname">flame</code><a class="headerlink" href="#cantera.FreeFlame.flame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlame.get_flame_speed_reaction_sensitivities">
+<code class="descname">get_flame_speed_reaction_sensitivities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlame.get_flame_speed_reaction_sensitivities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the normalized sensitivities of the laminar flame speed
+<span class="math">\(S_u\)</span> with respect to the reaction rate constants <span class="math">\(k_i\)</span>:</p>
+<div class="math">
+\[s_i = \frac{k_i}{S_u} \frac{dS_u}{dk_i}\]</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlame.inlet">
+<code class="descname">inlet</code><a class="headerlink" href="#cantera.FreeFlame.inlet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlame.outlet">
+<code class="descname">outlet</code><a class="headerlink" href="#cantera.FreeFlame.outlet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlame.set_initial_guess">
+<code class="descname">set_initial_guess</code><span class="sig-paren">(</span><em>locs=[0.0, 0.3, 0.5, 1.0]</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlame.set_initial_guess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the initial guess for the solution. The adiabatic flame
+temperature and equilibrium composition are computed for the inlet gas
+composition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locs</strong> – A list of four locations to define the temperature and mass fraction profiles.
+Profiles rise linearly between the second and third location.
+Locations are given as a fraction of the entire domain</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlame.solve">
+<code class="descname">solve</code><span class="sig-paren">(</span><em>loglevel=1</em>, <em>refine_grid=True</em>, <em>auto=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlame.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve the problem.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>loglevel</strong> – integer flag controlling the amount of diagnostic output. Zero
+suppresses all output, and 5 produces very verbose output.</li>
+<li><strong>refine_grid</strong> – if True, enable grid refinement.</li>
+<li><strong>auto</strong> – if True, sequentially execute the different solution stages
+and attempt to automatically recover from errors. Attempts to first
+solve on the initial grid with energy enabled. If that does not
+succeed, a fixed-temperature solution will be tried followed by
+enabling the energy equation, and then with grid refinement enabled.
+If non-default tolerances have been specified or multicomponent
+transport is enabled, an additional solution using these options
+will be calculated.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="burnerflame">
+<h3><a class="toc-backref" href="#id15">BurnerFlame</a><a class="headerlink" href="#burnerflame" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.BurnerFlame">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">BurnerFlame</code><span class="sig-paren">(</span><em>gas</em>, <em>grid=None</em>, <em>width=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.BurnerFlame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera.onedim.FlameBase</span></code></p>
+<p>A burner-stabilized flat flame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>gas</strong> – <a class="reference internal" href="importing.html#cantera.Solution" title="cantera.Solution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Solution</span></code></a> (using the IdealGas thermodynamic model) used to
+evaluate all gas properties and reaction rates.</li>
+<li><strong>grid</strong> – A list of points to be used as the initial grid. Not recommended
+unless solving only on a fixed grid; Use the <code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code> parameter
+instead.</li>
+<li><strong>width</strong> – Defines a grid on the interval [0, width] with internal points
+determined automatically by the solver.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>A domain of class <a class="reference internal" href="#cantera.AxisymmetricStagnationFlow" title="cantera.AxisymmetricStagnationFlow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AxisymmetricStagnationFlow</span></code></a> named <code class="docutils literal notranslate"><span class="pre">flame</span></code> will
+be created to represent the flame. The three domains comprising the
+stack are stored as <code class="docutils literal notranslate"><span class="pre">self.burner</span></code>, <code class="docutils literal notranslate"><span class="pre">self.flame</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">self.outlet</span></code>.</p>
+<dl class="attribute">
+<dt id="cantera.BurnerFlame.burner">
+<code class="descname">burner</code><a class="headerlink" href="#cantera.BurnerFlame.burner" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.BurnerFlame.flame">
+<code class="descname">flame</code><a class="headerlink" href="#cantera.BurnerFlame.flame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.BurnerFlame.outlet">
+<code class="descname">outlet</code><a class="headerlink" href="#cantera.BurnerFlame.outlet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.BurnerFlame.set_initial_guess">
+<code class="descname">set_initial_guess</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cantera.BurnerFlame.set_initial_guess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the initial guess for the solution. The adiabatic flame
+temperature and equilibrium composition are computed for the burner
+gas composition. The temperature profile rises linearly in the first
+20% of the flame to Tad, then is flat. The mass fraction profiles are
+set similarly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.BurnerFlame.solve">
+<code class="descname">solve</code><span class="sig-paren">(</span><em>loglevel=1</em>, <em>refine_grid=True</em>, <em>auto=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.BurnerFlame.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve the problem.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>loglevel</strong> – integer flag controlling the amount of diagnostic output. Zero
+suppresses all output, and 5 produces very verbose output.</li>
+<li><strong>refine_grid</strong> – if True, enable grid refinement.</li>
+<li><strong>auto</strong> – if True, sequentially execute the different solution stages
+and attempt to automatically recover from errors. Attempts to first
+solve on the initial grid with energy enabled. If that does not
+succeed, a fixed-temperature solution will be tried followed by
+enabling the energy equation, and then with grid refinement enabled.
+If non-default tolerances have been specified or multicomponent
+transport is enabled, an additional solution using these options
+will be calculated.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="counterflowdiffusionflame">
+<h3><a class="toc-backref" href="#id16">CounterflowDiffusionFlame</a><a class="headerlink" href="#counterflowdiffusionflame" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.CounterflowDiffusionFlame">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">CounterflowDiffusionFlame</code><span class="sig-paren">(</span><em>gas</em>, <em>grid=None</em>, <em>width=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.CounterflowDiffusionFlame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera.onedim.FlameBase</span></code></p>
+<p>A counterflow diffusion flame</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>gas</strong> – <a class="reference internal" href="importing.html#cantera.Solution" title="cantera.Solution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Solution</span></code></a> (using the IdealGas thermodynamic model) used to
+evaluate all gas properties and reaction rates.</li>
+<li><strong>grid</strong> – A list of points to be used as the initial grid. Not recommended
+unless solving only on a fixed grid; Use the <code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code> parameter
+instead.</li>
+<li><strong>width</strong> – Defines a grid on the interval [0, width] with internal points
+determined automatically by the solver.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>A domain of class <a class="reference internal" href="#cantera.AxisymmetricStagnationFlow" title="cantera.AxisymmetricStagnationFlow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AxisymmetricStagnationFlow</span></code></a> named <code class="docutils literal notranslate"><span class="pre">flame</span></code> will
+be created to represent the flame. The three domains comprising the
+stack are stored as <code class="docutils literal notranslate"><span class="pre">self.fuel_inlet</span></code>, <code class="docutils literal notranslate"><span class="pre">self.flame</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">self.oxidizer_inlet</span></code>.</p>
+<dl class="method">
+<dt id="cantera.CounterflowDiffusionFlame.extinct">
+<code class="descname">extinct</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.CounterflowDiffusionFlame.extinct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method overloaded for some flame types to indicate if the flame has been
+extinguished. Base class method always returns ‘False’</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.CounterflowDiffusionFlame.flame">
+<code class="descname">flame</code><a class="headerlink" href="#cantera.CounterflowDiffusionFlame.flame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.CounterflowDiffusionFlame.fuel_inlet">
+<code class="descname">fuel_inlet</code><a class="headerlink" href="#cantera.CounterflowDiffusionFlame.fuel_inlet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.CounterflowDiffusionFlame.mixture_fraction">
+<code class="descname">mixture_fraction</code><span class="sig-paren">(</span><em>m</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.CounterflowDiffusionFlame.mixture_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the mixture fraction based on element <em>m</em></p>
+<p>The mixture fraction is computed from the elemental mass fraction of
+element <em>m</em>, normalized by its values on the fuel and oxidizer
+inlets:</p>
+<div class="math">
+\[Z = \frac{Z_{\mathrm{mass},m}(z) -
+ Z_{\mathrm{mass},m}(z_\mathrm{oxidizer})}
+{Z_{\mathrm{mass},m}(z_\mathrm{fuel}) -
+ Z_{\mathrm{mass},m}(z_\mathrm{oxidizer})}
+
+\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>m</strong> – The element based on which the mixture fraction is computed,
+may be specified by name or by index</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">mixture_fraction</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.CounterflowDiffusionFlame.oxidizer_inlet">
+<code class="descname">oxidizer_inlet</code><a class="headerlink" href="#cantera.CounterflowDiffusionFlame.oxidizer_inlet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.CounterflowDiffusionFlame.set_initial_guess">
+<code class="descname">set_initial_guess</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cantera.CounterflowDiffusionFlame.set_initial_guess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the initial guess for the solution. The initial guess is generated
+by assuming infinitely-fast chemistry.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.CounterflowDiffusionFlame.solve">
+<code class="descname">solve</code><span class="sig-paren">(</span><em>loglevel=1</em>, <em>refine_grid=True</em>, <em>auto=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.CounterflowDiffusionFlame.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve the problem.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>loglevel</strong> – integer flag controlling the amount of diagnostic output. Zero
+suppresses all output, and 5 produces very verbose output.</li>
+<li><strong>refine_grid</strong> – if True, enable grid refinement.</li>
+<li><strong>auto</strong> – if True, sequentially execute the different solution stages
+and attempt to automatically recover from errors. Attempts to first
+solve on the initial grid with energy enabled. If that does not
+succeed, a fixed-temperature solution will be tried followed by
+enabling the energy equation, and then with grid refinement enabled.
+If non-default tolerances have been specified or multicomponent
+transport is enabled, an additional solution using these options
+will be calculated.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.CounterflowDiffusionFlame.strain_rate">
+<code class="descname">strain_rate</code><span class="sig-paren">(</span><em>definition</em>, <em>fuel=None</em>, <em>oxidizer='O2'</em>, <em>stoich=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.CounterflowDiffusionFlame.strain_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the axial strain rate of the counterflow diffusion flame in 1/s.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>definition</strong> – The definition of the strain rate to be calculated. Options are:
+<code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">stoichiometric</span></code>, <code class="docutils literal notranslate"><span class="pre">potential_flow_fuel</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">potential_flow_oxidizer</span></code>.</li>
+<li><strong>fuel</strong> – The fuel species. Used only if <em>definition</em> is
+<code class="docutils literal notranslate"><span class="pre">stoichiometric</span></code>.</li>
+<li><strong>oxidizer</strong> – The oxidizer species, default <code class="docutils literal notranslate"><span class="pre">O2</span></code>. Used only if
+<em>definition</em> is <code class="docutils literal notranslate"><span class="pre">stoichiometric</span></code>.</li>
+<li><strong>stoich</strong> – The molar stoichiometric oxidizer-to-fuel ratio.
+Can be omitted if the oxidizer is <code class="docutils literal notranslate"><span class="pre">O2</span></code>. Used only if <em>definition</em>
+is <code class="docutils literal notranslate"><span class="pre">stoichiometric</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The parameter <em>definition</em> sets the method to compute the strain rate.
+Possible options are:</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">mean</span></code>:</dt>
+<dd><blockquote class="first">
+<div>The mean axial velocity gradient in the entire domain</div></blockquote>
+<div class="last math">
+\[a_{mean} = \left| \frac{\Delta u}{\Delta z} \right|
+
+\]</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">max</span></code>:</dt>
+<dd><p class="first">The maximum axial velocity gradient</p>
+<div class="last math">
+\[a_{max} = \max \left( \left| \frac{du}{dz} \right| \right)
+
+\]</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">stoichiometric</span></code>:</dt>
+<dd><p class="first">The axial velocity gradient at the stoichiometric surface.</p>
+<div class="math">
+\[a_{stoichiometric} = \left| \left. \frac{du}{dz}
+\right|_{\phi=1} \right|\]</div>
+<p>This method uses the additional keyword arguments <em>fuel</em>,
+<em>oxidizer</em>, and <em>stoich</em>.</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">strain_rate</span><span class="p">(</span><span class="s1">&#39;stoichiometric&#39;</span><span class="p">,</span> <span class="n">fuel</span><span class="o">=</span><span class="s1">&#39;H2&#39;</span><span class="p">,</span> <span class="n">oxidizer</span><span class="o">=</span><span class="s1">&#39;O2&#39;</span><span class="p">,</span>
+<span class="go">                  stoich=0.5)</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">potential_flow_fuel</span></code>:</dt>
+<dd><p class="first">The corresponding axial strain rate for a potential flow boundary
+condition at the fuel inlet.</p>
+<div class="last math">
+\[a_{f} = \sqrt{-\frac{\Lambda}{\rho_{f}}}
+
+\]</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">potential_flow_oxidizer</span></code>:</dt>
+<dd><p class="first">The corresponding axial strain rate for a potential flow boundary
+condition at the oxidizer inlet.</p>
+<div class="last math">
+\[a_{o} = \sqrt{-\frac{\Lambda}{\rho_{o}}}
+
+\]</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="counterflowpremixedflame">
+<h3><a class="toc-backref" href="#id17">CounterflowPremixedFlame</a><a class="headerlink" href="#counterflowpremixedflame" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.CounterflowPremixedFlame">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">CounterflowPremixedFlame</code><span class="sig-paren">(</span><em>gas</em>, <em>grid=None</em>, <em>width=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.CounterflowPremixedFlame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera.onedim.FlameBase</span></code></p>
+<p>A premixed counterflow flame</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>gas</strong> – <a class="reference internal" href="importing.html#cantera.Solution" title="cantera.Solution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Solution</span></code></a> (using the IdealGas thermodynamic model) used to
+evaluate all gas properties and reaction rates.</li>
+<li><strong>grid</strong> – Array of initial grid points. Not recommended unless solving only on
+a fixed grid; Use the <code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code> parameter instead.</li>
+<li><strong>width</strong> – Defines a grid on the interval [0, width] with internal points
+determined automatically by the solver.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>A domain of class <a class="reference internal" href="#cantera.AxisymmetricStagnationFlow" title="cantera.AxisymmetricStagnationFlow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AxisymmetricStagnationFlow</span></code></a> named <code class="docutils literal notranslate"><span class="pre">flame</span></code> will
+be created to represent the flame. The three domains comprising the
+stack are stored as <code class="docutils literal notranslate"><span class="pre">self.reactants</span></code>, <code class="docutils literal notranslate"><span class="pre">self.flame</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">self.products</span></code>.</p>
+<dl class="attribute">
+<dt id="cantera.CounterflowPremixedFlame.flame">
+<code class="descname">flame</code><a class="headerlink" href="#cantera.CounterflowPremixedFlame.flame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.CounterflowPremixedFlame.products">
+<code class="descname">products</code><a class="headerlink" href="#cantera.CounterflowPremixedFlame.products" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.CounterflowPremixedFlame.reactants">
+<code class="descname">reactants</code><a class="headerlink" href="#cantera.CounterflowPremixedFlame.reactants" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.CounterflowPremixedFlame.set_initial_guess">
+<code class="descname">set_initial_guess</code><span class="sig-paren">(</span><em>equilibrate=True</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.CounterflowPremixedFlame.set_initial_guess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the initial guess for the solution.</p>
+<p>If <code class="xref py py-obj docutils literal notranslate"><span class="pre">equilibrate</span></code> is True, then the products composition and temperature
+will be set to the equilibrium state of the reactants mixture.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="impingingjet">
+<h3><a class="toc-backref" href="#id18">ImpingingJet</a><a class="headerlink" href="#impingingjet" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.ImpingingJet">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">ImpingingJet</code><span class="sig-paren">(</span><em>gas</em>, <em>grid=None</em>, <em>width=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ImpingingJet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera.onedim.FlameBase</span></code></p>
+<p>An axisymmetric flow impinging on a surface at normal incidence.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>gas</strong> – <a class="reference internal" href="importing.html#cantera.Solution" title="cantera.Solution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Solution</span></code></a> (using the IdealGas thermodynamic model) used to
+evaluate all gas properties and reaction rates.</li>
+<li><strong>grid</strong> – A list of points to be used as the initial grid. Not recommended
+unless solving only on the initial grid; Use the <code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code> parameter
+instead.</li>
+<li><strong>width</strong> – Defines a grid on the interval [0, width] with internal points
+determined automatically by the solver.</li>
+<li><strong>surface</strong> – A Kinetics object used to compute any surface reactions.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>A domain of class <a class="reference internal" href="#cantera.AxisymmetricStagnationFlow" title="cantera.AxisymmetricStagnationFlow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AxisymmetricStagnationFlow</span></code></a> named <code class="docutils literal notranslate"><span class="pre">flame</span></code> will be
+created to represent the flow. The three domains comprising the stack
+are stored as <code class="docutils literal notranslate"><span class="pre">self.inlet</span></code>, <code class="docutils literal notranslate"><span class="pre">self.flame</span></code>, and <code class="docutils literal notranslate"><span class="pre">self.surface</span></code>.</p>
+<dl class="attribute">
+<dt id="cantera.ImpingingJet.flame">
+<code class="descname">flame</code><a class="headerlink" href="#cantera.ImpingingJet.flame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.ImpingingJet.inlet">
+<code class="descname">inlet</code><a class="headerlink" href="#cantera.ImpingingJet.inlet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.ImpingingJet.set_initial_guess">
+<code class="descname">set_initial_guess</code><span class="sig-paren">(</span><em>products='inlet'</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ImpingingJet.set_initial_guess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the initial guess for the solution. If products = ‘equil’, then
+the equilibrium composition at the adiabatic flame temperature will be
+used to form the initial guess. Otherwise the inlet composition will
+be used.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.ImpingingJet.surface">
+<code class="descname">surface</code><a class="headerlink" href="#cantera.ImpingingJet.surface" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="flow-domains">
+<h2><a class="toc-backref" href="#id19">Flow Domains</a><a class="headerlink" href="#flow-domains" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="freeflow">
+<h3><a class="toc-backref" href="#id20">FreeFlow</a><a class="headerlink" href="#freeflow" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.FreeFlow">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">FreeFlow</code><span class="sig-paren">(</span><em>thermo</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera._FlowBase</span></code></p>
+<dl class="attribute">
+<dt id="cantera.FreeFlow.P">
+<code class="descname">P</code><a class="headerlink" href="#cantera.FreeFlow.P" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pressure [Pa]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.bounds">
+<code class="descname">bounds</code><span class="sig-paren">(</span><em>self</em>, <em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the (lower, upper) bounds for a solution component.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">bounds</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+<span class="go">(200.0, 5000.0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.component_index">
+<code class="descname">component_index</code><span class="sig-paren">(</span><em>self</em>, <em>str name</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.component_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index of the component with name ‘name’</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.component_name">
+<code class="descname">component_name</code><span class="sig-paren">(</span><em>self</em>, <em>int n</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.component_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the nth component.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlow.component_names">
+<code class="descname">component_names</code><a class="headerlink" href="#cantera.FreeFlow.component_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of the names of all components of this domain.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlow.energy_enabled">
+<code class="descname">energy_enabled</code><a class="headerlink" href="#cantera.FreeFlow.energy_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines whether or not to solve the energy equation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlow.grid">
+<code class="descname">grid</code><a class="headerlink" href="#cantera.FreeFlow.grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>The grid for this domain</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlow.have_user_tolerances">
+<code class="descname">have_user_tolerances</code><a class="headerlink" href="#cantera.FreeFlow.have_user_tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>have_user_tolerances: __builtin__.bool</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlow.index">
+<code class="descname">index</code><a class="headerlink" href="#cantera.FreeFlow.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index of this domain in a stack. Returns -1 if this domain is not part
+of a stack.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlow.n_components">
+<code class="descname">n_components</code><a class="headerlink" href="#cantera.FreeFlow.n_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of solution components at each grid point.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlow.n_points">
+<code class="descname">n_points</code><a class="headerlink" href="#cantera.FreeFlow.n_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of grid points belonging to this domain.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlow.name">
+<code class="descname">name</code><a class="headerlink" href="#cantera.FreeFlow.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name / id of this domain</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlow.radiation_enabled">
+<code class="descname">radiation_enabled</code><a class="headerlink" href="#cantera.FreeFlow.radiation_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines whether or not to include radiative heat transfer</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.set_boundary_emissivities">
+<code class="descname">set_boundary_emissivities</code><span class="sig-paren">(</span><em>self</em>, <em>e_left</em>, <em>e_right</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.set_boundary_emissivities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.set_bounds">
+<code class="descname">set_bounds</code><span class="sig-paren">(</span><em>self</em>, <em>*</em>, <em>default=None</em>, <em>Y=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.set_bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the lower and upper bounds on the solution.</p>
+<p>The argument list should consist of keyword/value pairs, with
+component names as keywords and (lower_bound, upper_bound) tuples as
+the values.  The keyword <em>default</em> may be used to specify default
+bounds for all unspecified components. The keyword <em>Y</em> can be used to
+stand for all species mass fractions in flow domains.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">set_bounds</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Y</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0e-5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.set_fixed_temp_profile">
+<code class="descname">set_fixed_temp_profile</code><span class="sig-paren">(</span><em>self</em>, <em>pos</em>, <em>T</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.set_fixed_temp_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the fixed temperature profile. This profile is used
+whenever the energy equation is disabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pos</strong> – arrray of relative positions from 0 to 1</li>
+<li><strong>temp</strong> – array of temperature values</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">set_fixed_temp_profile</span><span class="p">(</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),</span>
+<span class="gp">... </span>                         <span class="n">array</span><span class="p">([</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">1500.0</span><span class="p">,</span> <span class="mf">2000.0</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.set_steady_tolerances">
+<code class="descname">set_steady_tolerances</code><span class="sig-paren">(</span><em>self</em>, <em>*</em>, <em>default=None</em>, <em>Y=None</em>, <em>abs=None</em>, <em>rel=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.set_steady_tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the error tolerances for the steady-state problem.</p>
+<p>The argument list should consist of keyword/value pairs, with
+component names as keywords and (rtol, atol) tuples as the values.
+The keyword <em>default</em> may be used to specify default bounds for all
+unspecified components. The keyword <em>Y</em> can be used to stand for all
+species mass fractions in flow domains. Alternatively, the keywords
+<em>abs</em> and <em>rel</em> can be used to specify arrays for the absolute and
+relative tolerances for each solution component.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.set_transient_tolerances">
+<code class="descname">set_transient_tolerances</code><span class="sig-paren">(</span><em>self</em>, <em>*</em>, <em>default=None</em>, <em>Y=None</em>, <em>abs=None</em>, <em>rel=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.set_transient_tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the error tolerances for the steady-state problem.</p>
+<p>The argument list should consist of keyword/value pairs, with
+component names as keywords and (rtol, atol) tuples as the values.
+The keyword <em>default</em> may be used to specify default bounds for all
+unspecified components. The keyword <em>Y</em> can be used to stand for all
+species mass fractions in flow domains. Alternatively, the keywords
+<em>abs</em> and <em>rel</em> can be used to specify arrays for the absolute and
+relative tolerances for each solution component.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.set_transport">
+<code class="descname">set_transport</code><span class="sig-paren">(</span><em>self</em>, <em>_SolutionBase phase</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.set_transport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the <a class="reference internal" href="importing.html#cantera.Solution" title="cantera.Solution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Solution</span></code></a> object used for calculating transport properties.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FreeFlow.soret_enabled">
+<code class="descname">soret_enabled</code><a class="headerlink" href="#cantera.FreeFlow.soret_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines whether or not to include diffusive mass fluxes due to the
+Soret effect. Enabling this option works only when using the
+multicomponent transport model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.steady_abstol">
+<code class="descname">steady_abstol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.steady_abstol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the absolute error tolerance for the steady state problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.steady_reltol">
+<code class="descname">steady_reltol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.steady_reltol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the relative error tolerance for the steady state problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.tolerances">
+<code class="descname">tolerances</code><span class="sig-paren">(</span><em>self</em>, <em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the (relative, absolute) error tolerances for a solution
+component.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rtol</span><span class="p">,</span> <span class="n">atol</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">tolerances</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.transient_abstol">
+<code class="descname">transient_abstol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.transient_abstol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the absolute error tolerance for the transient problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FreeFlow.transient_reltol">
+<code class="descname">transient_reltol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FreeFlow.transient_reltol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the relative error tolerance for the transient problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="axisymmetricstagnationflow">
+<h3><a class="toc-backref" href="#id21">AxisymmetricStagnationFlow</a><a class="headerlink" href="#axisymmetricstagnationflow" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.AxisymmetricStagnationFlow">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">AxisymmetricStagnationFlow</code><span class="sig-paren">(</span><em>thermo</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera._FlowBase</span></code></p>
+<p>An axisymmetric flow domain.</p>
+<p>In an axisymmetric flow domain, the equations solved are the similarity
+equations for the flow in a finite-height gap of infinite radial extent.
+The solution variables are:</p>
+<dl class="docutils">
+<dt><em>u</em></dt>
+<dd>axial velocity</dd>
+<dt><em>V</em></dt>
+<dd>radial velocity divided by radius</dd>
+<dt><em>T</em></dt>
+<dd>temperature</dd>
+<dt><em>lambda</em></dt>
+<dd>(1/r)(dP/dr)</dd>
+<dt><em>Y_k</em></dt>
+<dd>species mass fractions</dd>
+</dl>
+<p>It may be shown that if the boundary conditions on these variables are
+independent of radius, then a similarity solution to the exact governing
+equations exists in which these variables are all independent of radius.
+This solution holds only in in low-Mach-number limit, in which case
+(dP/dz) = 0, and lambda is a constant. (Lambda is treated as a spatially-
+varying solution variable for numerical reasons, but in the final solution
+it is always independent of z.) As implemented here, the governing
+equations assume an ideal gas mixture.  Arbitrary chemistry is allowed, as
+well as arbitrary variation of the transport properties.</p>
+<dl class="attribute">
+<dt id="cantera.AxisymmetricStagnationFlow.P">
+<code class="descname">P</code><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.P" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pressure [Pa]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.bounds">
+<code class="descname">bounds</code><span class="sig-paren">(</span><em>self</em>, <em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the (lower, upper) bounds for a solution component.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">bounds</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+<span class="go">(200.0, 5000.0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.component_index">
+<code class="descname">component_index</code><span class="sig-paren">(</span><em>self</em>, <em>str name</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.component_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index of the component with name ‘name’</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.component_name">
+<code class="descname">component_name</code><span class="sig-paren">(</span><em>self</em>, <em>int n</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.component_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the nth component.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.AxisymmetricStagnationFlow.component_names">
+<code class="descname">component_names</code><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.component_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of the names of all components of this domain.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.AxisymmetricStagnationFlow.energy_enabled">
+<code class="descname">energy_enabled</code><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.energy_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines whether or not to solve the energy equation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.AxisymmetricStagnationFlow.grid">
+<code class="descname">grid</code><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>The grid for this domain</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.AxisymmetricStagnationFlow.have_user_tolerances">
+<code class="descname">have_user_tolerances</code><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.have_user_tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>have_user_tolerances: __builtin__.bool</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.AxisymmetricStagnationFlow.index">
+<code class="descname">index</code><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index of this domain in a stack. Returns -1 if this domain is not part
+of a stack.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.AxisymmetricStagnationFlow.n_components">
+<code class="descname">n_components</code><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.n_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of solution components at each grid point.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.AxisymmetricStagnationFlow.n_points">
+<code class="descname">n_points</code><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.n_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of grid points belonging to this domain.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.AxisymmetricStagnationFlow.name">
+<code class="descname">name</code><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name / id of this domain</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.AxisymmetricStagnationFlow.radiation_enabled">
+<code class="descname">radiation_enabled</code><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.radiation_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines whether or not to include radiative heat transfer</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.set_boundary_emissivities">
+<code class="descname">set_boundary_emissivities</code><span class="sig-paren">(</span><em>self</em>, <em>e_left</em>, <em>e_right</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.set_boundary_emissivities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.set_bounds">
+<code class="descname">set_bounds</code><span class="sig-paren">(</span><em>self</em>, <em>*</em>, <em>default=None</em>, <em>Y=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.set_bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the lower and upper bounds on the solution.</p>
+<p>The argument list should consist of keyword/value pairs, with
+component names as keywords and (lower_bound, upper_bound) tuples as
+the values.  The keyword <em>default</em> may be used to specify default
+bounds for all unspecified components. The keyword <em>Y</em> can be used to
+stand for all species mass fractions in flow domains.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">set_bounds</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Y</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0e-5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.set_fixed_temp_profile">
+<code class="descname">set_fixed_temp_profile</code><span class="sig-paren">(</span><em>self</em>, <em>pos</em>, <em>T</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.set_fixed_temp_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the fixed temperature profile. This profile is used
+whenever the energy equation is disabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pos</strong> – arrray of relative positions from 0 to 1</li>
+<li><strong>temp</strong> – array of temperature values</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">set_fixed_temp_profile</span><span class="p">(</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),</span>
+<span class="gp">... </span>                         <span class="n">array</span><span class="p">([</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">1500.0</span><span class="p">,</span> <span class="mf">2000.0</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.set_steady_tolerances">
+<code class="descname">set_steady_tolerances</code><span class="sig-paren">(</span><em>self</em>, <em>*</em>, <em>default=None</em>, <em>Y=None</em>, <em>abs=None</em>, <em>rel=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.set_steady_tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the error tolerances for the steady-state problem.</p>
+<p>The argument list should consist of keyword/value pairs, with
+component names as keywords and (rtol, atol) tuples as the values.
+The keyword <em>default</em> may be used to specify default bounds for all
+unspecified components. The keyword <em>Y</em> can be used to stand for all
+species mass fractions in flow domains. Alternatively, the keywords
+<em>abs</em> and <em>rel</em> can be used to specify arrays for the absolute and
+relative tolerances for each solution component.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.set_transient_tolerances">
+<code class="descname">set_transient_tolerances</code><span class="sig-paren">(</span><em>self</em>, <em>*</em>, <em>default=None</em>, <em>Y=None</em>, <em>abs=None</em>, <em>rel=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.set_transient_tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the error tolerances for the steady-state problem.</p>
+<p>The argument list should consist of keyword/value pairs, with
+component names as keywords and (rtol, atol) tuples as the values.
+The keyword <em>default</em> may be used to specify default bounds for all
+unspecified components. The keyword <em>Y</em> can be used to stand for all
+species mass fractions in flow domains. Alternatively, the keywords
+<em>abs</em> and <em>rel</em> can be used to specify arrays for the absolute and
+relative tolerances for each solution component.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.set_transport">
+<code class="descname">set_transport</code><span class="sig-paren">(</span><em>self</em>, <em>_SolutionBase phase</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.set_transport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the <a class="reference internal" href="importing.html#cantera.Solution" title="cantera.Solution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Solution</span></code></a> object used for calculating transport properties.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.AxisymmetricStagnationFlow.soret_enabled">
+<code class="descname">soret_enabled</code><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.soret_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines whether or not to include diffusive mass fluxes due to the
+Soret effect. Enabling this option works only when using the
+multicomponent transport model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.steady_abstol">
+<code class="descname">steady_abstol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.steady_abstol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the absolute error tolerance for the steady state problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.steady_reltol">
+<code class="descname">steady_reltol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.steady_reltol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the relative error tolerance for the steady state problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.tolerances">
+<code class="descname">tolerances</code><span class="sig-paren">(</span><em>self</em>, <em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the (relative, absolute) error tolerances for a solution
+component.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rtol</span><span class="p">,</span> <span class="n">atol</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">tolerances</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.transient_abstol">
+<code class="descname">transient_abstol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.transient_abstol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the absolute error tolerance for the transient problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.AxisymmetricStagnationFlow.transient_reltol">
+<code class="descname">transient_reltol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.AxisymmetricStagnationFlow.transient_reltol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the relative error tolerance for the transient problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="boundaries">
+<h2><a class="toc-backref" href="#id22">Boundaries</a><a class="headerlink" href="#boundaries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="inlet1d">
+<h3><a class="toc-backref" href="#id23">Inlet1D</a><a class="headerlink" href="#inlet1d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.Inlet1D">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">Inlet1D</code><span class="sig-paren">(</span><em>phase</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Inlet1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Boundary1D</span></code></p>
+<p>A one-dimensional inlet. Note that an inlet can only be a terminal
+domain - it must be either the leftmost or rightmost domain in a
+stack.</p>
+<dl class="attribute">
+<dt id="cantera.Inlet1D.spread_rate">
+<code class="descname">spread_rate</code><a class="headerlink" href="#cantera.Inlet1D.spread_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/set the tangential velocity gradient [1/s] at this boundary.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="outlet1d">
+<h3><a class="toc-backref" href="#id24">Outlet1D</a><a class="headerlink" href="#outlet1d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.Outlet1D">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">Outlet1D</code><span class="sig-paren">(</span><em>phase</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Outlet1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Boundary1D</span></code></p>
+<p>A one-dimensional outlet. An outlet imposes a zero-gradient boundary
+condition on the flow.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="outletreservoir1d">
+<h3><a class="toc-backref" href="#id25">OutletReservoir1D</a><a class="headerlink" href="#outletreservoir1d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.OutletReservoir1D">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">OutletReservoir1D</code><span class="sig-paren">(</span><em>phase</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.OutletReservoir1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Boundary1D</span></code></p>
+<p>A one-dimensional outlet into a reservoir.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="symmetryplane1d">
+<h3><a class="toc-backref" href="#id26">SymmetryPlane1D</a><a class="headerlink" href="#symmetryplane1d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.SymmetryPlane1D">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">SymmetryPlane1D</code><span class="sig-paren">(</span><em>phase</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.SymmetryPlane1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Boundary1D</span></code></p>
+<p>A symmetry plane.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="surface1d">
+<h3><a class="toc-backref" href="#id27">Surface1D</a><a class="headerlink" href="#surface1d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.Surface1D">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">Surface1D</code><span class="sig-paren">(</span><em>phase</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Surface1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Boundary1D</span></code></p>
+<p>A solid surface.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="reactingsurface1d">
+<h3><a class="toc-backref" href="#id28">ReactingSurface1D</a><a class="headerlink" href="#reactingsurface1d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.ReactingSurface1D">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">ReactingSurface1D</code><span class="sig-paren">(</span><em>phase</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactingSurface1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Boundary1D</span></code></p>
+<p>A reacting solid surface.</p>
+<dl class="attribute">
+<dt id="cantera.ReactingSurface1D.coverage_enabled">
+<code class="descname">coverage_enabled</code><a class="headerlink" href="#cantera.ReactingSurface1D.coverage_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Controls whether or not to solve the surface coverage equations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.ReactingSurface1D.set_kinetics">
+<code class="descname">set_kinetics</code><span class="sig-paren">(</span><em>self</em>, <em>Kinetics kin</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactingSurface1D.set_kinetics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the kinetics manager (surface reaction mechanism object).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="base-classes">
+<h2><a class="toc-backref" href="#id29">Base Classes</a><a class="headerlink" href="#base-classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="domain1d">
+<h3><a class="toc-backref" href="#id30">Domain1D</a><a class="headerlink" href="#domain1d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.Domain1D">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">Domain1D</code><span class="sig-paren">(</span><em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Domain1D(_SolutionBase phase, name=None, <a href="#id1"><span class="problematic" id="id2">*</span></a>args, <a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs)</p>
+<dl class="method">
+<dt id="cantera.Domain1D.bounds">
+<code class="descname">bounds</code><span class="sig-paren">(</span><em>self</em>, <em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the (lower, upper) bounds for a solution component.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">bounds</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+<span class="go">(200.0, 5000.0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Domain1D.component_index">
+<code class="descname">component_index</code><span class="sig-paren">(</span><em>self</em>, <em>str name</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D.component_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index of the component with name ‘name’</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Domain1D.component_name">
+<code class="descname">component_name</code><span class="sig-paren">(</span><em>self</em>, <em>int n</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D.component_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the nth component.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Domain1D.component_names">
+<code class="descname">component_names</code><a class="headerlink" href="#cantera.Domain1D.component_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of the names of all components of this domain.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Domain1D.grid">
+<code class="descname">grid</code><a class="headerlink" href="#cantera.Domain1D.grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>The grid for this domain</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Domain1D.have_user_tolerances">
+<code class="descname">have_user_tolerances</code><a class="headerlink" href="#cantera.Domain1D.have_user_tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>have_user_tolerances: __builtin__.bool</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Domain1D.index">
+<code class="descname">index</code><a class="headerlink" href="#cantera.Domain1D.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index of this domain in a stack. Returns -1 if this domain is not part
+of a stack.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Domain1D.n_components">
+<code class="descname">n_components</code><a class="headerlink" href="#cantera.Domain1D.n_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of solution components at each grid point.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Domain1D.n_points">
+<code class="descname">n_points</code><a class="headerlink" href="#cantera.Domain1D.n_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of grid points belonging to this domain.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Domain1D.name">
+<code class="descname">name</code><a class="headerlink" href="#cantera.Domain1D.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name / id of this domain</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Domain1D.set_bounds">
+<code class="descname">set_bounds</code><span class="sig-paren">(</span><em>self</em>, <em>*</em>, <em>default=None</em>, <em>Y=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D.set_bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the lower and upper bounds on the solution.</p>
+<p>The argument list should consist of keyword/value pairs, with
+component names as keywords and (lower_bound, upper_bound) tuples as
+the values.  The keyword <em>default</em> may be used to specify default
+bounds for all unspecified components. The keyword <em>Y</em> can be used to
+stand for all species mass fractions in flow domains.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">set_bounds</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Y</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0e-5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Domain1D.set_steady_tolerances">
+<code class="descname">set_steady_tolerances</code><span class="sig-paren">(</span><em>self</em>, <em>*</em>, <em>default=None</em>, <em>Y=None</em>, <em>abs=None</em>, <em>rel=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D.set_steady_tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the error tolerances for the steady-state problem.</p>
+<p>The argument list should consist of keyword/value pairs, with
+component names as keywords and (rtol, atol) tuples as the values.
+The keyword <em>default</em> may be used to specify default bounds for all
+unspecified components. The keyword <em>Y</em> can be used to stand for all
+species mass fractions in flow domains. Alternatively, the keywords
+<em>abs</em> and <em>rel</em> can be used to specify arrays for the absolute and
+relative tolerances for each solution component.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Domain1D.set_transient_tolerances">
+<code class="descname">set_transient_tolerances</code><span class="sig-paren">(</span><em>self</em>, <em>*</em>, <em>default=None</em>, <em>Y=None</em>, <em>abs=None</em>, <em>rel=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D.set_transient_tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the error tolerances for the steady-state problem.</p>
+<p>The argument list should consist of keyword/value pairs, with
+component names as keywords and (rtol, atol) tuples as the values.
+The keyword <em>default</em> may be used to specify default bounds for all
+unspecified components. The keyword <em>Y</em> can be used to stand for all
+species mass fractions in flow domains. Alternatively, the keywords
+<em>abs</em> and <em>rel</em> can be used to specify arrays for the absolute and
+relative tolerances for each solution component.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Domain1D.steady_abstol">
+<code class="descname">steady_abstol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D.steady_abstol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the absolute error tolerance for the steady state problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Domain1D.steady_reltol">
+<code class="descname">steady_reltol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D.steady_reltol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the relative error tolerance for the steady state problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Domain1D.tolerances">
+<code class="descname">tolerances</code><span class="sig-paren">(</span><em>self</em>, <em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D.tolerances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the (relative, absolute) error tolerances for a solution
+component.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rtol</span><span class="p">,</span> <span class="n">atol</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">tolerances</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Domain1D.transient_abstol">
+<code class="descname">transient_abstol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D.transient_abstol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the absolute error tolerance for the transient problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Domain1D.transient_reltol">
+<code class="descname">transient_reltol</code><span class="sig-paren">(</span><em>self</em>, <em>component=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Domain1D.transient_reltol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the relative error tolerance for the transient problem for a
+specified solution component, or all components if none is specified.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="boundary1d">
+<h3><a class="toc-backref" href="#id31">Boundary1D</a><a class="headerlink" href="#boundary1d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.Boundary1D">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">Boundary1D</code><span class="sig-paren">(</span><em>phase</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Boundary1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Domain1D</span></code></p>
+<p>Boundary1D(<a href="#id5"><span class="problematic" id="id6">*</span></a>args, <a href="#id7"><span class="problematic" id="id8">**</span></a>kwargs)</p>
+<p>Base class for boundary domains.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>phase</strong> – The (gas) phase corresponding to the adjacent flow domain</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="cantera.Boundary1D.T">
+<code class="descname">T</code><a class="headerlink" href="#cantera.Boundary1D.T" title="Permalink to this definition">¶</a></dt>
+<dd><p>The temperature [K] at this boundary.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Boundary1D.X">
+<code class="descname">X</code><a class="headerlink" href="#cantera.Boundary1D.X" title="Permalink to this definition">¶</a></dt>
+<dd><p>Species mole fractions at this boundary. May be set as either a string
+or as an array.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Boundary1D.Y">
+<code class="descname">Y</code><a class="headerlink" href="#cantera.Boundary1D.Y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Species mass fractions at this boundary. May be set as either a string
+or as an array.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Boundary1D.mdot">
+<code class="descname">mdot</code><a class="headerlink" href="#cantera.Boundary1D.mdot" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mass flow rate per unit area [kg/m^2]</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="sim1d">
+<h3><a class="toc-backref" href="#id32">Sim1D</a><a class="headerlink" href="#sim1d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.Sim1D">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">Sim1D</code><span class="sig-paren">(</span><em>domains</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Sim1D(domains, <a href="#id9"><span class="problematic" id="id10">*</span></a>args, <a href="#id11"><span class="problematic" id="id12">**</span></a>kwargs)</p>
+<p>Class Sim1D is a container for one-dimensional domains. It also holds the
+multi-domain solution vector, and controls the process of finding the
+solution.</p>
+<p>Domains are ordered left-to-right, with domain number 0 at the left.</p>
+<dl class="method">
+<dt id="cantera.Sim1D.clear_stats">
+<code class="descname">clear_stats</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.clear_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear solver statistics.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.domain_index">
+<code class="descname">domain_index</code><span class="sig-paren">(</span><em>self</em>, <em>dom</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.domain_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the index of a domain, specified either by name or as a Domain1D
+object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Sim1D.domains">
+<code class="descname">domains</code><a class="headerlink" href="#cantera.Sim1D.domains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.eval">
+<code class="descname">eval</code><span class="sig-paren">(</span><em>self</em>, <em>rdt=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the governing equations using the current solution estimate,
+storing the residual in the array which is accessible with the
+<a class="reference internal" href="#cantera.Sim1D.work_value" title="cantera.Sim1D.work_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">work_value</span></code></a> function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rdt</strong> – Reciprocal of the time-step</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Sim1D.eval_count_stats">
+<code class="descname">eval_count_stats</code><a class="headerlink" href="#cantera.Sim1D.eval_count_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of non-Jacobian function evaluations made in each call to
+solve()</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Sim1D.eval_time_stats">
+<code class="descname">eval_time_stats</code><a class="headerlink" href="#cantera.Sim1D.eval_time_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return CPU time spent on non-Jacobian function evaluations in each call
+to solve()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.extinct">
+<code class="descname">extinct</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.extinct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method overloaded for some flame types to indicate if the flame has been
+extinguished. Base class method always returns ‘False’</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.get_max_grid_points">
+<code class="descname">get_max_grid_points</code><span class="sig-paren">(</span><em>self</em>, <em>domain</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.get_max_grid_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the maximum number of grid points in the specified domain.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.get_refine_criteria">
+<code class="descname">get_refine_criteria</code><span class="sig-paren">(</span><em>self</em>, <em>domain</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.get_refine_criteria" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a dictionary of the criteria used to refine one domain. The items in
+the dictionary are the <code class="docutils literal notranslate"><span class="pre">ratio</span></code>, <code class="docutils literal notranslate"><span class="pre">slope</span></code>, <code class="docutils literal notranslate"><span class="pre">curve</span></code>, and <code class="docutils literal notranslate"><span class="pre">prune</span></code>,
+as defined in <a class="reference internal" href="#cantera.Sim1D.set_refine_criteria" title="cantera.Sim1D.set_refine_criteria"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_refine_criteria</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>domain</strong> – domain object, index, or name</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_refine_criteria</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">curve</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">prune</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">get_refine_criteria</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="go">{&#39;ratio&#39;: 5.0, &#39;slope&#39;: 0.2, &#39;curve&#39;: 0.3, &#39;prune&#39;: 0.03}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Sim1D.grid_size_stats">
+<code class="descname">grid_size_stats</code><a class="headerlink" href="#cantera.Sim1D.grid_size_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return total grid size in each call to solve()</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Sim1D.jacobian_count_stats">
+<code class="descname">jacobian_count_stats</code><a class="headerlink" href="#cantera.Sim1D.jacobian_count_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of Jacobian evaluations made in each call to solve()</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Sim1D.jacobian_time_stats">
+<code class="descname">jacobian_time_stats</code><a class="headerlink" href="#cantera.Sim1D.jacobian_time_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return CPU time spent evaluating Jacobians in each call to solve()</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Sim1D.max_time_step_count">
+<code class="descname">max_time_step_count</code><a class="headerlink" href="#cantera.Sim1D.max_time_step_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the maximum number of time steps allowed before reaching the
+steady-state solution</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.profile">
+<code class="descname">profile</code><span class="sig-paren">(</span><em>self</em>, <em>domain</em>, <em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spatial profile of one component in one domain.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>domain</strong> – Domain1D object, name, or index</li>
+<li><strong>component</strong> – component name or index</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">profile</span><span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.refine">
+<code class="descname">refine</code><span class="sig-paren">(</span><em>self</em>, <em>loglevel=1</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.refine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refine the grid, adding points where solution is not adequately
+resolved.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.restore">
+<code class="descname">restore</code><span class="sig-paren">(</span><em>self</em>, <em>filename='soln.xml'</em>, <em>name='solution'</em>, <em>loglevel=2</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.restore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the solution vector to a previously-saved solution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> – solution file</li>
+<li><strong>name</strong> – solution name within the file</li>
+<li><strong>loglevel</strong> – Amount of logging information to display while restoring,
+from 0 (disabled) to 2 (most verbose).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;save.xml&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;energy_off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.restore_steady_solution">
+<code class="descname">restore_steady_solution</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.restore_steady_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the current solution vector to the last successful steady-state
+solution. This can be used to examine the solver progress after a
+failure during grid refinement.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.restore_time_stepping_solution">
+<code class="descname">restore_time_stepping_solution</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.restore_time_stepping_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the current solution vector to the last successful time-stepping
+solution. This can be used to examine the solver progress after a failed
+integration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>self</em>, <em>filename='soln.xml'</em>, <em>name='solution'</em>, <em>description='none'</em>, <em>loglevel=1</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the solution in XML format.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> – solution file</li>
+<li><strong>name</strong> – solution name within the file</li>
+<li><strong>description</strong> – custom description text</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;save.xml&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;energy_off&#39;</span><span class="p">,</span>
+<span class="gp">... </span>       <span class="n">description</span><span class="o">=</span><span class="s1">&#39;solution with energy eqn. disabled&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_fixed_temperature">
+<code class="descname">set_fixed_temperature</code><span class="sig-paren">(</span><em>self</em>, <em>T</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_fixed_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the temperature used to fix the spatial location of a freely
+propagating flame.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_flat_profile">
+<code class="descname">set_flat_profile</code><span class="sig-paren">(</span><em>self</em>, <em>domain</em>, <em>component</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_flat_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a flat profile for one component in one domain.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>domain</strong> – Domain1D object, name, or index</li>
+<li><strong>component</strong> – component name or index</li>
+<li><strong>v</strong> – value</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_flat_profile</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_grid_min">
+<code class="descname">set_grid_min</code><span class="sig-paren">(</span><em>self</em>, <em>dz</em>, <em>domain=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_grid_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the minimum grid spacing on <em>domain</em>. If <em>domain</em> is None, then
+set the grid spacing for all domains.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_initial_guess">
+<code class="descname">set_initial_guess</code><span class="sig-paren">(</span><em>self</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_initial_guess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the initial guess for the solution. Derived classes extend this
+function to set approximations for the temperature and composition
+profiles.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_interrupt">
+<code class="descname">set_interrupt</code><span class="sig-paren">(</span><em>self</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_interrupt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set an interrupt function to be called each time that OneDim::eval is
+called. The signature of <em>f</em> is <code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span> <span class="pre">f(float)</span></code>. The default
+interrupt function is used to trap KeyboardInterrupt exceptions so
+that <code class="xref py py-obj docutils literal notranslate"><span class="pre">ctrl-c</span></code> can be used to break out of the C++ solver loop.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_max_grid_points">
+<code class="descname">set_max_grid_points</code><span class="sig-paren">(</span><em>self</em>, <em>domain</em>, <em>npmax</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_max_grid_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the maximum number of grid points in the specified domain.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_max_jac_age">
+<code class="descname">set_max_jac_age</code><span class="sig-paren">(</span><em>self</em>, <em>ss_age</em>, <em>ts_age</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_max_jac_age" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the maximum number of times the Jacobian will be used before it
+must be re-evaluated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ss_age</strong> – age criterion during steady-state mode</li>
+<li><strong>ts_age</strong> – age criterion during time-stepping mode</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_max_time_step">
+<code class="descname">set_max_time_step</code><span class="sig-paren">(</span><em>self</em>, <em>tsmax</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_max_time_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the maximum time step.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_min_time_step">
+<code class="descname">set_min_time_step</code><span class="sig-paren">(</span><em>self</em>, <em>tsmin</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_min_time_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the minimum time step.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_profile">
+<code class="descname">set_profile</code><span class="sig-paren">(</span><em>self</em>, <em>domain</em>, <em>component</em>, <em>positions</em>, <em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set an initial estimate for a profile of one component in one domain.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>domain</strong> – Domain1D object, name, or index</li>
+<li><strong>component</strong> – component name or index</li>
+<li><strong>positions</strong> – sequence of relative positions, from 0 on the left to 1 on the right</li>
+<li><strong>values</strong> – sequence of values at the relative positions specified in <em>positions</em></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_profile</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">400.0</span><span class="p">,</span> <span class="mf">800.0</span><span class="p">,</span> <span class="mf">1500.0</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_refine_criteria">
+<code class="descname">set_refine_criteria</code><span class="sig-paren">(</span><em>self</em>, <em>domain</em>, <em>ratio=10.0</em>, <em>slope=0.8</em>, <em>curve=0.8</em>, <em>prune=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_refine_criteria" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the criteria used to refine one domain.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>domain</strong> – domain object, index, or name</li>
+<li><strong>ratio</strong> – additional points will be added if the ratio of the spacing on
+either side of a grid point exceeds this value</li>
+<li><strong>slope</strong> – maximum difference in value between two adjacent points, scaled by
+the maximum difference in the profile (0.0 &lt; slope &lt; 1.0). Adds
+points in regions of high slope.</li>
+<li><strong>curve</strong> – maximum difference in slope between two adjacent intervals, scaled
+by the maximum difference in the profile (0.0 &lt; curve &lt; 1.0). Adds
+points in regions of high curvature.</li>
+<li><strong>prune</strong> – if the slope or curve criteria are satisfied to the level of
+‘prune’, the grid point is assumed not to be needed and is removed.
+Set prune significantly smaller than ‘slope’ and ‘curve’. Set to
+zero to disable pruning the grid.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_refine_criteria</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">curve</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">prune</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_steady_callback">
+<code class="descname">set_steady_callback</code><span class="sig-paren">(</span><em>self</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_steady_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a callback function to be called after each successful steady-state
+solve, before regridding. The signature of <em>f</em> is <code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span> <span class="pre">f(float)</span></code>. The
+argument passed to <em>f</em> is “0” and the output is ignored.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_time_step">
+<code class="descname">set_time_step</code><span class="sig-paren">(</span><em>self</em>, <em>stepsize</em>, <em>n_steps</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_time_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the sequence of time steps to try when Newton fails.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>stepsize</strong> – initial time step size [s]</li>
+<li><strong>n_steps</strong> – sequence of integer step numbers</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_time_step</span><span class="p">(</span><span class="mf">1.0e-5</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_time_step_callback">
+<code class="descname">set_time_step_callback</code><span class="sig-paren">(</span><em>self</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_time_step_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a callback function to be called after each successful timestep.
+The signature of <em>f</em> is <code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span> <span class="pre">f(float)</span></code>. The argument passed to <em>f</em> is
+the size of the timestep. The output is ignored.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_time_step_factor">
+<code class="descname">set_time_step_factor</code><span class="sig-paren">(</span><em>self</em>, <em>tfactor</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_time_step_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the factor by which the time step will be increased after a
+successful step, or decreased after an unsuccessful one.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>self</em>, <em>domain</em>, <em>component</em>, <em>point</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of one component in one domain at one point to ‘value’.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>domain</strong> – Domain1D object, name, or index</li>
+<li><strong>component</strong> – component name or index</li>
+<li><strong>point</strong> – grid point number within <em>domain</em> starting with 0 on the left</li>
+<li><strong>value</strong> – numerical value</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;flow&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.show_solution">
+<code class="descname">show_solution</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.show_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>print the current solution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.show_stats">
+<code class="descname">show_stats</code><span class="sig-paren">(</span><em>self</em>, <em>print_time=True</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.show_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the statistics for the last solution.</p>
+<p>If invoked with no arguments or with a non-zero argument, the timing
+statistics will be printed. Otherwise, the timing will not be printed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.solve">
+<code class="descname">solve</code><span class="sig-paren">(</span><em>self</em>, <em>loglevel=1</em>, <em>refine_grid=True</em>, <em>auto=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve the problem.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>loglevel</strong> – integer flag controlling the amount of diagnostic output. Zero
+suppresses all output, and 5 produces very verbose output.</li>
+<li><strong>refine_grid</strong> – if True, enable grid refinement.</li>
+<li><strong>auto</strong> – if True, sequentially execute the different solution stages
+and attempt to automatically recover from errors. Attempts to first
+solve on the initial grid with energy enabled. If that does not
+succeed, a fixed-temperature solution will be tried followed by
+enabling the energy equation, and then with grid refinement enabled.
+If non-default tolerances have been specified or multicomponent
+transport is enabled, an additional solution using these options
+will be calculated.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.solve_adjoint">
+<code class="descname">solve_adjoint</code><span class="sig-paren">(</span><em>self</em>, <em>perturb</em>, <em>n_params</em>, <em>dgdx</em>, <em>g=None</em>, <em>dp=1e-5</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.solve_adjoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the sensitivities of an objective function using an adjoint method.</p>
+<p>For an objective function <span class="math">\(g(x, p)\)</span> where <span class="math">\(x\)</span> is the state
+vector of the system and <span class="math">\(p\)</span> is a vector of parameters, this
+computes the vector of sensitivities <span class="math">\(dg/dp\)</span>. This assumes that
+the system of equations has already been solved to find <span class="math">\(x\)</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>perturb</strong> – <p>A function with the signature <code class="docutils literal notranslate"><span class="pre">perturb(sim,</span> <span class="pre">i,</span> <span class="pre">dp)</span></code> which
+perturbs parameter <code class="docutils literal notranslate"><span class="pre">i</span></code> by a relative factor of <code class="docutils literal notranslate"><span class="pre">dp</span></code>. To
+perturb a reaction rate constant, this function could be defined
+as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perturb</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">dp</span><span class="p">):</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">set_multiplier</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dp</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">perturb(sim,</span> <span class="pre">i,</span> <span class="pre">0)</span></code> should restore that parameter to its
+default value.</p>
+</li>
+<li><strong>n_params</strong> – The length of the vector of sensitivity parameters</li>
+<li><strong>dgdx</strong> – The vector of partial derivatives of the function <span class="math">\(g(x, p)\)</span>
+with respect to the system state <span class="math">\(x\)</span>.</li>
+<li><strong>g</strong> – A function with the signature <code class="docutils literal notranslate"><span class="pre">value</span> <span class="pre">=</span> <span class="pre">g(sim)</span></code> which computes the
+value of <span class="math">\(g(x,p)\)</span> at the current system state. This is used to
+compute <span class="math">\(\partial g/\partial p\)</span>. If this is identically zero
+(i.e. <span class="math">\(g\)</span> is independent of <span class="math">\(p\)</span>) then this argument may
+be omitted.</li>
+<li><strong>dp</strong> – A relative value by which to perturb each parameter</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.Sim1D.time_step_stats">
+<code class="descname">time_step_stats</code><a class="headerlink" href="#cantera.Sim1D.time_step_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of time steps taken in each call to solve()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.value">
+<code class="descname">value</code><span class="sig-paren">(</span><em>self</em>, <em>domain</em>, <em>component</em>, <em>point</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solution value at one point</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>domain</strong> – Domain1D object, name, or index</li>
+<li><strong>component</strong> – component name or index</li>
+<li><strong>point</strong> – grid point number within <em>domain</em> starting with 0 on the left</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;flow&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.Sim1D.work_value">
+<code class="descname">work_value</code><span class="sig-paren">(</span><em>self</em>, <em>domain</em>, <em>component</em>, <em>point</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Sim1D.work_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal work array value at one point. After calling <a class="reference internal" href="#cantera.Sim1D.eval" title="cantera.Sim1D.eval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval</span></code></a>, this array
+contains the values of the residual function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>domain</strong> – Domain1D object, name, or index</li>
+<li><strong>component</strong> – component name or index</li>
+<li><strong>point</strong> – grid point number in the domain, starting with zero at the left</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="flamebase">
+<h3><a class="toc-backref" href="#id33">FlameBase</a><a class="headerlink" href="#flamebase" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="cantera.FlameBase">
+<em class="property">class </em><code class="descclassname">cantera.</code><code class="descname">FlameBase</code><span class="sig-paren">(</span><em>domains</em>, <em>gas</em>, <em>grid=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlameBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Sim1D</span></code></p>
+<p>Base class for flames with a single flow domain</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>gas</strong> – object to use to evaluate all gas properties and reaction rates</li>
+<li><strong>grid</strong> – array of initial grid points</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="cantera.FlameBase.L">
+<code class="descname">L</code><a class="headerlink" href="#cantera.FlameBase.L" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array containing the radial pressure gradient (1/r)(dP/dr) [N/m^4] at
+each point. Note: This value is named ‘lambda’ in the C++ code.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.P">
+<code class="descname">P</code><a class="headerlink" href="#cantera.FlameBase.P" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the pressure of the flame [Pa]</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.T">
+<code class="descname">T</code><a class="headerlink" href="#cantera.FlameBase.T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array containing the temperature [K] at each grid point.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.V">
+<code class="descname">V</code><a class="headerlink" href="#cantera.FlameBase.V" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array containing the tangential velocity gradient [1/s] at each point.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.X">
+<code class="descname">X</code><a class="headerlink" href="#cantera.FlameBase.X" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the species mole fractions. Can be set as an array, as a dictionary,
+or as a string. Always returns an array:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">phase</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phase</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;H2&#39;</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;O2&#39;</span><span class="p">:</span><span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;AR&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phase</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;H2:0.1, O2:0.4, AR:0.5&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phase</span><span class="o">.</span><span class="n">X</span>
+<span class="go">array([0.1, 0, 0, 0.4, 0, 0, 0, 0, 0.5])</span>
+</pre></div>
+</div>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.Y">
+<code class="descname">Y</code><a class="headerlink" href="#cantera.FlameBase.Y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the species mass fractions. Can be set as an array, as a dictionary,
+or as a string. Always returns an array:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">phase</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phase</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;H2&#39;</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;O2&#39;</span><span class="p">:</span><span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;AR&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phase</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="s1">&#39;H2:0.1, O2:0.4, AR:0.5&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phase</span><span class="o">.</span><span class="n">Y</span>
+<span class="go">array([0.1, 0, 0, 0.4, 0, 0, 0, 0, 0.5])</span>
+</pre></div>
+</div>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.chemical_potentials">
+<code class="descname">chemical_potentials</code><a class="headerlink" href="#cantera.FlameBase.chemical_potentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of species chemical potentials [J/kmol].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.concentrations">
+<code class="descname">concentrations</code><a class="headerlink" href="#cantera.FlameBase.concentrations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the species concentrations [kmol/m^3].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.cp">
+<code class="descname">cp</code><a class="headerlink" href="#cantera.FlameBase.cp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Heat capacity at constant pressure [J/kg/K or J/kmol/K] depending
+on <code class="xref py py-obj docutils literal notranslate"><span class="pre">basis</span></code>.</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.cp_mass">
+<code class="descname">cp_mass</code><a class="headerlink" href="#cantera.FlameBase.cp_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific heat capacity at constant pressure [J/kg/K].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.cp_mole">
+<code class="descname">cp_mole</code><a class="headerlink" href="#cantera.FlameBase.cp_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Molar heat capacity at constant pressure [J/kmol/K].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.creation_rates">
+<code class="descname">creation_rates</code><a class="headerlink" href="#cantera.FlameBase.creation_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creation rates for each species. [kmol/m^3/s] for bulk phases or
+[kmol/m^2/s] for surface phases.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.cv">
+<code class="descname">cv</code><a class="headerlink" href="#cantera.FlameBase.cv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Heat capacity at constant volume [J/kg/K or J/kmol/K] depending on
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">basis</span></code>.</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.cv_mass">
+<code class="descname">cv_mass</code><a class="headerlink" href="#cantera.FlameBase.cv_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific heat capacity at constant volume [J/kg/K].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.cv_mole">
+<code class="descname">cv_mole</code><a class="headerlink" href="#cantera.FlameBase.cv_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Molar heat capacity at constant volume [J/kmol/K].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.delta_enthalpy">
+<code class="descname">delta_enthalpy</code><a class="headerlink" href="#cantera.FlameBase.delta_enthalpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in enthalpy for each reaction [J/kmol].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.delta_entropy">
+<code class="descname">delta_entropy</code><a class="headerlink" href="#cantera.FlameBase.delta_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in entropy for each reaction [J/kmol/K].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.delta_gibbs">
+<code class="descname">delta_gibbs</code><a class="headerlink" href="#cantera.FlameBase.delta_gibbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in Gibbs free energy for each reaction [J/kmol].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.delta_standard_enthalpy">
+<code class="descname">delta_standard_enthalpy</code><a class="headerlink" href="#cantera.FlameBase.delta_standard_enthalpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in standard-state enthalpy (independent of composition) for
+each reaction [J/kmol].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.delta_standard_entropy">
+<code class="descname">delta_standard_entropy</code><a class="headerlink" href="#cantera.FlameBase.delta_standard_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in standard-state entropy (independent of composition) for
+each reaction [J/kmol/K].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.delta_standard_gibbs">
+<code class="descname">delta_standard_gibbs</code><a class="headerlink" href="#cantera.FlameBase.delta_standard_gibbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in standard-state Gibbs free energy (independent of composition)
+for each reaction [J/kmol].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.density">
+<code class="descname">density</code><a class="headerlink" href="#cantera.FlameBase.density" title="Permalink to this definition">¶</a></dt>
+<dd><p>Density [kg/m^3 or kmol/m^3] depending on <code class="xref py py-obj docutils literal notranslate"><span class="pre">basis</span></code>.</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.density_mass">
+<code class="descname">density_mass</code><a class="headerlink" href="#cantera.FlameBase.density_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Mass) density [kg/m^3].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.density_mole">
+<code class="descname">density_mole</code><a class="headerlink" href="#cantera.FlameBase.density_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Molar density [kmol/m^3].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.destruction_rates">
+<code class="descname">destruction_rates</code><a class="headerlink" href="#cantera.FlameBase.destruction_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destruction rates for each species. [kmol/m^3/s] for bulk phases or
+[kmol/m^2/s] for surface phases.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.electrochemical_potentials">
+<code class="descname">electrochemical_potentials</code><a class="headerlink" href="#cantera.FlameBase.electrochemical_potentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of species electrochemical potentials [J/kmol].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FlameBase.elemental_mass_fraction">
+<code class="descname">elemental_mass_fraction</code><span class="sig-paren">(</span><em>m</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlameBase.elemental_mass_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the elemental mass fraction <span class="math">\(Z_{\mathrm{mass},m}\)</span> of element
+<span class="math">\(m\)</span> at each grid point, which is defined as:</p>
+<div class="math">
+\[Z_{\mathrm{mass},m} = \sum_k \frac{a_{m,k} M_m}{M_k} Y_k
+
+\]</div>
+<p>with <span class="math">\(a_{m,k}\)</span> being the number of atoms of element <span class="math">\(m\)</span> in
+species <span class="math">\(k\)</span>, <span class="math">\(M_m\)</span> the atomic weight of element <span class="math">\(m\)</span>,
+<span class="math">\(M_k\)</span> the molecular weight of species <span class="math">\(k\)</span>, and <span class="math">\(Y_k\)</span>
+the mass fraction of species <span class="math">\(k\)</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>m</strong> – Base element, may be specified by name or by index.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">phase</span><span class="o">.</span><span class="n">elemental_mass_fraction</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+<span class="go">[1.0, ..., 0.0]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FlameBase.elemental_mole_fraction">
+<code class="descname">elemental_mole_fraction</code><span class="sig-paren">(</span><em>m</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlameBase.elemental_mole_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the elemental mole fraction <span class="math">\(Z_{\mathrm{mole},m}\)</span> of element
+<span class="math">\(m\)</span> at each grid point, which is defined as:</p>
+<div class="math">
+\[Z_{\mathrm{mole},m} = \sum_k \frac{a_{m,k}}{\sum_j a_{j,k}} X_k
+
+\]</div>
+<p>with <span class="math">\(a_{m,k}\)</span> being the number of atoms of element <span class="math">\(m\)</span> in
+species <span class="math">\(k\)</span> and <span class="math">\(X_k\)</span> the mole fraction of species
+<span class="math">\(k\)</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>m</strong> – Base element, may be specified by name or by index.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">phase</span><span class="o">.</span><span class="n">elemental_mole_fraction</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+<span class="go">[1.0, ..., 0.0]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.energy_enabled">
+<code class="descname">energy_enabled</code><a class="headerlink" href="#cantera.FlameBase.energy_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set whether or not to solve the energy equation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.enthalpy_mass">
+<code class="descname">enthalpy_mass</code><a class="headerlink" href="#cantera.FlameBase.enthalpy_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific enthalpy [J/kg].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.enthalpy_mole">
+<code class="descname">enthalpy_mole</code><a class="headerlink" href="#cantera.FlameBase.enthalpy_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Molar enthalpy [J/kmol].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.entropy_mass">
+<code class="descname">entropy_mass</code><a class="headerlink" href="#cantera.FlameBase.entropy_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific entropy [J/kg].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.entropy_mole">
+<code class="descname">entropy_mole</code><a class="headerlink" href="#cantera.FlameBase.entropy_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Molar entropy [J/kmol/K].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.equilibrium_constants">
+<code class="descname">equilibrium_constants</code><a class="headerlink" href="#cantera.FlameBase.equilibrium_constants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equilibrium constants in concentration units for all reactions.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.forward_rate_constants">
+<code class="descname">forward_rate_constants</code><a class="headerlink" href="#cantera.FlameBase.forward_rate_constants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward rate constants for all reactions. The computed values include
+all temperature-dependent, pressure-dependent, and third body
+contributions. Units are a combination of kmol, m^3 and s, that depend
+on the rate expression for the reaction.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.forward_rates_of_progress">
+<code class="descname">forward_rates_of_progress</code><a class="headerlink" href="#cantera.FlameBase.forward_rates_of_progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward rates of progress for the reactions. [kmol/m^3/s] for bulk
+phases or [kmol/m^2/s] for surface phases.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.g">
+<code class="descname">g</code><a class="headerlink" href="#cantera.FlameBase.g" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gibbs free energy [J/kg or J/kmol] depending on <code class="xref py py-obj docutils literal notranslate"><span class="pre">basis</span></code>.</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.gas">
+<code class="descname">gas</code><a class="headerlink" href="#cantera.FlameBase.gas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.FlameBase.get_refine_criteria">
+<code class="descname">get_refine_criteria</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlameBase.get_refine_criteria" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a dictionary of the criteria used for grid refinement. The items in
+the dictionary are the <code class="docutils literal notranslate"><span class="pre">ratio</span></code>, <code class="docutils literal notranslate"><span class="pre">slope</span></code>, <code class="docutils literal notranslate"><span class="pre">curve</span></code>, and <code class="docutils literal notranslate"><span class="pre">prune</span></code>,
+as defined in <a class="reference internal" href="#cantera.FlameBase.set_refine_criteria" title="cantera.FlameBase.set_refine_criteria"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_refine_criteria</span></code></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">set_refine_criteria</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">curve</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">prune</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">get_refine_criteria</span><span class="p">()</span>
+<span class="go">{&#39;ratio&#39;: 3.0, &#39;slope&#39;: 0.1, &#39;curve&#39;: 0.2, &#39;prune&#39;: 0.0}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.gibbs_mass">
+<code class="descname">gibbs_mass</code><a class="headerlink" href="#cantera.FlameBase.gibbs_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific Gibbs free energy [J/kg].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.gibbs_mole">
+<code class="descname">gibbs_mole</code><a class="headerlink" href="#cantera.FlameBase.gibbs_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Molar Gibbs free energy [J/kmol].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.grid">
+<code class="descname">grid</code><a class="headerlink" href="#cantera.FlameBase.grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of grid point positions along the flame.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.h">
+<code class="descname">h</code><a class="headerlink" href="#cantera.FlameBase.h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enthalpy [J/kg or J/kmol] depending on <code class="xref py py-obj docutils literal notranslate"><span class="pre">basis</span></code>.</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.heat_production_rates">
+<code class="descname">heat_production_rates</code><a class="headerlink" href="#cantera.FlameBase.heat_production_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the volumetric heat production rates [W/m^3] on a per-reaction
+basis. The sum over all reactions results in the total volumetric heat
+release rate.
+Example: C. K. Law: Combustion Physics (2006), Fig. 7.8.6</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">heat_production_rates</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># heat production rate of the 2nd reaction</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.heat_release_rate">
+<code class="descname">heat_release_rate</code><a class="headerlink" href="#cantera.FlameBase.heat_release_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the total volumetric heat release rate [W/m^3].</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.int_energy">
+<code class="descname">int_energy</code><a class="headerlink" href="#cantera.FlameBase.int_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal energy in [J/kg or J/kmol].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.int_energy_mass">
+<code class="descname">int_energy_mass</code><a class="headerlink" href="#cantera.FlameBase.int_energy_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific internal energy [J/kg].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.int_energy_mole">
+<code class="descname">int_energy_mole</code><a class="headerlink" href="#cantera.FlameBase.int_energy_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Molar internal energy [J/kmol].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.isothermal_compressibility">
+<code class="descname">isothermal_compressibility</code><a class="headerlink" href="#cantera.FlameBase.isothermal_compressibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Isothermal compressibility [1/Pa].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.max_grid_points">
+<code class="descname">max_grid_points</code><a class="headerlink" href="#cantera.FlameBase.max_grid_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the maximum number of grid points used in the solution of
+this flame.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.mix_diff_coeffs">
+<code class="descname">mix_diff_coeffs</code><a class="headerlink" href="#cantera.FlameBase.mix_diff_coeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mixture-averaged diffusion coefficients [m^2/s] relating the
+mass-averaged diffusive fluxes (with respect to the mass averaged
+velocity) to gradients in the species mole fractions.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.mix_diff_coeffs_mass">
+<code class="descname">mix_diff_coeffs_mass</code><a class="headerlink" href="#cantera.FlameBase.mix_diff_coeffs_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mixture-averaged diffusion coefficients [m^2/s] relating the
+diffusive mass fluxes to gradients in the species mass fractions.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.mix_diff_coeffs_mole">
+<code class="descname">mix_diff_coeffs_mole</code><a class="headerlink" href="#cantera.FlameBase.mix_diff_coeffs_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mixture-averaged diffusion coefficients [m^2/s] relating the
+molar diffusive fluxes to gradients in the species mole fractions.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.net_production_rates">
+<code class="descname">net_production_rates</code><a class="headerlink" href="#cantera.FlameBase.net_production_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Net production rates for each species. [kmol/m^3/s] for bulk phases or
+[kmol/m^2/s] for surface phases.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.net_rates_of_progress">
+<code class="descname">net_rates_of_progress</code><a class="headerlink" href="#cantera.FlameBase.net_rates_of_progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Net rates of progress for the reactions. [kmol/m^3/s] for bulk phases
+or [kmol/m^2/s] for surface phases.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.partial_molar_cp">
+<code class="descname">partial_molar_cp</code><a class="headerlink" href="#cantera.FlameBase.partial_molar_cp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of species partial molar specific heat capacities at constant
+pressure [J/kmol/K].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.partial_molar_enthalpies">
+<code class="descname">partial_molar_enthalpies</code><a class="headerlink" href="#cantera.FlameBase.partial_molar_enthalpies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of species partial molar enthalpies [J/kmol].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.partial_molar_entropies">
+<code class="descname">partial_molar_entropies</code><a class="headerlink" href="#cantera.FlameBase.partial_molar_entropies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of species partial molar entropies [J/kmol/K].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.partial_molar_int_energies">
+<code class="descname">partial_molar_int_energies</code><a class="headerlink" href="#cantera.FlameBase.partial_molar_int_energies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of species partial molar internal energies [J/kmol].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.partial_molar_volumes">
+<code class="descname">partial_molar_volumes</code><a class="headerlink" href="#cantera.FlameBase.partial_molar_volumes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of species partial molar volumes [m^3/kmol].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.radiation_enabled">
+<code class="descname">radiation_enabled</code><a class="headerlink" href="#cantera.FlameBase.radiation_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set whether or not to include radiative heat transfer</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.reverse_rate_constants">
+<code class="descname">reverse_rate_constants</code><a class="headerlink" href="#cantera.FlameBase.reverse_rate_constants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse rate constants for all reactions. The computed values include
+all temperature-dependent, pressure-dependent, and third body
+contributions. Units are a combination of kmol, m^3 and s, that depend
+on the rate expression for the reaction.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.reverse_rates_of_progress">
+<code class="descname">reverse_rates_of_progress</code><a class="headerlink" href="#cantera.FlameBase.reverse_rates_of_progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse rates of progress for the reactions. [kmol/m^3/s] for bulk
+phases or [kmol/m^2/s] for surface phases.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_reactions</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.s">
+<code class="descname">s</code><a class="headerlink" href="#cantera.FlameBase.s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Entropy [J/kg/K or J/kmol/K] depending on <code class="xref py py-obj docutils literal notranslate"><span class="pre">basis</span></code>.</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FlameBase.set_boundary_emissivities">
+<code class="descname">set_boundary_emissivities</code><span class="sig-paren">(</span><em>e_left</em>, <em>e_right</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlameBase.set_boundary_emissivities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cantera.FlameBase.set_gas_state">
+<code class="descname">set_gas_state</code><span class="sig-paren">(</span><em>point</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlameBase.set_gas_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the state of the the Solution object used for calculations,
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">self.gas</span></code>, to the temperature and composition at the point with index
+<em>point</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FlameBase.set_profile">
+<code class="descname">set_profile</code><span class="sig-paren">(</span><em>component</em>, <em>locations</em>, <em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlameBase.set_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set an initial estimate for a profile of one component.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>component</strong> – component name or index</li>
+<li><strong>positions</strong> – sequence of relative positions, from 0 on the left to 1 on the right</li>
+<li><strong>values</strong> – sequence of values at the relative positions specified in <em>positions</em></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">set_profile</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">400.0</span><span class="p">,</span> <span class="mf">800.0</span><span class="p">,</span> <span class="mf">1500.0</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FlameBase.set_refine_criteria">
+<code class="descname">set_refine_criteria</code><span class="sig-paren">(</span><em>ratio=10.0</em>, <em>slope=0.8</em>, <em>curve=0.8</em>, <em>prune=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlameBase.set_refine_criteria" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the criteria used for grid refinement.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ratio</strong> – additional points will be added if the ratio of the spacing on
+either side of a grid point exceeds this value</li>
+<li><strong>slope</strong> – maximum difference in value between two adjacent points, scaled by
+the maximum difference in the profile (0.0 &lt; slope &lt; 1.0). Adds
+points in regions of high slope.</li>
+<li><strong>curve</strong> – maximum difference in slope between two adjacent intervals, scaled
+by the maximum difference in the profile (0.0 &lt; curve &lt; 1.0). Adds
+points in regions of high curvature.</li>
+<li><strong>prune</strong> – if the slope or curve criteria are satisfied to the level of
+‘prune’, the grid point is assumed not to be needed and is removed.
+Set prune significantly smaller than ‘slope’ and ‘curve’. Set to
+zero to disable pruning the grid.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">set_refine_criteria</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">curve</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">prune</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FlameBase.solution">
+<code class="descname">solution</code><span class="sig-paren">(</span><em>component</em>, <em>point=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlameBase.solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the solution at one point or for the full flame domain (if
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">point=None</span></code>) for the specified <em>component</em>. The <em>component</em> can be
+specified by name or index.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.soret_enabled">
+<code class="descname">soret_enabled</code><a class="headerlink" href="#cantera.FlameBase.soret_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set whether or not to include diffusive mass fluxes due to the
+Soret effect. Enabling this option works only when using the
+multicomponent transport model.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.standard_cp_R">
+<code class="descname">standard_cp_R</code><a class="headerlink" href="#cantera.FlameBase.standard_cp_R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of nondimensional species standard-state specific heat capacities
+at constant pressure at the current temperature and pressure.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.standard_enthalpies_RT">
+<code class="descname">standard_enthalpies_RT</code><a class="headerlink" href="#cantera.FlameBase.standard_enthalpies_RT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of nondimensional species standard-state enthalpies at the
+current temperature and pressure.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.standard_entropies_R">
+<code class="descname">standard_entropies_R</code><a class="headerlink" href="#cantera.FlameBase.standard_entropies_R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of nondimensional species standard-state entropies at the
+current temperature and pressure.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.standard_gibbs_RT">
+<code class="descname">standard_gibbs_RT</code><a class="headerlink" href="#cantera.FlameBase.standard_gibbs_RT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of nondimensional species standard-state Gibbs free energies at
+the current temperature and pressure.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.standard_int_energies_RT">
+<code class="descname">standard_int_energies_RT</code><a class="headerlink" href="#cantera.FlameBase.standard_int_energies_RT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of nondimensional species standard-state internal energies at the
+current temperature and pressure.</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.thermal_conductivity">
+<code class="descname">thermal_conductivity</code><a class="headerlink" href="#cantera.FlameBase.thermal_conductivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thermal conductivity. [W/m/K].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.thermal_diff_coeffs">
+<code class="descname">thermal_diff_coeffs</code><a class="headerlink" href="#cantera.FlameBase.thermal_diff_coeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a one-dimensional array of the species thermal diffusion
+coefficients [kg/m/s].</p>
+<p>Returns an array of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> x <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.thermal_expansion_coeff">
+<code class="descname">thermal_expansion_coeff</code><a class="headerlink" href="#cantera.FlameBase.thermal_expansion_coeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thermal expansion coefficient [1/K].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.transport_model">
+<code class="descname">transport_model</code><a class="headerlink" href="#cantera.FlameBase.transport_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the transport model used by the <a class="reference internal" href="importing.html#cantera.Solution" title="cantera.Solution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Solution</span></code></a> object used for this
+simulation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.u">
+<code class="descname">u</code><a class="headerlink" href="#cantera.FlameBase.u" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array containing the velocity [m/s] normal to the flame at each point.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.viscosity">
+<code class="descname">viscosity</code><a class="headerlink" href="#cantera.FlameBase.viscosity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Viscosity [Pa-s].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.volume">
+<code class="descname">volume</code><a class="headerlink" href="#cantera.FlameBase.volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific volume [m^3/kg or m^3/kmol] depending on <code class="xref py py-obj docutils literal notranslate"><span class="pre">basis</span></code>.</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.volume_mass">
+<code class="descname">volume_mass</code><a class="headerlink" href="#cantera.FlameBase.volume_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific volume [m^3/kg].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cantera.FlameBase.volume_mole">
+<code class="descname">volume_mole</code><a class="headerlink" href="#cantera.FlameBase.volume_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Molar volume [m^3/kmol].</p>
+<p>Returns an array of length <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_points</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cantera.FlameBase.write_csv">
+<code class="descname">write_csv</code><span class="sig-paren">(</span><em>filename</em>, <em>species='X'</em>, <em>quiet=True</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlameBase.write_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the velocity, temperature, density, and species profiles
+to a CSV file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> – Output file name</li>
+<li><strong>species</strong> – Attribute to use obtaining species profiles, e.g. <code class="docutils literal notranslate"><span class="pre">X</span></code> for
+mole fractions or <code class="docutils literal notranslate"><span class="pre">Y</span></code> for mass fractions.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+                </div>
+                </div>
+            </div>
+             <!-- end of block document -->
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">One-dimensional Reacting Flows</a><ul>
+<li><a class="reference internal" href="#composite-domains">Composite Domains</a><ul>
+<li><a class="reference internal" href="#freeflame">FreeFlame</a></li>
+<li><a class="reference internal" href="#burnerflame">BurnerFlame</a></li>
+<li><a class="reference internal" href="#counterflowdiffusionflame">CounterflowDiffusionFlame</a></li>
+<li><a class="reference internal" href="#counterflowpremixedflame">CounterflowPremixedFlame</a></li>
+<li><a class="reference internal" href="#impingingjet">ImpingingJet</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#flow-domains">Flow Domains</a><ul>
+<li><a class="reference internal" href="#freeflow">FreeFlow</a></li>
+<li><a class="reference internal" href="#axisymmetricstagnationflow">AxisymmetricStagnationFlow</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundaries">Boundaries</a><ul>
+<li><a class="reference internal" href="#inlet1d">Inlet1D</a></li>
+<li><a class="reference internal" href="#outlet1d">Outlet1D</a></li>
+<li><a class="reference internal" href="#outletreservoir1d">OutletReservoir1D</a></li>
+<li><a class="reference internal" href="#symmetryplane1d">SymmetryPlane1D</a></li>
+<li><a class="reference internal" href="#surface1d">Surface1D</a></li>
+<li><a class="reference internal" href="#reactingsurface1d">ReactingSurface1D</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#base-classes">Base Classes</a><ul>
+<li><a class="reference internal" href="#domain1d">Domain1D</a></li>
+<li><a class="reference internal" href="#boundary1d">Boundary1D</a></li>
+<li><a class="reference internal" href="#sim1d">Sim1D</a></li>
+<li><a class="reference internal" href="#flamebase">FlameBase</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Python Module Documentation</a><ul>
+      <li>Previous: <a href="zerodim.html" title="previous chapter">Zero-Dimensional Reactor Networks</a></li>
+      <li>Next: <a href="constants.html" title="next chapter">Physical Constants</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/cython/onedim.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+    </div>
+  </div>
+                <div class="clearer"></div>
+          </div>
+           <!--End of block content-->
+
+          <div class="footer">
+            &copy;2001-2018, Cantera Developers.
+            
+            |
+            Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
+            &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+            
+            |
+            <a href="../_sources/cython/onedim.rst.txt"
+                rel="nofollow">Page source</a>
+          </div>
+      </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha256-98vAGjEDGN79TjHkYWVD4s87rvWkdWLHPs5MC3FvFX4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</body>
+</html>

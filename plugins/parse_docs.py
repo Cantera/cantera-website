@@ -91,9 +91,9 @@ class ParseDocs(Task):
 
         output_folder = Path(self.kw['output_folder'])
         # Uncomment these two lines when 2.4 is released and put into the api-docs folder
-        # cantera_version = self.kw['cantera_version']
-        # docs_folder = self.kw['docs_folders']['api-docs/docs-{}'.format(cantera_version)]
-        docs_folder = Path(self.kw['docs_folders']['../cantera/build/docs'])
+        cantera_version = self.kw['cantera_version']
+        docs_folder = self.kw['docs_folders']['api-docs/docs-{}'.format(cantera_version)]
+        # docs_folder = Path(self.kw['docs_folders']['../cantera/build/docs'])
 
         base_dir = output_folder/docs_folder/'sphinx'/'html'
 
@@ -102,6 +102,6 @@ class ParseDocs(Task):
             yield {
                 'basename': self.name,
                 'name': dirname,
-                'task_dep': ['copy_files'],
+                'task_dep': ['copy_tree'],
                 'actions': [(process_targets, [dirname, base_dir, output_folder/docs_folder])],
             }

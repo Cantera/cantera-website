@@ -1,7 +1,10 @@
 # Nikola directories
 output/
 cache/
-.doit.db.db
+.doit.db.*
+
+# CI Support
+.ci_support/ctdeploy_key
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

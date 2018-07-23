@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import time
+import os
 
 # !! This is the configuration of Nikola. !! #
 # !!  You should edit it to your liking.  !! #
@@ -20,10 +21,11 @@ BLOG_AUTHOR = "Cantera Developers"  # (translatable)
 BLOG_TITLE = "Cantera"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "https://cantera.org/"
+SITE_URL = "https://testing.cantera.org/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
-# BASE_URL = "https://cantera.org/"
+# Don't forget the protocol and trailing slash
+BASE_URL = "https://testing.cantera.org/"
 BLOG_EMAIL = "steering@cantera.org"
 BLOG_DESCRIPTION = "This site is for the Cantera software"  # (translatable)
 
@@ -288,25 +290,27 @@ TIMEZONE = "America/New_York"
 
 # One or more folders containing files to be copied as-is into the output.
 # The format is a dictionary of {source: relative destination}.
-# Default is:
-# This is the "production" version of this dictionary
 
-# FILES_FOLDERS = {'api-docs/docs': 'documentation/docs-{}'.format(CANTERA_VERSION),
-#                  'api-docs/dev-docs': 'documentation/dev',
-#                  'api-docs/docs-2.0': 'documentation/docs-2.0',
-#                  'api-docs/docs-2.1': 'documentation/docs-2.1',
-#                  'api-docs/docs-2.2': 'documentation/docs-2.2',
-#                  'api-docs/docs-2.3': 'documentation/docs-2.3',
-#                  }
+# This is the "production" version of this dictionary
+FILES_FOLDERS = {
+   'api-docs/docs-2.0': 'documentation/docs-2.0',
+   'api-docs/docs-2.1': 'documentation/docs-2.1',
+   'api-docs/docs-2.2': 'documentation/docs-2.2',
+   'api-docs/docs-2.3': 'documentation/docs-2.3',
+   'api-docs/docs-2.4': 'documentation/docs-2.4',
+   'files/survey2013': 'survey2013',
+}
 
 # This is the "development" version of this dictionary
-FILES_FOLDERS = {'../cantera/build/docs': 'documentation/docs-{}'.format(CANTERA_VERSION),
-                 '../cantera/build/dev-docs': 'documentation/dev',
-                 'api-docs/docs-2.0': 'documentation/docs-2.0',
-                 'api-docs/docs-2.1': 'documentation/docs-2.1',
-                 'api-docs/docs-2.2': 'documentation/docs-2.2',
-                 'api-docs/docs-2.3': 'documentation/docs-2.3',
-                 }
+# FILES_FOLDERS = {
+#     '../cantera/build/docs': 'documentation/docs-{}'.format(CANTERA_VERSION),
+#     '../cantera/build/dev-docs': 'documentation/dev',
+#     'api-docs/docs-2.0': 'documentation/docs-2.0',
+#     'api-docs/docs-2.1': 'documentation/docs-2.1',
+#     'api-docs/docs-2.2': 'documentation/docs-2.2',
+#     'api-docs/docs-2.3': 'documentation/docs-2.3',
+#     'files/survey2013': 'survey2013',
+# }
 
 # Which means copy 'files' into 'output'
 
@@ -687,7 +691,7 @@ GITHUB_COMMIT_SOURCE = True
 # Where the output site should be located
 # If you don't use an absolute path, it will be considered as relative
 # to the location of conf.py
-# OUTPUT_FOLDER = 'output'
+OUTPUT_FOLDER = os.getenv('NIKOLA_OUTPUT_DIR', 'output')
 
 # where the "cache" of partial generated content should be located
 # default: 'cache'
@@ -1308,7 +1312,8 @@ USE_CDN_WARNING = False
 USE_BUNDLES = False
 
 # Plugins you don't want to use. Be careful :-)
-DISABLED_PLUGINS = ['render_archive', 'classify_archive', 'render_galleries', 'render_listings']
+DISABLED_PLUGINS = ['render_archive', 'classify_archive', 'render_galleries', 'render_listings',
+                    'copy_files']
 
 # Special settings to disable only parts of the indexes plugin.
 # Use with care.
