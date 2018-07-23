@@ -1,0 +1,222 @@
+
+=================
+Utility Functions
+=================
+
+Utilities
+---------
+
+    .. mat:function:: adddir(d)
+
+        Add a directory to the search path.
+
+        Adds directory ``d`` to the set of directories where Cantera looks for
+        input and data files.
+        
+        :param d:
+            Path to add to the MATLAB search path.
+        
+
+    .. mat:function:: ck2cti(infile, thermo, transport)
+
+        Convert a CHEMKIN input file to Cantera format.
+
+        Examples::
+        
+           f = ck2cti('chem.inp')
+           f = ck2cti('chem.inp', 'therm.dat')
+           f = ck2cti('chem.inp', 'therm.dat', 'tran.dat')
+        
+        These 3 statements all create a Cantera input file 'chem.cti.' In
+        the first case, the CK-format file contains all required species
+        thermo data, while in the second case some or all thermo data is
+        read from file 'therm.dat.' In the third form, the input file
+        created will also contain transport property parameters. The
+        function return value is a string containing the output file
+        name.
+        
+        :param infile:
+            Chemistry input file in CHEMKIN format. Required.
+        :param thermo:
+            Thermodynamic input file in CHEMKIN format. Optional if
+            thermodynamic data is specified in the chemistry input file.
+        :param transport:
+            Transport input file in CHEMKIN format. Optional.
+        :return:
+            String with CTML output filename.
+        
+
+    .. mat:function:: cleanup()
+
+        Delete all stored Cantera objects and reclaim memory.
+
+        
+
+    .. mat:function:: geterr
+
+        Get the error message from a Cantera error.
+
+        
+
+    .. mat:function:: getDataDirectories()
+
+        Get a cell array of the directories searched for data files.
+
+        Get a cell array of the directories Cantera searches for data files
+        
+        :return:
+            Cell array with strings representing the data file search directories
+        
+
+    .. mat:function:: canteraVersion()
+
+        Get Cantera version information
+
+        
+        :return:
+            A string containing the Cantera version
+        
+
+    .. mat:function:: canteraGitCommit()
+
+        Get Cantera Git commit hash
+
+        
+        :return:
+            A string containing the Git commit hash for the current version of Cantera
+        
+
+XML_Node
+--------
+
+.. mat:class:: XML_Node(name, src, wrap)
+
+    XML_Node class constructor
+
+    :param name:
+        String name of the XML_Node that should be created.
+    :param src:
+        String XML file name from which an instance of XML_Node
+        should be created. Reads the XML tree from the input file.
+    :param wrap:
+        Specify the ID of the XML_Node.
+    :return:
+        Instance of class :mat:func:`XML_Node`
+    
+
+    .. mat:function:: addChild(root, name, val)
+
+        Add a child to the root.
+
+        :param root:
+            Instance of class :mat:func:`XML_Node`
+        :param name:
+            String ID of the child to be added.
+        :param val:
+            String value to be added to the child.
+        :return:
+            Instance of class :mat:func:`XML_Node`
+        
+
+    .. mat:function:: attrib(x, key)
+
+        Get the XML_Node attribute with a given key.
+
+        :param x:
+            Instance of class :mat:func:`XML_Node`
+        :param key:
+            String key to look up.
+        :return:
+            Instance of class :mat:func:`XML_Node`
+        
+
+    .. mat:function:: build(x, file, pre)
+
+        Build an XML_Node in memory from an input file.
+
+        :param x:
+            Instance of class :mat:func:`XML_Node`
+        :param file:
+            String input file name.
+        :param pre:
+            Determine the method of building. If not specified or
+            less than zero, use XML_Node::build. Otherwise, use
+            XML_Node::get_XML_File.
+        :return:
+            Instance of class :mat:func:`XML_Node`
+        
+
+    .. mat:function:: child(x, loc)
+
+        Get the child of an XML_Node instance.
+
+        :param x:
+            Instance of class :mat:func:`XML_Node`
+        :param loc:
+            String loc to search for.
+        :return:
+            Instance of class :mat:func:`XML_Node`
+        
+
+    .. mat:function:: findByID(root, id)
+
+        Get an XML element given its ID.
+
+        :param root:
+            Instance of class :mat:func:`XML_Node`
+        :param id:
+            String ID of the element to search for.
+        :return:
+            Instance of class :mat:func:`XML_Node`
+        
+
+    .. mat:function:: findByName(root, name)
+
+        Get an XML element given its name.
+
+        :param root:
+            Instance of class :mat:func:`XML_Node`
+        :param name:
+            String name of the element to search for.
+        :return:
+            Instance of class :mat:func:`XML_Node`
+        
+
+    .. mat:function:: nChildren(root)
+
+        Get the number of children of an XML_Node.
+
+        :param root:
+            Instance of class :mat:func:`XML_Node`
+        :return:
+            Integer number of children of the input XML_Node
+        
+
+    .. mat:function:: value(x, loc)
+
+        Get the value at a location in an XML_Node
+
+        value(x) returns the value of the XML element.
+        value(x, loc) is shorthand for value(child(x,loc))
+        
+        :param x:
+            Instance of class :mat:func:`XML_Node`
+        :param loc:
+        :return:
+            Instance of class :mat:func:`XML_Node`
+        
+
+    .. mat:function:: write(x, file)
+
+        Write XML_Node to file.
+
+        
+        :param x:
+            Instance of class :mat:func:`XML_Node`
+        :param file:
+            Name of the output file to be written.
+        :return:
+            Instance of class :mat:func:`XML_Node`
+        
+
+
