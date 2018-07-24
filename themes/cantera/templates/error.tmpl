@@ -1,8 +1,8 @@
 {% extends "base.tmpl" %}
 
-{% block extrahead %}
-{{ super() }}
-<base href="{{ blog_url }}" />
+{% block extra_head %}
+  {{ super() }}
+  <base href="{{ blog_url }}">
 {% endblock %}
 
 {% block content %}
@@ -10,8 +10,8 @@
 <p class="lead">{{ post.meta('description') }}</p>
 {{ post.text() }}
 <p>
-  If you clicked a link on cantera.org and ended up here, please <a
-  href="https://github.com/Cantera/cantera-website/issues/new">file an issue</a> on the GitHub
+  If you clicked a link on <a href="https://cantera.org">cantera.org</a> and ended up here, please
+  <a href="https://github.com/Cantera/cantera-website/issues/new">file an issue</a> on the GitHub
   repository for this website.
 </p>
 {% endblock %}
