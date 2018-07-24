@@ -21,5 +21,12 @@ script:
     if [[ "${TRAVIS_PULL_REQUEST}" == "false" ]] && [[ "${TRAVIS_BRANCH}" == "master" ]]; then
       openssl aes-256-cbc -k "${ctdeploy_pass}" -in ./.ci_support/ctdeploy_key.enc -out ./.ci_support/ctdeploy_key -d;
       chmod 0600 ./.ci_support/ctdeploy_key;
-      rsync -av -e "ssh -i ./.ci_support/ctdeploy_key" --delete --delete-excluded --filter="P /mw_headers.git" --exclude="*.map" --exclude="*.md5" "${NIKOLA_OUTPUT_DIR}/" ctdeploy@cantera.org:testing.cantera.org;
+      RSYNC_SSH_OPTIONS="-i ./.ci_support/ctdeploy_key";
+      RSYNC_FILTERS="--filter=\"P /mw_headers.git\" --filter=\"P /documentation/dev\"";
+      RSYNC_EXCLUDES="--exclude=\"*.map\" --exclude=\"*.md5\"";
+      RSYNC_DELETE="--delete --delete-excluded";
+      RSYNC_USER="ctdeploy";
+      RSYNC_SERVER="cantera.org";
+      RSYNC_DEST="testing.cantera.org";
+      rsync -avzP -e "ssh ${RSYNC_SSH_OPTIONS}" "${RSYNC_FILTERS}" "${RSYNC_EXCLUDES}" "${RSYNC_DELETE}" "${NIKOLA_OUTPUT_DIR}/" "${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}";
     fi
