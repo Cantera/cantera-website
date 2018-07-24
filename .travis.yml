@@ -22,8 +22,8 @@ script:
       openssl aes-256-cbc -k "${ctdeploy_pass}" -in ./.ci_support/ctdeploy_key.enc -out ./.ci_support/ctdeploy_key -d;
       chmod 0600 ./.ci_support/ctdeploy_key;
       RSYNC_SSH_OPTIONS="-i ./.ci_support/ctdeploy_key";
-      RSYNC_FILTERS="--filter=\"P /mw_headers.git\" --filter=\"P /documentation/dev\"";
-      RSYNC_EXCLUDES="--exclude=\"*.map\" --exclude=\"*.md5\"";
+      RSYNC_FILTERS='--filter="P /mw_headers.git" --filter="P /documentation/dev"';
+      RSYNC_EXCLUDES='--exclude="*.map" --exclude="*.md5"';
       RSYNC_DELETE="--delete --delete-excluded";
       RSYNC_USER="ctdeploy";
       RSYNC_SERVER="cantera.org";
