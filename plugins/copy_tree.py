@@ -1,5 +1,5 @@
 """Copy an entire tree of files."""
-from shutil import copytree, ignore_patterns
+from shutil import copytree, ignore_patterns, rmtree
 import os
 
 from nikola.plugin_categories import Task
@@ -16,11 +16,16 @@ class CopyTree(Task):
         kw = {
             'files_folders': self.site.config['FILES_FOLDERS'],
             'output_folder': self.site.config['OUTPUT_FOLDER'],
-            'filters': self.site.config['FILTERS'],
         }
 
         # Ensure this task is created even if nothing needs to be done
         yield self.group_task()
+
+        def copytree_task(src, dst, ignore):
+            if os.path.exists(dst):
+                rmtree(dst)
+
+            copytree(src=src, dst=dst, ignore=ignore)
 
         for src, rel_dst in kw['files_folders'].items():
             final_dst = os.path.join(kw['output_folder'], rel_dst)
@@ -30,6 +35,7 @@ class CopyTree(Task):
                 'targets': [final_dst],
                 'uptodate': [config_changed(kw, 'copy_tree')],
                 'actions': [
-                    (copytree, [src, final_dst], {'ignore': ignore_patterns('*.md5', '*.map')}),
+                    (copytree_task, [], {'src': src, 'dst': final_dst,
+                                         'ignore': ignore_patterns('*.md5', '*.map')}),
                 ],
             }
