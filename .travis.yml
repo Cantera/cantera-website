@@ -28,5 +28,5 @@ script:
       RSYNC_USER="ctdeploy";
       RSYNC_SERVER="cantera.org";
       RSYNC_DEST="testing.cantera.org";
-      rsync -avzP -e "ssh ${RSYNC_SSH_OPTIONS}" "${RSYNC_FILTERS}" "${RSYNC_EXCLUDES}" "${RSYNC_DELETE}" "${NIKOLA_OUTPUT_DIR}/" "${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}";
+      rsync -avzP -e "ssh ${RSYNC_SSH_OPTIONS}" ${RSYNC_FILTERS} ${RSYNC_EXCLUDES} ${RSYNC_DELETE} "${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST};
     fi
