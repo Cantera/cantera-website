@@ -24,6 +24,7 @@ script:
       chmod 0600 ./.ci_support/ctdeploy_key;
       RSYNC_OPTIONS=(
         -avzP
+        --checksum
         --rsh='ssh -i ./.ci_support/ctdeploy_key'
         --filter='P /mw_headers.git'
         --filter='P /documentation/dev'
