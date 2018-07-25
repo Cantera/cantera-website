@@ -1,6 +1,13 @@
 import re
 from collections import Counter
 from pathlib import Path
+import sys
+
+if not sys.platform.startswith('linux'):
+    # Actually, it can be run on any case-sensitive
+    # file system, but practically this means Linux
+    print('This script must be run on Linux!')
+    sys.exit(1)
 
 
 def get_contents(path):
