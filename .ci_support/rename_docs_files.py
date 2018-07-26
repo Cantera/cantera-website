@@ -63,7 +63,7 @@ for dir in docs_dirs.iterdir():
     print(dir.name, [p.name for p in dup])
     for df in dup:
         for file_name, lines in file_contents.items():
-            if lines is None or file_name == df.name:
+            if lines is None or file_name in [d.name for d in dup]:
                 continue
             new_lines = []
             found = False
@@ -90,4 +90,4 @@ for dir in docs_dirs.iterdir():
                 file_obj.write(ET.tostring(doc).decode('utf-8'))
             df.unlink()
         else:
-            raise Exception('Unknown suffix: {}'.format(df))
+            raise TypeError('Unknown suffix: {}'.format(df))
