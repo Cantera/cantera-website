@@ -1,7 +1,8 @@
-import re
 from collections import Counter
 from pathlib import Path
 import sys
+import lxml.etree as ET
+import lxml.html as HT
 
 if not sys.platform.startswith('linux'):
     # Actually, it can be run on any case-sensitive
@@ -17,6 +18,34 @@ def get_contents(path):
         except UnicodeDecodeError:
             return None
 
+
+def fix_html(etree, dup):
+    head = etree.find('head')
+    for elem, type, loc, _ in head.iterlinks():
+        if not loc.startswith('http'):
+            elem.attrib[type] = '../' + loc
+
+    body = etree.find('body')
+    for elem, type, loc, _ in body.iterlinks():
+        # If the location is one of the duplicate files or an absolute link,
+        # we don't need to change it
+        if not (loc in [d.name for d in dup]) and not loc.startswith('http'):
+            elem.attrib[type] = '../' + loc
+
+    return etree
+
+
+def fix_svg(etree, dup):
+    root = etree.getroot()
+    href_attrib = '{' + root.nsmap['xlink'] + '}href'
+    for link in root.xpath('//*[local-name() = "a"]'):
+        href = link.attrib[href_attrib]
+        if not href.startswith('http') and not (href in [d.name for d in dup]):
+            link.attrib[href_attrib] = '../' + href
+
+    return etree
+
+
 docs_dirs = Path('api-docs')
 for dir in docs_dirs.iterdir():
     # if dir.name != 'docs-2.0':
@@ -30,33 +59,35 @@ for dir in docs_dirs.iterdir():
     files = [p for p in doxy_dir.iterdir() if p.is_file()]
     file_contents = {p.name: get_contents(p) for p in files}
     files_case_ins = [p.name.lower() for p in files]
-    dup = [doxy_dir.joinpath(c) for c, v in Counter(files_case_ins).items() if v > 1]
+    dup = [doxy_dir/c for c, v in Counter(files_case_ins).items() if v > 1]
     print(dir.name, [p.name for p in dup])
-    # dup_files = [files[i] for i, x in enumerate(files_case_ins) for d in dup if x == d]
     for df in dup:
-        found_ever = False
         for file_name, lines in file_contents.items():
-            if lines is None:
+            if lines is None or file_name == df.name:
                 continue
             new_lines = []
             found = False
             for line in lines:
                 if df.name in line:
                     found = True
-                    found_ever = True
                     line = line.replace(df.name, dupe_dir.name + '/' + df.name)
                 new_lines.append(line)
             if found:
-                if file_name in [p.name for p in dup]:
-                    file_contents[file_name] = new_lines
-                else:
-                    with open(doxy_dir.joinpath(file_name), 'w') as file_obj:
-                        file_obj.write(''.join(new_lines))
+                with open(doxy_dir.joinpath(file_name), 'w') as file_obj:
+                    file_obj.write(''.join(new_lines))
+                # continue
 
-        if found_ever:
-            with open(dupe_dir.joinpath(df.name), 'w') as file_obj:
-                file_obj.write(''.join(file_contents[df.name]))
-            doxy_dir.joinpath(df.name).unlink()
+        if df.suffix == '.html':
+            etree = HT.parse(str(df))
+            doc = fix_html(etree, dup)
+            with open(dupe_dir/df.name, 'w') as file_obj:
+                file_obj.write(HT.tostring(doc).decode('utf-8'))
+            df.unlink()
+        elif df.suffix == '.svg':
+            etree = ET.parse(str(df))
+            doc = fix_svg(etree, dup)
+            with open(dupe_dir/df.name, 'w') as file_obj:
+                file_obj.write(ET.tostring(doc).decode('utf-8'))
+            df.unlink()
         else:
-            new_file = dupe_dir.joinpath(df.name)
-            df.replace(new_file)
+            raise Exception('Unknown suffix: {}'.format(df))
