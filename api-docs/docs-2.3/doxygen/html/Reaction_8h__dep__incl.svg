@@ -108,7 +108,7 @@
 <!-- Node35 -->
 <g id="node11" class="node">
 <title>Node35</title>
-<g id="a_node11"><a xlink:href="kinetics_8h.html" target="_top" xlink:title="Support for chemical kinetics calculation from C++ application programs. ">
+<g id="a_node11"><a xlink:href="dupe_files/kinetics_8h.html" target="_top" xlink:title="Support for chemical kinetics calculation from C++ application programs. ">
 <polygon fill="#ffffff" stroke="#000000" points="1070.5,-112.5 1070.5,-131.5 1129.5,-131.5 1129.5,-112.5 1070.5,-112.5"/>
 <text text-anchor="middle" x="1100" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">kinetics.h</text>
 </a>
@@ -405,7 +405,7 @@
 <!-- Node47 -->
 <g id="node23" class="node">
 <title>Node47</title>
-<g id="a_node23"><a xlink:href="onedim_8h.html" target="_top" xlink:title="onedim.h">
+<g id="a_node23"><a xlink:href="dupe_files/onedim_8h.html" target="_top" xlink:title="onedim.h">
 <polygon fill="#ffffff" stroke="#000000" points="1665,-56.5 1665,-75.5 1721,-75.5 1721,-56.5 1665,-56.5"/>
 <text text-anchor="middle" x="1693" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">onedim.h</text>
 </a>

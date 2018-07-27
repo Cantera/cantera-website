@@ -172,7 +172,7 @@
 </g>
 <!-- Node11 -->
 <g id="node11" class="node"><title>Node11</title>
-<g id="a_node11"><a xlink:href="kinetics_8h_source.html" target="_top" xlink:title="kinetics.h">
+<g id="a_node11"><a xlink:href="dupe_files/kinetics_8h_source.html" target="_top" xlink:title="kinetics.h">
 <polygon fill="white" stroke="red" points="748.461,-56.5 748.461,-75.5 805.461,-75.5 805.461,-56.5 748.461,-56.5"/>
 <text text-anchor="middle" x="776.961" y="-63.5" font-family="FreeSans" font-size="10.00">kinetics.h</text>
 </a>
@@ -445,7 +445,7 @@
 </g>
 <!-- Node28 -->
 <g id="node28" class="node"><title>Node28</title>
-<g id="a_node28"><a xlink:href="onedim_8h.html" target="_top" xlink:title="onedim.h">
+<g id="a_node28"><a xlink:href="dupe_files/onedim_8h.html" target="_top" xlink:title="onedim.h">
 <polygon fill="white" stroke="black" points="1010.96,-0.5 1010.96,-19.5 1066.96,-19.5 1066.96,-0.5 1010.96,-0.5"/>
 <text text-anchor="middle" x="1038.96" y="-7.5" font-family="FreeSans" font-size="10.00">onedim.h</text>
 </a>
