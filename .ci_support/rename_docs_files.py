@@ -57,12 +57,12 @@ for dir in docs_dirs.iterdir():
     if not dupe_dir.exists():
         dupe_dir.mkdir(parents=True)
     files = [p for p in doxy_dir.iterdir() if p.is_file()]
-    file_contents = {p.name: get_contents(p) for p in files}
+    file_contents = {p.name: (get_contents(p), False) for p in files}
     files_case_ins = [p.name.lower() for p in files]
     dup = [doxy_dir/c for c, v in Counter(files_case_ins).items() if v > 1]
     print(dir.name, [p.name for p in dup])
     for df in dup:
-        for file_name, lines in file_contents.items():
+        for file_name, (lines, _) in file_contents.items():
             if lines is None or file_name in [d.name for d in dup]:
                 continue
             new_lines = []
@@ -72,10 +72,7 @@ for dir in docs_dirs.iterdir():
                     found = True
                     line = line.replace(df.name, dupe_dir.name + '/' + df.name)
                 new_lines.append(line)
-            if found:
-                with open(doxy_dir.joinpath(file_name), 'w') as file_obj:
-                    file_obj.write(''.join(new_lines))
-                # continue
+            file_contents[file_name] = (new_lines, found)
 
         if df.suffix == '.html':
             etree = HT.parse(str(df))
@@ -91,3 +88,11 @@ for dir in docs_dirs.iterdir():
             df.unlink()
         else:
             raise TypeError('Unknown suffix: {}'.format(df))
+
+    for file_name, (lines, found) in file_contents.items():
+        if not found:
+            continue
+        if lines is None or file_name in [d.name for d in dup]:
+            continue
+        with open(doxy_dir/file_name, 'w') as file_obj:
+            file_obj.write(''.join(lines))
