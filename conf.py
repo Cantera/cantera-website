@@ -293,12 +293,12 @@ TIMEZONE = "America/New_York"
 
 # This is the "production" version of this dictionary
 FILES_FOLDERS = {
-   'api-docs/docs-2.0': 'documentation/docs-2.0',
-   'api-docs/docs-2.1': 'documentation/docs-2.1',
-   'api-docs/docs-2.2': 'documentation/docs-2.2',
-   'api-docs/docs-2.3': 'documentation/docs-2.3',
-   'api-docs/docs-2.4': 'documentation/docs-2.4',
-   'files/survey2013': 'survey2013',
+    'api-docs/docs-2.0': 'documentation/docs-2.0',
+    'api-docs/docs-2.1': 'documentation/docs-2.1',
+    'api-docs/docs-2.2': 'documentation/docs-2.2',
+    'api-docs/docs-2.3': 'documentation/docs-2.3',
+    'api-docs/docs-2.4': 'documentation/docs-2.4',
+    'files/survey2013': 'survey2013',
 }
 
 # This is the "development" version of this dictionary
