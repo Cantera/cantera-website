@@ -160,7 +160,7 @@
 </g>
 <!-- Node15 -->
 <g id="node34" class="node"><title>Node15</title>
-<a xlink:href="kinetics_8h_source.html" target="_top" xlink:title="kinetics.h">
+<a xlink:href="dupe_files/kinetics_8h_source.html" target="_top" xlink:title="kinetics.h">
 <polygon fill="white" stroke="black" points="827,-56.5 827,-75.5 885,-75.5 885,-56.5 827,-56.5"/>
 <text text-anchor="middle" x="856" y="-63.5" font-family="FreeSans" font-size="10.00">kinetics.h</text>
 </a>
@@ -293,7 +293,7 @@
 </g>
 <!-- Node20 -->
 <g id="node44" class="node"><title>Node20</title>
-<a xlink:href="onedim_8h_source.html" target="_top" xlink:title="onedim.h">
+<a xlink:href="dupe_files/onedim_8h_source.html" target="_top" xlink:title="onedim.h">
 <polygon fill="white" stroke="black" points="116,-0.5 116,-19.5 174,-19.5 174,-0.5 116,-0.5"/>
 <text text-anchor="middle" x="145" y="-7.5" font-family="FreeSans" font-size="10.00">onedim.h</text>
 </a>
