@@ -8,7 +8,7 @@ type: text
 author: Bryan Weber
 ---
 
-# The New Cantera Webiste is Here!
+# The New Cantera Website is Here!
 
 This summer, Bryan Weber and Steven DeCaluwe took on the project of revamping the Cantera website.
 The old website was, well, old and needed to be refreshed. Thanks to a grant from
