@@ -139,13 +139,13 @@
 
             1. **Choose your Python version and architecture**
 
-               - On Windows, Installers are provided for Python 2.7, Python 3.4, Python 3.5,
-                 and Python 3.6. Python 3.6 is recommended unless you need to use legacy
+               - On Windows, Installers are provided for Python 2.7, Python 3.5, Python 3.6,
+                 and Python 3.7. Python 3.7 is recommended unless you need to use legacy
                  code that does not work with Python 3. You can install multiple Cantera
                  Python modules simultaneously. Note that Cantera 2.4 will be the last
                  version to support Python 2.7.
 
-               - Cantera supports both 32- and 64- bit Python installations.
+               - Cantera supports both 32- and 64-bit Python installations.
 
                - You need choose the matching Cantera installer for your Python version and
                  machine architecture.
@@ -179,7 +179,7 @@
 
             3. **Install the Visual C++ Redistributable for Visual Studio 2015**
 
-               - If you are using Python 3.5 or Python 3.6 you can skip this step as this
+               - If you are using Python 3.5 or higher you can skip this step as this
                  will have already been installed when you installed Python.
 
                - Go to the `Microsoft Visual C++ Redistributable Download Page
@@ -204,14 +204,14 @@
                - Download the most recent release (distributed as a "wheel" archive) of the
                  1.x series for Python *X.Y* that matches your Python architecture. In the
                  filename, the digits after "cp" indicate the Python version, e.g.
-                 ``numpy‑1.11.2+mkl‑cp35‑none‑win_amd64.whl`` is the installer for 64-bit
-                 Python 3.5. The Windows installers for Cantera 2.4.0 require Numpy 1.10 or
+                 ``numpy‑1.11.2+mkl‑cp37‑none‑win_amd64.whl`` is the installer for 64-bit
+                 Python 3.7. The Windows installers for Cantera 2.4.0 require Numpy 1.10 or
                  newer.
 
                - From an administrative command prompt, install the downloaded wheel using
                  pip, e.g.,::
 
-                     c:\python35\scripts\pip.exe install "%USERPROFILE%\Downloads\numpy‑1.11.2+mkl‑cp35‑none‑win_amd64.whl"
+                     c:\python37\scripts\pip.exe install "%USERPROFILE%\Downloads\numpy‑1.11.2+mkl‑cp37‑none‑win_amd64.whl"
 
                - If you plan on using Cantera from Python, note that we highly recommend
                  installing the conda package. If you plan to continue using this Python
@@ -251,7 +251,7 @@
                  - From the *Start* screen or menu type "edit environment" and select
                    "Edit environment variables for your account".
                  - Add a *New* variable with ``PYTHON_CMD`` as the *name* and the full path
-                   to the Python executable (e.g. ``C:\python35\python.exe``) as the
+                   to the Python executable (e.g., ``C:\python37\python.exe``) as the
                    *value*.
                  - Setting ``PYTHON_CMD`` is not necessary if the path to ``python.exe`` is
                    in your ``PATH`` (which can be set from the same configuration dialog).

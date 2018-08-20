@@ -52,7 +52,7 @@ Beta Release
 
   .. code:: bash
 
-     git checkout tags/v2.4.0b1
+     git checkout tags/v2.4.0b2
      git submodule update
 
   Note that the most recent beta version might be older than the most recent
