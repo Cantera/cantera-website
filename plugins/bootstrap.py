@@ -71,14 +71,6 @@ def depart_container(self, node):
         pass
 
 
-def visit_node(self, node):
-    self.body.append(self.starttag(node, 'div'))
-
-
-def depart_node(self, node):
-    self.body.append('</div>\n')
-
-
 class Container(Directive):
     """Overridden Container.
     You can choose any tag name just like a barebone computer or a wild card.
