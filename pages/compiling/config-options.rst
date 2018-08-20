@@ -383,14 +383,29 @@ Options List
     Controls whether the LAPACK functions have the string length
     argument at the end of the argument list (``yes``) or after
     each argument (``no``) in the Fortran libraries.
-    - default: 'yes'
+
+    - default: ``'yes'``
 
 .. _system-googletest:
 
-* ``system_googletest``: [ ``default`` | ``y`` | ``n`` ]
-    Select whether to use gtest from system installation (``y``), from a
-    Git submodule (``n``), or to decide automatically (``default``).
-    - default: 'default'
+* ``system_googletest``: [ ``unspecified`` | ``default`` | ``y`` | ``n`` ]
+    Select whether to use gtest/gmock from system
+    installation (``y``), from a Git submodule (``n``), or to decide
+    automatically (``default``). Deprecated option, please use ``googletest`` instead.
+    This option is suppressed by ``googletest`` option.
+
+    - default: ``'unspecified'``
+
+.. _googletest:
+
+* ``googletest``: [ ``'default'`` | ``'system'`` | ``'submodule'`` | ``'none'`` ]
+    Select whether to use gtest/gmock from system
+    installation (``system``), from a Git submodule (``submodule``), to decide
+    automatically (``default``) or don't look for gtest/gmock (``none``)
+    and don't run tests that depend on gtest/gmock. If this option is
+    set then it suppresses the deprecated ``system_googletest`` option.
+
+    - default: ``'default'``
 
 .. _env-vars:
 
