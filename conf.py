@@ -21,11 +21,11 @@ BLOG_AUTHOR = "Cantera Developers"  # (translatable)
 BLOG_TITLE = "Cantera"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "https://testing.cantera.org/"
+SITE_URL = "https://cantera.org/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # Don't forget the protocol and trailing slash
-BASE_URL = "https://testing.cantera.org/"
+BASE_URL = "https://cantera.org/"
 BLOG_EMAIL = "steering@cantera.org"
 BLOG_DESCRIPTION = "This site is for the Cantera software"  # (translatable)
 
