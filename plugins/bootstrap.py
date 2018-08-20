@@ -125,10 +125,8 @@ class Container(Directive):
     default_attributes = None
     default_endless = False
 
-    def run(self):
-        text = '\n'.join(self.content)
-        node = nodes.container(text)
-
+    def set_classes(self, node):
+        """Set the classes on the node."""
         try:
             if self.default_class is not None and self.arguments:
                 classes = self.default_class + self.arguments
@@ -144,6 +142,10 @@ class Container(Directive):
         if classes:
             node['classes'].extend(classes)
 
+        return node
+
+    def set_tagname(self, node):
+        """Set the node tagname."""
         try:
             if 'tagname' in self.options:
                 node.tagname = self.options.get('tagname', 'div')
@@ -155,6 +157,11 @@ class Container(Directive):
             raise self.error(
                 'Invalid tag name for "{}" directive: "{}".'.format(
                     self.name, node.tagname))
+
+        return node
+
+    def set_attributes(self, node):
+        """Set the node attributes."""
         attrs = None
         if 'attributes' in self.options:
             attrs = self.options.get('attributes', '')
@@ -183,6 +190,17 @@ class Container(Directive):
                           'Error parsing %s tag attribute "%s": %s.'
                           % (node.tagname, token, detail), nodes.literal_block(line, line))
                     return [msg]
+
+        return node
+
+    def run(self):
+        """Run the directive."""
+        text = '\n'.join(self.content)
+        node = nodes.container(text)
+
+        node = self.set_classes(node)
+        node = self.set_tagname(node)
+        node = self.set_attributes(node)
         if 'endless' in self.options or self.default_endless:
             node['endless'] = True
         if self.content:
