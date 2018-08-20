@@ -1,5 +1,4 @@
-"""
-Plugin to format Bootstrap directives
+"""Plugin to format Bootstrap directives.
 
 Portions of this code are adapted from the bootstrap-rst project
 https://github.com/rougier/bootstrap-rst
@@ -33,10 +32,12 @@ from nikola.plugin_categories import RestExtension
 
 
 class Bootstrap(RestExtension):
+    """Extend the reST parser with directives for Bootstrap classes."""
 
     name = 'boostrap_rst'
 
     def set_site(self, site):
+        """Set the Nikola site."""
         self.site = site
         directives.register_directive('container', Container)
         directives.register_directive('jumbotron', Jumbotron)
@@ -56,6 +57,7 @@ class Bootstrap(RestExtension):
 
 
 def visit_container(self, node):
+    """Docutils visit function for the Container."""
     attrs = node.non_default_attributes().copy()
     if 'classes' in attrs:
         del attrs['classes']
@@ -65,6 +67,7 @@ def visit_container(self, node):
 
 
 def depart_container(self, node):
+    """Docutils depart function for the Container."""
     if 'endless' not in node:
         self.body.append('</%s>\n' % node.tagname)
     else:
@@ -73,6 +76,7 @@ def depart_container(self, node):
 
 class Container(Directive):
     """Overridden Container.
+
     You can choose any tag name just like a barebone computer or a wild card.
     Default tag name is div.
     This is based on the code at docutils.parsers.rst.directives.html.
@@ -80,31 +84,36 @@ class Container(Directive):
     default_class = None
     default_tagname = None
     default_attributes = None
-    Derived class example:
-    class Thumbnail(Container):
-        default_class = ['thumbnail']
-    class Html5Header(Container):
-        default_tagname = 'header'
-    Restructuredtext example:
-    .. container::
-       :tagname: header
-       .. container:: navbar navbar-expand-md navbar-dark fixed-top bg-dark
-          :tagname: nav
-          .. container:: navbar-brand
-             :tagname: a
-             :attributes: href=#
-             Carousel
-          .. container:: navbar-toggler
-             :tagname: button
-             :attributes: type=button
-                          data-toggle=collapse
-                          data-target=#navbarCollapse
-                          aria-controls=navbarCollapse
-                          aria-expanded=false
-                          aria-label="Toggle navigation"
-             .. raw:: html
-                <span class="navbar-toggler-icon"></span>
+    Derived class example::
+
+        class Thumbnail(Container):
+            default_class = ['thumbnail']
+
+        class Html5Header(Container):
+            default_tagname = 'header'
+
+    Restructuredtext example::
+
+        .. container::
+           :tagname: header
+           .. container:: navbar navbar-expand-md navbar-dark fixed-top bg-dark
+              :tagname: nav
+              .. container:: navbar-brand
+                 :tagname: a
+                 :attributes: href=#
+                 Carousel
+              .. container:: navbar-toggler
+                 :tagname: button
+                 :attributes: type=button
+                              data-toggle=collapse
+                              data-target=#navbarCollapse
+                              aria-controls=navbarCollapse
+                              aria-expanded=false
+                              aria-label="Toggle navigation"
+                 .. raw:: html
+                    <span class="navbar-toggler-icon"></span>
     """
+
     optional_arguments = 1
     final_argument_whitespace = True
     option_spec = {'name': directives.unchanged,
@@ -201,48 +210,67 @@ class Container(Directive):
 
 
 class Jumbotron(Container):
+    """Class for Bootstrap ``jumbotron``s."""
+
     default_class = ['jumbotron']
 
 
 class Accordion(Container):
+    """Class for Bootstrap ``accordion``s."""
+
     default_class = ['accordion']
 
 
 class Row(Container):
+    """Class for Bootstrap ``row``s."""
+
     default_class = ['row']
 
 
 class Card(Container):
+    """Class for Bootstrap ``card``s."""
+
     default_class = ['card']
 
 
 class CardDeck(Container):
+    """Class for Bootstrap ``card-deck``s."""
+
     default_class = ['card-deck']
 
 
 class CardBody(Container):
+    """Class for Bootstrap ``card-body``s."""
+
     default_class = ['card-body']
 
 
 class CardHead(Container):
+    """Class for Bootstrap ``card-header``s."""
+
     default_class = ['card-header']
 
 
 class CardFoot(Container):
+    """Class for Bootstrap ``card-footer``s."""
+
     default_class = ['card-footer']
 
 
 class Section(Container):
+    """Class for Bootstrap ``section``s."""
+
     default_tagname = 'section'
 
 
 class Button(Container):
+    """Class for Bootstrap ``button``s."""
+
     default_tagname = 'button'
 
 
 def add_node(node_name, visit_function=None, depart_function=None):
-    """Register a Docutils node class.
-    """
+    """Register a Docutils node class."""
     nodes._add_node_class_names([node_name])
     if visit_function is not None:
         setattr(docutils.writers._html_base.HTMLTranslator, 'visit_' + node_name, visit_function)
