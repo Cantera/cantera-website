@@ -35,7 +35,7 @@ script:
       )
       RSYNC_USER="ctdeploy";
       RSYNC_SERVER="cantera.org";
-      RSYNC_DEST="testing.cantera.org";
+      RSYNC_DEST="cantera";
       set -x;
       rsync "${RSYNC_OPTIONS[@]}" "${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST};
       set +x;
