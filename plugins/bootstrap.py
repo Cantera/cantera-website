@@ -30,7 +30,6 @@ from docutils import nodes, utils
 import docutils
 from docutils.parsers.rst import directives, Directive
 from nikola.plugin_categories import RestExtension
-# from nikola.utils import LOGGER
 
 
 class Bootstrap(RestExtension):
@@ -57,7 +56,6 @@ class Bootstrap(RestExtension):
 
 
 def visit_container(self, node):
-    # import pdb; pdb.set_trace()
     attrs = node.non_default_attributes().copy()
     if 'classes' in attrs:
         del attrs['classes']
@@ -128,7 +126,6 @@ class Container(Directive):
     default_endless = False
 
     def run(self):
-        # self.assert_has_content()
         text = '\n'.join(self.content)
         node = nodes.container(text)
 
@@ -188,7 +185,6 @@ class Container(Directive):
                     return [msg]
         if 'endless' in self.options or self.default_endless:
             node['endless'] = True
-        # self.add_name(node)
         if self.content:
             self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
