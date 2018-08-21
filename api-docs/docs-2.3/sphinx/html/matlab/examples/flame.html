@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>flame.m &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -22,26 +19,24 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../../about.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../../about.html">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -51,23 +46,22 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/matlab/examples/flame.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../../_sources/matlab/examples/flame.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -77,8 +71,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="flame-m">
-<span id="matlab-example-flame-m"></span><h1>flame.m<a class="headerlink" href="#flame-m" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="flame-m">
+<span id="matlab-example-flame-m"></span><h1>flame.m<a class="headerlink" href="#flame-m" title="Permalink to this headline">&#182;</a></h1>
 <div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>f <span class="p">=</span><span class="w"> </span><span class="nf">flame</span><span class="p">(</span>gas, left, flow, right<span class="p">)</span><span class="w"></span>
 <span class="c">%  FLAME - create a flame object.</span>
 <span class="c">%</span>
@@ -99,17 +93,17 @@
 
 <span class="c">% Check input parameters</span>
 <span class="k">if</span> <span class="n">nargin</span> <span class="o">~=</span> <span class="mi">4</span>
-  <span class="n">error</span><span class="p">(</span><span class="s">&#39;wrong number of input arguments.&#39;</span><span class="p">);</span>
+  <span class="n">error</span><span class="p">(</span><span class="s">'wrong number of input arguments.'</span><span class="p">);</span>
 <span class="k">end</span>
 
 <span class="k">if</span> <span class="o">~</span><span class="n">isIdealGas</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
-  <span class="n">error</span><span class="p">(</span><span class="s">&#39;gas object must represent an ideal gas mixture.&#39;</span><span class="p">);</span>
+  <span class="n">error</span><span class="p">(</span><span class="s">'gas object must represent an ideal gas mixture.'</span><span class="p">);</span>
 <span class="k">end</span>
 <span class="k">if</span> <span class="o">~</span><span class="n">isInlet</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
-  <span class="n">error</span><span class="p">(</span><span class="s">&#39;burner object of wrong type.&#39;</span><span class="p">);</span>
+  <span class="n">error</span><span class="p">(</span><span class="s">'burner object of wrong type.'</span><span class="p">);</span>
 <span class="k">end</span>
 <span class="k">if</span> <span class="o">~</span><span class="n">isFlow</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
-  <span class="n">error</span><span class="p">(</span><span class="s">&#39;flow object of wrong type.&#39;</span><span class="p">);</span>
+  <span class="n">error</span><span class="p">(</span><span class="s">'flow object of wrong type.'</span><span class="p">);</span>
 <span class="k">end</span>
 
 <span class="n">flametype</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -127,7 +121,7 @@
 
 <span class="c">% find the adiabatic flame temperature and corresponding</span>
 <span class="c">% equilibrium composition</span>
-<span class="n">equilibrate</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="s">&#39;HP&#39;</span><span class="p">);</span>
+<span class="n">equilibrate</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="s">'HP'</span><span class="p">);</span>
 <span class="n">teq</span> <span class="p">=</span> <span class="n">temperature</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
 <span class="n">yeq</span> <span class="p">=</span> <span class="n">massFractions</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
 <span class="n">rhoeq</span> <span class="p">=</span> <span class="n">density</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
@@ -144,14 +138,14 @@
 <span class="k">end</span>
 <span class="n">zz</span> <span class="p">=</span> <span class="n">z</span><span class="p">(</span><span class="n">flow</span><span class="p">);</span>
 <span class="n">dz</span> <span class="p">=</span> <span class="n">zz</span><span class="p">(</span><span class="k">end</span><span class="p">)</span> <span class="o">-</span> <span class="n">zz</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">setProfile</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">},</span> <span class="p">[</span><span class="mf">0.0</span>            <span class="mf">1.0</span>
+<span class="n">setProfile</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="s">'u'</span><span class="p">,</span> <span class="s">'V'</span><span class="p">},</span> <span class="p">[</span><span class="mf">0.0</span>            <span class="mf">1.0</span>
                               <span class="n">mdot0</span><span class="o">/</span><span class="n">rho0</span>     <span class="o">-</span><span class="n">mdot1</span><span class="o">/</span><span class="n">rho0</span>
                               <span class="mf">0.0</span>            <span class="mf">0.0</span><span class="p">]);</span>
-<span class="n">setProfile</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span> <span class="n">z1</span> <span class="mf">1.0</span><span class="p">;</span> <span class="n">t0</span> <span class="mf">2000.0</span> <span class="n">t1</span><span class="p">]);</span>
+<span class="n">setProfile</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'T'</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span> <span class="n">z1</span> <span class="mf">1.0</span><span class="p">;</span> <span class="n">t0</span> <span class="mf">2000.0</span> <span class="n">t1</span><span class="p">]);</span>
 
 <span class="k">for</span> <span class="n">n</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">nSpecies</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
   <span class="n">nm</span> <span class="p">=</span> <span class="n">speciesName</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
-  <span class="k">if</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">&#39;H&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">&#39;OH&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">&#39;O&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">&#39;HO2&#39;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">'H'</span><span class="p">)</span> <span class="o">|</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">'OH'</span><span class="p">)</span> <span class="o">|</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">'O'</span><span class="p">)</span> <span class="o">|</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="s">'HO2'</span><span class="p">)</span>
     <span class="n">yint</span> <span class="p">=</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">yeq</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
   <span class="k">else</span>
     <span class="n">yint</span> <span class="p">=</span> <span class="n">yeq</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
@@ -181,11 +175,9 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

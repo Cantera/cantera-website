@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>extract_submechanism.py &mdash; Cantera 2.2.1 documentation</title>
     
-    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <title>extract_submechanism.py &#8212; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,59 +21,52 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.2.1 documentation" href="../../index.html" />
-    <link rel="up" title="Index of Examples" href="../examples.html" />
-    <link rel="next" title="mechanism_reduction.py" href="kinetics_mechanism_reduction.html" />
-    <link rel="prev" title="sound_speed.py" href="thermo_sound_speed.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../../index.html">
+    <link rel="up" title="Index of Examples" href="../examples.html">
+    <link rel="next" title="mechanism_reduction.py" href="kinetics_mechanism_reduction.html">
+    <link rel="prev" title="sound_speed.py" href="thermo_sound_speed.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="kinetics_mechanism_reduction.html" title="mechanism_reduction.py"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="thermo_sound_speed.html" title="sound_speed.py"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Cantera</a> &raquo;</li>
-          <li><a href="../index.html" >Python Module Documentation</a> &raquo;</li>
-          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &raquo;</li> 
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="kinetics_mechanism_reduction.html" title="mechanism_reduction.py" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="thermo_sound_speed.html" title="sound_speed.py" accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &#187;</li>
+          <li><a href="../index.html">Python Module Documentation</a> &#187;</li>
+          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &#187;</li> 
       </ul>
     </div>
 
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="thermo_sound_speed.html"
-                        title="previous chapter">sound_speed.py</a></p>
+  <p class="topless"><a href="thermo_sound_speed.html" title="previous chapter">sound_speed.py</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="kinetics_mechanism_reduction.html"
-                        title="next chapter">mechanism_reduction.py</a></p>
+  <p class="topless"><a href="kinetics_mechanism_reduction.html" title="next chapter">mechanism_reduction.py</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../../_sources/cython/examples/kinetics_extract_submechanism.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="../../_sources/cython/examples/kinetics_extract_submechanism.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -91,9 +81,9 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="extract-submechanism-py">
-<span id="py-example-extract-submechanism-py"></span><h1>extract_submechanism.py<a class="headerlink" href="#extract-submechanism-py" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="extract-submechanism-py">
+<span id="py-example-extract-submechanism-py"></span><h1>extract_submechanism.py<a class="headerlink" href="#extract-submechanism-py" title="Permalink to this headline">&#182;</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">"""</span>
 <span class="sd">An example demonstrating how to use Species and Reaction objects to</span>
 <span class="sd">programmatically extract a reaction submechanism. In this example, the CO/H2</span>
 <span class="sd">oxidation reactions are extracted from the GRI 3.0 mechanism.</span>
@@ -101,39 +91,39 @@
 <span class="sd">To test the submechanism, a premixed CO/H2 flame is simulated using the original</span>
 <span class="sd">mechanism and the submechanism, which demonstrates that the submechanism</span>
 <span class="sd">contains all of the important species and reactions.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">default_timer</span>
 <span class="kn">import</span> <span class="nn">cantera</span> <span class="kn">as</span> <span class="nn">ct</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
-<span class="n">all_species</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Species</span><span class="o">.</span><span class="n">listFromFile</span><span class="p">(</span><span class="s">&#39;gri30.xml&#39;</span><span class="p">)</span>
+<span class="n">all_species</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Species</span><span class="o">.</span><span class="n">listFromFile</span><span class="p">(</span><span class="s">'gri30.xml'</span><span class="p">)</span>
 <span class="n">species</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c"># Filter species</span>
 <span class="k">for</span> <span class="n">S</span> <span class="ow">in</span> <span class="n">all_species</span><span class="p">:</span>
     <span class="n">comp</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">composition</span>
-    <span class="k">if</span> <span class="s">&#39;C&#39;</span> <span class="ow">in</span> <span class="n">comp</span> <span class="ow">and</span> <span class="s">&#39;H&#39;</span> <span class="ow">in</span> <span class="n">comp</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s">'C'</span> <span class="ow">in</span> <span class="n">comp</span> <span class="ow">and</span> <span class="s">'H'</span> <span class="ow">in</span> <span class="n">comp</span><span class="p">:</span>
         <span class="c"># Exclude all hydrocarbon species</span>
         <span class="k">continue</span>
-    <span class="k">if</span> <span class="s">&#39;N&#39;</span> <span class="ow">in</span> <span class="n">comp</span> <span class="ow">and</span> <span class="n">comp</span> <span class="o">!=</span> <span class="p">{</span><span class="s">&#39;N&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}:</span>
+    <span class="k">if</span> <span class="s">'N'</span> <span class="ow">in</span> <span class="n">comp</span> <span class="ow">and</span> <span class="n">comp</span> <span class="o">!=</span> <span class="p">{</span><span class="s">'N'</span><span class="p">:</span><span class="mi">2</span><span class="p">}:</span>
         <span class="c"># Exclude all nitrogen compounds except for N2</span>
         <span class="k">continue</span>
-    <span class="k">if</span> <span class="s">&#39;Ar&#39;</span> <span class="ow">in</span> <span class="n">comp</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s">'Ar'</span> <span class="ow">in</span> <span class="n">comp</span><span class="p">:</span>
         <span class="c"># Exclude Argon</span>
         <span class="k">continue</span>
 
     <span class="n">species</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 
 <span class="n">species_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">S</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">S</span> <span class="ow">in</span> <span class="n">species</span><span class="p">}</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;Species: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">S</span> <span class="ow">in</span> <span class="n">species</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Species: {0}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">S</span> <span class="ow">in</span> <span class="n">species</span><span class="p">)))</span>
 
 <span class="c"># Filter reactions, keeping only those that only involve the selected species</span>
-<span class="n">all_reactions</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reaction</span><span class="o">.</span><span class="n">listFromFile</span><span class="p">(</span><span class="s">&#39;gri30.xml&#39;</span><span class="p">)</span>
+<span class="n">all_reactions</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reaction</span><span class="o">.</span><span class="n">listFromFile</span><span class="p">(</span><span class="s">'gri30.xml'</span><span class="p">)</span>
 <span class="n">reactions</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">Reactions:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Reactions:'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">R</span> <span class="ow">in</span> <span class="n">all_reactions</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">reactant</span> <span class="ow">in</span> <span class="n">species_names</span> <span class="k">for</span> <span class="n">reactant</span> <span class="ow">in</span> <span class="n">R</span><span class="o">.</span><span class="n">reactants</span><span class="p">):</span>
         <span class="k">continue</span>
@@ -143,14 +133,14 @@
 
     <span class="n">reactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">equation</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
 
-<span class="n">gas1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">&#39;gri30.xml&#39;</span><span class="p">)</span>
-<span class="n">gas2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="n">thermo</span><span class="o">=</span><span class="s">&#39;IdealGas&#39;</span><span class="p">,</span> <span class="n">kinetics</span><span class="o">=</span><span class="s">&#39;GasKinetics&#39;</span><span class="p">,</span>
+<span class="n">gas1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">'gri30.xml'</span><span class="p">)</span>
+<span class="n">gas2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="n">thermo</span><span class="o">=</span><span class="s">'IdealGas'</span><span class="p">,</span> <span class="n">kinetics</span><span class="o">=</span><span class="s">'GasKinetics'</span><span class="p">,</span>
                    <span class="n">species</span><span class="o">=</span><span class="n">species</span><span class="p">,</span> <span class="n">reactions</span><span class="o">=</span><span class="n">reactions</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">solve_flame</span><span class="p">(</span><span class="n">gas</span><span class="p">):</span>
-    <span class="n">gas</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="mi">373</span><span class="p">,</span> <span class="mf">0.05</span><span class="o">*</span><span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span><span class="p">,</span> <span class="s">&#39;H2:0.4, CO:0.6, O2:1, N2:3.76&#39;</span>
+    <span class="n">gas</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="mi">373</span><span class="p">,</span> <span class="mf">0.05</span><span class="o">*</span><span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span><span class="p">,</span> <span class="s">'H2:0.4, CO:0.6, O2:1, N2:3.76'</span>
 
     <span class="c"># Create the flame simulation object</span>
     <span class="n">sim</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">CounterflowPremixedFlame</span><span class="p">(</span><span class="n">gas</span><span class="o">=</span><span class="n">gas</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
@@ -172,20 +162,20 @@
 <span class="n">t1</span> <span class="o">=</span> <span class="n">default_timer</span><span class="p">()</span>
 <span class="n">sim1</span> <span class="o">=</span> <span class="n">solve_flame</span><span class="p">(</span><span class="n">gas1</span><span class="p">)</span>
 <span class="n">t2</span> <span class="o">=</span> <span class="n">default_timer</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;Solved with GRI 3.0 in {0:.2f} seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Solved with GRI 3.0 in {0:.2f} seconds'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">))</span>
 <span class="n">sim2</span> <span class="o">=</span> <span class="n">solve_flame</span><span class="p">(</span><span class="n">gas2</span><span class="p">)</span>
 <span class="n">t3</span> <span class="o">=</span> <span class="n">default_timer</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;Solved with CO/H2 submechanism in {0:.2f} seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t3</span><span class="o">-</span><span class="n">t2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Solved with CO/H2 submechanism in {0:.2f} seconds'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t3</span><span class="o">-</span><span class="n">t2</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim1</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">sim1</span><span class="o">.</span><span class="n">heat_release_rate</span><span class="p">,</span>
-         <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;GRI 3.0&#39;</span><span class="p">)</span>
+         <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'GRI 3.0'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim2</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">sim2</span><span class="o">.</span><span class="n">heat_release_rate</span><span class="p">,</span>
-         <span class="s">&#39;r--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;CO/H2 submechanism&#39;</span><span class="p">)</span>
+         <span class="s">'r--'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'CO/H2 submechanism'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Heat release rate ($W/m^3$)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;position (m)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Heat release rate ($W/m^3$)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'position (m)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper right'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -202,24 +192,20 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="kinetics_mechanism_reduction.html" title="mechanism_reduction.py"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="thermo_sound_speed.html" title="sound_speed.py"
-             >previous</a> |</li>
-        <li><a href="../../index.html">Cantera</a> &raquo;</li>
-          <li><a href="../index.html" >Python Module Documentation</a> &raquo;</li>
-          <li><a href="../examples.html" >Index of Examples</a> &raquo;</li> 
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="kinetics_mechanism_reduction.html" title="mechanism_reduction.py">next</a> |</li>
+        <li class="right">
+          <a href="thermo_sound_speed.html" title="sound_speed.py">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &#187;</li>
+          <li><a href="../index.html">Python Module Documentation</a> &#187;</li>
+          <li><a href="../examples.html">Index of Examples</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>

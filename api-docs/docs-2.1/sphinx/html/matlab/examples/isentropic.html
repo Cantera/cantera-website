@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>isentropic.m &mdash; Cantera 2.1.2 documentation</title>
     
-    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <title>isentropic.m &#8212; Cantera 2.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,59 +21,52 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.1.2 documentation" href="../../index.html" />
-    <link rel="up" title="Index of Examples" href="../examples.html" />
-    <link rel="next" title="periodic_cstr.m" href="periodic_cstr.html" />
-    <link rel="prev" title="ignite_uv.m" href="ignite_uv.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="top" title="Cantera 2.1.2 documentation" href="../../index.html">
+    <link rel="up" title="Index of Examples" href="../examples.html">
+    <link rel="next" title="periodic_cstr.m" href="periodic_cstr.html">
+    <link rel="prev" title="ignite_uv.m" href="ignite_uv.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="periodic_cstr.html" title="periodic_cstr.m"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="ignite_uv.html" title="ignite_uv.m"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Cantera</a> &raquo;</li>
-          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
-          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &raquo;</li> 
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="periodic_cstr.html" title="periodic_cstr.m" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="ignite_uv.html" title="ignite_uv.m" accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &#187;</li>
+          <li><a href="../index.html">Matlab Interface User&#8217;s Guide</a> &#187;</li>
+          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &#187;</li> 
       </ul>
     </div>
 
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="ignite_uv.html"
-                        title="previous chapter">ignite_uv.m</a></p>
+  <p class="topless"><a href="ignite_uv.html" title="previous chapter">ignite_uv.m</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="periodic_cstr.html"
-                        title="next chapter">periodic_cstr.m</a></p>
+  <p class="topless"><a href="periodic_cstr.html" title="next chapter">periodic_cstr.m</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../../_sources/matlab/examples/isentropic.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="../../_sources/matlab/examples/isentropic.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -91,8 +81,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="isentropic-m">
-<h1>isentropic.m<a class="headerlink" href="#isentropic-m" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="isentropic-m">
+<h1>isentropic.m<a class="headerlink" href="#isentropic-m" title="Permalink to this headline">&#182;</a></h1>
 <div class="highlight-matlab"><div class="highlight"><pre><span class="k">function</span><span class="w"> </span><span class="nf">isentropic</span><span class="p">(</span>g<span class="p">)</span><span class="w"></span>
 <span class="c">% ISENTROPIC  isentropic, adiabatic flow example</span>
 <span class="c">%</span>
@@ -101,14 +91,14 @@
 <span class="c">%</span>
 <span class="n">help</span> <span class="n">isentropic</span>
 
-<span class="k">if</span> <span class="n">nargin</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;</span> <span class="n">isa</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="s">&#39;solution&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">nargin</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;</span> <span class="n">isa</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="s">'solution'</span><span class="p">)</span>
    <span class="n">gas</span> <span class="p">=</span> <span class="n">g</span><span class="p">;</span>
 <span class="k">else</span>
-   <span class="n">gas</span> <span class="p">=</span> <span class="n">IdealGasMix</span><span class="p">(</span><span class="s">&#39;gri30.xml&#39;</span><span class="p">);</span>
+   <span class="n">gas</span> <span class="p">=</span> <span class="n">IdealGasMix</span><span class="p">(</span><span class="s">'gri30.xml'</span><span class="p">);</span>
 <span class="k">end</span>
 
 <span class="c">% set the stagnation state</span>
-<span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">&#39;T&#39;</span><span class="p">,</span><span class="mf">1200.0</span><span class="p">,</span><span class="s">&#39;P&#39;</span><span class="p">,</span><span class="mf">10.0</span><span class="o">*</span><span class="n">oneatm</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">,</span><span class="s">&#39;H2:1,N2:0.1&#39;</span><span class="p">);</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">'T'</span><span class="p">,</span><span class="mf">1200.0</span><span class="p">,</span><span class="s">'P'</span><span class="p">,</span><span class="mf">10.0</span><span class="o">*</span><span class="n">oneatm</span><span class="p">,</span><span class="s">'X'</span><span class="p">,</span><span class="s">'H2:1,N2:0.1'</span><span class="p">);</span>
 <span class="n">s0</span> <span class="p">=</span> <span class="n">entropy_mass</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
 <span class="n">h0</span> <span class="p">=</span> <span class="n">enthalpy_mass</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
 <span class="n">p0</span> <span class="p">=</span> <span class="n">pressure</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
@@ -125,7 +115,7 @@
    <span class="n">p</span> <span class="p">=</span> <span class="n">p0</span><span class="o">*</span><span class="n">r</span><span class="p">;</span>
    
    <span class="c">% set the state using (p,s0)</span>
-   <span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">&#39;P&#39;</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="s">&#39;S&#39;</span><span class="p">,</span><span class="n">s0</span><span class="p">);</span>
+   <span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">'P'</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="s">'S'</span><span class="p">,</span><span class="n">s0</span><span class="p">);</span>
    
    <span class="n">h</span> <span class="p">=</span> <span class="n">enthalpy_mass</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
    <span class="n">rho</span> <span class="p">=</span> <span class="n">density</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
@@ -147,9 +137,9 @@
 
 <span class="n">clf</span><span class="p">;</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">mach</span><span class="p">,</span><span class="n">a</span><span class="p">);</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Area Ratio&#39;</span><span class="p">);</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Mach Number&#39;</span><span class="p">);</span>
-<span class="n">title</span><span class="p">(</span><span class="s">&#39;Isentropic Flow: Area Ratio vs. Mach Number&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">'Area Ratio'</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">'Mach Number'</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="s">'Isentropic Flow: Area Ratio vs. Mach Number'</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -164,24 +154,20 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="periodic_cstr.html" title="periodic_cstr.m"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="ignite_uv.html" title="ignite_uv.m"
-             >previous</a> |</li>
-        <li><a href="../../index.html">Cantera</a> &raquo;</li>
-          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
-          <li><a href="../examples.html" >Index of Examples</a> &raquo;</li> 
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="periodic_cstr.html" title="periodic_cstr.m">next</a> |</li>
+        <li class="right">
+          <a href="ignite_uv.html" title="ignite_uv.m">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &#187;</li>
+          <li><a href="../index.html">Matlab Interface User&#8217;s Guide</a> &#187;</li>
+          <li><a href="../examples.html">Index of Examples</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

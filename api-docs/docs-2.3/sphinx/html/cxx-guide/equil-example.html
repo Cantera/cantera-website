@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Chemical Equilibrium Example Program &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -22,67 +19,60 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../about.html" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Creating ThermoPhase, Kinetics, and Transport objects" href="factories.html" />
-    <link rel="prev" title="A Very Simple C++ Program" href="simple-example.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../about.html">
+    <link rel="index" title="Index" href="../genindex.html">
+    <link rel="search" title="Search" href="../search.html">
+    <link rel="next" title="Creating ThermoPhase, Kinetics, and Transport objects" href="factories.html">
+    <link rel="prev" title="A Very Simple C++ Program" href="simple-example.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../index.html">
-<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="factories.html" title="Creating ThermoPhase, Kinetics, and Transport objects"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="simple-example.html" title="A Very Simple C++ Program"
-             accesskey="P">previous</a> |</li>
+          <a href="../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="factories.html" title="Creating ThermoPhase, Kinetics, and Transport objects" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="simple-example.html" title="A Very Simple C++ Program" accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">C++ Interface User’s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">C++ Interface User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
 
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="simple-example.html"
-                        title="previous chapter">A Very Simple C++ Program</a></p>
+  <p class="topless"><a href="simple-example.html" title="previous chapter">A Very Simple C++ Program</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="factories.html"
-                        title="next chapter">Creating ThermoPhase, Kinetics, and Transport objects</a></p>
+  <p class="topless"><a href="factories.html" title="next chapter">Creating ThermoPhase, Kinetics, and Transport objects</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/cxx-guide/equil-example.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../_sources/cxx-guide/equil-example.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -92,19 +82,19 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="chemical-equilibrium-example-program">
-<h1>Chemical Equilibrium Example Program<a class="headerlink" href="#chemical-equilibrium-example-program" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="chemical-equilibrium-example-program">
+<h1>Chemical Equilibrium Example Program<a class="headerlink" href="#chemical-equilibrium-example-program" title="Permalink to this headline">&#182;</a></h1>
 <p>In the program below, the <code class="xref py py-obj docutils literal"><span class="pre">equilibrate</span></code> method is called to set the gas to a
 state of chemical equilibrium, holding the temperature and pressure fixed.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;cantera/thermo.h&quot;</span><span class="cp"></span>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"cantera/thermo.h"</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">Cantera</span><span class="p">;</span>
 
 <span class="kt">void</span> <span class="nf">equil_demo</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">ThermoPhase</span><span class="o">&gt;</span> <span class="n">gas</span><span class="p">(</span><span class="n">newPhase</span><span class="p">(</span><span class="s">&quot;h2o2.cti&quot;</span><span class="p">,</span><span class="s">&quot;ohmech&quot;</span><span class="p">));</span>
-    <span class="n">gas</span><span class="o">-&gt;</span><span class="n">setState_TPX</span><span class="p">(</span><span class="mf">1500.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">OneAtm</span><span class="p">,</span> <span class="s">&quot;O2:1.0, H2:3.0, AR:1.0&quot;</span><span class="p">);</span>
-    <span class="n">gas</span><span class="o">-&gt;</span><span class="n">equilibrate</span><span class="p">(</span><span class="s">&quot;TP&quot;</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">ThermoPhase</span><span class="o">&gt;</span> <span class="n">gas</span><span class="p">(</span><span class="n">newPhase</span><span class="p">(</span><span class="s">"h2o2.cti"</span><span class="p">,</span><span class="s">"ohmech"</span><span class="p">));</span>
+    <span class="n">gas</span><span class="o">-&gt;</span><span class="n">setState_TPX</span><span class="p">(</span><span class="mf">1500.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">OneAtm</span><span class="p">,</span> <span class="s">"O2:1.0, H2:3.0, AR:1.0"</span><span class="p">);</span>
+    <span class="n">gas</span><span class="o">-&gt;</span><span class="n">equilibrate</span><span class="p">(</span><span class="s">"TP"</span><span class="p">);</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">gas</span><span class="o">-&gt;</span><span class="n">report</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -153,13 +143,13 @@ elements, it is straightforward to show that:</p>
 \[\mu_k = \sum_m \lambda_m a_{km}.\]</div>
 <p>where <span class="math">\(\mu_k\)</span> is the chemical potential of species <em>k</em>, <span class="math">\(a_{km}\)</span> is
 the number of atoms of element <em>m</em> in species <em>k</em>, and <span class="math">\(\lambda_m\)</span> is the
-chemical potential of the elemental species per atom (the so-called “element
-potential”). In other words, the chemical potential of each species in an
+chemical potential of the elemental species per atom (the so-called &#8220;element
+potential&#8221;). In other words, the chemical potential of each species in an
 equilibrium state is a linear sum of contributions from each atom. We see that
-this is true in the output above—the chemical potential of H2 is exactly
+this is true in the output above&#8212;the chemical potential of H2 is exactly
 twice that of H, the chemical potential for OH is the sum of the values for H
 and O, the value for H2O2 is twice as large as the value for OH, and so on.</p>
-<p>We’ll see later how the <a class="reference external" href="../../../doxygen/html/group__equilfunctions.html#gaf658f6d2afb439d254b43166f270861e">equilibrate()</a>
+<p>We&#8217;ll see later how the <a class="reference external" href="../../../doxygen/html/group__equilfunctions.html#gaf658f6d2afb439d254b43166f270861e">equilibrate()</a>
 function really works.</p>
 </div>
 
@@ -173,19 +163,15 @@ function really works.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="factories.html" title="Creating ThermoPhase, Kinetics, and Transport objects"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="simple-example.html" title="A Very Simple C++ Program"
-             >previous</a> |</li>
+          <a href="../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="factories.html" title="Creating ThermoPhase, Kinetics, and Transport objects">next</a> |</li>
+        <li class="right">
+          <a href="simple-example.html" title="A Very Simple C++ Program">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >C++ Interface User’s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html">C++ Interface User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

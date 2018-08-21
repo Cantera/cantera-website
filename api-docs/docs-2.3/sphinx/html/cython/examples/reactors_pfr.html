@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>pfr.py &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -22,26 +19,24 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../../about.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../../about.html">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -51,23 +46,22 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/cython/examples/reactors_pfr.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../../_sources/cython/examples/reactors_pfr.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -77,14 +71,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="pfr-py">
-<span id="py-example-pfr-py"></span><h1>pfr.py<a class="headerlink" href="#pfr-py" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="pfr-py">
+<span id="py-example-pfr-py"></span><h1>pfr.py<a class="headerlink" href="#pfr-py" title="Permalink to this headline">&#182;</a></h1>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="sd">This example solves a plug-flow reactor problem of hydrogen-oxygen combustion.</span>
 <span class="sd">The PFR is computed by two approaches: The simulation of a Lagrangian fluid</span>
 <span class="sd">particle, and the simulation of a chain of reactors.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span> <span class="nn">cantera</span> <span class="k">as</span> <span class="nn">ct</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -95,16 +89,16 @@
 
 <span class="n">T_0</span> <span class="o">=</span> <span class="mf">1500.0</span>  <span class="c1"># inlet temperature [K]</span>
 <span class="n">pressure</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span>  <span class="c1"># constant pressure [Pa]</span>
-<span class="n">composition_0</span> <span class="o">=</span> <span class="s1">&#39;H2:2, O2:1, AR:0.1&#39;</span>
+<span class="n">composition_0</span> <span class="o">=</span> <span class="s1">'H2:2, O2:1, AR:0.1'</span>
 <span class="n">length</span> <span class="o">=</span> <span class="mf">1.5e-7</span>  <span class="c1"># *approximate* PFR length [m]</span>
 <span class="n">u_0</span> <span class="o">=</span> <span class="o">.</span><span class="mi">006</span>  <span class="c1"># inflow velocity [m/s]</span>
 <span class="n">area</span> <span class="o">=</span> <span class="mf">1.e-4</span>  <span class="c1"># cross-sectional area [m**2]</span>
 
 <span class="c1"># input file containing the reaction mechanism</span>
-<span class="n">reaction_mechanism</span> <span class="o">=</span> <span class="s1">&#39;h2o2.xml&#39;</span>
+<span class="n">reaction_mechanism</span> <span class="o">=</span> <span class="s1">'h2o2.xml'</span>
 
-<span class="c1"># Resolution: The PFR will be simulated by &#39;n_steps&#39; time steps or by a chain</span>
-<span class="c1"># of &#39;n_steps&#39; stirred reactors.</span>
+<span class="c1"># Resolution: The PFR will be simulated by 'n_steps' time steps or by a chain</span>
+<span class="c1"># of 'n_steps' stirred reactors.</span>
 <span class="n">n_steps</span> <span class="o">=</span> <span class="mi">2000</span>
 <span class="c1">#####################################################################</span>
 
@@ -156,7 +150,7 @@
 <span class="c1"># is no diffusion, the upstream reactors are not affected by any downstream</span>
 <span class="c1"># reactors, and therefore the problem may be solved by simply marching from</span>
 <span class="c1"># the first to last reactor, integrating each one to steady state.</span>
-<span class="c1"># (This approach is anologous to the one presented in &#39;surf_pfr.py&#39;, which</span>
+<span class="c1"># (This approach is anologous to the one presented in 'surf_pfr.py', which</span>
 <span class="c1"># additionally includes surface chemistry)</span>
 
 
@@ -173,11 +167,11 @@
 
 <span class="c1"># create a reservoir to represent the reactor immediately upstream. Note</span>
 <span class="c1"># that the gas object is set already to the state of the upstream reactor</span>
-<span class="n">upstream</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reservoir</span><span class="p">(</span><span class="n">gas2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;upstream&#39;</span><span class="p">)</span>
+<span class="n">upstream</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reservoir</span><span class="p">(</span><span class="n">gas2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'upstream'</span><span class="p">)</span>
 
 <span class="c1"># create a reservoir for the reactor to exhaust into. The composition of</span>
 <span class="c1"># this reservoir is irrelevant.</span>
-<span class="n">downstream</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reservoir</span><span class="p">(</span><span class="n">gas2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;downstream&#39;</span><span class="p">)</span>
+<span class="n">downstream</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reservoir</span><span class="p">(</span><span class="n">gas2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'downstream'</span><span class="p">)</span>
 
 <span class="c1"># The mass flow rate into the reactor will be fixed by using a</span>
 <span class="c1"># MassFlowController object.</span>
@@ -221,22 +215,22 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span> <span class="n">states1</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lagrangian Particle&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span> <span class="n">states2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reactor Chain&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$z$ [m]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$T$ [K]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span> <span class="n">states1</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Lagrangian Particle'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span> <span class="n">states2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Reactor Chain'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'$z$ [m]'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'$T$ [K]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;pfr_T_z.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'pfr_T_z.png'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">states1</span><span class="o">.</span><span class="n">X</span><span class="p">[:,</span> <span class="n">gas1</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s1">&#39;H2&#39;</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lagrangian Particle&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">states2</span><span class="o">.</span><span class="n">X</span><span class="p">[:,</span> <span class="n">gas2</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s1">&#39;H2&#39;</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reactor Chain&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$ [s]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$X_</span><span class="si">{H_2}</span><span class="s1">$ [-]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">states1</span><span class="o">.</span><span class="n">X</span><span class="p">[:,</span> <span class="n">gas1</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s1">'H2'</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Lagrangian Particle'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">states2</span><span class="o">.</span><span class="n">X</span><span class="p">[:,</span> <span class="n">gas2</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s1">'H2'</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Reactor Chain'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'$t$ [s]'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'$X_</span><span class="si">{H_2}</span><span class="s1">$ [-]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;pfr_XH2_t.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'pfr_XH2_t.png'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -251,11 +245,9 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

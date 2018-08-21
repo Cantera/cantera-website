@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>adiabatic.py &mdash; Cantera 2.1.2 documentation</title>
     
-    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <title>adiabatic.py &#8212; Cantera 2.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,59 +21,52 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.1.2 documentation" href="../../index.html" />
-    <link rel="up" title="Index of Examples" href="../examples.html" />
-    <link rel="next" title="plasma_equilibrium.py" href="multiphase_plasma_equilibrium.html" />
-    <link rel="prev" title="stagnation_flame.py" href="onedim_stagnation_flame.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="top" title="Cantera 2.1.2 documentation" href="../../index.html">
+    <link rel="up" title="Index of Examples" href="../examples.html">
+    <link rel="next" title="plasma_equilibrium.py" href="multiphase_plasma_equilibrium.html">
+    <link rel="prev" title="stagnation_flame.py" href="onedim_stagnation_flame.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="multiphase_plasma_equilibrium.html" title="plasma_equilibrium.py"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="onedim_stagnation_flame.html" title="stagnation_flame.py"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Cantera</a> &raquo;</li>
-          <li><a href="../index.html" >Python Module Documentation</a> &raquo;</li>
-          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &raquo;</li> 
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="multiphase_plasma_equilibrium.html" title="plasma_equilibrium.py" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="onedim_stagnation_flame.html" title="stagnation_flame.py" accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &#187;</li>
+          <li><a href="../index.html">Python Module Documentation</a> &#187;</li>
+          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &#187;</li> 
       </ul>
     </div>
 
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="onedim_stagnation_flame.html"
-                        title="previous chapter">stagnation_flame.py</a></p>
+  <p class="topless"><a href="onedim_stagnation_flame.html" title="previous chapter">stagnation_flame.py</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="multiphase_plasma_equilibrium.html"
-                        title="next chapter">plasma_equilibrium.py</a></p>
+  <p class="topless"><a href="multiphase_plasma_equilibrium.html" title="next chapter">plasma_equilibrium.py</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../../_sources/cython/examples/multiphase_adiabatic.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="../../_sources/cython/examples/multiphase_adiabatic.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -91,12 +81,12 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="adiabatic-py">
-<h1>adiabatic.py<a class="headerlink" href="#adiabatic-py" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="adiabatic-py">
+<h1>adiabatic.py<a class="headerlink" href="#adiabatic-py" title="Permalink to this headline">&#182;</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">"""</span>
 <span class="sd">Adiabatic flame temperature and equilibrium composition for a fuel/air mixture</span>
 <span class="sd">as a function of equivalence ratio, including formation of solid carbon.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span> <span class="nn">cantera</span> <span class="kn">as</span> <span class="nn">ct</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -111,14 +101,14 @@
 <span class="n">P</span> <span class="o">=</span> <span class="mf">101325.0</span>
 
 <span class="c"># phases</span>
-<span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">&#39;gri30.xml&#39;</span><span class="p">)</span>
-<span class="n">carbon</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">&#39;graphite.xml&#39;</span><span class="p">)</span>
+<span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">'gri30.xml'</span><span class="p">)</span>
+<span class="n">carbon</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">'graphite.xml'</span><span class="p">)</span>
 
 <span class="c"># the phases that will be included in the calculation, and their initial moles</span>
 <span class="n">mix_phases</span> <span class="o">=</span> <span class="p">[(</span><span class="n">gas</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="n">carbon</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
 
 <span class="c"># gaseous fuel species</span>
-<span class="n">fuel_species</span> <span class="o">=</span> <span class="s">&#39;CH4&#39;</span>
+<span class="n">fuel_species</span> <span class="o">=</span> <span class="s">'CH4'</span>
 
 <span class="c"># air composition</span>
 <span class="n">air_N2_O2_ratio</span> <span class="o">=</span> <span class="mf">3.76</span>
@@ -139,13 +129,13 @@
 
 <span class="c"># find fuel, nitrogen, and oxygen indices</span>
 <span class="n">ifuel</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="n">fuel_species</span><span class="p">)</span>
-<span class="n">io2</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s">&#39;O2&#39;</span><span class="p">)</span>
-<span class="n">in2</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">io2</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s">'O2'</span><span class="p">)</span>
+<span class="n">in2</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s">'N2'</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">gas</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">(</span><span class="n">fuel_species</span><span class="p">,</span><span class="s">&#39;O&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">gas</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">(</span><span class="n">fuel_species</span><span class="p">,</span><span class="s">&#39;N&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="s">&quot;Error: only hydrocarbon fuels are supported.&quot;</span>
+<span class="k">if</span> <span class="n">gas</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">(</span><span class="n">fuel_species</span><span class="p">,</span><span class="s">'O'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">gas</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">(</span><span class="n">fuel_species</span><span class="p">,</span><span class="s">'N'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="s">"Error: only hydrocarbon fuels are supported."</span>
 
-<span class="n">stoich_O2</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">(</span><span class="n">fuel_species</span><span class="p">,</span><span class="s">&#39;C&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">gas</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">(</span><span class="n">fuel_species</span><span class="p">,</span><span class="s">&#39;H&#39;</span><span class="p">)</span>
+<span class="n">stoich_O2</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">(</span><span class="n">fuel_species</span><span class="p">,</span><span class="s">'C'</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">gas</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">(</span><span class="n">fuel_species</span><span class="p">,</span><span class="s">'H'</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">npoints</span><span class="p">):</span>
     <span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">phi_min</span> <span class="o">+</span> <span class="p">(</span><span class="n">phi_max</span> <span class="o">-</span> <span class="n">phi_min</span><span class="p">)</span><span class="o">*</span><span class="n">i</span><span class="o">/</span><span class="p">(</span><span class="n">npoints</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
@@ -163,26 +153,26 @@
     <span class="n">mix</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="n">P</span>
 
     <span class="c"># equilibrate the mixture adiabatically at constant P</span>
-    <span class="n">mix</span><span class="o">.</span><span class="n">equilibrate</span><span class="p">(</span><span class="s">&#39;HP&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s">&#39;gibbs&#39;</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">mix</span><span class="o">.</span><span class="n">equilibrate</span><span class="p">(</span><span class="s">'HP'</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s">'gibbs'</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 
     <span class="n">tad</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mix</span><span class="o">.</span><span class="n">T</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;At phi = {0:12.4g}, Tad = {1:12.4g}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tad</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'At phi = {0:12.4g}, Tad = {1:12.4g}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tad</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
     <span class="n">xeq</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mix</span><span class="o">.</span><span class="n">species_moles</span>
 
 <span class="c"># write output CSV file for importing into Excel</span>
-<span class="n">csv_file</span> <span class="o">=</span> <span class="s">&#39;adiabatic.csv&#39;</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+<span class="n">csv_file</span> <span class="o">=</span> <span class="s">'adiabatic.csv'</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
     <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
-    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s">&#39;phi&#39;</span><span class="p">,</span><span class="s">&#39;T (K)&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">mix</span><span class="o">.</span><span class="n">species_names</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s">'phi'</span><span class="p">,</span><span class="s">'T (K)'</span><span class="p">]</span> <span class="o">+</span> <span class="n">mix</span><span class="o">.</span><span class="n">species_names</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">npoints</span><span class="p">):</span>
         <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tad</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">xeq</span><span class="p">[:,</span><span class="n">i</span><span class="p">]))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;Output written to {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">csv_file</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Output written to {0}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">csv_file</span><span class="p">))</span>
 
-<span class="k">if</span> <span class="s">&#39;--plot&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+<span class="k">if</span> <span class="s">'--plot'</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">tad</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Equivalence ratio&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Adiabatic flame temperature [K]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Equivalence ratio'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Adiabatic flame temperature [K]'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -198,24 +188,20 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="multiphase_plasma_equilibrium.html" title="plasma_equilibrium.py"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="onedim_stagnation_flame.html" title="stagnation_flame.py"
-             >previous</a> |</li>
-        <li><a href="../../index.html">Cantera</a> &raquo;</li>
-          <li><a href="../index.html" >Python Module Documentation</a> &raquo;</li>
-          <li><a href="../examples.html" >Index of Examples</a> &raquo;</li> 
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="multiphase_plasma_equilibrium.html" title="plasma_equilibrium.py">next</a> |</li>
+        <li class="right">
+          <a href="onedim_stagnation_flame.html" title="stagnation_flame.py">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &#187;</li>
+          <li><a href="../index.html">Python Module Documentation</a> &#187;</li>
+          <li><a href="../examples.html">Index of Examples</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

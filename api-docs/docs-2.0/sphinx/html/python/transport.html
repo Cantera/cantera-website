@@ -1,17 +1,12 @@
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Transport Properties &mdash; Cantera 2.0.2 documentation</title>
     
-    <link rel="stylesheet" href="../_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <title>Transport Properties &#8212; Cantera 2.0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -26,58 +21,51 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.0.2 documentation" href="../index.html" />
-    <link rel="up" title="Python Module Documentation" href="index.html" />
-    <link rel="next" title="Composite Classes" href="composite.html" />
-    <link rel="prev" title="Chemical Kinetics" href="kinetics.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../_static/favicon.ico">
+    <link rel="top" title="Cantera 2.0.2 documentation" href="../index.html">
+    <link rel="up" title="Python Module Documentation" href="index.html">
+    <link rel="next" title="Composite Classes" href="composite.html">
+    <link rel="prev" title="Chemical Kinetics" href="kinetics.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../index.html">
-<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="composite.html" title="Composite Classes"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="kinetics.html" title="Chemical Kinetics"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Cantera</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">Python Module Documentation</a> &raquo;</li> 
+          <a href="../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="composite.html" title="Composite Classes" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="kinetics.html" title="Chemical Kinetics" accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &#187;</li>
+          <li><a href="index.html" accesskey="U">Python Module Documentation</a> &#187;</li> 
       </ul>
     </div>
 
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="kinetics.html"
-                        title="previous chapter">Chemical Kinetics</a></p>
+  <p class="topless"><a href="kinetics.html" title="previous chapter">Chemical Kinetics</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="composite.html"
-                        title="next chapter">Composite Classes</a></p>
+  <p class="topless"><a href="composite.html" title="next chapter">Composite Classes</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/python/transport.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="../_sources/python/transport.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -92,8 +80,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="module-Cantera.Transport">
-<span id="transport-properties"></span><h1>Transport Properties<a class="headerlink" href="#module-Cantera.Transport" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="module-Cantera.Transport">
+<span id="transport-properties"></span><h1>Transport Properties<a class="headerlink" href="#module-Cantera.Transport" title="Permalink to this headline">&#182;</a></h1>
 <p>Cantera provides a set of &#8216;transport manager&#8217; classes that manage
 the computation of transport properties. Every object representing a
 phase of matter for which transport properties are needed has a
@@ -113,7 +101,7 @@ highly simplified class structure is used in the Python interface &#8211;
 there is only one class.</p>
 <dl class="class">
 <dt id="Cantera.Transport.Transport">
-<em class="property">class </em><tt class="descclassname">Cantera.Transport.</tt><tt class="descname">Transport</tt><big>(</big><em>xml_phase=None</em>, <em>phase=None</em>, <em>model=''</em>, <em>loglevel=0</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">Cantera.Transport.</tt><tt class="descname">Transport</tt><big>(</big><em>xml_phase=None</em>, <em>phase=None</em>, <em>model=''</em>, <em>loglevel=0</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Transport properties.</p>
 <p>This class provides the Python interface to the family of
 transport manager classes in the Cantera C++ kernel. A transport
@@ -130,8 +118,8 @@ although only one is active at any one time. This feature allows
 switching between transport models.</p>
 <p>Create a transport property manager.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>xml_phase</strong> &#8211; XML phase element</li>
@@ -147,7 +135,7 @@ the model will be read from the input file.</li>
 </table>
 <dl class="method">
 <dt id="Cantera.Transport.Transport.addTransportModel">
-<tt class="descname">addTransportModel</tt><big>(</big><em>model</em>, <em>loglevel=1</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.addTransportModel" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">addTransportModel</tt><big>(</big><em>model</em>, <em>loglevel=1</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.addTransportModel" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Add a new transport model.  Note that if <em>model</em> is the
 name of an already-installed transport model, the new
 transport manager will take the place of the old one, which
@@ -157,85 +145,85 @@ active model.</p>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.binaryDiffCoeffs">
-<tt class="descname">binaryDiffCoeffs</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.binaryDiffCoeffs" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">binaryDiffCoeffs</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.binaryDiffCoeffs" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Two-dimensional array of species binary diffusion coefficients.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.desc">
-<tt class="descname">desc</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.desc" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">desc</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.desc" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>A short description of the active model.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.diffusionCoeffs">
-<tt class="descname">diffusionCoeffs</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.diffusionCoeffs" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">diffusionCoeffs</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.diffusionCoeffs" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Species diffusion coefficients. (m^2/s).</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.massFluxes">
-<tt class="descname">massFluxes</tt><big>(</big><em>state1</em>, <em>state2</em>, <em>delta</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.massFluxes" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">massFluxes</tt><big>(</big><em>state1</em>, <em>state2</em>, <em>delta</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.massFluxes" title="Permalink to this definition">&#182;</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.mixDiffCoeffs">
-<tt class="descname">mixDiffCoeffs</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.mixDiffCoeffs" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">mixDiffCoeffs</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.mixDiffCoeffs" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Mixture-averaged diffusion coefficients.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.molarFluxes">
-<tt class="descname">molarFluxes</tt><big>(</big><em>state1</em>, <em>state2</em>, <em>delta</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.molarFluxes" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">molarFluxes</tt><big>(</big><em>state1</em>, <em>state2</em>, <em>delta</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.molarFluxes" title="Permalink to this definition">&#182;</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.multiDiffCoeffs">
-<tt class="descname">multiDiffCoeffs</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.multiDiffCoeffs" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">multiDiffCoeffs</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.multiDiffCoeffs" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Two-dimensional array of species multicomponent diffusion
 coefficients. Not implemented in all transport managers.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.setParameters">
-<tt class="descname">setParameters</tt><big>(</big><em>type</em>, <em>k</em>, <em>params</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.setParameters" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">setParameters</tt><big>(</big><em>type</em>, <em>k</em>, <em>params</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.setParameters" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set model-specific parameters.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.switchTransportModel">
-<tt class="descname">switchTransportModel</tt><big>(</big><em>model</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.switchTransportModel" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">switchTransportModel</tt><big>(</big><em>model</em><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.switchTransportModel" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Switch to a different transport model.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.thermalConductivity">
-<tt class="descname">thermalConductivity</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.thermalConductivity" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">thermalConductivity</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.thermalConductivity" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Thermal conductivity. [W/m/K].</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.thermalDiffCoeffs">
-<tt class="descname">thermalDiffCoeffs</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.thermalDiffCoeffs" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">thermalDiffCoeffs</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.thermalDiffCoeffs" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Return a one-dimensional array of the species thermal diffusion
 coefficients. Not implemented in all transport models.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.transport_hndl">
-<tt class="descname">transport_hndl</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.transport_hndl" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transport_hndl</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.transport_hndl" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>For internal use.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.transport_id">
-<tt class="descname">transport_id</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.transport_id" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transport_id</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.transport_id" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>For internal use.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cantera.Transport.Transport.viscosity">
-<tt class="descname">viscosity</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.viscosity" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">viscosity</tt><big>(</big><big>)</big><a class="headerlink" href="#Cantera.Transport.Transport.viscosity" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Viscosity [Pa-s].</p>
 </dd></dl>
 
@@ -253,23 +241,19 @@ coefficients. Not implemented in all transport models.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="composite.html" title="Composite Classes"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="kinetics.html" title="Chemical Kinetics"
-             >previous</a> |</li>
-        <li><a href="../index.html">Cantera</a> &raquo;</li>
-          <li><a href="index.html" >Python Module Documentation</a> &raquo;</li> 
+          <a href="../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="composite.html" title="Composite Classes">next</a> |</li>
+        <li class="right">
+          <a href="kinetics.html" title="Chemical Kinetics">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &#187;</li>
+          <li><a href="index.html">Python Module Documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

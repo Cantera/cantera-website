@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Migrating from the Old Python Module &mdash; Cantera 2.2.1 documentation</title>
     
-    <link rel="stylesheet" href="../_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <title>Migrating from the Old Python Module &#8212; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,35 +21,31 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.2.1 documentation" href="../index.html" />
-    <link rel="up" title="Python Module Documentation" href="index.html" />
-    <link rel="next" title="Tutorial" href="tutorial.html" />
-    <link rel="prev" title="Python Module Documentation" href="index.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../_static/favicon.ico">
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../index.html">
+    <link rel="up" title="Python Module Documentation" href="index.html">
+    <link rel="next" title="Tutorial" href="tutorial.html">
+    <link rel="prev" title="Python Module Documentation" href="index.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../index.html">
-<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="tutorial.html" title="Tutorial"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Python Module Documentation"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Cantera</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">Python Module Documentation</a> &raquo;</li> 
+          <a href="../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="tutorial.html" title="Tutorial" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="index.html" title="Python Module Documentation" accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &#187;</li>
+          <li><a href="index.html" accesskey="U">Python Module Documentation</a> &#187;</li> 
       </ul>
     </div>
 
@@ -77,23 +70,20 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Python Module Documentation</a></p>
+  <p class="topless"><a href="index.html" title="previous chapter">Python Module Documentation</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="tutorial.html"
-                        title="next chapter">Tutorial</a></p>
+  <p class="topless"><a href="tutorial.html" title="next chapter">Tutorial</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/cython/migrating.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="../_sources/cython/migrating.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -108,8 +98,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="migrating-from-the-old-python-module">
-<span id="sec-python-migration"></span><h1>Migrating from the Old Python Module<a class="headerlink" href="#migrating-from-the-old-python-module" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="migrating-from-the-old-python-module">
+<span id="sec-python-migration"></span><h1>Migrating from the Old Python Module<a class="headerlink" href="#migrating-from-the-old-python-module" title="Permalink to this headline">&#182;</a></h1>
 <p>With the introduction of the new Cython-based Python module in Cantera 2.1,
 there are a number of changes to the interface which require modifications to
 scripts in order for them to work with the new module. Broadly speaking, the
@@ -119,7 +109,7 @@ language idioms, language features, and style guidelines.</p>
 <p>This document describes the changes to the Python module which are likely to
 require modifications to existing code.</p>
 <div class="section" id="importing-the-python-module">
-<h2>Importing the Python Module<a class="headerlink" href="#importing-the-python-module" title="Permalink to this headline">¶</a></h2>
+<h2>Importing the Python Module<a class="headerlink" href="#importing-the-python-module" title="Permalink to this headline">&#182;</a></h2>
 <p>The name of the Python module is now <tt class="docutils literal"><span class="pre">cantera</span></tt> with a lowercase &#8220;c&#8221;. This
 change is made partly for compliance with <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/#package-and-module-names">PEP8</a>.</p>
 <p>Furthermore, the various submodules, e.g. <tt class="docutils literal"><span class="pre">Cantera.Reactor</span></tt> have been
@@ -132,31 +122,31 @@ syntax is preferred:</p>
 </div>
 </div>
 <div class="section" id="naming-conventions">
-<h2>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h2>
+<h2>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">&#182;</a></h2>
 <p>Generally, the names used in the Cantera Python module have been changed to
 follow the recommendations of PEP8. This means that the names of methods and
 properties are generally written as <tt class="docutils literal"><span class="pre">lowercase_with_underscores</span></tt> instead of
 <tt class="docutils literal"><span class="pre">capitalizingEachWord</span></tt>. Also, some abbreviated names have been expanded. For
 example, the following function calls:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">speciesName</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">nAtoms</span><span class="p">(</span><span class="s">&#39;H2&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">nAtoms</span><span class="p">(</span><span class="s">'H2'</span><span class="p">,</span> <span class="s">'H'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">reactionEqn</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>should be replaced with:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">species_name</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">(</span><span class="s">&#39;H2&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">(</span><span class="s">'H2'</span><span class="p">,</span> <span class="s">'H'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">reaction_equation</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="importing-phases">
-<h2>Importing Phases<a class="headerlink" href="#importing-phases" title="Permalink to this headline">¶</a></h2>
+<h2>Importing Phases<a class="headerlink" href="#importing-phases" title="Permalink to this headline">&#182;</a></h2>
 <p>The functions <tt class="docutils literal"><span class="pre">importPhase</span></tt> and <tt class="docutils literal"><span class="pre">IdealGasMix</span></tt> have been removed.
 <tt class="xref py py-obj docutils literal"><span class="pre">Solution</span></tt> objects, which represent the phase (regardless of the underlying
 thermodynamic model) as well as providing access to kinetics and transport
 properties, are created directly using the <tt class="xref py py-obj docutils literal"><span class="pre">Solution</span></tt> class. For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span> <span class="o">=</span> <span class="n">Solution</span><span class="p">(</span><span class="s">&#39;h2o2.xml&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span> <span class="o">=</span> <span class="n">Solution</span><span class="p">(</span><span class="s">'h2o2.xml'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Creates an object which represents an <tt class="docutils literal"><span class="pre">IdealGasPhase</span></tt> mixture with a
@@ -164,35 +154,35 @@ properties, are created directly using the <tt class="xref py py-obj docutils li
 based on the parameters specified in the input file.</p>
 <p>For importing multiple phases from a single file, the <tt class="docutils literal"><span class="pre">importPhases</span></tt> function
 has been retained with the new name <tt class="docutils literal"><span class="pre">import_phases</span></tt>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="p">,</span> <span class="n">anode_bulk</span><span class="p">,</span> <span class="n">oxide</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">import_phases</span><span class="p">(</span><span class="s">&#39;sofc.cti&#39;</span><span class="p">,</span>
-<span class="go">                                              [&#39;gas&#39;, &#39;metal&#39;, &#39;oxide_bulk&#39;])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="p">,</span> <span class="n">anode_bulk</span><span class="p">,</span> <span class="n">oxide</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">import_phases</span><span class="p">(</span><span class="s">'sofc.cti'</span><span class="p">,</span>
+<span class="go">                                              ['gas', 'metal', 'oxide_bulk'])</span>
 </pre></div>
 </div>
 <p>Interfaces and edges are created using the <tt class="xref py py-obj docutils literal"><span class="pre">Interface</span></tt> class, which represents
 both 1D and 2D interfaces, rather than using the <tt class="docutils literal"><span class="pre">importEdge</span></tt> and
 <tt class="docutils literal"><span class="pre">importInterface</span></tt> functions:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">anode_surf</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s">&#39;sofc.cti&#39;</span><span class="p">,</span> <span class="s">&#39;metal_surface&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">gas</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">oxide_surf</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s">&#39;sofc.cti&#39;</span><span class="p">,</span> <span class="s">&#39;oxide_surface&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">gas</span><span class="p">,</span> <span class="n">oxide</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tpb</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s">&#39;sofc.cti&#39;</span><span class="p">,</span> <span class="s">&#39;tpb&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">anode_bulk</span><span class="p">,</span> <span class="n">anode_surf</span><span class="p">,</span> <span class="n">oxide_surf</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">anode_surf</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s">'sofc.cti'</span><span class="p">,</span> <span class="s">'metal_surface'</span><span class="p">,</span> <span class="p">[</span><span class="n">gas</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">oxide_surf</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s">'sofc.cti'</span><span class="p">,</span> <span class="s">'oxide_surface'</span><span class="p">,</span> <span class="p">[</span><span class="n">gas</span><span class="p">,</span> <span class="n">oxide</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tpb</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s">'sofc.cti'</span><span class="p">,</span> <span class="s">'tpb'</span><span class="p">,</span> <span class="p">[</span><span class="n">anode_bulk</span><span class="p">,</span> <span class="n">anode_surf</span><span class="p">,</span> <span class="n">oxide_surf</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="accessing-properties">
-<h2>Accessing Properties<a class="headerlink" href="#accessing-properties" title="Permalink to this headline">¶</a></h2>
+<h2>Accessing Properties<a class="headerlink" href="#accessing-properties" title="Permalink to this headline">&#182;</a></h2>
 <p>Most methods for accessing and setting the properties of objects have been
 replaced with Python &#8220;properties&#8221; which do not need to be &#8220;called&#8221; in order to
 accessed or changed. For example, the following:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">intEnergy_mass</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Wmx</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">meanMolecularWeight</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">kf</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">fwdRateConstants</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="s">&#39;foo&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="s">'foo'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>should be replaced with:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">int_energy_mass</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Wmx</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">mean_molecular_weight</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">kf</span> <span class="o">=</span> <span class="n">gas</span><span class="o">.</span><span class="n">forward_rate_constants</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;foo&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">'foo'</span>
 </pre></div>
 </div>
 <p>Some common properties have been renamed according to the variable that is
@@ -221,20 +211,20 @@ typically used to represent them:</p>
 </div>
 </div>
 <div class="section" id="setting-thermodynamic-state">
-<h2>Setting Thermodynamic State<a class="headerlink" href="#setting-thermodynamic-state" title="Permalink to this headline">¶</a></h2>
+<h2>Setting Thermodynamic State<a class="headerlink" href="#setting-thermodynamic-state" title="Permalink to this headline">&#182;</a></h2>
 <p>The <tt class="docutils literal"><span class="pre">set</span></tt> method has been removed in favor of property pairs or triplets. The
 following:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">setMoleFractions</span><span class="p">(</span><span class="s">&#39;CH4:1.0, O2:0.1&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="s">&#39;CH4:1.0, O2:0.1&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">setMoleFractions</span><span class="p">(</span><span class="s">'CH4:1.0, O2:0.1'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="s">'CH4:1.0, O2:0.1'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">U</span><span class="o">=-</span><span class="mf">1.1e6</span><span class="p">,</span> <span class="n">V</span><span class="o">=</span><span class="mf">5.5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="mi">101325</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="s">&#39;H2:1.0&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="mi">101325</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="s">'H2:1.0'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>should be replaced with:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s">&#39;CH4:1.0, O2:0.1&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s">&#39;CH4:1.0, O2:0.1&#39;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s">'CH4:1.0, O2:0.1'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s">'CH4:1.0, O2:0.1'</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">UV</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.1e6</span><span class="p">,</span> <span class="mf">5.5</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">TPY</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">101325</span><span class="p">,</span> <span class="s">&#39;H2:1.0&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">TPY</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">101325</span><span class="p">,</span> <span class="s">'H2:1.0'</span>
 </pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">saveState</span></tt> and <tt class="docutils literal"><span class="pre">restoreState</span></tt> methods have been removed. Their
@@ -246,7 +236,7 @@ functionality can be replicated as follows:</p>
 </div>
 </div>
 <div class="section" id="printing-phase-summaries">
-<h2>Printing Phase Summaries<a class="headerlink" href="#printing-phase-summaries" title="Permalink to this headline">¶</a></h2>
+<h2>Printing Phase Summaries<a class="headerlink" href="#printing-phase-summaries" title="Permalink to this headline">&#182;</a></h2>
 <p><tt class="xref py py-obj docutils literal"><span class="pre">Solution</span></tt> objects no longer print out a verbose summary as their string
 representation. Instead, the summary report can be generated using the
 <tt class="xref py py-obj docutils literal"><span class="pre">report()</span></tt> method, which returns a string, or by calling the <tt class="xref py py-obj docutils literal"><span class="pre">Solution</span></tt> object
@@ -257,14 +247,14 @@ to print the report to the screen. The following are equivalent:</p>
 </div>
 </div>
 <div class="section" id="getting-properties-for-a-subset-of-species">
-<h2>Getting Properties for a Subset of Species<a class="headerlink" href="#getting-properties-for-a-subset-of-species" title="Permalink to this headline">¶</a></h2>
+<h2>Getting Properties for a Subset of Species<a class="headerlink" href="#getting-properties-for-a-subset-of-species" title="Permalink to this headline">&#182;</a></h2>
 <p>Some methods previously accepted an optional list of species as a filter, e.g.:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">massFractions</span><span class="p">([</span><span class="s">&#39;OH&#39;</span><span class="p">,</span><span class="s">&#39;H&#39;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">massFractions</span><span class="p">([</span><span class="s">'OH'</span><span class="p">,</span><span class="s">'H'</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>This is not compatible with the Python &#8220;property&#8221; syntax, so the following
 alternative is used instead:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="p">[</span><span class="s">&#39;OH&#39;</span><span class="p">,</span><span class="s">&#39;H2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">Y</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="p">[</span><span class="s">'OH'</span><span class="p">,</span><span class="s">'H2'</span><span class="p">]</span><span class="o">.</span><span class="n">Y</span>
 <span class="go">array([ 0.,  1.])</span>
 </pre></div>
 </div>
@@ -274,23 +264,23 @@ with species names, indices, and index ranges:</p>
 <span class="go">array([ 20786.15525072,  21900.30946418,  34929.99146762])</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">species_names</span>
-<span class="go">[&#39;O2&#39;, &#39;OH&#39;, &#39;H2O&#39;]</span>
+<span class="go">['O2', 'OH', 'H2O']</span>
 </pre></div>
 </div>
 <p>Furthermore, the &#8220;sliced&#8221; object itself can be saved and used without needing
 to specify the species list again:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reactants</span> <span class="o">=</span> <span class="n">gas</span><span class="p">[</span><span class="s">&#39;H2&#39;</span><span class="p">,</span><span class="s">&#39;O2&#39;</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reactants</span> <span class="o">=</span> <span class="n">gas</span><span class="p">[</span><span class="s">'H2'</span><span class="p">,</span><span class="s">'O2'</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">reactants</span><span class="o">.</span><span class="n">X</span>
 <span class="go">array([ 1.,  0.])</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="transport-models">
-<h2>Transport Models<a class="headerlink" href="#transport-models" title="Permalink to this headline">¶</a></h2>
+<h2>Transport Models<a class="headerlink" href="#transport-models" title="Permalink to this headline">&#182;</a></h2>
 <p>The old method for setting the transport model, <tt class="xref py py-obj docutils literal"><span class="pre">switchTransportModel</span></tt> has been
 replaced with the <tt class="xref py py-obj docutils literal"><span class="pre">transport_model</span></tt> property. To use the multicomponent
 transport model:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">transport_model</span> <span class="o">=</span> <span class="s">&#39;Multi&#39;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">transport_model</span> <span class="o">=</span> <span class="s">'Multi'</span>
 </pre></div>
 </div>
 <p>Note that unlike the previous implementation, only one transport model can be
@@ -299,7 +289,7 @@ switching models. If you need to alternate between transport models, it is
 generally better to use two different <tt class="xref py py-obj docutils literal"><span class="pre">Solution</span></tt> objects.</p>
 </div>
 <div class="section" id="reactor-networks">
-<h2>Reactor Networks<a class="headerlink" href="#reactor-networks" title="Permalink to this headline">¶</a></h2>
+<h2>Reactor Networks<a class="headerlink" href="#reactor-networks" title="Permalink to this headline">&#182;</a></h2>
 <p>As with the <tt class="xref py py-obj docutils literal"><span class="pre">Solution</span></tt> class, properties are now used to get and set most
 parameters of reactors, flow devices, walls, etc. The following old code:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">reactor</span><span class="o">.</span><span class="n">massFractions</span><span class="p">()</span>
@@ -322,7 +312,7 @@ parameters of reactors, flow devices, walls, etc. The following old code:</p>
 need to be evaluated at a particular time.</p>
 </div>
 <div class="section" id="elimination-of-the-func-module">
-<h2>Elimination of the <tt class="docutils literal"><span class="pre">Func</span></tt> Module<a class="headerlink" href="#elimination-of-the-func-module" title="Permalink to this headline">¶</a></h2>
+<h2>Elimination of the <tt class="docutils literal"><span class="pre">Func</span></tt> Module<a class="headerlink" href="#elimination-of-the-func-module" title="Permalink to this headline">&#182;</a></h2>
 <p>The <tt class="docutils literal"><span class="pre">Func</span></tt> module is no longer necessary, as the Cython module allows any
 callable Python object (lambda, function, or class) to be used in places where
 a function of a single variable are needed. For example, to set the velocity
@@ -336,13 +326,13 @@ of a wall as a function of time, the following are equivalent:</p>
 </div>
 </div>
 <div class="section" id="one-dimensional-reacting-flows">
-<h2>One-Dimensional Reacting Flows<a class="headerlink" href="#one-dimensional-reacting-flows" title="Permalink to this headline">¶</a></h2>
+<h2>One-Dimensional Reacting Flows<a class="headerlink" href="#one-dimensional-reacting-flows" title="Permalink to this headline">&#182;</a></h2>
 <p>As elsewhere, the <tt class="docutils literal"><span class="pre">set</span></tt> method has been eliminated. The following old usage:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">fuel_inlet</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">massflux</span><span class="o">=</span><span class="n">mdot_f</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>                 <span class="n">mole_fractions</span><span class="o">=</span><span class="n">comp_f</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>                 <span class="n">temperature</span><span class="o">=</span><span class="n">tin_f</span><span class="p">)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">energy</span> <span class="o">=</span> <span class="s">&#39;off&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">energy</span> <span class="o">=</span> <span class="s">'off'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>should be replaced with:</p>
@@ -367,14 +357,14 @@ retained in slightly modified forms. The following:</p>
 </div>
 <p>To change the transport model and enable calculation of the Soret diffusion
 term, the following:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">addTransportModel</span><span class="p">(</span><span class="s">&#39;Multi&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">switchTransportModel</span><span class="p">(</span><span class="s">&#39;Multi&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">addTransportModel</span><span class="p">(</span><span class="s">'Multi'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">switchTransportModel</span><span class="p">(</span><span class="s">'Multi'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">flame</span><span class="o">.</span><span class="n">setTransportModel</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">flame</span><span class="o">.</span><span class="n">enableSoret</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>should be replaced with:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">transport_model</span> <span class="o">=</span> <span class="s">&#39;Multi&#39;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">transport_model</span> <span class="o">=</span> <span class="s">'Multi'</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">soret_enabled</span> <span class="o">=</span> <span class="bp">True</span>
 </pre></div>
 </div>
@@ -391,23 +381,19 @@ term, the following:</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="tutorial.html" title="Tutorial"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Python Module Documentation"
-             >previous</a> |</li>
-        <li><a href="../index.html">Cantera</a> &raquo;</li>
-          <li><a href="index.html" >Python Module Documentation</a> &raquo;</li> 
+          <a href="../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="tutorial.html" title="Tutorial">next</a> |</li>
+        <li class="right">
+          <a href="index.html" title="Python Module Documentation">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &#187;</li>
+          <li><a href="index.html">Python Module Documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>

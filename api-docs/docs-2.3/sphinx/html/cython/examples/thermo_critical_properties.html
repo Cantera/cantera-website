@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>critical_properties.py &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -22,26 +19,24 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../../about.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../../about.html">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -51,23 +46,22 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/cython/examples/thermo_critical_properties.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../../_sources/cython/examples/thermo_critical_properties.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -77,27 +71,27 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="critical-properties-py">
-<span id="py-example-critical-properties-py"></span><h1>critical_properties.py<a class="headerlink" href="#critical-properties-py" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="critical-properties-py">
+<span id="py-example-critical-properties-py"></span><h1>critical_properties.py<a class="headerlink" href="#critical-properties-py" title="Permalink to this headline">&#182;</a></h1>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">Print the critical state properties for the fluids for which Cantera has</span>
 <span class="sd">built-in liquid/vapor equations of state.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span> <span class="nn">cantera</span> <span class="k">as</span> <span class="nn">ct</span>
 
-<span class="n">fluids</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;water&#39;</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">(),</span>
-          <span class="s1">&#39;nitrogen&#39;</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">(),</span>
-          <span class="s1">&#39;methane&#39;</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Methane</span><span class="p">(),</span>
-          <span class="s1">&#39;hydrogen&#39;</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">(),</span>
-          <span class="s1">&#39;oxygen&#39;</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Oxygen</span><span class="p">(),</span>
-          <span class="s1">&#39;carbon dioxide&#39;</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">CarbonDioxide</span><span class="p">(),</span>
-          <span class="s1">&#39;heptane&#39;</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Heptane</span><span class="p">(),</span>
-          <span class="s1">&#39;hfc134a&#39;</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hfc134a</span><span class="p">()</span>
+<span class="n">fluids</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'water'</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">(),</span>
+          <span class="s1">'nitrogen'</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">(),</span>
+          <span class="s1">'methane'</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Methane</span><span class="p">(),</span>
+          <span class="s1">'hydrogen'</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">(),</span>
+          <span class="s1">'oxygen'</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Oxygen</span><span class="p">(),</span>
+          <span class="s1">'carbon dioxide'</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">CarbonDioxide</span><span class="p">(),</span>
+          <span class="s1">'heptane'</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Heptane</span><span class="p">(),</span>
+          <span class="s1">'hfc134a'</span><span class="p">:</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hfc134a</span><span class="p">()</span>
           <span class="p">}</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Critical State Properties&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%20s</span><span class="s1">  </span><span class="si">%10s</span><span class="s1">  </span><span class="si">%10s</span><span class="s1">  </span><span class="si">%10s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;Fluid&#39;</span><span class="p">,</span><span class="s1">&#39;Tc [K]&#39;</span><span class="p">,</span> <span class="s1">&#39;Pc [Pa]&#39;</span><span class="p">,</span> <span class="s1">&#39;Zc&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Critical State Properties'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="si">%20s</span><span class="s1">  </span><span class="si">%10s</span><span class="s1">  </span><span class="si">%10s</span><span class="s1">  </span><span class="si">%10s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="s1">'Fluid'</span><span class="p">,</span><span class="s1">'Tc [K]'</span><span class="p">,</span> <span class="s1">'Pc [Pa]'</span><span class="p">,</span> <span class="s1">'Zc'</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">fluids</span><span class="p">:</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">fluids</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
     <span class="n">tc</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">critical_temperature</span>
@@ -105,7 +99,7 @@
     <span class="n">rc</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">critical_density</span>
     <span class="n">mw</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">mean_molecular_weight</span>
     <span class="n">zc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">*</span> <span class="n">mw</span> <span class="o">/</span> <span class="p">(</span><span class="n">rc</span> <span class="o">*</span> <span class="n">ct</span><span class="o">.</span><span class="n">gas_constant</span> <span class="o">*</span> <span class="n">tc</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%20s</span><span class="s1">   </span><span class="si">%10.4g</span><span class="s1">   </span><span class="si">%10.4G</span><span class="s1">  </span><span class="si">%10.4G</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tc</span><span class="p">,</span> <span class="n">pc</span><span class="p">,</span> <span class="n">zc</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="si">%20s</span><span class="s1">   </span><span class="si">%10.4g</span><span class="s1">   </span><span class="si">%10.4G</span><span class="s1">  </span><span class="si">%10.4G</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tc</span><span class="p">,</span> <span class="n">pc</span><span class="p">,</span> <span class="n">zc</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -120,11 +114,9 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

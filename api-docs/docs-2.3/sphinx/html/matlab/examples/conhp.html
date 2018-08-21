@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>conhp.m &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -22,26 +19,24 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../../about.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../../about.html">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -51,23 +46,22 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/matlab/examples/conhp.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../../_sources/matlab/examples/conhp.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -77,25 +71,25 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="conhp-m">
-<span id="matlab-example-conhp-m"></span><h1>conhp.m<a class="headerlink" href="#conhp-m" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="conhp-m">
+<span id="matlab-example-conhp-m"></span><h1>conhp.m<a class="headerlink" href="#conhp-m" title="Permalink to this headline">&#182;</a></h1>
 <div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>dydt <span class="p">=</span><span class="w"> </span><span class="nf">conhp</span><span class="p">(</span>t, y, gas, mw<span class="p">)</span><span class="w"> </span><span class="c">%#ok&lt;INUSL&gt;</span>
 <span class="c">% CONHP ODE system for a constant-pressure, adiabatic reactor.</span>
 <span class="c">%</span>
 <span class="c">%    Function CONHP evaluates the system of ordinary differential</span>
 <span class="c">%    equations for an adiabatic, constant-pressure,</span>
-<span class="c">%    zero-dimensional reactor. It assumes that the &#39;gas&#39; object</span>
+<span class="c">%    zero-dimensional reactor. It assumes that the 'gas' object</span>
 <span class="c">%    represents a reacting ideal gas mixture.</span>
 
 
 <span class="c">% Set the state of the gas, based on the current solution vector.</span>
-<span class="n">setMassFractions</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">),</span> <span class="s">&#39;nonorm&#39;</span><span class="p">);</span>
-<span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="n">pressure</span><span class="p">(</span><span class="n">gas</span><span class="p">));</span>
+<span class="n">setMassFractions</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">),</span> <span class="s">'nonorm'</span><span class="p">);</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="s">'T'</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="s">'P'</span><span class="p">,</span> <span class="n">pressure</span><span class="p">(</span><span class="n">gas</span><span class="p">));</span>
 <span class="n">nsp</span> <span class="p">=</span> <span class="n">nSpecies</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
 
 <span class="c">% energy equation</span>
 <span class="n">wdot</span> <span class="p">=</span> <span class="n">netProdRates</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
-<span class="n">tdot</span> <span class="p">=</span> <span class="o">-</span> <span class="n">temperature</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span> <span class="o">*</span> <span class="n">gasconstant</span> <span class="o">*</span> <span class="n">enthalpies_RT</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span><span class="o">&#39;</span> <span class="c">...</span>
+<span class="n">tdot</span> <span class="p">=</span> <span class="o">-</span> <span class="n">temperature</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span> <span class="o">*</span> <span class="n">gasconstant</span> <span class="o">*</span> <span class="n">enthalpies_RT</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span><span class="o">'</span> <span class="c">...</span>
     <span class="o">*</span> <span class="n">wdot</span> <span class="o">/</span> <span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span><span class="o">*</span><span class="n">cp_mass</span><span class="p">(</span><span class="n">gas</span><span class="p">));</span>
 
 <span class="c">% set up column vector for dydt</span>
@@ -121,11 +115,9 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

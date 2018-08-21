@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>sofc.py &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -22,26 +19,24 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../../about.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../../about.html">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -51,23 +46,22 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/cython/examples/surface_chemistry_sofc.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../../_sources/cython/examples/surface_chemistry_sofc.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -77,9 +71,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="sofc-py">
-<span id="py-example-sofc-py"></span><h1>sofc.py<a class="headerlink" href="#sofc-py" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="sofc-py">
+<span id="py-example-sofc-py"></span><h1>sofc.py<a class="headerlink" href="#sofc-py" title="Permalink to this headline">&#182;</a></h1>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">A simple model of a solid oxide fuel cell.</span>
 
 <span class="sd">Unlike most SOFC models, this model does not use semi-empirical Butler- Volmer</span>
@@ -97,7 +91,7 @@
 
 <span class="sd">It is recommended that you read input file sofc.cti before reading or running</span>
 <span class="sd">this script!</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span> <span class="nn">cantera</span> <span class="k">as</span> <span class="nn">ct</span>
 <span class="kn">import</span> <span class="nn">math</span>
@@ -112,11 +106,11 @@
 <span class="n">P</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span>
 
 <span class="c1"># gas compositions. Change as desired.</span>
-<span class="n">anode_gas_X</span> <span class="o">=</span> <span class="s1">&#39;H2:0.97, H2O:0.03&#39;</span>
-<span class="n">cathode_gas_X</span> <span class="o">=</span> <span class="s1">&#39;O2:1.0, H2O:0.001&#39;</span>
+<span class="n">anode_gas_X</span> <span class="o">=</span> <span class="s1">'H2:0.97, H2O:0.03'</span>
+<span class="n">cathode_gas_X</span> <span class="o">=</span> <span class="s1">'O2:1.0, H2O:0.001'</span>
 
 <span class="c1"># time to integrate coverage eqs. to steady state in</span>
-<span class="c1"># &#39;advanceCoverages&#39;. This should be more than enough time.</span>
+<span class="c1"># 'advanceCoverages'. This should be more than enough time.</span>
 <span class="n">tss</span> <span class="o">=</span> <span class="mf">50.0</span>
 
 <span class="n">sigma</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># electrolyte conductivity [Siemens / m]</span>
@@ -125,25 +119,25 @@
 
 
 <span class="k">def</span> <span class="nf">show_coverages</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Print the coverages for surface s.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="sd">"""Print the coverages for surface s."""</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="si">{0}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
     <span class="n">cov</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">coverages</span>
     <span class="n">names</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">species_names</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">n_species</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0:16s}</span><span class="s1">  </span><span class="si">{1:13.4g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">cov</span><span class="p">[</span><span class="n">n</span><span class="p">]))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="si">{0:16s}</span><span class="s1">  </span><span class="si">{1:13.4g}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">cov</span><span class="p">[</span><span class="n">n</span><span class="p">]))</span>
 
 
 <span class="k">def</span> <span class="nf">equil_OCV</span><span class="p">(</span><span class="n">gas1</span><span class="p">,</span> <span class="n">gas2</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="n">ct</span><span class="o">.</span><span class="n">gas_constant</span> <span class="o">*</span> <span class="n">gas1</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span>
-        <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">gas1</span><span class="p">[</span><span class="s1">&#39;O2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">X</span> <span class="o">/</span> <span class="n">gas2</span><span class="p">[</span><span class="s1">&#39;O2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">4.0</span><span class="o">*</span><span class="n">ct</span><span class="o">.</span><span class="n">faraday</span><span class="p">))</span>
+        <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">gas1</span><span class="p">[</span><span class="s1">'O2'</span><span class="p">]</span><span class="o">.</span><span class="n">X</span> <span class="o">/</span> <span class="n">gas2</span><span class="p">[</span><span class="s1">'O2'</span><span class="p">]</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">4.0</span><span class="o">*</span><span class="n">ct</span><span class="o">.</span><span class="n">faraday</span><span class="p">))</span>
 
 
 <span class="k">def</span> <span class="nf">NewtonSolver</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">xstart</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">"""</span>
 <span class="sd">    Solve f(x) = C by Newton iteration.</span>
 <span class="sd">    - xstart    starting point for Newton iteration</span>
 <span class="sd">    - C         constant</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">f0</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xstart</span><span class="p">)</span> <span class="o">-</span> <span class="n">C</span>
     <span class="n">x0</span> <span class="o">=</span> <span class="n">xstart</span>
     <span class="n">dx</span> <span class="o">=</span> <span class="mf">1.0e-6</span>
@@ -163,35 +157,35 @@
             <span class="k">return</span> <span class="n">x0</span>
         <span class="n">f0</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span> <span class="o">-</span> <span class="n">C</span>
         <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;no root!&#39;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">'no root!'</span><span class="p">)</span>
 
 <span class="c1">#####################################################################</span>
 <span class="c1"># Anode-side phases</span>
 <span class="c1">#####################################################################</span>
 
 <span class="c1"># import the anode-side bulk phases</span>
-<span class="n">gas_a</span><span class="p">,</span> <span class="n">anode_bulk</span><span class="p">,</span> <span class="n">oxide_a</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">import_phases</span><span class="p">(</span><span class="s1">&#39;sofc.cti&#39;</span><span class="p">,</span>
-                                              <span class="p">[</span><span class="s1">&#39;gas&#39;</span><span class="p">,</span> <span class="s1">&#39;metal&#39;</span><span class="p">,</span> <span class="s1">&#39;oxide_bulk&#39;</span><span class="p">,])</span>
+<span class="n">gas_a</span><span class="p">,</span> <span class="n">anode_bulk</span><span class="p">,</span> <span class="n">oxide_a</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">import_phases</span><span class="p">(</span><span class="s1">'sofc.cti'</span><span class="p">,</span>
+                                              <span class="p">[</span><span class="s1">'gas'</span><span class="p">,</span> <span class="s1">'metal'</span><span class="p">,</span> <span class="s1">'oxide_bulk'</span><span class="p">,])</span>
 
 <span class="c1"># import the surfaces on the anode side</span>
-<span class="n">anode_surf</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">&#39;sofc.cti&#39;</span><span class="p">,</span> <span class="s1">&#39;metal_surface&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">gas_a</span><span class="p">])</span>
-<span class="n">oxide_surf_a</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">&#39;sofc.cti&#39;</span><span class="p">,</span> <span class="s1">&#39;oxide_surface&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">gas_a</span><span class="p">,</span> <span class="n">oxide_a</span><span class="p">])</span>
+<span class="n">anode_surf</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">'sofc.cti'</span><span class="p">,</span> <span class="s1">'metal_surface'</span><span class="p">,</span> <span class="p">[</span><span class="n">gas_a</span><span class="p">])</span>
+<span class="n">oxide_surf_a</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">'sofc.cti'</span><span class="p">,</span> <span class="s1">'oxide_surface'</span><span class="p">,</span> <span class="p">[</span><span class="n">gas_a</span><span class="p">,</span> <span class="n">oxide_a</span><span class="p">])</span>
 
 <span class="c1"># import the anode-side triple phase boundary</span>
-<span class="n">tpb_a</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">&#39;sofc.cti&#39;</span><span class="p">,</span> <span class="s1">&#39;tpb&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">anode_bulk</span><span class="p">,</span> <span class="n">anode_surf</span><span class="p">,</span> <span class="n">oxide_surf_a</span><span class="p">])</span>
+<span class="n">tpb_a</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">'sofc.cti'</span><span class="p">,</span> <span class="s1">'tpb'</span><span class="p">,</span> <span class="p">[</span><span class="n">anode_bulk</span><span class="p">,</span> <span class="n">anode_surf</span><span class="p">,</span> <span class="n">oxide_surf_a</span><span class="p">])</span>
 
-<span class="n">anode_surf</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;anode surface&#39;</span>
-<span class="n">oxide_surf_a</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;anode-side oxide surface&#39;</span>
+<span class="n">anode_surf</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'anode surface'</span>
+<span class="n">oxide_surf_a</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'anode-side oxide surface'</span>
 
 
 <span class="c1"># this function is defined to use with NewtonSolver to invert the current-</span>
 <span class="c1"># voltage function. NewtonSolver requires a function of one variable, so the</span>
 <span class="c1"># other objects are accessed through the global namespace.</span>
 <span class="k">def</span> <span class="nf">anode_curr</span><span class="p">(</span><span class="n">E</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">"""</span>
 <span class="sd">    Current from the anode as a function of anode potential relative to</span>
 <span class="sd">    electrolyte.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="c1"># the anode-side electrolyte potential is kept at zero. Therefore, the</span>
     <span class="c1"># anode potential is just equal to E.</span>
@@ -219,24 +213,24 @@
 <span class="c1"># models would be used for the cathode, with a different reaction mechanism.</span>
 
 <span class="c1"># import the cathode-side bulk phases</span>
-<span class="n">gas_c</span><span class="p">,</span> <span class="n">cathode_bulk</span><span class="p">,</span> <span class="n">oxide_c</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">import_phases</span><span class="p">(</span><span class="s1">&#39;sofc.cti&#39;</span><span class="p">,</span>
-                                                <span class="p">[</span><span class="s1">&#39;gas&#39;</span><span class="p">,</span> <span class="s1">&#39;metal&#39;</span><span class="p">,</span> <span class="s1">&#39;oxide_bulk&#39;</span><span class="p">])</span>
+<span class="n">gas_c</span><span class="p">,</span> <span class="n">cathode_bulk</span><span class="p">,</span> <span class="n">oxide_c</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">import_phases</span><span class="p">(</span><span class="s1">'sofc.cti'</span><span class="p">,</span>
+                                                <span class="p">[</span><span class="s1">'gas'</span><span class="p">,</span> <span class="s1">'metal'</span><span class="p">,</span> <span class="s1">'oxide_bulk'</span><span class="p">])</span>
 
 <span class="c1"># import the surfaces on the cathode side</span>
-<span class="n">cathode_surf</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">&#39;sofc.cti&#39;</span><span class="p">,</span> <span class="s1">&#39;metal_surface&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">gas_c</span><span class="p">])</span>
-<span class="n">oxide_surf_c</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">&#39;sofc.cti&#39;</span><span class="p">,</span> <span class="s1">&#39;oxide_surface&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">gas_c</span><span class="p">,</span> <span class="n">oxide_c</span><span class="p">])</span>
+<span class="n">cathode_surf</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">'sofc.cti'</span><span class="p">,</span> <span class="s1">'metal_surface'</span><span class="p">,</span> <span class="p">[</span><span class="n">gas_c</span><span class="p">])</span>
+<span class="n">oxide_surf_c</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">'sofc.cti'</span><span class="p">,</span> <span class="s1">'oxide_surface'</span><span class="p">,</span> <span class="p">[</span><span class="n">gas_c</span><span class="p">,</span> <span class="n">oxide_c</span><span class="p">])</span>
 
 <span class="c1"># import the cathode-side triple phase boundary</span>
-<span class="n">tpb_c</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">&#39;sofc.cti&#39;</span><span class="p">,</span> <span class="s1">&#39;tpb&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">cathode_bulk</span><span class="p">,</span> <span class="n">cathode_surf</span><span class="p">,</span>
+<span class="n">tpb_c</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">'sofc.cti'</span><span class="p">,</span> <span class="s1">'tpb'</span><span class="p">,</span> <span class="p">[</span><span class="n">cathode_bulk</span><span class="p">,</span> <span class="n">cathode_surf</span><span class="p">,</span>
                                          <span class="n">oxide_surf_c</span><span class="p">])</span>
 
-<span class="n">cathode_surf</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;cathode surface&#39;</span>
-<span class="n">oxide_surf_c</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;cathode-side oxide surface&#39;</span>
+<span class="n">cathode_surf</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'cathode surface'</span>
+<span class="n">oxide_surf_c</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'cathode-side oxide surface'</span>
 
 
 <span class="k">def</span> <span class="nf">cathode_curr</span><span class="p">(</span><span class="n">E</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Current to the cathode as a function of cathode</span>
-<span class="sd">    potential relative to electrolyte&quot;&quot;&quot;</span>
+    <span class="sd">"""Current to the cathode as a function of cathode</span>
+<span class="sd">    potential relative to electrolyte"""</span>
 
     <span class="c1"># due to ohmic losses, the cathode-side electrolyte potential is non-zero.</span>
     <span class="c1"># Therefore, we need to add this potential to E to get the cathode</span>
@@ -259,10 +253,10 @@
 <span class="c1"># set the gas compositions, and temperatures of all phases</span>
 
 <span class="n">gas_a</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">anode_gas_X</span>
-<span class="n">gas_a</span><span class="o">.</span><span class="n">equilibrate</span><span class="p">(</span><span class="s1">&#39;TP&#39;</span><span class="p">)</span>  <span class="c1"># needed to use equil_OCV</span>
+<span class="n">gas_a</span><span class="o">.</span><span class="n">equilibrate</span><span class="p">(</span><span class="s1">'TP'</span><span class="p">)</span>  <span class="c1"># needed to use equil_OCV</span>
 
 <span class="n">gas_c</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">cathode_gas_X</span>
-<span class="n">gas_c</span><span class="o">.</span><span class="n">equilibrate</span><span class="p">(</span><span class="s1">&#39;TP&#39;</span><span class="p">)</span>  <span class="c1"># needed to use equil_OCV</span>
+<span class="n">gas_c</span><span class="o">.</span><span class="n">equilibrate</span><span class="p">(</span><span class="s1">'TP'</span><span class="p">)</span>  <span class="c1"># needed to use equil_OCV</span>
 
 <span class="n">phases</span> <span class="o">=</span> <span class="p">[</span><span class="n">anode_bulk</span><span class="p">,</span> <span class="n">anode_surf</span><span class="p">,</span> <span class="n">oxide_surf_a</span><span class="p">,</span> <span class="n">oxide_a</span><span class="p">,</span> <span class="n">cathode_bulk</span><span class="p">,</span>
           <span class="n">cathode_surf</span><span class="p">,</span> <span class="n">oxide_surf_c</span><span class="p">,</span> <span class="n">oxide_c</span><span class="p">,</span> <span class="n">tpb_a</span><span class="p">,</span> <span class="n">tpb_c</span><span class="p">]</span>
@@ -284,11 +278,11 @@
 <span class="n">Ea0</span> <span class="o">=</span> <span class="n">NewtonSolver</span><span class="p">(</span><span class="n">anode_curr</span><span class="p">,</span> <span class="n">xstart</span><span class="o">=-</span><span class="mf">0.51</span><span class="p">)</span>
 <span class="n">Ec0</span> <span class="o">=</span> <span class="n">NewtonSolver</span><span class="p">(</span><span class="n">cathode_curr</span><span class="p">,</span> <span class="n">xstart</span><span class="o">=</span><span class="mf">0.51</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">ocv from zero current is: &#39;</span><span class="p">,</span> <span class="n">Ec0</span> <span class="o">-</span> <span class="n">Ea0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;OCV from thermo equil is: &#39;</span><span class="p">,</span> <span class="n">equil_OCV</span><span class="p">(</span><span class="n">gas_a</span><span class="p">,</span> <span class="n">gas_c</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">ocv from zero current is: '</span><span class="p">,</span> <span class="n">Ec0</span> <span class="o">-</span> <span class="n">Ea0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'OCV from thermo equil is: '</span><span class="p">,</span> <span class="n">equil_OCV</span><span class="p">(</span><span class="n">gas_a</span><span class="p">,</span> <span class="n">gas_c</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ea0 = &#39;</span><span class="p">,</span> <span class="n">Ea0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ec0 = &#39;</span><span class="p">,</span> <span class="n">Ec0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Ea0 = '</span><span class="p">,</span> <span class="n">Ea0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Ec0 = '</span><span class="p">,</span> <span class="n">Ec0</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
 
 <span class="c1"># do polarization curve for anode overpotentials from -250 mV</span>
@@ -296,9 +290,9 @@
 <span class="n">Ea_min</span> <span class="o">=</span> <span class="n">Ea0</span> <span class="o">-</span> <span class="mf">0.25</span>
 <span class="n">Ea_max</span> <span class="o">=</span> <span class="n">Ea0</span> <span class="o">+</span> <span class="mf">0.25</span>
 
-<span class="n">csvfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;sofc.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">csvfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'sofc.csv'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span>
 <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
-<span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;i (mA/cm2)&#39;</span><span class="p">,</span> <span class="s1">&#39;eta_a&#39;</span><span class="p">,</span> <span class="s1">&#39;eta_c&#39;</span><span class="p">,</span> <span class="s1">&#39;eta_ohmic&#39;</span><span class="p">,</span> <span class="s1">&#39;Eload&#39;</span><span class="p">])</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">'i (mA/cm2)'</span><span class="p">,</span> <span class="s1">'eta_a'</span><span class="p">,</span> <span class="s1">'eta_c'</span><span class="p">,</span> <span class="s1">'eta_ohmic'</span><span class="p">,</span> <span class="s1">'Eload'</span><span class="p">])</span>
 
 <span class="c1"># vary the anode overpotential, from cathodic to anodic polarization</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
@@ -337,7 +331,7 @@
                      <span class="n">cathode_bulk</span><span class="o">.</span><span class="n">electric_potential</span> <span class="o">-</span>
                      <span class="n">anode_bulk</span><span class="o">.</span><span class="n">electric_potential</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;polarization curve data written to file sofc.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'polarization curve data written to file sofc.csv'</span><span class="p">)</span>
 
 <span class="n">csvfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
@@ -354,11 +348,9 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

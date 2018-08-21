@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Reactions &mdash; Cantera 2.2.1 documentation</title>
     
-    <link rel="stylesheet" href="../_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <title>Reactions &#8212; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,35 +21,31 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.2.1 documentation" href="../index.html" />
-    <link rel="up" title="Defining Phases" href="index.html" />
-    <link rel="next" title="CTI Class Reference" href="classes.html" />
-    <link rel="prev" title="Elements and Species" href="species.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../_static/favicon.ico">
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../index.html">
+    <link rel="up" title="Defining Phases" href="index.html">
+    <link rel="next" title="CTI Class Reference" href="classes.html">
+    <link rel="prev" title="Elements and Species" href="species.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../index.html">
-<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="classes.html" title="CTI Class Reference"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="species.html" title="Elements and Species"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Cantera</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">Defining Phases</a> &raquo;</li> 
+          <a href="../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="classes.html" title="CTI Class Reference" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="species.html" title="Elements and Species" accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &#187;</li>
+          <li><a href="index.html" accesskey="U">Defining Phases</a> &#187;</li> 
       </ul>
     </div>
 
@@ -87,23 +80,20 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="species.html"
-                        title="previous chapter">Elements and Species</a></p>
+  <p class="topless"><a href="species.html" title="previous chapter">Elements and Species</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="classes.html"
-                        title="next chapter">CTI Class Reference</a></p>
+  <p class="topless"><a href="classes.html" title="next chapter">CTI Class Reference</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/cti/reactions.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="../_sources/cti/reactions.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -118,8 +108,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="reactions">
-<span id="sec-reactions"></span><h1>Reactions<a class="headerlink" href="#reactions" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="reactions">
+<span id="sec-reactions"></span><h1>Reactions<a class="headerlink" href="#reactions" title="Permalink to this headline">&#182;</a></h1>
 <p>Cantera supports a number of different types of reactions, including several
 types of homogeneous reactions, surface reactions, and electrochemical
 reactions. For each, there is a corresponding entry type. The simplest entry
@@ -127,12 +117,12 @@ type is <a class="reference internal" href="classes.html#cantera.ctml_writer.rea
 has a rate expression that obeys the law of mass action, with a rate coefficient
 that depends only on temperature.</p>
 <div class="section" id="common-attributes">
-<h2>Common Attributes<a class="headerlink" href="#common-attributes" title="Permalink to this headline">¶</a></h2>
+<h2>Common Attributes<a class="headerlink" href="#common-attributes" title="Permalink to this headline">&#182;</a></h2>
 <p>All of the entry types that define reactions share some common features. These
 are described first, followed by descriptions of the individual reaction types
 in the following sections.</p>
 <div class="section" id="the-reaction-equation">
-<h3>The Reaction Equation<a class="headerlink" href="#the-reaction-equation" title="Permalink to this headline">¶</a></h3>
+<h3>The Reaction Equation<a class="headerlink" href="#the-reaction-equation" title="Permalink to this headline">&#182;</a></h3>
 <p>The reaction equation determines the reactant and product stoichiometry. A
 relatively simple parsing strategy is currently used, which assumes that all
 coefficient and species symbols on either side of the equation are delimited by
@@ -159,14 +149,14 @@ Arrhenius function</p>
 <div class="math">
 \[k_f(T) = A T^b \exp(-E/\hat{R}T)\]</div>
 <p>which is defined with an <a class="reference internal" href="classes.html#cantera.ctml_writer.Arrhenius" title="cantera.ctml_writer.Arrhenius"><tt class="xref py py-class docutils literal"><span class="pre">Arrhenius</span></tt></a> entry:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">rate_coeff</span> <span class="o">=</span> <span class="n">Arrhenius</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">1.0e13</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="p">(</span><span class="mf">7.3</span><span class="p">,</span> <span class="s">&#39;kcal/mol&#39;</span><span class="p">))</span>
-<span class="n">rate_coeff</span> <span class="o">=</span> <span class="n">Arrhenius</span><span class="p">(</span><span class="mf">1.0e13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mf">7.3</span><span class="p">,</span> <span class="s">&#39;kcal/mol&#39;</span><span class="p">))</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">rate_coeff</span> <span class="o">=</span> <span class="n">Arrhenius</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">1.0e13</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="p">(</span><span class="mf">7.3</span><span class="p">,</span> <span class="s">'kcal/mol'</span><span class="p">))</span>
+<span class="n">rate_coeff</span> <span class="o">=</span> <span class="n">Arrhenius</span><span class="p">(</span><span class="mf">1.0e13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mf">7.3</span><span class="p">,</span> <span class="s">'kcal/mol'</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Note: the usage of <tt class="docutils literal"><span class="pre">n</span></tt> as the temperature exponent has been deprecated. It is
 still available in version 2.2 but will be removed.</p>
 <p>As a shorthand, if the <tt class="docutils literal"><span class="pre">rate_coeff</span></tt> field is assigned a sequence of three numbers, these are assumed to be <span class="math">\((A, b, E)\)</span> in the modified Arrhenius function:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">rate_coeff</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0e13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mf">7.3</span><span class="p">,</span> <span class="s">&#39;kcal/mol&#39;</span><span class="p">)]</span> <span class="c"># equivalent to above</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">rate_coeff</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0e13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mf">7.3</span><span class="p">,</span> <span class="s">'kcal/mol'</span><span class="p">)]</span> <span class="c"># equivalent to above</span>
 </pre></div>
 </div>
 <p>The units of the pre-exponential factor <em>A</em> can be specified explicitly if
@@ -184,7 +174,7 @@ formally express this is to replace <span class="math">\(T^b\)</span> by the non
 <span class="math">\([T/(1 K)]^b\)</span>.</p>
 </div>
 <div class="section" id="the-id-string">
-<h3>The ID String<a class="headerlink" href="#the-id-string" title="Permalink to this headline">¶</a></h3>
+<h3>The ID String<a class="headerlink" href="#the-id-string" title="Permalink to this headline">&#182;</a></h3>
 <p>An optional identifying string can be entered in the <tt class="docutils literal"><span class="pre">ID</span></tt> field, which can
 then be used in the <tt class="docutils literal"><span class="pre">reactions</span></tt> field of a <a class="reference internal" href="classes.html#cantera.ctml_writer.phase" title="cantera.ctml_writer.phase"><tt class="xref py py-class docutils literal"><span class="pre">phase</span></tt></a> or interface entry
 to identify this reaction. If omitted, the reactions are assigned ID strings as
@@ -194,7 +184,7 @@ all reactions in the local file or in an external one are imported into a phase
 or interface, then the reaction <tt class="docutils literal"><span class="pre">ID</span></tt> field is not used.</p>
 </div>
 <div class="section" id="options">
-<span id="sec-reaction-options"></span><h3>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<span id="sec-reaction-options"></span><h3>Options<a class="headerlink" href="#options" title="Permalink to this headline">&#182;</a></h3>
 <p>Certain conditions are normally flagged as errors by Cantera. In some cases,
 they may not be errors, and the options field can be used to specify how they
 should be handled.</p>
@@ -240,25 +230,25 @@ override option is specified for the reaction.</dd>
 </div>
 </div>
 <div class="section" id="reactions-with-pressure-independent-rate">
-<h2>Reactions with Pressure-Independent Rate<a class="headerlink" href="#reactions-with-pressure-independent-rate" title="Permalink to this headline">¶</a></h2>
+<h2>Reactions with Pressure-Independent Rate<a class="headerlink" href="#reactions-with-pressure-independent-rate" title="Permalink to this headline">&#182;</a></h2>
 <p>The <a class="reference internal" href="classes.html#cantera.ctml_writer.reaction" title="cantera.ctml_writer.reaction"><tt class="xref py py-class docutils literal"><span class="pre">reaction</span></tt></a> entry is used to represent homogeneous reactions with
 pressure-independent rate coefficients and mass action kinetics.  Examples of
 reaction entries that implement some reactions in the GRI-Mech 3.0 natural gas
 combustion mechanism <a class="footnote-reference" href="#smith1997" id="id1">[3]</a> are shown below:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">units</span><span class="p">(</span><span class="n">length</span> <span class="o">=</span> <span class="s">&#39;cm&#39;</span><span class="p">,</span> <span class="n">quantity</span> <span class="o">=</span> <span class="s">&#39;mol&#39;</span><span class="p">,</span> <span class="n">act_energy</span> <span class="o">=</span> <span class="s">&#39;cal/mol&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">units</span><span class="p">(</span><span class="n">length</span> <span class="o">=</span> <span class="s">'cm'</span><span class="p">,</span> <span class="n">quantity</span> <span class="o">=</span> <span class="s">'mol'</span><span class="p">,</span> <span class="n">act_energy</span> <span class="o">=</span> <span class="s">'cal/mol'</span><span class="p">)</span>
 <span class="o">...</span>
-<span class="n">reaction</span><span class="p">(</span> <span class="s">&quot;O + H2 &lt;=&gt; H + OH&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.87000E+04</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mi">6260</span><span class="p">])</span>
-<span class="n">reaction</span><span class="p">(</span> <span class="s">&quot;O + HO2 &lt;=&gt; OH + O2&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.00000E+13</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="n">reaction</span><span class="p">(</span> <span class="s">&quot;O + H2O2 &lt;=&gt; OH + HO2&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">9.63000E+06</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">4000</span><span class="p">])</span>
-<span class="n">reaction</span><span class="p">(</span> <span class="s">&quot;O + HCCO &lt;=&gt; H + 2 CO&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.00000E+14</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="n">reaction</span><span class="p">(</span> <span class="s">&quot;H + O2 + AR &lt;=&gt; HO2 + AR&quot;</span><span class="p">,</span> <span class="n">kf</span><span class="o">=</span><span class="n">Arrhenius</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">7.00000E+17</span><span class="p">,</span> <span class="n">b</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">reaction</span><span class="p">(</span> <span class="n">equation</span> <span class="o">=</span> <span class="s">&quot;HO2 + C3H7 &lt;=&gt; O2 + C3H8&quot;</span><span class="p">,</span> <span class="n">kf</span><span class="o">=</span><span class="n">Arrhenius</span><span class="p">(</span><span class="mf">2.55000E+10</span><span class="p">,</span> <span class="mf">0.255</span><span class="p">,</span> <span class="o">-</span><span class="mi">943</span><span class="p">))</span>
-<span class="n">reaction</span><span class="p">(</span> <span class="n">equation</span> <span class="o">=</span> <span class="s">&quot;HO2 + C3H7 =&gt; OH + C2H5 + CH2O&quot;</span><span class="p">,</span> <span class="n">kf</span><span class="o">=</span><span class="p">[</span><span class="mf">2.41000E+13</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">reaction</span><span class="p">(</span> <span class="s">"O + H2 &lt;=&gt; H + OH"</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.87000E+04</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mi">6260</span><span class="p">])</span>
+<span class="n">reaction</span><span class="p">(</span> <span class="s">"O + HO2 &lt;=&gt; OH + O2"</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.00000E+13</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">reaction</span><span class="p">(</span> <span class="s">"O + H2O2 &lt;=&gt; OH + HO2"</span><span class="p">,</span> <span class="p">[</span><span class="mf">9.63000E+06</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">4000</span><span class="p">])</span>
+<span class="n">reaction</span><span class="p">(</span> <span class="s">"O + HCCO &lt;=&gt; H + 2 CO"</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.00000E+14</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">reaction</span><span class="p">(</span> <span class="s">"H + O2 + AR &lt;=&gt; HO2 + AR"</span><span class="p">,</span> <span class="n">kf</span><span class="o">=</span><span class="n">Arrhenius</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">7.00000E+17</span><span class="p">,</span> <span class="n">b</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">reaction</span><span class="p">(</span> <span class="n">equation</span> <span class="o">=</span> <span class="s">"HO2 + C3H7 &lt;=&gt; O2 + C3H8"</span><span class="p">,</span> <span class="n">kf</span><span class="o">=</span><span class="n">Arrhenius</span><span class="p">(</span><span class="mf">2.55000E+10</span><span class="p">,</span> <span class="mf">0.255</span><span class="p">,</span> <span class="o">-</span><span class="mi">943</span><span class="p">))</span>
+<span class="n">reaction</span><span class="p">(</span> <span class="n">equation</span> <span class="o">=</span> <span class="s">"HO2 + C3H7 =&gt; OH + C2H5 + CH2O"</span><span class="p">,</span> <span class="n">kf</span><span class="o">=</span><span class="p">[</span><span class="mf">2.41000E+13</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="three-body-reactions">
-<h2>Three-Body Reactions<a class="headerlink" href="#three-body-reactions" title="Permalink to this headline">¶</a></h2>
+<h2>Three-Body Reactions<a class="headerlink" href="#three-body-reactions" title="Permalink to this headline">&#182;</a></h2>
 <p>A three-body reaction is a gas-phase reaction of the form:</p>
 <div class="math">
 \[{\rm A + B + M} \rightleftharpoons {\rm AB + M}\]</div>
@@ -283,16 +273,16 @@ default collision efficiency is 1.0.</p>
 reaction must contain an <tt class="docutils literal"><span class="pre">'M'</span></tt> or <tt class="docutils literal"><span class="pre">'m'</span></tt> on both the reactant and product sides of the equation. The collision
 efficiencies are specified as a string, with the species name followed by a colon and the efficiency.</p>
 <p>Some examples from GRI-Mech 3.0 are shown below:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">three_body_reaction</span><span class="p">(</span> <span class="s">&quot;2 O + M &lt;=&gt; O2 + M&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.20000E+17</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                     <span class="s">&quot; AR:0.83 C2H6:3 CH4:2 CO:1.75 CO2:3.6 H2:2.4 H2O:15.4 &quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">three_body_reaction</span><span class="p">(</span> <span class="s">"2 O + M &lt;=&gt; O2 + M"</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.20000E+17</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                     <span class="s">" AR:0.83 C2H6:3 CH4:2 CO:1.75 CO2:3.6 H2:2.4 H2O:15.4 "</span><span class="p">)</span>
 
-<span class="n">three_body_reaction</span><span class="p">(</span> <span class="s">&quot;O + H + M &lt;=&gt; OH + M&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">5.00000E+17</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                     <span class="n">efficiencies</span> <span class="o">=</span> <span class="s">&quot; AR:0.7 C2H6:3 CH4:2 CO:1.5 CO2:2 H2:2 H2O:6 &quot;</span><span class="p">)</span>
+<span class="n">three_body_reaction</span><span class="p">(</span> <span class="s">"O + H + M &lt;=&gt; OH + M"</span><span class="p">,</span> <span class="p">[</span><span class="mf">5.00000E+17</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                     <span class="n">efficiencies</span> <span class="o">=</span> <span class="s">" AR:0.7 C2H6:3 CH4:2 CO:1.5 CO2:2 H2:2 H2O:6 "</span><span class="p">)</span>
 
 <span class="n">three_body_reaction</span><span class="p">(</span>
-    <span class="n">equation</span> <span class="o">=</span> <span class="s">&quot;H + OH + M &lt;=&gt; H2O + M&quot;</span><span class="p">,</span>
+    <span class="n">equation</span> <span class="o">=</span> <span class="s">"H + OH + M &lt;=&gt; H2O + M"</span><span class="p">,</span>
     <span class="n">rate_coeff</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.20000E+22</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-    <span class="n">efficiencies</span> <span class="o">=</span> <span class="s">&quot; AR:0.38 C2H6:3 CH4:2 H2:0.73 H2O:3.65 &quot;</span>
+    <span class="n">efficiencies</span> <span class="o">=</span> <span class="s">" AR:0.38 C2H6:3 CH4:2 H2:0.73 H2O:3.65 "</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -300,7 +290,7 @@ efficiencies are specified as a string, with the species name followed by a colo
 declaration order.</p>
 </div>
 <div class="section" id="falloff-reactions">
-<h2>Falloff Reactions<a class="headerlink" href="#falloff-reactions" title="Permalink to this headline">¶</a></h2>
+<h2>Falloff Reactions<a class="headerlink" href="#falloff-reactions" title="Permalink to this headline">&#182;</a></h2>
 <p>A <em>falloff reaction</em> is one that has a rate that is first-order in [M] at low
 pressure, like a three-body reaction, but becomes zero-order in [M] as [M]
 increases. Dissociation / association reactions of polyatomic molecules often
@@ -326,7 +316,7 @@ multiplying the Lindemann expression by a function <span class="math">\(F(T, P_r
 reactions. The function <span class="math">\(F(T, P_r)\)</span> is the <em>falloff function</em>, and is
 specified by assigning an embedded entry to the <tt class="docutils literal"><span class="pre">falloff</span></tt> field.</p>
 <div class="section" id="the-troe-falloff-function">
-<h3>The Troe Falloff Function<a class="headerlink" href="#the-troe-falloff-function" title="Permalink to this headline">¶</a></h3>
+<h3>The Troe Falloff Function<a class="headerlink" href="#the-troe-falloff-function" title="Permalink to this headline">&#182;</a></h3>
 <p>A widely-used falloff function is the one proposed by Gilbert et
 al. <a class="footnote-reference" href="#gilbert1983" id="id3">[1]</a>:</p>
 <div class="math">
@@ -335,7 +325,7 @@ al. <a class="footnote-reference" href="#gilbert1983" id="id3">[1]</a>:</p>
 <span class="math">\((A, T_3, T_1)\)</span>. The fourth parameter, <span class="math">\(T_2\)</span>, is optional, defaulting to 0.0.</p>
 </div>
 <div class="section" id="the-sri-falloff-function">
-<span id="sec-sri-falloff"></span><h3>The SRI Falloff Function<a class="headerlink" href="#the-sri-falloff-function" title="Permalink to this headline">¶</a></h3>
+<span id="sec-sri-falloff"></span><h3>The SRI Falloff Function<a class="headerlink" href="#the-sri-falloff-function" title="Permalink to this headline">&#182;</a></h3>
 <p>This falloff function is based on the one originally due to Stewart et
 al. <a class="footnote-reference" href="#stewart1989" id="id4">[4]</a>, which required three parameters <span class="math">\((a, b, c)\)</span>. Kee et
 al. <a class="footnote-reference" href="#kee1989" id="id5">[5]</a> generalized this function slightly by adding two more parameters
@@ -348,7 +338,7 @@ the &#8220;SRI&#8221; falloff function. It is implemented by the <a class="refer
 </div>
 </div>
 <div class="section" id="chemically-activated-reactions">
-<h2>Chemically-Activated Reactions<a class="headerlink" href="#chemically-activated-reactions" title="Permalink to this headline">¶</a></h2>
+<h2>Chemically-Activated Reactions<a class="headerlink" href="#chemically-activated-reactions" title="Permalink to this headline">&#182;</a></h2>
 <p>For these reactions, the rate falls off as the pressure increases, due to
 collisional stabilization of a reaction intermediate. Example:</p>
 <div class="math">
@@ -367,9 +357,9 @@ parameterizations allowed for falloff reactions. Chemically-activated
 reactions can be defined using the <a class="reference internal" href="classes.html#cantera.ctml_writer.chemically_activated_reaction" title="cantera.ctml_writer.chemically_activated_reaction"><tt class="xref py py-class docutils literal"><span class="pre">chemically_activated_reaction</span></tt></a>
 directive.</p>
 <p>An example of a reaction specified with this parameterization:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">chemically_activated_reaction</span><span class="p">(</span><span class="s">&#39;CH3 + OH (+ M) &lt;=&gt; CH2O + H2 (+ M)&#39;</span><span class="p">,</span>
-                              <span class="n">kLow</span><span class="o">=</span><span class="p">[</span><span class="mf">2.823201e+02</span><span class="p">,</span> <span class="mf">1.46878</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mf">3270.56495</span><span class="p">,</span> <span class="s">&#39;cal/mol&#39;</span><span class="p">)],</span>
-                              <span class="n">kHigh</span><span class="o">=</span><span class="p">[</span><span class="mf">5.880000e-14</span><span class="p">,</span> <span class="mf">6.721</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mf">3022.227</span><span class="p">,</span> <span class="s">&#39;cal/mol&#39;</span><span class="p">)],</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">chemically_activated_reaction</span><span class="p">(</span><span class="s">'CH3 + OH (+ M) &lt;=&gt; CH2O + H2 (+ M)'</span><span class="p">,</span>
+                              <span class="n">kLow</span><span class="o">=</span><span class="p">[</span><span class="mf">2.823201e+02</span><span class="p">,</span> <span class="mf">1.46878</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mf">3270.56495</span><span class="p">,</span> <span class="s">'cal/mol'</span><span class="p">)],</span>
+                              <span class="n">kHigh</span><span class="o">=</span><span class="p">[</span><span class="mf">5.880000e-14</span><span class="p">,</span> <span class="mf">6.721</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mf">3022.227</span><span class="p">,</span> <span class="s">'cal/mol'</span><span class="p">)],</span>
                               <span class="n">falloff</span><span class="o">=</span><span class="n">Troe</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">1.671</span><span class="p">,</span> <span class="n">T3</span><span class="o">=</span><span class="mf">434.782</span><span class="p">,</span> <span class="n">T1</span><span class="o">=</span><span class="mf">2934.21</span><span class="p">,</span> <span class="n">T2</span><span class="o">=</span><span class="mf">3919.0</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -377,7 +367,7 @@ directive.</p>
 units of <span class="math">\(k_\infty\)</span> (<tt class="xref py py-obj docutils literal"><span class="pre">kHigh</span></tt>) are 1/s.</p>
 </div>
 <div class="section" id="pressure-dependent-arrhenius-rate-expressions-p-log">
-<h2>Pressure-Dependent Arrhenius Rate Expressions (P-Log)<a class="headerlink" href="#pressure-dependent-arrhenius-rate-expressions-p-log" title="Permalink to this headline">¶</a></h2>
+<h2>Pressure-Dependent Arrhenius Rate Expressions (P-Log)<a class="headerlink" href="#pressure-dependent-arrhenius-rate-expressions-p-log" title="Permalink to this headline">&#182;</a></h2>
 <p>The <a class="reference internal" href="classes.html#cantera.ctml_writer.pdep_arrhenius" title="cantera.ctml_writer.pdep_arrhenius"><tt class="xref py py-class docutils literal"><span class="pre">pdep_arrhenius</span></tt></a> class represents pressure-dependent reaction rates
 by logarithmically interpolating between Arrhenius rate expressions at various
 pressures. Given two rate expressions at two specific pressures:</p>
@@ -392,13 +382,13 @@ rate used in the interpolation formula is the sum of all the rates given at that
 pressure. For pressures outside the given range, the rate expression at the nearest
 pressure is used.</p>
 <p>An example of a reaction specified in this format:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">pdep_arrhenius</span><span class="p">(</span><span class="s">&#39;R1 + R2 &lt;=&gt; P1 + P2&#39;</span><span class="p">,</span>
-               <span class="p">[(</span><span class="mf">0.001315789</span><span class="p">,</span> <span class="s">&#39;atm&#39;</span><span class="p">),</span> <span class="mf">2.440000e+10</span><span class="p">,</span> <span class="mf">1.04</span><span class="p">,</span> <span class="mf">3980.0</span><span class="p">],</span>
-               <span class="p">[(</span><span class="mf">0.039473684</span><span class="p">,</span> <span class="s">&#39;atm&#39;</span><span class="p">),</span> <span class="mf">3.890000e+10</span><span class="p">,</span> <span class="mf">0.989</span><span class="p">,</span> <span class="mf">4114.0</span><span class="p">],</span>
-               <span class="p">[(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s">&#39;atm&#39;</span><span class="p">),</span> <span class="mf">3.460000e+12</span><span class="p">,</span> <span class="mf">0.442</span><span class="p">,</span> <span class="mf">5463.0</span><span class="p">],</span>
-               <span class="p">[(</span><span class="mf">10.0</span><span class="p">,</span> <span class="s">&#39;atm&#39;</span><span class="p">),</span> <span class="mf">1.720000e+14</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">7134.0</span><span class="p">],</span>
-               <span class="p">[(</span><span class="mf">100.0</span><span class="p">,</span> <span class="s">&#39;atm&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mf">7.410000e+30</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.54</span><span class="p">,</span> <span class="mf">12108.0</span><span class="p">],</span>
-               <span class="p">[(</span><span class="mf">100.0</span><span class="p">,</span> <span class="s">&#39;atm&#39;</span><span class="p">),</span> <span class="mf">1.900000e+15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.29</span><span class="p">,</span> <span class="mf">8306.0</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pdep_arrhenius</span><span class="p">(</span><span class="s">'R1 + R2 &lt;=&gt; P1 + P2'</span><span class="p">,</span>
+               <span class="p">[(</span><span class="mf">0.001315789</span><span class="p">,</span> <span class="s">'atm'</span><span class="p">),</span> <span class="mf">2.440000e+10</span><span class="p">,</span> <span class="mf">1.04</span><span class="p">,</span> <span class="mf">3980.0</span><span class="p">],</span>
+               <span class="p">[(</span><span class="mf">0.039473684</span><span class="p">,</span> <span class="s">'atm'</span><span class="p">),</span> <span class="mf">3.890000e+10</span><span class="p">,</span> <span class="mf">0.989</span><span class="p">,</span> <span class="mf">4114.0</span><span class="p">],</span>
+               <span class="p">[(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s">'atm'</span><span class="p">),</span> <span class="mf">3.460000e+12</span><span class="p">,</span> <span class="mf">0.442</span><span class="p">,</span> <span class="mf">5463.0</span><span class="p">],</span>
+               <span class="p">[(</span><span class="mf">10.0</span><span class="p">,</span> <span class="s">'atm'</span><span class="p">),</span> <span class="mf">1.720000e+14</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">7134.0</span><span class="p">],</span>
+               <span class="p">[(</span><span class="mf">100.0</span><span class="p">,</span> <span class="s">'atm'</span><span class="p">),</span> <span class="o">-</span><span class="mf">7.410000e+30</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.54</span><span class="p">,</span> <span class="mf">12108.0</span><span class="p">],</span>
+               <span class="p">[(</span><span class="mf">100.0</span><span class="p">,</span> <span class="s">'atm'</span><span class="p">),</span> <span class="mf">1.900000e+15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.29</span><span class="p">,</span> <span class="mf">8306.0</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>The first argument is the reaction equation. Each subsequent argument is a
@@ -406,7 +396,7 @@ sequence of four elements specifying a pressure and the Arrhenius parameters at
 that pressure.</p>
 </div>
 <div class="section" id="chebyshev-reaction-rate-expressions">
-<h2>Chebyshev Reaction Rate Expressions<a class="headerlink" href="#chebyshev-reaction-rate-expressions" title="Permalink to this headline">¶</a></h2>
+<h2>Chebyshev Reaction Rate Expressions<a class="headerlink" href="#chebyshev-reaction-rate-expressions" title="Permalink to this headline">&#182;</a></h2>
 <p>Class <a class="reference internal" href="classes.html#cantera.ctml_writer.chebyshev_reaction" title="cantera.ctml_writer.chebyshev_reaction"><tt class="xref py py-class docutils literal"><span class="pre">chebyshev_reaction</span></tt></a> represents a phenomenological rate coefficient
 <span class="math">\(k(T,P)\)</span> in terms of a bivariate Chebyshev polynomial. The rate constant
 can be written as:</p>
@@ -426,9 +416,9 @@ P_\mathrm{max})\)</span> to <span class="math">\((-1, 1)\)</span>.</p>
 <p>A Chebyshev rate expression is specified in terms of the coefficient matrix
 <span class="math">\(\alpha\)</span> and the temperature and pressure ranges. An example of a
 Chebyshev rate expression where <span class="math">\(N_T = 6\)</span> and <span class="math">\(N_P = 4\)</span> is:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">chebyshev_reaction</span><span class="p">(</span><span class="s">&#39;R1 + R2 &lt;=&gt; P1 + P2&#39;</span><span class="p">,</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">chebyshev_reaction</span><span class="p">(</span><span class="s">'R1 + R2 &lt;=&gt; P1 + P2'</span><span class="p">,</span>
                    <span class="n">Tmin</span><span class="o">=</span><span class="mf">290.0</span><span class="p">,</span> <span class="n">Tmax</span><span class="o">=</span><span class="mf">3000.0</span><span class="p">,</span>
-                   <span class="n">Pmin</span><span class="o">=</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="s">&#39;atm&#39;</span><span class="p">),</span> <span class="n">Pmax</span><span class="o">=</span><span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="s">&#39;atm&#39;</span><span class="p">),</span>
+                   <span class="n">Pmin</span><span class="o">=</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="s">'atm'</span><span class="p">),</span> <span class="n">Pmax</span><span class="o">=</span><span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="s">'atm'</span><span class="p">),</span>
                    <span class="n">coeffs</span><span class="o">=</span><span class="p">[[</span><span class="o">-</span><span class="mf">1.44280e+01</span><span class="p">,</span>  <span class="mf">2.59970e-01</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.24320e-02</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.78700e-03</span><span class="p">],</span>
                            <span class="p">[</span> <span class="mf">2.20630e+01</span><span class="p">,</span>  <span class="mf">4.88090e-01</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.96430e-02</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.48110e-03</span><span class="p">],</span>
                            <span class="p">[</span><span class="o">-</span><span class="mf">2.32940e-01</span><span class="p">,</span>  <span class="mf">4.01900e-01</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.60730e-02</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.04860e-03</span><span class="p">],</span>
@@ -442,7 +432,7 @@ Chebyshev rate expression where <span class="math">\(N_T = 6\)</span> and <span 
 temperatures and pressure for which they are defined is strongly discouraged.</p>
 </div>
 <div class="section" id="surface-reactions">
-<h2>Surface Reactions<a class="headerlink" href="#surface-reactions" title="Permalink to this headline">¶</a></h2>
+<h2>Surface Reactions<a class="headerlink" href="#surface-reactions" title="Permalink to this headline">&#182;</a></h2>
 <p>Heterogeneous reactions on surfaces are represented by an extended Arrhenius-
 like rate expression, which combines the modified Arrhenius rate expression with
 further corrections dependent on the fractional surface coverages
@@ -458,24 +448,24 @@ dependencies from species <em>k</em>. A reaction of this form with a single cove
 dependency (on the species <tt class="docutils literal"><span class="pre">H(S)</span></tt>) can be written using class
 <a class="reference internal" href="classes.html#cantera.ctml_writer.surface_reaction" title="cantera.ctml_writer.surface_reaction"><tt class="xref py py-class docutils literal"><span class="pre">surface_reaction</span></tt></a> with the <tt class="docutils literal"><span class="pre">coverage</span></tt> keyword argument supplied to the
 class <a class="reference internal" href="classes.html#cantera.ctml_writer.Arrhenius" title="cantera.ctml_writer.Arrhenius"><tt class="xref py py-class docutils literal"><span class="pre">Arrhenius</span></tt></a>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">surface_reaction</span><span class="p">(</span><span class="s">&quot;2 H(S) =&gt; H2 + 2 PT(S)&quot;</span><span class="p">,</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">surface_reaction</span><span class="p">(</span><span class="s">"2 H(S) =&gt; H2 + 2 PT(S)"</span><span class="p">,</span>
                  <span class="n">Arrhenius</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">E_a</span><span class="p">,</span>
-                           <span class="n">coverage</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;H(S)&#39;</span><span class="p">,</span> <span class="n">a_1</span><span class="p">,</span> <span class="n">m_1</span><span class="p">,</span> <span class="n">E_1</span><span class="p">]))</span>
+                           <span class="n">coverage</span><span class="o">=</span><span class="p">[</span><span class="s">'H(S)'</span><span class="p">,</span> <span class="n">a_1</span><span class="p">,</span> <span class="n">m_1</span><span class="p">,</span> <span class="n">E_1</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>For a reaction with multiple coverage dependencies, the following syntax is
 used:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">surface_reaction</span><span class="p">(</span><span class="s">&quot;2 H(S) =&gt; H2 + 2 PT(S)&quot;</span><span class="p">,</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">surface_reaction</span><span class="p">(</span><span class="s">"2 H(S) =&gt; H2 + 2 PT(S)"</span><span class="p">,</span>
                  <span class="n">Arrhenius</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">E_a</span><span class="p">,</span>
-                           <span class="n">coverage</span><span class="o">=</span><span class="p">[[</span><span class="s">&#39;H(S)&#39;</span><span class="p">,</span> <span class="n">a_1</span><span class="p">,</span> <span class="n">m_1</span><span class="p">,</span> <span class="n">E_1</span><span class="p">],</span>
-                                     <span class="p">[</span><span class="s">&#39;PT(S)&#39;</span><span class="p">,</span> <span class="n">a_2</span><span class="p">,</span> <span class="n">m_2</span><span class="p">,</span> <span class="n">E_2</span><span class="p">]]))</span>
+                           <span class="n">coverage</span><span class="o">=</span><span class="p">[[</span><span class="s">'H(S)'</span><span class="p">,</span> <span class="n">a_1</span><span class="p">,</span> <span class="n">m_1</span><span class="p">,</span> <span class="n">E_1</span><span class="p">],</span>
+                                     <span class="p">[</span><span class="s">'PT(S)'</span><span class="p">,</span> <span class="n">a_2</span><span class="p">,</span> <span class="n">m_2</span><span class="p">,</span> <span class="n">E_2</span><span class="p">]]))</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="additional-options">
-<h2>Additional Options<a class="headerlink" href="#additional-options" title="Permalink to this headline">¶</a></h2>
+<h2>Additional Options<a class="headerlink" href="#additional-options" title="Permalink to this headline">&#182;</a></h2>
 <div class="section" id="reaction-orders">
-<h3>Reaction Orders<a class="headerlink" href="#reaction-orders" title="Permalink to this headline">¶</a></h3>
+<h3>Reaction Orders<a class="headerlink" href="#reaction-orders" title="Permalink to this headline">&#182;</a></h3>
 <p>Explicit reaction orders different from the stoichiometric coefficients are
 sometimes used for non-elementary reactions. For example, consider the global
 reaction:</p>
@@ -486,8 +476,8 @@ reaction:</p>
 \[k_f = 4.6 \times 10^{11} [\mathrm{C_8H_{18}}]^{0.25} [\mathrm{O_2}]^{1.5}
       \exp\left(\frac{30.0\,\mathrm{kcal/mol}}{RT}\right)\]</div>
 <p>This reaction could be defined as:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">reaction</span><span class="p">(</span><span class="s">&quot;C8H18 + 12.5 O2 =&gt; 8 CO2 + 9 H2O&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">4.6e11</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
-         <span class="n">order</span><span class="o">=</span><span class="s">&quot;C8H18:0.25 O2:1.5&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">reaction</span><span class="p">(</span><span class="s">"C8H18 + 12.5 O2 =&gt; 8 CO2 + 9 H2O"</span><span class="p">,</span> <span class="p">[</span><span class="mf">4.6e11</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
+         <span class="n">order</span><span class="o">=</span><span class="s">"C8H18:0.25 O2:1.5"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Special care is required in this case since the units of the pre-exponential
@@ -496,20 +486,20 @@ factor depend on the sum of the reaction orders, which may not be an integer.</p
 negative reaction orders are found to be better fits for experimental data. In
 these cases, the default behavior may be overridden by adding
 <tt class="docutils literal"><span class="pre">negative_orders</span></tt> to the reaction options, e.g.:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">reaction</span><span class="p">(</span><span class="s">&quot;C8H18 + 12.5 O2 =&gt; 8 CO2 + 9 H2O&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">4.6e11</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
-         <span class="n">order</span><span class="o">=</span><span class="s">&quot;C8H18:-0.25 O2:1.75&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;negative_orders&#39;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">reaction</span><span class="p">(</span><span class="s">"C8H18 + 12.5 O2 =&gt; 8 CO2 + 9 H2O"</span><span class="p">,</span> <span class="p">[</span><span class="mf">4.6e11</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
+         <span class="n">order</span><span class="o">=</span><span class="s">"C8H18:-0.25 O2:1.75"</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s">'negative_orders'</span><span class="p">])</span>
 </pre></div>
 </div>
 <p class="rubric">References</p>
 <table class="docutils footnote" frame="void" id="gilbert1983" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
+<colgroup><col class="label"><col></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id3">[1]</a></td><td>R. G. Gilbert, K. Luther, and
 J. Troe. <em>Ber. Bunsenges. Phys. Chem.</em>, 87:169, 1983.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="lindemann1922" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
+<colgroup><col class="label"><col></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><ol class="first last upperalpha simple" start="6">
 <li>Lindemann. <em>Trans. Faraday Soc.</em>, 17:598, 1922.</li>
@@ -518,7 +508,7 @@ J. Troe. <em>Ber. Bunsenges. Phys. Chem.</em>, 87:169, 1983.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="smith1997" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
+<colgroup><col class="label"><col></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[3]</a></td><td>Gregory P. Smith, David M. Golden, Michael Frenklach, Nigel
 W. Moriarty, Boris Eiteneer, Mikhail Goldenberg, C. Thomas Bowman, Ronald
@@ -528,14 +518,14 @@ Zhiwei Qin. GRI-Mech version 3.0, 1997. see
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="stewart1989" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
+<colgroup><col class="label"><col></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>P. H. Stewart, C. W. Larson, and D. Golden.
 <em>Combustion and Flame</em>, 75:25, 1989.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="kee1989" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
+<colgroup><col class="label"><col></colgroup>
 <tbody valign="top">
 <tr><td class="label">[5]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> R. J. Kee, F. M. Rupley, and J. A. Miller. Chemkin-II: A Fortran
 chemical kinetics package for the analysis of gas-phase chemical
@@ -543,7 +533,7 @@ kinetics. Technical Report SAND89-8009, Sandia National Laboratories, 1989.</td>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="westbrook1981" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
+<colgroup><col class="label"><col></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id7">[6]</a></td><td>C. K. Westbrook and F. L. Dryer. Simplified reaction
 mechanisms for the oxidation of hydrocarbon fuels in flames. <em>Combustion
@@ -564,23 +554,19 @@ Science and Technology</em> <strong>27</strong>, pp. 31&#8211;43. 1981.</td></tr
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="classes.html" title="CTI Class Reference"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="species.html" title="Elements and Species"
-             >previous</a> |</li>
-        <li><a href="../index.html">Cantera</a> &raquo;</li>
-          <li><a href="index.html" >Defining Phases</a> &raquo;</li> 
+          <a href="../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="classes.html" title="CTI Class Reference">next</a> |</li>
+        <li class="right">
+          <a href="species.html" title="Elements and Species">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &#187;</li>
+          <li><a href="index.html">Defining Phases</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>

@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>reactor2.m &mdash; Cantera 2.2.1 documentation</title>
     
-    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <title>reactor2.m &#8212; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,59 +21,52 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.2.1 documentation" href="../../index.html" />
-    <link rel="up" title="Index of Examples" href="../examples.html" />
-    <link rel="next" title="reactor_ode.m" href="reactor_ode.html" />
-    <link rel="prev" title="reactor1.m" href="reactor1.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../../index.html">
+    <link rel="up" title="Index of Examples" href="../examples.html">
+    <link rel="next" title="reactor_ode.m" href="reactor_ode.html">
+    <link rel="prev" title="reactor1.m" href="reactor1.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="reactor_ode.html" title="reactor_ode.m"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="reactor1.html" title="reactor1.m"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Cantera</a> &raquo;</li>
-          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
-          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &raquo;</li> 
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="reactor_ode.html" title="reactor_ode.m" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="reactor1.html" title="reactor1.m" accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &#187;</li>
+          <li><a href="../index.html">Matlab Interface User&#8217;s Guide</a> &#187;</li>
+          <li><a href="../examples.html" accesskey="U">Index of Examples</a> &#187;</li> 
       </ul>
     </div>
 
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="reactor1.html"
-                        title="previous chapter">reactor1.m</a></p>
+  <p class="topless"><a href="reactor1.html" title="previous chapter">reactor1.m</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="reactor_ode.html"
-                        title="next chapter">reactor_ode.m</a></p>
+  <p class="topless"><a href="reactor_ode.html" title="next chapter">reactor_ode.m</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../../_sources/matlab/examples/reactor2.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="../../_sources/matlab/examples/reactor2.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -91,12 +81,12 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="reactor2-m">
-<span id="matlab-example-reactor2-m"></span><h1>reactor2.m<a class="headerlink" href="#reactor2-m" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="reactor2-m">
+<span id="matlab-example-reactor2-m"></span><h1>reactor2.m<a class="headerlink" href="#reactor2-m" title="Permalink to this headline">&#182;</a></h1>
 <div class="highlight-matlab"><div class="highlight"><pre><span class="k">function</span><span class="w"> </span><span class="nf">reactor2</span><span class="p">(</span>g<span class="p">)</span><span class="w"></span>
 <span class="c">% REACTOR2 Zero-dimensional kinetics: adiabatic, constant volume.</span>
 <span class="c">% </span>
-<span class="c">%    This example illustrates how to use class &#39;Reactor&#39; for</span>
+<span class="c">%    This example illustrates how to use class 'Reactor' for</span>
 <span class="c">%    zero-dimensional kinetics simulations. Here the parameters are</span>
 <span class="c">%    set so that the reactor is adiabatic and constant volume.</span>
 <span class="c">%</span>
@@ -112,7 +102,7 @@
 <span class="n">nsp</span> <span class="p">=</span> <span class="n">nSpecies</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
 
 <span class="c">% set the initial conditions</span>
-<span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">&#39;T&#39;</span><span class="p">,</span><span class="mf">1001.0</span><span class="p">,</span><span class="s">&#39;P&#39;</span><span class="p">,</span><span class="n">oneatm</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">,</span><span class="s">&#39;H2:2,O2:1,N2:4&#39;</span><span class="p">);</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">'T'</span><span class="p">,</span><span class="mf">1001.0</span><span class="p">,</span><span class="s">'P'</span><span class="p">,</span><span class="n">oneatm</span><span class="p">,</span><span class="s">'X'</span><span class="p">,</span><span class="s">'H2:2,O2:1,N2:4'</span><span class="p">);</span>
 
 <span class="c">% create a reactor, and insert the gas</span>
 <span class="n">r</span> <span class="p">=</span> <span class="n">IdealGasReactor</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
@@ -128,27 +118,27 @@
   <span class="n">advance</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
   <span class="n">tim</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="n">time</span><span class="p">(</span><span class="n">network</span><span class="p">);</span>
   <span class="n">temp</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="n">temperature</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>  
-  <span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">)</span> <span class="p">=</span> <span class="n">moleFraction</span><span class="p">(</span><span class="n">gas</span><span class="p">,{</span><span class="s">&#39;OH&#39;</span><span class="p">,</span><span class="s">&#39;H&#39;</span><span class="p">,</span><span class="s">&#39;H2&#39;</span><span class="p">});</span>
+  <span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">)</span> <span class="p">=</span> <span class="n">moleFraction</span><span class="p">(</span><span class="n">gas</span><span class="p">,{</span><span class="s">'OH'</span><span class="p">,</span><span class="s">'H'</span><span class="p">,</span><span class="s">'H2'</span><span class="p">});</span>
 <span class="k">end</span>
-<span class="nb">disp</span><span class="p">([</span><span class="s">&#39;CPU time = &#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">cputime</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)]);</span>
+<span class="nb">disp</span><span class="p">([</span><span class="s">'CPU time = '</span> <span class="n">num2str</span><span class="p">(</span><span class="n">cputime</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)]);</span>
 
 <span class="n">clf</span><span class="p">;</span>
 <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">tim</span><span class="p">,</span><span class="n">temp</span><span class="p">);</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Temperature (K)&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (s)'</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">'Temperature (K)'</span><span class="p">);</span>
 <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">tim</span><span class="p">,</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;OH Mole Fraction (K)&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (s)'</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">'OH Mole Fraction (K)'</span><span class="p">);</span>
 <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">tim</span><span class="p">,</span><span class="n">x</span><span class="p">(:,</span><span class="mi">2</span><span class="p">));</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;H Mole Fraction (K)&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (s)'</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">'H Mole Fraction (K)'</span><span class="p">);</span>
 <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">tim</span><span class="p">,</span><span class="n">x</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;H2 Mole Fraction (K)&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (s)'</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">'H2 Mole Fraction (K)'</span><span class="p">);</span>
 <span class="n">clear</span> <span class="n">all</span>
 <span class="n">cleanup</span>
 </pre></div>
@@ -165,24 +155,20 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="reactor_ode.html" title="reactor_ode.m"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="reactor1.html" title="reactor1.m"
-             >previous</a> |</li>
-        <li><a href="../../index.html">Cantera</a> &raquo;</li>
-          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li>
-          <li><a href="../examples.html" >Index of Examples</a> &raquo;</li> 
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="reactor_ode.html" title="reactor_ode.m">next</a> |</li>
+        <li class="right">
+          <a href="reactor1.html" title="reactor1.m">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &#187;</li>
+          <li><a href="../index.html">Matlab Interface User&#8217;s Guide</a> &#187;</li>
+          <li><a href="../examples.html">Index of Examples</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>

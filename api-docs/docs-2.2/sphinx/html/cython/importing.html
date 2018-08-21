@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Creating Phase Objects &mdash; Cantera 2.2.1 documentation</title>
     
-    <link rel="stylesheet" href="../_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <title>Creating Phase Objects &#8212; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,35 +21,31 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.2.1 documentation" href="../index.html" />
-    <link rel="up" title="Python Module Documentation" href="index.html" />
-    <link rel="next" title="Thermodynamic Properties" href="thermo.html" />
-    <link rel="prev" title="Tutorial" href="tutorial.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../_static/favicon.ico">
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../index.html">
+    <link rel="up" title="Python Module Documentation" href="index.html">
+    <link rel="next" title="Thermodynamic Properties" href="thermo.html">
+    <link rel="prev" title="Tutorial" href="tutorial.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../index.html">
-<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="thermo.html" title="Thermodynamic Properties"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="tutorial.html" title="Tutorial"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Cantera</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">Python Module Documentation</a> &raquo;</li> 
+          <a href="../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="thermo.html" title="Thermodynamic Properties" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="tutorial.html" title="Tutorial" accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &#187;</li>
+          <li><a href="index.html" accesskey="U">Python Module Documentation</a> &#187;</li> 
       </ul>
     </div>
 
@@ -68,23 +61,20 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="tutorial.html"
-                        title="previous chapter">Tutorial</a></p>
+  <p class="topless"><a href="tutorial.html" title="previous chapter">Tutorial</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="thermo.html"
-                        title="next chapter">Thermodynamic Properties</a></p>
+  <p class="topless"><a href="thermo.html" title="next chapter">Thermodynamic Properties</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/cython/importing.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="../_sources/cython/importing.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -99,13 +89,13 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="creating-phase-objects">
-<h1>Creating Phase Objects<a class="headerlink" href="#creating-phase-objects" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="creating-phase-objects">
+<h1>Creating Phase Objects<a class="headerlink" href="#creating-phase-objects" title="Permalink to this headline">&#182;</a></h1>
 <p>These classes are composite representations of a substance which has
 thermodynamic, chemical kinetic, and (optionally) transport properties.</p>
 <dl class="class">
 <dt id="cantera.Solution">
-<em class="property">class </em><tt class="descclassname">cantera.</tt><tt class="descname">Solution</tt><big>(</big><em>infile=''</em>, <em>phaseid=''</em>, <em>source=None</em>, <em>thermo=None</em>, <em>species=()</em>, <em>kinetics=None</em>, <em>reactions=()</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#cantera.Solution" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">cantera.</tt><tt class="descname">Solution</tt><big>(</big><em>infile=''</em>, <em>phaseid=''</em>, <em>source=None</em>, <em>thermo=None</em>, <em>species=()</em>, <em>kinetics=None</em>, <em>reactions=()</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#cantera.Solution" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.ThermoPhase</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.Kinetics</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.Transport</span></tt></p>
 <p>A class for chemically-reacting solutions. Instances can be created to
 represent any type of solution &#8211; a mixture of gases, a liquid solution, or
@@ -118,21 +108,21 @@ properties of a solution.</p>
 <tt class="docutils literal"><span class="pre">transport_model=None</span></tt> to the <a class="reference internal" href="#cantera.Solution" title="cantera.Solution"><tt class="xref py py-obj docutils literal"><span class="pre">Solution</span></tt></a> constructor.</p>
 <p>The most common way to instantiate <a class="reference internal" href="#cantera.Solution" title="cantera.Solution"><tt class="xref py py-obj docutils literal"><span class="pre">Solution</span></tt></a> objects is by using a phase
 definition, species and reactions defined in an input file:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">&#39;gri30.cti&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">'gri30.cti'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If an input file defines multiple phases, the phase <em>name</em> (in CTI) or <em>id</em>
 (in XML) can be used to specify the desired phase:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">&#39;diamond.cti&#39;</span><span class="p">,</span> <span class="s">&#39;gas&#39;</span><span class="p">)</span>
-<span class="n">diamond</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">&#39;diamond.cti&#39;</span><span class="p">,</span> <span class="s">&#39;diamond&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">'diamond.cti'</span><span class="p">,</span> <span class="s">'gas'</span><span class="p">)</span>
+<span class="n">diamond</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">'diamond.cti'</span><span class="p">,</span> <span class="s">'diamond'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="#cantera.Solution" title="cantera.Solution"><tt class="xref py py-obj docutils literal"><span class="pre">Solution</span></tt></a> objects can also be constructed using <a class="reference internal" href="thermo.html#cantera.Species" title="cantera.Species"><tt class="xref py py-obj docutils literal"><span class="pre">Species</span></tt></a> and <a class="reference internal" href="kinetics.html#cantera.Reaction" title="cantera.Reaction"><tt class="xref py py-obj docutils literal"><span class="pre">Reaction</span></tt></a>
 objects which can themselves either be imported from input files or defined
 directly in Python:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">spec</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Species</span><span class="o">.</span><span class="n">listFromFile</span><span class="p">(</span><span class="s">&#39;gri30.cti&#39;</span><span class="p">)</span>
-<span class="n">rxns</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reaction</span><span class="o">.</span><span class="n">listFromFile</span><span class="p">(</span><span class="s">&#39;gri30.cti&#39;</span><span class="p">)</span>
-<span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="n">thermo</span><span class="o">=</span><span class="s">&#39;IdealGas&#39;</span><span class="p">,</span> <span class="n">kinetics</span><span class="o">=</span><span class="s">&#39;GasKinetics&#39;</span><span class="p">,</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">spec</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Species</span><span class="o">.</span><span class="n">listFromFile</span><span class="p">(</span><span class="s">'gri30.cti'</span><span class="p">)</span>
+<span class="n">rxns</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reaction</span><span class="o">.</span><span class="n">listFromFile</span><span class="p">(</span><span class="s">'gri30.cti'</span><span class="p">)</span>
+<span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="n">thermo</span><span class="o">=</span><span class="s">'IdealGas'</span><span class="p">,</span> <span class="n">kinetics</span><span class="o">=</span><span class="s">'GasKinetics'</span><span class="p">,</span>
                   <span class="n">species</span><span class="o">=</span><span class="n">spec</span><span class="p">,</span> <span class="n">reactions</span><span class="o">=</span><span class="n">rxns</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -146,12 +136,12 @@ specifying the thermodynamic and kinetics model, respectively, and
 <p>In addition, <a class="reference internal" href="#cantera.Solution" title="cantera.Solution"><tt class="xref py py-obj docutils literal"><span class="pre">Solution</span></tt></a> objects can be constructed by passing the text of
 the CTI or XML phase definition in directly, using the <tt class="docutils literal"><span class="pre">source</span></tt> keyword
 argument:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">cti_def</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
-<span class="s">    ideal_gas(name=&#39;gas&#39;, elements=&#39;O H Ar&#39;,</span>
-<span class="s">              species=&#39;gri30: all&#39;,</span>
-<span class="s">              reactions=&#39;gri30: all&#39;,</span>
-<span class="s">              options=[&#39;skip_undeclared_elements&#39;, &#39;skip_undeclared_species&#39;, &#39;skip_undeclared_third_bodies&#39;],</span>
-<span class="s">              initial_state=state(temperature=300, pressure=101325))&#39;&#39;&#39;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">cti_def</span> <span class="o">=</span> <span class="s">'''</span>
+<span class="s">    ideal_gas(name='gas', elements='O H Ar',</span>
+<span class="s">              species='gri30: all',</span>
+<span class="s">              reactions='gri30: all',</span>
+<span class="s">              options=['skip_undeclared_elements', 'skip_undeclared_species', 'skip_undeclared_third_bodies'],</span>
+<span class="s">              initial_state=state(temperature=300, pressure=101325))'''</span>
 <span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">cti_def</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -159,7 +149,7 @@ argument:</p>
 
 <dl class="class">
 <dt id="cantera.Interface">
-<em class="property">class </em><tt class="descclassname">cantera.</tt><tt class="descname">Interface</tt><big>(</big><em>infile=''</em>, <em>phaseid=''</em>, <em>phases=()</em>, <em>thermo=None</em>, <em>species=()</em>, <em>kinetics=None</em>, <em>reactions=()</em><big>)</big><a class="headerlink" href="#cantera.Interface" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">cantera.</tt><tt class="descname">Interface</tt><big>(</big><em>infile=''</em>, <em>phaseid=''</em>, <em>phases=()</em>, <em>thermo=None</em>, <em>species=()</em>, <em>kinetics=None</em>, <em>reactions=()</em><big>)</big><a class="headerlink" href="#cantera.Interface" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.InterfacePhase</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.InterfaceKinetics</span></tt></p>
 <p>Two-dimensional interfaces.</p>
 <p>Instances of class <a class="reference internal" href="#cantera.Interface" title="cantera.Interface"><tt class="xref py py-obj docutils literal"><span class="pre">Interface</span></tt></a> represent reacting 2D interfaces between bulk
@@ -168,16 +158,16 @@ methods derive from either <a class="reference internal" href="thermo.html#cante
 <p>To construct an <a class="reference internal" href="#cantera.Interface" title="cantera.Interface"><tt class="xref py py-obj docutils literal"><span class="pre">Interface</span></tt></a> object, adjacent bulk phases which participate
 in reactions need to be created and then passed in as a list in the
 <tt class="docutils literal"><span class="pre">phases</span></tt> argument to the constructor:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">&#39;diamond.cti&#39;</span><span class="p">,</span> <span class="s">&#39;gas&#39;</span><span class="p">)</span>
-<span class="n">diamond</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">&#39;diamond.cti&#39;</span><span class="p">,</span> <span class="s">&#39;diamond&#39;</span><span class="p">)</span>
-<span class="n">diamond_surf</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s">&#39;diamond.cti&#39;</span><span class="p">,</span> <span class="s">&#39;diamond_100&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">gas</span><span class="p">,</span> <span class="n">diamond</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">'diamond.cti'</span><span class="p">,</span> <span class="s">'gas'</span><span class="p">)</span>
+<span class="n">diamond</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s">'diamond.cti'</span><span class="p">,</span> <span class="s">'diamond'</span><span class="p">)</span>
+<span class="n">diamond_surf</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s">'diamond.cti'</span><span class="p">,</span> <span class="s">'diamond_100'</span><span class="p">,</span> <span class="p">[</span><span class="n">gas</span><span class="p">,</span> <span class="n">diamond</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="class">
 <dt id="cantera.DustyGas">
-<em class="property">class </em><tt class="descclassname">cantera.</tt><tt class="descname">DustyGas</tt><big>(</big><em>infile</em>, <em>phaseid=''</em><big>)</big><a class="headerlink" href="#cantera.DustyGas" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">cantera.</tt><tt class="descname">DustyGas</tt><big>(</big><em>infile</em>, <em>phaseid=''</em><big>)</big><a class="headerlink" href="#cantera.DustyGas" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.ThermoPhase</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.Kinetics</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">cantera._cantera.DustyGasTransport</span></tt></p>
 <p>A composite class which models a gas in a stationary, solid, porous medium.</p>
 <p>The only transport properties computed are the multicomponent diffusion
@@ -185,63 +175,63 @@ coefficients. The model does not compute viscosity or thermal conductivity.</p>
 </dd></dl>
 
 <div class="section" id="pure-fluid-phases">
-<h2>Pure Fluid Phases<a class="headerlink" href="#pure-fluid-phases" title="Permalink to this headline">¶</a></h2>
+<h2>Pure Fluid Phases<a class="headerlink" href="#pure-fluid-phases" title="Permalink to this headline">&#182;</a></h2>
 <p>The following convenience functions can be used to create <a class="reference internal" href="thermo.html#cantera.PureFluid" title="cantera.PureFluid"><tt class="xref py py-obj docutils literal"><span class="pre">PureFluid</span></tt></a> objects
 with the indicated equation of state:</p>
 <dl class="function">
 <dt id="cantera.CarbonDioxide">
-<tt class="descclassname">cantera.</tt><tt class="descname">CarbonDioxide</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.CarbonDioxide" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">cantera.</tt><tt class="descname">CarbonDioxide</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.CarbonDioxide" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a <a class="reference internal" href="thermo.html#cantera.PureFluid" title="cantera.PureFluid"><tt class="xref py py-obj docutils literal"><span class="pre">PureFluid</span></tt></a> object using the equation of state for carbon dioxide.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="cantera.Heptane">
-<tt class="descclassname">cantera.</tt><tt class="descname">Heptane</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Heptane" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">cantera.</tt><tt class="descname">Heptane</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Heptane" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a <a class="reference internal" href="thermo.html#cantera.PureFluid" title="cantera.PureFluid"><tt class="xref py py-obj docutils literal"><span class="pre">PureFluid</span></tt></a> object using the equation of state for heptane.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="cantera.Hfc134a">
-<tt class="descclassname">cantera.</tt><tt class="descname">Hfc134a</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Hfc134a" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">cantera.</tt><tt class="descname">Hfc134a</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Hfc134a" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a <a class="reference internal" href="thermo.html#cantera.PureFluid" title="cantera.PureFluid"><tt class="xref py py-obj docutils literal"><span class="pre">PureFluid</span></tt></a> object using the equation of state for HFC-134a.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="cantera.Hydrogen">
-<tt class="descclassname">cantera.</tt><tt class="descname">Hydrogen</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Hydrogen" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">cantera.</tt><tt class="descname">Hydrogen</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Hydrogen" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a <a class="reference internal" href="thermo.html#cantera.PureFluid" title="cantera.PureFluid"><tt class="xref py py-obj docutils literal"><span class="pre">PureFluid</span></tt></a> object using the equation of state for hydrogen.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="cantera.Methane">
-<tt class="descclassname">cantera.</tt><tt class="descname">Methane</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Methane" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">cantera.</tt><tt class="descname">Methane</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Methane" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a <a class="reference internal" href="thermo.html#cantera.PureFluid" title="cantera.PureFluid"><tt class="xref py py-obj docutils literal"><span class="pre">PureFluid</span></tt></a> object using the equation of state for methane.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="cantera.Nitrogen">
-<tt class="descclassname">cantera.</tt><tt class="descname">Nitrogen</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Nitrogen" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">cantera.</tt><tt class="descname">Nitrogen</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Nitrogen" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a <a class="reference internal" href="thermo.html#cantera.PureFluid" title="cantera.PureFluid"><tt class="xref py py-obj docutils literal"><span class="pre">PureFluid</span></tt></a> object using the equation of state for nitrogen.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="cantera.Oxygen">
-<tt class="descclassname">cantera.</tt><tt class="descname">Oxygen</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Oxygen" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">cantera.</tt><tt class="descname">Oxygen</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Oxygen" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a <a class="reference internal" href="thermo.html#cantera.PureFluid" title="cantera.PureFluid"><tt class="xref py py-obj docutils literal"><span class="pre">PureFluid</span></tt></a> object using the equation of state for oxygen.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="cantera.Water">
-<tt class="descclassname">cantera.</tt><tt class="descname">Water</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Water" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">cantera.</tt><tt class="descname">Water</tt><big>(</big><big>)</big><a class="headerlink" href="#cantera.Water" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a <a class="reference internal" href="thermo.html#cantera.PureFluid" title="cantera.PureFluid"><tt class="xref py py-obj docutils literal"><span class="pre">PureFluid</span></tt></a> object using the equation of state for water.</p>
 </dd></dl>
 
 </div>
 <div class="section" id="utility-functions">
-<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">&#182;</a></h2>
 <dl class="function">
 <dt id="cantera.add_directory">
-<tt class="descclassname">cantera.</tt><tt class="descname">add_directory</tt><big>(</big><em>directory</em><big>)</big><a class="headerlink" href="#cantera.add_directory" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">cantera.</tt><tt class="descname">add_directory</tt><big>(</big><em>directory</em><big>)</big><a class="headerlink" href="#cantera.add_directory" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Add a directory to search for Cantera data files.</p>
 </dd></dl>
 
@@ -258,23 +248,19 @@ with the indicated equation of state:</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="thermo.html" title="Thermodynamic Properties"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="tutorial.html" title="Tutorial"
-             >previous</a> |</li>
-        <li><a href="../index.html">Cantera</a> &raquo;</li>
-          <li><a href="index.html" >Python Module Documentation</a> &raquo;</li> 
+          <a href="../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="thermo.html" title="Thermodynamic Properties">next</a> |</li>
+        <li class="right">
+          <a href="tutorial.html" title="Tutorial">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &#187;</li>
+          <li><a href="index.html">Python Module Documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>

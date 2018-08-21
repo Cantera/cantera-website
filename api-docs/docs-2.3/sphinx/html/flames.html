@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>One-Dimensional Flames &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -22,34 +19,30 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="about.html" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Python Module Documentation" href="cython/index.html" />
-    <link rel="prev" title="Reactors and Reactor Networks" href="reactors.html" /> 
-  </head>
+    <link rel="shortcut icon" href="_static/favicon.ico">
+    <link rel="author" title="About these documents" href="about.html">
+    <link rel="index" title="Index" href="genindex.html">
+    <link rel="search" title="Search" href="search.html">
+    <link rel="next" title="Python Module Documentation" href="cython/index.html">
+    <link rel="prev" title="Reactors and Reactor Networks" href="reactors.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="index.html">
-<img src="_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="cython/index.html" title="Python Module Documentation"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="reactors.html" title="Reactors and Reactor Networks"
-             accesskey="P">previous</a> |</li>
+          <a href="genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="cython/index.html" title="Python Module Documentation" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="reactors.html" title="Reactors and Reactor Networks" accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -76,31 +69,28 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="reactors.html"
-                        title="previous chapter">Reactors and Reactor Networks</a></p>
+  <p class="topless"><a href="reactors.html" title="previous chapter">Reactors and Reactor Networks</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="cython/index.html"
-                        title="next chapter">Python Module Documentation</a></p>
+  <p class="topless"><a href="cython/index.html" title="next chapter">Python Module Documentation</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/flames.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="_sources/flames.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -110,8 +100,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="one-dimensional-flames">
-<h1>One-Dimensional Flames<a class="headerlink" href="#one-dimensional-flames" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="one-dimensional-flames">
+<h1>One-Dimensional Flames<a class="headerlink" href="#one-dimensional-flames" title="Permalink to this headline">&#182;</a></h1>
 <p>Cantera includes a set of models for representing steady-state, quasi-one-
 dimensional reacting flows, which can be used to simulate a number of common
 flames, such as:</p>
@@ -125,12 +115,12 @@ flames, such as:</p>
 used to represent processes such as combustion on a catalytic surface or
 chemical vapor deposition processes.</p>
 <p>All of these configurations are simulated using a common set of governing
-equations within a 1D “flow” domain, with the differences between the models
+equations within a 1D &#8220;flow&#8221; domain, with the differences between the models
 being represented by differences in the boundary conditions applied. Here, we
 describe the governing equations and the various boundary conditions which can
 be applied.</p>
 <div class="section" id="stagnation-flow-governing-equations">
-<h2>Stagnation Flow Governing Equations<a class="headerlink" href="#stagnation-flow-governing-equations" title="Permalink to this headline">¶</a></h2>
+<h2>Stagnation Flow Governing Equations<a class="headerlink" href="#stagnation-flow-governing-equations" title="Permalink to this headline">&#182;</a></h2>
 <p>Cantera models flames which are stabilized in an axisymmetric stagnation flow,
 and computes the solution along the stagnation streamline (<span class="math">\(r=0\)</span>), using a
 similarity solution to reduce the three-dimensional governing equations to a
@@ -171,7 +161,7 @@ differential equation for the scalar <span class="math">\(\Lambda\)</span>:</p>
 <div class="math">
 \[\frac{d\Lambda}{dz} = 0\]</div>
 <div class="section" id="diffusive-fluxes">
-<h3>Diffusive Fluxes<a class="headerlink" href="#diffusive-fluxes" title="Permalink to this headline">¶</a></h3>
+<h3>Diffusive Fluxes<a class="headerlink" href="#diffusive-fluxes" title="Permalink to this headline">&#182;</a></h3>
 <p>The species diffusive mass fluxes <span class="math">\(j_k\)</span> are computed according to either a
 mixture-averaged or multicomponent formulation. If the mixture-averaged
 formulation is used, the calculation performed is:</p>
@@ -195,9 +185,9 @@ specifically enabled).</p>
 </div>
 </div>
 <div class="section" id="boundary-conditions">
-<h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h2>
+<h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">&#182;</a></h2>
 <div class="section" id="inlet-boundary">
-<h3>Inlet boundary<a class="headerlink" href="#inlet-boundary" title="Permalink to this headline">¶</a></h3>
+<h3>Inlet boundary<a class="headerlink" href="#inlet-boundary" title="Permalink to this headline">&#182;</a></h3>
 <p>For a boundary located at a point <span class="math">\(z_0\)</span> where there is an inflow, values are
 supplied for the temperature <span class="math">\(T_0\)</span>, the species mass fractions <span class="math">\(Y_{k,0}\)</span> the
 scaled radial velocity <span class="math">\(V_0\)</span>, and the mass flow rate <span class="math">\(\dot{m}_0\)</span> (except in the
@@ -213,19 +203,19 @@ case of the freely-propagating flame).</p>
 \[\Lambda(z_0) = 0\]</div>
 </div>
 <div class="section" id="outlet-boundary">
-<h3>Outlet boundary<a class="headerlink" href="#outlet-boundary" title="Permalink to this headline">¶</a></h3>
+<h3>Outlet boundary<a class="headerlink" href="#outlet-boundary" title="Permalink to this headline">&#182;</a></h3>
 <p>For a boundary located at a point <span class="math">\(z_0\)</span> where there is an outflow, we solve:</p>
 <div class="math">
 \[ \begin{align}\begin{aligned}\Lambda(z_0) = 0\\\left.\frac{\partial T}{\partial z}\right|_{z_0} = 0\\\left.\frac{\partial Y_k}{\partial z}\right|_{z_0} = 0\\V(z_0) = 0\end{aligned}\end{align} \]</div>
 </div>
 <div class="section" id="symmetry-boundary">
-<h3>Symmetry boundary<a class="headerlink" href="#symmetry-boundary" title="Permalink to this headline">¶</a></h3>
+<h3>Symmetry boundary<a class="headerlink" href="#symmetry-boundary" title="Permalink to this headline">&#182;</a></h3>
 <p>For a symmetry boundary located at a point <span class="math">\(z_0\)</span>, we solve:</p>
 <div class="math">
 \[ \begin{align}\begin{aligned}\rho(z_0) u(z_0) = 0\\\left.\frac{\partial V}{\partial z}\right|_{z_0} = 0\\\left.\frac{\partial T}{\partial z}\right|_{z_0} = 0\\j_k(z_0) = 0\end{aligned}\end{align} \]</div>
 </div>
 <div class="section" id="reacting-surface">
-<h3>Reacting surface<a class="headerlink" href="#reacting-surface" title="Permalink to this headline">¶</a></h3>
+<h3>Reacting surface<a class="headerlink" href="#reacting-surface" title="Permalink to this headline">&#182;</a></h3>
 <p>For a surface boundary located at a point <span class="math">\(z_0\)</span> on which reactions may occur,
 the temperature <span class="math">\(T_0\)</span> is specified. We solve:</p>
 <div class="math">
@@ -236,9 +226,9 @@ species <span class="math">\(i\)</span> are computed such that <span class="math
 </div>
 </div>
 <div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">&#182;</a></h2>
 <table class="docutils citation" frame="void" id="kcg2003" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
+<colgroup><col class="label"><col></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[KCG2003]</a></td><td>Kee, Coltrin, Glarborg: <em>Chemically Reacting Flow</em>.
 Wiley-Interscience, 2003</td></tr>
@@ -257,17 +247,13 @@ Wiley-Interscience, 2003</td></tr>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="cython/index.html" title="Python Module Documentation"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="reactors.html" title="Reactors and Reactor Networks"
-             >previous</a> |</li>
+          <a href="genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="cython/index.html" title="Python Module Documentation">next</a> |</li>
+        <li class="right">
+          <a href="reactors.html" title="Reactors and Reactor Networks">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

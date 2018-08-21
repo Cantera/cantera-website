@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Interfaces &mdash; Cantera 2.2.1 documentation</title>
     
-    <link rel="stylesheet" href="../../_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <title>Interfaces &#8212; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,35 +21,31 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.2.1 documentation" href="../../index.html" />
-    <link rel="up" title="Matlab Interface User’s Guide" href="../index.html" />
-    <link rel="next" title="Thermodynamic Properties" href="thermodynamics.html" />
-    <link rel="prev" title="Importing Phase Objects" href="importing.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="top" title="Cantera 2.2.1 documentation" href="../../index.html">
+    <link rel="up" title="Matlab Interface User&#8217;s Guide" href="../index.html">
+    <link rel="next" title="Thermodynamic Properties" href="thermodynamics.html">
+    <link rel="prev" title="Importing Phase Objects" href="importing.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="thermodynamics.html" title="Thermodynamic Properties"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="importing.html" title="Importing Phase Objects"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Cantera</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">Matlab Interface User&#8217;s Guide</a> &raquo;</li> 
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="thermodynamics.html" title="Thermodynamic Properties" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="importing.html" title="Importing Phase Objects" accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &#187;</li>
+          <li><a href="../index.html" accesskey="U">Matlab Interface User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
 
@@ -67,23 +60,20 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="importing.html"
-                        title="previous chapter">Importing Phase Objects</a></p>
+  <p class="topless"><a href="importing.html" title="previous chapter">Importing Phase Objects</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="thermodynamics.html"
-                        title="next chapter">Thermodynamic Properties</a></p>
+  <p class="topless"><a href="thermodynamics.html" title="next chapter">Thermodynamic Properties</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../../_sources/matlab/code-docs/interface.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="../../_sources/matlab/code-docs/interface.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -98,19 +88,19 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="interfaces">
-<h1>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="interfaces">
+<h1>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this headline">&#182;</a></h1>
 <div class="section" id="interface">
-<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
+<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">&#182;</a></h2>
 <dl class="class">
 <dt id="Interface">
-<em class="property">class </em><tt class="descname">Interface</tt><big>(</big><em>src</em>, <em>id</em>, <em>p1</em>, <em>p2</em>, <em>p3</em>, <em>p4</em><big>)</big><a class="headerlink" href="#Interface" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descname">Interface</tt><big>(</big><em>src</em>, <em>id</em>, <em>p1</em>, <em>p2</em>, <em>p3</em>, <em>p4</em><big>)</big><a class="headerlink" href="#Interface" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Interface class constructor.</p>
 <p>See <a class="reference internal" href="../../cti/phases.html#sec-interfaces"><em>Interfaces</em></a>.</p>
 <p>See also: <a class="reference internal" href="#Interface.importEdge" title="Interface.importEdge"><tt class="xref mat mat-func docutils literal"><span class="pre">importEdge()</span></tt></a>, <a class="reference internal" href="#Interface.importInterface" title="Interface.importInterface"><tt class="xref mat mat-func docutils literal"><span class="pre">importInterface()</span></tt></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>src</strong> &#8211; CTI or CTML file containing the interface or edge phase.</li>
@@ -129,11 +119,11 @@
 </table>
 <dl class="function">
 <dt id="Interface.concentrations">
-<tt class="descname">concentrations</tt><big>(</big><em>s</em><big>)</big><a class="headerlink" href="#Interface.concentrations" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">concentrations</tt><big>(</big><em>s</em><big>)</big><a class="headerlink" href="#Interface.concentrations" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the concentrations of the species on an interface.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Interface" title="Interface"><tt class="xref mat mat-func docutils literal"><span class="pre">Interface()</span></tt></a> with surface species</td>
 </tr>
@@ -147,11 +137,11 @@ returned.</td>
 
 <dl class="function">
 <dt id="Interface.coverages">
-<tt class="descname">coverages</tt><big>(</big><em>s</em><big>)</big><a class="headerlink" href="#Interface.coverages" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">coverages</tt><big>(</big><em>s</em><big>)</big><a class="headerlink" href="#Interface.coverages" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the surface coverages of the species on an interface.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Interface" title="Interface"><tt class="xref mat mat-func docutils literal"><span class="pre">Interface()</span></tt></a> with surface species</td>
 </tr>
@@ -165,12 +155,12 @@ returned.</td>
 
 <dl class="function">
 <dt id="Interface.importEdge">
-<tt class="descname">importEdge</tt><big>(</big><em>file</em>, <em>name</em>, <em>phase1</em>, <em>phase2</em>, <em>phase3</em>, <em>phase4</em><big>)</big><a class="headerlink" href="#Interface.importEdge" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">importEdge</tt><big>(</big><em>file</em>, <em>name</em>, <em>phase1</em>, <em>phase2</em>, <em>phase3</em>, <em>phase4</em><big>)</big><a class="headerlink" href="#Interface.importEdge" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Import edges between phases.</p>
 <p>Supports up to four neighbor phases. See <a class="reference internal" href="../../cti/phases.html#sec-interfaces"><em>Interfaces</em></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>file</strong> &#8211; File containing phases</li>
@@ -191,12 +181,12 @@ returned.</td>
 
 <dl class="function">
 <dt id="Interface.importInterface">
-<tt class="descname">importInterface</tt><big>(</big><em>file</em>, <em>name</em>, <em>phase1</em>, <em>phase2</em><big>)</big><a class="headerlink" href="#Interface.importInterface" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">importInterface</tt><big>(</big><em>file</em>, <em>name</em>, <em>phase1</em>, <em>phase2</em><big>)</big><a class="headerlink" href="#Interface.importInterface" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Import an interface between phases.</p>
 <p>See <a class="reference internal" href="../../cti/phases.html#sec-interfaces"><em>Interfaces</em></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>file</strong> &#8211; CTI or CTML file containing the interface</li>
@@ -215,11 +205,11 @@ returned.</td>
 
 <dl class="function">
 <dt id="Interface.setCoverages">
-<tt class="descname">setCoverages</tt><big>(</big><em>s</em>, <em>cov</em><big>)</big><a class="headerlink" href="#Interface.setCoverages" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">setCoverages</tt><big>(</big><em>s</em>, <em>cov</em><big>)</big><a class="headerlink" href="#Interface.setCoverages" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set surface coverages of the species on an interface.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Interface" title="Interface"><tt class="xref mat mat-func docutils literal"><span class="pre">Interface()</span></tt></a></li>
@@ -248,23 +238,19 @@ length <tt class="docutils literal"><span class="pre">n_surf_species</span></tt>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="thermodynamics.html" title="Thermodynamic Properties"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="importing.html" title="Importing Phase Objects"
-             >previous</a> |</li>
-        <li><a href="../../index.html">Cantera</a> &raquo;</li>
-          <li><a href="../index.html" >Matlab Interface User&#8217;s Guide</a> &raquo;</li> 
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="thermodynamics.html" title="Thermodynamic Properties">next</a> |</li>
+        <li class="right">
+          <a href="importing.html" title="Importing Phase Objects">previous</a> |</li>
+        <li><a href="../../index.html">Cantera</a> &#187;</li>
+          <li><a href="../index.html">Matlab Interface User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>

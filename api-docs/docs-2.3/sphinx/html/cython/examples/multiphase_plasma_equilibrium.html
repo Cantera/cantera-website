@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>plasma_equilibrium.py &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -22,26 +19,24 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../../about.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../../about.html">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -51,23 +46,22 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/cython/examples/multiphase_plasma_equilibrium.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../../_sources/cython/examples/multiphase_plasma_equilibrium.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -77,12 +71,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="plasma-equilibrium-py">
-<span id="py-example-plasma-equilibrium-py"></span><h1>plasma_equilibrium.py<a class="headerlink" href="#plasma-equilibrium-py" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="plasma-equilibrium-py">
+<span id="py-example-plasma-equilibrium-py"></span><h1>plasma_equilibrium.py<a class="headerlink" href="#plasma-equilibrium-py" title="Permalink to this headline">&#182;</a></h1>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">An equilibrium example with charged species in the gas phase</span>
 <span class="sd">and multiple condensed phases.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span> <span class="nn">cantera</span> <span class="k">as</span> <span class="nn">ct</span>
 <span class="kn">import</span> <span class="nn">csv</span>
@@ -91,30 +85,30 @@
 <span class="c1"># is a mixture of multiple species, and the condensed phases are all modeled</span>
 <span class="c1"># as incompressible stoichiometric substances. See file KOH.cti for more</span>
 <span class="c1"># information.</span>
-<span class="n">phases</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">import_phases</span><span class="p">(</span><span class="s1">&#39;KOH.cti&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;K_solid&#39;</span><span class="p">,</span> <span class="s1">&#39;K_liquid&#39;</span><span class="p">,</span> <span class="s1">&#39;KOH_a&#39;</span><span class="p">,</span> <span class="s1">&#39;KOH_b&#39;</span><span class="p">,</span>
-                                      <span class="s1">&#39;KOH_liquid&#39;</span><span class="p">,</span> <span class="s1">&#39;K2O2_solid&#39;</span><span class="p">,</span> <span class="s1">&#39;K2O_solid&#39;</span><span class="p">,</span>
-                                      <span class="s1">&#39;KO2_solid&#39;</span><span class="p">,</span> <span class="s1">&#39;ice&#39;</span><span class="p">,</span> <span class="s1">&#39;liquid_water&#39;</span><span class="p">,</span>
-                                      <span class="s1">&#39;KOH_plasma&#39;</span><span class="p">])</span>
+<span class="n">phases</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">import_phases</span><span class="p">(</span><span class="s1">'KOH.cti'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'K_solid'</span><span class="p">,</span> <span class="s1">'K_liquid'</span><span class="p">,</span> <span class="s1">'KOH_a'</span><span class="p">,</span> <span class="s1">'KOH_b'</span><span class="p">,</span>
+                                      <span class="s1">'KOH_liquid'</span><span class="p">,</span> <span class="s1">'K2O2_solid'</span><span class="p">,</span> <span class="s1">'K2O_solid'</span><span class="p">,</span>
+                                      <span class="s1">'KO2_solid'</span><span class="p">,</span> <span class="s1">'ice'</span><span class="p">,</span> <span class="s1">'liquid_water'</span><span class="p">,</span>
+                                      <span class="s1">'KOH_plasma'</span><span class="p">])</span>
 
 <span class="c1"># create the Mixture object from the list of phases</span>
 <span class="n">mix</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Mixture</span><span class="p">(</span><span class="n">phases</span><span class="p">)</span>
 
-<span class="n">csvfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;equil_koh.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">csvfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'equil_koh.csv'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span>
 <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
-<span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">mix</span><span class="o">.</span><span class="n">species_names</span><span class="p">)</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">'T'</span><span class="p">]</span> <span class="o">+</span> <span class="n">mix</span><span class="o">.</span><span class="n">species_names</span><span class="p">)</span>
 
 <span class="c1"># loop over temperature</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">t</span> <span class="o">=</span> <span class="mf">350.0</span> <span class="o">+</span> <span class="mf">50.0</span><span class="o">*</span><span class="n">n</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;T = </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'T = </span><span class="si">{0}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
     <span class="n">mix</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="n">t</span>
     <span class="n">mix</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span>
-    <span class="n">mix</span><span class="o">.</span><span class="n">species_moles</span> <span class="o">=</span> <span class="s2">&quot;K:1.03, H2:2.12, O2:0.9&quot;</span>
+    <span class="n">mix</span><span class="o">.</span><span class="n">species_moles</span> <span class="o">=</span> <span class="s2">"K:1.03, H2:2.12, O2:0.9"</span>
 
     <span class="c1"># set the mixture to a state of chemical equilibrium holding</span>
     <span class="c1"># temperature and pressure fixed</span>
-    <span class="c1"># mix.equilibrate(&quot;TP&quot;,maxsteps=10000,loglevel=1)</span>
-    <span class="n">mix</span><span class="o">.</span><span class="n">equilibrate</span><span class="p">(</span><span class="s2">&quot;TP&quot;</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># mix.equilibrate("TP",maxsteps=10000,loglevel=1)</span>
+    <span class="n">mix</span><span class="o">.</span><span class="n">equilibrate</span><span class="p">(</span><span class="s2">"TP"</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># write out the moles of each species</span>
     <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">mix</span><span class="o">.</span><span class="n">species_moles</span><span class="p">))</span>
@@ -134,11 +128,9 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>diamond_cvd.py &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -22,26 +19,24 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../../about.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../../about.html">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -51,23 +46,22 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/cython/examples/surface_chemistry_diamond_cvd.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../../_sources/cython/examples/surface_chemistry_diamond_cvd.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -77,9 +71,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="diamond-cvd-py">
-<span id="py-example-diamond-cvd-py"></span><h1>diamond_cvd.py<a class="headerlink" href="#diamond-cvd-py" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="diamond-cvd-py">
+<span id="py-example-diamond-cvd-py"></span><h1>diamond_cvd.py<a class="headerlink" href="#diamond-cvd-py" title="Permalink to this headline">&#182;</a></h1>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">A CVD example simulating growth of a diamond film</span>
 
 <span class="sd">This example computes the growth rate of a diamond film according to a</span>
@@ -89,18 +83,18 @@
 <span class="sd">surface, see catalytic_combustion.py.)  Atomic hydrogen plays an important</span>
 <span class="sd">role in diamond CVD, and this example computes the growth rate and surface</span>
 <span class="sd">coverages as a function of [H] at the surface for fixed temperature and [CH3].</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">import</span> <span class="nn">cantera</span> <span class="k">as</span> <span class="nn">ct</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">******  CVD Diamond Example  ******</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">******  CVD Diamond Example  ******</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
 <span class="c1"># import the models for the gas and bulk diamond</span>
-<span class="n">g</span><span class="p">,</span> <span class="n">dbulk</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">import_phases</span><span class="p">(</span><span class="s1">&#39;diamond.cti&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;gas&#39;</span><span class="p">,</span> <span class="s1">&#39;diamond&#39;</span><span class="p">])</span>
+<span class="n">g</span><span class="p">,</span> <span class="n">dbulk</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">import_phases</span><span class="p">(</span><span class="s1">'diamond.cti'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'gas'</span><span class="p">,</span> <span class="s1">'diamond'</span><span class="p">])</span>
 
 <span class="c1"># import the model for the diamond (100) surface</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">&#39;diamond.cti&#39;</span><span class="p">,</span> <span class="s1">&#39;diamond_100&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">g</span><span class="p">,</span> <span class="n">dbulk</span><span class="p">])</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">'diamond.cti'</span><span class="p">,</span> <span class="s1">'diamond_100'</span><span class="p">,</span> <span class="p">[</span><span class="n">g</span><span class="p">,</span> <span class="n">dbulk</span><span class="p">])</span>
 
 <span class="n">ns</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">n_species</span>
 <span class="n">mw</span> <span class="o">=</span> <span class="n">dbulk</span><span class="o">.</span><span class="n">molecular_weights</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -110,15 +104,15 @@
 <span class="n">p</span> <span class="o">=</span> <span class="mf">20.0</span> <span class="o">*</span> <span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span> <span class="o">/</span> <span class="mf">760.0</span>  <span class="c1"># 20 Torr</span>
 <span class="n">g</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span>
 
-<span class="n">ih</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+<span class="n">ih</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s1">'H'</span><span class="p">)</span>
 
 <span class="n">xh0</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">ih</span><span class="p">]</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;diamond.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'diamond.csv'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span>
 <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;H mole Fraction&#39;</span><span class="p">,</span> <span class="s1">&#39;Growth Rate (microns/hour)&#39;</span><span class="p">]</span> <span class="o">+</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">'H mole Fraction'</span><span class="p">,</span> <span class="s1">'Growth Rate (microns/hour)'</span><span class="p">]</span> <span class="o">+</span>
                 <span class="n">d</span><span class="o">.</span><span class="n">species_names</span><span class="p">)</span>
 
-<span class="n">iC</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">kinetics_species_index</span><span class="p">(</span><span class="n">dbulk</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s1">&#39;C(d)&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">iC</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">kinetics_species_index</span><span class="p">(</span><span class="n">dbulk</span><span class="o">.</span><span class="n">species_index</span><span class="p">(</span><span class="s1">'C(d)'</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
     <span class="n">x</span><span class="p">[</span><span class="n">ih</span><span class="p">]</span> <span class="o">/=</span> <span class="mf">1.4</span>
@@ -131,8 +125,8 @@
 
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;H concentration, growth rate, and surface coverages &#39;</span>
-      <span class="s1">&#39;written to file diamond.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'H concentration, growth rate, and surface coverages '</span>
+      <span class="s1">'written to file diamond.csv'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -147,11 +141,9 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
