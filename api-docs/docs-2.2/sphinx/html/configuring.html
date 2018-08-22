@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Configuring Cantera &mdash; Cantera 2.2.1 documentation</title>
     
-    <link rel="stylesheet" href="_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <title>Configuring Cantera &#8212; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/site.css" type="text/css">
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,58 +21,51 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.2.1 documentation" href="index.html" />
-    <link rel="up" title="Cantera Compilation Guide" href="compiling.html" />
-    <link rel="next" title="Language Interfaces" href="language-interfaces.html" />
-    <link rel="prev" title="Cantera Compilation Guide" href="compiling.html" /> 
-  </head>
+    <link rel="shortcut icon" href="_static/favicon.ico">
+    <link rel="top" title="Cantera 2.2.1 documentation" href="index.html">
+    <link rel="up" title="Cantera Compilation Guide" href="compiling.html">
+    <link rel="next" title="Language Interfaces" href="language-interfaces.html">
+    <link rel="prev" title="Cantera Compilation Guide" href="compiling.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="index.html">
-<img src="_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="language-interfaces.html" title="Language Interfaces"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="compiling.html" title="Cantera Compilation Guide"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Cantera</a> &raquo;</li>
-          <li><a href="compiling.html" accesskey="U">Cantera Compilation Guide</a> &raquo;</li> 
+          <a href="genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="language-interfaces.html" title="Language Interfaces" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="compiling.html" title="Cantera Compilation Guide" accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Cantera</a> &#187;</li>
+          <li><a href="compiling.html" accesskey="U">Cantera Compilation Guide</a> &#187;</li> 
       </ul>
     </div>
 
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="compiling.html"
-                        title="previous chapter">Cantera Compilation Guide</a></p>
+  <p class="topless"><a href="compiling.html" title="previous chapter">Cantera Compilation Guide</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="language-interfaces.html"
-                        title="next chapter">Language Interfaces</a></p>
+  <p class="topless"><a href="language-interfaces.html" title="next chapter">Language Interfaces</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/configuring.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="_sources/configuring.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -90,8 +80,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="configuring-cantera">
-<span id="scons-config"></span><h1>Configuring Cantera<a class="headerlink" href="#configuring-cantera" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="configuring-cantera">
+<span id="scons-config"></span><h1>Configuring Cantera<a class="headerlink" href="#configuring-cantera" title="Permalink to this headline">&#182;</a></h1>
 <p>This document lists the options available for compiling Cantera with SCons.</p>
 <p>These options may be seen by running the command:</p>
 <div class="highlight-python"><div class="highlight"><pre>scons help
@@ -107,191 +97,191 @@ build process. They should be given in the form:
 
     scons build option1=value1 option2=value2
 
-Variables set in this way will be stored in the &#39;cantera.conf&#39; file and reused
+Variables set in this way will be stored in the 'cantera.conf' file and reused
 automatically on subsequent invocations of scons. Alternatively, the
-configuration options can be entered directly into &#39;cantera.conf&#39; before
-running &#39;scons build&#39;. The format of this file is:
+configuration options can be entered directly into 'cantera.conf' before
+running 'scons build'. The format of this file is:
 
-    option1 = &#39;value1&#39;
-    option2 = &#39;value2&#39;
+    option1 = 'value1'
+    option2 = 'value2'
 
         **************************************************
 
 * msvc_version: [ string ]
     Version of Visual Studio to use. The default is the newest installed
-    version. Specify &#39;9.0&#39; for Visual Studio 2008; &#39;10.0&#39; for Visual
-    Studio 2010; &#39;11.0&#39; for Visual Studio 2012; or &#39;12.0&#39; for Visual
+    version. Specify '9.0' for Visual Studio 2008; '10.0' for Visual
+    Studio 2010; '11.0' for Visual Studio 2012; or '12.0' for Visual
     Studio 2013.
-    - default: &#39;&#39;
+    - default: ''
 
 * target_arch: [ string ]
     Target architecture. The default is the same architecture as the
     installed version of Python.
-    - default: &#39;amd64&#39;
+    - default: 'amd64'
 
 * toolchain: [ msvc | mingw | intel ]
     The preferred compiler toolchain.
-    - default: &#39;msvc&#39;
+    - default: 'msvc'
 
 * CXX: [ string ]
     The C++ compiler to use.
-    - default: &#39;$CC&#39;
+    - default: '$CC'
 
 * CC: [ string ]
     The C compiler to use. This is only used to compile CVODE.
-    - default: &#39;cl&#39;
+    - default: 'cl'
 
 * prefix: [ /path/to/prefix ]
     Set this to the directory where Cantera should be installed.
-    - default: &#39;C:\\Program Files\\Cantera&#39;
+    - default: 'C:\\Program Files\\Cantera'
 
 * python_package: [ new | full | minimal | none | default ]
     If you plan to work in Python, or you want to use the graphical
-    MixMaster application, then you need the &#39;full&#39; Cantera Python
+    MixMaster application, then you need the 'full' Cantera Python
     Package. If, on the other hand, you will only use Cantera from some
     other language (e.g. MATLAB or Fortran 90/95) and only need Python
-    to process .cti files, then you only need a &#39;minimal&#39; subset of the
+    to process .cti files, then you only need a 'minimal' subset of the
     package (actually, only two files). The default behavior is to build
     the Python package if the required prerequisites (numpy) are
     installed.
-    - default: &#39;default&#39;
+    - default: 'default'
 
 * python_cmd: [ /path/to/python_cmd ]
     Cantera needs to know where to find the Python interpreter. If
     PYTHON_CMD is not set, then the configuration process will use the
     same Python interpreter being used by SCons.
-    - default: &#39;c:\\Python27\\python.exe&#39;
+    - default: 'c:\\Python27\\python.exe'
 
 * python_array_home: [ /path/to/python_array_home ]
     If numpy was installed using the --home option, set this to the home
     directory for numpy.
-    - default: &#39;&#39;
+    - default: ''
 
 * python_prefix: [ /path/to/python_prefix ]
     Use this option if you want to install the Cantera Python package to
     an alternate location. On Unix-like systems, the default is the same
     as the $prefix option. If this option is set to the empty string
     (the default on Windows), then the Package will be installed to the
-    system default &#39;site-packages&#39; directory. To install to the current
-    user&#39;s site-packages directory, use &#39;python_prefix=USER&#39;.
-    - default: &#39;&#39;
+    system default 'site-packages' directory. To install to the current
+    user's site-packages directory, use 'python_prefix=USER'.
+    - default: ''
 
 * python3_package: [ y | n | default ]
     Controls whether or not the Python 3 module will be built. By
     default, the module will be built if the Python 3 interpreter can be
     found.
-    - default: &#39;default&#39;
+    - default: 'default'
 
 * python3_cmd: [ /path/to/python3_cmd ]
      The name (full path if necessary) of the Python 3 interpreter.
     Required to build the Python 3 module.
-    - default: &#39;python3&#39;
+    - default: 'python3'
 
 * python3_array_home: [ /path/to/python3_array_home ]
-    &quot;If numpy was installed to a custom location (e.g. using the --home
+    "If numpy was installed to a custom location (e.g. using the --home
     option, set this to the directory for numpy.
-    - default: &#39;&#39;
+    - default: ''
 
 * python3_prefix: [ /path/to/python3_prefix ]
     Use this option if you want to install the Cantera Python 3 package
     to an alternate location. On Unix-like systems, the default is the
     same as the $prefix option. If this option is set to the empty
     string (the default on Windows), then the Package will be installed
-    to the system default &#39;site-packages&#39; directory. To install to the
-    current user&#39;s site-packages directory, use &#39;python3_prefix=USER&#39;.
-    - default: &#39;&#39;
+    to the system default 'site-packages' directory. To install to the
+    current user's site-packages directory, use 'python3_prefix=USER'.
+    - default: ''
 
 * matlab_toolbox: [ y | n | default ]
     This variable controls whether the Matlab toolbox will be built. If
-    set to &#39;y&#39;, you will also need to set the value of the &#39;matlab_path&#39;
-    variable. If set to &#39;default&#39;, the Matlab toolbox will be built if
-    &#39;matlab_path&#39; is set.
-    - default: &#39;default&#39;
+    set to 'y', you will also need to set the value of the 'matlab_path'
+    variable. If set to 'default', the Matlab toolbox will be built if
+    'matlab_path' is set.
+    - default: 'default'
 
 * matlab_path: [ /path/to/matlab_path ]
     Path to the Matlab install directory. This should be the directory
-    containing the &#39;extern&#39;, &#39;bin&#39;, etc. subdirectories. Typical values
-    are: &quot;C:/Program Files/MATLAB/R2011a&quot; on Windows,
-    &quot;/Applications/MATLAB_R2011a.app&quot; on OS X, or &quot;/opt/MATLAB/R2011a&quot;
+    containing the 'extern', 'bin', etc. subdirectories. Typical values
+    are: "C:/Program Files/MATLAB/R2011a" on Windows,
+    "/Applications/MATLAB_R2011a.app" on OS X, or "/opt/MATLAB/R2011a"
     on Linux.
-    - default: &#39;&#39;
+    - default: ''
 
 * f90_interface: [ y | n | default ]
     This variable controls whether the Fortran 90/95 interface will be
-    built. If set to &#39;default&#39;, the builder will look for a compatible
+    built. If set to 'default', the builder will look for a compatible
     Fortran compiler in the $PATH, and compile the Fortran 90 interface
     if one is found.
-    - default: &#39;default&#39;
+    - default: 'default'
 
 * FORTRAN: [ /path/to/FORTRAN ]
     The Fortran (90) compiler. If unspecified, the builder will look for
     a compatible compiler (gfortran, ifort, g95) in the $PATH.
-    - default: &#39;&#39;
+    - default: ''
 
 * FORTRANFLAGS: [ string ]
     Compilation options for the Fortran (90) compiler.
-    - default: &#39;-O3&#39;
+    - default: '-O3'
 
 * debug_verbose: [ yes | no ]
     Enable extra printing to aid in debugging. This code is marked by
     the preprocessor macros DEBUG_MODE and DEBUG_MODE_ENABLED.
-    - default: &#39;no&#39;
+    - default: 'no'
 
 * coverage: [ yes | no ]
     Enable collection of code coverage information with gcov. Available
     only when compiling with gcc.
-    - default: &#39;no&#39;
+    - default: 'no'
 
 * doxygen_docs: [ yes | no ]
     Build HTML documentation for the C++ interface using Doxygen.
-    - default: &#39;no&#39;
+    - default: 'no'
 
 * sphinx_docs: [ yes | no ]
     Build HTML documentation for the Python module using Sphinx.
-    - default: &#39;no&#39;
+    - default: 'no'
 
 * sphinx_cmd: [ /path/to/sphinx_cmd ]
     Command to use for building the Sphinx documentation.
-    - default: &#39;sphinx-build&#39;
+    - default: 'sphinx-build'
 
 * use_sundials: [ default | y | n ]
     Cantera uses the CVODE or CVODES ODE integrator to time-integrate
-    reactor network ODE&#39;s and for various other purposes. An older
+    reactor network ODE's and for various other purposes. An older
     version of CVODE comes with Cantera, but it is possible to use the
     latest version as well, which now supports sensitivity analysis
-    (CVODES). CVODES is a part of the &#39;sundials&#39; package from Lawrence
+    (CVODES). CVODES is a part of the 'sundials' package from Lawrence
     Livermore National Laboratory. Sundials is not distributed with
     Cantera, but it is free software that may be downloaded and
-    installed separately. If you leave USE_SUNDIALS = &#39;default&#39;, then it
+    installed separately. If you leave USE_SUNDIALS = 'default', then it
     will be used if you have it, and if not the older CVODE will be
-    used. Or set USE_SUNDIALS to &#39;y&#39; or &#39;n&#39; to force using it or not.
+    used. Or set USE_SUNDIALS to 'y' or 'n' to force using it or not.
     Note that sensitivity analysis with Cantera requires use of
     sundials. See: http://www.llnl.gov/CASC/sundials.
-    - default: &#39;default&#39;
-    - actual: &#39;y&#39;
+    - default: 'default'
+    - actual: 'y'
 
 * sundials_include: [ /path/to/sundials_include ]
     The directory where the Sundials header files are installed. This
-    should be the directory that contains the &quot;cvodes&quot;, &quot;nvector&quot;, etc.
+    should be the directory that contains the "cvodes", "nvector", etc.
     subdirectories. Not needed if the headers are installed in a
     standard location, e.g. /usr/include.
-    - default: &#39;&#39;
+    - default: ''
 
 * sundials_libdir: [ /path/to/sundials_libdir ]
     The directory where the sundials static libraries are installed. Not
     needed if the libraries are installed in a standard location, e.g.
     /usr/lib.
-    - default: &#39;&#39;
+    - default: ''
 
 * sundials_license: [ /path/to/sundials_license ]
     Path to the sundials LICENSE file. Needed so that it can be included
     when bundling Sundials.
-    - default: &#39;&#39;
+    - default: ''
 
 * install_sundials: [ yes | no ]
     Determines whether Sundials library and header files are installed
     alongside Cantera. Intended for use when installing on Windows.
-    - default: &#39;yes&#39;
+    - default: 'yes'
 
 * blas_lapack_libs: [ string ]
     Cantera comes with Fortran (or C) versions of those parts of BLAS
@@ -299,176 +289,176 @@ running &#39;scons build&#39;. The format of this file is:
     version of these libraries optimized for your machine hardware. If
     you want to use your own libraries, set blas_lapack_libs to the the
     list of libraries that should be passed to the linker, separated by
-    commas, e.g. &quot;lapack,blas&quot; or &quot;lapack,f77blas,cblas,atlas&quot;.
-    - default: &#39;&#39;
+    commas, e.g. "lapack,blas" or "lapack,f77blas,cblas,atlas".
+    - default: ''
 
 * blas_lapack_dir: [ /path/to/blas_lapack_dir ]
-    Directory containing the libraries specified by &#39;blas_lapack_libs&#39;.
-    - default: &#39;&#39;
+    Directory containing the libraries specified by 'blas_lapack_libs'.
+    - default: ''
 
 * lapack_names: [ lower | upper ]
     Set depending on whether the procedure names in the specified
-    libraries are lowercase or uppercase. If you don&#39;t know, run &#39;nm&#39; on
-    the library file (e.g. &#39;nm libblas.a&#39;).
-    - default: &#39;lower&#39;
+    libraries are lowercase or uppercase. If you don't know, run 'nm' on
+    the library file (e.g. 'nm libblas.a').
+    - default: 'lower'
 
 * lapack_ftn_trailing_underscore: [ yes | no ]
-    - default: &#39;yes&#39;
+    - default: 'yes'
 
 * lapack_ftn_string_len_at_end: [ yes | no ]
-    - default: &#39;yes&#39;
+    - default: 'yes'
 
 * env_vars: [ string ]
     Environment variables to propagate through to SCons. Either the
-    string &quot;all&quot; or a comma separated list of variable names, e.g.
-    &#39;LD_LIBRARY_PATH,HOME&#39;.
-    - default: &#39;LD_LIBRARY_PATH,PYTHONPATH&#39;
+    string "all" or a comma separated list of variable names, e.g.
+    'LD_LIBRARY_PATH,HOME'.
+    - default: 'LD_LIBRARY_PATH,PYTHONPATH'
 
 * cxx_flags: [ string ]
     Compiler flags passed to the C++ compiler only.
-    - default: &#39;/EHsc&#39;
+    - default: '/EHsc'
 
 * cc_flags: [ string ]
     Compiler flags passed to both the C and C++ compilers, regardless of
     optimization level
-    - default: &#39;/MD /nologo /D_SCL_SECURE_NO_WARNINGS /D_CRT_SECURE_NO_WARNINGS&#39;
+    - default: '/MD /nologo /D_SCL_SECURE_NO_WARNINGS /D_CRT_SECURE_NO_WARNINGS'
 
 * thread_flags: [ string ]
     Compiler and linker flags for POSIX multithreading support.
-    - default: &#39;&#39;
+    - default: ''
 
 * optimize: [ yes | no ]
     Enable extra compiler optimizations specified by the
-    &quot;optimize_flags&quot; variable, instead of the flags specified by the
-    &quot;debug_flags&quot; variable.
-    - default: &#39;yes&#39;
+    "optimize_flags" variable, instead of the flags specified by the
+    "debug_flags" variable.
+    - default: 'yes'
 
 * optimize_flags: [ string ]
     Additional compiler flags passed to the C/C++ compiler when
     optimize=yes.
-    - default: &#39;/O2&#39;
+    - default: '/O2'
 
 * no_optimize_flags: [ string ]
     Additional compiler flags passed to the C/C++ compiler when
     optimize=no.
-    - default: &#39;/Od /Ob0&#39;
+    - default: '/Od /Ob0'
 
 * debug: [ yes | no ]
     Enable compiler debugging symbols.
-    - default: &#39;yes&#39;
+    - default: 'yes'
 
 * debug_flags: [ string ]
     Additional compiler flags passed to the C/C++ compiler when
     debug=yes.
-    - default: &#39;/Zi /Fd${TARGET}.pdb&#39;
-    - actual: &#39;/Zi /Fd.pdb&#39;
+    - default: '/Zi /Fd${TARGET}.pdb'
+    - actual: '/Zi /Fd.pdb'
 
 * no_debug_flags: [ string ]
     Additional compiler flags passed to the C/C++ compiler when
     debug=no.
-    - default: &#39;&#39;
+    - default: ''
 
 * debug_linker_flags: [ string ]
     Additional options passed to the linker when debug=yes.
-    - default: &#39;/DEBUG&#39;
+    - default: '/DEBUG'
 
 * no_debug_linker_flags: [ string ]
     Additional options passed to the linker when debug=no.
-    - default: &#39;&#39;
+    - default: ''
 
 * warning_flags: [ string ]
     Additional compiler flags passed to the C/C++ compiler to enable
     extra warnings. Used only when compiling source code that part of
-    Cantera (e.g. excluding code in the &#39;ext&#39; directory).
-    - default: &#39;/W3&#39;
+    Cantera (e.g. excluding code in the 'ext' directory).
+    - default: '/W3'
 
 * extra_inc_dirs: [ string ]
     Additional directories to search for header files (colon-separated
     list).
-    - default: &#39;&#39;
+    - default: ''
 
 * extra_lib_dirs: [ string ]
     Additional directories to search for libraries (colon-separated
     list).
-    - default: &#39;&#39;
+    - default: ''
 
 * build_thread_safe: [ yes | no ]
     Cantera can be built so that it is thread safe. Doing so requires
     using procedures from the Boost library, so if you want thread
     safety then you need to get and install Boost (http://www.boost.org)
-    if you don&#39;t have it. This is turned off by default, in which case
+    if you don't have it. This is turned off by default, in which case
     Boost is not required to build Cantera.
-    - default: &#39;no&#39;
+    - default: 'no'
 
 * boost_inc_dir: [ /path/to/boost_inc_dir ]
     Location of the Boost header files.
-    - default: &#39;&#39;
+    - default: ''
 
 * boost_lib_dir: [ /path/to/boost_lib_dir ]
     Directory containing the Boost.Thread library.
-    - default: &#39;&#39;
+    - default: ''
 
 * boost_thread_lib: [ string ]
     A comma-separated list containing the names of the libraries needed
     to link to Boost.Thread.
-    - default: &#39;&#39;
+    - default: ''
 
 * boost_windows_libs: [ string ]
     Comma-separated list containing the names of the Boost libraries
     required to link Cantera programs on Windows. These libraries will
     be copied to the Cantera installation directory.
-    - default: &#39;thread,system,date_time,chrono&#39;
+    - default: 'thread,system,date_time,chrono'
 
 * build_with_f2c: [ yes | no ]
     For external procedures written in Fortran 77, both the original F77
-    source code and C source code generated by the &#39;f2c&#39; program are
-    included. Set this to &quot;n&quot; if you want to build Cantera using the F77
+    source code and C source code generated by the 'f2c' program are
+    included. Set this to "n" if you want to build Cantera using the F77
     sources in the ext directory.
-    - default: &#39;yes&#39;
+    - default: 'yes'
 
 * F77: [ string ]
     Compiler used to build the external Fortran 77 procedures from the
     Fortran source code.
-    - default: &#39;gfortran&#39;
+    - default: 'gfortran'
 
 * F77FLAGS: [ string ]
     Fortran 77 Compiler flags. Note that the Fortran compiler flags must
     be set to produce object code compatible with the C/C++ compiler you
     are using.
-    - default: &#39;-O3&#39;
+    - default: '-O3'
 
 * stage_dir: [ /path/to/stage_dir ]
      Directory relative to the Cantera source directory to be used as a
     staging area for building e.g. a Debian package. If specified,
-    &#39;scons install&#39; will install files to &#39;stage_dir/prefix/...&#39; instead
+    'scons install' will install files to 'stage_dir/prefix/...' instead
     of installing into the local filesystem.
-    - default: &#39;&#39;
+    - default: ''
 
 * VERBOSE: [ yes | no ]
     Create verbose output about what scons is doing.
-    - default: &#39;no&#39;
+    - default: 'no'
 
 * renamed_shared_libraries: [ yes | no ]
     If this option is turned on, the shared libraries that are created
-    will be renamed to have a &quot;_shared&quot; extension added to their base
+    will be renamed to have a "_shared" extension added to their base
     name. If not, the base names will be the same as the static
     libraries. In some cases this simplifies subsequent linking
     environments with static libraries and avoids a bug with using
     valgrind with the -static linking flag.
-    - default: &#39;yes&#39;
+    - default: 'yes'
 
 * layout: [ standard | compact | debian ]
-    The layout of the directory structure. &#39;standard&#39; installs files to
-    several subdirectories under &#39;prefix&#39;, e.g. $prefix/bin,
+    The layout of the directory structure. 'standard' installs files to
+    several subdirectories under 'prefix', e.g. $prefix/bin,
     $prefix/include/cantera, $prefix/lib. This layout is best used in
-    conjunction with &#39;prefix&#39;=&#39;/usr/local&#39;. &#39;compact&#39; puts all installed
-    files in the subdirectory define by &#39;prefix&#39;. This layout is best
-    for with a prefix like &#39;/opt/cantera&#39;. &#39;debian&#39; installs to the
+    conjunction with 'prefix'='/usr/local'. 'compact' puts all installed
+    files in the subdirectory define by 'prefix'. This layout is best
+    for with a prefix like '/opt/cantera'. 'debian' installs to the
     stage directory in a layout used for generating Debian packages.
-    - default: &#39;compact&#39;
+    - default: 'compact'
 
 * cantera_version: [ string ]
-    - default: &#39;2.2.1&#39;
+    - default: '2.2.1'
 </pre></div>
 </div>
 </div>
@@ -483,23 +473,19 @@ running &#39;scons build&#39;. The format of this file is:
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="language-interfaces.html" title="Language Interfaces"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="compiling.html" title="Cantera Compilation Guide"
-             >previous</a> |</li>
-        <li><a href="index.html">Cantera</a> &raquo;</li>
-          <li><a href="compiling.html" >Cantera Compilation Guide</a> &raquo;</li> 
+          <a href="genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="language-interfaces.html" title="Language Interfaces">next</a> |</li>
+        <li class="right">
+          <a href="compiling.html" title="Cantera Compilation Guide">previous</a> |</li>
+        <li><a href="index.html">Cantera</a> &#187;</li>
+          <li><a href="compiling.html">Cantera Compilation Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>

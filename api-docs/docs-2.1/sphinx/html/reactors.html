@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Reactor Networks &mdash; Cantera 2.1.2 documentation</title>
     
-    <link rel="stylesheet" href="_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <title>Reactor Networks &#8212; Cantera 2.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/site.css" type="text/css">
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,33 +21,29 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.1.2 documentation" href="index.html" />
-    <link rel="next" title="Python Module Documentation" href="cython/index.html" />
-    <link rel="prev" title="Example: Hydrogen Combustion" href="cti/example-combustion.html" /> 
-  </head>
+    <link rel="shortcut icon" href="_static/favicon.ico">
+    <link rel="top" title="Cantera 2.1.2 documentation" href="index.html">
+    <link rel="next" title="Python Module Documentation" href="cython/index.html">
+    <link rel="prev" title="Example: Hydrogen Combustion" href="cti/example-combustion.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="index.html">
-<img src="_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="cython/index.html" title="Python Module Documentation"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="cti/example-combustion.html" title="Example: Hydrogen Combustion"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Cantera</a> &raquo;</li> 
+          <a href="genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="cython/index.html" title="Python Module Documentation" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="cti/example-combustion.html" title="Example: Hydrogen Combustion" accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
 
@@ -75,23 +68,20 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="cti/example-combustion.html"
-                        title="previous chapter">Example: Hydrogen Combustion</a></p>
+  <p class="topless"><a href="cti/example-combustion.html" title="previous chapter">Example: Hydrogen Combustion</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="cython/index.html"
-                        title="next chapter">Python Module Documentation</a></p>
+  <p class="topless"><a href="cython/index.html" title="next chapter">Python Module Documentation</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/reactors.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="_sources/reactors.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -106,8 +96,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="reactor-networks">
-<h1>Reactor Networks<a class="headerlink" href="#reactor-networks" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="reactor-networks">
+<h1>Reactor Networks<a class="headerlink" href="#reactor-networks" title="Permalink to this headline">&#182;</a></h1>
 <p>Cantera&#8217;s Reactor Network module is designed to simulate networks of
 interconnected reactors. The contents of each reactor in the network are
 assumed to be homogeneous, a model variously referred to as the Continuously
@@ -123,7 +113,7 @@ or the environment via walls which move or conduct heat.</p>
 <p>The purpose of this document is to describe the governing equations of reactor
 models as implemented in Cantera.</p>
 <div class="section" id="wall-interactions">
-<h2>Wall Interactions<a class="headerlink" href="#wall-interactions" title="Permalink to this headline">¶</a></h2>
+<h2>Wall Interactions<a class="headerlink" href="#wall-interactions" title="Permalink to this headline">&#182;</a></h2>
 <p>At each wall where there are surface reactions, there is a net generation (or
 destruction) of homogeneous phase species. The molar rate of production for
 each species <span class="math">\(k\)</span> on wall <span class="math">\(w\)</span> is <span class="math">\(\dot{s}_{k,w}\)</span>. The total (mass) production
@@ -139,7 +129,7 @@ each wall. The net mass flux from all walls is then:</p>
 \[\dot{Q} = \sum_w f_w \dot{Q}_w\]</div>
 </div>
 <div class="section" id="general-reactor">
-<h2>General Reactor<a class="headerlink" href="#general-reactor" title="Permalink to this headline">¶</a></h2>
+<h2>General Reactor<a class="headerlink" href="#general-reactor" title="Permalink to this headline">&#182;</a></h2>
 <p>The state variables for Cantera&#8217;s general reactor model are</p>
 <blockquote>
 <div><ul class="simple">
@@ -150,7 +140,7 @@ each wall. The net mass flux from all walls is then:</p>
 </ul>
 </div></blockquote>
 <div class="section" id="reactor-volume">
-<h3>Reactor Volume<a class="headerlink" href="#reactor-volume" title="Permalink to this headline">¶</a></h3>
+<h3>Reactor Volume<a class="headerlink" href="#reactor-volume" title="Permalink to this headline">&#182;</a></h3>
 <p>The reactor volume changes as a function of time due to the motion of one or
 more walls:</p>
 <div class="math">
@@ -160,7 +150,7 @@ area of the wall, and <span class="math">\(v_w(t)\)</span> is the velocity of th
 time.</p>
 </div>
 <div class="section" id="mass-conservation">
-<h3>Mass Conservation<a class="headerlink" href="#mass-conservation" title="Permalink to this headline">¶</a></h3>
+<h3>Mass Conservation<a class="headerlink" href="#mass-conservation" title="Permalink to this headline">&#182;</a></h3>
 <p>The total mass of the reactor&#8217;s contents changes as a result of flow through
 the reactor&#8217;s inlets and outlets, and production of homogeneous phase species
 on the reactor walls:</p>
@@ -169,7 +159,7 @@ on the reactor walls:</p>
                 \dot{m}_{wall}\]</div>
 </div>
 <div class="section" id="species-conservation">
-<h3>Species Conservation<a class="headerlink" href="#species-conservation" title="Permalink to this headline">¶</a></h3>
+<h3>Species Conservation<a class="headerlink" href="#species-conservation" title="Permalink to this headline">&#182;</a></h3>
 <p>The rate at which species <span class="math">\(k\)</span> is generated through homogeneous phase reactions
 is <span class="math">\(V \dot{\omega}_k W_k\)</span>, and the total rate at which species <span class="math">\(k\)</span> is
 generated is:</p>
@@ -187,7 +177,7 @@ for <span class="math">\(dm/dt\)</span>, the equation for each homogeneous phase
                   \dot{m}_{k,gen} - Y_k \dot{m}_{wall}\]</div>
 </div>
 <div class="section" id="energy-conservation">
-<h3>Energy Conservation<a class="headerlink" href="#energy-conservation" title="Permalink to this headline">¶</a></h3>
+<h3>Energy Conservation<a class="headerlink" href="#energy-conservation" title="Permalink to this headline">&#182;</a></h3>
 <p>The equation for the total internal energy is found by writing the first law
 for an open system:</p>
 <div class="math">
@@ -196,7 +186,7 @@ for an open system:</p>
 </div>
 </div>
 <div class="section" id="ideal-gas-reactor">
-<h2>Ideal Gas Reactor<a class="headerlink" href="#ideal-gas-reactor" title="Permalink to this headline">¶</a></h2>
+<h2>Ideal Gas Reactor<a class="headerlink" href="#ideal-gas-reactor" title="Permalink to this headline">&#182;</a></h2>
 <p>The Ideal Gas Reactor model is similar to the General Reactor model, with the
 reactor temperature <span class="math">\(T\)</span> replacing the total internal energy <span class="math">\(U\)</span> as a state
 variable. For an ideal gas, we can rewrite the total internal energy in terms
@@ -217,7 +207,7 @@ derivatives of the species equations are taken at constant temperature instead
 of constant internal energy.</p>
 </div>
 <div class="section" id="constant-pressure-reactor">
-<h2>Constant Pressure Reactor<a class="headerlink" href="#constant-pressure-reactor" title="Permalink to this headline">¶</a></h2>
+<h2>Constant Pressure Reactor<a class="headerlink" href="#constant-pressure-reactor" title="Permalink to this headline">&#182;</a></h2>
 <p>For this reactor model, the pressure is held constant. The volume is not a
 state variable, but instead takes on whatever value is consistent with holding
 the pressure constant. The total enthalpy replaces the total internal energy
@@ -232,7 +222,7 @@ as a state variable. Using the definition of the total enthalpy:</p>
 model.</p>
 </div>
 <div class="section" id="ideal-gas-constant-pressure-reactor">
-<h2>Ideal Gas Constant Pressure Reactor<a class="headerlink" href="#ideal-gas-constant-pressure-reactor" title="Permalink to this headline">¶</a></h2>
+<h2>Ideal Gas Constant Pressure Reactor<a class="headerlink" href="#ideal-gas-constant-pressure-reactor" title="Permalink to this headline">&#182;</a></h2>
 <p>As for the Ideal Gas Reactor, we replace the total enthalpy as a state
 variable with the temperature by writing the total enthalpy in terms of the
 mass fractions and temperature:</p>
@@ -257,22 +247,18 @@ temperature:</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="cython/index.html" title="Python Module Documentation"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="cti/example-combustion.html" title="Example: Hydrogen Combustion"
-             >previous</a> |</li>
-        <li><a href="index.html">Cantera</a> &raquo;</li> 
+          <a href="genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="cython/index.html" title="Python Module Documentation">next</a> |</li>
+        <li class="right">
+          <a href="cti/example-combustion.html" title="Example: Hydrogen Combustion">previous</a> |</li>
+        <li><a href="index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

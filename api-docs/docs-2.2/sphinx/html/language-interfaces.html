@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Language Interfaces &mdash; Cantera 2.2.1 documentation</title>
     
-    <link rel="stylesheet" href="_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <title>Language Interfaces &#8212; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/site.css" type="text/css">
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,33 +21,29 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.2.1 documentation" href="index.html" />
-    <link rel="next" title="Defining Phases" href="cti/index.html" />
-    <link rel="prev" title="Configuring Cantera" href="configuring.html" /> 
-  </head>
+    <link rel="shortcut icon" href="_static/favicon.ico">
+    <link rel="top" title="Cantera 2.2.1 documentation" href="index.html">
+    <link rel="next" title="Defining Phases" href="cti/index.html">
+    <link rel="prev" title="Configuring Cantera" href="configuring.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="index.html">
-<img src="_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="cti/index.html" title="Defining Phases"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="configuring.html" title="Configuring Cantera"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Cantera</a> &raquo;</li> 
+          <a href="genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="cti/index.html" title="Defining Phases" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="configuring.html" title="Configuring Cantera" accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
 
@@ -68,23 +61,20 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="configuring.html"
-                        title="previous chapter">Configuring Cantera</a></p>
+  <p class="topless"><a href="configuring.html" title="previous chapter">Configuring Cantera</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="cti/index.html"
-                        title="next chapter">Defining Phases</a></p>
+  <p class="topless"><a href="cti/index.html" title="next chapter">Defining Phases</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/language-interfaces.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="_sources/language-interfaces.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -99,15 +89,15 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="language-interfaces">
-<h1>Language Interfaces<a class="headerlink" href="#language-interfaces" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="language-interfaces">
+<h1>Language Interfaces<a class="headerlink" href="#language-interfaces" title="Permalink to this headline">&#182;</a></h1>
 <p>Although most of Cantera is written in C++, interfaces are provided to
 allow users to work with Cantera from several different languages or
 environments, including Fortran 90/95, Python, and MATLAB. Which
 language should you choose? The basic rule of thumb is this: use
 Python or MATLAB if possible; use C++ or Fortran if necessary.</p>
 <div class="section" id="python">
-<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">&#182;</a></h2>
 <p>Python is a free scripting language that is designed to be easy to use. If you
 are familiar with any other programming language, you can probably learn Python
 in a couple of hours. It is also an elegant language, and provides a
@@ -121,14 +111,14 @@ solve it faster with Python than by writing programs in Fortran or C++.</p>
 <p>See <a class="reference external" href="http://www.python.org">http://www.python.org</a></p>
 </div>
 <div class="section" id="matlab">
-<h2>Matlab<a class="headerlink" href="#matlab" title="Permalink to this headline">¶</a></h2>
+<h2>Matlab<a class="headerlink" href="#matlab" title="Permalink to this headline">&#182;</a></h2>
 <p>The comments above for Python apply to MATLAB too, except hat Python is free and
 MATLAB isn&#8217;t. If you have MATLAB already and are familiar with it, this is a
 good choice for an environment from which to run Cantera. It is probably the
 most popular Cantera application environment. <a class="reference external" href="http://www.mathworks.com">http://www.mathworks.com</a>.</p>
 </div>
 <div class="section" id="c">
-<h2>C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>
+<h2>C++<a class="headerlink" href="#c" title="Permalink to this headline">&#182;</a></h2>
 <p>If you find that you need full access to the internals of Cantera, or want to
 extend and customize Cantera, then C++ is the language for you. Most of Cantera
 is itself written in C++, and so C++ application programs have more direct
@@ -141,7 +131,7 @@ than simply using it to solve a few problems, then you will probably want to use
 it from C++.</p>
 </div>
 <div class="section" id="fortran">
-<h2>Fortran<a class="headerlink" href="#fortran" title="Permalink to this headline">¶</a></h2>
+<h2>Fortran<a class="headerlink" href="#fortran" title="Permalink to this headline">&#182;</a></h2>
 <p>Cantera provides an interface to Fortran 90/95, and can even be used from
 Fortran 77 programs. Use this if you have existing Fortran code you want to port
 to Cantera.</p>
@@ -158,22 +148,18 @@ to Cantera.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="cti/index.html" title="Defining Phases"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="configuring.html" title="Configuring Cantera"
-             >previous</a> |</li>
-        <li><a href="index.html">Cantera</a> &raquo;</li> 
+          <a href="genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="cti/index.html" title="Defining Phases">next</a> |</li>
+        <li class="right">
+          <a href="configuring.html" title="Configuring Cantera">previous</a> |</li>
+        <li><a href="index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>

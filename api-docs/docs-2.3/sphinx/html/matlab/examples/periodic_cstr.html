@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>periodic_cstr.m &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -22,26 +19,24 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../../about.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../../about.html">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -51,23 +46,22 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/matlab/examples/periodic_cstr.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../../_sources/matlab/examples/periodic_cstr.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -77,8 +71,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="periodic-cstr-m">
-<span id="matlab-example-periodic-cstr-m"></span><h1>periodic_cstr.m<a class="headerlink" href="#periodic-cstr-m" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="periodic-cstr-m">
+<span id="matlab-example-periodic-cstr-m"></span><h1>periodic_cstr.m<a class="headerlink" href="#periodic-cstr-m" title="Permalink to this headline">&#182;</a></h1>
 <div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">periodic_cstr</span>
 <span class="c">%</span>
 <span class="c">%  A CSTR with steady inputs but periodic interior state.</span>
@@ -93,7 +87,7 @@
 <span class="c">%  stops. After enough time has passed that the water is exhausted from</span>
 <span class="c">%  the reactor, the mixture explodes again and the process</span>
 <span class="c">%  repeats. This explanation can be verified by decreasing the rate for</span>
-<span class="c">%  reaction 7 in file &#39;h2o2.cti&#39; and re-running the example.</span>
+<span class="c">%  reaction 7 in file 'h2o2.cti' and re-running the example.</span>
 <span class="c">%</span>
 <span class="c">%  Acknowledgments: The idea for this example and an estimate of the</span>
 <span class="c">%  conditions needed to see the oscillations came from Bob Kee,</span>
@@ -104,7 +98,7 @@
 <span class="n">help</span> <span class="n">periodic_cstr</span>
 
 <span class="c">% create the gas mixture</span>
-<span class="n">gas</span> <span class="p">=</span> <span class="n">IdealGasMix</span><span class="p">(</span><span class="s">&#39;h2o2.cti&#39;</span><span class="p">);</span>
+<span class="n">gas</span> <span class="p">=</span> <span class="n">IdealGasMix</span><span class="p">(</span><span class="s">'h2o2.cti'</span><span class="p">);</span>
 
 <span class="c">% pressure = 60 Torr, T = 770 K</span>
 <span class="n">p</span> <span class="p">=</span> <span class="mf">60.0</span><span class="o">*</span><span class="mf">133.3</span><span class="p">;</span>
@@ -112,17 +106,17 @@
 
 <span class="n">OneAtm</span> <span class="p">=</span> <span class="mf">1.01325e5</span><span class="p">;</span>
 
-<span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="s">&#39;H2:2, O2:1&#39;</span><span class="p">);</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s">'T'</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="s">'P'</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s">'X'</span><span class="p">,</span> <span class="s">'H2:2, O2:1'</span><span class="p">);</span>
 
 <span class="c">% create an upstream reservoir that will supply the reactor.  The</span>
 <span class="c">% temperature, pressure, and composition of the upstream reservoir are</span>
-<span class="c">% set to those of the &#39;gas&#39; object at the time the reservoir is</span>
+<span class="c">% set to those of the 'gas' object at the time the reservoir is</span>
 <span class="c">% created.</span>
 <span class="n">upstream</span> <span class="p">=</span> <span class="n">Reservoir</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
 
 <span class="c">% Now set the gas to the initial temperature of the reactor, and create</span>
 <span class="c">% the reactor object.</span>
-<span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span> <span class="s">'T'</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s">'P'</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
 <span class="n">cstr</span> <span class="p">=</span> <span class="n">IdealGasReactor</span><span class="p">(</span><span class="n">gas</span><span class="p">);</span>
 
 <span class="c">% Set its volume to 10 cm^3. In this problem, the reactor volume is</span>
@@ -176,15 +170,15 @@
     <span class="n">tme</span> <span class="p">=</span> <span class="n">tme</span> <span class="o">+</span> <span class="n">dt</span><span class="p">;</span>
     <span class="n">advance</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">tme</span><span class="p">);</span>
     <span class="n">tm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="n">tme</span><span class="p">;</span>
-    <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="n">massFraction</span><span class="p">(</span><span class="n">cstr</span><span class="p">,</span><span class="s">&#39;H2&#39;</span><span class="p">);</span>
-    <span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="n">massFraction</span><span class="p">(</span><span class="n">cstr</span><span class="p">,</span><span class="s">&#39;O2&#39;</span><span class="p">);</span>
-    <span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="n">massFraction</span><span class="p">(</span><span class="n">cstr</span><span class="p">,</span><span class="s">&#39;H2O&#39;</span><span class="p">);</span>
+    <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="n">massFraction</span><span class="p">(</span><span class="n">cstr</span><span class="p">,</span><span class="s">'H2'</span><span class="p">);</span>
+    <span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="n">massFraction</span><span class="p">(</span><span class="n">cstr</span><span class="p">,</span><span class="s">'O2'</span><span class="p">);</span>
+    <span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="n">massFraction</span><span class="p">(</span><span class="n">cstr</span><span class="p">,</span><span class="s">'H2O'</span><span class="p">);</span>
 <span class="k">end</span>
 <span class="n">clf</span>
 <span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">tm</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">(</span><span class="s">&#39;H2&#39;</span><span class="p">,</span><span class="s">&#39;O2&#39;</span><span class="p">,</span><span class="s">&#39;H2O&#39;</span><span class="p">)</span>
-<span class="n">title</span><span class="p">(</span><span class="s">&#39;Mass Fractions&#39;</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">'H2'</span><span class="p">,</span><span class="s">'O2'</span><span class="p">,</span><span class="s">'H2O'</span><span class="p">)</span>
+<span class="n">title</span><span class="p">(</span><span class="s">'Mass Fractions'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -199,11 +193,9 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

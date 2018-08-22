@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Reactors and Reactor Networks &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -22,34 +19,30 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="about.html" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="One-Dimensional Flames" href="flames.html" />
-    <link rel="prev" title="Example: Hydrogen Combustion" href="cti/example-combustion.html" /> 
-  </head>
+    <link rel="shortcut icon" href="_static/favicon.ico">
+    <link rel="author" title="About these documents" href="about.html">
+    <link rel="index" title="Index" href="genindex.html">
+    <link rel="search" title="Search" href="search.html">
+    <link rel="next" title="One-Dimensional Flames" href="flames.html">
+    <link rel="prev" title="Example: Hydrogen Combustion" href="cti/example-combustion.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="index.html">
-<img src="_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="flames.html" title="One-Dimensional Flames"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="cti/example-combustion.html" title="Example: Hydrogen Combustion"
-             accesskey="P">previous</a> |</li>
+          <a href="genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="flames.html" title="One-Dimensional Flames" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="cti/example-combustion.html" title="Example: Hydrogen Combustion" accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -95,31 +88,28 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="cti/example-combustion.html"
-                        title="previous chapter">Example: Hydrogen Combustion</a></p>
+  <p class="topless"><a href="cti/example-combustion.html" title="previous chapter">Example: Hydrogen Combustion</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="flames.html"
-                        title="next chapter">One-Dimensional Flames</a></p>
+  <p class="topless"><a href="flames.html" title="next chapter">One-Dimensional Flames</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/reactors.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="_sources/reactors.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -129,8 +119,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="reactors-and-reactor-networks">
-<h1>Reactors and Reactor Networks<a class="headerlink" href="#reactors-and-reactor-networks" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="reactors-and-reactor-networks">
+<h1>Reactors and Reactor Networks<a class="headerlink" href="#reactors-and-reactor-networks" title="Permalink to this headline">&#182;</a></h1>
 <p>A Cantera Reactor represents the simplest form of a chemically reacting system.
 It corresponds to an extensive thermodynamic control volume <span class="math">\(V\)</span>, in which all
 state variables are homogeneously distributed. The system is generally unsteady,
@@ -163,10 +153,10 @@ into a <em>Reactor Network</em>. Each reactor in a network may be connected so t
 the contents of one reactor flow into another. Reactors may also be in contact
 with one another or the environment via walls which move or conduct heat.</p>
 <div class="section" id="governing-equations-for-single-reactors">
-<h2>Governing Equations for Single Reactors<a class="headerlink" href="#governing-equations-for-single-reactors" title="Permalink to this headline">¶</a></h2>
-<p>The state variables for Cantera’s general reactor model are</p>
+<h2>Governing Equations for Single Reactors<a class="headerlink" href="#governing-equations-for-single-reactors" title="Permalink to this headline">&#182;</a></h2>
+<p>The state variables for Cantera&#8217;s general reactor model are</p>
 <ul class="simple">
-<li><span class="math">\(m\)</span>, the mass of the reactor’s contents (in kg)</li>
+<li><span class="math">\(m\)</span>, the mass of the reactor&#8217;s contents (in kg)</li>
 <li><span class="math">\(V\)</span>, the reactor volume (in m<sup>3</sup>) (not a state variable for
 <em>Constant Pressure Reactor</em> and <em>Ideal Gas Constant Pressure Reactor</em>)</li>
 <li>A state variable describing the energy of the system, depending on the
@@ -182,16 +172,16 @@ temperature (in K)</li>
 <li><span class="math">\(Y_k\)</span>, the mass fractions for each species (dimensionless)</li>
 </ul>
 <div class="section" id="mass-conservation">
-<h3>Mass Conservation<a class="headerlink" href="#mass-conservation" title="Permalink to this headline">¶</a></h3>
-<p>The total mass of the reactor’s contents changes as a result of flow through
-the reactor’s inlets and outlets, and production of homogeneous phase species
+<h3>Mass Conservation<a class="headerlink" href="#mass-conservation" title="Permalink to this headline">&#182;</a></h3>
+<p>The total mass of the reactor&#8217;s contents changes as a result of flow through
+the reactor&#8217;s inlets and outlets, and production of homogeneous phase species
 on the reactor walls:</p>
 <div class="math">
 \[\frac{dm}{dt} = \sum_{in} \dot{m}_{in} - \sum_{out} \dot{m}_{out} +
                 \dot{m}_{wall}\]</div>
 </div>
 <div class="section" id="species-conservation">
-<h3>Species Conservation<a class="headerlink" href="#species-conservation" title="Permalink to this headline">¶</a></h3>
+<h3>Species Conservation<a class="headerlink" href="#species-conservation" title="Permalink to this headline">&#182;</a></h3>
 <p>The rate at which species <span class="math">\(k\)</span> is generated through homogeneous phase reactions
 is <span class="math">\(V \dot{\omega}_k W_k\)</span>, and the total rate at which species <span class="math">\(k\)</span> is generated
 is:</p>
@@ -209,7 +199,7 @@ for <span class="math">\(dm/dt\)</span>, the equation for each homogeneous phase
                   \dot{m}_{k,gen} - Y_k \dot{m}_{wall}\]</div>
 </div>
 <div class="section" id="reactor-volume">
-<h3>Reactor Volume<a class="headerlink" href="#reactor-volume" title="Permalink to this headline">¶</a></h3>
+<h3>Reactor Volume<a class="headerlink" href="#reactor-volume" title="Permalink to this headline">&#182;</a></h3>
 <p>The reactor volume changes as a function of time due to the motion of one or
 more walls:</p>
 <div class="math">
@@ -222,13 +212,13 @@ volume is not a state variable, but instead takes on whatever value is
 consistent with holding the pressure constant.</p>
 </div>
 <div class="section" id="energy-conservation">
-<h3>Energy Conservation<a class="headerlink" href="#energy-conservation" title="Permalink to this headline">¶</a></h3>
+<h3>Energy Conservation<a class="headerlink" href="#energy-conservation" title="Permalink to this headline">&#182;</a></h3>
 <p>The solution of the energy equation can be enabled or disabled by changing the
 <code class="docutils literal"><span class="pre">energy_enabled</span></code> flag. It is enabled by default.</p>
 <p>The implemented formulation of the energy equation depends on which reactor
 model is used.</p>
 <div class="section" id="standard-reactor">
-<h4>Standard Reactor<a class="headerlink" href="#standard-reactor" title="Permalink to this headline">¶</a></h4>
+<h4>Standard Reactor<a class="headerlink" href="#standard-reactor" title="Permalink to this headline">&#182;</a></h4>
 <p>The equation for the total internal energy is found by writing the first law
 for an open system:</p>
 <div class="math">
@@ -236,7 +226,7 @@ for an open system:</p>
                 \sum_{in} \dot{m}_{in} h_{in} - h \sum_{out} \dot{m}_{out}\]</div>
 </div>
 <div class="section" id="constant-pressure-reactor">
-<h4>Constant Pressure Reactor<a class="headerlink" href="#constant-pressure-reactor" title="Permalink to this headline">¶</a></h4>
+<h4>Constant Pressure Reactor<a class="headerlink" href="#constant-pressure-reactor" title="Permalink to this headline">&#182;</a></h4>
 <p>For this reactor model, the pressure is held constant. The volume is not a
 state variable, but instead takes on whatever value is consistent with holding
 the pressure constant. The total enthalpy replaces the total internal energy
@@ -249,7 +239,7 @@ as a state variable. Using the definition of the total enthalpy:</p>
                 - h \sum_{out} \dot{m}_{out}\]</div>
 </div>
 <div class="section" id="ideal-gas-reactor">
-<h4>Ideal Gas Reactor<a class="headerlink" href="#ideal-gas-reactor" title="Permalink to this headline">¶</a></h4>
+<h4>Ideal Gas Reactor<a class="headerlink" href="#ideal-gas-reactor" title="Permalink to this headline">&#182;</a></h4>
 <p>In case of the Ideal Gas Reactor Model, the reactor temperature <span class="math">\(T\)</span> is used
 instead of the total internal energy <span class="math">\(U\)</span> as a state variable. For an ideal gas,
 we can rewrite the total internal energy in terms of the mass fractions and
@@ -270,7 +260,7 @@ derivatives of the species equations are taken at constant temperature instead
 of constant internal energy.</p>
 </div>
 <div class="section" id="ideal-gas-constant-pressure-reactor">
-<h4>Ideal Gas Constant Pressure Reactor<a class="headerlink" href="#ideal-gas-constant-pressure-reactor" title="Permalink to this headline">¶</a></h4>
+<h4>Ideal Gas Constant Pressure Reactor<a class="headerlink" href="#ideal-gas-constant-pressure-reactor" title="Permalink to this headline">&#182;</a></h4>
 <p>As for the Ideal Gas Reactors, we replace the total enthalpy as a state
 variable with the temperature by writing the total enthalpy in terms of the
 mass fractions and temperature:</p>
@@ -285,13 +275,13 @@ temperature:</p>
 </div>
 </div>
 <div class="section" id="wall-interactions">
-<h3>Wall Interactions<a class="headerlink" href="#wall-interactions" title="Permalink to this headline">¶</a></h3>
+<h3>Wall Interactions<a class="headerlink" href="#wall-interactions" title="Permalink to this headline">&#182;</a></h3>
 <p>The total rate of heat transfer through all walls is:</p>
 <div class="math">
 \[\dot{Q} = \sum_w f_w \dot{Q}_w\]</div>
 <p>where <span class="math">\(f_w = \pm 1\)</span> indicates the facing of the wall (+1 for the reactor on the
 left, -1 for the reactor on the right). The heat flux <span class="math">\(\dot{Q}_w\)</span> through a wall
-<span class="math">\(k\)</span> connecting reactors “left” and “right” is computed as:</p>
+<span class="math">\(k\)</span> connecting reactors &#8220;left&#8221; and &#8220;right&#8221; is computed as:</p>
 <div class="math">
 \[\dot{Q}_w = U A (T_{\rm left} - T_{\rm right})
           + \epsilon\sigma A (T_{\rm left}^4 - T_{\rm right}^4)
@@ -300,7 +290,7 @@ left, -1 for the reactor on the right). The heat flux <span class="math">\(\dot{
 wall area (m^2), <span class="math">\(\epsilon\)</span> is the user-specified emissivity, <span class="math">\(\sigma\)</span> is the
 Stefan-Boltzmann radiation constant, and <span class="math">\(q_0(t)\)</span> is a user-specified,
 time-dependent heat flux (W/m^2). This definition is such that positive <span class="math">\(q_0(t)\)</span>
-implies heat transfer from the “left” reactor to the “right” reactor. Each of
+implies heat transfer from the &#8220;left&#8221; reactor to the &#8220;right&#8221; reactor. Each of
 the user-specified terms defaults to 0.</p>
 <p>In case of surface reactions, there can be a net generation (or destruction) of
 homogeneous (gas) phase species at the wall. The molar rate of production for
@@ -319,11 +309,11 @@ each wall. The net mass flux from all walls is then:</p>
 \[\frac{d\theta_{i,w}}{dt} = \frac{\dot{s}_{i,w} n_i}{\Gamma_w}\]</div>
 <p>where <span class="math">\(\Gamma_w\)</span> is the total surface site density on wall <span class="math">\(w\)</span> and <span class="math">\(n_i\)</span> is the
 number of surface sites occupied by a molecule of species <span class="math">\(i\)</span> (sometimes
-referred to within Cantera as the molecule’s “size”).</p>
+referred to within Cantera as the molecule&#8217;s &#8220;size&#8221;).</p>
 </div>
 </div>
 <div class="section" id="reactor-networks-and-devices">
-<h2>Reactor Networks and Devices<a class="headerlink" href="#reactor-networks-and-devices" title="Permalink to this headline">¶</a></h2>
+<h2>Reactor Networks and Devices<a class="headerlink" href="#reactor-networks-and-devices" title="Permalink to this headline">&#182;</a></h2>
 <p>While reactors by themselves just define the above governing equations of the
 reactor, the time integration is performed in reactor networks. A reactor
 network is therefore necessary even if only a single reactor is considered.</p>
@@ -402,7 +392,7 @@ capability should be used with caution, since no account is taken of the work
 required to do this.</p>
 </li>
 <li><p class="first"><strong>Pressure Controller</strong>: A pressure controller is designed to be used in
-conjunction with another ‘master’ flow controller, typically a
+conjunction with another &#8216;master&#8217; flow controller, typically a
 MassFlowController. The master flow controller is installed on the inlet of
 the reactor, and the corresponding PressureController is installed on on
 outlet of the reactor. The PressureController mass flow rate is equal to the
@@ -413,7 +403,7 @@ difference:</p>
 </li>
 </ul>
 <div class="section" id="time-integration">
-<h3>Time Integration<a class="headerlink" href="#time-integration" title="Permalink to this headline">¶</a></h3>
+<h3>Time Integration<a class="headerlink" href="#time-integration" title="Permalink to this headline">&#182;</a></h3>
 <p>Cantera provides an ODE solver for solving the stiff equations of reacting
 systems. If installed in combination with SUNDIALS, their optimized solver is
 used. Starting off the current state of the system, it can be advanced in time
@@ -456,7 +446,7 @@ example <a class="reference internal" href="cython/examples/reactors_ic_engine.h
 </div>
 </div>
 <div class="section" id="general-usage-in-cantera">
-<h2>General Usage in Cantera<a class="headerlink" href="#general-usage-in-cantera" title="Permalink to this headline">¶</a></h2>
+<h2>General Usage in Cantera<a class="headerlink" href="#general-usage-in-cantera" title="Permalink to this headline">&#182;</a></h2>
 <p>In Cantera, the following steps are typically necessary to investigate a
 reactor network:</p>
 <ol class="arabic simple">
@@ -481,9 +471,9 @@ states are converged (see e.g. example <a class="reference internal" href="cytho
 networks. Please refer to them for further information (<a class="reference internal" href="cython/examples.html#sec-cython-examples"><span class="std std-ref">Python</span></a>, <a class="reference internal" href="matlab/examples.html#sec-matlab-examples"><span class="std std-ref">Matlab</span></a>).</p>
 </div>
 <div class="section" id="common-reactor-types-and-their-implementation-in-cantera">
-<h2>Common Reactor Types and their Implementation in Cantera<a class="headerlink" href="#common-reactor-types-and-their-implementation-in-cantera" title="Permalink to this headline">¶</a></h2>
+<h2>Common Reactor Types and their Implementation in Cantera<a class="headerlink" href="#common-reactor-types-and-their-implementation-in-cantera" title="Permalink to this headline">&#182;</a></h2>
 <div class="section" id="batch-reactor-at-constant-volume-or-at-constant-pressure">
-<h3>Batch Reactor at Constant Volume or at Constant Pressure<a class="headerlink" href="#batch-reactor-at-constant-volume-or-at-constant-pressure" title="Permalink to this headline">¶</a></h3>
+<h3>Batch Reactor at Constant Volume or at Constant Pressure<a class="headerlink" href="#batch-reactor-at-constant-volume-or-at-constant-pressure" title="Permalink to this headline">&#182;</a></h3>
 <p>If you are interested in how a homogeneous chemical composition changes in time
 when it is left to its own, a simple batch reactor can be used. Two versions
 are commonly considered: A rigid vessel with fixed volume but variable
@@ -499,7 +489,7 @@ only the formerly created reactor.</p>
 <p>An example for such a Batch Reactor is <a class="reference internal" href="cython/examples/reactors_reactor1.html#py-example-reactor1-py"><span class="std std-ref">reactor1.py</span></a>.</p>
 </div>
 <div class="section" id="continuously-stirred-tank-reactor">
-<h3>Continuously Stirred Tank Reactor<a class="headerlink" href="#continuously-stirred-tank-reactor" title="Permalink to this headline">¶</a></h3>
+<h3>Continuously Stirred Tank Reactor<a class="headerlink" href="#continuously-stirred-tank-reactor" title="Permalink to this headline">&#182;</a></h3>
 <p>A Continuously Stirred Tank Reactor (CSTR), also often referred to as
 Well-Stirred Reactor (WSR), Perfectly Stirred Reactor (PSR), or Longwell
 Reactor, is essentially a single Cantera reactor with an inlet, an outlet, and
@@ -526,10 +516,10 @@ enough, the simulation can result in the trivial solution that inflow and
 outflow states are identical. To solve this problem, the reactor can be
 initialized with a high temperature and/or radical concentration. A good
 approach is to use the equilibrium composition of the reactants (which can be
-computed using Cantera’s <code class="docutils literal"><span class="pre">equilibrate</span></code> function) as an initial guess.</p>
+computed using Cantera&#8217;s <code class="docutils literal"><span class="pre">equilibrate</span></code> function) as an initial guess.</p>
 </div>
 <div class="section" id="plug-flow-reactor">
-<h3>Plug-Flow Reactor<a class="headerlink" href="#plug-flow-reactor" title="Permalink to this headline">¶</a></h3>
+<h3>Plug-Flow Reactor<a class="headerlink" href="#plug-flow-reactor" title="Permalink to this headline">&#182;</a></h3>
 <p>A Plug-Flow Reactor (PFR) represents a steady-state channel with a
 cross-sectional area <span class="math">\(A\)</span>. Typically an ideal gas flows through it at a constant
 mass flow rate <span class="math">\(\dot{m}\)</span>. Perpendicular to the flow direction, the gas is
@@ -583,7 +573,7 @@ rely on the assumption that pressure is approximately constant throughout the
 Plug-Flow Reactor and that there is no friction. The momentum conservation
 equation is thus neglected.</p>
 <div class="section" id="pfr-modeling-by-considering-a-lagrangian-reactor">
-<h4>PFR Modeling by Considering a Lagrangian Reactor<a class="headerlink" href="#pfr-modeling-by-considering-a-lagrangian-reactor" title="Permalink to this headline">¶</a></h4>
+<h4>PFR Modeling by Considering a Lagrangian Reactor<a class="headerlink" href="#pfr-modeling-by-considering-a-lagrangian-reactor" title="Permalink to this headline">&#182;</a></h4>
 <p>A Plug-Flow Reactor can also be described from a Lagrangian point of view: An
 unsteady fluid particle is considered which travels along the axial streamline
 through the PFR. Since there is no information traveling upstream, the state
@@ -594,7 +584,7 @@ translated into the spatial resolution of the PFR.</p>
 <p>An example for this procedure can be found in <a class="reference internal" href="cython/examples/reactors_pfr.html#py-example-pfr-py"><span class="std std-ref">pfr.py</span></a>.</p>
 </div>
 <div class="section" id="pfr-modeling-as-a-series-of-cstrs">
-<h4>PFR Modeling as a Series of CSTRs<a class="headerlink" href="#pfr-modeling-as-a-series-of-cstrs" title="Permalink to this headline">¶</a></h4>
+<h4>PFR Modeling as a Series of CSTRs<a class="headerlink" href="#pfr-modeling-as-a-series-of-cstrs" title="Permalink to this headline">&#182;</a></h4>
 <p>The Plug-Flow Reactor is spatially discretized into a large number of axially
 distributed volumes. These volumes are modeled to be steady-state CSTRs.</p>
 <p>The only reason to use this approach as opposed to the Lagrangian one is if you
@@ -614,24 +604,24 @@ boundary condition for the next CSTR downstream.</p>
 </div>
 </div>
 <div class="section" id="advanced-concepts">
-<h2>Advanced Concepts<a class="headerlink" href="#advanced-concepts" title="Permalink to this headline">¶</a></h2>
-<p>In some cases, Cantera’s solver is insufficient to describe a certain
+<h2>Advanced Concepts<a class="headerlink" href="#advanced-concepts" title="Permalink to this headline">&#182;</a></h2>
+<p>In some cases, Cantera&#8217;s solver is insufficient to describe a certain
 configuration. In this situation, Cantera can still be used to provide chemical
 and thermodynamic computations, but external ODE solvers can be applied. See
 example <a class="reference internal" href="cython/examples/reactors_custom.html#py-example-custom-py"><span class="std std-ref">custom.py</span></a>.</p>
 </div>
 <div class="section" id="literature">
-<h2>Literature<a class="headerlink" href="#literature" title="Permalink to this headline">¶</a></h2>
+<h2>Literature<a class="headerlink" href="#literature" title="Permalink to this headline">&#182;</a></h2>
 <p>For further reading, the following books are recommended:</p>
 <table class="docutils citation" frame="void" id="kcg2003" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
+<colgroup><col class="label"><col></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[KCG2003]</a></td><td>Kee, Coltrin, Glarborg: <em>Chemically Reacting Flow</em>.
 Wiley-Interscience, 2003</td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="tur2000" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
+<colgroup><col class="label"><col></colgroup>
 <tbody valign="top">
 <tr><td class="label">[Tur2000]</td><td>Turns: <em>An Introduction to Combustion: Concepts and Applications</em>,
 McGraw Hill, 2000</td></tr>
@@ -650,17 +640,13 @@ McGraw Hill, 2000</td></tr>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="flames.html" title="One-Dimensional Flames"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="cti/example-combustion.html" title="Example: Hydrogen Combustion"
-             >previous</a> |</li>
+          <a href="genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="flames.html" title="One-Dimensional Flames">next</a> |</li>
+        <li class="right">
+          <a href="cti/example-combustion.html" title="Example: Hydrogen Combustion">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

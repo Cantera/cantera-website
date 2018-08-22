@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Cantera Compilation Guide &mdash; Cantera 2.2.1 documentation</title>
     
-    <link rel="stylesheet" href="_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <title>Cantera Compilation Guide &#8212; Cantera 2.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/site.css" type="text/css">
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,33 +21,29 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.2.1 documentation" href="index.html" />
-    <link rel="next" title="Configuring Cantera" href="configuring.html" />
-    <link rel="prev" title="Installing Cantera" href="install.html" /> 
-  </head>
+    <link rel="shortcut icon" href="_static/favicon.ico">
+    <link rel="top" title="Cantera 2.2.1 documentation" href="index.html">
+    <link rel="next" title="Configuring Cantera" href="configuring.html">
+    <link rel="prev" title="Installing Cantera" href="install.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="index.html">
-<img src="_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="configuring.html" title="Configuring Cantera"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="install.html" title="Installing Cantera"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Cantera</a> &raquo;</li> 
+          <a href="genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="configuring.html" title="Configuring Cantera" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="install.html" title="Installing Cantera" accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
 
@@ -99,23 +92,20 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="install.html"
-                        title="previous chapter">Installing Cantera</a></p>
+  <p class="topless"><a href="install.html" title="previous chapter">Installing Cantera</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="configuring.html"
-                        title="next chapter">Configuring Cantera</a></p>
+  <p class="topless"><a href="configuring.html" title="next chapter">Configuring Cantera</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/compiling.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="_sources/compiling.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -130,8 +120,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="cantera-compilation-guide">
-<span id="sec-compiling"></span><h1>Cantera Compilation Guide<a class="headerlink" href="#cantera-compilation-guide" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="cantera-compilation-guide">
+<span id="sec-compiling"></span><h1>Cantera Compilation Guide<a class="headerlink" href="#cantera-compilation-guide" title="Permalink to this headline">&#182;</a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <p>This guide contains instructions for compiling Cantera on the following
@@ -149,9 +139,9 @@ operating systems:</p>
 Unix-like system where the necessary prerequisites are available, but some
 additional configuration may be required.</p>
 <div class="section" id="installation-prerequisites">
-<h2>Installation Prerequisites<a class="headerlink" href="#installation-prerequisites" title="Permalink to this headline">¶</a></h2>
+<h2>Installation Prerequisites<a class="headerlink" href="#installation-prerequisites" title="Permalink to this headline">&#182;</a></h2>
 <div class="section" id="linux">
-<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">&#182;</a></h3>
 <ul>
 <li><p class="first">For Ubuntu or Debian users, the following packages should be installed using
 your choice of package manager:</p>
@@ -180,7 +170,7 @@ may have slightly different names.</p>
 </ul>
 </div>
 <div class="section" id="windows">
-<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">&#182;</a></h3>
 <p>There are a number of requirements for the versions of software to install
 depending on which interfaces (Python, Matlab) you want to build and what
 architecture (32-bit or 64-bit) you want to use. See <a class="reference internal" href="#sec-dependencies"><em>Software used by Cantera</em></a> for
@@ -218,7 +208,7 @@ prompt that has been launched by selecting the <em>run as administrator</em> opt
 </ul>
 </div>
 <div class="section" id="os-x">
-<h3>OS X<a class="headerlink" href="#os-x" title="Permalink to this headline">¶</a></h3>
+<h3>OS X<a class="headerlink" href="#os-x" title="Permalink to this headline">&#182;</a></h3>
 <ul>
 <li><p class="first">Download and install Xcode from the App Store</p>
 </li>
@@ -252,9 +242,9 @@ prompt that has been launched by selecting the <em>run as administrator</em> opt
 </div>
 </div>
 <div class="section" id="downloading-the-cantera-source-code">
-<h2>Downloading the Cantera source code<a class="headerlink" href="#downloading-the-cantera-source-code" title="Permalink to this headline">¶</a></h2>
+<h2>Downloading the Cantera source code<a class="headerlink" href="#downloading-the-cantera-source-code" title="Permalink to this headline">&#182;</a></h2>
 <div class="section" id="stable-release">
-<h3>Stable Release<a class="headerlink" href="#stable-release" title="Permalink to this headline">¶</a></h3>
+<h3>Stable Release<a class="headerlink" href="#stable-release" title="Permalink to this headline">&#182;</a></h3>
 <ul>
 <li><p class="first">Option 1: Download the most recent source tarball from <a class="reference external" href="https://sourceforge.net/projects/cantera/files/cantera/">SourceForge</a> and extract the
 contents.</p>
@@ -269,7 +259,7 @@ git checkout 2.2
 </ul>
 </div>
 <div class="section" id="development-version">
-<h3>Development Version<a class="headerlink" href="#development-version" title="Permalink to this headline">¶</a></h3>
+<h3>Development Version<a class="headerlink" href="#development-version" title="Permalink to this headline">&#182;</a></h3>
 <ul>
 <li><p class="first">Check out the code using Git:</p>
 <div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/Cantera/cantera.git
@@ -280,9 +270,9 @@ git checkout 2.2
 </div>
 </div>
 <div class="section" id="determine-configuration-options">
-<h2>Determine configuration options<a class="headerlink" href="#determine-configuration-options" title="Permalink to this headline">¶</a></h2>
+<h2>Determine configuration options<a class="headerlink" href="#determine-configuration-options" title="Permalink to this headline">&#182;</a></h2>
 <div class="section" id="general">
-<h3>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<h3>General<a class="headerlink" href="#general" title="Permalink to this headline">&#182;</a></h3>
 <ul>
 <li><p class="first">run <tt class="docutils literal"><span class="pre">scons</span> <span class="pre">help</span></tt> to see a list all configuration options for Cantera, or
 see <a class="reference internal" href="configuring.html#scons-config"><em>Configuring Cantera</em></a>.</p>
@@ -306,7 +296,7 @@ sundials_libdir=/path/to/sundials/lib
 <li><p class="first">If you want to build the Matlab toolbox, you will need to specify the path
 to the Matlab installation, e.g.:</p>
 <div class="highlight-python"><div class="highlight"><pre>matlab_path=/opt/MATLAB/R2011a
-matlab_path=&quot;C:\Program Files\MATLAB\R2011a&quot;
+matlab_path="C:\Program Files\MATLAB\R2011a"
 matlab_path=/Applications/MATLAB_R2011a.app
 </pre></div>
 </div>
@@ -330,7 +320,7 @@ run scons with the option <tt class="docutils literal"><span class="pre">--confi
 </ul>
 </div>
 <div class="section" id="python-module">
-<h3>Python Module<a class="headerlink" href="#python-module" title="Permalink to this headline">¶</a></h3>
+<h3>Python Module<a class="headerlink" href="#python-module" title="Permalink to this headline">&#182;</a></h3>
 <p>Cantera 2.1 introduces a new Python module implemented using Cython. This new
 module provides support for both Python 2.x and Python 3.x. It also features a
 redesigned API that simplifies many operations and aims to provide a more
@@ -342,12 +332,12 @@ and <tt class="docutils literal"><span class="pre">unittest2</span></tt> package
 to provide certain features that are included in the standard
 library in more recent versions.</p>
 <div class="section" id="building-for-python-2">
-<h4>Building for Python 2<a class="headerlink" href="#building-for-python-2" title="Permalink to this headline">¶</a></h4>
+<h4>Building for Python 2<a class="headerlink" href="#building-for-python-2" title="Permalink to this headline">&#182;</a></h4>
 <p>By default, SCons will attempt to build the Cython-based Python module for
 Python 2, if both Numpy and Cython are installed.</p>
 </div>
 <div class="section" id="building-for-python-3">
-<h4>Building for Python 3<a class="headerlink" href="#building-for-python-3" title="Permalink to this headline">¶</a></h4>
+<h4>Building for Python 3<a class="headerlink" href="#building-for-python-3" title="Permalink to this headline">&#182;</a></h4>
 <p>If SCons detects a Python 3 interpreter installed in a default location
 (i.e. <tt class="docutils literal"><span class="pre">python3</span></tt> is on the path), it will try to build the new Python module
 for Python 3. The following SCons options control how the Python 3 module is
@@ -363,7 +353,7 @@ Python 2 with SCons, as SCons does not currently support Python 3.</p>
 </div>
 </div>
 <div class="section" id="windows-msvc">
-<h3>Windows (MSVC)<a class="headerlink" href="#windows-msvc" title="Permalink to this headline">¶</a></h3>
+<h3>Windows (MSVC)<a class="headerlink" href="#windows-msvc" title="Permalink to this headline">&#182;</a></h3>
 <ul class="simple">
 <li>In Windows there aren&#8217;t any proper default locations for many of the packages
 that Cantera depends on, so you will need to specify these paths explicitly.</li>
@@ -384,7 +374,7 @@ you can use forward slashes in paths.</p>
 </div>
 </div>
 <div class="section" id="windows-mingw">
-<h3>Windows (MinGW)<a class="headerlink" href="#windows-mingw" title="Permalink to this headline">¶</a></h3>
+<h3>Windows (MinGW)<a class="headerlink" href="#windows-mingw" title="Permalink to this headline">&#182;</a></h3>
 <ul>
 <li><p class="first">To compile with MinGW, use the SCons command line option:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">toolchain</span><span class="o">=</span><span class="n">mingw</span>
@@ -398,7 +388,7 @@ a 64-bit compiler are available from <a class="reference external" href="http://
 </ul>
 </div>
 <div class="section" id="id1">
-<h3>OS X<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>OS X<a class="headerlink" href="#id1" title="Permalink to this headline">&#182;</a></h3>
 <ul class="simple">
 <li>The Accelerate framework is automatically used to provide optimized versions
 of BLAS and LAPACK, so the <tt class="docutils literal"><span class="pre">blas_lapack_libs</span></tt> option should generally be
@@ -406,7 +396,7 @@ left unspecified.</li>
 </ul>
 </div>
 <div class="section" id="intel-compilers">
-<h3>Intel Compilers<a class="headerlink" href="#intel-compilers" title="Permalink to this headline">¶</a></h3>
+<h3>Intel Compilers<a class="headerlink" href="#intel-compilers" title="Permalink to this headline">&#182;</a></h3>
 <ul>
 <li><p class="first">Before compiling Cantera, you may need to set up the appropriate environment
 variables for the Intel compiler suite, e.g.:</p>
@@ -446,7 +436,7 @@ exit
 </div>
 </div>
 <div class="section" id="compile-cantera-test">
-<h2>Compile Cantera &amp; Test<a class="headerlink" href="#compile-cantera-test" title="Permalink to this headline">¶</a></h2>
+<h2>Compile Cantera &amp; Test<a class="headerlink" href="#compile-cantera-test" title="Permalink to this headline">&#182;</a></h2>
 <ul>
 <li><p class="first">Run scons with the list of desired configuration options, e.g.:</p>
 <div class="highlight-python"><div class="highlight"><pre>scons build optimize=n blas_lapack_libs=blas,lapack prefix=/opt/cantera
@@ -457,8 +447,8 @@ exit
 <div class="highlight-python"><div class="highlight"><pre>*******************************************************
 Compilation completed successfully.
 
-- To run the test suite, type &#39;scons test&#39;.
-- To install, type &#39;[sudo] scons install&#39;.
+- To run the test suite, type 'scons test'.
+- To install, type '[sudo] scons install'.
 *******************************************************
 </pre></div>
 </div>
@@ -485,7 +475,7 @@ source of the error:</p>
 </li>
 </ul>
 <div class="section" id="building-documentation">
-<h3>Building Documentation<a class="headerlink" href="#building-documentation" title="Permalink to this headline">¶</a></h3>
+<h3>Building Documentation<a class="headerlink" href="#building-documentation" title="Permalink to this headline">&#182;</a></h3>
 <ul>
 <li><p class="first">To build the Cantera HTML documentation, run the commands:</p>
 <div class="highlight-python"><div class="highlight"><pre>scons doxygen
@@ -501,7 +491,7 @@ command, e.g.:</p>
 </ul>
 </div>
 <div class="section" id="mingw-compilation-problems">
-<h3>MinGW Compilation problems<a class="headerlink" href="#mingw-compilation-problems" title="Permalink to this headline">¶</a></h3>
+<h3>MinGW Compilation problems<a class="headerlink" href="#mingw-compilation-problems" title="Permalink to this headline">&#182;</a></h3>
 <ul>
 <li><p class="first">If you get a compiler error while compiling some of the &#8220;f2c&#8221; code, then your
 version of MinGW has a problem with the order of its internal include paths,
@@ -521,11 +511,11 @@ problem edit the GCC float.h located at (roughly):</p>
 </div>
 </div>
 <div class="section" id="software-used-by-cantera">
-<span id="sec-dependencies"></span><h2>Software used by Cantera<a class="headerlink" href="#software-used-by-cantera" title="Permalink to this headline">¶</a></h2>
+<span id="sec-dependencies"></span><h2>Software used by Cantera<a class="headerlink" href="#software-used-by-cantera" title="Permalink to this headline">&#182;</a></h2>
 <p>This section lists the versions of third-party software that are required to
 build and use Cantera.</p>
 <div class="section" id="compilers">
-<h3>Compilers<a class="headerlink" href="#compilers" title="Permalink to this headline">¶</a></h3>
+<h3>Compilers<a class="headerlink" href="#compilers" title="Permalink to this headline">&#182;</a></h3>
 <p>You must have one of the following C++ compilers installed on your system. A
 Fortran compiler is required only if you plan to use Cantera from a Fortran
 program.</p>
@@ -567,7 +557,7 @@ with any version that provides a supported version of GCC.</li>
 </ul>
 </div>
 <div class="section" id="other-required-software">
-<h3>Other Required Software<a class="headerlink" href="#other-required-software" title="Permalink to this headline">¶</a></h3>
+<h3>Other Required Software<a class="headerlink" href="#other-required-software" title="Permalink to this headline">&#182;</a></h3>
 <ul class="simple">
 <li>SCons:<ul>
 <li><a class="reference external" href="http://www.scons.org/download.php">http://www.scons.org/download.php</a></li>
@@ -598,7 +588,7 @@ Visual Studio version.</li>
 </ul>
 </div>
 <div class="section" id="optional-programs">
-<h3>Optional Programs<a class="headerlink" href="#optional-programs" title="Permalink to this headline">¶</a></h3>
+<h3>Optional Programs<a class="headerlink" href="#optional-programs" title="Permalink to this headline">&#182;</a></h3>
 <ul>
 <li><p class="first">Numpy</p>
 <ul class="simple">
@@ -667,13 +657,13 @@ Sundials (2.4 or 2.5):</p>
 <p class="first admonition-title">Note</p>
 <p>If you are compiling Sundials 2.5.0 on Windows using CMake, you need
 to edit the <tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt> file first and change the lines:</p>
-<div class="highlight-python"><div class="highlight"><pre>SET(PACKAGE_STRING &quot;SUNDIALS 2.4.0&quot;)
-SET(PACKAGE_VERSION &quot;2.4.0&quot;)
+<div class="highlight-python"><div class="highlight"><pre>SET(PACKAGE_STRING "SUNDIALS 2.4.0")
+SET(PACKAGE_VERSION "2.4.0")
 </pre></div>
 </div>
 <p>to read:</p>
-<div class="highlight-python"><div class="highlight"><pre>SET(PACKAGE_STRING &quot;SUNDIALS 2.5.0&quot;)
-SET(PACKAGE_VERSION &quot;2.5.0&quot;)
+<div class="highlight-python"><div class="highlight"><pre>SET(PACKAGE_STRING "SUNDIALS 2.5.0")
+SET(PACKAGE_VERSION "2.5.0")
 </pre></div>
 </div>
 <p class="last">instead, so that Cantera can correctly identify the version of
@@ -722,22 +712,18 @@ the other Python modules.</li>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="configuring.html" title="Configuring Cantera"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="install.html" title="Installing Cantera"
-             >previous</a> |</li>
-        <li><a href="index.html">Cantera</a> &raquo;</li> 
+          <a href="genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="configuring.html" title="Configuring Cantera">next</a> |</li>
+        <li class="right">
+          <a href="install.html" title="Installing Cantera">previous</a> |</li>
+        <li><a href="index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>

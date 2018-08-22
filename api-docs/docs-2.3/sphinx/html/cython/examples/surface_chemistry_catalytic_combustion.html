@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>catalytic_combustion.py &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -22,26 +19,24 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../../about.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../../about.html">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -51,23 +46,22 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/cython/examples/surface_chemistry_catalytic_combustion.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../../_sources/cython/examples/surface_chemistry_catalytic_combustion.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -77,9 +71,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="catalytic-combustion-py">
-<span id="py-example-catalytic-combustion-py"></span><h1>catalytic_combustion.py<a class="headerlink" href="#catalytic-combustion-py" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="catalytic-combustion-py">
+<span id="py-example-catalytic-combustion-py"></span><h1>catalytic_combustion.py<a class="headerlink" href="#catalytic-combustion-py" title="Permalink to this headline">&#182;</a></h1>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">CATCOMB  -- Catalytic combustion of methane on platinum.</span>
 
 <span class="sd">This script solves a catalytic combustion problem. A stagnation flow is set</span>
@@ -90,7 +84,7 @@
 
 <span class="sd">The catalytic combustion mechanism is from Deutschman et al., 26th</span>
 <span class="sd">Symp. (Intl.) on Combustion,1996 pp. 1747-1754</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">cantera</span> <span class="k">as</span> <span class="nn">ct</span>
@@ -100,16 +94,16 @@
 <span class="n">tinlet</span> <span class="o">=</span> <span class="mf">300.0</span>  <span class="c1"># inlet temperature</span>
 <span class="n">tsurf</span> <span class="o">=</span> <span class="mf">900.0</span>  <span class="c1"># surface temperature</span>
 <span class="n">mdot</span> <span class="o">=</span> <span class="mf">0.06</span>  <span class="c1"># kg/m^2/s</span>
-<span class="n">transport</span> <span class="o">=</span> <span class="s1">&#39;Mix&#39;</span>  <span class="c1"># transport model</span>
+<span class="n">transport</span> <span class="o">=</span> <span class="s1">'Mix'</span>  <span class="c1"># transport model</span>
 
 <span class="c1"># We will solve first for a hydrogen/air case to use as the initial estimate</span>
 <span class="c1"># for the methane/air case</span>
 
 <span class="c1"># composition of the inlet premixed gas for the hydrogen/air case</span>
-<span class="n">comp1</span> <span class="o">=</span> <span class="s1">&#39;H2:0.05, O2:0.21, N2:0.78, AR:0.01&#39;</span>
+<span class="n">comp1</span> <span class="o">=</span> <span class="s1">'H2:0.05, O2:0.21, N2:0.78, AR:0.01'</span>
 
 <span class="c1"># composition of the inlet premixed gas for the methane/air case</span>
-<span class="n">comp2</span> <span class="o">=</span> <span class="s1">&#39;CH4:0.095, O2:0.21, N2:0.78, AR:0.01&#39;</span>
+<span class="n">comp2</span> <span class="o">=</span> <span class="s1">'CH4:0.095, O2:0.21, N2:0.78, AR:0.01'</span>
 
 <span class="c1"># The inlet/surface separation is 10 cm.</span>
 <span class="n">width</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="c1"># m</span>
@@ -120,19 +114,19 @@
 <span class="c1">#</span>
 <span class="c1"># This object will be used to evaluate all thermodynamic, kinetic, and</span>
 <span class="c1"># transport properties. The gas phase will be taken from the definition of</span>
-<span class="c1"># phase &#39;gas&#39; in input file &#39;ptcombust.cti,&#39; which is a stripped-down version</span>
+<span class="c1"># phase 'gas' in input file 'ptcombust.cti,' which is a stripped-down version</span>
 <span class="c1"># of GRI-Mech 3.0.</span>
-<span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;ptcombust.cti&#39;</span><span class="p">,</span> <span class="s1">&#39;gas&#39;</span><span class="p">)</span>
+<span class="n">gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">'ptcombust.cti'</span><span class="p">,</span> <span class="s1">'gas'</span><span class="p">)</span>
 <span class="n">gas</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="n">tinlet</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">comp1</span>
 
 <span class="c1">################ create the interface object ##################</span>
 <span class="c1">#</span>
 <span class="c1"># This object will be used to evaluate all surface chemical production rates.</span>
-<span class="c1"># It will be created from the interface definition &#39;Pt_surf&#39; in input file</span>
-<span class="c1"># &#39;ptcombust.cti,&#39; which implements the reaction mechanism of Deutschmann et</span>
+<span class="c1"># It will be created from the interface definition 'Pt_surf' in input file</span>
+<span class="c1"># 'ptcombust.cti,' which implements the reaction mechanism of Deutschmann et</span>
 <span class="c1"># al., 1995 for catalytic combustion on platinum.</span>
 <span class="c1">#</span>
-<span class="n">surf_phase</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">&#39;ptcombust.cti&#39;</span><span class="p">,</span> <span class="s1">&#39;Pt_surf&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">gas</span><span class="p">])</span>
+<span class="n">surf_phase</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="s1">'ptcombust.cti'</span><span class="p">,</span> <span class="s1">'Pt_surf'</span><span class="p">,</span> <span class="p">[</span><span class="n">gas</span><span class="p">])</span>
 <span class="n">surf_phase</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">tsurf</span><span class="p">,</span> <span class="n">p</span>
 
 <span class="c1"># integrate the coverage equations in time for 1 s, holding the gas</span>
@@ -144,7 +138,7 @@
 <span class="n">sim</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">ImpingingJet</span><span class="p">(</span><span class="n">gas</span><span class="o">=</span><span class="n">gas</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">surface</span><span class="o">=</span><span class="n">surf_phase</span><span class="p">)</span>
 
 <span class="c1"># Objects of class StagnationFlow have members that represent the gas inlet</span>
-<span class="c1"># (&#39;inlet&#39;) and the surface (&#39;surface&#39;). Set some parameters of these objects.</span>
+<span class="c1"># ('inlet') and the surface ('surface'). Set some parameters of these objects.</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">inlet</span><span class="o">.</span><span class="n">mdot</span> <span class="o">=</span> <span class="n">mdot</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">inlet</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="n">tinlet</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">inlet</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">comp1</span>
@@ -172,7 +166,7 @@
 <span class="k">for</span> <span class="n">mult</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
     <span class="n">surf_phase</span><span class="o">.</span><span class="n">set_multiplier</span><span class="p">(</span><span class="n">mult</span><span class="p">)</span>
     <span class="n">gas</span><span class="o">.</span><span class="n">set_multiplier</span><span class="p">(</span><span class="n">mult</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Multiplier =&#39;</span><span class="p">,</span> <span class="n">mult</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Multiplier ='</span><span class="p">,</span> <span class="n">mult</span><span class="p">)</span>
     <span class="n">sim</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">loglevel</span><span class="p">)</span>
 
 <span class="c1"># At this point, we should have the solution for the hydrogen/air problem.</span>
@@ -190,13 +184,13 @@
 <span class="c1"># show the solution</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">show_solution</span><span class="p">()</span>
 
-<span class="c1"># save the solution in XML format. The &#39;restore&#39; method can be used to restart</span>
+<span class="c1"># save the solution in XML format. The 'restore' method can be used to restart</span>
 <span class="c1"># a simulation from a solution stored in this form.</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;catcomb.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;soln1&quot;</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">"catcomb.xml"</span><span class="p">,</span> <span class="s2">"soln1"</span><span class="p">)</span>
 
 <span class="c1"># save selected solution components in a CSV file for plotting in</span>
 <span class="c1"># Excel or MATLAB.</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">write_csv</span><span class="p">(</span><span class="s1">&#39;catalytic_combustion.csv&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">write_csv</span><span class="p">(</span><span class="s1">'catalytic_combustion.csv'</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">sim</span><span class="o">.</span><span class="n">show_stats</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
@@ -213,11 +207,9 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

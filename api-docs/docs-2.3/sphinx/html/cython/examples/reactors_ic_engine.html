@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>ic_engine.py &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -22,26 +19,24 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../../about.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../../about.html">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -51,23 +46,22 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/cython/examples/reactors_ic_engine.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../../_sources/cython/examples/reactors_ic_engine.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -77,16 +71,16 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="ic-engine-py">
-<span id="py-example-ic-engine-py"></span><h1>ic_engine.py<a class="headerlink" href="#ic-engine-py" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="ic-engine-py">
+<span id="py-example-ic-engine-py"></span><h1>ic_engine.py<a class="headerlink" href="#ic-engine-py" title="Permalink to this headline">&#182;</a></h1>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="sd">Simulation of a (gaseous) Diesel-type internal combustion engine.</span>
 
 <span class="sd">The use of pure propane as fuel requires an unrealistically high compression</span>
 <span class="sd">ratio.</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span> <span class="nn">cantera</span> <span class="k">as</span> <span class="nn">ct</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -103,7 +97,7 @@
 <span class="c1"># turbocharger temperature, pressure, and composition</span>
 <span class="n">T_inlet</span> <span class="o">=</span> <span class="mf">300.</span>  <span class="c1"># K</span>
 <span class="n">p_inlet</span> <span class="o">=</span> <span class="mf">1.3e5</span>  <span class="c1"># Pa</span>
-<span class="n">comp_inlet</span> <span class="o">=</span> <span class="s1">&#39;O2:1, N2:3.76&#39;</span>
+<span class="n">comp_inlet</span> <span class="o">=</span> <span class="s1">'O2:1, N2:3.76'</span>
 
 <span class="c1"># outlet pressure</span>
 <span class="n">p_outlet</span> <span class="o">=</span> <span class="mf">1.2e5</span>  <span class="c1"># Pa</span>
@@ -111,15 +105,15 @@
 <span class="c1"># fuel properties (gaseous!)</span>
 <span class="n">T_injector</span> <span class="o">=</span> <span class="mf">300.</span>  <span class="c1"># K</span>
 <span class="n">p_injector</span> <span class="o">=</span> <span class="mf">1600e5</span>  <span class="c1"># Pa</span>
-<span class="n">comp_injector</span> <span class="o">=</span> <span class="s1">&#39;C3H8:1&#39;</span>
+<span class="n">comp_injector</span> <span class="o">=</span> <span class="s1">'C3H8:1'</span>
 
 <span class="c1"># ambient properties</span>
 <span class="n">T_ambient</span> <span class="o">=</span> <span class="mf">300.</span>  <span class="c1"># K</span>
 <span class="n">p_ambient</span> <span class="o">=</span> <span class="mf">1e5</span>  <span class="c1"># Pa</span>
-<span class="n">comp_ambient</span> <span class="o">=</span> <span class="s1">&#39;O2:1, N2:3.76&#39;</span>
+<span class="n">comp_ambient</span> <span class="o">=</span> <span class="s1">'O2:1, N2:3.76'</span>
 
 <span class="c1"># Reaction mechanism name</span>
-<span class="n">reaction_mechanism</span> <span class="o">=</span> <span class="s1">&#39;gri30.xml&#39;</span>
+<span class="n">reaction_mechanism</span> <span class="o">=</span> <span class="s1">'gri30.xml'</span>
 
 <span class="c1"># Inlet valve friction coefficient, open and close timings</span>
 <span class="n">inlet_valve_coeff</span> <span class="o">=</span> <span class="mf">1.e-6</span>
@@ -155,10 +149,10 @@
 <span class="c1"># define injector state (gaseous!)</span>
 <span class="n">gas</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="n">T_injector</span><span class="p">,</span> <span class="n">p_injector</span><span class="p">,</span> <span class="n">comp_injector</span>
 <span class="n">injector</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reservoir</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
-<span class="c1"># define outlet pressure (temperature and composition don&#39;t matter)</span>
+<span class="c1"># define outlet pressure (temperature and composition don't matter)</span>
 <span class="n">gas</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="n">T_ambient</span><span class="p">,</span> <span class="n">p_outlet</span><span class="p">,</span> <span class="n">comp_ambient</span>
 <span class="n">outlet</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reservoir</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
-<span class="c1"># define ambient pressure (temperature and composition don&#39;t matter)</span>
+<span class="c1"># define ambient pressure (temperature and composition don't matter)</span>
 <span class="n">gas</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="n">T_ambient</span><span class="p">,</span> <span class="n">p_ambient</span><span class="p">,</span> <span class="n">comp_ambient</span>
 <span class="n">ambient_air</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reservoir</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
 
@@ -224,7 +218,7 @@
     <span class="c1"># perform time integration, refine time step if necessary</span>
     <span class="k">for</span> <span class="n">n2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">n2</span> <span class="ow">is</span> <span class="mi">4</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="s1">&#39;Error: Refinement limit reached&#39;</span>
+            <span class="k">raise</span> <span class="s1">'Error: Refinement limit reached'</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">sim</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="n">t_i</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
@@ -257,64 +251,64 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">states</span><span class="o">.</span><span class="n">P</span> <span class="o">/</span> <span class="mf">1.e5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$p$ [bar]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\phi$ [deg]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'$p$ [bar]'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'$\phi$ [deg]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">states</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$T$ [K]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\phi$ [deg]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'$T$ [K]'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'$\phi$ [deg]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">crank_angle</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span>
            <span class="n">rotation</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;ic_engine_t_p_T.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'ic_engine_t_p_T.png'</span><span class="p">)</span>
 
 <span class="c1"># p-V diagram</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mf">0.04</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">states</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mf">0.04</span><span class="p">]</span> <span class="o">/</span> <span class="mf">1.e5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$V$ [l]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$p$ [bar]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'$V$ [l]'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'$p$ [bar]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;ic_engine_p_V.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'ic_engine_p_V.png'</span><span class="p">)</span>
 
 <span class="c1"># T-S diagram</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mf">0.04</span><span class="p">]</span> <span class="o">*</span> <span class="n">states</span><span class="o">.</span><span class="n">s</span><span class="p">[</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mf">0.04</span><span class="p">],</span> <span class="n">states</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mf">0.04</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$S$ [J/K]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$T$ [K]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'$S$ [J/K]'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'$T$ [K]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;ic_engine_T_S.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'ic_engine_T_S.png'</span><span class="p">)</span>
 
 <span class="c1"># heat of reaction and expansion work</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">heat_release_rate</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\dot</span><span class="si">{Q}</span><span class="s1">$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">d_W_v_d_t</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\dot</span><span class="si">{W}</span><span class="s1">_v$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">heat_release_rate</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'$\dot</span><span class="si">{Q}</span><span class="s1">$'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">d_W_v_d_t</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'$\dot</span><span class="si">{W}</span><span class="s1">_v$'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1e5</span><span class="p">,</span> <span class="mf">1e6</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;[W]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\phi$ [deg]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'[W]'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'$\phi$ [deg]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">crank_angle</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span>
            <span class="n">rotation</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;ic_engine_Q_W.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'ic_engine_Q_W.png'</span><span class="p">)</span>
 
 <span class="c1"># gas composition</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">states</span><span class="p">(</span><span class="s1">&#39;O2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;O2&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">states</span><span class="p">(</span><span class="s1">&#39;CO2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CO2&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">states</span><span class="p">(</span><span class="s1">&#39;CO&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CO&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">states</span><span class="p">(</span><span class="s1">&#39;C3H8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">X</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;C3H8 x10&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">states</span><span class="p">(</span><span class="s1">'O2'</span><span class="p">)</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'O2'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">states</span><span class="p">(</span><span class="s1">'CO2'</span><span class="p">)</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'CO2'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">states</span><span class="p">(</span><span class="s1">'CO'</span><span class="p">)</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'CO'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">states</span><span class="p">(</span><span class="s1">'C3H8'</span><span class="p">)</span><span class="o">.</span><span class="n">X</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'C3H8 x10'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$X_i$ [-]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\phi$ [deg]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'$X_i$ [-]'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'$\phi$ [deg]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">crank_angle</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span>
            <span class="n">rotation</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;ic_engine_t_X.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'ic_engine_t_X.png'</span><span class="p">)</span>
 
 
 <span class="c1">#####################################################################</span>
@@ -326,14 +320,14 @@
 <span class="n">W</span> <span class="o">=</span> <span class="n">trapz</span><span class="p">(</span><span class="n">d_W_v_d_t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 <span class="n">eta</span> <span class="o">=</span> <span class="n">W</span> <span class="o">/</span> <span class="n">Q</span>
 <span class="n">MW</span> <span class="o">=</span> <span class="n">states</span><span class="o">.</span><span class="n">mean_molecular_weight</span>
-<span class="n">CO_emission</span> <span class="o">=</span> <span class="n">trapz</span><span class="p">(</span><span class="n">MW</span> <span class="o">*</span> <span class="n">mdot_out</span> <span class="o">*</span> <span class="n">states</span><span class="p">(</span><span class="s1">&#39;CO&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="n">trapz</span><span class="p">(</span><span class="n">MW</span> <span class="o">*</span> <span class="n">mdot_out</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Heat release rate per cylinder (estimate):</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span>
-      <span class="nb">format</span><span class="p">(</span><span class="n">Q</span> <span class="o">/</span> <span class="n">t_sim</span> <span class="o">/</span> <span class="mf">1000.</span><span class="p">,</span> <span class="s1">&#39; 2.1f&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; kW&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Expansion power per cylinder (estimate):</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span>
-      <span class="nb">format</span><span class="p">(</span><span class="n">W</span> <span class="o">/</span> <span class="n">t_sim</span> <span class="o">/</span> <span class="mf">1000.</span><span class="p">,</span> <span class="s1">&#39; 2.1f&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; kW&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Efficiency (estimate):</span><span class="se">\t\t\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="nb">format</span><span class="p">(</span><span class="n">eta</span> <span class="o">*</span> <span class="mf">100.</span><span class="p">,</span> <span class="s1">&#39; 2.1f&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; %&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CO emission (estimate):</span><span class="se">\t\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="nb">format</span><span class="p">(</span><span class="n">CO_emission</span> <span class="o">*</span> <span class="mf">1.e6</span><span class="p">,</span> <span class="s1">&#39; 2.1f&#39;</span><span class="p">)</span> <span class="o">+</span>
-      <span class="s1">&#39; ppm&#39;</span><span class="p">)</span>
+<span class="n">CO_emission</span> <span class="o">=</span> <span class="n">trapz</span><span class="p">(</span><span class="n">MW</span> <span class="o">*</span> <span class="n">mdot_out</span> <span class="o">*</span> <span class="n">states</span><span class="p">(</span><span class="s1">'CO'</span><span class="p">)</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="n">trapz</span><span class="p">(</span><span class="n">MW</span> <span class="o">*</span> <span class="n">mdot_out</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Heat release rate per cylinder (estimate):</span><span class="se">\t</span><span class="s1">'</span> <span class="o">+</span>
+      <span class="nb">format</span><span class="p">(</span><span class="n">Q</span> <span class="o">/</span> <span class="n">t_sim</span> <span class="o">/</span> <span class="mf">1000.</span><span class="p">,</span> <span class="s1">' 2.1f'</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' kW'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Expansion power per cylinder (estimate):</span><span class="se">\t</span><span class="s1">'</span> <span class="o">+</span>
+      <span class="nb">format</span><span class="p">(</span><span class="n">W</span> <span class="o">/</span> <span class="n">t_sim</span> <span class="o">/</span> <span class="mf">1000.</span><span class="p">,</span> <span class="s1">' 2.1f'</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' kW'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Efficiency (estimate):</span><span class="se">\t\t\t</span><span class="s1">'</span> <span class="o">+</span> <span class="nb">format</span><span class="p">(</span><span class="n">eta</span> <span class="o">*</span> <span class="mf">100.</span><span class="p">,</span> <span class="s1">' 2.1f'</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' %'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'CO emission (estimate):</span><span class="se">\t\t</span><span class="s1">'</span> <span class="o">+</span> <span class="nb">format</span><span class="p">(</span><span class="n">CO_emission</span> <span class="o">*</span> <span class="mf">1.e6</span><span class="p">,</span> <span class="s1">' 2.1f'</span><span class="p">)</span> <span class="o">+</span>
+      <span class="s1">' ppm'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -348,11 +342,9 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

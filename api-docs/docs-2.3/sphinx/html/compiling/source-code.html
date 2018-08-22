@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Downloading the Cantera source code &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -22,34 +19,30 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../about.html" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Determine configuration options" href="configure-build.html" />
-    <link rel="prev" title="Installation Prerequisites" href="installation-reqs.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../about.html">
+    <link rel="index" title="Index" href="../genindex.html">
+    <link rel="search" title="Search" href="../search.html">
+    <link rel="next" title="Determine configuration options" href="configure-build.html">
+    <link rel="prev" title="Installation Prerequisites" href="installation-reqs.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../index.html">
-<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="configure-build.html" title="Determine configuration options"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="installation-reqs.html" title="Installation Prerequisites"
-             accesskey="P">previous</a> |</li>
+          <a href="../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="configure-build.html" title="Determine configuration options" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="installation-reqs.html" title="Installation Prerequisites" accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Cantera Compilation Guide</a> &#187;</li> 
       </ul>
@@ -68,31 +61,28 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="installation-reqs.html"
-                        title="previous chapter">Installation Prerequisites</a></p>
+  <p class="topless"><a href="installation-reqs.html" title="previous chapter">Installation Prerequisites</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="configure-build.html"
-                        title="next chapter">Determine configuration options</a></p>
+  <p class="topless"><a href="configure-build.html" title="next chapter">Determine configuration options</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/compiling/source-code.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../_sources/compiling/source-code.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -102,10 +92,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="downloading-the-cantera-source-code">
-<span id="sec-source-code"></span><h1>Downloading the Cantera source code<a class="headerlink" href="#downloading-the-cantera-source-code" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="downloading-the-cantera-source-code">
+<span id="sec-source-code"></span><h1>Downloading the Cantera source code<a class="headerlink" href="#downloading-the-cantera-source-code" title="Permalink to this headline">&#182;</a></h1>
 <div class="section" id="stable-release">
-<h2>Stable Release<a class="headerlink" href="#stable-release" title="Permalink to this headline">¶</a></h2>
+<h2>Stable Release<a class="headerlink" href="#stable-release" title="Permalink to this headline">&#182;</a></h2>
 <ul>
 <li><p class="first"><strong>Option 1</strong>: Check out the code using Git:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Cantera</span><span class="o">/</span><span class="n">cantera</span><span class="o">.</span><span class="n">git</span>
@@ -127,7 +117,7 @@ contents.</p>
 </ul>
 </div>
 <div class="section" id="beta-release">
-<h2>Beta Release<a class="headerlink" href="#beta-release" title="Permalink to this headline">¶</a></h2>
+<h2>Beta Release<a class="headerlink" href="#beta-release" title="Permalink to this headline">&#182;</a></h2>
 <ul>
 <li><p class="first">Check out the code using Git:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Cantera</span><span class="o">/</span><span class="n">cantera</span><span class="o">.</span><span class="n">git</span>
@@ -157,7 +147,7 @@ next minor release of the stable version:</p>
 </ul>
 </div>
 <div class="section" id="development-version">
-<h2>Development Version<a class="headerlink" href="#development-version" title="Permalink to this headline">¶</a></h2>
+<h2>Development Version<a class="headerlink" href="#development-version" title="Permalink to this headline">&#182;</a></h2>
 <p>Check out the code using Git:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Cantera</span><span class="o">/</span><span class="n">cantera</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">cantera</span>
@@ -165,7 +155,7 @@ next minor release of the stable version:</p>
 </div>
 <p>Note that by default, the <code class="docutils literal"><span class="pre">master</span></code> branch is checked out, containing all of
 the feature updates and bug fixes to the code since the previous stable release.
-The master branch is usually an “alpha” release, corresponding to the <code class="docutils literal"><span class="pre">a</span></code> in
+The master branch is usually an &#8220;alpha&#8221; release, corresponding to the <code class="docutils literal"><span class="pre">a</span></code> in
 the version number, and does not usually get a tag.</p>
 </div>
 </div>
@@ -180,19 +170,15 @@ the version number, and does not usually get a tag.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="configure-build.html" title="Determine configuration options"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="installation-reqs.html" title="Installation Prerequisites"
-             >previous</a> |</li>
+          <a href="../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="configure-build.html" title="Determine configuration options">next</a> |</li>
+        <li class="right">
+          <a href="installation-reqs.html" title="Installation Prerequisites">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Cantera</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Cantera Compilation Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html">Cantera Compilation Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

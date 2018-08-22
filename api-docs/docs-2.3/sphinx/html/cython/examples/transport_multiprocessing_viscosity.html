@@ -1,13 +1,10 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>multiprocessing_viscosity.py &#8212; Cantera 2.3.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/cantera.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -22,26 +19,24 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="author" title="About these documents" href="../../about.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+    <link rel="author" title="About these documents" href="../../about.html">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../../index.html">
-<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>
@@ -51,23 +46,22 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/cython/examples/transport_multiprocessing_viscosity.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../../_sources/cython/examples/transport_multiprocessing_viscosity.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <div><input type="text" name="q"></div>
+      <div><input type="submit" value="Go"></div>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=">
-<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
         </div>
       </div>
@@ -77,10 +71,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="multiprocessing-viscosity-py">
-<span id="py-example-multiprocessing-viscosity-py"></span><h1>multiprocessing_viscosity.py<a class="headerlink" href="#multiprocessing-viscosity-py" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This example demonstrates how Cantera can be used with the &#39;multiprocessing&#39;</span>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="multiprocessing-viscosity-py">
+<span id="py-example-multiprocessing-viscosity-py"></span><h1>multiprocessing_viscosity.py<a class="headerlink" href="#multiprocessing-viscosity-py" title="Permalink to this headline">&#182;</a></h1>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">"""</span>
+<span class="sd">This example demonstrates how Cantera can be used with the 'multiprocessing'</span>
 <span class="sd">module.</span>
 
 <span class="sd">Because Cantera Python objects are built on top of C++ objects which cannot be</span>
@@ -88,7 +82,7 @@
 <span class="sd">that each process has its own copy of the relevant Cantera objects. One way to</span>
 <span class="sd">do this is by storing the objects in (module) global variables, which are</span>
 <span class="sd">initialized once per worker process.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span> <span class="nn">multiprocessing</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -100,16 +94,16 @@
 <span class="n">gases</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="k">def</span> <span class="nf">init_process</span><span class="p">(</span><span class="n">mech</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">"""</span>
 <span class="sd">    This function is called once for each process in the Pool. We use it to</span>
 <span class="sd">    initialize any Cantera objects we need to use.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">gases</span><span class="p">[</span><span class="n">mech</span><span class="p">]</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="n">mech</span><span class="p">)</span>
-    <span class="n">gases</span><span class="p">[</span><span class="n">mech</span><span class="p">]</span><span class="o">.</span><span class="n">transport_model</span> <span class="o">=</span> <span class="s1">&#39;Multi&#39;</span>
+    <span class="n">gases</span><span class="p">[</span><span class="n">mech</span><span class="p">]</span><span class="o">.</span><span class="n">transport_model</span> <span class="o">=</span> <span class="s1">'Multi'</span>
 
 <span class="k">def</span> <span class="nf">get_thermal_conductivity</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
     <span class="c1"># Pool.imap only permits a single argument, so we pack all of the needed</span>
-    <span class="c1"># arguments into the tuple &#39;args&#39;</span>
+    <span class="c1"># arguments into the tuple 'args'</span>
     <span class="n">mech</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">args</span>
     <span class="n">gas</span> <span class="o">=</span> <span class="n">gases</span><span class="p">[</span><span class="n">mech</span><span class="p">]</span>
     <span class="n">gas</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">X</span>
@@ -117,19 +111,19 @@
 
 <span class="k">def</span> <span class="nf">get_viscosity</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
     <span class="c1"># Pool.imap only permits a single argument, so we pack all of the needed</span>
-    <span class="c1"># arguments into the tuple &#39;args&#39;</span>
+    <span class="c1"># arguments into the tuple 'args'</span>
     <span class="n">mech</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">args</span>
     <span class="n">gas</span> <span class="o">=</span> <span class="n">gases</span><span class="p">[</span><span class="n">mech</span><span class="p">]</span>
     <span class="n">gas</span><span class="o">.</span><span class="n">TPX</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">X</span>
     <span class="k">return</span> <span class="n">gas</span><span class="o">.</span><span class="n">viscosity</span>
 
 <span class="k">def</span> <span class="nf">parallel</span><span class="p">(</span><span class="n">mech</span><span class="p">,</span> <span class="n">predicate</span><span class="p">,</span> <span class="n">nProcs</span><span class="p">,</span> <span class="n">nTemps</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">"""</span>
 <span class="sd">    Call the function ``predicate`` on ``nProcs`` processors for ``nTemps``</span>
 <span class="sd">    different temperatures.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">P</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;CH4:1.0, O2:1.0, N2:3.76&#39;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="s1">'CH4:1.0, O2:1.0, N2:3.76'</span>
     <span class="n">pool</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">nProcs</span><span class="p">,</span>
                                 <span class="n">initializer</span><span class="o">=</span><span class="n">init_process</span><span class="p">,</span>
                                 <span class="n">initargs</span><span class="o">=</span><span class="p">(</span><span class="n">mech</span><span class="p">,))</span>
@@ -143,7 +137,7 @@
 
 <span class="k">def</span> <span class="nf">serial</span><span class="p">(</span><span class="n">mech</span><span class="p">,</span> <span class="n">predicate</span><span class="p">,</span> <span class="n">nTemps</span><span class="p">):</span>
     <span class="n">P</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">one_atm</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;CH4:1.0, O2:1.0, N2:3.76&#39;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="s1">'CH4:1.0, O2:1.0, N2:3.76'</span>
     <span class="n">init_process</span><span class="p">(</span><span class="n">mech</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">predicate</span><span class="p">,</span>
                  <span class="nb">zip</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">mech</span><span class="p">),</span>
@@ -152,35 +146,35 @@
                      <span class="n">itertools</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">X</span><span class="p">))))</span>
     <span class="k">return</span> <span class="n">y</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
     <span class="n">nPoints</span> <span class="o">=</span> <span class="mi">5000</span>
     <span class="n">nProcs</span> <span class="o">=</span> <span class="mi">4</span>
 
     <span class="c1"># For functions where the work done in each subprocess is substantial,</span>
     <span class="c1"># significant speedup can be obtained using the multiprocessing module.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Thermal conductivity&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Thermal conductivity'</span><span class="p">)</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-    <span class="n">parallel</span><span class="p">(</span><span class="s1">&#39;gri30.xml&#39;</span><span class="p">,</span> <span class="n">get_thermal_conductivity</span><span class="p">,</span> <span class="n">nProcs</span><span class="p">,</span> <span class="n">nPoints</span><span class="p">)</span>
+    <span class="n">parallel</span><span class="p">(</span><span class="s1">'gri30.xml'</span><span class="p">,</span> <span class="n">get_thermal_conductivity</span><span class="p">,</span> <span class="n">nProcs</span><span class="p">,</span> <span class="n">nPoints</span><span class="p">)</span>
     <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Parallel: </span><span class="si">{0:.3f}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Parallel: </span><span class="si">{0:.3f}</span><span class="s1"> seconds'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">))</span>
 
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-    <span class="n">serial</span><span class="p">(</span><span class="s1">&#39;gri30.xml&#39;</span><span class="p">,</span> <span class="n">get_thermal_conductivity</span><span class="p">,</span> <span class="n">nPoints</span><span class="p">)</span>
+    <span class="n">serial</span><span class="p">(</span><span class="s1">'gri30.xml'</span><span class="p">,</span> <span class="n">get_thermal_conductivity</span><span class="p">,</span> <span class="n">nPoints</span><span class="p">)</span>
     <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Serial: </span><span class="si">{0:.3f}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Serial: </span><span class="si">{0:.3f}</span><span class="s1"> seconds'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">))</span>
 
     <span class="c1"># On the other hand, if the work done per call to the predicate function is</span>
     <span class="c1"># small, there may be no advantage to using multiprocessing.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Viscosity&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Viscosity'</span><span class="p">)</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-    <span class="n">parallel</span><span class="p">(</span><span class="s1">&#39;gri30.xml&#39;</span><span class="p">,</span> <span class="n">get_viscosity</span><span class="p">,</span> <span class="n">nProcs</span><span class="p">,</span> <span class="n">nPoints</span><span class="p">)</span>
+    <span class="n">parallel</span><span class="p">(</span><span class="s1">'gri30.xml'</span><span class="p">,</span> <span class="n">get_viscosity</span><span class="p">,</span> <span class="n">nProcs</span><span class="p">,</span> <span class="n">nPoints</span><span class="p">)</span>
     <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Parallel: </span><span class="si">{0:.3f}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Parallel: </span><span class="si">{0:.3f}</span><span class="s1"> seconds'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">))</span>
 
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-    <span class="n">serial</span><span class="p">(</span><span class="s1">&#39;gri30.xml&#39;</span><span class="p">,</span> <span class="n">get_viscosity</span><span class="p">,</span> <span class="n">nPoints</span><span class="p">)</span>
+    <span class="n">serial</span><span class="p">(</span><span class="s1">'gri30.xml'</span><span class="p">,</span> <span class="n">get_viscosity</span><span class="p">,</span> <span class="n">nPoints</span><span class="p">)</span>
     <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Serial: </span><span class="si">{0:.3f}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Serial: </span><span class="si">{0:.3f}</span><span class="s1"> seconds'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -195,11 +189,9 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Cantera</a> &#187;</li> 
       </ul>
     </div>

@@ -1,17 +1,12 @@
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Compiling Cantera C++ Programs &mdash; Cantera 2.0.2 documentation</title>
     
-    <link rel="stylesheet" href="../_static/site.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <title>Compiling Cantera C++ Programs &#8212; Cantera 2.0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css">
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -26,35 +21,31 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="Cantera 2.0.2 documentation" href="../index.html" />
-    <link rel="up" title="C++ Interface User’s Guide" href="index.html" />
-    <link rel="next" title="C++ Header Files" href="headers.html" />
-    <link rel="prev" title="C++ Interface User’s Guide" href="index.html" /> 
-  </head>
+    <link rel="shortcut icon" href="../_static/favicon.ico">
+    <link rel="top" title="Cantera 2.0.2 documentation" href="../index.html">
+    <link rel="up" title="C++ Interface User&#8217;s Guide" href="index.html">
+    <link rel="next" title="C++ Header Files" href="headers.html">
+    <link rel="prev" title="C++ Interface User&#8217;s Guide" href="index.html"> 
+  <meta content="noindex" name="robots"></head>
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="../index.html">
-<img src="../_static/cantera-logo.png" border="0" alt="Cantera"/></a>
+<img src="../_static/cantera-logo.png" border="0" alt="Cantera"></a>
 </div>
 
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="headers.html" title="C++ Header Files"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="C++ Interface User’s Guide"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Cantera</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">C++ Interface User&#8217;s Guide</a> &raquo;</li> 
+          <a href="../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="headers.html" title="C++ Header Files" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="index.html" title="C++ Interface User&#8217;s Guide" accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &#187;</li>
+          <li><a href="index.html" accesskey="U">C++ Interface User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
 
@@ -71,23 +62,20 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">C++ Interface User&#8217;s Guide</a></p>
+  <p class="topless"><a href="index.html" title="previous chapter">C++ Interface User&#8217;s Guide</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="headers.html"
-                        title="next chapter">C++ Header Files</a></p>
+  <p class="topless"><a href="headers.html" title="next chapter">C++ Header Files</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/cxx-guide/compiling.txt"
-           rel="nofollow">Show Source</a></li>
+    <li><a href="../_sources/cxx-guide/compiling.txt" rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     <p class="searchtip" style="font-size: 90%">
     Enter search terms or a module, class or function name.
@@ -102,14 +90,14 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="compiling-cantera-c-programs">
-<h1>Compiling Cantera C++ Programs<a class="headerlink" href="#compiling-cantera-c-programs" title="Permalink to this headline">¶</a></h1>
+  <blockquote><div><div class="admonition warning"><p class="first admonition-title">Warning</p><p class="last">This documentation is for an old version of Cantera. You can find docs for newer versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p></div></div></blockquote><div class="section" id="compiling-cantera-c-programs">
+<h1>Compiling Cantera C++ Programs<a class="headerlink" href="#compiling-cantera-c-programs" title="Permalink to this headline">&#182;</a></h1>
 <p>In general, it should be possible to use Cantera with any build system by
 specifying the appropriate header and library paths, and specifying the required
 libraries when linking. It is also necessary to specify the paths for libraries
 used by Cantera, e.g. Sundials, BLAS, and LAPACK.</p>
 <div class="section" id="pkg-config">
-<h2>pkg-config<a class="headerlink" href="#pkg-config" title="Permalink to this headline">¶</a></h2>
+<h2>pkg-config<a class="headerlink" href="#pkg-config" title="Permalink to this headline">&#182;</a></h2>
 <p>On systems where the <tt class="docutils literal"><span class="pre">pkg-config</span></tt> program is installed, it can be used to
 determine the correct compiler and linker flags for use with Cantera. For
 example:</p>
@@ -122,7 +110,7 @@ LIBS +<span class="o">=</span> <span class="k">$(</span>shell pkg-config --libs 
 </pre></div>
 </div>
 <p>Or in an SConstruct file:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">env</span><span class="o">.</span><span class="n">ParseConfig</span><span class="p">(</span><span class="s">&quot;pkg-config --cflags --libs cantera&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">env</span><span class="o">.</span><span class="n">ParseConfig</span><span class="p">(</span><span class="s">"pkg-config --cflags --libs cantera"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Note that <tt class="docutils literal"><span class="pre">pkg-config</span></tt> will work only if it can find the <tt class="docutils literal"><span class="pre">cantera.pc</span></tt>
@@ -131,7 +119,7 @@ file. If Cantera&#8217;s libraries are not installed in a standard location such
 environment variable appropriately before using <tt class="docutils literal"><span class="pre">pkg-config</span></tt>.</p>
 </div>
 <div class="section" id="scons">
-<h2>SCons<a class="headerlink" href="#scons" title="Permalink to this headline">¶</a></h2>
+<h2>SCons<a class="headerlink" href="#scons" title="Permalink to this headline">&#182;</a></h2>
 <p>SCons is a multi-platform, Python-based build system. It is the build system
 used to compile Cantera. The description of how to build a project is contained
 in a file named <tt class="docutils literal"><span class="pre">SConstruct</span></tt>. The <tt class="docutils literal"><span class="pre">SConstruct</span></tt> file is actually a Python
@@ -141,16 +129,16 @@ SCons-based build system.</p>
 look like this:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">()</span>
 
-<span class="n">env</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">CCFLAGS</span><span class="o">=</span><span class="s">&#39;-g&#39;</span><span class="p">,</span>
-           <span class="n">CPPPATH</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;/usr/local/cantera/include&#39;</span><span class="p">,</span>
-                    <span class="s">&#39;/usr/local/sundials/include&#39;</span><span class="p">],</span>
-           <span class="n">LIBS</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;cantera&#39;</span><span class="p">,</span> <span class="s">&#39;sundials_cvodes&#39;</span><span class="p">,</span> <span class="s">&#39;sundials_ida&#39;</span><span class="p">,</span>
-                 <span class="s">&#39;sundials_nvecserial&#39;</span><span class="p">,</span> <span class="s">&#39;lapack&#39;</span><span class="p">,</span> <span class="s">&#39;blas&#39;</span><span class="p">],</span>
-           <span class="n">LIBPATH</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;/usr/local/cantera/lib&#39;</span><span class="p">,</span>
-                    <span class="s">&#39;/usr/local/sundials/lib&#39;</span><span class="p">],</span>
-           <span class="n">LINKFLAGS</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;-g&#39;</span><span class="p">,</span> <span class="s">&#39;-pthread&#39;</span><span class="p">])</span>
+<span class="n">env</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">CCFLAGS</span><span class="o">=</span><span class="s">'-g'</span><span class="p">,</span>
+           <span class="n">CPPPATH</span><span class="o">=</span><span class="p">[</span><span class="s">'/usr/local/cantera/include'</span><span class="p">,</span>
+                    <span class="s">'/usr/local/sundials/include'</span><span class="p">],</span>
+           <span class="n">LIBS</span><span class="o">=</span><span class="p">[</span><span class="s">'cantera'</span><span class="p">,</span> <span class="s">'sundials_cvodes'</span><span class="p">,</span> <span class="s">'sundials_ida'</span><span class="p">,</span>
+                 <span class="s">'sundials_nvecserial'</span><span class="p">,</span> <span class="s">'lapack'</span><span class="p">,</span> <span class="s">'blas'</span><span class="p">],</span>
+           <span class="n">LIBPATH</span><span class="o">=</span><span class="p">[</span><span class="s">'/usr/local/cantera/lib'</span><span class="p">,</span>
+                    <span class="s">'/usr/local/sundials/lib'</span><span class="p">],</span>
+           <span class="n">LINKFLAGS</span><span class="o">=</span><span class="p">[</span><span class="s">'-g'</span><span class="p">,</span> <span class="s">'-pthread'</span><span class="p">])</span>
 
-<span class="n">sample</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">Program</span><span class="p">(</span><span class="s">&#39;sample&#39;</span><span class="p">,</span> <span class="s">&#39;sample.cpp&#39;</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">Program</span><span class="p">(</span><span class="s">'sample'</span><span class="p">,</span> <span class="s">'sample.cpp'</span><span class="p">)</span>
 <span class="n">Default</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -166,7 +154,7 @@ contained in the <tt class="docutils literal"><span class="pre">samples</span></
 and the <a class="reference external" href="http://www.scons.org">SCons homepage</a>.</p>
 </div>
 <div class="section" id="make">
-<h2>Make<a class="headerlink" href="#make" title="Permalink to this headline">¶</a></h2>
+<h2>Make<a class="headerlink" href="#make" title="Permalink to this headline">&#182;</a></h2>
 <p>Cantera is distributed with an &#8220;include Makefile&#8221; that can be used with
 Make-based build systems. This file <tt class="docutils literal"><span class="pre">Cantera.mak</span></tt> is located in the
 <tt class="docutils literal"><span class="pre">samples</span></tt> subdirectory of the Cantera installation directory. To use it, add a
@@ -215,23 +203,19 @@ dist-clean: clean
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="headers.html" title="C++ Header Files"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="C++ Interface User’s Guide"
-             >previous</a> |</li>
-        <li><a href="../index.html">Cantera</a> &raquo;</li>
-          <li><a href="index.html" >C++ Interface User&#8217;s Guide</a> &raquo;</li> 
+          <a href="../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="headers.html" title="C++ Header Files">next</a> |</li>
+        <li class="right">
+          <a href="index.html" title="C++ Interface User&#8217;s Guide">previous</a> |</li>
+        <li><a href="../index.html">Cantera</a> &#187;</li>
+          <li><a href="index.html">C++ Interface User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Cantera Developers.
+        &#169; Copyright 2012, Cantera Developers.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
