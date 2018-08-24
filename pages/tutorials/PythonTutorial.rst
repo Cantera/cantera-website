@@ -300,9 +300,8 @@ surface reactions must also be passed as arguments to :py:class:`Interface`.
 Converting CK-format files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-See the `Converting CK-format Files <ck-conversion.html>`__ documentation for
-information on how to convert from Ck-format to CTI format.
-
+See the :doc:`Converting CK-format Files <ck2cti-tutorial>` documentation for
+information on how to convert from CK-format to CTI format.
 
 Getting Help
 ============
