@@ -19,7 +19,7 @@ script:
   - export NIKOLA_OUTPUT_DIR=output
   - NIKOLA_DEBUG=1 nikola build
   - |
-    if [[ "${TRAVIS_PULL_REQUEST}" == "false" ]] && [[ "${TRAVIS_BRANCH}" == "master" ]]; then
+    if [[ "${TRAVIS_PULL_REQUEST}" == "false" && ("${TRAVIS_BRANCH}" == "master" || "${TRAVIS_BRANCH}" == "testing") ]]; then
       openssl aes-256-cbc -k "${ctdeploy_pass}" -in ./.ci_support/ctdeploy_key.enc -out ./.ci_support/ctdeploy_key -d;
       chmod 0600 ./.ci_support/ctdeploy_key;
       RSYNC_OPTIONS=(
@@ -35,7 +35,11 @@ script:
       )
       RSYNC_USER="ctdeploy";
       RSYNC_SERVER="cantera.org";
-      RSYNC_DEST="cantera";
+      if [[ "${TRAVIS_BRANCH}" == "master" ]]; then
+        RSYNC_DEST="cantera";
+      else
+        RSYNC_DEST="testing.cantera.org";
+      fi
       set -x;
       rsync "${RSYNC_OPTIONS[@]}" "${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST};
       set +x;
