@@ -1,1 +1,1 @@
-Nikola[extras]==8.0.0b3
+Nikola[extras]==8.0.0
