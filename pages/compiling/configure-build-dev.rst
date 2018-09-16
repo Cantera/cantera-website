@@ -1,4 +1,4 @@
-.. title: Configure and Build
+.. title: Configure and Build (development version)
 .. description: Configure and Build Cantera
 
 .. jumbotron::
@@ -9,16 +9,16 @@
 
    .. class:: lead
 
-      These directions are for the current release of Cantera, version 2.4. For
-      the development version, see `these instructions <configure-build-dev.html>`_.
+      These directions are for the development version of Cantera. For
+      the current release, see `these instructions <configure-build.html>`_.
 
-.. _sec-determine-config:
+.. _sec-determine-config-dev:
 
 Determine configuration options
 ===============================
 
 * Run ``scons help`` to see a list of all of the configuration options for Cantera, or
-  see all of the options on the :ref:`Configuration Options <scons-config>` page.
+  see all of the options on the :ref:`Configuration Options <scons-config-dev>` page.
 
 * Configuration options are specified as additional arguments to the ``scons``
   command, e.g.:
@@ -54,76 +54,48 @@ Determine configuration options
 
 * The following lists of options are not complete, they show only some commonly
   used options. The entire list of options can be found on the
-  :ref:`Configuration options <scons-config>` page.
+  :ref:`Configuration options <scons-config-dev>` page.
 
 Common Options
 ^^^^^^^^^^^^^^^
 
-* :ref:`blas_lapack_libs <blas-lapack-libs>`
+* :ref:`blas_lapack_libs <blas-lapack-libs-dev>`
 
   * On OS X, the Accelerate framework is automatically used to provide
     optimized versions of BLAS and LAPACK, so the ``blas_lapack_libs``
     option should generally be left unspecified.
 
-* :ref:`blas_lapack_dir <blas-lapack-dir>`
-* :ref:`boost_inc_dir <boost-inc-dir>`
-* :ref:`debug <debug>`
-* :ref:`optimize <optimize>`
-* :ref:`prefix <prefix>`
-* :ref:`sundials_include <sundials-include>`
-* :ref:`sundials_libdir <sundials-libdir>`
+* :ref:`blas_lapack_dir <blas-lapack-dir-dev>`
+* :ref:`boost_inc_dir <boost-inc-dir-dev>`
+* :ref:`debug <debug-dev>`
+* :ref:`optimize <optimize-dev>`
+* :ref:`prefix <prefix-dev>`
+* :ref:`sundials_include <sundials-include-dev>`
+* :ref:`sundials_libdir <sundials-libdir-dev>`
 
-General Python Module Options
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Python Module Options
+^^^^^^^^^^^^^^^^^^^^^
 
-By default, SCons will try to build the full Python interface for
-whichever version of Python is running SCons. This requires that
-NumPy is installed for that version of Python, and that Cython is
-installed for whichever Python is running SCons. The following SCons
-options control how the Python module is built:
+Compiling the Cantera Python module requires that NumPy and Cython are installed
+for the target installation of Python. The following SCons options control how
+the Python module is built:
 
-* :ref:`python_cmd <python-cmd>`
-* :ref:`python_package <python-package>`
-* :ref:`python_prefix <python-prefix>`
+* :ref:`python_package <python-package-dev>`
+* :ref:`python_cmd <python-cmd-dev>`
 
-Note that these general options should not be used at the same time
-as the Python-version specific options discussed below. If SCons
-detects that it is being run with Python 2, and the
-:ref:`python2_package <python2-package>` option is set, the build will
-raise an error and exit; or if SCons detects that it is being run with
-Python 3, and the :ref:`python3_package <python3-package>` option is
-set, the build will raise an error and exit.
+  * By default, SCons will try to build the full Python interface for copy of
+    Python that is running SCons. Use this option if you wish to build Cantera
+    for a different Python installation.
 
-If a user wishes to build multiple Python interfaces, or a Python
-interface for the version of Python that is not running SCons, they
-should use the version-specific options below, and set the
-:ref:`python_package <python-package>` option to ``none``.
+* :ref:`python_prefix <python-prefix-dev>`
 
-Python 2 Module Options
-^^^^^^^^^^^^^^^^^^^^^^^
+For backwards compatibility, the following options are also allowed, but are
+overridden by the above options. These options will be removed in a future
+version of Cantera:
 
-By default, if SCons detects a Python 2 interpreter installed in a
-default location (i.e., ``python2`` is on the ``PATH`` environment
-variable) or ``python2_package`` is ``full``, SCons will try to build
-the Python module for Python 2. The following SCons options control how
-the Python 2 module is built:
-
-* :ref:`python2_cmd <python2-cmd>`
-* :ref:`python2_package <python2-package>`
-* :ref:`python2_prefix <python2-prefix>`
-
-Python 3 Module Options
-^^^^^^^^^^^^^^^^^^^^^^^
-
-By default, if SCons detects a Python 3 interpreter installed in a
-default location (i.e., ``python3`` is on the ``PATH`` environment
-variable) or ``python3_package`` is ``full``, SCons will try to build
-the Python module for Python 3. The following SCons options control how
-the Python 3 module is built:
-
-* :ref:`python3_cmd <python3-cmd>`
-* :ref:`python3_package <python3-package>`
-* :ref:`python3_prefix <python3-prefix>`
+* :ref:`python3_cmd <python3-cmd-dev>`
+* :ref:`python3_package <python3-package-dev>`
+* :ref:`python3_prefix <python3-prefix-dev>`
 
 Windows Only Options
 ^^^^^^^^^^^^^^^^^^^^
@@ -147,13 +119,13 @@ Windows Only Options
   Studio compiler. If you aren't building the Python module, you can override
   this with the configuration options ``target_arch`` and ``msvc_version``.
 
-* To compile with MinGW, specify the :ref:`toolchain <toolchain>` option::
+* To compile with MinGW, specify the :ref:`toolchain <toolchain-dev>` option::
 
     toolchain=mingw
 
-* :ref:`msvc_version <msvc-version>`
-* :ref:`target_arch <target-arch>`
-* :ref:`toolchain <toolchain>`
+* :ref:`msvc_version <msvc-version-dev>`
+* :ref:`target_arch <target-arch-dev>`
+* :ref:`toolchain <toolchain-dev>`
 
 MATLAB Toolbox Options
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -261,17 +233,6 @@ Compile Cantera & Test
   .. code:: bash
 
      scons build ...
-
-.. caution::
-
-   If you are compiling with a version of SCons installed by Homebrew on macOS, the appropriate
-   way to perform any commands with SCons is
-
-   .. code:: bash
-
-      python3 /usr/local/bin/scons command ...
-
-   This ensures that the dependencies are chosen from the correct version of Python.
 
 * If Cantera compiles successfully, you should see a message that looks like::
 
