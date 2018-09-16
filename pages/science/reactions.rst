@@ -165,7 +165,7 @@ The SRI Falloff Function
 
 This falloff function is based on the one originally due to Stewart et al. [#Stewart1989]_, which
 required three parameters :math:`a`, :math:`b`, and :math:`c`. Kee et al. [#Kee1989]_ generalized
-this function slightly by adding two more parameters :math:`d and :math:`e`. (The original form
+this function slightly by adding two more parameters :math:`d` and :math:`e`. (The original form
 corresponds to :math:`d = 1` and :math:`e = 0`.) Cantera supports the extended 5-parameter form,
 given by:
 
