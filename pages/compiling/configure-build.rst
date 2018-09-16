@@ -1,4 +1,5 @@
-.. title: Configure & Build
+.. title: Configure and Build
+.. description: Configure and Build Cantera
 
 .. jumbotron::
 
