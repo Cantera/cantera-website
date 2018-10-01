@@ -105,7 +105,7 @@ A few notes:
 
 * This forum is not directly moderated or supported by the Cantera developers
   or Steering Committee. While developers may periodically read or respond to
-  posts, there is no expectation of any ``official`` Cantera support through
+  posts, there is no expectation of any official Cantera support through
   this forum.
 * Posts or questions directly relevant to Cantera usage or support should
   still be directed to the Cantera Users' Group. Having this information in a
