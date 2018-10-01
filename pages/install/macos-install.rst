@@ -38,7 +38,7 @@ Next, install Cantera into an environment called ``cantera24``:
 
 .. code-block:: bash
 
-   $HOME/miniconda/bin/conda create -n cantera24 -c cantera cantera
+   $HOME/miniconda3/bin/conda create -n cantera24 -c cantera cantera
 
 **Download and run the Matlab Interface Installer**
 
