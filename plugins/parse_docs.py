@@ -1,5 +1,7 @@
-"""
-Parse the documentation to allow Sphinx-style docs references
+"""Parse the documentation to allow Sphinx-style docs references.
+
+This plugin allows referring to other locations in the documentation
+with ``:class:`` style references.
 """
 from pathlib import Path
 
@@ -9,13 +11,12 @@ from lxml.html import tostring, parse
 
 
 class ParseDocs(Task):
-    """
-    Parse the documentation to find link targets.
-    """
+    """Parse the documentation to find link targets."""
 
     name = 'parse_docs'
 
     def set_site(self, site):
+        """Set up the Nikola site instance for this plugin."""
         self.site = site
 
         # Ensure that this Task is run before the posts are rendered
@@ -37,6 +38,9 @@ class ParseDocs(Task):
         return super(ParseDocs, self).set_site(site)
 
     def gen_tasks(self):
+        """Generate the tasks to be done."""
+        # Ensure that this task is created, even if nothing needs to be done
+        yield self.group_task()
 
         def process_targets(dirname, base_dir, docs_folder):
             files = (base_dir/dirname).glob('*.html')
