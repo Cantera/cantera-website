@@ -1,5 +1,10 @@
-"""
-Parser for :class: and :func: roles
+"""Parser for :class: and :func: roles.
+
+This module implements a reST extension to put links for the ``:class:``
+and ``:func:`` roles based on links to the documentation. The links
+are stored in the site cache in the ``*_targets`` key, where the ``*``
+is one of the contexts, ``py``, ``mat``, and ``cti``. The targets are
+generated and stored in the cache by the ``parse_docs`` plugin.
 """
 
 from docutils import nodes
@@ -13,12 +18,12 @@ LOGGER = get_logger('rest_class')
 
 
 class Plugin(RestExtension):
-    """Plugin for class role."""
+    """Plugin for :class: and :func: role."""
 
     name = 'rest_class'
 
     def set_site(self, site):
-        """Set Nikola site."""
+        """Set the Nikola site instance for this plugin."""
         self.site = site
         roles.register_canonical_role('class', class_role)
         roles.register_canonical_role('cti:class', class_role)
@@ -107,7 +112,7 @@ def class_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
 
 
 def make_link_node(rawtext, text, code_node, url, options):
-    """Make a reST link node."""
+    """Make a docutils link node."""
     node = nodes.reference('', '', refuri=url, *options)
     node.append(code_node)
     return node
