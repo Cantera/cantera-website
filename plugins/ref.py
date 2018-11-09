@@ -1,5 +1,8 @@
-"""
-Parser for :ref: role
+"""Parser for :ref: role.
+
+This plugin is an extension for the reST parser in Nikola that looks
+for the ``:ref:`` role and replaces that reference with a link node
+to the appropriate target from the `process_ref_targets` plugin.
 """
 
 from docutils import nodes
@@ -75,7 +78,10 @@ def _ref_link(rawtext, text, options={}, content=[]):
 
 
 def ref_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
-    """Handle the ref role."""
+    """Handle the ref role.
+
+    The function signature here is a standard signature for roles in reST plugins.
+    """
     success, processing, title, permalink, target = _ref_link(rawtext, text, options, content)
     if processing:
         return [nodes.raw('', text, format='html')], []
