@@ -1,3 +1,16 @@
+"""Find and process reference targets in reST files.
+
+References in reST files can be in the form ``:ref:``.
+This module processes labels in the form of
+
+.. code:: rest
+
+   .. labelname:
+
+and stores the resulting page location and anchor tag for the
+label. This information is stored in the ``site.ref_targets``
+and ``site.anon_ref_targets` attributes.
+"""
 from nikola.plugin_categories import Task
 from nikola.utils import get_logger, config_changed
 from docutils.io import StringInput, StringOutput
@@ -8,12 +21,12 @@ from copy import copy
 
 
 class ProcessRefTargets(Task):
-    """Find and process targets in reST files"""
+    """Find and process targets in reST files."""
 
     name = "process_ref_targets"
 
     def set_site(self, site):
-
+        """Set the Nikola site instance for this plugin."""
         self.site = site
         self.logger = get_logger(self.name)
         self.site.anon_ref_targets = {}
@@ -30,6 +43,7 @@ class ProcessRefTargets(Task):
         return super(ProcessRefTargets, self).set_site(site)
 
     def gen_tasks(self):
+        """Generate the set of processing tasks."""
         self.site.scan_posts()
         kw = {
             "translations": self.site.config["TRANSLATIONS"],
@@ -70,6 +84,7 @@ class ProcessRefTargets(Task):
 
 
 def update_cache(site):
+    """Update the Nikola build cache."""
     cached_targets = site.cache.get('ref_targets')
     anon_cached_targets = site.cache.get('anon_ref_targets')
     if cached_targets is not None:
@@ -86,6 +101,7 @@ def update_cache(site):
 
 
 def process_targets(site, logger, source, post):
+    """Process the target locations in the reST files."""
     site.processing_targets = True
     reader = Reader()
     reader.l_settings = {'source': source}
@@ -129,7 +145,9 @@ def process_targets(site, logger, source, post):
 
         def clean_astext(node):
             """Like node.astext(), but ignore images.
-            Taken from sphinx.util.nodes"""
+
+            Taken from sphinx.util.nodes
+            """
             node = node.deepcopy()
             for img in node.traverse(nodes.image):
                 img['alt'] = ''
