@@ -77,7 +77,7 @@ def depart_container(self, node):
 class Container(Directive):
     """Overridden Container.
 
-    You can choose any tag name just like a barebone computer or a wild card.
+    You can choose any tag name just like a barebones computer or a wild card.
     Default tag name is div.
     This is based on the code at docutils.parsers.rst.directives.html.
     Derived classes:
@@ -92,7 +92,7 @@ class Container(Directive):
         class Html5Header(Container):
             default_tagname = 'header'
 
-    Restructuredtext example::
+    RestructuredText example::
 
         .. container::
            :tagname: header
