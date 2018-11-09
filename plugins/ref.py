@@ -58,12 +58,10 @@ def _ref_link(rawtext, text, options={}, content=[]):
         return True, False, title, permalink, target
     else:
         LOGGER.error('Unknown reference target: {}'.format(target))
-        # LOGGER.error('ref_targets is: {}'.format(ref_role.site.ref_targets))
         return False, False, None, None, target
 
     if target not in ref_targets:
         LOGGER.error('Unknown reference target: {}'.format(target))
-        # LOGGER.error('ref_targets is: {}'.format(ref_role.site.ref_targets))
         return False, False, None, None, target
 
     permalink = ref_targets[target][0]
