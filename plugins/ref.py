@@ -84,16 +84,10 @@ def ref_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     if processing:
         return [nodes.raw('', text, format='html')], []
     if success:
-        node = make_link_node(rawtext, title, permalink, options)
+        node = nodes.reference(rawtext, title, refuri=permalink, *options)
         return [node], []
     else:
         msg = inliner.reporter.warning(
             'Unknown reference target: {0}"'.format(target), line=lineno)
         prb = inliner.problematic(rawtext, rawtext, msg)
         return [prb], [msg]
-
-
-def make_link_node(rawtext, text, url, options):
-    """Make a reST link node."""
-    node = nodes.reference(rawtext, text, refuri=url, *options)
-    return node
