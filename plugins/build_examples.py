@@ -1,3 +1,10 @@
+"""Build the examples from the Cantera repository into Nikola listings.
+
+This plugin finds the Cantera examples directory in the Cantera repository
+to process the examples into nicely formatted HTML along the lines of
+Nikola listings. The Cantera examples are found in the ``EXAMPLES_FOLDERS``
+configuration option from the top-level config.py.
+"""
 from pathlib import Path
 import ast
 import re
@@ -19,13 +26,12 @@ import natsort
 
 
 class BuildExamples(Task):
-    """Build the Cantera examples into the documentation"""
+    """Build the Cantera examples into the documentation."""
 
     name = "build_examples"
 
     def set_site(self, site):
         """Set Nikola site."""
-
         self.kw = {
             "default_lang": site.config["DEFAULT_LANG"],
             "examples_folders": site.config["EXAMPLES_FOLDERS"],
@@ -56,7 +62,9 @@ class BuildExamples(Task):
         def render_example_index(type, headers, input_folder, output_folder, output_file):
             def chunks(l, n):
                 """Yield successive n-sized chunks from l.
-                https://stackoverflow.com/a/312464"""
+
+                https://stackoverflow.com/a/312464
+                """
                 for i in range(0, len(l), n):
                     yield l[i:i + n]
 
@@ -78,8 +86,8 @@ class BuildExamples(Task):
         def render_listing(in_name, out_name, input_folder, output_folder):
             needs_ipython_css = False
             if in_name.endswith('.ipynb'):
-                # Special handling: render ipynbs in listings (Issue #1900)
-                ipynb_compiler = self.site.plugin_manager.getPluginByName("ipynb", "PageCompiler").plugin_object  # NOQA: E501
+                # Special handling: render ipynb in listings (Issue #1900)
+                ipynb_compiler = self.site.plugin_manager.getPluginByName("ipynb", "PageCompiler").plugin_object
                 with io.open(in_name, "r", encoding="utf8") as in_file:
                     nb_json = ipynb_compiler._nbformat_read(in_file)
                     ipynb_raw = ipynb_compiler._compile_string(nb_json)
