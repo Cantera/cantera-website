@@ -9,5 +9,4 @@ PluginCategory = CompilerExtension
 [Documentation]
 author = Bryan Weber
 version = 0.1
-website = https://getnikola.com/
-description = Role to link another page / post from the blog
+description = Role to link to a :ref: to a target (processed from process_ref_targets) from another document

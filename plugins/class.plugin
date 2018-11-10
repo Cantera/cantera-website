@@ -9,5 +9,4 @@ PluginCategory = CompilerExtension
 [Documentation]
 author = Bryan Weber
 version = 0.1
-website = https://getnikola.com/
-description = Role to link a class in the documentation
+description = Role to link to a class or function in the documentation from other reST files
