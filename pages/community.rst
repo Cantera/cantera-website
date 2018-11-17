@@ -12,6 +12,8 @@
 
       Resources to help you participate in the community of Cantera users and developers
 
+.. contents:: :depth: 2
+
 About the Cantera Community
 ---------------------------
 
