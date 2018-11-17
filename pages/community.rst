@@ -195,7 +195,7 @@ The following BibTeX entry may also be used:
                 Kinetics, Thermodynamics, and Transport Processes",
        year = 2018,
        note = "Version 2.4.0",
-       howpublished = "\url{http://www.cantera.org}",
+       howpublished = "\url{https://www.cantera.org}",
        doi = {10.5281/zenodo.1174508}
    }
 
