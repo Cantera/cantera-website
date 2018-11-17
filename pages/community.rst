@@ -28,6 +28,8 @@ contributions of its users. These contributions range from diagnosing and
 reporting problems/bugs, to helping others learn to use Cantera, to developing
 and implementing new software capabilities.
 
+While Cantera provides some standalone models and applications, numerous external packages exist that provide more specialized functionality and rely on Cantera. We provide a non-exhaustive list of these :doc:`affiliated packages <affiliated-packages>`.
+
 Steering Committee
 ~~~~~~~~~~~~~~~~~~
 
