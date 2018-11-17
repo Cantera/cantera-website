@@ -18,7 +18,7 @@
       recommend that all new users install the Python interface via Conda. If you want to use one of
       the other interfaces, please select the installation instructions for your platform.
 
-.. accordion::
+.. container::
 
    .. row::
 
