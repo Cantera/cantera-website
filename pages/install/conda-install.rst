@@ -17,7 +17,8 @@
       `Miniconda <https://conda.io/miniconda.html>`__ are Python distributions that include the
       ``conda`` package manager, which can be used to install Cantera. Both distributions are
       available for Linux, macOS, and Windows. Note that installing Cantera using Conda will only
-      provide the Cantera Python module. If you want to use the other Cantera interfaces, see the
+      provide the Cantera Python module. If you want to use the other Cantera interfaces
+      (to use Cantera from MATLAB, Fortran, C++, or C) then see the
       :ref:`OS-specific installation options <sec-install>`.
 
 Anaconda and Miniconda both include ``conda``; the difference is that Anaconda includes a large
