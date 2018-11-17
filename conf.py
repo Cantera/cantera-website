@@ -298,7 +298,7 @@ FILES_FOLDERS = {
     'api-docs/docs-2.2': 'documentation/docs-2.2',
     'api-docs/docs-2.3': 'documentation/docs-2.3',
     'api-docs/docs-2.4': 'documentation/docs-2.4',
-    'files/survey2013': 'survey2013',
+    'files': '',
 }
 
 # This is the "development" version of this dictionary
