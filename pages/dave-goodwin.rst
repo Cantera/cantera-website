@@ -23,7 +23,7 @@
 
 *"We can't control the hand of cards we are dealt, but we sure can determine how we play them."*
 
-Dave Goodwin, the original developer of Cantera, passed away in 2012. We would like to provide this page for his friends and colleagues to salute his efforts at developing an open-source constitutive modeling package. Please submit your thoughts and remembrances about Dave for inclusion on this page.
+Dave Goodwin, the original developer of Cantera, passed away in 2012. We would like to provide this page for his friends and colleagues to salute his efforts at developing an open-source constitutive modeling package. Caltech also wrote a `lengthy article about Dave's life and work <http://www.caltech.edu/news/caltech-mourns-passing-david-g-goodwin-37485>`__. Please submit your thoughts and remembrances about Dave for inclusion on this page.
 
 ------------
 
