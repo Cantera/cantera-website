@@ -17,7 +17,7 @@
 About the Cantera Community
 ---------------------------
 
-Cantera was originally developed by Prof. David G. Goodwin at the California
+Cantera was originally developed by :doc:`Prof. David G. Goodwin <dave>` at the California
 Institute of Technology. Building on Prof. Goodwin's legacy, Cantera is licensed
 under a `permissive 3-Clause BSD license
 <https://github.com/Cantera/cantera/blob/master/License.txt>`__, ensuring that the
