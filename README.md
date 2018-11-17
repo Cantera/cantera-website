@@ -11,5 +11,4 @@ site is built using the [Nikola](https://getnikola.com) static site generator.
 3. Clone the Cantera website source: `git clone https://github.com/Cantera/cantera-website.git`
 4. Enter the website repo: `cd cantera-website`
 5. Inside the website repo, install the required packages: `pip install -r requirements.txt`
-6. Build the website: `nikola build`
-7. View the website: `open output/index.html`
+6. Build the website and open in browser: `nikola auto -b`
