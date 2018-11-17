@@ -6,7 +6,7 @@ copying files within the folder. This substantially reduces the
 printed output to stdout during the copying process and is much
 faster. We prefer this plugin since we are copying folders around
 for the API documentation."""
-from shutil import copytree, ignore_patterns, rmtree
+from shutil import copytree, ignore_patterns, rmtree, copy2
 import os
 
 from nikola.plugin_categories import Task
@@ -32,7 +32,10 @@ class CopyTree(Task):
             if os.path.exists(dst):
                 rmtree(dst)
 
-            copytree(src=src, dst=dst, ignore=ignore)
+            try:
+                copytree(src=src, dst=dst, ignore=ignore)
+            except NotADirectoryError:
+                copy2(src=src, dst=dst)
 
         for src, rel_dst in kw["files_folders"].items():
             final_dst = os.path.join(kw["output_folder"], rel_dst)
