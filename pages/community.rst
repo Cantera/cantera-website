@@ -180,17 +180,18 @@ your work, as well as giving credit to the many `authors
 their time to developing Cantera. The recommended citation for Cantera is as
 follows:
 
-   David G. Goodwin, Harry K. Moffat, and Raymond L. Speth. *Cantera: An
-   object-oriented software toolkit for chemical kinetics, thermodynamics, and
-   transport processes*. https://www.cantera.org, 2018. Version 2.4.0.
-   doi:10.5281/zenodo.170284
+   David G. Goodwin, Raymond L. Speth, Harry K. Moffat, and Bryan W. Weber.
+   *Cantera: An object-oriented software toolkit for chemical kinetics,
+   thermodynamics, and transport processes*. https://www.cantera.org,
+   2018. Version 2.4.0. doi:10.5281/zenodo.170284
 
 The following BibTeX entry may also be used:
 
 .. code:: bibtex
 
    @misc{cantera,
-       author = "David G. Goodwin and Harry K. Moffat and Raymond L. Speth",
+       author = "David G. Goodwin and Raymond L. Speth and Harry K. Moffat
+                 and Bryan W. Weber",
        title = "Cantera: An Object-oriented Software Toolkit for Chemical
                 Kinetics, Thermodynamics, and Transport Processes",
        year = 2018,
