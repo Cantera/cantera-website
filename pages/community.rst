@@ -30,22 +30,12 @@ and implementing new software capabilities.
 
 While Cantera provides some standalone models and applications, numerous external packages exist that provide more specialized functionality and rely on Cantera. We provide a non-exhaustive list of these :doc:`affiliated packages <affiliated-packages>`.
 
-Steering Committee
-~~~~~~~~~~~~~~~~~~
+Governance
+~~~~~~~~~~
 
-The role of the steering committee is to ensure the long-term health of the
-Cantera project. This includes overseeing the development of the Cantera code
-and community in a way that most benefits the entire community of users and
-contributors. The steering committee can be contacted at `steering@cantera.org
-<mailto:steering@cantera.org>`__ The current steering committee (in alphabetical
-order) is:
+Cantera is governed by a Steering Committee; more information about our project's
+governance policies can be found on the :doc:`governance <governance>` page.
 
-* Steven DeCaluwe, Colorado School of Mines
-* \C. Franklin Goldsmith, Brown University
-* Kyle Niemeyer, Oregon State University
-* Raymond Speth, Massachusetts Institute of Technology
-* Bryan Weber, University of Connecticut
-* Richard West, Northeastern University
 
 The Cantera Users' Group
 ~~~~~~~~~~~~~~~~~~~~~~~~
