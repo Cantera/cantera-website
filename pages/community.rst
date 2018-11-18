@@ -128,6 +128,15 @@ governed by the `Cantera Code of Conduct
 of conduct sets expectations for the community to ensure that users and
 contributors are able to participate in a respectful and welcoming environment.
 
+Please adhere to this code of conduct in any interactions you have in the Cantera
+community. It is strictly enforced on all official Cantera repositories, websites,
+users' group, and other resources. If you encounter someone violating these terms,
+please `contact the code of conduct team <mailto:conduct@cantera.org>`__
+(`@speth <https://github.com/speth>`__,
+`@bryanwweber <https://github.com/bryanwweber>`__, and
+`@kyleniemeyer <https://github.com/kyleniemeyer>`__) and we will address it as
+soon as possible.
+
 Contributing Code
 ~~~~~~~~~~~~~~~~~
 
