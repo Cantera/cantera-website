@@ -144,22 +144,24 @@ class BuildExamples(Task):
 
         yield self.group_task()
 
+        # When any key or value in the uptodate dictionary changes, the
+        # examples pages need to be rebuilt.
+        uptodate = {"c": self.site.GLOBAL_CONTEXT}
+
+        for k, v in self.site.GLOBAL_CONTEXT["template_hooks"].items():
+            uptodate["||template_hooks|{0}||".format(k)] = v.calculate_deps()
+
+        for k in self.site._GLOBAL_CONTEXT_TRANSLATABLE:
+            uptodate[k] = self.site.GLOBAL_CONTEXT[k](self.kw["default_lang"])
+
+        # save navigation links as dependencies
+        uptodate["nav_links"] = uptodate["c"]["navigation_links"](
+            self.kw["default_lang"]
+        )
+
+        uptodate["kw"] = self.kw
+
         for input_folder, example_folder in self.kw["examples_folders"].items():
-
-            uptodate = {"c": self.site.GLOBAL_CONTEXT}
-
-            for k, v in self.site.GLOBAL_CONTEXT["template_hooks"].items():
-                uptodate["||template_hooks|{0}||".format(k)] = v.calculate_deps()
-
-            for k in self.site._GLOBAL_CONTEXT_TRANSLATABLE:
-                uptodate[k] = self.site.GLOBAL_CONTEXT[k](self.kw["default_lang"])
-
-            # save navigation links as dependencies
-            uptodate["nav_links"] = uptodate["c"]["navigation_links"](
-                self.kw["default_lang"]
-            )
-
-            uptodate["kw"] = self.kw
 
             #########################################################
             # Build the Python examples
