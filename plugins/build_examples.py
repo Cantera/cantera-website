@@ -21,6 +21,7 @@ from nikola.plugin_categories import Task
 from nikola import utils
 
 from pygments import highlight
+from pygments.util import ClassNotFound
 from pygments.lexers import get_lexer_for_filename, guess_lexer, TextLexer, MatlabLexer
 import natsort
 
@@ -112,10 +113,10 @@ class BuildExamples(Task):
                 with open(in_name, "r") as fd:
                     try:
                         lexer = get_lexer_for_filename(in_name)
-                    except Exception:
+                    except ClassNotFound:
                         try:
                             lexer = guess_lexer(fd.read())
-                        except Exception:
+                        except ClassNotFound:
                             lexer = TextLexer()
                         fd.seek(0)
                     code = highlight(
