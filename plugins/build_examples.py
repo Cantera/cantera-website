@@ -62,7 +62,7 @@ class BuildExamples(Task):
         self.ignored_extensions = (".pyc", ".pyo", ".cti", ".dat", ".ipynb_checkpoints")
 
         def render_example_index(
-            type, headers, input_folder, output_folder, output_file
+            ex_type, headers, input_folder, output_folder, output_file
         ):
             def chunks(l, n):
                 """Yield successive n-sized chunks from l.
@@ -76,7 +76,7 @@ class BuildExamples(Task):
                 file_dict["files"] = list(chunks(file_dict["files"], 3))
 
             permalink = os.path.relpath(output_file, self.kw["output_folder"])
-            title = "{} Examples".format(type).title()
+            title = "{} Examples".format(ex_type).title()
             context = {
                 "headers": headers,
                 "lang": self.kw["default_lang"],
@@ -86,7 +86,7 @@ class BuildExamples(Task):
                 "description": title,
             }
             self.site.render_template(
-                "{}-example-index.tmpl".format(type), output_file, context
+                "{}-example-index.tmpl".format(ex_type), output_file, context
             )
 
         def render_listing(in_name, out_name, input_folder, output_folder):
