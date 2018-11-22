@@ -288,31 +288,31 @@ class BuildExamples(Task):
                 headers = {"examples": {"name": "Examples"}}
                 files = []
                 summaries = {}
-                for file in p.iterdir():
+                for ex_file in p.iterdir():
                     if (
-                        "tut" in file.name
-                        or file.name == "README"
-                        or "test" in file.name
+                        "tut" in ex_file.name
+                        or ex_file.name == "README"
+                        or "test" in ex_file.name
                     ):
                         continue
                     if (
-                        file.suffix in self.ignored_extensions
-                        or file.name == ".DS_Store"
+                        ex_file.suffix in self.ignored_extensions
+                        or ex_file.name == ".DS_Store"
                     ):
                         continue
-                    files.append(file)
+                    files.append(ex_file)
                     doc = ""
-                    with open(file) as mfile:
+                    with open(ex_file) as mfile:
                         for line in mfile:
                             line = line.strip()
                             if line.startswith("%"):
                                 doc = line.strip("%").strip()
                             if doc:
                                 break
-                    name = file.stem.replace("_", " ")
+                    name = ex_file.stem.replace("_", " ")
                     if doc.lower().replace("_", " ").startswith(name):
                         doc = doc[len(name):].strip()
-                    summaries[file.name] = doc
+                    summaries[ex_file.name] = doc
                 headers["examples"]["summaries"] = summaries
                 this_files = list(map(str, files))
                 headers["examples"]["files"] = natsort.natsorted(
