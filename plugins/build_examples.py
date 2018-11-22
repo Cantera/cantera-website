@@ -180,12 +180,12 @@ class BuildExamples(Task):
 
                 p = Path(input_folder)
                 files = []
-                for dir in p.iterdir():
-                    if not dir.is_dir():
+                for ex_category in p.iterdir():
+                    if not ex_category.is_dir():
                         continue
                     summaries = {}
                     this_header_files = []
-                    for f in dir.iterdir():
+                    for f in ex_category.iterdir():
                         if f.suffix in self.ignored_extensions or f.name == ".DS_Store":
                             continue
                         files.append(f)
@@ -201,11 +201,11 @@ class BuildExamples(Task):
                                     doc += "."
                                 break
                         summaries[f.name] = doc
-                    headers[dir.stem]["summaries"] = summaries
+                    headers[ex_category.stem]["summaries"] = summaries
                     this_header_files = natsort.natsorted(
                         this_header_files, alg=natsort.IC
                     )
-                    headers[dir.stem]["files"] = this_header_files
+                    headers[ex_category.stem]["files"] = this_header_files
 
                 uptodate2 = uptodate.copy()
                 uptodate2["d"] = headers.keys()
@@ -414,14 +414,14 @@ class BuildExamples(Task):
                 p = Path(input_folder)
                 cache_folder = Path(self.kw["cache_folder"])
                 files = []
-                for dir in p.iterdir():
-                    if not dir.is_dir() or dir.name.startswith("."):
+                for ex_category in p.iterdir():
+                    if not ex_category.is_dir() or ex_category.name.startswith("."):
                         continue
-                    if dir.suffix in self.ignored_extensions:
+                    if ex_category.suffix in self.ignored_extensions:
                         continue
                     summaries = {}
                     this_header_files = []
-                    for f in dir.iterdir():
+                    for f in ex_category.iterdir():
                         if f.suffix in self.ignored_extensions or f.is_dir():
                             continue
                         if f.name == ".ipynb_checkpoints" or f.name == ".DS_Store":
@@ -439,7 +439,7 @@ class BuildExamples(Task):
                                 if "img" in s:
                                     img = lxml.html.fromstring(s)
                                     img_fname = img.attrib["src"]
-                                    b64_str = get_b64_str(p, dir, img_fname)
+                                    b64_str = get_b64_str(p, ex_category, img_fname)
                                     img.attrib["src"] = b64_str
                                     new_img = lxml.html.tostring(img).decode("utf-8")
                                     cell["source"][i] = re.sub("<img.*/>", new_img, s)
@@ -455,7 +455,7 @@ class BuildExamples(Task):
                                             mime=mime, b64_src=b64_src
                                         )
                                     else:
-                                        b64_str = get_b64_str(p, dir, img_fname)
+                                        b64_str = get_b64_str(p, ex_category, img_fname)
 
                                     new_img = '<img src="{b64_str}" alt="{img_alt}"/>'.format(  # NOQA: E501
                                         b64_str=b64_str, img_alt=img_alt
@@ -474,11 +474,11 @@ class BuildExamples(Task):
                         with open(cache_file, "w") as jfile:
                             json.dump(data, jfile)
                         summaries[str(f).split("/")[-1]] = doc
-                    headers[dir.stem]["summaries"] = summaries
+                    headers[ex_category.stem]["summaries"] = summaries
                     this_header_files = natsort.natsorted(
                         this_header_files, alg=natsort.IC
                     )
-                    headers[dir.stem]["files"] = this_header_files
+                    headers[ex_category.stem]["files"] = this_header_files
 
                 uptodate2 = uptodate.copy()
                 uptodate2["d"] = headers.keys()
