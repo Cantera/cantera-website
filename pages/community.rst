@@ -12,10 +12,12 @@
 
       Resources to help you participate in the community of Cantera users and developers
 
+.. contents:: :depth: 2
+
 About the Cantera Community
 ---------------------------
 
-Cantera was originally developed by Prof. David G. Goodwin at the California
+Cantera was originally developed by :doc:`Prof. David G. Goodwin <dave>` at the California
 Institute of Technology. Building on Prof. Goodwin's legacy, Cantera is licensed
 under a `permissive 3-Clause BSD license
 <https://github.com/Cantera/cantera/blob/master/License.txt>`__, ensuring that the
@@ -26,29 +28,23 @@ contributions of its users. These contributions range from diagnosing and
 reporting problems/bugs, to helping others learn to use Cantera, to developing
 and implementing new software capabilities.
 
-Steering Committee
-~~~~~~~~~~~~~~~~~~
+While Cantera provides some standalone models and applications, numerous external
+packages exist that provide more specialized functionality and rely on Cantera. We
+provide a non-exhaustive list of these :doc:`affiliated packages <affiliated-packages>`.
 
-The role of the steering committee is to ensure the long-term health of the
-Cantera project. This includes overseeing the development of the Cantera code
-and community in a way that most benefits the entire community of users and
-contributors. The steering committee can be contacted at `steering@cantera.org
-<mailto:steering@cantera.org>`__ The current steering committee (in alphabetical
-order) is:
+Governance
+~~~~~~~~~~
 
-* Steven DeCaluwe, Colorado School of Mines
-* \C. Franklin Goldsmith, Brown University
-* Kyle Niemeyer, Oregon State University
-* Raymond Speth, Massachusetts Institute of Technology
-* Bryan Weber, University of Connecticut
-* Richard West, Northeastern University
+Cantera is governed by a Steering Committee; more information about our project's
+governance policies can be found on the :doc:`governance <governance>` page.
+
 
 The Cantera Users' Group
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 The `Cantera Users’ Group
 <https://groups.google.com/forum/#!forum/cantera-users>`__ on Google Groups is
-the format where most Cantera users have their questions asked and answered. If
+the forum where most Cantera users have their questions asked and answered. If
 you need help using Cantera and cannot find an answer in the tutorials or
 documentation at Cantera's website, consider joining and asking a question
 there. A few notes:
@@ -59,8 +55,6 @@ there. A few notes:
   first, and see if the problem persists.
 * This group is moderated, so it may take some time for your posts to appear if
   you are a new member.
-
-If you decide to make a post, please include the following information:
 
 For installation/compilation problems, please provide:
 
@@ -124,6 +118,15 @@ governed by the `Cantera Code of Conduct
 of conduct sets expectations for the community to ensure that users and
 contributors are able to participate in a respectful and welcoming environment.
 
+Please adhere to this code of conduct in any interactions you have in the Cantera
+community. It is strictly enforced on all official Cantera repositories, websites,
+users' group, and other resources. If you encounter someone violating these terms,
+please `contact the code of conduct team <mailto:conduct@cantera.org>`__
+(`@speth <https://github.com/speth>`__,
+`@bryanwweber <https://github.com/bryanwweber>`__, and
+`@kyleniemeyer <https://github.com/kyleniemeyer>`__) and we will address it as
+soon as possible.
+
 Contributing Code
 ~~~~~~~~~~~~~~~~~
 
@@ -176,26 +179,27 @@ your work, as well as giving credit to the many `authors
 their time to developing Cantera. The recommended citation for Cantera is as
 follows:
 
-   David G. Goodwin, Harry K. Moffat, and Raymond L. Speth. *Cantera: An
-   object-oriented software toolkit for chemical kinetics, thermodynamics, and
-   transport processes*. https://www.cantera.org, 2018. Version 2.4.0.
-   doi:10.5281/zenodo.170284
+   David G. Goodwin, Raymond L. Speth, Harry K. Moffat, and Bryan W. Weber.
+   *Cantera: An object-oriented software toolkit for chemical kinetics,
+   thermodynamics, and transport processes*. https://www.cantera.org,
+   2018. Version 2.4.0. doi:10.5281/zenodo.170284
 
 The following BibTeX entry may also be used:
 
 .. code:: bibtex
 
    @misc{cantera,
-       author = "David G. Goodwin and Harry K. Moffat and Raymond L. Speth",
+       author = "David G. Goodwin and Raymond L. Speth and Harry K. Moffat
+                 and Bryan W. Weber",
        title = "Cantera: An Object-oriented Software Toolkit for Chemical
                 Kinetics, Thermodynamics, and Transport Processes",
        year = 2018,
        note = "Version 2.4.0",
-       howpublished = "\url{http://www.cantera.org}",
+       howpublished = "\url{https://www.cantera.org}",
        doi = {10.5281/zenodo.1174508}
    }
 
-If you are using a different version of Cantera, update the ``version`` and
+If you are using a different version of Cantera, update the ``note`` and
 ``year`` fields accordingly.
 
 Donations
