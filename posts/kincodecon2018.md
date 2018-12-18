@@ -38,8 +38,8 @@ the NumFOCUS umbrella to save on administrative overhead.
 
 After lunch, the SC discussed affiliated packages in the Cantera ecosystem. These packages
 tend to use Cantera in some way, although they are mostly not officially maintained by the
-Cantera developers. Eventually, we would like to have a page on the [Cantera] website to
-promote and categorize these packages. The list will be "crowd-sourced" with input from the
+Cantera developers. We have added an {{% doc %}}affiliated-packages{{% /doc %}} page that
+lists the current packages the SC is aware of. The list will be "crowd-sourced" with input from the
 Users' Group on Google.
 
 On Saturday, the SC discussed the governance of the Cantera project. We identified the [Astropy]
