@@ -2,7 +2,7 @@
 title: KinCodeCon 2018
 date: 2018-11-21 14:30:00 UTC-08:00
 slug: kincodecon2018
-tags: release
+tags: kincodecon, steering-committee
 description: KinCodeCon 2018 and NumFOCUS SDG
 type: text
 author: Kyle Niemeyer
