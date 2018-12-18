@@ -49,7 +49,7 @@ The role of the steering committee is to ensure the long-term health of the
 Cantera project. This includes overseeing the development of the Cantera code
 and community in a way that most benefits the entire community of users and
 contributors. The steering committee can be contacted at `steering@cantera.org
-<mailto:steering@cantera.org>`__ The current steering committee (in alphabetical
+<mailto:steering@cantera.org>`__. The current steering committee (in alphabetical
 order) is:
 
 * Steven DeCaluwe (2018–)
@@ -59,7 +59,7 @@ order) is:
 * Bryan Weber (2018–)
 * Richard West (2018–)
 
-The Steering Committe should have at least five members. Members serve in two-year
+The Steering Committee should have at least five members. Members serve in two-year
 cycles (starting in November 2018), with the ability to reaffirm their membership
 at the end of each cycle (without a committee vote) or leave the committee at
 their discretion. (Members can also choose to leave the committee at any time.)
