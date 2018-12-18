@@ -66,7 +66,7 @@ All votes will be recorded in a Google Doc.
 The current membership of the SC is
 
 * Steven DeCaluwe (2018–)
-* \C. Franklin Goldsmith (2018–)
+* C. Franklin Goldsmith (2018–)
 * Kyle Niemeyer (2018–)
 * Raymond Speth (2018–)
 * Bryan Weber (2018–)
