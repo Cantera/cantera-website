@@ -28,7 +28,9 @@ contributions of its users. These contributions range from diagnosing and
 reporting problems/bugs, to helping others learn to use Cantera, to developing
 and implementing new software capabilities.
 
-While Cantera provides some standalone models and applications, numerous external packages exist that provide more specialized functionality and rely on Cantera. We provide a non-exhaustive list of these :doc:`affiliated packages <affiliated-packages>`.
+While Cantera provides some standalone models and applications, numerous external
+packages exist that provide more specialized functionality and rely on Cantera. We
+provide a non-exhaustive list of these :doc:`affiliated packages <affiliated-packages>`.
 
 Governance
 ~~~~~~~~~~
@@ -42,7 +44,7 @@ The Cantera Users' Group
 
 The `Cantera Users’ Group
 <https://groups.google.com/forum/#!forum/cantera-users>`__ on Google Groups is
-the format where most Cantera users have their questions asked and answered. If
+the forum where most Cantera users have their questions asked and answered. If
 you need help using Cantera and cannot find an answer in the tutorials or
 documentation at Cantera's website, consider joining and asking a question
 there. A few notes:
@@ -53,8 +55,6 @@ there. A few notes:
   first, and see if the problem persists.
 * This group is moderated, so it may take some time for your posts to appear if
   you are a new member.
-
-If you decide to make a post, please include the following information:
 
 For installation/compilation problems, please provide:
 
@@ -199,7 +199,7 @@ The following BibTeX entry may also be used:
        doi = {10.5281/zenodo.1174508}
    }
 
-If you are using a different version of Cantera, update the ``version`` and
+If you are using a different version of Cantera, update the ``note`` and
 ``year`` fields accordingly.
 
 Donations
