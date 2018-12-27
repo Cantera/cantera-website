@@ -48,8 +48,8 @@ class BuildExamples(Task):
             if source in appearing_paths or dest in appearing_paths:
                 problem = source if source in appearing_paths else dest
                 utils.LOGGER.error(
-                    "The listings input or output folder '{0}' appears in more "
-                    "than one entry in LISTINGS_FOLDERS, exiting.".format(problem)
+                    "The examples input or output folder '{0}' appears in more "
+                    "than one entry in EXAMPLES_FOLDERS, exiting.".format(problem)
                 )
                 continue
             appearing_paths.add(source)

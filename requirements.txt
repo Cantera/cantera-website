@@ -1,2 +1,2 @@
-Nikola[extras]==8.0.0
-yapsy==1.11.223
+Nikola[extras]==8.0.*
+yapsy==1.12.*
