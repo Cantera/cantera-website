@@ -12,31 +12,201 @@ installation directory. To determine the location of this directory, run the fol
 <span class="k">print</span><span class="p">(</span><span class="n">cantera</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">__path__</span><span class="p">)</span>
 </pre>
 
-{% for head, file_dict in headers.items() %}
-  <div class="section" id="python-example-{{ head }}">
-    <h2 class="python-example-header example-header">
-      {{ file_dict['name'] }}
-      <a class="headerlink" href="#python-example-{{ head }}" title="Permalink to this headline">¶</a>
-    </h2>
-    {% for row in file_dict['files'] %}
-    <div class="card-deck python-example-row example-row">
-      {% for file in row %}
-      {% set fname = file.split('/')[-1] %}
-      <!-- <div class="col-sm-4"> -->
-        <div class="card">
-          <a href="{{ head }}/{{ fname }}.html"><h5 class="card-header">{{ fname }}</h5></a>
-          <div class="card-body">
-            <p class="card-text">{{ file_dict['summaries'][fname] }}</p>
-          </div>
-        </div>
-      <!-- </div> -->
-      {% endfor %}
+<h2> Tables Of Content </h2>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card" id="python-docs">
+      <div class="card-header section-card">
+        Thermodynamics
+      </div>
+		<div class="list-group list-group-flush">
+			<a href="https://cantera.org/examples/python/thermo/critical_properties.py.html" class="list-group-item docs"> 
+			critical_properties.py 
+			(Print the critical state properties for the fluids for which Cantera has built-in liquid/vapor equations of state.)
+			</a>
+			<a href="https://cantera.org/examples/python/thermo/isentropic.py.html" class="list-group-item docs"> 
+			isentropic.py
+			(Isentropic, adiabatic flow example - calculate area ratio vs. Mach number curve.)
+			</a>
+			<a href="https://cantera.org/examples/python/thermo/mixing.py.html" class="list-group-item docs"> 
+			mixing.py
+			(Mixing two streams using `Quantity` objects.)
+			</a>
+			<a href="https://cantera.org/examples/python/thermo/rankine.py.html" class="list-group-item docs"> 
+			rankine.py
+			(A Rankine vapor power cycle.)
+			</a>
+			<a href="https://cantera.org/examples/python/thermo/sound_speed.py.html" class="list-group-item docs"> 
+			sound_speed.py
+			(Compute the "equilibrium" and "frozen" sound speeds for a gas.)
+			</a>
+		</div>
+	  <div class="card-header section-card">
+        kinetics
+      </div>
+		<div class="list-group list-group-flush">
+			<a href="https://cantera.org/examples/python/kinetics/extract_submechanism.py.html" class="list-group-item docs"> 
+			extract_submechanism.py
+			(An example demonstrating how to use Species and Reaction objects to programmatically extract a reaction submechanism. In this example, the CO/H2 oxidation reactions are extracted from the GRI 3.0 mechanism.)
+			</a>
+			<a href="https://cantera.org/examples/python/kinetics/mechanism_reduction.py.html" class="list-group-item docs"> 
+			mechanism_reduction.py
+			(A simplistic approach to mechanism reduction which demonstrates Cantera's features for dynamically manipulating chemical mechanisms.)
+			</a>
+			<a href="https://cantera.org/examples/python/kinetics/reaction_path.py.html" class="list-group-item docs"> 
+			reaction_path.py
+			(Viewing a reaction path diagram.)
+			</a>
+		</div>
+	  <div class="card-header section-card">
+        Transport
+      </div>
+			<a href="https://cantera.org/examples/python/transport/dusty_gas.py.html" class="list-group-item docs"> 
+			dusty_gas.py
+			(Dusty Gas transport model.)
+			</a>
+			<a href="https://cantera.org/examples/python/transport/multiprocessing_viscosity.py.html" class="list-group-item docs"> 
+			multiprocessing_viscosity.py
+			(This example demonstrates how Cantera can be used with the 'multiprocessing' module.)
+			</a>
+	  <div class="card-header section-card">
+        Reactor Networks
+      </div>
+			<a href="https://cantera.org/examples/python/reactors/combustor.py.html" class="list-group-item docs"> 
+			combustor.py
+			(A combustor, modeled as a single well-stirred reactor.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/custom.py.html" class="list-group-item docs"> 
+			custom.py
+			(Solve a constant pressure ignition problem where the governing equations are implemented in Python.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/fuel_injection.py.html" class="list-group-item docs"> 
+			fuel_injection.py
+			(Simulation of fuel injection into a vitiated air mixture to show formation of soot precursors.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/ic_engine.py.html" class="list-group-item docs"> 
+			ic_engine.py
+			(Simulation of a (gaseous) Diesel-type internal combustion engine.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/mix1.py.html" class="list-group-item docs"> 
+			mix1.py
+			(Mixing two streams.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/NonIdealShockTube.py.html" class="list-group-item docs"> 
+			NonIdealShockTube.py
+			(Non-Ideal Shock Tube Example.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/periodic_cstr.py.html" class="list-group-item docs"> 
+			periodic_cstr.py 
+			(This example illustrates a continuously stirred tank reactor (CSTR) with steady inputs but periodic interior state.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/pfr.py.html" class="list-group-item docs"> 
+			pfr.py 
+			(This example solves a plug-flow reactor problem of hydrogen-oxygen combustion. The PFR is computed by two approaches: The simulation of a Lagrangian fluid particle, and the simulation of a chain of reactors.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/piston.py.html" class="list-group-item docs"> 
+			piston.py
+			(Two reactors separated by a piston.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/reactor1.py.html" class="list-group-item docs"> 
+			reactor1.py
+			(Constant-pressure, adiabatic kinetics simulation.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/reactor2.py.html" class="list-group-item docs"> 
+			reactor2.py
+			(Two reactors connected with a piston, with heat loss to the environment.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/sensitivity1.py.html" class="list-group-item docs"> 
+			sensitivity1.py
+			(Constant-pressure, adiabatic kinetics simulation with sensitivity analysis.)
+			</a>
+			<a href="https://cantera.org/examples/python/reactors/surf_pfr.py.html" class="list-group-item docs"> 
+			surf_pfr.py 
+			(This example solves a plug flow reactor problem, where the chemistry is surface chemistry. The specific problem simulated is the partial oxidation of methane over a platinum catalyst in a packed bed reactor.)
+			</a>
+	  <div class="card-header section-card">
+        One-Dimensional Flames
+      </div>
+			<a href="https://cantera.org/examples/python/onedim/adiabatic_flame.py.html" class="list-group-item docs"> 
+			adiabatic_flame.py 
+			(A freely-propagating, premixed hydrogen flat flame with multicomponent transport properties.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/burner_flame.py.html" class="list-group-item docs"> 
+			burner_flame.py
+			(A burner-stabilized lean premixed hydrogen-oxygen flame at low pressure.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/burner_ion_flame.py.html" class="list-group-item docs"> 
+			burner_ion_flame.py 
+			(A burner-stabilized lean premixed hydrogen-oxygen flame at low pressure.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/diffusion_flame.py.html" class="list-group-item docs"> 
+			diffusion_flame.py 
+			(An opposed-flow ethane/air diffusion flame.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/diffusion_flame_batch.py.html" class="list-group-item docs"> 
+			(diffusion_flame_batch.py 
+			This example creates two batches of counterflow diffusion flame simulations. The first batch computes counterflow flames at increasing pressure, the second at increasing strain rates.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/diffusion_flame_extinction.py.html" class="list-group-item docs"> 
+			diffusion_flame_extinction.py 
+			(This example computes the extinction point of a counterflow diffusion flame. A hydrogen-oxygen diffusion flame at 1 bar is studied.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/flame_fixed_T.py.html" class="list-group-item docs"> 
+			flame_fixed_T.py
+			(A burner-stabilized, premixed methane/air flat flame with multicomponent transport properties and a specified temperature profile.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/flamespeed_sensitivity.py.html" class="list-group-item docs"> 
+			flamespeed_sensitivity.py 
+			(Sensitivity analysis for a freely-propagating, premixed methane-air flame. Computes the sensitivity of the laminar flame speed with respect to each reaction rate constant.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/ion_burner_flame.py.html" class="list-group-item docs"> 
+			ion_burner_flame.py
+			(A burner-stabilized premixed methane-air flame with charged species.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/ion_free_flame.py.html" class="list-group-item docs"> 
+			ion_free_flame.py
+			(A freely-propagating, premixed methane-air flat flame with charged species.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/premixed_counterflow_flame.py.html" class="list-group-item docs"> 
+			premixed_counterflow_flame.py 
+			(An opposed-flow premixed strained flame.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/premixed_counterflow_twin_flame.py.html" class="list-group-item docs"> 
+			premixed_counterflow_twin_flame.py
+			(Simulate two counter-flow jets of reactants shooting into each other. This simulation differs from the similar premixed_counterflow_flame.py example as the latter simulates a jet of reactants shooting into products.)
+			</a>
+			<a href="https://cantera.org/examples/python/onedim/stagnation_flame.py.html" class="list-group-item docs"> 
+			stagnation_flame.py 
+			(A detached flat flame stabilized at a stagnation point.)
+			</a>
+	  <div class="card-header section-card">
+        Multiphase Mixtures 
+      </div>
+			<a href="https://cantera.org/examples/python/multiphase/adiabatic.py.html" class="list-group-item docs"> 
+			adiabatic.py 
+			(Adiabatic flame temperature and equilibrium composition for a fuel/air mixture as a function of equivalence ratio, including formation of solid carbon.)
+			</a>
+			<a href="https://cantera.org/examples/python/multiphase/plasma_equilibrium.py.html" class="list-group-item docs"> 
+			plasma_equilibrium.py 
+			(An equilibrium example with charged species in the gas phase and multiple condensed phases.)
+			</a>			
+	  <div class="card-header section-card">
+        Surface Chemistry  
+      </div>
+			<a href="https://cantera.org/examples/python/surface_chemistry/catalytic_combustion.py.html" class="list-group-item docs"> 
+			catalytic_combustion.py
+			(CATCOMB -- Catalytic combustion of methane on platinum.)
+			</a>
+			<a href="https://cantera.org/examples/python/surface_chemistry/diamond_cvd.py.html" class="list-group-item docs"> 
+			diamond_cvd.py 
+			(A CVD example simulating growth of a diamond film.
+			</a>			
+			<a href="https://cantera.org/examples/python/surface_chemistry/sofc.py.html" class="list-group-item docs"> 
+			sofc.py
+			(A simple model of a solid oxide fuel cell.)
+			</a>
     </div>
-    {% endfor %}
   </div>
-{% endfor %}
-{% endblock %}
-
 {% block sourcelink %}
 {% if source_link and show_sourcelink %}
     {{ ui.show_sourcelink(source_link) }}
