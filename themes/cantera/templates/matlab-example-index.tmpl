@@ -5,31 +5,75 @@
 
 <p>This is an index of the examples included with the Cantera Matlab toolbox.</p>
 
-{% for head, file_dict in headers.items() %}
-  <div class="section" id="matlab-example">
-    <h2 class="matlab-example-header example-header">
-      {{ file_dict['name'] }}
-      <a class="headerlink" href="#matlab-example" title="Permalink to this headline">¶</a>
-    </h2>
-    {% for row in file_dict['files'] %}
-    <div class="card-deck matlab-example-row example-row">
-      {% for file in row %}
-      {% set fname = file.split('/')[-1] %}
-      <!-- <div class="col-sm-4"> -->
-        <div class="card">
-          <a href="{{ fname }}.html"><h5 class="card-header">{{ fname }}</h5></a>
-          <div class="card-body">
-            <p class="card-text">{{ file_dict['summaries'][fname] }}</p>
-          </div>
-        </div>
-      <!-- </div> -->
-      {% endfor %}
-    </div>
-    {% endfor %}
-  </div>
-{% endfor %}
-{% endblock %}
-
+<h2> Tables Of Content </h2>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card" id="python-docs">
+		<div class="list-group list-group-flush">
+			<a href="https://cantera.org/examples/matlab/catcomb.m.html" class="list-group-item docs"> 
+			catcomb.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/conhp.m.html" class="list-group-item docs"> 
+			conhp.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/conuv.m.html" class="list-group-item docs"> 
+			conuv.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/diffflame.m.html" class="list-group-item docs"> 
+			diffflame.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/equil.m.html" class="list-group-item docs"> 
+			equil.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/flame1.m.html" class="list-group-item docs"> 
+			flame1.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/flame2.m.html" class="list-group-item docs"> 
+			flame2.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/flame.m.html" class="list-group-item docs"> 
+			flame.n
+			</a>
+			<a href="https://cantera.org/examples/matlab/ignite.m.html" class="list-group-item docs"> 
+			ignite.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/ignite_hp.m.html" class="list-group-item docs"> 
+			ignite-hp.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/ignite_uv.m.html" class="list-group-item docs"> 
+			ignite_uv.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/isentropic.m.html" class="list-group-item docs"> 
+			isentropic.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/periodic_cstr.m.html" class="list-group-item docs"> 
+			periodic_cstr.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/prandtl1.m.html" class="list-group-item docs"> 
+			prandtl1.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/prandtl2.m.html" class="list-group-item docs"> 
+			prandtl2.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/rankine.m.html" class="list-group-item docs"> 
+			rankine.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/reactor1.m.html" class="list-group-item docs"> 
+			ractor1.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/reactor2.m.html" class="list-group-item docs"> 
+			reactor2.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/reactor_ode.m.html" class="list-group-item docs"> 
+			reactor_ode.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/surfreactor.m.html" class="list-group-item docs"> 
+			surfreactor.m
+			</a>
+			<a href="https://cantera.org/examples/matlab/transport1.m.html" class="list-group-item docs"> 
+			transport1.m
+			</a>
+		</div>
 {% block sourcelink %}
 {% if source_link and show_sourcelink %}
     {{ ui.show_sourcelink(source_link) }}
