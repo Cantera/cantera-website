@@ -19,30 +19,52 @@ installation required, but you cannot save and resume your work.</p>
   <img src="https://camo.githubusercontent.com/70c5b4d050d4019f4f20b170d75679a9316ac5e5/687474703a2f2f6d7962696e6465722e6f72672f62616467652e737667" alt="Binder" data-canonical-src="https://mybinder.org/badge.svg" style="max-width:100%;">
 </a>
 
-{% for head, file_dict in headers.items() %}
-  <div class="section" id="python-example-{{ head }}">
-    <h2 class="python-example-header example-header">
-      {{ file_dict['name'] }}
-      <a class="headerlink" href="#python-example-{{ head }}" title="Permalink to this headline">¶</a>
-    </h2>
-    {% for row in file_dict['files'] %}
-    <div class="card-deck python-example-row example-row">
-      {% for file in row %}
-      {% set fname = file.split('/')[-1] %}
-      <!-- <div class="col-sm-4"> -->
-        <div class="card">
-          <a href="{{ head }}/{{ fname }}.html"><h5 class="card-header">{{ fname }}</h5></a>
-          <div class="card-body">
-            <p class="card-text">{{ file_dict['summaries'][fname] }}</p>
-          </div>
-        </div>
-      <!-- </div> -->
-      {% endfor %}
+<h2> Tables Of Content </h2>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card" id="python-docs">
+      <div class="card-header section-card">
+        Thermodynamics
+      </div>
+		<div class="list-group list-group-flush">
+			<a href="https://cantera.org/examples/jupyter/thermo/flame_temperature.ipynb.html" class="list-group-item docs"> 
+			flame_temperature.ipynb
+			</a>
+			<a href="https://cantera.org/examples/jupyter/thermo/heating_value.ipynb.html" class="list-group-item docs"> 
+			heating_value.ipynb 
+			</a>
+		</div>
+	  <div class="card-header section-card">
+        Reactor Networks 
+      </div>
+		<div class="list-group list-group-flush">
+			<a href="https://cantera.org/examples/jupyter/reactors/1D_pfr_surfchem.ipynb.html" class="list-group-item docs"> 
+			1D_pfr_surfchem.ipynb
+			</a>
+			<a href="https://cantera.org/examples/jupyter/reactors/batch_reactor_ignition_delay_NTC.ipynb.html" class="list-group-item docs"> 
+			batch_reactor_ignition_delay_NTC.ipynb 
+			</a> 
+			<a href="https://cantera.org/examples/jupyter/reactors/NonIdealShockTube.ipynb.html" class="list-group-item docs"> 
+			NonIdealShockTube.ipynb 
+			</a>
+			<a href="https://cantera.org/examples/jupyter/reactors/stirred_reactor.ipynb.html" class="list-group-item docs"> 
+			stirred_reactor.ipynb
+			</a>
+		</div>
+	  <div class="card-header section-card">
+        One-Dimensional Flames 
+      </div>
+		<div class="list-group list-group-flush">
+			<a href="https://cantera.org/examples/jupyter/thermo/flame_temperature.ipynb.html" class="list-group-item docs"> 
+			flame_speed_with_sensitivity_analysis.ipynb 
+			</a>
+			<a href="https://cantera.org/examples/jupyter/flames/twin_premixed_flame_axisymmetric.ipynb.html" class="list-group-item docs"> 
+			twin_premixed_flame_axisymmetric.ipynb
+			</a>
+		</div>
     </div>
-    {% endfor %}
   </div>
-{% endfor %}
-{% endblock %}
+ </div>
 
 {% block sourcelink %}
 {% if source_link and show_sourcelink %}
