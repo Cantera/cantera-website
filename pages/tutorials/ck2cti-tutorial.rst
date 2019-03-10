@@ -217,25 +217,25 @@ in the report for Chemkin referenced above. These errors include:
   not the transport data file.* The rest of the columns on a given line have
   no particular format, but must be present in the following order:
 
-  +------------------+------------------------------------------------------+
-  | Parameter Number | Parameter Name                                       |
-  +==================+======================================================+
-  | 1                | An integer with value 0, 1, or 2 indicating          |
-  |                  | monatomic, linear, or non-linear molecular geometry. |
-  +------------------+------------------------------------------------------+
-  | 2                | The Lennard-Jones potential well depth               |
-  |                  | :math:`\varepsilon/k_B` in Kelvin                    |
-  +------------------+------------------------------------------------------+
-  | 3                | The Lennard-Jones collision diameter :math:`\sigma`  |
-  |                  | in Angstrom                                          |
-  +------------------+------------------------------------------------------+
-  | 4                | The dipole moment :math:`\mu` in Debye               |
-  +------------------+------------------------------------------------------+
-  | 5                | The polarizability :math:`\alpha` in Angstrom        |
-  +------------------+------------------------------------------------------+
-  | 6                | The rotational relaxation collision number           |
-  |                  | :math:`Z_{rot}` at 298 K                             |
-  +------------------+------------------------------------------------------+
+  +------------------+------------------------------------------------------------+
+  | Parameter Number | Parameter Name                                             |
+  +==================+============================================================+
+  | 1                | An integer with value 0, 1, or 2 indicating                |
+  |                  | monatomic, linear, or non-linear molecular geometry.       |
+  +------------------+------------------------------------------------------------+
+  | 2                | The Lennard-Jones potential well depth                     |
+  |                  | :math:`\varepsilon/k_B` in Kelvin                          |
+  +------------------+------------------------------------------------------------+
+  | 3                | The Lennard-Jones collision diameter :math:`\sigma`        |
+  |                  | in Angstrom                                                |
+  +------------------+------------------------------------------------------------+
+  | 4                | The dipole moment :math:`\mu` in Debye                     |
+  +------------------+------------------------------------------------------------+
+  | 5                | The polarizability :math:`\alpha` in Angstroms cubed       |
+  +------------------+------------------------------------------------------------+
+  | 6                | The rotational relaxation collision number                 |
+  |                  | :math:`Z_{rot}` at 298 K                                   |
+  +------------------+------------------------------------------------------------+
 
   Another common error is if all 6 of these numbers are not present for every
   species.
