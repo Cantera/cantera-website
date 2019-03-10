@@ -12,7 +12,6 @@ import base64
 import mimetypes
 
 from collections import OrderedDict
-import io
 import os
 import lxml.html
 import json
@@ -36,7 +35,7 @@ class BuildExamples(Task):
         self.kw = {
             "default_lang": site.config["DEFAULT_LANG"],
             "examples_folders": site.config["EXAMPLES_FOLDERS"],
-            "output_folder": site.config["OUTPUT_FOLDER"],
+            "output_folder": Path(site.config["OUTPUT_FOLDER"]),
             "index_file": site.config["INDEX_FILE"],
             "strip_indexes": site.config["STRIP_INDEXES"],
             "cache_folder": site.config["CACHE_FOLDER"],
@@ -71,66 +70,63 @@ class BuildExamples(Task):
                 https://stackoverflow.com/a/312464
                 """
                 for i in range(0, len(l), n):
-                    yield l[i:i + n]
+                    yield l[i : i + n]
 
             for head, file_dict in headers.items():
                 file_dict["files"] = list(chunks(file_dict["files"], 3))
 
-            permalink = os.path.relpath(output_file, self.kw["output_folder"])
+            permalink = output_file.relative_to(self.kw["output_folder"])
             title = "{} Examples".format(ex_type).title()
             context = {
                 "headers": headers,
                 "lang": self.kw["default_lang"],
                 "pagekind": ["example"],
-                "permalink": permalink,
+                "permalink": str(permalink),
                 "title": title,
                 "description": title,
             }
             self.site.render_template(
-                "{}-example-index.tmpl".format(ex_type), output_file, context
+                "{}-example-index.tmpl".format(ex_type), str(output_file), context
             )
 
         def render_listing(in_name, out_name, input_folder, output_folder):
             needs_ipython_css = False
-            if in_name.endswith(".ipynb"):
+            if in_name.suffix == ".ipynb":
                 # Special handling: render ipynb in listings (Issue #1900)
                 ipynb_compiler = self.site.plugin_manager.getPluginByName(
                     "ipynb", "PageCompiler"
                 ).plugin_object
-                with io.open(in_name, "r", encoding="utf8") as in_file:
+                with in_name.open(mode="r") as in_file:
                     nb_json = ipynb_compiler._nbformat_read(in_file)
-                    ipynb_raw = ipynb_compiler._compile_string(nb_json)
+                ipynb_raw = ipynb_compiler._compile_string(nb_json)
                 ipynb_html = lxml.html.fromstring(ipynb_raw)
                 code = lxml.html.tostring(ipynb_html, encoding="unicode")
                 needs_ipython_css = True
-            elif in_name.endswith(".m"):
+            elif in_name.suffix == ".m":
                 lexer = MatlabLexer()
-                with open(in_name, "r") as fd:
-                    code = highlight(
-                        fd.read(), lexer, utils.NikolaPygmentsHTML(in_name)
-                    )
+                code = highlight(
+                    in_name.read_bytes(), lexer, utils.NikolaPygmentsHTML(in_name.name)
+                )
             else:
-                with open(in_name, "r") as fd:
+                try:
+                    lexer = get_lexer_for_filename(in_name.name)
+                except ClassNotFound:
                     try:
-                        lexer = get_lexer_for_filename(in_name)
+                        lexer = guess_lexer(in_name.read_bytes())
                     except ClassNotFound:
-                        try:
-                            lexer = guess_lexer(fd.read())
-                        except ClassNotFound:
-                            lexer = TextLexer()
-                        fd.seek(0)
-                    code = highlight(
-                        fd.read(), lexer, utils.NikolaPygmentsHTML(in_name)
-                    )
+                        lexer = TextLexer()
+                code = highlight(
+                    in_name.read_bytes(), lexer, utils.NikolaPygmentsHTML(in_name.name)
+                )
 
-            title = os.path.basename(in_name)
+            title = in_name.name
 
-            permalink = os.path.relpath(out_name, self.kw["output_folder"])
-            source_link = os.path.basename(permalink)[:-5]  # remove '.html'
+            permalink = out_name.relative_to(self.kw["output_folder"])
+            source_link = permalink.stem  # remove '.html'
             context = {
                 "code": code,
                 "title": title,
-                "permalink": permalink,
+                "permalink": str(permalink),
                 "lang": self.kw["default_lang"],
                 "description": title,
                 "source_link": source_link,
@@ -140,7 +136,7 @@ class BuildExamples(Task):
                 # If someone does not have ipynb posts and only listings, we
                 # need to enable ipynb CSS for ipynb listings.
                 context["needs_ipython_css"] = True
-            self.site.render_template("examples.tmpl", out_name, context)
+            self.site.render_template("examples.tmpl", str(out_name), context)
 
         yield self.group_task()
 
@@ -167,63 +163,91 @@ class BuildExamples(Task):
             # Build the Python examples
             #########################################################
             if "python" in example_folder:
-                template_deps = self.site.template_system.template_deps(
+                index_template_deps = self.site.template_system.template_deps(
                     "python-example-index.tmpl"
                 )
                 examples_template_deps = self.site.template_system.template_deps(
                     "examples.tmpl"
                 )
                 headers = OrderedDict(
-                    thermo={"name": "Thermodynamics"},
-                    kinetics={"name": "Kinetics"},
-                    transport={"name": "Transport"},
-                    reactors={"name": "Reactor Networks"},
-                    onedim={"name": "One-Dimensional Flames"},
-                    multiphase={"name": "Multiphase Mixtures"},
-                    surface_chemistry={"name": "Surface Chemistry"},
+                    thermo=dict(files=[], summaries={}, name="Thermodynamics"),
+                    kinetics=dict(files=[], summaries={}, name="Kinetics"),
+                    transport=dict(files=[], summaries={}, name="Transport"),
+                    reactors=dict(files=[], summaries={}, name="Reactor Networks"),
+                    onedim=dict(files=[], summaries={}, name="One-Dimensional Flames"),
+                    multiphase=dict(files=[], summaries={}, name="Multiphase Mixtures"),
+                    surface_chemistry=dict(
+                        files=[], summaries={}, name="Surface Chemistry"
+                    ),
                 )
 
-                p = Path(input_folder)
-                files = []
-                for ex_category in p.iterdir():
-                    if not ex_category.is_dir():
-                        continue
-                    summaries = {}
-                    this_header_files = []
-                    for f in ex_category.iterdir():
-                        if f.suffix in self.ignored_extensions or f.name == ".DS_Store":
-                            continue
-                        files.append(f)
-                        this_header_files.append(str(f))
-                        with open(f, "r") as pyfile:
-                            mod = ast.parse(pyfile.read())
-                        for node in mod.body:
-                            if isinstance(node, ast.Expr) and isinstance(
-                                node.value, ast.Str
-                            ):
-                                doc = node.value.s.strip().split("\n\n")[0].strip()
-                                if not doc.endswith("."):
-                                    doc += "."
-                                break
-                        summaries[f.name] = doc
-                    headers[ex_category.stem]["summaries"] = summaries
-                    this_header_files = natsort.natsorted(
-                        this_header_files, alg=natsort.IC
-                    )
-                    headers[ex_category.stem]["files"] = this_header_files
-
+                python_examples = list(Path(input_folder).resolve().glob("*/*.py"))
                 uptodate2 = uptodate.copy()
                 uptodate2["d"] = headers.keys()
-                uptodate2["f"] = list(map(str, files))
+                uptodate2["f"] = list(map(str, python_examples))
 
-                rel_output_name = os.path.join(example_folder, self.kw["index_file"])
+                for py_ex_file in python_examples:
+                    ex_category = py_ex_file.parent.stem
+                    headers[ex_category]["files"].append(py_ex_file)
+                    mod = ast.parse(py_ex_file.read_bytes())
+                    for node in mod.body:
+                        if isinstance(node, ast.Expr) and isinstance(
+                            node.value, ast.Str
+                        ):
+                            doc = node.value.s.strip().split("\n\n")[0].strip()
+                            if not doc.endswith("."):
+                                doc += "."
+                            break
+                    headers[ex_category]["summaries"][py_ex_file.name] = doc
 
-                # Render Python examples index file
-                out_name = os.path.join(self.kw["output_folder"], rel_output_name)
+                    out_name = self.kw["output_folder"].joinpath(
+                        example_folder,
+                        ex_category,
+                        py_ex_file.with_suffix(".py.html").name,
+                    )
+                    yield {
+                        "basename": self.name,
+                        "name": str(out_name),
+                        "file_dep": examples_template_deps + [py_ex_file],
+                        "targets": [out_name],
+                        "actions": [
+                            (
+                                render_listing,
+                                [py_ex_file, out_name, input_folder, example_folder],
+                            )
+                        ],
+                        # This is necessary to reflect changes in blog title,
+                        # sidebar links, etc.
+                        "uptodate": [
+                            utils.config_changed(uptodate2, "build_examples:source")
+                        ],
+                        "clean": True,
+                    }
+
+                    out_name = self.kw["output_folder"].joinpath(
+                        example_folder, ex_category, py_ex_file.name
+                    )
+                    yield {
+                        "basename": self.name,
+                        "name": out_name,
+                        "file_dep": [py_ex_file],
+                        "targets": [out_name],
+                        "actions": [(utils.copy_file, [py_ex_file, out_name])],
+                        "clean": True,
+                    }
+
+                for head in headers.keys():
+                    headers[head]["files"] = natsort.natsorted(
+                        headers[head]["files"], alg=natsort.IC
+                    )
+
+                out_name = self.kw["output_folder"].joinpath(
+                    example_folder, self.kw["index_file"]
+                )
                 yield {
                     "basename": self.name,
-                    "name": out_name,
-                    "file_dep": template_deps,
+                    "name": str(out_name),
+                    "file_dep": index_template_deps,
                     "targets": [out_name],
                     "actions": [
                         (
@@ -238,49 +262,6 @@ class BuildExamples(Task):
                     ],
                     "clean": True,
                 }
-
-                for f in files:
-                    if str(f) == ".DS_Store" or f.suffix in self.ignored_extensions:
-                        continue
-                    in_name = str(f.resolve())
-                    # Record file names
-                    parent = str(f.parent.stem)
-                    f_name = str(f.name)
-                    rel_output_name = os.path.join(
-                        example_folder, parent, f_name + ".html"
-                    )
-                    # Set up output name
-                    out_name = os.path.join(self.kw["output_folder"], rel_output_name)
-                    # Yield task
-                    yield {
-                        "basename": self.name,
-                        "name": out_name,
-                        "file_dep": template_deps + [in_name],
-                        "targets": [out_name],
-                        "actions": [
-                            (
-                                render_listing,
-                                [in_name, out_name, input_folder, example_folder],
-                            )
-                        ],
-                        # This is necessary to reflect changes in blog title,
-                        # sidebar links, etc.
-                        "uptodate": [
-                            utils.config_changed(uptodate, "build_examples:source")
-                        ],
-                        "clean": True,
-                    }
-
-                    rel_output_name = os.path.join(example_folder, parent, f_name)
-                    out_name = os.path.join(self.kw["output_folder"], rel_output_name)
-                    yield {
-                        "basename": self.name,
-                        "name": out_name,
-                        "file_dep": [in_name],
-                        "targets": [out_name],
-                        "actions": [(utils.copy_file, [in_name, out_name])],
-                        "clean": True,
-                    }
 
             #########################################################
             # Build the Matlab examples

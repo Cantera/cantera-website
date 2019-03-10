@@ -28,7 +28,7 @@ installation directory. To determine the location of this directory, run the fol
     {% for row in file_dict['files'] %}
     <div class="card-deck python-example-row example-row">
       {% for file in row %}
-      {% set fname = file.split('/')[-1] %}
+      {% set fname = file.name %}
         <div class="card">
           <a href="{{ head }}/{{ fname }}.html"><h5 class="card-header">{{ fname }}</h5></a>
           <div class="card-body">
