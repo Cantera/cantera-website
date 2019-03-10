@@ -140,7 +140,7 @@ class BuildExamples(Task):
                 # If someone does not have ipynb posts and only listings, we
                 # need to enable ipynb CSS for ipynb listings.
                 context["needs_ipython_css"] = True
-            self.site.render_template("listing.tmpl", out_name, context)
+            self.site.render_template("examples.tmpl", out_name, context)
 
         yield self.group_task()
 
@@ -169,6 +169,9 @@ class BuildExamples(Task):
             if "python" in example_folder:
                 template_deps = self.site.template_system.template_deps(
                     "python-example-index.tmpl"
+                )
+                examples_template_deps = self.site.template_system.template_deps(
+                    "examples.tmpl"
                 )
                 headers = OrderedDict(
                     thermo={"name": "Thermodynamics"},
