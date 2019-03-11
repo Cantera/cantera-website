@@ -1,2 +1,2 @@
 Nikola[extras]==8.0.*
-yapsy==1.12.*
+yapsy==1.11.*
