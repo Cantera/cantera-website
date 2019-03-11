@@ -12,7 +12,6 @@ import base64
 import mimetypes
 
 from collections import OrderedDict
-import os
 import lxml.html
 import json
 
@@ -365,106 +364,137 @@ class BuildExamples(Task):
             # Build the Jupyter examples
             #########################################################
             elif "jupyter" in example_folder:
-                template_deps = self.site.template_system.template_deps(
+                index_template_deps = self.site.template_system.template_deps(
                     "jupyter-example-index.tmpl"
-                )  # NOQA: E501
+                )
                 headers = OrderedDict(
-                    thermo={"name": "Thermodynamics"},
-                    reactors={"name": "Reactor Networks"},
-                    flames={"name": "One-Dimensional Flames"},
+                    thermo=dict(name="Thermodynamics", files=[], summaries={}),
+                    reactors=dict(name="Reactor Networks", files=[], summaries={}),
+                    flames=dict(name="One-Dimensional Flames", files=[], summaries={}),
+                    electrochemistry=dict(
+                        name="Electrochemistry", files=[], summaries={}
+                    ),
                 )
 
-                def get_b64_str(p, dir, img_fname):
-                    img_path = p / dir / img_fname
-                    with open(img_path, "rb") as img_file:
-                        b64_str = base64.b64encode(img_file.read()).decode("utf-8")
+                def get_b64_str(parent, img_fname):
+                    img_path = parent / img_fname
+                    b64_str = base64.b64encode(img_path.read_bytes()).decode("utf-8")
                     mime = mimetypes.guess_type(img_path.name)[0]
                     b64_str = "data:{mime};base64,{b64_str}".format(
                         mime=mime, b64_str=b64_str
                     )
                     return b64_str
 
-                p = Path(input_folder)
-                cache_folder = Path(self.kw["cache_folder"])
-                files = []
-                for ex_category in p.iterdir():
-                    if not ex_category.is_dir() or ex_category.name.startswith("."):
-                        continue
-                    if ex_category.suffix in self.ignored_extensions:
-                        continue
-                    summaries = {}
-                    this_header_files = []
-                    for f in ex_category.iterdir():
-                        if f.suffix in self.ignored_extensions or f.is_dir():
-                            continue
-                        if f.name == ".ipynb_checkpoints" or f.name == ".DS_Store":
-                            continue
-                        this_header_files.append(str(f))
-                        with open(f, "r") as pyfile:
-                            data = json.load(pyfile)
-                        doc = ""
-                        for cell in data["cells"]:
-                            if cell["cell_type"] != "markdown":
-                                continue
-                            if not doc:
-                                doc = cell["source"][0].replace("#", "").strip()
-                            for i, s in enumerate(cell["source"]):
-                                if "img" in s:
-                                    img = lxml.html.fromstring(s)
-                                    img_fname = img.attrib["src"]
-                                    b64_str = get_b64_str(p, ex_category, img_fname)
-                                    img.attrib["src"] = b64_str
-                                    new_img = lxml.html.tostring(img).decode("utf-8")
-                                    cell["source"][i] = re.sub("<img.*/>", new_img, s)
-                                elif "![" in s:
-                                    img_alt, img_fname = re.findall(
-                                        r"!\[(.*?)\]\((.*?)\)", s
-                                    )[0]
-                                    if "attachment" in img_fname:
-                                        img_fname = img_fname.split(":", 1)[1]
-                                        mime = mimetypes.guess_type(img_fname)[0]
-                                        b64_src = cell["attachments"][img_fname][mime]
-                                        b64_str = "data:{mime};base64,{b64_src}".format(
-                                            mime=mime, b64_src=b64_src
-                                        )
-                                    else:
-                                        b64_str = get_b64_str(p, ex_category, img_fname)
-
-                                    new_img = '<img src="{b64_str}" alt="{img_alt}"/>'.format(  # NOQA: E501
-                                        b64_str=b64_str, img_alt=img_alt
-                                    )
-                                    cell["source"][i] = re.sub(
-                                        r"!\[.*?\]\(.*?\)", new_img, s
-                                    )
-                                else:
-                                    continue
-
-                        cache_file = (
-                            cache_folder / example_folder / f.parent.stem / f.name
-                        )
-                        cache_file.parent.mkdir(parents=True, exist_ok=True)
-                        files.append(cache_file)
-                        with open(cache_file, "w") as jfile:
-                            json.dump(data, jfile)
-                        summaries[str(f).split("/")[-1]] = doc
-                    headers[ex_category.stem]["summaries"] = summaries
-                    this_header_files = natsort.natsorted(
-                        this_header_files, alg=natsort.IC
-                    )
-                    headers[ex_category.stem]["files"] = this_header_files
-
+                jupyter_examples = list(Path(input_folder).resolve().glob("*/*.ipynb"))
                 uptodate2 = uptodate.copy()
                 uptodate2["d"] = headers.keys()
-                uptodate2["f"] = list(map(str, files))
+                uptodate2["f"] = list(map(str, jupyter_examples))
 
-                rel_output_name = os.path.join(example_folder, self.kw["index_file"])
+                cache_folder = Path(self.kw["cache_folder"])
 
-                # Render Jupyter examples index file
-                out_name = os.path.join(self.kw["output_folder"], rel_output_name)
+                for jpy_ex_file in jupyter_examples:
+                    ex_category = jpy_ex_file.parent.stem
+                    if ex_category == ".ipynb_checkpoints":
+                        continue
+
+                    headers[ex_category]["files"].append(jpy_ex_file)
+
+                    data = json.loads(jpy_ex_file.read_text())
+                    doc = ""
+                    for cell in data["cells"]:
+                        if cell["cell_type"] != "markdown":
+                            continue
+                        if not doc:
+                            doc = cell["source"][0].replace("#", "").strip()
+                        for i, s in enumerate(cell["source"]):
+                            if "img" in s:
+                                img = lxml.html.fromstring(s)
+                                img_fname = img.attrib["src"]
+                                b64_str = get_b64_str(jpy_ex_file.parent, img_fname)
+                                img.attrib["src"] = b64_str
+                                new_img = lxml.html.tostring(img).decode("utf-8")
+                                cell["source"][i] = re.sub("<img.*/>", new_img, s)
+                            elif "![" in s:
+                                img_alt, img_fname = re.findall(
+                                    r"!\[(.*?)\]\((.*?)\)", s
+                                )[0]
+                                if "attachment" in img_fname:
+                                    img_fname = img_fname.split(":", 1)[1]
+                                    mime = mimetypes.guess_type(img_fname)[0]
+                                    b64_src = cell["attachments"][img_fname][mime]
+                                    b64_str = "data:{mime};base64,{b64_src}".format(
+                                        mime=mime, b64_src=b64_src
+                                    )
+                                else:
+                                    b64_str = get_b64_str(jpy_ex_file.parent, img_fname)
+
+                                new_img = '<img src="{b64_str}" alt="{img_alt}"/>'.format(
+                                    b64_str=b64_str, img_alt=img_alt
+                                )
+                                cell["source"][i] = re.sub(
+                                    r"!\[.*?\]\(.*?\)", new_img, s
+                                )
+                            else:
+                                continue
+
+                    cache_file = cache_folder.joinpath(
+                        example_folder, ex_category, jpy_ex_file.name
+                    )
+                    cache_file.parent.mkdir(parents=True, exist_ok=True)
+
+                    with cache_file.open(mode="w") as jfile:
+                        json.dump(data, jfile)
+
+                    headers[ex_category]["summaries"][jpy_ex_file.name] = doc
+
+                    out_name = self.kw["output_folder"].joinpath(
+                        example_folder,
+                        ex_category,
+                        jpy_ex_file.with_suffix(".ipynb.html").name,
+                    )
+
+                    yield {
+                        "basename": self.name,
+                        "name": str(out_name),
+                        "file_dep": examples_template_deps + [jpy_ex_file, cache_file],
+                        "targets": [out_name],
+                        "actions": [
+                            (
+                                render_example,
+                                [cache_file, out_name, input_folder, example_folder],
+                            )
+                        ],
+                        # This is necessary to reflect changes in blog title,
+                        # sidebar links, etc.
+                        "uptodate": [
+                            utils.config_changed(uptodate2, "build_examples:source")
+                        ],
+                        "clean": True,
+                    }
+
+                    out_name = self.kw["output_folder"].joinpath(
+                        example_folder, ex_category, jpy_ex_file.name
+                    )
+                    yield {
+                        "basename": self.name,
+                        "name": out_name,
+                        "file_dep": [jpy_ex_file],
+                        "targets": [out_name],
+                        "actions": [(utils.copy_file, [jpy_ex_file, out_name])],
+                        "clean": True,
+                    }
+
+                headers[ex_category]["files"] = natsort.natsorted(
+                    headers[ex_category]["files"], alg=natsort.IC
+                )
+
+                out_name = self.kw["output_folder"].joinpath(
+                    example_folder, self.kw["index_file"]
+                )
                 yield {
                     "basename": self.name,
-                    "name": out_name,
-                    "file_dep": template_deps,
+                    "name": str(out_name),
+                    "file_dep": index_template_deps,
                     "targets": [out_name],
                     "actions": [
                         (
@@ -485,49 +515,3 @@ class BuildExamples(Task):
                     ],
                     "clean": True,
                 }
-
-                for f in files:
-                    if str(f) == ".DS_Store":
-                        continue
-                    if f.suffix in self.ignored_extensions:
-                        continue
-                    in_name = str(f.resolve())
-                    # Record file names
-                    parent = str(f.parent.stem)
-                    f_name = str(f.name)
-                    rel_output_name = os.path.join(
-                        example_folder, parent, f_name + ".html"
-                    )
-                    # Set up output name
-                    out_name = os.path.join(self.kw["output_folder"], rel_output_name)
-                    # Yield task
-                    yield {
-                        "basename": self.name,
-                        "name": out_name,
-                        "file_dep": template_deps + [in_name],
-                        "targets": [out_name],
-                        "actions": [
-                            (
-                                render_listing,
-                                [in_name, out_name, input_folder, example_folder],
-                            )
-                        ],
-                        # This is necessary to reflect changes in blog title,
-                        # sidebar links, etc.
-                        "uptodate": [
-                            utils.config_changed(uptodate, "build_examples:source")
-                        ],
-                        "clean": True,
-                    }
-
-                    src_in_name = str((p / parent / f_name).resolve())
-                    rel_output_name = os.path.join(example_folder, parent, f_name)
-                    out_name = os.path.join(self.kw["output_folder"], rel_output_name)
-                    yield {
-                        "basename": self.name,
-                        "name": out_name,
-                        "file_dep": [src_in_name, in_name],
-                        "targets": [out_name],
-                        "actions": [(utils.copy_file, [src_in_name, out_name])],
-                        "clean": True,
-                    }
