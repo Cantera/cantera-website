@@ -267,56 +267,85 @@ class BuildExamples(Task):
             # Build the Matlab examples
             #########################################################
             elif "matlab" in example_folder:
-                template_deps = self.site.template_system.template_deps(
+                index_template_deps = self.site.template_system.template_deps(
                     "matlab-example-index.tmpl"
                 )
-                p = Path(input_folder)
-                headers = {"examples": {"name": "Examples"}}
-                files = []
-                summaries = {}
-                for ex_file in p.iterdir():
-                    if (
-                        "tut" in ex_file.name
-                        or ex_file.name == "README"
-                        or "test" in ex_file.name
-                    ):
-                        continue
-                    if (
-                        ex_file.suffix in self.ignored_extensions
-                        or ex_file.name == ".DS_Store"
-                    ):
-                        continue
-                    files.append(ex_file)
-                    doc = ""
-                    with open(ex_file) as mfile:
-                        for line in mfile:
-                            line = line.strip()
-                            if line.startswith("%"):
-                                doc = line.strip("%").strip()
-                            if doc:
-                                break
-                    name = ex_file.stem.replace("_", " ")
-                    if doc.lower().replace("_", " ").startswith(name):
-                        doc = doc[len(name):].strip()
-                    summaries[ex_file.name] = doc
-                headers["examples"]["summaries"] = summaries
-                this_files = list(map(str, files))
-                headers["examples"]["files"] = natsort.natsorted(
-                    this_files, alg=natsort.IC
-                )
+                matlab_examples = list(Path(input_folder).resolve().glob("*.m"))
+                headers = {
+                    "examples": {"name": "Examples", "files": [], "summaries": {}}
+                }
 
                 uptodate2 = uptodate.copy()
                 uptodate2["d"] = headers.keys()
-                uptodate2["f"] = list(map(str, files))
+                uptodate2["f"] = list(map(str, matlab_examples))
 
-                rel_output_name = os.path.join(example_folder, self.kw["index_file"])
+                for mat_ex_file in matlab_examples:
+                    if "tut" in mat_ex_file.name or "test" in mat_ex_file.name:
+                        continue
+                    headers["examples"]["files"].append(mat_ex_file)
+                    doc = ""
+                    for line in mat_ex_file.read_text().split("\n"):
+                        line = line.strip()
+                        if line.startswith("%"):
+                            doc = line.strip("%").strip()
+                        if doc:
+                            break
+                    # TODO: Warn if example doesn't have a docstring
+                    if not doc:
+                        pass
+                    name = mat_ex_file.stem.replace("_", " ")
+                    if doc.lower().replace("_", " ").startswith(name):
+                        # This is too aggressive at removing leading -
+                        # It also removes from things like "zero-dimensional"
+                        doc = doc[len(name) :].replace("-", "").strip()
+                    headers["examples"]["summaries"][mat_ex_file.name] = doc
 
-                # Render Matlab examples index file
-                out_name = os.path.join(self.kw["output_folder"], rel_output_name)
+                    out_name = self.kw["output_folder"].joinpath(
+                        example_folder, mat_ex_file.with_suffix(".m.html").name
+                    )
+
+                    yield {
+                        "basename": self.name,
+                        "name": str(out_name),
+                        "file_dep": examples_template_deps + [mat_ex_file],
+                        "targets": [out_name],
+                        "actions": [
+                            (
+                                render_example,
+                                [mat_ex_file, out_name, input_folder, example_folder],
+                            )
+                        ],
+                        # This is necessary to reflect changes in blog title,
+                        # sidebar links, etc.
+                        "uptodate": [
+                            utils.config_changed(uptodate2, "build_examples:source")
+                        ],
+                        "clean": True,
+                    }
+
+                    out_name = self.kw["output_folder"].joinpath(
+                        example_folder, mat_ex_file.name
+                    )
+                    yield {
+                        "basename": self.name,
+                        "name": str(out_name),
+                        "file_dep": [mat_ex_file],
+                        "targets": [out_name],
+                        "actions": [(utils.copy_file, [mat_ex_file, out_name])],
+                        "clean": True,
+                    }
+
+                headers["examples"]["files"] = natsort.natsorted(
+                    headers["examples"]["files"], alg=natsort.IC
+                )
+
+                out_name = self.kw["output_folder"].joinpath(
+                    example_folder, self.kw["index_file"]
+                )
                 yield {
                     "basename": self.name,
-                    "name": out_name,
-                    "file_dep": template_deps,
+                    "name": str(out_name),
+                    "file_dep": index_template_deps,
                     "targets": [out_name],
                     "actions": [
                         (
@@ -331,48 +360,6 @@ class BuildExamples(Task):
                     ],
                     "clean": True,
                 }
-
-                for f in files:
-                    if str(f) == ".DS_Store":
-                        continue
-                    if f.suffix in self.ignored_extensions:
-                        continue
-                    in_name = str(f.resolve())
-                    # Record file names
-                    f_name = str(f.name)
-                    rel_output_name = os.path.join(example_folder, f_name + ".html")
-                    # Set up output name
-                    out_name = os.path.join(self.kw["output_folder"], rel_output_name)
-                    # Yield task
-                    yield {
-                        "basename": self.name,
-                        "name": out_name,
-                        "file_dep": template_deps + [in_name],
-                        "targets": [out_name],
-                        "actions": [
-                            (
-                                render_listing,
-                                [in_name, out_name, input_folder, example_folder],
-                            )
-                        ],
-                        # This is necessary to reflect changes in blog title,
-                        # sidebar links, etc.
-                        "uptodate": [
-                            utils.config_changed(uptodate, "build_examples:source")
-                        ],
-                        "clean": True,
-                    }
-
-                    rel_output_name = os.path.join(example_folder, f_name)
-                    out_name = os.path.join(self.kw["output_folder"], rel_output_name)
-                    yield {
-                        "basename": self.name,
-                        "name": out_name,
-                        "file_dep": [in_name],
-                        "targets": [out_name],
-                        "actions": [(utils.copy_file, [in_name, out_name])],
-                        "clean": True,
-                    }
 
             #########################################################
             # Build the Jupyter examples
