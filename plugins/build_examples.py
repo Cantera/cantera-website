@@ -157,6 +157,9 @@ class BuildExamples(Task):
 
         uptodate["kw"] = self.kw
 
+        examples_template_deps = self.site.template_system.template_deps(
+            "examples.tmpl"
+        )
         for input_folder, example_folder in self.kw["examples_folders"].items():
 
             #########################################################
@@ -165,9 +168,6 @@ class BuildExamples(Task):
             if "python" in example_folder:
                 index_template_deps = self.site.template_system.template_deps(
                     "python-example-index.tmpl"
-                )
-                examples_template_deps = self.site.template_system.template_deps(
-                    "examples.tmpl"
                 )
                 headers = OrderedDict(
                     thermo=dict(files=[], summaries={}, name="Thermodynamics"),
