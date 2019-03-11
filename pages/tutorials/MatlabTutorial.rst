@@ -55,7 +55,7 @@ combustion mechanism developed by Gregory P. Smith, David M. Golden,
 Michael Frenklach, Nigel W. Moriarty, Boris Eiteneer, Mikhail
 Goldenberg, C. Thomas Bowman, Ronald K. Hanson, Soonho Song, William
 C. Gardiner, Jr., Vitali V. Lissianski, and Zhiwei Qin. (See
-http://www.me.berkeley.edu/gri_mech/ for more information about
+http://combustion.berkeley.edu/gri-mech/ for more information about
 GRI-Mech 3.0.)
 
 The ``gas1`` object has properties you would expect for a gas mixture—it has a
