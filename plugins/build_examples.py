@@ -89,7 +89,7 @@ class BuildExamples(Task):
                 "{}-example-index.tmpl".format(ex_type), str(output_file), context
             )
 
-        def render_listing(in_name, out_name, input_folder, output_folder):
+        def render_example(in_name, out_name, input_folder, output_folder):
             needs_ipython_css = False
             if in_name.suffix == ".ipynb":
                 # Special handling: render ipynb in listings (Issue #1900)
@@ -212,7 +212,7 @@ class BuildExamples(Task):
                         "targets": [out_name],
                         "actions": [
                             (
-                                render_listing,
+                                render_example,
                                 [py_ex_file, out_name, input_folder, example_folder],
                             )
                         ],
