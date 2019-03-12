@@ -52,7 +52,7 @@ class ParseDocs(Task):
 
             for file in files:
                 file = Path(file)
-                with open(file, "r") as html_file:
+                with open(file, "r", encoding="utf8") as html_file:
                     tree = parse(html_file)
 
                 location = str(file.relative_to(docs_folder))
