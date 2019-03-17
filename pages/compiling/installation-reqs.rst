@@ -18,22 +18,22 @@
       <div class="container">
          <div class="row">
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-conda">Conda</a>
+               <a class="btn btn-secondary btn-block" href="#sec-conda">Conda</a>
             </div>
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-ubuntu-debian-reqs">Ubuntu & Debian</a>
+               <a class="btn btn-secondary btn-block" href="#sec-ubuntu-debian-reqs">Ubuntu & Debian</a>
             </div>
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-fedora-reqs">Fedora & RHEL</a>
+               <a class="btn btn-secondary btn-block" href="#sec-fedora-reqs">Fedora & RHEL</a>
             </div>
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-opensuse-reqs">OpenSUSE & SLE</a>
+               <a class="btn btn-secondary btn-block" href="#sec-opensuse-reqs">OpenSUSE & SLE</a>
             </div>
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-windows">Windows</a>
+               <a class="btn btn-secondary btn-block" href="#sec-windows">Windows</a>
             </div>
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-macos">macOS</a>
+               <a class="btn btn-secondary btn-block" href="#sec-macos">macOS</a>
             </div>
          </div>
       </div>
