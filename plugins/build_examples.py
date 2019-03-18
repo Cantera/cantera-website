@@ -168,7 +168,7 @@ class BuildExamples(Task):
                 index_template_deps = self.site.template_system.template_deps(
                     "python-example-index.tmpl"
                 )
-                headers = OrderedDict(
+                python_headers = OrderedDict(
                     thermo=dict(files=[], summaries={}, name="Thermodynamics"),
                     kinetics=dict(files=[], summaries={}, name="Kinetics"),
                     transport=dict(files=[], summaries={}, name="Transport"),
@@ -182,12 +182,12 @@ class BuildExamples(Task):
 
                 python_examples = list(Path(input_folder).resolve().glob("*/*.py"))
                 uptodate2 = uptodate.copy()
-                uptodate2["d"] = headers.keys()
+                uptodate2["d"] = python_headers.keys()
                 uptodate2["f"] = list(map(str, python_examples))
 
                 for py_ex_file in python_examples:
                     ex_category = py_ex_file.parent.stem
-                    headers[ex_category]["files"].append(py_ex_file)
+                    python_headers[ex_category]["files"].append(py_ex_file)
                     mod = ast.parse(py_ex_file.read_bytes())
                     for node in mod.body:
                         if isinstance(node, ast.Expr) and isinstance(
@@ -197,7 +197,7 @@ class BuildExamples(Task):
                             if not doc.endswith("."):
                                 doc += "."
                             break
-                    headers[ex_category]["summaries"][py_ex_file.name] = doc
+                    python_headers[ex_category]["summaries"][py_ex_file.name] = doc
 
                     out_name = self.kw["output_folder"].joinpath(
                         example_folder,
@@ -235,9 +235,9 @@ class BuildExamples(Task):
                         "clean": True,
                     }
 
-                for head in headers.keys():
-                    headers[head]["files"] = natsort.natsorted(
-                        headers[head]["files"], alg=natsort.IC
+                for head in python_headers.keys():
+                    python_headers[head]["files"] = natsort.natsorted(
+                        python_headers[head]["files"], alg=natsort.IC
                     )
 
                 out_name = self.kw["output_folder"].joinpath(
@@ -251,7 +251,13 @@ class BuildExamples(Task):
                     "actions": [
                         (
                             render_example_index,
-                            ["python", headers, input_folder, example_folder, out_name],
+                            [
+                                "python",
+                                python_headers,
+                                input_folder,
+                                example_folder,
+                                out_name,
+                            ],
                         )
                     ],
                     # This is necessary to reflect changes in blog title,
@@ -270,18 +276,18 @@ class BuildExamples(Task):
                     "matlab-example-index.tmpl"
                 )
                 matlab_examples = list(Path(input_folder).resolve().glob("*.m"))
-                headers = {
+                matlab_headers = {
                     "examples": {"name": "Examples", "files": [], "summaries": {}}
                 }
 
                 uptodate2 = uptodate.copy()
-                uptodate2["d"] = headers.keys()
+                uptodate2["d"] = matlab_headers.keys()
                 uptodate2["f"] = list(map(str, matlab_examples))
 
                 for mat_ex_file in matlab_examples:
                     if "tut" in mat_ex_file.name or "test" in mat_ex_file.name:
                         continue
-                    headers["examples"]["files"].append(mat_ex_file)
+                    matlab_headers["examples"]["files"].append(mat_ex_file)
                     doc = ""
                     for line in mat_ex_file.read_text().split("\n"):
                         line = line.strip()
@@ -297,7 +303,7 @@ class BuildExamples(Task):
                         # This is too aggressive at removing leading -
                         # It also removes from things like "zero-dimensional"
                         doc = doc[len(name) :].replace("-", "").strip()
-                    headers["examples"]["summaries"][mat_ex_file.name] = doc
+                    matlab_headers["examples"]["summaries"][mat_ex_file.name] = doc
 
                     out_name = self.kw["output_folder"].joinpath(
                         example_folder, mat_ex_file.with_suffix(".m.html").name
@@ -334,8 +340,8 @@ class BuildExamples(Task):
                         "clean": True,
                     }
 
-                headers["examples"]["files"] = natsort.natsorted(
-                    headers["examples"]["files"], alg=natsort.IC
+                matlab_headers["examples"]["files"] = natsort.natsorted(
+                    matlab_headers["examples"]["files"], alg=natsort.IC
                 )
 
                 out_name = self.kw["output_folder"].joinpath(
@@ -349,7 +355,13 @@ class BuildExamples(Task):
                     "actions": [
                         (
                             render_example_index,
-                            ["matlab", headers, input_folder, example_folder, out_name],
+                            [
+                                "matlab",
+                                matlab_headers,
+                                input_folder,
+                                example_folder,
+                                out_name,
+                            ],
                         )
                     ],
                     # This is necessary to reflect changes in blog title,
@@ -367,7 +379,7 @@ class BuildExamples(Task):
                 index_template_deps = self.site.template_system.template_deps(
                     "jupyter-example-index.tmpl"
                 )
-                headers = OrderedDict(
+                jupyter_headers = OrderedDict(
                     thermo=dict(name="Thermodynamics", files=[], summaries={}),
                     reactors=dict(name="Reactor Networks", files=[], summaries={}),
                     flames=dict(name="One-Dimensional Flames", files=[], summaries={}),
@@ -387,7 +399,7 @@ class BuildExamples(Task):
 
                 jupyter_examples = list(Path(input_folder).resolve().glob("*/*.ipynb"))
                 uptodate2 = uptodate.copy()
-                uptodate2["d"] = headers.keys()
+                uptodate2["d"] = jupyter_headers.keys()
                 uptodate2["f"] = list(map(str, jupyter_examples))
 
                 cache_folder = Path(self.kw["cache_folder"])
@@ -397,7 +409,7 @@ class BuildExamples(Task):
                     if ex_category == ".ipynb_checkpoints":
                         continue
 
-                    headers[ex_category]["files"].append(jpy_ex_file)
+                    jupyter_headers[ex_category]["files"].append(jpy_ex_file)
 
                     data = json.loads(jpy_ex_file.read_text())
                     doc = ""
@@ -447,7 +459,7 @@ class BuildExamples(Task):
                     with cache_file.open(mode="w") as jfile:
                         json.dump(data, jfile)
 
-                    headers[ex_category]["summaries"][jpy_ex_file.name] = doc
+                    jupyter_headers[ex_category]["summaries"][jpy_ex_file.name] = doc
 
                     out_name = self.kw["output_folder"].joinpath(
                         example_folder,
@@ -486,8 +498,8 @@ class BuildExamples(Task):
                         "clean": True,
                     }
 
-                headers[ex_category]["files"] = natsort.natsorted(
-                    headers[ex_category]["files"], alg=natsort.IC
+                jupyter_headers[ex_category]["files"] = natsort.natsorted(
+                    jupyter_headers[ex_category]["files"], alg=natsort.IC
                 )
 
                 out_name = self.kw["output_folder"].joinpath(
@@ -503,7 +515,7 @@ class BuildExamples(Task):
                             render_example_index,
                             [
                                 "jupyter",
-                                headers,
+                                jupyter_headers,
                                 input_folder,
                                 example_folder,
                                 out_name,
