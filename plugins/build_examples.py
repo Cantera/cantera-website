@@ -55,87 +55,85 @@ class BuildExamples(Task):
 
         return super(BuildExamples, self).set_site(site)
 
+    def render_example_index(self, ex_type, headers, output_file):
+        def chunks(l, n):
+            """Yield successive n-sized chunks from l.
+
+            https://stackoverflow.com/a/312464
+            """
+            for i in range(0, len(l), n):
+                yield l[i : i + n]
+
+        for head, file_dict in headers.items():
+            file_dict["files"] = list(chunks(file_dict["files"], 3))
+
+        permalink = output_file.relative_to(self.kw["output_folder"])
+        title = "{} Examples".format(ex_type).title()
+        context = {
+            "headers": headers,
+            "lang": self.kw["default_lang"],
+            "pagekind": ["example"],
+            "permalink": str(permalink),
+            "title": title,
+            "description": title,
+        }
+        self.site.render_template(
+            "{}-example-index.tmpl".format(ex_type), str(output_file), context
+        )
+
+    def render_example(self, in_name, out_name):
+        needs_ipython_css = False
+        if in_name.suffix == ".ipynb":
+            # Special handling: render ipynb in listings (Issue #1900)
+            ipynb_compiler = self.site.plugin_manager.getPluginByName(
+                "ipynb", "PageCompiler"
+            ).plugin_object
+            with in_name.open(mode="r") as in_file:
+                nb_json = ipynb_compiler._nbformat_read(in_file)
+            ipynb_raw = ipynb_compiler._compile_string(nb_json)
+            ipynb_html = lxml.html.fromstring(ipynb_raw)
+            code = lxml.html.tostring(ipynb_html, encoding="unicode")
+            needs_ipython_css = True
+        elif in_name.suffix == ".m":
+            lexer = MatlabLexer()
+            code = highlight(
+                in_name.read_bytes(), lexer, utils.NikolaPygmentsHTML(in_name.name)
+            )
+        else:
+            try:
+                lexer = get_lexer_for_filename(in_name.name)
+            except ClassNotFound:
+                try:
+                    lexer = guess_lexer(in_name.read_bytes())
+                except ClassNotFound:
+                    lexer = TextLexer()
+            code = highlight(
+                in_name.read_bytes(), lexer, utils.NikolaPygmentsHTML(in_name.name)
+            )
+
+        title = in_name.name
+
+        permalink = out_name.relative_to(self.kw["output_folder"])
+        source_link = permalink.stem  # remove '.html'
+        context = {
+            "code": code,
+            "title": title,
+            "permalink": str(permalink),
+            "lang": self.kw["default_lang"],
+            "description": title,
+            "source_link": source_link,
+            "pagekind": ["example"],
+        }
+        if needs_ipython_css:
+            # If someone does not have ipynb posts and only listings, we
+            # need to enable ipynb CSS for ipynb listings.
+            context["needs_ipython_css"] = True
+        self.site.render_template("examples.tmpl", str(out_name), context)
+
     def gen_tasks(self):
         """Render examples."""
         # Things to ignore in examples
         self.ignored_extensions = (".pyc", ".pyo", ".cti", ".dat", ".ipynb_checkpoints")
-
-        def render_example_index(
-            ex_type, headers, output_file
-        ):
-            def chunks(l, n):
-                """Yield successive n-sized chunks from l.
-
-                https://stackoverflow.com/a/312464
-                """
-                for i in range(0, len(l), n):
-                    yield l[i : i + n]
-
-            for head, file_dict in headers.items():
-                file_dict["files"] = list(chunks(file_dict["files"], 3))
-
-            permalink = output_file.relative_to(self.kw["output_folder"])
-            title = "{} Examples".format(ex_type).title()
-            context = {
-                "headers": headers,
-                "lang": self.kw["default_lang"],
-                "pagekind": ["example"],
-                "permalink": str(permalink),
-                "title": title,
-                "description": title,
-            }
-            self.site.render_template(
-                "{}-example-index.tmpl".format(ex_type), str(output_file), context
-            )
-
-        def render_example(in_name, out_name):
-            needs_ipython_css = False
-            if in_name.suffix == ".ipynb":
-                # Special handling: render ipynb in listings (Issue #1900)
-                ipynb_compiler = self.site.plugin_manager.getPluginByName(
-                    "ipynb", "PageCompiler"
-                ).plugin_object
-                with in_name.open(mode="r") as in_file:
-                    nb_json = ipynb_compiler._nbformat_read(in_file)
-                ipynb_raw = ipynb_compiler._compile_string(nb_json)
-                ipynb_html = lxml.html.fromstring(ipynb_raw)
-                code = lxml.html.tostring(ipynb_html, encoding="unicode")
-                needs_ipython_css = True
-            elif in_name.suffix == ".m":
-                lexer = MatlabLexer()
-                code = highlight(
-                    in_name.read_bytes(), lexer, utils.NikolaPygmentsHTML(in_name.name)
-                )
-            else:
-                try:
-                    lexer = get_lexer_for_filename(in_name.name)
-                except ClassNotFound:
-                    try:
-                        lexer = guess_lexer(in_name.read_bytes())
-                    except ClassNotFound:
-                        lexer = TextLexer()
-                code = highlight(
-                    in_name.read_bytes(), lexer, utils.NikolaPygmentsHTML(in_name.name)
-                )
-
-            title = in_name.name
-
-            permalink = out_name.relative_to(self.kw["output_folder"])
-            source_link = permalink.stem  # remove '.html'
-            context = {
-                "code": code,
-                "title": title,
-                "permalink": str(permalink),
-                "lang": self.kw["default_lang"],
-                "description": title,
-                "source_link": source_link,
-                "pagekind": ["example"],
-            }
-            if needs_ipython_css:
-                # If someone does not have ipynb posts and only listings, we
-                # need to enable ipynb CSS for ipynb listings.
-                context["needs_ipython_css"] = True
-            self.site.render_template("examples.tmpl", str(out_name), context)
 
         yield self.group_task()
 
@@ -209,7 +207,7 @@ class BuildExamples(Task):
                         "name": str(out_name),
                         "file_dep": examples_template_deps + [py_ex_file],
                         "targets": [out_name],
-                        "actions": [(render_example, [py_ex_file, out_name])],
+                        "actions": [(self.render_example, [py_ex_file, out_name])],
                         # This is necessary to reflect changes in blog title,
                         # sidebar links, etc.
                         "uptodate": [
@@ -245,12 +243,8 @@ class BuildExamples(Task):
                     "targets": [out_name],
                     "actions": [
                         (
-                            render_example_index,
-                            [
-                                "python",
-                                python_headers,
-                                out_name,
-                            ],
+                            self.render_example_index,
+                            ["python", python_headers, out_name],
                         )
                     ],
                     # This is necessary to reflect changes in blog title,
@@ -307,7 +301,7 @@ class BuildExamples(Task):
                         "name": str(out_name),
                         "file_dep": examples_template_deps + [mat_ex_file],
                         "targets": [out_name],
-                        "actions": [(render_example, [mat_ex_file, out_name])],
+                        "actions": [(self.render_example, [mat_ex_file, out_name])],
                         # This is necessary to reflect changes in blog title,
                         # sidebar links, etc.
                         "uptodate": [
@@ -342,12 +336,8 @@ class BuildExamples(Task):
                     "targets": [out_name],
                     "actions": [
                         (
-                            render_example_index,
-                            [
-                                "matlab",
-                                matlab_headers,
-                                out_name,
-                            ],
+                            self.render_example_index,
+                            ["matlab", matlab_headers, out_name],
                         )
                     ],
                     # This is necessary to reflect changes in blog title,
@@ -458,7 +448,7 @@ class BuildExamples(Task):
                         "name": str(out_name),
                         "file_dep": examples_template_deps + [jpy_ex_file, cache_file],
                         "targets": [out_name],
-                        "actions": [(render_example, [cache_file, out_name])],
+                        "actions": [(self.render_example, [cache_file, out_name])],
                         # This is necessary to reflect changes in blog title,
                         # sidebar links, etc.
                         "uptodate": [
@@ -493,12 +483,8 @@ class BuildExamples(Task):
                     "targets": [out_name],
                     "actions": [
                         (
-                            render_example_index,
-                            [
-                                "jupyter",
-                                jupyter_headers,
-                                out_name,
-                            ],
+                            self.render_example_index,
+                            ["jupyter", jupyter_headers, out_name],
                         )
                     ],
                     # This is necessary to reflect changes in blog title,
