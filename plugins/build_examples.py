@@ -406,17 +406,19 @@ class BuildExamples(Task):
                             continue
                         if not doc:
                             doc = cell["source"][0].replace("#", "").strip()
-                        for i, s in enumerate(cell["source"]):
-                            if "img" in s:
-                                img = lxml.html.fromstring(s)
+                        for img_idx, cell_src in enumerate(cell["source"]):
+                            if "img" in cell_src:
+                                img = lxml.html.fromstring(cell_src)
                                 img_fname = img.attrib["src"]
                                 b64_str = get_b64_str(jpy_ex_file.parent, img_fname)
                                 img.attrib["src"] = b64_str
                                 new_img = lxml.html.tostring(img).decode("utf-8")
-                                cell["source"][i] = re.sub("<img.*/>", new_img, s)
-                            elif "![" in s:
+                                cell["source"][img_idx] = re.sub(
+                                    "<img.*/>", new_img, cell_src
+                                )
+                            elif "![" in cell_src:
                                 img_alt, img_fname = re.findall(
-                                    r"!\[(.*?)\]\((.*?)\)", s
+                                    r"!\[(.*?)\]\((.*?)\)", cell_src
                                 )[0]
                                 if "attachment" in img_fname:
                                     img_fname = img_fname.split(":", 1)[1]
@@ -431,8 +433,8 @@ class BuildExamples(Task):
                                 new_img = '<img src="{b64_str}" alt="{img_alt}"/>'.format(
                                     b64_str=b64_str, img_alt=img_alt
                                 )
-                                cell["source"][i] = re.sub(
-                                    r"!\[.*?\]\(.*?\)", new_img, s
+                                cell["source"][img_idx] = re.sub(
+                                    r"!\[.*?\]\(.*?\)", new_img, cell_src
                                 )
                             else:
                                 continue
