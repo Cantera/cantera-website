@@ -2,6 +2,7 @@
 output/
 cache/
 .doit.db.*
+.doit.db*
 
 # CI Support
 .ci_support/ctdeploy_key
