@@ -31,7 +31,7 @@ class ParseDocs(Task):
 
         self.kw = {
             "output_folder": site.config["OUTPUT_FOLDER"],
-            "docs_folders": site.config["FILES_FOLDERS"],
+            "docs_folders": site.config["DOCS_FOLDERS"],
             "cantera_version": site.config["CANTERA_VERSION"],
         }
 

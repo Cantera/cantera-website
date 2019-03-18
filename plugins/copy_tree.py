@@ -5,8 +5,9 @@ This plugin copies entire folders at once, rather than individually
 copying files within the folder. This substantially reduces the
 printed output to stdout during the copying process and is much
 faster. We prefer this plugin since we are copying folders around
-for the API documentation."""
-from shutil import copytree, ignore_patterns, rmtree, copy2
+for the API documentation.
+"""
+from shutil import copytree, ignore_patterns, rmtree
 import os
 
 from nikola.plugin_categories import Task
@@ -19,9 +20,9 @@ class CopyTree(Task):
     name = "copy_tree"
 
     def gen_tasks(self):
-        """Copy static files into the output folder."""
+        """Copy docs files into the output folder."""
         kw = {
-            "files_folders": self.site.config["FILES_FOLDERS"],
+            "docs_folders": self.site.config["DOCS_FOLDERS"],
             "output_folder": self.site.config["OUTPUT_FOLDER"],
         }
 
@@ -32,12 +33,9 @@ class CopyTree(Task):
             if os.path.exists(dst):
                 rmtree(dst)
 
-            try:
-                copytree(src=src, dst=dst, ignore=ignore)
-            except NotADirectoryError:
-                copy2(src=src, dst=dst)
+            copytree(src=src, dst=dst, ignore=ignore)
 
-        for src, rel_dst in kw["files_folders"].items():
+        for src, rel_dst in kw["docs_folders"].items():
             final_dst = os.path.join(kw["output_folder"], rel_dst)
             yield {
                 "basename": self.name,

@@ -149,9 +149,6 @@ NAVIGATION_LINKS = {
         ('/community.html', 'Community'),
         ('/science/index.html', 'Science'),
         ('/documentation/index.html', 'Documentation'),
-        # ("/archive.html", "Archive"),
-        # ("/categories/", "Tags"),
-        # ("/rss.xml", "RSS feed"),
         ("/blog/index.html", "Blog"),
     ),
 }
@@ -292,28 +289,27 @@ TIMEZONE = "America/New_York"
 # The format is a dictionary of {source: relative destination}.
 
 # This is the "production" version of this dictionary
-FILES_FOLDERS = {
+DOCS_FOLDERS = {
     'api-docs/docs-2.0': 'documentation/docs-2.0',
     'api-docs/docs-2.1': 'documentation/docs-2.1',
     'api-docs/docs-2.2': 'documentation/docs-2.2',
     'api-docs/docs-2.3': 'documentation/docs-2.3',
     'api-docs/docs-2.4': 'documentation/docs-2.4',
+}
+FILES_FOLDERS = {
     'files/survey2013': 'survey2013',
-    'files/license.txt': 'license.txt',
+    'files/license': '',
 }
 
 # This is the "development" version of this dictionary
-# FILES_FOLDERS = {
+# DOCS_FOLDERS = {
 #     '../cantera/build/docs': 'documentation/docs-{}'.format(CANTERA_VERSION),
 #     '../cantera/build/dev-docs': 'documentation/dev',
 #     'api-docs/docs-2.0': 'documentation/docs-2.0',
 #     'api-docs/docs-2.1': 'documentation/docs-2.1',
 #     'api-docs/docs-2.2': 'documentation/docs-2.2',
 #     'api-docs/docs-2.3': 'documentation/docs-2.3',
-#     'files/survey2013': 'survey2013',
 # }
-
-# Which means copy 'files' into 'output'
 
 # One or more folders containing code listings to be processed and published on
 # the site. The format is a dictionary of {source: relative destination}.
@@ -1313,8 +1309,7 @@ USE_CDN_WARNING = False
 USE_BUNDLES = False
 
 # Plugins you don't want to use. Be careful :-)
-DISABLED_PLUGINS = ['render_archive', 'classify_archive', 'render_galleries', 'render_listings',
-                    'copy_files']
+DISABLED_PLUGINS = ['render_archive', 'classify_archive', 'render_galleries', 'render_listings']
 
 # Special settings to disable only parts of the indexes plugin.
 # Use with care.
