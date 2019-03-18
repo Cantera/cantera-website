@@ -1,2 +1,3 @@
 Nikola[extras]==8.0.*
 yapsy==1.11.*
+attrs>=17.4.0
