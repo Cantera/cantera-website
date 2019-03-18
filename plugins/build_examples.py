@@ -61,7 +61,7 @@ class BuildExamples(Task):
         self.ignored_extensions = (".pyc", ".pyo", ".cti", ".dat", ".ipynb_checkpoints")
 
         def render_example_index(
-            ex_type, headers, input_folder, output_folder, output_file
+            ex_type, headers, output_file
         ):
             def chunks(l, n):
                 """Yield successive n-sized chunks from l.
@@ -88,7 +88,7 @@ class BuildExamples(Task):
                 "{}-example-index.tmpl".format(ex_type), str(output_file), context
             )
 
-        def render_example(in_name, out_name, input_folder, output_folder):
+        def render_example(in_name, out_name):
             needs_ipython_css = False
             if in_name.suffix == ".ipynb":
                 # Special handling: render ipynb in listings (Issue #1900)
@@ -209,12 +209,7 @@ class BuildExamples(Task):
                         "name": str(out_name),
                         "file_dep": examples_template_deps + [py_ex_file],
                         "targets": [out_name],
-                        "actions": [
-                            (
-                                render_example,
-                                [py_ex_file, out_name, input_folder, example_folder],
-                            )
-                        ],
+                        "actions": [(render_example, [py_ex_file, out_name])],
                         # This is necessary to reflect changes in blog title,
                         # sidebar links, etc.
                         "uptodate": [
@@ -254,8 +249,6 @@ class BuildExamples(Task):
                             [
                                 "python",
                                 python_headers,
-                                input_folder,
-                                example_folder,
                                 out_name,
                             ],
                         )
@@ -314,12 +307,7 @@ class BuildExamples(Task):
                         "name": str(out_name),
                         "file_dep": examples_template_deps + [mat_ex_file],
                         "targets": [out_name],
-                        "actions": [
-                            (
-                                render_example,
-                                [mat_ex_file, out_name, input_folder, example_folder],
-                            )
-                        ],
+                        "actions": [(render_example, [mat_ex_file, out_name])],
                         # This is necessary to reflect changes in blog title,
                         # sidebar links, etc.
                         "uptodate": [
@@ -358,8 +346,6 @@ class BuildExamples(Task):
                             [
                                 "matlab",
                                 matlab_headers,
-                                input_folder,
-                                example_folder,
                                 out_name,
                             ],
                         )
@@ -472,12 +458,7 @@ class BuildExamples(Task):
                         "name": str(out_name),
                         "file_dep": examples_template_deps + [jpy_ex_file, cache_file],
                         "targets": [out_name],
-                        "actions": [
-                            (
-                                render_example,
-                                [cache_file, out_name, input_folder, example_folder],
-                            )
-                        ],
+                        "actions": [(render_example, [cache_file, out_name])],
                         # This is necessary to reflect changes in blog title,
                         # sidebar links, etc.
                         "uptodate": [
@@ -516,8 +497,6 @@ class BuildExamples(Task):
                             [
                                 "jupyter",
                                 jupyter_headers,
-                                input_folder,
-                                example_folder,
                                 out_name,
                             ],
                         )
