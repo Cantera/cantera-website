@@ -50,12 +50,12 @@ class ParseDocs(Task):
 
             duplicate_targets = []
 
-            for file in files:
-                file = Path(file)
-                with open(file, "r", encoding="utf8") as html_file:
+            for f_path in files:
+                f_path = Path(f_path)
+                with open(f_path, "r", encoding="utf8") as html_file:
                     tree = parse(html_file)
 
-                location = str(file.relative_to(docs_folder))
+                location = str(f_path.relative_to(docs_folder))
                 for elem in tree.xpath("//dt"):
                     if elem.get("id") is None:
                         continue
