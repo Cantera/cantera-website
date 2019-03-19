@@ -135,9 +135,12 @@ class RenderMatlabExamples(Task):
                     doc = line.strip("%").strip()
                 if doc:
                     break
-            # TODO: Warn if example doesn't have a docstring
             if not doc:
-                pass
+                self.logger.warn(
+                    "The Matlab example {!s} doesn't have an appropriate summary. The "
+                    "first comment line of the Matlab file is taken as the "
+                    "summary.".format(mat_ex_file)
+                )
             name = mat_ex_file.stem.replace("_", " ")
             if doc.lower().replace("_", " ").startswith(name):
                 # This is too aggressive at removing leading -
