@@ -92,7 +92,7 @@ Conda Requirements
 
   .. code:: bash
 
-     conda install --name cantera sphinx doxygen graphviz
+     conda install sphinx doxygen graphviz
      pip install sphinxcontrib-matlabdomain sphinxcontrib-katex sphinxcontrib-doxylink
 
 * (Optional) If you also want to build the Python 2 interface (this is unlikely), create another
@@ -107,21 +107,32 @@ Conda Requirements
 
   and after you've :ref:`cloned the source code <sec-source-code>`, add the following lines to a
   file called ``cantera.conf``  in the root of the source directory (creating the file if it
-  doesn't exist):
+  doesn't exist).
+
+  On macOS and Linux, add the following code to your ``cantera.conf`` file:
 
   .. code:: python
 
      python2_package = 'full'
      python2_cmd = '/path/to/conda/install/folder/envs/py2k/bin/python'
 
+  On Windows, add the following code to your ``cantera.conf`` file:
+
+  .. code:: bash
+
+     python2_package = 'full'
+     python2_cmd = '/path/to/conda/install/folder/envs/py2k/python.exe
+
   Note that it is not possible to simultaneously install the Python 2 and Python 3 interfaces;
   you'll have to use separate builds if you want to install both (however, this is an unlikely
-  scenario). For every-day development and testing, the setup described here works well.
+  scenario). In addition, note Cantera 2.4 is the last version that will support Python 2. If
+  you checked out the most recent commit on the ``master`` branch of the git repository,
+  support for Python 2 has already been dropped and you cannot use these options.
 
 * After you've :ref:`cloned the source code <sec-source-code>`, configure the Cantera build by
   adding the following options to a file called ``cantera.conf`` in the root of the source directory
-  (creating the file if it doesn't exist)
-  
+  (creating the file if it doesn't exist).
+
   On macOS and Linux, add the following code to your ``cantera.conf`` file:
 
   .. code:: python
@@ -135,6 +146,13 @@ Conda Requirements
 
      python3_package = 'full'
      boost_inc_dir = '/path/to/conda/install/folder/envs/cantera/Library/include'
+
+  .. note::
+
+     If you're using commits from the ``master`` branch of the git repository, Python 2 is no
+     longer supported and the version-specific Python package options have been dropped. You
+     should just use ``python_package`` instead of ``python3_package`` if you're compiling the
+     ``master`` branch.
 
 * Now you can build Cantera with
 
