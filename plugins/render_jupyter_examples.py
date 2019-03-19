@@ -1,9 +1,12 @@
-"""Build the examples from the Cantera repository into Nikola listings.
+"""Render the examples from the Cantera Jupyter repository into Nikola listings.
 
-This plugin finds the Cantera examples directory in the Cantera repository
-to process the examples into nicely formatted HTML along the lines of
-Nikola listings. The Cantera examples are found in the ``EXAMPLES_FOLDERS``
-configuration option from the top-level config.py.
+This plugin renders Jupyter Notebook examples from the cantera-jupyter repository
+into the examples/jupyter output folder. It looks for the examples in the folder
+configured in the top-level conf.py file in the ``EXAMPLES_FOLDERS`` dictionary.
+That dictionary has keys with the source folder and values with the destination
+folder (relative to the ``OUTPUT_FOLDER``). The relevant source folder is found
+as the key associated with the value that contains the string ``jupyter``,
+typically ``"../cantera-jupyter": "examples/jupyter"``.
 """
 from pathlib import Path
 import re
@@ -20,6 +23,21 @@ import natsort
 
 
 def render_example_index(site, kw, headers, output_file):
+    """Render the index of all of the Jupyter examples.
+
+    Parameters
+    ==========
+    site:
+        An instance of a Nikola site, available in any plugin as ``self.site``
+    kw:
+        A dictionary of keywords for this task
+    headers:
+        A dictionary of the example categories and the summaries of each example
+    output_file:
+        A pathlib.Path instance representing the output file that will be rendered
+
+    """
+    # n is the number of examples in each row on the index page
     n = 3
     for head_dict in headers.values():
         head_files = head_dict["files"]
@@ -41,6 +59,20 @@ def render_example_index(site, kw, headers, output_file):
 
 
 def render_example(site, kw, in_name, out_name):
+    """Render a single .ipynb file to HTML with formatting.
+
+    Parameters
+    ==========
+    site:
+        An instance of a Nikola site, available in any plugin as ``self.site``
+    kw:
+        A dictionary of keywords for this task
+    in_name:
+        The file to be rendered, as an instance of pathlib.Path
+    out_name:
+        A pathlib.Path instance pointing to the rendered output file
+
+    """
     ipynb_compiler = site.plugin_manager.getPluginByName(
         "ipynb", "PageCompiler"
     ).plugin_object
@@ -68,6 +100,13 @@ def render_example(site, kw, in_name, out_name):
 
 
 class RenderJupyterExamples(Task):
+    """Render the Jupyter examples with a Nikola Task.
+
+    As with all Nikola ``Tasks``, the key method here is the ``gen_tasks``
+    method, which yields dictionaries that represent tasks that doit needs
+    to run. There are two primary kinds of tasks, one that renders each
+    example file, and one that renders an index of all of the examples.
+    """
 
     name = "render_jupyter_examples"
 

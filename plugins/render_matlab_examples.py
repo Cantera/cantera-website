@@ -1,9 +1,12 @@
-"""Build the examples from the Cantera repository into Nikola listings.
+"""Render the Matlab examples from the Cantera repository into Nikola listings.
 
-This plugin finds the Cantera examples directory in the Cantera repository
-to process the examples into nicely formatted HTML along the lines of
-Nikola listings. The Cantera examples are found in the ``EXAMPLES_FOLDERS``
-configuration option from the top-level config.py.
+This plugin renders Matlab examples from the main Cantera repository into the
+examples/matlab output folder. It looks for the examples in the folder configured
+in the top-level conf.py file in the ``EXAMPLES_FOLDERS`` dictionary. That
+dictionary has keys with the source folder and values with the destination
+folder (relative to the ``OUTPUT_FOLDER``). The relevant source folder is found
+as the key associated with the value that contains the string ``matlab``,
+typically ``"../cantera/interfaces/cython/cantera/examples": "examples/python"``.
 """
 from pathlib import Path
 
@@ -15,6 +18,20 @@ import natsort
 
 
 def render_example_index(site, kw, headers, output_file):
+    """Render the index of all of the Matlab examples.
+
+    Parameters
+    ==========
+    site:
+        An instance of a Nikola site, available in any plugin as ``self.site``
+    kw:
+        A dictionary of keywords for this task
+    headers:
+        A dictionary of the example categories and the summaries of each example
+    output_file:
+        A pathlib.Path instance representing the output file that will be rendered
+
+    """
     n = 3
     for head_dict in headers.values():
         head_files = head_dict["files"]
@@ -36,6 +53,20 @@ def render_example_index(site, kw, headers, output_file):
 
 
 def render_example(site, kw, in_name, out_name):
+    """Render a single .m file to HTML with formatting.
+
+    Parameters
+    ==========
+    site:
+        An instance of a Nikola site, available in any plugin as ``self.site``
+    kw:
+        A dictionary of keywords for this task
+    in_name:
+        The file to be rendered, as an instance of pathlib.Path
+    out_name:
+        A pathlib.Path instance pointing to the rendered output file
+
+    """
     code = highlight(
         in_name.read_bytes(), MatlabLexer(), utils.NikolaPygmentsHTML(in_name.name)
     )
@@ -56,6 +87,13 @@ def render_example(site, kw, in_name, out_name):
 
 
 class RenderMatlabExamples(Task):
+    """Render the Matlab examples with a Nikola Task.
+
+    As with all Nikola ``Tasks``, the key method here is the ``gen_tasks``
+    method, which yields dictionaries that represent tasks that doit needs
+    to run. There are two primary kinds of tasks, one that renders each
+    example file, and one that renders an index of all of the examples.
+    """
 
     name = "render_matlab_examples"
 
@@ -187,10 +225,7 @@ class RenderMatlabExamples(Task):
             "file_dep": index_template_deps,
             "targets": [out_name],
             "actions": [
-                (
-                    render_example_index,
-                    [self.site, kw, matlab_headers, out_name],
-                )
+                (render_example_index, [self.site, kw, matlab_headers, out_name])
             ],
             # This is necessary to reflect changes in blog title,
             # sidebar links, etc.
