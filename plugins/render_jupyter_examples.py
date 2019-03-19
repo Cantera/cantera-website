@@ -101,7 +101,7 @@ class RenderJupyterExamples(Task):
             "output_folder": Path(self.site.config["OUTPUT_FOLDER"]),
             "index_file": self.site.config["INDEX_FILE"],
             "strip_indexes": self.site.config["STRIP_INDEXES"],
-            "cache_folder": self.site.config["CACHE_FOLDER"],
+            "cache_folder": Path(self.site.config["CACHE_FOLDER"]),
         }
 
         yield self.group_task()
@@ -145,8 +145,6 @@ class RenderJupyterExamples(Task):
         jupyter_examples = list(Path(self.input_folder).resolve().glob("*/*.ipynb"))
         uptodate["d"] = jupyter_headers.keys()
         uptodate["f"] = list(map(str, jupyter_examples))
-
-        cache_folder = Path(kw["cache_folder"])
 
         for jpy_ex_file in jupyter_examples:
             ex_category = jpy_ex_file.parent.stem
@@ -193,7 +191,7 @@ class RenderJupyterExamples(Task):
                     else:
                         continue
 
-            cache_file = cache_folder.joinpath(
+            cache_file = kw["cache_folder"].joinpath(
                 self.examples_folder, ex_category, jpy_ex_file.name
             )
             cache_file.parent.mkdir(parents=True, exist_ok=True)
@@ -244,10 +242,7 @@ class RenderJupyterExamples(Task):
             "file_dep": index_template_deps,
             "targets": [out_name],
             "actions": [
-                (
-                    render_example_index,
-                    [self.site, kw, jupyter_headers, out_name],
-                )
+                (render_example_index, [self.site, kw, jupyter_headers, out_name])
             ],
             # This is necessary to reflect changes in blog title,
             # sidebar links, etc.
