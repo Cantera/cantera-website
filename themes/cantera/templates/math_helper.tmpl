@@ -1,89 +1,46 @@
-{#  Note: at present, MathJax and KaTeX do not respect the USE_CDN configuration option #}
+{#  Note: This file has been edited from the base theme to only include the KaTeX options #}
 {# KaTeX urls from: https://katex.org/docs/autorender.html #}
 
 {% macro math_scripts_files() %}
-    {% if use_katex %}
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js" integrity="sha384-2BKqo+exmr9su6dir+qCw08N2ZKRucY4PrGQPPWU1A7FtlCGjmEGFqXCv5nyM5Ij" crossorigin="anonymous"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
-    {% else %}
-        {#  Note: given the size of MathJax; nikola will retrieve MathJax from a CDN regardless of use_cdn configuration #}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script>
-    {% endif %}
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js" integrity="sha384-2BKqo+exmr9su6dir+qCw08N2ZKRucY4PrGQPPWU1A7FtlCGjmEGFqXCv5nyM5Ij" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
 {% endmacro %}
 
 {% macro math_scripts() %}
-    {{ math_scripts_files() }}
-    {% if use_katex %}
-        {% if katex_auto_render %}
-            <script>
-                renderMathInElement(document.body,
-                    {
-                        {{ katex_auto_render }}
-                    }
-                );
-            </script>
-        {% else %}
-            <script>
-                renderMathInElement(document.body,
-                    {
-                        delimiters: [
-                            {left: "$$", right: "$$", display: true},
-                            {left: "\\[", right: "\\]", display: true},
-                            {left: "\\begin{equation*}", right: "\\end{equation*}", display: true},
-                            {left: "\\(", right: "\\)", display: false}
-                        ]
-                    }
-                );
-            </script>
-        {% endif %}
-    {% else %}
-        {% if mathjax_config %}
-        {{ mathjax_config }}
-        {% else %}
-        <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
-        </script>
-        {% endif %}
-    {% endif %}
+  {{ math_scripts_files() }}
+  <script>
+    renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "\\begin{equation*}", right: "\\end{equation*}", display: true},
+          {left: "\\(", right: "\\)", display: false}
+        ]
+      }
+    );
+  </script>
 {% endmacro %}
 
 {% macro jupyter_math_scripts() %}
-    {{ math_scripts_files() }}
-    {% if use_katex %}
-        <script>
-            renderMathInElement(document.body,
-                {
-                    delimiters: [
-                        {left: "$$", right: "$$", display: true},
-                        {left: "\\[", right: "\\]", display: true},
-                        {left: "\\begin{equation*}", right: "\\end{equation*}", display: true},
-                        {left: "$", right: "$", display: false},
-                        {left: "\\(", right: "\\)", display: false}
-                    ]
-                }
-            );
-        </script>
-    {% else %}
-        <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\\(","\\\)"] ],
-                displayMath: [ ['$$','$$'], ["\\\[","\\\]"] ],
-                processEscapes: true
-            },
-            displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
-            "HTML-CSS": {
-                styles: {'.MathJax_Display': {"margin": 0}}
-            }
-        });
-        </script>
-    {% endif %}
+  {{ math_scripts_files() }}
+  <script>
+    renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "\\begin{equation*}", right: "\\end{equation*}", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ]
+      }
+    );
+  </script>
 {% endmacro %}
 
 {% macro math_styles() %}
-    {% if use_katex %}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous">
-    {% endif %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous">
 {% endmacro %}
 
 {% macro math_scripts_ifpost(post) %}
