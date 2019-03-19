@@ -150,6 +150,13 @@ class RenderJupyterExamples(Task):
             ex_category = jpy_ex_file.parent.stem
             if ex_category == ".ipynb_checkpoints":
                 continue
+            if not jupyter_headers.get(ex_category, False):
+                self.logger.warn(
+                    "The category {} in the Jupyter examples has no header. "
+                    "Please add the folder to the jupyter_headers dictionary in the "
+                    "render_jupyter_examples plugin".format(ex_category)
+                )
+                continue
 
             jupyter_headers[ex_category]["files"].append(jpy_ex_file)
 

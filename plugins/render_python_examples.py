@@ -134,6 +134,15 @@ class RenderPythonExamples(Task):
 
         for py_ex_file in python_examples:
             ex_category = py_ex_file.parent.stem
+
+            if not python_headers.get(ex_category, False):
+                self.logger.warn(
+                    "The category {} in the Python examples has no header. "
+                    "Please add the folder to the python_headers dictionary in the "
+                    "render_python_examples plugin".format(ex_category)
+                )
+                continue
+
             python_headers[ex_category]["files"].append(py_ex_file)
             mod = ast.parse(py_ex_file.read_bytes())
             for node in mod.body:
