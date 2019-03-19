@@ -19,7 +19,7 @@ def render_example_index(site, kw, headers, output_file):
     for head_dict in headers.values():
         head_files = head_dict["files"]
         head_dict["files"] = [
-            head_files[i : i + n] for i in range(0, len(head_files), n)
+            head_files[i : i + n] for i in range(0, len(head_files), n)  # NOQA: E203
         ]
 
     permalink = output_file.relative_to(kw["output_folder"])
@@ -67,7 +67,8 @@ class RenderMatlabExamples(Task):
             if "matlab" in dest:
                 if found_matlab:
                     self.logger.error(
-                        "More than one folder to output Matlab examples was found in EXAMPLES_FOLDERS, exiting"
+                        "More than one folder to output Matlab examples was found in "
+                        "EXAMPLES_FOLDERS, exiting"
                     )
                 else:
                     found_matlab = True
@@ -141,7 +142,7 @@ class RenderMatlabExamples(Task):
             if doc.lower().replace("_", " ").startswith(name):
                 # This is too aggressive at removing leading -
                 # It also removes from things like "zero-dimensional"
-                doc = doc[len(name) :].replace("-", "").strip()
+                doc = doc[len(name) :].replace("-", "").strip()  # NOQA: E203
             matlab_headers["examples"]["summaries"][mat_ex_file.name] = doc
 
             out_name = kw["output_folder"].joinpath(

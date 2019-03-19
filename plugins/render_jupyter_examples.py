@@ -24,7 +24,7 @@ def render_example_index(site, kw, headers, output_file):
     for head_dict in headers.values():
         head_files = head_dict["files"]
         head_dict["files"] = [
-            head_files[i : i + n] for i in range(0, len(head_files), n)
+            head_files[i : i + n] for i in range(0, len(head_files), n)  # NOQA: E203
         ]
 
     permalink = output_file.relative_to(kw["output_folder"])
@@ -79,7 +79,8 @@ class RenderJupyterExamples(Task):
             if "jupyter" in dest:
                 if found_jupyter:
                     self.logger.error(
-                        "More than one folder to output Jupyter examples was found in EXAMPLES_FOLDERS, exiting"
+                        "More than one folder to output Jupyter examples was found in "
+                        "EXAMPLES_FOLDERS, exiting"
                     )
                 else:
                     found_jupyter = True
