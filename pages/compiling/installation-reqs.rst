@@ -112,12 +112,21 @@ Conda Requirements
 
 * After you've :ref:`cloned the source code <sec-source-code>`, configure the Cantera build by
   adding the following options to a file called ``cantera.conf`` in the root of the source directory
-  (creating the file if it doesn't exist):
+  (creating the file if it doesn't exist)
+  
+  On macOS and Linux, add the following code to your ``cantera.conf`` file:
 
   .. code:: python
 
      python3_package = 'full'
      boost_inc_dir = '/path/to/conda/install/folder/envs/cantera/include'
+
+  On Windows, add the following code to your ``cantera.conf`` file:
+
+  .. code:: python
+
+     python3_package = 'full'
+     boost_inc_dir = '/path/to/conda/install/folder/envs/cantera/Library/include'
 
 * Now you can build Cantera with
 
