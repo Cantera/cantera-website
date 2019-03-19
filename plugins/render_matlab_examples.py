@@ -222,7 +222,7 @@ class RenderMatlabExamples(Task):
         yield {
             "basename": self.name,
             "name": str(out_name),
-            "file_dep": index_template_deps,
+            "file_dep": index_template_deps + list(map(str, matlab_examples)),
             "targets": [out_name],
             "actions": [
                 (render_example_index, [self.site, kw, matlab_headers, out_name])

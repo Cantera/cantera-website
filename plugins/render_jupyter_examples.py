@@ -286,7 +286,7 @@ class RenderJupyterExamples(Task):
         yield {
             "basename": self.name,
             "name": str(out_name),
-            "file_dep": index_template_deps,
+            "file_dep": index_template_deps + list(map(str, jupyter_examples)),
             "targets": [out_name],
             "actions": [
                 (render_example_index, [self.site, kw, jupyter_headers, out_name])

@@ -230,7 +230,7 @@ class RenderPythonExamples(Task):
         yield {
             "basename": self.name,
             "name": str(out_name),
-            "file_dep": index_template_deps,
+            "file_dep": index_template_deps + list(map(str, python_examples)),
             "targets": [out_name],
             "actions": [
                 (render_example_index, [self.site, kw, python_headers, out_name])
