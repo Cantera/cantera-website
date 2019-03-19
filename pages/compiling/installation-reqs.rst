@@ -62,15 +62,23 @@ Conda Requirements
   `Miniconda <https://conda.io/miniconda.html>`__. We highly recommend using the Python 3 version
   unless you have a specific reason not to.
 
-* On macOS and Linux, add the following code to your ``.bash_profile`` file (macOS) or your
-  ``.bashrc`` file (Linux) and restart your terminal or shell afterwards:
+* On Windows, use the Anaconda Prompt to run the following steps (available from the Start Menu).
+  On macOS and Linux, the installer should add the appropriate activation mechanism for your normal terminal by
+  default. You can test this by running
 
   .. code:: bash
 
-     source /path/to/conda/install/folder/etc/profile.d/conda.sh
-     conda activate
+     conda --version
 
-  On Windows, use the Anaconda Prompt (available from the Start Menu).
+  in the terminal. If there's no output or an error appears, locate your Conda installation and run the
+  following code in the terminal:
+
+  .. code:: bash
+
+     /path/to/conda/install/folder/bin/conda init [name of your shell]
+
+  If you haven't changed any defaults for your terminal, the name of your shell is most likely ``bash``.
+  Then restart your terminal or shell.
 
 * Create an environment with the dependencies to build Cantera
 
