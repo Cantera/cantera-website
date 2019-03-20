@@ -106,7 +106,7 @@ def process_targets(site, logger, source, post):
     site.processing_targets = True
     reader = Reader()
     reader.l_settings = {"source": source}
-    with open(source, "r") as in_file:
+    with open(source, "r", encoding="utf8") as in_file:
         data = in_file.read()
     pub = Publisher(
         reader=reader,

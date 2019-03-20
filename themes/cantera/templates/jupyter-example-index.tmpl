@@ -28,7 +28,7 @@ installation required, but you cannot save and resume your work.</p>
     {% for row in file_dict['files'] %}
     <div class="card-deck python-example-row example-row">
       {% for file in row %}
-      {% set fname = file.split('/')[-1] %}
+      {% set fname = file.name %}
       <!-- <div class="col-sm-4"> -->
         <div class="card">
           <a href="{{ head }}/{{ fname }}.html"><h5 class="card-header">{{ fname }}</h5></a>

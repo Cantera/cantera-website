@@ -18,22 +18,22 @@
       <div class="container">
          <div class="row">
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-conda">Conda</a>
+               <a class="btn btn-secondary btn-block" href="#sec-conda">Conda</a>
             </div>
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-ubuntu-debian-reqs">Ubuntu & Debian</a>
+               <a class="btn btn-secondary btn-block" href="#sec-ubuntu-debian-reqs">Ubuntu & Debian</a>
             </div>
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-fedora-reqs">Fedora & RHEL</a>
+               <a class="btn btn-secondary btn-block" href="#sec-fedora-reqs">Fedora & RHEL</a>
             </div>
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-opensuse-reqs">OpenSUSE & SLE</a>
+               <a class="btn btn-secondary btn-block" href="#sec-opensuse-reqs">OpenSUSE & SLE</a>
             </div>
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-windows">Windows</a>
+               <a class="btn btn-secondary btn-block" href="#sec-windows">Windows</a>
             </div>
             <div class="col">
-               <a class="btn btn-secondary" href="#sec-macos">macOS</a>
+               <a class="btn btn-secondary btn-block" href="#sec-macos">macOS</a>
             </div>
          </div>
       </div>
@@ -62,15 +62,23 @@ Conda Requirements
   `Miniconda <https://conda.io/miniconda.html>`__. We highly recommend using the Python 3 version
   unless you have a specific reason not to.
 
-* On macOS and Linux, add the following code to your ``.bash_profile`` file (macOS) or your
-  ``.bashrc`` file (Linux) and restart your terminal or shell afterwards:
+* On Windows, use the Anaconda Prompt to run the following steps (available from the Start Menu).
+  On macOS and Linux, the installer should add the appropriate activation mechanism for your normal terminal by
+  default. You can test this by running
 
   .. code:: bash
 
-     source /path/to/conda/install/folder/etc/profile.d/conda.sh
-     conda activate
+     conda --version
 
-  On Windows, use the Anaconda Prompt (available from the Start Menu).
+  in the terminal. If there's no output or an error appears, locate your Conda installation and run the
+  following code in the terminal:
+
+  .. code:: bash
+
+     /path/to/conda/install/folder/bin/conda init [name of your shell]
+
+  If you haven't changed any defaults for your terminal, the name of your shell is most likely ``bash``.
+  Then restart your terminal or shell.
 
 * Create an environment with the dependencies to build Cantera
 
@@ -84,7 +92,7 @@ Conda Requirements
 
   .. code:: bash
 
-     conda install --name cantera sphinx doxygen graphviz
+     conda install sphinx doxygen graphviz
      pip install sphinxcontrib-matlabdomain sphinxcontrib-katex sphinxcontrib-doxylink
 
 * (Optional) If you also want to build the Python 2 interface (this is unlikely), create another
@@ -99,25 +107,52 @@ Conda Requirements
 
   and after you've :ref:`cloned the source code <sec-source-code>`, add the following lines to a
   file called ``cantera.conf``  in the root of the source directory (creating the file if it
-  doesn't exist):
+  doesn't exist).
+
+  On macOS and Linux, add the following code to your ``cantera.conf`` file:
 
   .. code:: python
 
      python2_package = 'full'
      python2_cmd = '/path/to/conda/install/folder/envs/py2k/bin/python'
 
+  On Windows, add the following code to your ``cantera.conf`` file:
+
+  .. code:: python
+
+     python2_package = 'full'
+     python2_cmd = '/path/to/conda/install/folder/envs/py2k/python.exe'
+
   Note that it is not possible to simultaneously install the Python 2 and Python 3 interfaces;
   you'll have to use separate builds if you want to install both (however, this is an unlikely
-  scenario). For every-day development and testing, the setup described here works well.
+  scenario). In addition, note Cantera 2.4 is the last version that will support Python 2. If
+  you checked out the most recent commit on the ``master`` branch of the git repository,
+  support for Python 2 has already been dropped and you cannot use these options.
 
 * After you've :ref:`cloned the source code <sec-source-code>`, configure the Cantera build by
   adding the following options to a file called ``cantera.conf`` in the root of the source directory
-  (creating the file if it doesn't exist):
+  (creating the file if it doesn't exist).
+
+  On macOS and Linux, add the following code to your ``cantera.conf`` file:
 
   .. code:: python
 
      python3_package = 'full'
      boost_inc_dir = '/path/to/conda/install/folder/envs/cantera/include'
+
+  On Windows, add the following code to your ``cantera.conf`` file:
+
+  .. code:: python
+
+     python3_package = 'full'
+     boost_inc_dir = '/path/to/conda/install/folder/envs/cantera/Library/include'
+
+  .. note::
+
+     If you're using commits from the ``master`` branch of the git repository, Python 2 is no
+     longer supported and the version-specific Python package options have been dropped. You
+     should just use ``python_package`` instead of ``python3_package`` if you're compiling the
+     ``master`` branch.
 
 * Now you can build Cantera with
 

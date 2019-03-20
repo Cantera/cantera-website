@@ -209,7 +209,7 @@ Finally, please consider financially supporting Cantera's development! Cantera
 is a fiscally sponsored project of NumFOCUS, a 501(c)3 nonprofit dedicated to
 supporting the open source scientific computing community. If you have found
 Cantera to be useful to your research or company, please consider making a
-`donation <https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=>`_
+`donation <https://numfocus.salsalabs.org/donate-to-cantera/index.html>`_
 to support our efforts. All donations will be used exclusively to fund the
 development of Cantera's source code, documentation, or community.
 
@@ -223,7 +223,7 @@ development of Cantera's source code, documentation, or community.
 
    .. container:: btn btn-primary
       :tagname: a
-      :attributes: href=https://www.flipcause.com/secure/cause_pdetails/Mjk3MjU=
+      :attributes: href=https://numfocus.salsalabs.org/donate-to-cantera/index.html
                    title="Donate to Cantera"
                    rel=nofollow
 

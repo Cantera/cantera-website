@@ -13,7 +13,13 @@
 
 <!-- Menubar -->
 
-<nav class="navbar navbar-expand-md navbar-light bg-light static-top mb-4">
+<nav class="navbar navbar-expand-md static-top mb-4
+{% if theme_config.get('navbar_light') %}
+navbar-light bg-light
+{% else %}
+navbar-dark bg-dark
+{% endif %}
+">
     <div class="container"><!-- This keeps the margins nice -->
         <a class="navbar-brand" href="{{ abs_link(_link("root", None, lang)) }}">
         {% if logo_url %}
@@ -80,12 +86,14 @@
 </div>
 
 {{ base.late_load_js() }}
-    <!-- fancy dates -->
-    <script>
-    moment.locale("{{ momentjs_locales[lang] }}");
-    fancydates({{ date_fanciness }}, {{ js_date_format }});
-    </script>
-    <!-- end fancy dates -->
+    {% if date_fanciness != 0 %}
+        <!-- fancy dates -->
+        <script>
+        moment.locale("{{ momentjs_locales[lang] }}");
+        fancydates({{ date_fanciness }}, {{ js_date_format }});
+        </script>
+        <!-- end fancy dates -->
+    {% endif %}
     {% block extra_js %}{% endblock %}
     <script>
     baguetteBox.run('div#content', {

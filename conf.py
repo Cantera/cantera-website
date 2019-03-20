@@ -30,11 +30,11 @@ BLOG_EMAIL = "steering@cantera.org"
 BLOG_DESCRIPTION = "This site is for the Cantera software"  # (translatable)
 
 # The most recent major release version of Cantera
-CANTERA_VERSION = '2.4'
+CANTERA_VERSION = "2.4"
 
 # The default context used when looking up :class: or :func: roles
 # Options are 'py', 'cti', or 'mat'
-DEFAULT_CONTEXT = 'py'
+DEFAULT_CONTEXT = "py"
 
 # Nikola is multilingual!
 #
@@ -114,7 +114,7 @@ TRANSLATIONS = {
 # this pattern is also used for metadata:
 #     something.meta -> something.pl.meta
 
-TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
+TRANSLATIONS_PATTERN = "{path}.{lang}.{ext}"
 
 # Links for the sidebar / navigation bar.  (translatable)
 # This is a dict.  The keys are languages, and values are tuples.
@@ -143,52 +143,31 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ('/install/index.html', 'Install'),
-        ('/tutorials/index.html', 'Tutorials'),
-        ('/examples/index.html', 'Examples'),
-        ('/community.html', 'Community'),
-        ('/science/index.html', 'Science'),
-        ('/documentation/index.html', 'Documentation'),
-        # ("/archive.html", "Archive"),
-        # ("/categories/", "Tags"),
-        # ("/rss.xml", "RSS feed"),
+        ("/install/index.html", "Install"),
+        ("/tutorials/index.html", "Tutorials"),
+        ("/examples/index.html", "Examples"),
+        ("/community.html", "Community"),
+        ("/science/index.html", "Science"),
+        ("/documentation/index.html", "Documentation"),
         ("/blog/index.html", "Blog"),
-    ),
+    )
 }
 
 # Alternative navigation links. Works the same way NAVIGATION_LINKS does,
 # although themes may not always support them. (translatable)
 # (Bootstrap 4: right-side of navbar, Bootblog 4: right side of title)
-NAVIGATION_ALT_LINKS = {
-    DEFAULT_LANG: {}
-}
+NAVIGATION_ALT_LINKS = {DEFAULT_LANG: {}}
 
 # Name of the theme to use.
 THEME = "cantera"
 
 # Primary color of your theme. This will be used to customize your theme.
 # Must be a HEX value.
-THEME_COLOR = '#5670d4'
+THEME_COLOR = "#5670d4"
 
 # Theme configuration. Fully theme-dependent. (translatable)
 # Examples below are for bootblog4.
-# THEME_CONFIG = {
-#     DEFAULT_LANG: {
-#         # Show the latest featured post in a large box, with the previewimage as its background.
-#         'featured_large': False,
-#         # Show the first (remaining) two featured posts in small boxes.
-#         'featured_small': False,
-#         # Show featured posts on mobile.
-#         'featured_on_mobile': True,
-#         # Show image in `featured_large` on mobile.
-#         # `featured_small` displays them only on desktop.
-#         'featured_large_image_on_mobile': True,
-#         # Strip HTML from featured post text.
-#         'featured_strip_html': False,
-#         # Contents of the sidebar, If empty, the sidebar is not displayed.
-#         'sidebar': ''
-#     }
-# }
+THEME_CONFIG = {DEFAULT_LANG: {"navbar_light": True}}
 
 # POSTS and PAGES contains (wildcard, destination, template) tuples.
 # (translatable)
@@ -292,36 +271,33 @@ TIMEZONE = "America/New_York"
 # The format is a dictionary of {source: relative destination}.
 
 # This is the "production" version of this dictionary
-FILES_FOLDERS = {
-    'api-docs/docs-2.0': 'documentation/docs-2.0',
-    'api-docs/docs-2.1': 'documentation/docs-2.1',
-    'api-docs/docs-2.2': 'documentation/docs-2.2',
-    'api-docs/docs-2.3': 'documentation/docs-2.3',
-    'api-docs/docs-2.4': 'documentation/docs-2.4',
-    'files/survey2013': 'survey2013',
-    'files/license.txt': 'license.txt',
+DOCS_FOLDERS = {
+    "api-docs/docs-2.0": "documentation/docs-2.0",
+    "api-docs/docs-2.1": "documentation/docs-2.1",
+    "api-docs/docs-2.2": "documentation/docs-2.2",
+    "api-docs/docs-2.3": "documentation/docs-2.3",
+    "api-docs/docs-2.4": "documentation/docs-2.4",
 }
 
+FILES_FOLDERS = {"files/survey2013": "survey2013", "files/license": ""}
+
 # This is the "development" version of this dictionary
-# FILES_FOLDERS = {
+# DOCS_FOLDERS = {
 #     '../cantera/build/docs': 'documentation/docs-{}'.format(CANTERA_VERSION),
 #     '../cantera/build/dev-docs': 'documentation/dev',
 #     'api-docs/docs-2.0': 'documentation/docs-2.0',
 #     'api-docs/docs-2.1': 'documentation/docs-2.1',
 #     'api-docs/docs-2.2': 'documentation/docs-2.2',
 #     'api-docs/docs-2.3': 'documentation/docs-2.3',
-#     'files/survey2013': 'survey2013',
 # }
-
-# Which means copy 'files' into 'output'
 
 # One or more folders containing code listings to be processed and published on
 # the site. The format is a dictionary of {source: relative destination}.
 # Default is:
 EXAMPLES_FOLDERS = {
-    '../cantera/interfaces/cython/cantera/examples': 'examples/python',
-    '../cantera-jupyter': 'examples/jupyter',
-    '../cantera/samples/matlab': 'examples/matlab'
+    "../cantera/interfaces/cython/cantera/examples": "examples/python",
+    "../cantera-jupyter": "examples/jupyter",
+    "../cantera/samples/matlab": "examples/matlab",
 }
 # Which means process listings from 'listings' into 'output/listings'
 
@@ -333,18 +309,18 @@ EXAMPLES_FOLDERS = {
 # 'markdown' is Markdown
 # 'html' assumes the file is HTML and just copies it
 COMPILERS = {
-    "rest": ('.rst', '.txt'),
-    "markdown": ('.md', '.mdown', '.markdown'),
-    "textile": ('.textile',),
-    "txt2tags": ('.t2t',),
-    "bbcode": ('.bb',),
-    "wiki": ('.wiki',),
-    "ipynb": ('.ipynb',),
-    "html": ('.html', '.htm'),
+    "rest": (".rst", ".txt"),
+    "markdown": (".md", ".mdown", ".markdown"),
+    "textile": (".textile",),
+    "txt2tags": (".t2t",),
+    "bbcode": (".bb",),
+    "wiki": (".wiki",),
+    "ipynb": (".ipynb",),
+    "html": (".html", ".htm"),
     # PHP files are rendered the usual way (i.e. with the full templates).
     # The resulting files have .php extensions, making it possible to run
     # them without reconfiguring your server to recognize them.
-    "php": ('.php',),
+    "php": (".php",),
     # Pandoc detects the input from the source filename
     # but is disabled by default as it would conflict
     # with many of the others.
@@ -380,7 +356,7 @@ COMPILERS = {
 # Nikola supports logo display.  If you have one, you can put the URL here.
 # Final output is <img src="LOGO_URL" id="logo" alt="BLOG_TITLE">.
 # The URL may be relative to the site root.
-LOGO_URL = '/assets/img/cantera-logo.png'
+LOGO_URL = "/assets/img/cantera-logo.png"
 
 # If you want to hide the title of your website (for example, if your logo
 # already contains the text), set this to False.
@@ -431,7 +407,7 @@ WRITE_TAG_CLOUD = False
 # If you do not want to display a tag publicly, you can mark it as hidden.
 # The tag will not be displayed on the tag list page, the tag cloud and posts.
 # Tag pages will still be generated.
-HIDDEN_TAGS = ['mathjax']
+HIDDEN_TAGS = ["mathjax"]
 
 # Only include tags on the tag list/overview page if there are at least
 # TAGLIST_MINIMUM_POSTS number of posts or more with every tag. Every tag
@@ -575,7 +551,7 @@ HIDDEN_CATEGORIES = []
 # If you do not want to display an author publicly, you can mark it as hidden.
 # The author will not be displayed on the author list page and posts.
 # Tag pages will still be generated.
-HIDDEN_AUTHORS = ['Guest']
+HIDDEN_AUTHORS = ["Guest"]
 
 # Final location for the main blog page and sibling paginated pages is
 # output / TRANSLATION[lang] / INDEX_PATH / index-*.html
@@ -584,9 +560,7 @@ INDEX_PATH = "blog"
 
 # Optional HTML that displayed on “main” blog index.html files.
 # May be used for a greeting. (translatable)
-FRONT_INDEX_HEADER = {
-    DEFAULT_LANG: ''
-}
+FRONT_INDEX_HEADER = {DEFAULT_LANG: ""}
 
 # Create per-month archives instead of per-year
 # CREATE_MONTHLY_ARCHIVE = False
@@ -679,11 +653,11 @@ REDIRECTIONS = []
 # For more details, read the manual:
 # https://getnikola.com/handbook.html#deploying-to-github
 # You will need to configure the deployment branch on GitHub.
-GITHUB_SOURCE_BRANCH = 'src'
-GITHUB_DEPLOY_BRANCH = 'master'
+GITHUB_SOURCE_BRANCH = "src"
+GITHUB_DEPLOY_BRANCH = "master"
 
 # The name of the remote where you wish to push to, using github_deploy.
-GITHUB_REMOTE_NAME = 'origin'
+GITHUB_REMOTE_NAME = "origin"
 
 # Whether or not github_deploy should commit to the source branch automatically
 # before deploying.
@@ -692,7 +666,7 @@ GITHUB_COMMIT_SOURCE = True
 # Where the output site should be located
 # If you don't use an absolute path, it will be considered as relative
 # to the location of conf.py
-OUTPUT_FOLDER = os.getenv('NIKOLA_OUTPUT_DIR', 'output')
+OUTPUT_FOLDER = os.getenv("NIKOLA_OUTPUT_DIR", "output")
 
 # where the "cache" of partial generated content should be located
 # default: 'cache'
@@ -722,9 +696,8 @@ OUTPUT_FOLDER = os.getenv('NIKOLA_OUTPUT_DIR', 'output')
 # <https://getnikola.com/handbook.html#post-processing-filters>
 #
 from nikola import filters
-FILTERS = {
-   ".html": [filters.typogrify, filters.add_header_permalinks],
-}
+
+FILTERS = {".html": [filters.typogrify, filters.add_header_permalinks]}
 
 # Executable for the "yui_compressor" filter (defaults to 'yui-compressor').
 # YUI_COMPRESSOR_EXECUTABLE = 'yui-compressor'
@@ -846,7 +819,7 @@ HEADER_PERMALINKS_XPATH_LIST = ['*//div[@class="e-content entry-content"]//{hx}'
 # (the thumbnail has ``.thumbnail`` added before the file extension by default,
 # but a different naming template can be configured with IMAGE_THUMBNAIL_FORMAT).
 
-IMAGE_FOLDERS = {'images': 'images'}
+IMAGE_FOLDERS = {"images": "images"}
 # IMAGE_THUMBNAIL_SIZE = 400
 # IMAGE_THUMBNAIL_FORMAT = '{name}.thumbnail{ext}'
 
@@ -991,15 +964,15 @@ CONTENT_FOOTER_FORMATS = {
             "email": BLOG_EMAIL,
             "author": BLOG_AUTHOR,
             "date": time.gmtime().tm_year,
-            "license": LICENSE
-        }
+            "license": LICENSE,
+        },
     )
 }
 
 # A simple copyright tag for inclusion in RSS feeds that works just
 # like CONTENT_FOOTER and CONTENT_FOOTER_FORMATS
 RSS_COPYRIGHT = 'Contents © {date} <a href="mailto:{email}">{author}</a> {license}'
-RSS_COPYRIGHT_PLAIN = 'Contents © {date} {author} {license}'
+RSS_COPYRIGHT_PLAIN = "Contents © {date} {author} {license}"
 RSS_COPYRIGHT_FORMATS = CONTENT_FOOTER_FORMATS
 
 # To use comments, you can choose between different third party comment
@@ -1064,57 +1037,17 @@ PRETTY_URLS = False
 # If True, use the scheduling rule to all posts (not pages!) by default
 # SCHEDULE_ALL = False
 
-# Do you want a add a Mathjax config file?
-# MATHJAX_CONFIG = ""
-
-# If you want support for the $.$ syntax (which may conflict with running
-# text!), just use this config:
-# MATHJAX_CONFIG = """
-# <script type="text/x-mathjax-config">
-# MathJax.Hub.Config({
-#     tex2jax: {
-#         inlineMath: [ ['$','$'], ["\\\(","\\\)"] ],
-#         displayMath: [ ['$$','$$'], ["\\\[","\\\]"] ],
-#         processEscapes: true
-#     },
-#     displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
-#     "HTML-CSS": {
-#         styles: {'.MathJax_Display': {"margin": 0}}
-#     }
-# });
-# </script>
-# """
-
-# Want to use KaTeX instead of MathJax? While KaTeX may not support every
-# feature yet, it's faster and the output looks better.
-USE_KATEX = True
-
-# KaTeX auto-render settings. If you want support for the $.$ syntax (wihch may
-# conflict with running text!), just use this config:
-# KATEX_AUTO_RENDER = """
-# delimiters: [
-#     {left: "$$", right: "$$", display: true},
-#     {left: "\\\\[", right: "\\\\]", display: true},
-#     {left: "\\\\begin{equation*}", right: "\\\\end{equation*}", display: true},
-#     {left: "$", right: "$", display: false},
-#     {left: "\\\\(", right: "\\\\)", display: false}
-# ]
-# """
-
-# Do you want to customize the nbconversion of your IPython notebook?
-# IPYNB_CONFIG = {}
-# With the following example configuration you can use a custom jinja template
-# called `toggle.tpl` which has to be located in your site/blog main folder:
-# IPYNB_CONFIG = {'Exporter':{'template_file': 'toggle'}}
-
 # What Markdown extensions to enable?
 # You will also get gist, nikola and podcast because those are
 # done in the code, hope you don't mind ;-)
 # Note: most Nikola-specific extensions are done via the Nikola plugin system,
 #       with the MarkdownExtension class and should not be added here.
 # The default is ['fenced_code', 'codehilite']
-MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.codehilite',
-                       'markdown.extensions.extra']
+MARKDOWN_EXTENSIONS = [
+    "markdown.extensions.fenced_code",
+    "markdown.extensions.codehilite",
+    "markdown.extensions.extra",
+]
 
 # Options to be passed to markdown extensions (See https://python-markdown.github.io/reference/)
 # Default is {} (no config at all)
@@ -1313,8 +1246,12 @@ USE_CDN_WARNING = False
 USE_BUNDLES = False
 
 # Plugins you don't want to use. Be careful :-)
-DISABLED_PLUGINS = ['render_archive', 'classify_archive', 'render_galleries', 'render_listings',
-                    'copy_files']
+DISABLED_PLUGINS = [
+    "render_archive",
+    "classify_archive",
+    "render_galleries",
+    "render_listings",
+]
 
 # Special settings to disable only parts of the indexes plugin.
 # Use with care.
