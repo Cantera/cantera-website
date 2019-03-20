@@ -118,10 +118,10 @@ Conda Requirements
 
   On Windows, add the following code to your ``cantera.conf`` file:
 
-  .. code:: bash
+  .. code:: python
 
      python2_package = 'full'
-     python2_cmd = '/path/to/conda/install/folder/envs/py2k/python.exe
+     python2_cmd = '/path/to/conda/install/folder/envs/py2k/python.exe'
 
   Note that it is not possible to simultaneously install the Python 2 and Python 3 interfaces;
   you'll have to use separate builds if you want to install both (however, this is an unlikely
