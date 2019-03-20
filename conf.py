@@ -1383,3 +1383,12 @@ GLOBAL_CONTEXT = {}
 # GLOBAL_CONTEXT as parameter when the template is about to be
 # rendered
 GLOBAL_CONTEXT_FILLER = []
+
+# Add sniphix-copybutton extension
+# insteed of copybutton.js
+extensions = [
+    'sphinx_copybutton'
+]
+
+def setup(app):
+   app.add_javascript('js/custom.js')
