@@ -26,13 +26,13 @@ instants of time.
 Reactors can interact with the surrounding environment in multiple ways:
 
 - Expansion/compression work: By moving the walls of the reactor, its volume can be changed and
-- expansion or compression work can be done by or on the reactor.
+  expansion or compression work can be done by or on the reactor.
 
 - Heat transfer: An arbitrary heat transfer rate can be defined to cross the boundaries of the
-- reactor.
+  reactor.
 
 - Mass transfer: The reactor can have multiple inlets and outlets. For the inlets, arbitrary states
-- can be defined. Fluid with the current state of the reactor exits the reactor at the outlets.
+  can be defined. Fluid with the current state of the reactor exits the reactor at the outlets.
 
 - Surface interaction: One or multiple walls can influence the chemical reactions in the reactor.
   This is not just restricted to catalytic reactions, but mass transfer between the surface and the
