@@ -3,7 +3,7 @@ title: GSoC 2019 PyCanChemAndYouCan2
 date: 2019-06-07 12:33:00 UTC-16:33
 slug: GSoC_2019_Project_Introduction
 tags: GSoC 2019
-description: This is an introdution of my Cantera project in 2019 Google Summer of Code
+description: 2019 Google Summer of Code Cnatera Project Blog
 type: text
 author: Chao Xu
 ---
