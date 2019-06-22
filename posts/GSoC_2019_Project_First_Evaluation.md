@@ -1,6 +1,5 @@
 ---
 title: GSoC 2019 PyCanChemAndYouCan2
-date: 2019-06-22 17:19:00 UTC-21:19:00
 slug: GSoC_2019_Project_First_Evaluation
 tags: GSoC 2019
 description: 2019 Google Summer of Code Cnatera Project Blog
