@@ -14,7 +14,7 @@ author: Chao Xu
 Bryan Weber([@bryanwweber](https://github.com/bryanwweber)) and Kyle Niemeyer([@kyleniemeyer](https://github.com/kyleniemeyer)), the website
 is functioning after first month, and we will keep improving it in the rest of GSoC time. From what I mentioned in last post, ChemCheck is a
 web-based application for visualizing and diagnosing syntax and chemical errors in Chemkin and Cantera input files. In this case, we created basic 
-functions which allow users convert their mechanism files to cantera yaml input files easily (Cantera input file is going to be changed
+functions which allow users to convert their mechanism files to Cantera yaml input files easily (Cantera input file is going to be changed
 from cti file to yaml file, so we made some ajustments as well.).
 
 ## Upload Page
