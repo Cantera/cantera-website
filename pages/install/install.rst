@@ -1,6 +1,6 @@
 .. title: Installing Cantera
 .. slug: index
-.. date: 2018-06-15 11:20:56 UTC-04:00
+.. date: 2019-06-26 20:00:00 UTC-04:00
 .. description: Installation instructions for Cantera
 .. type: text
 
@@ -89,6 +89,19 @@
          .. container:: card
 
             .. container:: card-header section-card
+               :attributes: id=heading-gentoo
+                            href=gentoo-install.html
+               :tagname: a
+
+               Gentoo Install Instructions
+
+            .. container:: card-body
+
+               Install Cantera on Gentoo using a portage.
+
+         .. container:: card
+
+            .. container:: card-header section-card
                :attributes: id=heading-other-linux
                             href=other-linux-install.html
                :tagname: a
@@ -97,9 +110,15 @@
 
             .. container:: card-body
 
-               Linux distributions other than Ubuntu can install the Python interface via Conda
+               Linux distributions other than Ubuntu and Gentoo can install the Python interface via Conda
                (see :ref:`the Conda instructions <sec-install-conda>`). Other interfaces can be
                installed by :ref:`compiling from source <sec-compiling>`.
+
+.. container::
+
+   .. row::
+
+      .. container:: card-deck
 
          .. container:: card
 
