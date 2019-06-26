@@ -40,7 +40,7 @@ Also, there is a "Back to mechanism list" link for users going back to list view
 
 ## Convert Page
  
-  If the file is converted successfully, "Going to try this... Saved to /home/chao/ChemCheck/ChemCheck/media/uploads/1/cantera.txt" message will be shown on the page.
+  If the file is converted successfully, a success message will be shown on the page.
 Users can see details and download the files from this page.
 
 ![image of successfully uploaded page](https://github.com/12Chao/myproject/blob/master/images/convert%20succ.png)
