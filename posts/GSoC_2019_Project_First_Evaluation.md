@@ -19,7 +19,7 @@ from cti file to yaml file, so we made some ajustments as well.).
 
 ## Upload Page
 
-  Apparently, users should upload their files to ChemCheck first, so we created upload page wich allows users upload their mechanism, transport,
+Users will upload their files to ChemCheck for checking, so we created an upload page which allows users to upload their mechanism, transport,
 thermo, and surface file. Here is the view of upload page.
 
 ![image of upload page](https://github.com/12Chao/myproject/blob/master/images/upload%20page.png)
