@@ -33,7 +33,7 @@ Users are able to either click on "Details" button to do further operation to th
  
 ## Detail Page
  
-  In this page, users can either edit their files or hit "convert to YAML" button to convert files. Editing function is still in developing, so the web will jump to an editing page without loading contents once "Edit" button is hit.
+  In this page, users can either edit their files or hit "convert to YAML" button to convert files. The editing function is still in development.
 Also, there is a "Back to mechanism list" link for users going back to list view.
 
 ![image of detail page](https://github.com/12Chao/myproject/blob/master/images/detail%20page.png)
