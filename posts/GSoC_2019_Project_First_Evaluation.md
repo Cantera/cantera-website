@@ -51,7 +51,7 @@ However, if the file is not converted successfully, the error message will be sh
 
 ## Future Improvement 
 
-ChemCheck currently meets very basic requirements of our GSoC project, there are bunch of things could be improved in the future.
+ChemCheck currently meets very basic requirements of our GSoC project, but there are bunch of things to be improved in the future.
 Here I make a list for improvements in next month:
 
 - Add function which allows users replace their files 
