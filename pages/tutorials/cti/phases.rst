@@ -22,7 +22,7 @@ corresponding to different types of phases, such as ``ideal_gas``,
 using one of the directives corresponding to an implemented phase type.
 
 A map with the full listing of available phase types is provided at the `ThermoPhase Class Reference
-<{{% ct_docs doxygen/html/classCantera_1_1ThermoPhase.html %}}>`__. However, these phase types
+<{{% ct_docs doxygen/html/dc/d38/classCantera_1_1ThermoPhase.html %}}>`__. However, these phase types
 share many common features, and so we will begin by discussing those aspects common to all entries
 for phases. The :cti:class:`phase` class contains the features common to all phase types.
 
