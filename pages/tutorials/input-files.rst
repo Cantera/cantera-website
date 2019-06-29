@@ -14,24 +14,26 @@
       <matlab-tutorial>`), all calculations in Cantera require an input file to describe the
       properties of the relevant phase(s) of matter.
 
-The required input files can be provided via one of three methods:
+The required input files can be provided via one of several methods:
 
 - Use one of the pre-existing input files provided with Cantera
 - Convert a pre-existing mechanism from Chemkin (CK) format to Cantera (CTI) format
 - Create your own CTI file, either from scratch (not recommended) or by editing an existing file
+- Create your own YAML file from scratch or by editing an existing file *(New in
+  Cantera 2.5)*
 
 The first two options will suffice for a majority of Cantera users. Advanced
-users may, however, need to edit an existing CTI file in order to define
+users may, however, need to edit an existing input file in order to define
 additional species, reactions, or entirely new phases. Even if you need to
-create an entirely new CTI file, it is still advisable to start from an existing
+create an entirely new input file, it is still advisable to start from an existing
 file, to cut down on syntax errors.
 
-Whenever you edit a CTI file, it is *highly advised* that you begin by copying the existing file and
+Whenever you edit a Cantera input file, it is *highly advised* that you begin by copying the existing file and
 saving it under a new name, before editing the new file. Editing a file under its original name can
 easily lead to errors, if one forgets that this file does not represent the original mechanism.
 
-CTI files distributed with Cantera
-==================================
+Input files distributed with Cantera
+====================================
 
 Several reaction mechanism files in the CTI format are included in the Cantera distribution,
 including ones that model natural gas combustion (``gri30.cti``), high-temperature air
@@ -40,19 +42,20 @@ liquid-vapor region (``liquidvapor.cti``), and a few surface reaction mechanisms
 ``ptcombust.cti``, ``diamond.cti``, etc.), among others. Under Windows, these files may be located
 in ``C:\Program Files\Cantera\data`` depending on how you installed Cantera and the options you
 specified. On a Unix/Linux/macOS machine, they are usually kept in the ``data`` subdirectory
-within the Cantera installation directory.
+within the Cantera installation directory. Starting with Cantera 2.5, corresponding
+versions of these input files in the YAML format are also installed.
 
 Please see the tutorials for :doc:`Python <python-tutorial>` and :doc:`Matlab <matlab-tutorial>`
 for instructions on how to import from these pre-existing files.
 
-Converting or Creating New CTI Files
-====================================
+Converting or Creating New Input Files
+======================================
 
-If you want to model a phase not available in the CTI files distributed with Cantera, you will need
-to either procure a new CTI file (there are a limited number of CTI files available on the web), or
+If you want to model a phase not available in the input files distributed with Cantera, you will need
+to either procure a new input file (there are a limited number of input files available on the web), or
 create a new one.
 
-There are two primary options for creating a new CTI file:
+There are three primary options for creating a new Cantera input file:
 
 .. container:: container
 
@@ -73,14 +76,14 @@ There are two primary options for creating a new CTI file:
 
             .. container:: card-text
 
-               Convert a Chemkin-formatted ('CK') file to the CTI input format.
+               Convert a Chemkin-formatted ('CK') file to the Cantera input format.
 
       .. container:: card
 
          .. container::
             :tagname: a
             :attributes: href="cti/defining-phases.html"
-                         title="Defining Phases"
+                         title="Defining Phases in CTI"
 
             .. container:: card-header section-card
 
@@ -90,15 +93,35 @@ There are two primary options for creating a new CTI file:
 
             .. container:: card-text
 
-               Create a completely new mechanism, by defining new species, phases, and/or reactions.
+               Create a completely new mechanism, by defining new species,
+               phases, and/or reactions, using the CTI format.
 
-Understanding CTI Syntax
-========================
+      .. container:: card
 
-For any of these options (adapting an external CTI file, converting from CK, or creating a new CTI
-file), it can be helpful to understand the CTI syntax requirements. Clearly, anyone writing directly
-in the CTI format must conform to these standards. However, even when importing an
-externally-provided CTI file or converting from CK format, understanding the CTI file syntax can
+         .. container::
+            :tagname: a
+            :attributes: href="yaml/defining-phases.html"
+                         title="Defining Phases in YAML"
+
+            .. container:: card-header section-card
+
+               Create a new YAML file
+
+         .. container:: card-body
+
+            .. container:: card-text
+
+               Create a completely new mechanism, by defining new species,
+               phases, and/or reactions, using the YAML format.
+               *(New in Cantera 2.5)*
+
+Understanding Input File Syntax
+===============================
+
+For any of these options (adapting an existing Cantera input file, converting from CK, or creating a new input
+file), it can be helpful to understand the input file syntax requirements. Clearly, anyone writing directly
+in the CTI or YAML formats must conform to these standards. However, even when importing an
+externally-provided file or converting from CK format, understanding the input file syntax can
 help diagnose and correct any errors (although many/most of the CK conversion errors will be related
 to errors in the CK syntax formatting).
 
@@ -120,3 +143,21 @@ to errors in the CK syntax formatting).
          .. container:: card-text
 
             This tutorial covers the details of the CTI format and its syntax
+
+   .. container:: card
+
+      .. container::
+         :tagname: a
+         :attributes: href="yaml/yaml-format.html"
+                      title="YAML Format Tutorial"
+
+         .. container:: card-header section-card
+
+            YAML Format Tutorial
+
+      .. container:: card-body
+
+         .. container:: card-text
+
+            This tutorial covers the details of the YAML format and its syntax.
+            *(New in Cantera 2.5)*
