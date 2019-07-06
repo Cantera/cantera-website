@@ -27,9 +27,11 @@ Except these, ChemCheck can provide traceback message instead only one line erro
 
 ![image of error page](https://github.com/12Chao/myproject/blob/master/images/error%20page.png)
 
+Editing Function is also included:
+
+![image of editor page](https://github.com/12Chao/myproject/blob/master/images/ace_editor.png)
+
 ## Next Step
 
-I am working toward catching logging message to make the error understandable and making the error page looks nicer. After that, I believe
-that we can start with providing diagnosic message. Also, I am still interested in including ACE editor even if it is not a neccessary part
-of this project because it is a good opptunity for me to learn Javascirpt. I am learning toward Javascirpt and hopefully can get it done in
-next week.
+I am working toward catching logging message to make the error understandable and making the error page looks nicer. Also, I will improve editing function (adding download function in editor page, and change highlight settings of ace editor)  After that, I will test different
+defective mechanism files and providing fix suggestions.
