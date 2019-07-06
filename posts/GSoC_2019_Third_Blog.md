@@ -25,7 +25,7 @@ In update page, users can either replace their files or delete it with checking 
 
 Except these, ChemCheck can provide traceback message instead only one line error.
 
-![image of error page](https://github.com/12Chao/myproject/blob/master/images/error%20page.png)
+![image of error page](https://github.com/12Chao/myproject/blob/master/images/error_page.png)
 
 Editing Function is also included:
 
