@@ -27,7 +27,7 @@ Delete Page
 
 {{% /thumbnail %}}
 
-In update page, users can either replace their files or delete it with checking "clear". 
+In the update page, users can either replace their files or delete it by checking "clear". 
 
 {{% thumbnail "/images/GSoC_2019_images/update_page.png" alt="Update Page" align="center" %}}
 
