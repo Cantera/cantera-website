@@ -53,5 +53,5 @@ Editor Page
 
 ## Next Step
 
-I am working toward catching logging message to make the error understandable and making the error page looks nicer. Also, I will improve editing function (adding download function in editor page, and change highlight settings of ace editor)  After that, I will test different
+I am working toward catching logging messages to make the error understandable and making the error page looks nicer. Also, I will improve editing function (adding download function in editor page, and change highlight settings of ace editor).  After that, I will test different
 defective mechanism files and providing fix suggestions.
