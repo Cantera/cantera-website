@@ -10,7 +10,7 @@ author: Chao Xu
 
 # GSoC 2019 PyCanChemAndYouCan2 (ChemCheck) First Evaluation
 
-  Thanks for the instructions from mentors Richard West([@rwest](https://github.com/rwest)), 
+Thanks to the instructions from mentors Richard West([@rwest](https://github.com/rwest)), 
 Bryan Weber([@bryanwweber](https://github.com/bryanwweber)) and Kyle Niemeyer([@kyleniemeyer](https://github.com/kyleniemeyer)), the website
 is functioning after first month, and we will keep improving it in the rest of GSoC time. From what I mentioned in last post, ChemCheck is a
 web-based application for visualizing and diagnosing syntax and chemical errors in Chemkin and Cantera input files. In this case, we created basic 
