@@ -19,7 +19,7 @@ Updated Detail Page
 
 {{% /thumbnail %}}
 
-The delete button leads to a delete page, which will delete files in both the frontend and the backend.
+The delete button leads to a delete page, which will delete files in both the database and the directory.
 
 {{% thumbnail "/images/GSoC_2019_images/delete_page.png" alt="Delete Page" align="center" %}}
 
