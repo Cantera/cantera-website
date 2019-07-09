@@ -13,23 +13,43 @@ author: Chao Xu
 As we planned after first evaluation, the function of ChemCheck should be more robust. File replacement was added, and users are able to
 update and delete files arbitrarily. The page looks like this,
 
-![image of detail page](https://github.com/12Chao/myproject/blob/master/images/detail%20page2.png)
+{{% thumbnail "/images/GSoC_2019_images/detail_page2.png" alt="Updated Detail Page" align="center" %}}
+
+Updated Detail Page
+
+{{% /thumbnail %}}
 
 delete button leads to delete page, which delete files in both frontend and backend.
 
-![image of delete page](https://github.com/12Chao/myproject/blob/master/images/delete%20page.png)
+{{% thumbnail "/images/GSoC_2019_images/delete_page.png" alt="Delete Page" align="center" %}}
+
+Delete Page
+
+{{% /thumbnail %}}
 
 In update page, users can either replace their files or delete it with checking "clear". 
 
-![image of update page](https://github.com/12Chao/myproject/blob/master/images/update%20page.png)
+{{% thumbnail "/images/GSoC_2019_images/update_page.png" alt="Update Page" align="center" %}}
+
+Update Page
+
+{{% /thumbnail %}}
 
 Except these, ChemCheck can provide traceback message instead only one line error.
 
-![image of error page](https://github.com/12Chao/myproject/blob/master/images/error_page.png)
+{{% thumbnail "/images/GSoC_2019_images/error_page.png" alt="Error Page" align="center" %}}
+
+Error Page
+
+{{% /thumbnail %}}
 
 Editing Function is also included:
 
-![image of editor page](https://github.com/12Chao/myproject/blob/master/images/ace_editor.png)
+{{% thumbnail "/images/GSoC_2019_images/ace_editor.png" alt="Editor Page" align="center" %}}
+
+Editor Page
+
+{{% /thumbnail %}}
 
 ## Next Step
 
