@@ -41,7 +41,7 @@ List Page
  
 ## Detail Page
  
-  In this page, users can either edit their files or hit "convert to YAML" button to convert files. The editing function is still in development.
+In this page, users can either edit their files or hit the "convert to YAML" button to convert files. The editing function is still in development.
 Also, there is a "Back to mechanism list" link for users going back to list view.
 
 {{% thumbnail "/images/GSoC_2019_images/detail_page.png" alt="Detail Page" align="center" %}}
