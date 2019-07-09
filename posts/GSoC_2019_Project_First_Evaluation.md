@@ -76,7 +76,7 @@ Here I make a list for improvements in next month:
 
 - Add function which allows users replace their files 
 - Report more detail about the error (like full stack trace and ck2yaml logging message) rather than just a error message.
-- Add Django login module, this function can help ChemCheck separate files because files uploaded by different users will saved under different
+- Add Django login module, this function can help ChemCheck separate files because files uploaded by different users will be saved under different
 folders named by user id. 
 - Finish editing function. This part is not a neccessary part, but it would be nice to have it.
 - Suggest fix method with syntax error message.
