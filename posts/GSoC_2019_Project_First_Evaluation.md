@@ -22,32 +22,52 @@ from cti file to yaml file, so we made some ajustments as well.).
 Users will upload their files to ChemCheck for checking, so we created an upload page which allows users to upload their mechanism, transport,
 thermo, and surface file. Here is the view of upload page.
 
-![image of upload page](https://github.com/12Chao/myproject/blob/master/images/upload%20page.png)
+{{% thumbnail "/images/GSoC_2019_images/upload_page.png" alt="Upload Page" align="center" %}}
+
+Upload Page
+
+{{% /thumbnail %}}
 
 ## List Page
 
   After files are uploaded, ChemCheck returns to a list page which lists all uploaded files in the app with id for each group of files.
 Users are able to either click on "Details" button to do further operation to their files or hit "Upload new mechanism" button to upload new files.
 
-![image of list page](https://github.com/12Chao/myproject/blob/master/images/list%20page.png)
+{{% thumbnail "/images/GSoC_2019_images/list_page.png" alt="List Page" align="center" %}}
+
+List Page
+
+{{% /thumbnail %}}
  
 ## Detail Page
  
   In this page, users can either edit their files or hit "convert to YAML" button to convert files. The editing function is still in development.
 Also, there is a "Back to mechanism list" link for users going back to list view.
 
-![image of detail page](https://github.com/12Chao/myproject/blob/master/images/detail%20page.png)
+{{% thumbnail "/images/GSoC_2019_images/detail_page.png" alt="Detail Page" align="center" %}}
+
+Detail Page
+
+{{% /thumbnail %}}
 
 ## Convert Page
  
   If the file is converted successfully, a success message will be shown on the page.
 Users can see details and download the files from this page.
 
-![image of successfully uploaded page](https://github.com/12Chao/myproject/blob/master/images/convert%20succ.png)
+{{% thumbnail "/images/GSoC_2019_images/convert_success.png" alt="Convert Success Page" align="center" %}}
+
+Convert Success Page
+
+{{% /thumbnail %}}
 
 However, if the file is not converted successfully, the error message will be shown.
 
-![image of successfully uploaded page](https://github.com/12Chao/myproject/blob/master/images/convert%20fail.png)
+{{% thumbnail "/images/GSoC_2019_images/convert_fail.png" alt="Convert Fail Page" align="center" %}}
+
+Convert Fail Page
+
+{{% /thumbnail %}}
 
 ## Future Improvement 
 
