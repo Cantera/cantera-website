@@ -52,7 +52,7 @@ Detail Page
 
 ## Convert Page
  
-  If the file is converted successfully, a success message will be shown on the page.
+If the file is converted successfully, a success message will be shown on the page.
 Users can see details and download the files from this page.
 
 {{% thumbnail "/images/GSoC_2019_images/convert_success.png" alt="Convert Success Page" align="center" %}}
