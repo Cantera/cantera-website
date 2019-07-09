@@ -35,7 +35,7 @@ Update Page
 
 {{% /thumbnail %}}
 
-Except these, ChemCheck can provide traceback message instead only one line error.
+In addition to these, new features ChemCheck can provide the traceback message instead of only one line error.
 
 {{% thumbnail "/images/GSoC_2019_images/error_page.png" alt="Error Page" align="center" %}}
 
