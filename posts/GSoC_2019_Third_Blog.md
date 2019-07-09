@@ -43,7 +43,7 @@ Error Page
 
 {{% /thumbnail %}}
 
-Editing Function is also included:
+An editing function is also included:
 
 {{% thumbnail "/images/GSoC_2019_images/ace_editor.png" alt="Editor Page" align="center" %}}
 
