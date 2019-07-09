@@ -30,7 +30,7 @@ Upload Page
 
 ## List Page
 
-  After files are uploaded, ChemCheck returns to a list page which lists all uploaded files in the app with id for each group of files.
+After files are uploaded, ChemCheck returns to a list page which lists all uploaded files in the app with id for each group of files.
 Users are able to either click on "Details" button to do further operation to their files or hit "Upload new mechanism" button to upload new files.
 
 {{% thumbnail "/images/GSoC_2019_images/list_page.png" alt="List Page" align="center" %}}
