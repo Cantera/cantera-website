@@ -10,7 +10,7 @@ author: Chao Xu
 
 # GSoC Third Blog --- Function update
 
-As we planned after first evaluation, the function of ChemCheck should be more robust. File replacement was added, and users are able to
+As we planned after the first evaluation, the functionality of ChemCheck should be more robust. File replacement was added, and users are able to
 update and delete files arbitrarily. The page looks like this,
 
 {{% thumbnail "/images/GSoC_2019_images/detail_page2.png" alt="Updated Detail Page" align="center" %}}
