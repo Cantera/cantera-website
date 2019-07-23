@@ -67,5 +67,5 @@ Password Change Page:
 ## Goals in next two weeks
 
 As we discussed before, the website will eventually save user's uploaded files into separate folders depending on
-user id instead of primary key. Also, we will get the password-reset page work and collect various chemkin files to
+the user id instead of the primary key. Also, we will get the password-reset page work and collect various CHEMKIN files to
 diagnose the errors and test the website.
