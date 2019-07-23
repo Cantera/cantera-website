@@ -18,7 +18,7 @@ added pages for user accounts management.
 We have included download function for the editing page, which users can download the edited file to their local directory. It would be more convenient
 if changes can be saved to the original file online, so that users do not have to reupload their files, but we will leave it for now since an
 editing function is not the most important part. The current exception handling (how to handel unrecognized character) for editing page is striping out all the special signs which cannot
-be recognized by ace-editor, and it could also be improved by implementing some python library to guess encoding in the future. 
+be recognized by ace-editor, and it could also be improved by implementing some Python library to guess the encoding of the file in the future. 
 Here is what the page looks like:
 
 {{% thumbnail "/images/GSoC_2019_images/updated_editor.png" alt="Updated Editor Page" align="center" %}}
