@@ -38,7 +38,7 @@ three lines ahead and after the line where the error occurs, so that users could
 
 A series of accounts management page including signup page, login page, logout page, password change page(changing password for users who has logged in), password reset page(for users who forgets password), 
 etc. have been included. The signup function will be used only if users want to retrieve their uploaded files. A built-in django module (django.contrib.auth.urls) is implemented for this part; however, the password reset page did not work as expected, which did not send a email to user for password resetting as it supposed to.
-I am working on getting this part work. Except password reset function, other pages work well.
+I am working on getting this part to work. Except the password reset function, other pages work well.
 
 Signup Page:
 
