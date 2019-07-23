@@ -28,7 +28,7 @@ Here is what the page looks like:
 {{% /thumbnail %}}
 
 The convert-fail page is also improved. Logging messages are added to error messages if a conversion failed. In addition, ChemCheck looks through
-three lines ahead and after the line where the error occurs, so that users could have an idea about how to fix the error. Here is the page:
+Four lines ahead and after the line where the error occurs, so that users could have an idea about how to fix the error.It is only for mechanism files for now. Here is the page:
 
 {{% thumbnail "/images/GSoC_2019_images/convert_fail_page.png" alt="Convert Fail Page" align="center" %}}
 
