@@ -10,14 +10,14 @@ author: Chao Xu
 
 # GSoC 2019 Fourth Blog
 
-After two months, the functions of ChemCheck are fairly robust. We improved editing page and ck2yaml error reporting page this week, and we
-added pages for user accounts management.
+After two months, the functions of ChemCheck are fairly robust. We improved editing and ck2yaml error reporting pages this week, and we
+added pages for user account management.
 
 <!-- TEASER_END -->
 
-We have included download function for the editing page, which users can download the edited file to their local directory. It would be more convenient
+We have included a download function for the editing page, so users can download the edited file to their local directory. It would be more convenient
 if changes can be saved to the original file online, so that users do not have to reupload their files, but we will leave it for now since an
-editing function is not the most important part. The current exception handling (how to handel unrecognized character) for editing page is striping out all the special signs which cannot
+editing function is not the most important part. The current exception handling (how to handel unrecognized character) for editing page is stripping out all the characters in encodings that cannot
 be recognized by ace-editor, and it could also be improved by implementing some Python library to guess the encoding of the file in the future. 
 Here is what the page looks like:
 
@@ -27,7 +27,7 @@ Here is what the page looks like:
 
 {{% /thumbnail %}}
 
-The convert-fail page is also improved. Logging messages are added to error messages if a conversion failed. In addition, ChemCheck looks through
+The page shown when conversion fails is also improved. Logging messages are added to error messages if a conversion failed. In addition, ChemCheck looks through
 Four lines ahead and after the line where the error occurs, so that users could have an idea about how to fix the error.It is only for mechanism files for now. Here is the page:
 
 {{% thumbnail "/images/GSoC_2019_images/convert_fail_page.png" alt="Convert Fail Page" align="center" %}}
@@ -36,8 +36,8 @@ Four lines ahead and after the line where the error occurs, so that users could 
 
 {{% /thumbnail %}}
 
-A series of accounts management page including signup page, login page, logout page, password change page(changing password for users who has logged in), password reset page(for users who forgets password), 
-etc. have been included. The signup function will be used only if users want to retrieve their uploaded files. A built-in django module (django.contrib.auth.urls) is implemented for this part; however, the password reset page did not work as expected, which did not send a email to user for password resetting as it supposed to.
+A series of account management pages including signup page, login page, logout page, password change page(changing password for users who are logged in), and password reset (for users who forget their password)pages, among others. 
+have been included. The signup function will be used only if users want to retrieve their uploaded files. A built-in django module (`django.contrib.auth.urls`) is implemented for this part; however, the password reset page did not work as expected, because it did not send an email to the user to reset the password.
 I am working on getting this part to work. Except the password reset function, other pages work well.
 
 Signup Page:
