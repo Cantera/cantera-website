@@ -133,4 +133,4 @@
 
                .. container:: card-body
 
-                  Compile Cantera directly from the source code for your platform.
+                  Compile Cantera for your platform from the source code
