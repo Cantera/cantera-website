@@ -11,7 +11,7 @@ addons:
     - cantera.org
 
 before_install:
-  - git clone --depth=1 https://github.com/Cantera/cantera ../cantera
+  - git clone --depth=1 https://github.com/Cantera/cantera --branch 2.4 --single-branch ../cantera
   - git clone --depth=1 https://github.com/Cantera/cantera-jupyter ../cantera-jupyter
 
 script:
