@@ -1047,11 +1047,23 @@ MARKDOWN_EXTENSIONS = [
     "markdown.extensions.fenced_code",
     "markdown.extensions.codehilite",
     "markdown.extensions.extra",
+    "pymdownx.magiclink"
 ]
 
 # Options to be passed to markdown extensions (See https://python-markdown.github.io/reference/)
 # Default is {} (no config at all)
-# MARKDOWN_EXTENSION_CONFIGS = {}
+MARKDOWN_EXTENSION_CONFIGS = {
+    DEFAULT_LANG: {
+        "pymdownx.magiclink": {
+            "hide_protocol": True,
+            "repo_url_shortener": True,
+            "repo_url_shorthand": True,
+            "provider": "github",
+            "user": "Cantera",
+            "repo": "cantera"
+        }
+    }
+}
 
 
 # Extra options to pass to the pandoc command.
