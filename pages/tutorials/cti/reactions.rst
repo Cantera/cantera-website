@@ -206,6 +206,81 @@ should add ``nonreactant_orders`` to the reaction options to use this feature:
             order="C8H18:-0.25 CO:0.15",
             options=['negative_orders', 'nonreactant_orders'])
 
+Three-body reactions
+====================
+
+A three-body reaction may be defined using the :cti:class:`three_body_reaction`
+entry. The equation string for a three-body reaction must contain an ``'M'`` or
+``'m'`` on both the reactant and product sides of the equation. The collision
+efficiencies are specified as a string, with the species name followed by a
+colon and the efficiency.
+
+.. code:: python
+
+   three_body_reaction("2 O + M <=> O2 + M", [1.20000E+17, -1, 0],
+                       "AR:0.83 C2H6:3 CH4:2 CO:1.75 CO2:3.6 H2:2.4 H2O:15.4 ")
+
+   three_body_reaction("O + H + M <=> OH + M", [5.00000E+17, -1, 0],
+                       efficiencies="AR:0.7 C2H6:3 CH4:2 CO:1.5 CO2:2 H2:2 H2O:6 ")
+
+   three_body_reaction(
+       equation = "H + OH + M <=> H2O + M",
+       rate_coeff=[2.20000E+22, -2, 0],
+       efficiencies="AR:0.38 C2H6:3 CH4:2 H2:0.73 H2O:3.65 "
+   )
+
+
+Other Examples
+==============
+
+.. code:: python
+
+   units(length = 'cm', quantity = 'mol', act_energy = 'cal/mol')
+   ...
+   reaction( "O + H2 <=> H + OH", [3.87000E+04, 2.7, 6260])
+   reaction( "O + HO2 <=> OH + O2", [2.00000E+13, 0.0, 0])
+   reaction( "O + H2O2 <=> OH + HO2", [9.63000E+06, 2.0, 4000])
+   reaction( "O + HCCO <=> H + 2 CO", [1.00000E+14, 0.0, 0])
+   reaction( "H + O2 + AR <=> HO2 + AR", kf=Arrhenius(A=7.00000E+17, b=-0.8, E=0))
+   reaction( equation = "HO2 + C3H7 <=> O2 + C3H8", kf=Arrhenius(2.55000E+10, 0.255, -943))
+   reaction( equation = "HO2 + C3H7 => OH + C2H5 + CH2O", kf=[2.41000E+13, 0.0, 0])
+
+
+   chemically_activated_reaction('CH3 + OH (+ M) <=> CH2O + H2 (+ M)',
+                                 kLow=[2.823201e+02, 1.46878, (-3270.56495, 'cal/mol')],
+                                 kHigh=[5.880000e-14, 6.721, (-3022.227, 'cal/mol')],
+                                 falloff=Troe(A=1.671, T3=434.782, T1=2934.21, T2=3919.0))
+
+   pdep_arrhenius('R1 + R2 <=> P1 + P2',
+                  [(0.001315789, 'atm'), 2.440000e+10, 1.04, 3980.0],
+                  [(0.039473684, 'atm'), 3.890000e+10, 0.989, 4114.0],
+                  [(1.0, 'atm'), 3.460000e+12, 0.442, 5463.0],
+                  [(10.0, 'atm'), 1.720000e+14, -0.01, 7134.0],
+                  [(100.0, 'atm'), -7.410000e+30, -5.54, 12108.0],
+                  [(100.0, 'atm'), 1.900000e+15, -0.29, 8306.0])
+
+   chebyshev_reaction('R1 + R2 <=> P1 + P2',
+                      Tmin=290.0, Tmax=3000.0,
+                      Pmin=(0.001, 'atm'), Pmax=(100.0, 'atm'),
+                      coeffs=[[-1.44280e+01,  2.59970e-01, -2.24320e-02, -2.78700e-03],
+                              [ 2.20630e+01,  4.88090e-01, -3.96430e-02, -5.48110e-03],
+                              [-2.32940e-01,  4.01900e-01, -2.60730e-02, -5.04860e-03],
+                              [-2.93660e-01,  2.85680e-01, -9.33730e-03, -4.01020e-03],
+                              [-2.26210e-01,  1.69190e-01,  4.85810e-03, -2.38030e-03],
+                              [-1.43220e-01,  7.71110e-02,  1.27080e-02, -6.41540e-04]])
+
+   surface_reaction("2 H(S) => H2 + 2 PT(S)",
+                    Arrhenius(A, b, E_a,
+                              coverage=['H(S)', a_1, m_1, E_1]))
+
+   surface_reaction("2 H(S) => H2 + 2 PT(S)",
+                    Arrhenius(A, b, E_a,
+                              coverage=[['H(S)', a_1, m_1, E_1],
+                                        ['PT(S)', a_2, m_2, E_2]]))
+
+   surface_reaction("H2O + PT(S) => H2O(S)", stick(a, b, c))
+
+
 .. container:: container
 
    .. container:: row
