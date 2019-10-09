@@ -12,6 +12,8 @@
 
       A description of how elements and species are defined in YAML input files
 
+.. _sec-yaml-elements:
+
 Elements
 ========
 
