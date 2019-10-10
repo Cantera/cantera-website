@@ -245,34 +245,16 @@ values. Where necessary, the values will be automatically normalized.
 - ``coverages``
 - ``molalities`` or ``M``
 
-The thermodynamic state can be set using the following property pairs, with some
-exceptions for phases where setting that property pair is not implemented. All
-properties are on a per unit mass basis where relevant:
+The thermodynamic state can be set in terms of two of the following properties,
+with the valid property pairs deplending on the phase model:
 
-- ``T`` and ``P``
-- ``T`` and ``D``
-- ``T`` and ``V``
-- ``H`` and ``P``
-- ``U`` and ``V``
-- ``S`` and ``V``
-- ``S`` and ``P``
-- ``S`` and ``T``
-- ``P`` and ``V``
-- ``U`` and ``P``
-- ``V`` and ``H``
-- ``T`` and ``H``
-- ``S`` and ``H``
-- ``D`` and ``P``
-
-The following synonyms are also implemented for use in any of the pairs:
-
-- ``temperature``, ``T``
-- ``pressure``, ``P``
-- ``enthalpy``, ``H``
-- ``entropy``, ``S``
-- ``int-energy``, ``internal-energy``, ``U``
-- ``specific-volume``, ``V``
-- ``density``, ``D``
+- ``temperature`` or ``T``
+- ``pressure`` or ``P``
+- ``enthalpy`` or ``H``
+- ``entropy`` or ``S``
+- ``int-energy``, ``internal-energy`` or ``U``
+- ``specific-volume`` or ``V``
+- ``density`` or ``D``
 
 Examples:
 
