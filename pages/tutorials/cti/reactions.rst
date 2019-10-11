@@ -114,15 +114,6 @@ Certain conditions are normally flagged as errors by Cantera. In some cases,
 they may not be errors, and the options field can be used to specify how they
 should be handled.
 
-``skip``
-    The ``'skip'`` option can be used to temporarily remove this reaction from
-    the phase or interface that imports it, just as if the reaction entry were
-    commented out. The advantage of using skip instead of commenting it out is
-    that a warning message is printed each time a phase or interface definition
-    tries to import it. This serves as a reminder that this reaction is not
-    included, which can easily be forgotten when a reaction is "temporarily"
-    commented out of an input file.
-
 ``duplicate``
     Normally, when a reaction is imported into a phase, it is checked to see
     that it is not a duplicate of another reaction already present in the phase,
