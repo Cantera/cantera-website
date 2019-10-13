@@ -1323,7 +1323,5 @@ GLOBAL_CONTEXT_FILLER = []
 
 # Add sphinx copybutton extension to conf.py
 extensions = [
-    ...
     'sphinx_copybutton'
-    ...
 ]
