@@ -1320,3 +1320,10 @@ GLOBAL_CONTEXT = {}
 # GLOBAL_CONTEXT as parameter when the template is about to be
 # rendered
 GLOBAL_CONTEXT_FILLER = []
+
+# Add sphinx copybutton extension to conf.py
+extensions = [
+    ...
+    'sphinx_copybutton'
+    ...
+]
