@@ -10,8 +10,10 @@ site is built using the [Nikola](https://getnikola.com) static site generator.
 3. Clone the Cantera Jupyter examples: `git clone https://github.com/Cantera/cantera-jupyter.git`
 4. Clone the Cantera website source: `git clone https://github.com/Cantera/cantera-website.git`
 5. Enter the website repo: `cd cantera-website`
-6. Inside the website repo, install the required packages: `pip install -r requirements.txt`
-7. Build the website and open in browser: `nikola auto -b`
+6. Copy the current development documentation: `curl -O https://cantera.org/documentation/dev/dev-docs.tar.bz2`
+7. Extract the dev docs: `tar jxf dev-docs.tar.bz2 --strip-components=1 -C api-docs/dev`
+8. Inside the website repo, install the required packages: `pip install -r requirements.txt`
+9. Build the website and open in browser: `nikola auto -b`
 
 ## To add a language of examples
 
