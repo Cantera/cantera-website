@@ -272,6 +272,7 @@ TIMEZONE = "America/New_York"
 
 # This is the "production" version of this dictionary
 DOCS_FOLDERS = {
+    "api-docs/dev": "documentation/dev",
     "api-docs/docs-2.0": "documentation/docs-2.0",
     "api-docs/docs-2.1": "documentation/docs-2.1",
     "api-docs/docs-2.2": "documentation/docs-2.2",
