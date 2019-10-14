@@ -111,8 +111,9 @@ Additional Information
 
          .. container:: card-text
 
-            This module gives an overview of the syntax and format of Cantera
-            YAML files
+            This module describes the basics of the YAML format as used by
+            Cantera, how dimensional values are represented, and how to
+            understand error messages that occur while reading input files.
 
    .. container:: card
 
