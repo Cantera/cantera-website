@@ -305,24 +305,6 @@ Other Examples
 
 .. rubric:: References
 
-.. [#Gilbert1983] R. G. Gilbert, K. Luther, and
-   J. Troe. *Ber. Bunsenges. Phys. Chem.*, 87:169, 1983.
-
-.. [#Lindemann1922] F. Lindemann. *Trans. Faraday Soc.*, 17:598, 1922.
-
-.. [#Smith1997] Gregory P. Smith, David M. Golden, Michael Frenklach, Nigel
-   W. Moriarty, Boris Eiteneer, Mikhail Goldenberg, C. Thomas Bowman, Ronald
-   K. Hanson, Soonho Song, William C. Gardiner, Jr., Vitali V. Lissianski, , and
-   Zhiwei Qin. GRI-Mech version 3.0, 1997. see
-   http://www.me.berkeley.edu/gri_mech.
-
-.. [#Stewart1989] P. H. Stewart, C. W. Larson, and D. Golden.
-   *Combustion and Flame*, 75:25, 1989.
-
-.. [#Kee1989] R. J. Kee, F. M. Rupley, and J. A. Miller. Chemkin-II: A Fortran
-   chemical kinetics package for the analysis of gas-phase chemical
-   kinetics. Technical Report SAND89-8009, Sandia National Laboratories, 1989.
-
 .. [#Westbrook1981] C. K. Westbrook and F. L. Dryer. Simplified reaction
    mechanisms for the oxidation of hydrocarbon fuels in flames. *Combustion
    Science and Technology* **27**, pp. 31--43. 1981.
