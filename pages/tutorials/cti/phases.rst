@@ -405,16 +405,3 @@ If we import this into Matlab, for example, we get a gas mixture containing the
             :attributes: href=cti-species.html
 
             Next: Elements and Species
-
-.. rubric:: References
-
-.. [#Kee1989] R. J. Kee, F. M. Rupley, and J. A. Miller. Chemkin-II: A Fortran
-   chemical kinetics package for the analysis of gasphase chemical
-   kinetics. Technical Report SAND89-8009, Sandia National Laboratories, 1989.
-
-.. [#dl68] G. Dixon-Lewis. Flame structure and flame reaction kinetics,
-   II: Transport phenomena in multicomponent systems. *Proc. Roy. Soc. A*,
-   307:111--135, 1968.
-
-.. [#Kee2017] R. J. Kee, M. E. Coltrin, P. Glarborg, and H. Zhu. *Chemically Reacting Flow:
-   Theory and Practice*. 2nd Ed. John Wiley and Sons, 2017.

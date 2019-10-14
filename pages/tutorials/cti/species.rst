@@ -281,7 +281,3 @@ no attached units string.
 .. [#Kee1986] R. J. Kee, G. Dixon-Lewis, J. Warnatz, M. E. Coltrin, and J. A. Miller.
    A FORTRAN Computer Code Package for the Evaluation of Gas-Phase, Multicomponent
    Transport Properties. Technical Report SAND86-8246, Sandia National Laboratories, 1986.
-
-.. [#Mcbride2002] B. J. McBride, M. J. Zehe, S. Gordon. "NASA Glenn Coefficients
-   for Calculating Thermodynamic Properties of Individual Species,"
-   NASA/TP-2002-211556, Sept. 2002.
