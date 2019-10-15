@@ -47,11 +47,6 @@ homogeneous reactions, since the composition is fixed.)
 A stoichiometric solid can be defined in the CTI format using the
 :cti:class:`stoichiometric_solid` entry.
 
-Stoichiometric Liquid
----------------------
-
-A stoichiometric liquid differs from a stoichiometric solid in only one respect: the transport
-manager computes the viscosity as well as the thermal conductivity.
 
 Interfaces
 ##########
