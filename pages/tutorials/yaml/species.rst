@@ -50,6 +50,7 @@ An example ``elements`` section:
     - symbol: O-18
       atomic-weight: 17.9991603
 
+.. _sec-yaml-species:
 
 Species
 =======
@@ -148,6 +149,8 @@ parameterization used specified by the ``model`` field of the
 
 The fields used by each model are described and examples provided in the linked
 documentation.
+
+.. _sec-yaml-species-transport:
 
 Species Transport Coefficients
 ------------------------------

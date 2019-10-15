@@ -21,7 +21,9 @@ that definitions of elements are not often needed, since Cantera has definitions
 for the standard chemical elements. Explicit element definitions are usually
 only needed for isotopes.
 
-An element can be defined in the CTI format using the :cti:class:`element` entry.
+An element can be defined in the CTI format using the :cti:class:`element`
+entry, or in the YAML format by adding entries to the :ref:`elements
+<sec-yaml-elements>` section of the input file.
 
 
 Species
@@ -29,7 +31,9 @@ Species
 
 For each species, a species definition is required.
 
-A species can be defined in the CTI format using the :cti:class:`species` entry.
+A species can be defined in the CTI format using the :cti:class:`species` entry,
+or in the YAML format by adding an entry to the :ref:`species
+<sec-yaml-species>` section of the input file.
 
 
 Species Name
@@ -90,8 +94,10 @@ Transport property models in general require coefficients that express the
 effect of each species on the transport properties of the phase. Currently,
 ideal-gas transport property models are implemented.
 
+
 Transport properties can be defined in the CTI format using the
-:cti:class:`gas_transport` entry.
+:cti:class:`gas_transport` entry, or in the YAML format using the `transport
+<sec-yaml-species-transport>` field of a ``species`` entry.
 
 .. _sec-thermo-models:
 
@@ -136,7 +142,9 @@ version of the NASA equilibrium program, which uses 9 coefficients for each
 temperature region.
 
 A NASA-7 parameterization can be defined in the CTI format using the
-:cti:class:`NASA` entry.
+:cti:class:`NASA` entry, or in the YAML format by specifying `NASA7 <{{%
+yaml_dev species sec-yaml-nasa7 %}}>`__ as the ``model`` in the species
+``thermo`` field.
 
 
 The NASA 9-Coefficient Polynomial Parameterization
@@ -163,7 +171,9 @@ the following equations:
       + a_3 T + \frac{a_4}{2} T^2 + \frac{a_5}{3} T^3  + \frac{a_6}{4} T^4 + a_8
 
 A NASA-9 parameterization can be defined in the CTI format using the
-:cti:class:`NASA9` entry.
+:cti:class:`NASA9` entry, or in the YAML format by specifying `NASA9 <{{%
+yaml_dev species nasa-9-coefficient-polynomials %}}>`__ as the ``model`` in the
+species ``thermo`` field.
 
 
 The Shomate Parameterization
@@ -188,7 +198,9 @@ coefficients :math:`A` through :math:`G` should be entered precisely as shown th
 attached. Unit conversions to SI will be handled internally.
 
 A Shomate parameterization can be defined in the CTI format using the
-:cti:class:`Shomate` entry.
+:cti:class:`Shomate` entry, or in the YAML format by specifying `Shomate <{{%
+yaml_dev species shomate-polynomials %}}>`__ as the ``model`` in the species
+``thermo`` field.
 
 Constant Heat Capacity
 ----------------------
@@ -210,8 +222,10 @@ The parameterization uses four constants: :math:`T_0, \hat{c}_p^0(T_0),
 \hat{h}^0(T_0), \hat{s}^0(T)`. The default value of :math:`T_0` is 298.15 K; the
 default value for the other parameters is 0.0.
 
-A constant heat capacity parameterization can be defined in the CTI format
-using the :cti:class:`const_cp` entry.
+A constant heat capacity parameterization can be defined in the CTI format using
+the :cti:class:`const_cp` entry, or in the YAML format by specifying
+`constant-cp <{{% yaml_dev species constant-heat-capacity %}}>`__ as the
+``model`` in the species ``thermo`` field.
 
 
 .. rubric:: References
