@@ -15,14 +15,14 @@
 
   <div id="searchbox" style="display: inline-block" role="search">
     <h3>Search the documentation</h3>
-      <div class="searchformwrapper">
+    <div class="searchformwrapper">
       <form class="search" action="{{% ct_docs sphinx/html/search.html %}}" method="get">
         <input type="text" name="q" size="50" />
         <input type="submit" value="Go" />
         <input type="hidden" name="check_keywords" value="yes" />
         <input type="hidden" name="area" value="default" />
       </form>
-      </div>
+    </div>
   </div>
 </div>
 
@@ -46,10 +46,12 @@
           Transport Properties (Diffusion, viscosity, thermal conductivity, etc.)
         </a>
         <a href="{{% ct_docs sphinx/html/cython/zerodim.html %}}" class="list-group-item docs">
-          Zero-Dimensional Reactor Networks (<code>Reactor</code>s, <code>IdealGasReactor</code>s, <code>Wall</code>s, etc.)
+          Zero-Dimensional Reactor Networks (<code>Reactor</code>s, <code>IdealGasReactor</code>s, <code>Wall</code>s,
+          etc.)
         </a>
         <a href="{{% ct_docs sphinx/html/cython/onedim.html %}}" class="list-group-item docs">
-          One-dimensional Reacting Flows (<code>FreeFlame</code>s, <code>BurnerFlame</code>s, Flow Domains, Boundaries, etc.)
+          One-dimensional Reacting Flows (<code>FreeFlame</code>s, <code>BurnerFlame</code>s, Flow Domains, Boundaries,
+          etc.)
         </a>
         <a href="{{% ct_docs sphinx/html/cython/constants.html %}}" class="list-group-item docs">
           Physical Constants (Universal constants, built into Cantera for convenience)
@@ -76,10 +78,12 @@
           Transport Properties (Diffusion, viscosity, thermal conductivity, etc.)
         </a>
         <a href="{{% ct_docs sphinx/html/matlab/zero %}}-dim.html" class="list-group-item docs">
-          Zero-Dimensional Reactor Networks (<code>Reactor</code>s, <code>IdealGasReactor</code>s, <code>Wall</code>s, etc.)
+          Zero-Dimensional Reactor Networks (<code>Reactor</code>s, <code>IdealGasReactor</code>s, <code>Wall</code>s,
+          etc.)
         </a>
         <a href="{{% ct_docs sphinx/html/matlab/one %}}-dim.html" class="list-group-item docs">
-          One-dimensional Reacting Flows (<code>FreeFlame</code>s, <code>BurnerFlame</code>s, Flow Domains, Boundaries, etc.)
+          One-dimensional Reacting Flows (<code>FreeFlame</code>s, <code>BurnerFlame</code>s, Flow Domains, Boundaries,
+          etc.)
         </a>
         <a href="{{% ct_docs sphinx/html/matlab/data.html %}}" class="list-group-item docs">
           Physical Constants (Universal constants, built into Cantera for convenience)
@@ -101,7 +105,8 @@
       <div class="list-group list-group-flush">
         <a href="{{% ct_docs doxygen/html/modules.html %}}" class="list-group-item docs">List of Cantera Modules</a>
         <a href="{{% ct_docs doxygen/html/classes.html %}}" class="list-group-item docs">List of Cantera Classes</a>
-        <a href="{{% ct_docs doxygen/html/da/d58/deprecated.html %}}" class="list-group-item docs">List of Deprecated Functions and Classes</a>
+        <a href="{{% ct_docs doxygen/html/da/d58/deprecated.html %}}" class="list-group-item docs">List of Deprecated
+          Functions and Classes</a>
       </div>
     </div>
   </div>
@@ -131,7 +136,7 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-6 offset-md-3">
+  <div class="col-sm-6">
     <div class="card" id="dev-and-old-docs">
       <div class="card-header section-card">
         Development and Older Versions
@@ -142,6 +147,15 @@
         <a href="docs-2.2/sphinx/html/index.html" class="list-group-item dev-docs">Cantera 2.2.1</a>
         <a href="docs-2.1/sphinx/html/index.html" class="list-group-item dev-docs">Cantera 2.1.2</a>
         <a href="docs-2.0/sphinx/html/index.html" class="list-group-item dev-docs">Cantera 2.0.2</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header section-card">
+        Release Notes
+      </div>
+      <div class="list-group list-group-flush" id="release-notes">
       </div>
     </div>
   </div>
