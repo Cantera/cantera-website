@@ -34,7 +34,7 @@ will create a conda environment where you can use Cantera. For this example, the
 environment is named ``spam``. From the command line (or the Anaconda Prompt
 on Windows), run::
 
-    conda create --name spam --channel cantera cantera ipython matplotlib
+    conda create --name spam --channel cantera cantera ipython matplotlib jupyter
 
 This will create an environment with Cantera, IPython, Matplotlib, and all their
 dependencies installed. Although Conda can install a large set of packages by
