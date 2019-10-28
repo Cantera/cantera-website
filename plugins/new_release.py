@@ -2,24 +2,41 @@
 
 This command plugin performs the following actions:
 
-1. Creates a markdown page containing the body content
-of the latest Cantera release on Github (other release
-versions can be manually specified via options). The
-page will be created in 'pages/documentation/release_notes'
-as '{release tag_name}.md'.
+1. Creates a markdown page containing the body content of the latest Cantera release on
+Github (other release versions can be manually specified via options). The page will be
+created in 'pages/documentation/release_notes' as '{release tag_name}.md'.
 
-2. Modifies 'pages/documentation/index.html' by adding
-an entry to the 'Release Notes' card. The entry will be
-titled '{release name}' and will link to the markdown
-page created in (1).
+2. Modifies 'pages/documentation/index.html' by adding an entry to the 'Release Notes'
+card. The entry will be titled '{release name}' and will link to the markdown page
+created in (1).
 """
 
+import re
+from git import Repo
 from nikola.plugin_categories import Command
 import requests
 from datetime import datetime
 from pathlib import Path
 from nikola import utils
 from lxml import etree, html
+
+
+def expand_cantera_commits(text):
+    """Replaces shorthand Cantera commit references with their full-length hashes"""
+    cantera_repo = Repo(Path.cwd().parent / "cantera")
+    commits = cantera_repo.iter_commits("master")
+    commit_map = {c.hexsha[:7]: c.hexsha for c in commits}
+
+    def expand_commits(string):
+        match = re.search(r"(?<=\W)[a-z0-9]{7}(?=\W)", string)
+        if match is None:
+            return string
+        key, start, end = match.group(), match.start(), match.end()
+        if key in commit_map:
+            return string[:start] + commit_map[key] + expand_commits(string[end:])
+        return string[:end] + expand_commits(string[end:])
+
+    return expand_commits(text)
 
 
 class NewRelease(Command):
@@ -66,7 +83,7 @@ class NewRelease(Command):
         filename = "{}.md".format(slug)
         iso_date = release_json["published_at"]
         date = datetime.strptime(iso_date, "%Y-%m-%dT%H:%M:%S%z").strftime("%B %-d, %Y")
-        content = release_json["body"]
+        content = expand_cantera_commits(release_json["body"])
         position = content.find("\n")
         content = (
             "{}\nPublished on {} | [Full release on Github]"
