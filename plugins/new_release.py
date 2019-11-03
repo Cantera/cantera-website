@@ -20,15 +20,18 @@ from pathlib import Path
 from nikola import utils
 from lxml import etree, html
 
+CANTERA_WEBSITE = Path(__file__).parent.parent
+
 
 def expand_cantera_commits(text):
     """Replaces shorthand Cantera commit references with their full-length hashes"""
     cantera_repo = Repo(Path.cwd().parent / "cantera")
     commits = cantera_repo.iter_commits("master")
     commit_map = {c.hexsha[:7]: c.hexsha for c in commits}
+    pattern = re.compile(r"(?<=\W)[a-z0-9]{7}(?=\W)")
 
     def expand_commits(string):
-        match = re.search(r"(?<=\W)[a-z0-9]{7}(?=\W)", string)
+        match = pattern.search(string)
         if match is None:
             return string
         key, start, end = match.group(), match.start(), match.end()
@@ -71,11 +74,7 @@ class NewRelease(Command):
         api_response = requests.get(
             "https://api.github.com/repos/Cantera/cantera/releases/{}".format(urlpath)
         )
-
-        if api_response.status_code == 404:
-            return "A release with the provided parameters could not be found."
-        if api_response.status_code != 200:
-            return "An error occurred while fetching the release."
+        api_response.raise_for_status()
 
         release_json = api_response.json()
         title = release_json["name"]
@@ -84,9 +83,12 @@ class NewRelease(Command):
         iso_date = release_json["published_at"]
         date = datetime.strptime(iso_date, "%Y-%m-%dT%H:%M:%S%z").strftime("%B %-d, %Y")
         content = expand_cantera_commits(release_json["body"])
+        content = re.sub(
+            r"^\s*</?(summary|details).*$", "", content, flags=re.MULTILINE
+        )
         position = content.find("\n")
         content = (
-            "{}\nPublished on {} | [Full release on Github]"
+            "{}\n\nPublished on {} | [Full release on Github]"
             "(https://github.com/Cantera/cantera/releases/tag/{}){}"
         ).format(content[:position], date, slug, content[position:])
         path = Path.cwd() / "pages" / "documentation" / "release_notes" / filename
@@ -105,31 +107,27 @@ class NewRelease(Command):
             is_page=True,
         )
 
-        PAGELOGGER = utils.get_logger("new_page")
-        PAGELOGGER.info("{} was created at {}".format(filename, path))
+        pagelogger = utils.get_logger("new_page")
+        pagelogger.info("{} was created at {}".format(filename, path))
 
-        indexhtml_file = Path.cwd() / "pages" / "documentation" / "index.html"
+        indexhtml_file = CANTERA_WEBSITE / "pages" / "documentation" / "index.html"
         indexhtml_content = indexhtml_file.read_text()
-        indexhtml_sections = indexhtml_content.split("\n\n")
-
-        for i in range(len(indexhtml_sections)):
-            if "release-notes" in indexhtml_sections[i]:
-                section_html = html.fragment_fromstring(indexhtml_sections[i])
-                releasenotes_card = section_html.get_element_by_id("release-notes")
-                new_entry = etree.Element(
-                    "a",
-                    {
-                        "href": "/documentation/release_notes/{}.html".format(slug),
-                        "class": "list-group-item release-notes",
-                    },
-                )
-                new_entry.text = title
-                new_entry.tail = "\n        "
-                releasenotes_card.insert(0, new_entry)
-                indexhtml_sections[i] = etree.tostring(section_html, encoding="unicode")
-
-        indexhtml_content = "\n\n".join(indexhtml_sections)
+        sections = html.fragments_fromstring(indexhtml_content)
+        for releasenotes_card in sections[-1].xpath('//div[@id="release-notes"]'):
+            new_entry = etree.Element(
+                "a",
+                {
+                    "href": "/documentation/release_notes/{}.html".format(slug),
+                    "class": "list-group-item release-notes",
+                },
+            )
+            new_entry.text = title
+            new_entry.tail = "\n        "
+            releasenotes_card.insert(0, new_entry)
+        indexhtml_content = "".join(
+            [etree.tostring(section, encoding="unicode") for section in sections]
+        )
         indexhtml_file.write_text(indexhtml_content)
 
-        PAGELOGGER = utils.get_logger("modified_page")
-        PAGELOGGER.info("{} was modified".format(indexhtml_file))
+        pagelogger = utils.get_logger("modified_page")
+        pagelogger.info("{} was modified".format(indexhtml_file))

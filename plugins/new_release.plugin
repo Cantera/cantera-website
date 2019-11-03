@@ -4,5 +4,5 @@ Module = new_release
 
 [Documentation]
 Author = Paul Blum
-Version = 0.1
+Version = 1.0
 Description = Add release notes for the latest version of Cantera to the site
