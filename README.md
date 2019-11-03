@@ -29,3 +29,11 @@ site is built using the [Nikola](https://getnikola.com) static site generator.
    2. `files`: An empty list that gets filled with the names of the examples in this category
    3. `summaries`: A empty dictionary that gets filled with keys that are the example filename and values that are the summary from that example
 4. Add a new key to that dictionary with the folder name as the key and fill in the `name` key in the nested dictionary and set the `files` and `summaries` keys to the empty list and empty dictionary, respectively
+
+## To add a version's release notes
+
+* To add the latest version's release notes: `nikola new_release`
+* To add release notes for a version by its tag name: `nikola new_release -t {tag_name}`
+    - Example: `nikola new_release -t v2.4.0`
+* To add release notes for a version by its release ID: `nikola new_release -i {id}`
+    - Example: `nikola new_release -i 12508904`
