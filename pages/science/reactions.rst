@@ -156,7 +156,8 @@ al. [#Gilbert1983]_:
    N = 0.75 - 1.27\; \log_{10} F_{cent}
 
 The :cti:class:`Troe` directive requires specifying the first three parameters
-:math:`(A, T_3, T_1)`. The fourth parameter, :math:`T_2`, is optional, defaulting to 0.0.
+:math:`(A, T_3, T_1)`. The fourth parameter, :math:`T_2`, is optional; if
+omitted, the last term of the falloff function is not used.
 
 .. _sec-sri-falloff:
 
