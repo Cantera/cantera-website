@@ -26,8 +26,8 @@ It supports all of the options in the widely-used model described by Kee et al.
 and reaction rate expressions.
 
 Ideal gas mixtures can be defined in the CTI format using the
-:cti:class:`ideal_gas` entry, or in the YAML format by specifying `ideal-gas <{{%
-yaml_dev phases ideal-gas %}}>`__ in the ``thermo`` field.
+:cti:class:`ideal_gas` entry, or in the YAML format by specifying
+:ref:`ideal-gas <sec-yaml-ideal-gas>` in the ``thermo`` field.
 
 .. _sec-transport-models:
 
@@ -48,8 +48,7 @@ homogeneous reactions, since the composition is fixed.)
 
 A stoichiometric solid can be defined in the CTI format using the
 :cti:class:`stoichiometric_solid` entry, or in the YAML format by specifying
-`fixed-stoichiometry <{{% yaml_dev phases fixed-stoichiometry %}}>`__ in the
-``thermo`` field.
+:ref:`fixed-stoichiometry <sec-yaml-fixed-stoichiometry>` in the ``thermo`` field.
 
 
 Interfaces
