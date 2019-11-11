@@ -20,6 +20,8 @@ from docutils.core import Publisher
 from copy import copy
 
 from pathlib import Path
+import tempfile
+import requests
 
 HERE = Path(__file__).parent
 
@@ -95,7 +97,26 @@ class ProcessRefTargets(Task):
         # of the text is broken out into sections with ref targets. Note that the
         # permalink is hard-coded here to point to the dev documentation that will
         # need to be updated when 2.5.0 is released.
-        yaml_docs_path = HERE.parent.parent.joinpath("cantera", "doc", "sphinx", "yaml")
+        temp_dir = tempfile.mkdtemp()
+        # HERE.parent.parent.joinpath("cantera", "doc", "sphinx", "yaml")
+        yaml_docs_path = Path(temp_dir)
+        url_base = "https://raw.githubusercontent.com/Cantera/cantera/master/doc/sphinx/yaml/{}.rst"
+        for name in [
+            "elements",
+            "general",
+            "index",
+            "phases",
+            "reactions",
+            "species",
+        ]:
+            url = url_base.format(name)
+            try:
+                r = requests.get(url)
+                yaml_docs_path.joinpath("{}.rst".format(name)).write_bytes(r.content)
+            except:
+                self.logger.warn(
+                    "Could not download YAML API file: {}.rst".format(name)
+                )
         if yaml_docs_path.exists():
             for rest_file in yaml_docs_path.glob("**/*.rst"):
                 permalink = (
@@ -115,7 +136,11 @@ class ProcessRefTargets(Task):
                     ],
                 }
         else:
-            self.logger.warn("Could not find the API documentation for the YAML format")
+            self.logger.warn(
+                "Could not find the API documentation for the YAML format: {}".format(
+                    yaml_docs_path
+                )
+            )
 
 
 def update_cache(site):
