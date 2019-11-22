@@ -66,6 +66,9 @@ class NewRelease(Command):
     ]
 
     def _execute(self, options, args):
+        """Add release notes for the latest version of Cantera to the site."""
+
+        # Get JSON-formatted details of the Cantera release from the Github Releases API
         if options["tag_name"] is not None:
             urlpath = "tags/{}".format(options["tag_name"])
         else:
@@ -75,41 +78,46 @@ class NewRelease(Command):
             "https://api.github.com/repos/Cantera/cantera/releases/{}".format(urlpath)
         )
         api_response.raise_for_status()
-
         release_json = api_response.json()
+
+        # Retrieve needed information from JSON, format the text of the new release page
         title = release_json["name"]
         slug = release_json["tag_name"]
-        filename = "{}.md".format(slug)
+        newfile_name = "{}.md".format(slug)
+        path = Path.cwd() / "pages" / "documentation" / "release_notes" / newfile_name
         iso_date = release_json["published_at"]
         date = datetime.strptime(iso_date, "%Y-%m-%dT%H:%M:%S%z").strftime("%B %-d, %Y")
-        content = expand_cantera_commits(release_json["body"])
-        content = re.sub(
-            r"^\s*</?(summary|details).*$", "", content, flags=re.MULTILINE
+        release_text = expand_cantera_commits(release_json["body"])
+        # Nikola doesn't convert <details> or <summary> tags correctly... Remove any
+        # lines that begin with those tags via the following command:
+        release_text = re.sub(
+            r"^\s*</?(summary|details).*$", "", release_text, flags=re.MULTILINE
         )
-        position = content.find("\n")
-        content = (
-            "{}\n\nPublished on {} | [Full release on Github]"
-            "(https://github.com/Cantera/cantera/releases/tag/{}){}"
-        ).format(content[:position], date, slug, content[position:])
-        path = Path.cwd() / "pages" / "documentation" / "release_notes" / filename
+        end_of_firstline = release_text.find("\n")
+        release_text = (
+            release_text[:end_of_firstline]
+            + "\n\nPublished on {} | [Full release on Github]"
+            "(https://github.com/Cantera/cantera/releases/tag/{})".format(date, slug)
+            + release_text[end_of_firstline:]
+        )
 
-        compiler_plugin = self.site.plugin_manager.getPluginByName(
+        # Create a new markdown page with the formatted release information
+        self.site.plugin_manager.getPluginByName(
             "markdown", "PageCompiler"
-        ).plugin_object
-
-        compiler_plugin.create_post(
+        ).plugin_object.create_post(
             path,
-            content=content,
+            content=release_text,
             onefile=True,
             title=title,
             slug=slug,
             date=iso_date,
             is_page=True,
         )
-
+        # Notify the user of the newly created page
         pagelogger = utils.get_logger("new_page")
-        pagelogger.info("{} was created at {}".format(filename, path))
+        pagelogger.info("{} was created at {}".format(newfile_name, path))
 
+        # Add a link to the new page to the site's Documentation page
         indexhtml_file = CANTERA_WEBSITE / "pages" / "documentation" / "index.html"
         indexhtml_content = indexhtml_file.read_text()
         sections = html.fragments_fromstring(indexhtml_content)
@@ -128,6 +136,6 @@ class NewRelease(Command):
             [etree.tostring(section, encoding="unicode") for section in sections]
         )
         indexhtml_file.write_text(indexhtml_content)
-
+        # Notify the user that the Documentation page was modified
         pagelogger = utils.get_logger("modified_page")
         pagelogger.info("{} was modified".format(indexhtml_file))
