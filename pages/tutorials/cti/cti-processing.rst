@@ -116,7 +116,7 @@ If you are interested in seeing the internals of how the preprocessing works,
 take a look at file ``ctml_writer.py`` in the Cantera Python package. Or simply
 start Python, and type:
 
-.. code:: python
+.. code:: pycon
 
    >>> import cantera.ctml_writer
    >>> help(cantera.ctml_writer)

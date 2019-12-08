@@ -69,7 +69,7 @@ example, if a phase definition specifies the elements as:
 then when this definition is imported by an application, element-specific
 properties will be ordered in the same way:
 
-.. code:: python
+.. code:: pycon
 
    >>> import cantera as ct
    >>> gas = ct.Solution(source=s)

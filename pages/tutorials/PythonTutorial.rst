@@ -17,7 +17,7 @@ many platforms in our `Installation section </install/index.html>`__.
 Start by opening an interactive Python session, for example by running `IPython
 <http://ipython.org/>`__. Import the Cantera Python module and NumPy by running:
 
-.. code:: python
+.. code:: pycon
 
     >>> import cantera as ct
     >>> import numpy as np
@@ -25,14 +25,14 @@ Start by opening an interactive Python session, for example by running `IPython
 When using Cantera, the first thing you usually need is an object representing:
 some phase of matter. Here, we'll create a gas mixture
 
-.. code:: python
+.. code:: pycon
 
     >>> gas1 = ct.Solution('gri30.xml')
 
 To view the state of the mixture, *call* the ``gas1`` object as if it were a
 function:
 
-.. code:: python
+.. code:: pycon
 
     >>> gas1()
 
@@ -85,7 +85,7 @@ Setting the State
 
 The state of the object can easily be changed. For example:
 
-.. code:: python
+.. code:: pycon
 
     >>> gas1.TP = 1200, 101325
 
@@ -120,7 +120,7 @@ composition information be specified to fix the intensive state of a substance
 (or mixture). The state of the mixture can be set using several combinations
 of two properties. The following are all equivalent:
 
-.. code:: python
+.. code:: pycon
 
     >>> gas1.TP = 1200, 101325           # temperature, pressure
     >>> gas1.TD = 1200, 0.0204723        # temperature, density
@@ -134,7 +134,7 @@ mass*.
 
 Properties may be read independently or together:
 
-.. code:: python
+.. code:: pycon
 
     >>> gas1.T
     1200.0
@@ -146,14 +146,14 @@ Properties may be read independently or together:
 The composition can be set in terms of either mole fractions (``X``) or mass
 fractions (``Y``):
 
-.. code:: python
+.. code:: pycon
 
     >>> gas1.X = 'CH4:1, O2:2, N2:7.52'
 
 Mass and mole fractions can also be set using ``dict`` objects, which is convenient in cases where
 the composition is stored in a variable or being computed:
 
-.. code:: python
+.. code:: pycon
 
     >>> phi = 0.8
     >>> gas1.X = {'CH4':1, 'O2':2/phi, 'N2':2*3.76/phi}
@@ -163,7 +163,7 @@ constant. This means that the pressure and other intensive properties will
 change. The composition can also be set in conjunction with the intensive
 properties of the mixture:
 
-.. code:: python
+.. code:: pycon
 
     >>> gas1.TPX = 1200, 101325, 'CH4:1, O2:2, N2:7.52'
     >>> gas1()
@@ -205,13 +205,13 @@ The composition can also be set using an array, which must have the same size
 as the number of species. For example, to set all 53 mole fractions to the
 same value, do this:
 
-.. code:: python
+.. code:: pycon
 
     >>> gas1.X = np.ones(53)  # NumPy array of 53 ones
 
 Or, to set all the mass fractions to equal values:
 
-.. code:: python
+.. code:: pycon
 
     >>> gas1.Y = np.ones(53)
 
@@ -219,13 +219,13 @@ When setting the state, you can control what properties are held constant by
 passing the special value ``None`` to the property setter. For example, to
 change the specific volume to 2.1 m\ :sup:`3`\ /kg while holding entropy constant:
 
-.. code:: python
+.. code:: pycon
 
     >>> gas1.SV = None, 2.1
 
 Or to set the mass fractions while holding temperature and pressure constant:
 
-.. code:: python
+.. code:: pycon
 
     >>> gas1.TPX = None, None, 'CH4:1.0, O2:0.5'
 
@@ -238,14 +238,14 @@ Python's "slicing" syntax to select data for just the species of interest. To
 get the mole fractions of just the major species in ``gas1``, in the order
 specified, you can write:
 
-.. code:: python
+.. code:: pycon
 
     >>> Xmajor = gas1['CH4','O2','CO2','H2O','N2'].X
 
 If you want to use the same set of species repeatedly, you can keep a reference
 to the sliced phase object:
 
-.. code:: python
+.. code:: pycon
 
     >>> major = gas1['CH4','O2','CO2','H2O','N2']
     >>> cp_major = major.partial_molar_cp
@@ -276,7 +276,7 @@ directories (separated using ``;`` on Windows or ``:`` on other operating
 systems) where they are located. Alternatively, you can call function
 `add_directory` to add a directory to the Cantera search path:
 
-.. code:: python
+.. code:: pycon
 
     >>> ct.add_directory('~/cantera/my_data_files')
 
@@ -288,7 +288,7 @@ A Cantera input file may contain more than one phase specification, or may
 contain specifications of interfaces (surfaces). Here we import definitions of
 two bulk phases and the interface between them from file ``diamond.cti``:
 
-.. code:: python
+.. code:: pycon
 
     >>> gas2 = ct.Solution('diamond.cti', 'gas')
     >>> diamond = ct.Solution('diamond.cti', 'diamond')
@@ -314,39 +314,39 @@ within the Python interpreter as well.
 Suppose you have created a Cantera object and want to know what methods are
 available for it, and get help on using the methods:
 
-.. code:: python
+.. code:: pycon
 
     >>> g = ct.Solution('gri30.xml')
 
 To get help on the Python class that this object is an instance of:
 
-.. code:: python
+.. code:: pycon
 
     >>> help(g)
 
 For a simple list of the properties and methods of this object:
 
-.. code:: python
+.. code:: pycon
 
     >>> dir(g)
 
 To get help on a specific method, such as the ``species_index`` method:
 
-.. code:: python
+.. code:: pycon
 
     >>> help(g.species_index)
 
 For properties, getting the documentation is slightly trickier, as the usual
 method will give you the help for the *result*. For example:
 
-.. code:: python
+.. code:: pycon
 
     >>> help(g.T)
 
 will provide help on Python's ``float`` class. To get the help for the
 temperature property, ask for the attribute of the class object itself:
 
-.. code:: python
+.. code:: pycon
 
     >>> help(g.__class__.T)
 
@@ -363,7 +363,7 @@ Chemical Equilibrium
 To set a gas mixture to a state of chemical equilibrium, use the equilibrate
 method:
 
-.. code:: python
+.. code:: pycon
 
     >>> import cantera as ct
     >>> g = ct.Solution('gri30.xml')
@@ -374,7 +374,7 @@ The above statement sets the state of object ``g`` to the state of chemical
 equilibrium holding temperature and pressure fixed. Alternatively, the
 specific enthalpy and pressure can be held fixed:
 
-.. code:: python
+.. code:: pycon
 
     >>> g.TPX = 300.0, ct.one_atm, 'CH4:0.95,O2:2,N2:7.52'
     >>> g.equilibrate('HP')
@@ -389,7 +389,7 @@ How can you tell if ``equilibrate`` has correctly found the chemical equilibrium
 state? One way is verify that the net rates of progress of all reversible
 reactions are zero. Here is the code to do this:
 
-.. code:: python
+.. code:: pycon
 
     >>> g.TPX = 300.0, ct.one_atm, 'CH4:0.95,O2:2,N2:7.52'
     >>> g.equilibrate('HP')
@@ -436,7 +436,7 @@ Information about individual reactions that is independent of the thermodynamic
 state can be obtained by accessing :py:class:`Reaction` objects with the
 :py:func:`Kinetics.reaction` method:
 
-.. code:: python
+.. code:: pycon
 
     >>> g = ct.Solution('gri30.cti')
     >>> r = g.reaction(2) # get a Reaction object
@@ -455,7 +455,7 @@ information to filter the full list of reactions to find the just the ones of
 interest. For example, here we find the indices of just those reactions which
 convert ``CO`` into ``CO2``:
 
-.. code:: python
+.. code:: pycon
 
     >>> II = [i for i,r in enumerate(g.reactions())
               if 'CO' in r.reactants and 'CO2' in r.products]
@@ -471,7 +471,7 @@ that ``CO2`` is a reactant and ``CO`` is a product, but for this example, we'll
 just stick to this smaller set of reactions.) Now, let's set the composition to
 an interesting equilibrium state:
 
-.. code:: python
+.. code:: pycon
 
     >>> g.TPX = 300, 101325, {'CH4':0.6, 'O2':1.0, 'N2':3.76}
     >>> g.equilibrate('HP')
@@ -479,14 +479,14 @@ an interesting equilibrium state:
 We can verify that this is an equilibrium state by seeing that the net reaction
 rates are essentially zero:
 
-.. code:: python
+.. code:: pycon
 
     >>> g.net_rates_of_progress[II]
     array([  4.06576e-20,  -5.50571e-21,   0.00000e+00,  -4.91279e-20])
 
 Now, let's see what happens if we decrease the temperature of the mixture:
 
-.. code:: python
+.. code:: pycon
 
     >>> g.TP = g.T-100, None
     >>> g.net_rates_of_progress[II]
@@ -496,7 +496,7 @@ All of the reaction rates are positive, favoring the formation of ``CO2`` from
 ``CO``, with the third reaction, ``CO + OH <=> CO2 + H`` proceeding the fastest.
 If we look at the enthalpy change associated with each of these reactions:
 
-.. code:: python
+.. code:: pycon
 
     >>> g.delta_enthalpy[II]
     array([ -5.33035e+08,  -2.23249e+07,  -8.76650e+07,  -2.49170e+08])
@@ -505,21 +505,21 @@ we see that the change is negative in each case, indicating a net release of
 thermal energy. The total heat release rate can be computed either from the
 reaction rates:
 
-.. code:: python
+.. code:: pycon
 
     >>> np.dot(g.net_rates_of_progress, g.delta_enthalpy)
     -58013370.720881931
 
 or from the species production rates:
 
-.. code:: python
+.. code:: pycon
 
     >>> np.dot(g.net_production_rates, g.partial_molar_enthalpies)
     -58013370.720881805
 
 The contribution from just the selected reactions is:
 
-.. code:: python
+.. code:: pycon
 
     >>> np.dot(g.net_rates_of_progress[II], g.delta_enthalpy[II])
     -9307123.2625651453
