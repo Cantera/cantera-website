@@ -120,11 +120,11 @@ entry.
 The parameterization used to provide this information is specified by the
 ``model`` field of the ``thermo`` field. The models available are:
 
-    - `NASA7 <{{% yaml_dev species sec-yaml-nasa7 %}}>`__
-    - `NASA9 <{{% yaml_dev species nasa-9-coefficient-polynomials %}}>`__
-    - `Shomate <{{% yaml_dev species shomate-polynomials %}}>`__
-    - `constant-cp <{{% yaml_dev species constant-heat-capacity %}}>`__
-    - `piecewise-Gibbs <{{% yaml_dev species piecewise-gibbs %}}>`__
+    - :ref:`NASA7 <sec-yaml-nasa7>`
+    - :ref:`NASA9 <sec-yaml-nasa9>`
+    - :ref:`Shomate <sec-yaml-shomate>`
+    - :ref:`constant-cp <sec-yaml-constcp>`
+    - :ref:`piecewise-Gibbs <sec-yaml-piecewise-gibbs>`
 
 The fields used by each model are described and examples provided in the linked
 documentation.
@@ -138,14 +138,14 @@ the ``equation-of-state`` field of each ``species`` entry, with the type of
 parameterization used specified by the ``model`` field of the
 ``equation-of-state`` field. The models available are:
 
-    - `constant-volume <{{% yaml_dev species sec-yaml-eos-constant-volume %}}>`__
-    - `density-temperature-polynomial <{{% yaml_dev species density-temperature-polynomial %}}>`__
-    - `HKFT <{{% yaml_dev species hkft %}}>`__
-    - `ideal-gas <{{% yaml_dev species sec-yaml-eos-ideal-gas %}}>`__
-    - `ions-from-neutral-molecule <{{% yaml_dev species ions-from-neutral-molecule %}}>`__
-    - `liquid-water-IAPWS95 <{{% yaml_dev species liquid-water-iapws95 %}}>`__
-    - `molar-volume-temperature-polynomial <{{% yaml_dev species piecewise-gibbs %}}>`__
-    - `Redlich-Kwong <{{% yaml_dev species redlich-kwong %}}>`__
+    - :ref:`constant-volume <sec-yaml-eos-constant-volume>`
+    - :ref:`density-temperature-polynomial <sec-yaml-eos-density-temperature-polynomial>`
+    - :ref:`HKFT <sec-yaml-eos-hkft>`
+    - :ref:`ideal-gas <sec-yaml-eos-ideal-gas>`
+    - :ref:`ions-from-neutral-molecule <sec-yaml-eos-ions-from-neutral>`
+    - :ref:`liquid-water-IAPWS95 <sec-yaml-eos-liquid-water-iapws95>`
+    - :ref:`molar-volume-temperature-polynomial <sec-yaml-eos-molar-volume-temperature-polynomial>`
+    - :ref:`Redlich-Kwong <sec-yaml-eos-redlich-kwong>`
 
 The fields used by each model are described and examples provided in the linked
 documentation.
@@ -161,8 +161,8 @@ transport properties of a phase. These parameters are provided in the
 parameterization used specified by the ``model`` field of the ``transport``
 field. The only model type specifically handled is ``gas``. The parameters used
 depend on the transport model specified at the phase level. The full set of
-possible parameters is described in the `API documentation
-<{{% yaml_dev species gas-transport %}}>`__.
+possible parameters is described in the :ref:`API documentation
+<sec-yaml-species-transport>`.
 
 An example of a ``transport`` entry:
 

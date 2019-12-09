@@ -74,7 +74,7 @@ where :math:`n_k` is the number of sites covered or blocked by species :math:`k`
 
 An interface can be defined in the CTI format using the
 :cti:class:`ideal_interface` entry, or in the YAML format by specifying
-`ideal-surface <{{% yaml_dev phases ideal-surface %}}>`__ in the ``thermo``
+:ref:`ideal-surface <sec-yaml-ideal-surface>` in the ``thermo``
 field.
 
 
