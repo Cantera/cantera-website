@@ -36,8 +36,8 @@ and the forward reaction rate calculated as:
    R_f = [\mathrm{A}] [\mathrm{B}] k_f
 
 An elementary reaction can be defined in the CTI format using the
-:cti:class:`reaction` entry, or in the YAML format using the `elementary <{{%
-yaml_dev reactions elementary %}}>`__ reaction ``type``.
+:cti:class:`reaction` entry, or in the YAML format using the
+:ref:`elementary <sec-elementary>` reaction ``type``. x
 
 Three-Body Reactions
 --------------------
@@ -78,7 +78,7 @@ efficiency is 1.0.
 
 A three-body reaction may be defined in the CTI format using the
 :cti:class:`three_body_reaction` entry, or in the YAML format using the
-`three-body <{{% yaml_dev reactions three-body %}}>`__ reaction ``type``.
+:ref:`three-body <sec-yaml-three-body>` reaction ``type``.
 
 Falloff Reactions
 -----------------
@@ -123,8 +123,8 @@ reactions. The function :math:`F(T, P_r)` is the falloff function, and is
 specified by assigning an embedded entry to the ``falloff`` field.
 
 A falloff reaction may be defined in the CTI format using the
-:cti:class:`falloff_reaction` entry, or in the YAML format using the `falloff
-<{{% yaml_dev reactions falloff %}}>`__ reaction ``type``.
+:cti:class:`falloff_reaction` entry, or in the YAML format using the
+:ref:`falloff <sec-yaml-falloff>` reaction ``type``.
 
 The Troe Falloff Function
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -145,8 +145,8 @@ al. [#Gilbert1983]_:
    N = 0.75 - 1.27\; \log_{10} F_{cent}
 
 A Troe falloff function may be specified in the CTI format using the
-:cti:class:`Troe` directive, or in the YAML format using the `Troe
-<{{% yaml_dev reactions falloff %}}>`__ field in the reaction entry. The first
+:cti:class:`Troe` directive, or in the YAML format using the
+:ref:`Troe <sec-yaml-falloff>` field in the reaction entry. The first
 three parameters, :math:`(A, T_3, T_1)`, are required. The fourth parameter,
 :math:`T_2`, is optional; if omitted, the last term of the falloff function is
 not used.
@@ -170,8 +170,8 @@ In keeping with the nomenclature of Kee et al. [#Kee1989]_, we will refer to thi
 the "SRI" falloff function.
 
 An SRI falloff function may be specified in the CTI format using the
-:cti:class:`SRI` directive, or in the YAML format using the `SRI
-<{{% yaml_dev reactions falloff %}}>`__ field in the entry.
+:cti:class:`SRI` directive, or in the YAML format using the
+:ref:`SRI <sec-yaml-falloff>` field in the entry.
 
 Chemically-Activated Reactions
 ------------------------------
@@ -203,8 +203,7 @@ parameterizations allowed for falloff reactions.
 
 Chemically-activated reactions can be defined in the CTI format using the
 :cti:class:`chemically_activated_reaction` entry, or in the YAML format using
-the `chemically-activated <{{% yaml_dev reactions chemically-activated %}}>`__
-reaction ``type``.
+the :ref:`chemically-activated <sec-yaml-chemically-activated>` reaction ``type``.
 
 
 Pressure-Dependent Arrhenius Rate Expressions (P-Log)
@@ -234,8 +233,8 @@ pressure is used.
 
 P-log reactions can be defined in the CTI format using the
 :cti:class:`pdep_arrhenius` entry, or in the YAML format using the
-`pressure-dependent-Arrhenius <{{% yaml_dev reactions
-pressure-dependent-arrhenius %}}>`__ reaction ``type``.
+:ref:`pressure-dependent-Arrhenius <sec-yaml-pressure-dependent-Arrhenius>`
+reaction ``type``.
 
 Chebyshev Reaction Rate Expressions
 -----------------------------------
@@ -274,7 +273,7 @@ temperatures and pressure for which they are defined is strongly discouraged.
 
 Chebyshev reactions can be defined in the CTI format using the
 :cti:class:`chebyshev_reaction` entry, or in the YAML format using the
-`Chebyshev <{{% yaml_dev reactions chebyshev %}}>`__ reaction ``type``.
+:ref:`Chebyshev <sec-yaml-Chebyshev>` reaction ``type``.
 
 Surface Reactions
 -----------------
@@ -300,8 +299,8 @@ Surface reactions can be defined in the CTI format using the
 :cti:class:`surface_reaction` entry, with coverage information provided using
 the ``coverage`` keyword argument supplied to the :cti:class:`Arrhenius`
 directive. In the YAML format, surface reactions are identified by the presence
-of surface species and support several `additional options <{{% yaml_dev
-reactions interface %}}>`__.
+of surface species and support several
+:ref:`additional options <sec-yaml-interface-reaction>`.
 
 
 Sticking Coefficients
@@ -334,7 +333,7 @@ is the molecular weight of the gas phase species.
 
 Sticking reactions can be defined in the CTI format using the `stick` entry, or
 in the YAML format by specifying the rate constant in the reaction's
-`sticking-coefficient <{{% yaml_dev reactions interface %}}>`__ field.
+:ref:`sticking-coefficient <sec-yaml-interface-reaction>` field.
 
 Additional Options
 ------------------

@@ -50,21 +50,21 @@ Reaction type
 The type of the rate coefficient parameterization may be specified in the
 ``type`` field of the ``reaction`` entry. Available reaction types are:
 
-    - `elementary <{{% yaml_dev reactions elementary %}}>`__
-    - `three-body <{{% yaml_dev reactions three-body %}}>`__
-    - `falloff <{{% yaml_dev reactions falloff %}}>`__
-    - `chemically-activated <{{% yaml_dev reactions chemically-activated %}}>`__
-    - `pressure-dependent-Arrhenius <{{% yaml_dev reactions pressure-dependent-arrhenius %}}>`__
-    - `Chebyshev <{{% yaml_dev reactions chebyshev %}}>`__
+    - :ref:`elementary <sec-yaml-elementary>`
+    - :ref:`three-body <sec-yaml-three-body>`
+    - :ref:`falloff <sec-yaml-falloff>`
+    - :ref:`chemically-activated <sec-yaml-chemically-activated>`
+    - :ref:`pressure-dependent-Arrhenius <sec-yaml-pressure-dependent-Arrhenius>`
+    - :ref:`Chebyshev <sec-yaml-Chebyshev>`
 
 Additional parameters defining the rate constant for each of these reaction
 types are described in the documentation linked above.
 
 The default parameterization is ``elementary``. Reactions involving surface
-species are automatically identified as `interface <{{% yaml_dev reactions
-interface %}}>`__ reactions, and reactions involving charge transfer are
-automatically identified as `electrochemical <{{% yaml_dev reactions
-electrochemical %}}>`__ reactions.
+species are automatically identified as :ref:`interface <sec-yaml-interface-reaction>`
+reactions, and reactions involving charge transfer are
+automatically identified as :ref:`electrochemical <sec-yaml-electrochemical-reaction>`
+reactions.
 
 Arrhenius Expressions
 ---------------------

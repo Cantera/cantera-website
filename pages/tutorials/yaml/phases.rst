@@ -35,29 +35,29 @@ Setting the Thermodynamic Model
 The thermodynamic model used to represent a phase is specified in the ``thermo``
 field. Supported models are:
 
-    - `binary-solution-tabulated <{{% yaml_dev phases binary-solution-tabulated %}}>`__
-    - `compound-lattice <{{% yaml_dev phases compound-lattice %}}>`__
-    - `constant-density <{{% yaml_dev phases constant-density %}}>`__
-    - `Debye-Huckel <{{% yaml_dev phases debye-huckel %}}>`__
-    - `edge <{{% yaml_dev phases edge %}}>`__
-    - `fixed-chemical-potential <{{% yaml_dev phases fixed-chemical-potential %}}>`__
-    - `fixed-stoichiometry <{{% yaml_dev phases fixed-stoichiometry %}}>`__
-    - `HMW-electrolyte <{{% yaml_dev phases hmw-electrolyte %}}>`__
-    - `ideal-gas <{{% yaml_dev phases ideal-gas %}}>`__
-    - `ideal-gas-VPSS <{{% yaml_dev phases ideal-gas-vpss %}}>`__
-    - `ideal-molal-solution <{{% yaml_dev phases ideal-molal-solution %}}>`__
-    - `ideal-condensed <{{% yaml_dev phases ideal-condensed %}}>`__
-    - `ideal-solution-VPSS <{{% yaml_dev phases ideal-solution-vpss %}}>`__
-    - `ideal-surface <{{% yaml_dev phases ideal-surface %}}>`__
-    - `ions-from-neutral-molecule <{{% yaml_dev phases ions-from-neutral-molecule %}}>`__
-    - `lattice <{{% yaml_dev phases lattice %}}>`__
-    - `liquid-water-IAPWS95 <{{% yaml_dev phases liquid-water-iapws95 %}}>`__
-    - `Margules <{{% yaml_dev phases margules %}}>`__
-    - `Maskell-solid-solution <{{% yaml_dev phases maskell-solid-solution %}}>`__
-    - `electron-cloud <{{% yaml_dev phases electron-cloud %}}>`__
-    - `pure-fluid <{{% yaml_dev phases pure-fluid %}}>`__
-    - `Redlich-Kister <{{% yaml_dev phases redlich-kister %}}>`__
-    - `Redlich-Kwong <{{% yaml_dev phases redlich-kwong %}}>`__
+    - :ref:`binary-solution-tabulated <sec-yaml-binary-solution-tabulated>`
+    - :ref:`compound-lattice <sec-yaml-compound-lattice>`
+    - :ref:`constant-density <sec-yaml-constant-density>`
+    - :ref:`Debye-Huckel <sec-yaml-Debye-Huckel>`
+    - :ref:`edge <sec-yaml-edge>`
+    - :ref:`fixed-chemical-potential <sec-yaml-fixed-chemical-potential>`
+    - :ref:`fixed-stoichiometry <sec-yaml-fixed-stoichiometry>`
+    - :ref:`HMW-electrolyte <sec-yaml-HMW-electrolyte>`
+    - :ref:`ideal-gas <sec-yaml-ideal-gas>`
+    - :ref:`ideal-gas-VPSS <sec-yaml-ideal-gas-VPSS>`
+    - :ref:`ideal-molal-solution <sec-yaml-ideal-molal-solution>`
+    - :ref:`ideal-condensed <sec-yaml-ideal-condensed>`
+    - :ref:`ideal-solution-VPSS <sec-yaml-ideal-solution-VPSS>`
+    - :ref:`ideal-surface <sec-yaml-ideal-surface>`
+    - :ref:`ions-from-neutral-molecule <sec-yaml-ions-from-neutral-molecule>`
+    - :ref:`lattice <sec-yaml-lattice>`
+    - :ref:`liquid-water-IAPWS95 <sec-yaml-liquid-water-IAPWS95>`
+    - :ref:`Margules <sec-yaml-Margules>`
+    - :ref:`Maskell-solid-solution <sec-yaml-Maskell-solid-solution>`
+    - :ref:`electron-cloud <sec-yaml-electron-cloud>`
+    - :ref:`pure-fluid <sec-yaml-pure-fluid>`
+    - :ref:`Redlich-Kister <sec-yaml-Redlich-Kister>`
+    - :ref:`Redlich-Kwong <sec-yaml-Redlich-Kwong>`
 
 Some thermodynamic models use additional fields in the ``phase`` entry, which
 are described in the linked documentation.
