@@ -1,4 +1,5 @@
 .. slug: python-tutorial
+.. has_math: true
 .. title: Python Tutorial
 
 .. jumbotron::
