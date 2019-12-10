@@ -1,4 +1,5 @@
 .. slug: matlab-tutorial
+.. has_math: true
 .. title: Matlab Tutorial
 
 .. jumbotron::
