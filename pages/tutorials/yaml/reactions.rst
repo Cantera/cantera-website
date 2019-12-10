@@ -97,7 +97,7 @@ however, so the units associated with :math:`A` are really the units for
 :math:`k_f` . One way to formally express this is to replace :math:`T^b` by the
 non-dimensional quantity :math:`[T/(1\;\mathrm{K})]^b`.
 
-.. _sec-reaction-options:
+.. _sec-yaml-reaction-options:
 
 Duplicate Reactions
 -------------------

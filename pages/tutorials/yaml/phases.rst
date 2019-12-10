@@ -76,9 +76,8 @@ ordering of elements within the phase is important, the elements in the phase
 may be declared in the optional ``elements`` entry.
 
 If all of the elements to be added are either standard chemical elements or
-defined in the ``elements`` section of the current input file (see
-:ref:`sec-yaml-elements`), the elements can be specified as a list of element
-symbols, e.g.:
+defined in the :ref:`elements <sec-yaml-guide-elements>` section of the current
+input file, the elements can be specified as a list of element symbols, e.g.:
 
 .. code:: yaml
 

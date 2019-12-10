@@ -37,7 +37,7 @@ and the forward reaction rate calculated as:
 
 An elementary reaction can be defined in the CTI format using the
 :cti:class:`reaction` entry, or in the YAML format using the
-:ref:`elementary <sec-elementary>` reaction ``type``. x
+:ref:`elementary <sec-yaml-elementary>` reaction ``type``.
 
 Three-Body Reactions
 --------------------

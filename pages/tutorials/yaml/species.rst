@@ -12,7 +12,7 @@
 
       A description of how elements and species are defined in YAML input files
 
-.. _sec-yaml-elements:
+.. _sec-yaml-guide-elements:
 
 Elements
 ========
@@ -50,7 +50,7 @@ An example ``elements`` section:
     - symbol: O-18
       atomic-weight: 17.9991603
 
-.. _sec-yaml-species:
+.. _sec-yaml-guide-species:
 
 Species
 =======
@@ -150,7 +150,7 @@ parameterization used specified by the ``model`` field of the
 The fields used by each model are described and examples provided in the linked
 documentation.
 
-.. _sec-yaml-species-transport:
+.. _sec-yaml-guide-species-transport:
 
 Species Transport Coefficients
 ------------------------------
