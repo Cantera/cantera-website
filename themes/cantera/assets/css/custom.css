@@ -28,10 +28,11 @@ a.release-notes:hover { background-color: #c80202; color: #ffffff; }
 
 .row { margin: 0 0 20px; }
 
-tt {
+.docutils.literal {
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-weight: bold;
     font-size: 1em;
-    font-size: 87.5%;
+    color: #444;
     word-break: break-word;
 }
 
