@@ -34,6 +34,7 @@ def _ref_link(rawtext, text, options={}, content=[]):
         return True, True, None, None, None
 
     has_explicit_title, title, target = split_explicit_title(text)
+    target = target.lower()
 
     if ref_role.site.cache.get("ref_targets") is not None:
         ref_targets = ref_role.site.cache.get("ref_targets").copy()
