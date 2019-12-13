@@ -293,7 +293,7 @@ two bulk phases and the interface between them from file ``diamond.cti``:
     >>> gas2 = ct.Solution('diamond.cti', 'gas')
     >>> diamond = ct.Solution('diamond.cti', 'diamond')
     >>> diamond_surf = ct.Interface('diamond.cti' , 'diamond_100',
-                                    [gas2, diamond])
+    ...                             [gas2, diamond])
 
 Note that the bulk (3D) phases that participate in the surface reactions must
 also be passed as arguments to :py:class:`Interface`.
@@ -397,8 +397,8 @@ reactions are zero. Here is the code to do this:
     >>> rf = g.forward_rates_of_progress
     >>> rr = g.reverse_rates_of_progress
     >>> for i in range(g.n_reactions):
-    >>>     if g.is_reversible(i) and rf[i] != 0.0:
-    >>>         print(' %4i  %10.4g  ' % (i, (rf[i] - rr[i])/rf[i]))
+    ...     if g.is_reversible(i) and rf[i] != 0.0:
+    ...         print(' %4i  %10.4g  ' % (i, (rf[i] - rr[i])/rf[i]))
 
 If the magnitudes of the numbers in this list are all very small, then each
 reversible reaction is very nearly equilibrated, which only occurs if the gas
@@ -458,7 +458,7 @@ convert ``CO`` into ``CO2``:
 .. code:: pycon
 
     >>> II = [i for i,r in enumerate(g.reactions())
-              if 'CO' in r.reactants and 'CO2' in r.products]
+    ...       if 'CO' in r.reactants and 'CO2' in r.products]
     >>> for i in II:
     ...     print(g.reaction(i).equation)
     CO + O (+M) <=> CO2 (+M)

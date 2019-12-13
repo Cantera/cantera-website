@@ -330,7 +330,7 @@ reaction mechanism, as follows:
 If we import this into Matlab, for example, we get a gas mixture containing the
 8 species (out of 53 total) that contain only H and O:
 
-.. code:: matlab
+.. code:: matlabsession
 
    >> gas = Solution('gas.cti', 'hydrogen_mech')
 
