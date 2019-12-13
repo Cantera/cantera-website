@@ -1,3 +1,13 @@
+"""Override Nikola's modification of the Pygments HTML Formatter,
+reverting it back to the unmodified version.
+
+Any attempted initialization of a NikolaPygmentsHTML object (from the nikola.utils
+package) for codeblock to HTML formatting will now result in the initialization of
+a default HtmlFormatter object (from the pygments.formatters package).
+
+To create a codeblock to HTML formatter with nondefault options,
+call pygments.formatters.HtmlFormatter([options])
+"""
 from nikola.plugin_categories import RestExtension
 from pygments.formatters import HtmlFormatter
 import nikola.utils
@@ -13,7 +23,7 @@ class OverrideHTMLFormatter(RestExtension):
         """Set the Nikola site."""
         self.site = site
         nikola.utils.NikolaPygmentsHTML = PygmentsHtmlFormatter
-        return super(OverrideHTMLFormatter, self).set_site(site)
+        return super().set_site(site)
 
 
 class PygmentsHtmlFormatter(HtmlFormatter):
@@ -22,4 +32,4 @@ class PygmentsHtmlFormatter(HtmlFormatter):
     def __init__(self, *args, **kwargs):
         """Initialize the formatter with default options,
         no matter what options Nikola passes it."""
-        super(PygmentsHtmlFormatter, self).__init__()
+        super().__init__()

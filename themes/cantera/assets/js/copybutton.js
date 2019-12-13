@@ -1,3 +1,9 @@
+/* This code is copied from the Python Software Foundation's copybutton.js, which can be found at: 
+ * https://github.com/python/python-docs-theme/blob/master/python_docs_theme/static/copybutton.js
+ *
+ * Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+ * 2013, 2014, 2015, 2016, 2017 Python Software Foundation; All Rights Reserved. */
+
 $(document).ready(function () {
     /* Add a [>>>] button on the top-right corner of code samples to hide
      * the >>> and ... prompts and the output and thus make the code

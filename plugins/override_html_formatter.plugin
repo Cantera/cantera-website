@@ -5,4 +5,4 @@ Module = override_html_formatter
 [Documentation]
 Author = Paul Blum
 Version = 1.0
-Description = Override Nikola's modification of the Pygments HTML Formatter, reverting it back to the unmodified version.
+Description = Override Nikola's modification of the Pygments HTML Formatter.
