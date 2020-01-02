@@ -50,7 +50,6 @@ A stoichiometric solid can be defined in the CTI format using the
 :cti:class:`stoichiometric_solid` entry, or in the YAML format by specifying
 :ref:`fixed-stoichiometry <sec-yaml-fixed-stoichiometry>` in the ``thermo`` field.
 
-
 Interfaces
 ##########
 

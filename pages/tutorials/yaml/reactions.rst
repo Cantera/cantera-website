@@ -171,7 +171,6 @@ factor depend on the sum of the reaction orders, which may not be an integer.
 
 Note that you can change reaction orders only for irreversible reactions.
 
-
 Negative Reaction Orders
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -186,7 +185,6 @@ field to the reaction entry, e.g.:
      rate-constant: {A: 4.6e11, b: 0.0, Ea: 30.0 kcal/mol}
      orders: {C8H18: -0.25, O2: 1.75}
      negative-orders: true
-
 
 Non-reactant Orders
 ~~~~~~~~~~~~~~~~~~~

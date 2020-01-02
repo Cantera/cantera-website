@@ -94,7 +94,6 @@ Sequences can also be nested. The following examples are all equivalent:
    - - 3
      - 4
 
-
 Mappings
 --------
 

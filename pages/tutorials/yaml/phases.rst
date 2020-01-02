@@ -19,7 +19,6 @@ present in the input file(s). The phase entry specifies the elements and species
 present in the phases, and the models to be used for computing thermodynamic,
 kinetic, and transport properties.
 
-
 Naming the Phase
 ----------------
 
@@ -27,7 +26,6 @@ The ``name`` entry is a string that identifies the phase. It must be unique
 within the file among all phase definitions of any type. Phases are referenced
 by name when importing them. The ``name`` is also used to identify the phase
 within multiphase mixtures or at phase boundaries.
-
 
 Setting the Thermodynamic Model
 -------------------------------
@@ -61,7 +59,6 @@ field. Supported models are:
 
 Some thermodynamic models use additional fields in the ``phase`` entry, which
 are described in the linked documentation.
-
 
 Declaring the Elements
 ----------------------
@@ -106,7 +103,6 @@ Example:
 
 The order of the elements specified in the input file determines the order of
 the elements in the phase when it is imported by Cantera.
-
 
 Declaring the Species
 ---------------------
@@ -154,7 +150,6 @@ hydrogen or oxygen, the phase definition could contain:
       species: all
       skip-undeclared-elements: true
 
-
 Setting the Kinetics Model
 --------------------------
 
@@ -166,7 +161,6 @@ Supported model strings are:
     - `edge <{{% ct_docs doxygen/html/d0/df0/classCantera_1_1EdgeKinetics.html#details %}}>`__
 
 If omitted, no kinetics model will be used.
-
 
 Declaring the Reactions
 -----------------------
@@ -227,7 +221,6 @@ specified in the ``transport`` field. Supported models are:
     - `unity-Lewis-number <{{% ct_docs doxygen/html/d3/dd6/classCantera_1_1UnityLewisTransport.html#details %}}>`__
     - `water <{{% ct_docs doxygen/html/df/d1f/classCantera_1_1WaterTransport.html#details %}}>`__
 
-
 Setting the Initial State
 -------------------------
 
@@ -271,7 +264,6 @@ Examples:
         CH4: 0.2
         C3H8: 0.1
         CO2: 0.7
-
 
 Examples
 --------

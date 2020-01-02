@@ -205,7 +205,6 @@ Chemically-activated reactions can be defined in the CTI format using the
 :cti:class:`chemically_activated_reaction` entry, or in the YAML format using
 the :ref:`chemically-activated <sec-yaml-chemically-activated>` reaction ``type``.
 
-
 Pressure-Dependent Arrhenius Rate Expressions (P-Log)
 -----------------------------------------------------
 
@@ -301,7 +300,6 @@ the ``coverage`` keyword argument supplied to the :cti:class:`Arrhenius`
 directive. In the YAML format, surface reactions are identified by the presence
 of surface species and support several
 :ref:`additional options <sec-yaml-interface-reaction>`.
-
 
 Sticking Coefficients
 ~~~~~~~~~~~~~~~~~~~~~

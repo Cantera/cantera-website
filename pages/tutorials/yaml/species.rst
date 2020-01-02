@@ -107,7 +107,6 @@ Examples:
     composition: {Y: 1, Ba: 2, Cu: 3, O: 6.5}  # stoichiometric YBCO
     composition: {}  # A surface species representing an empty site
 
-
 Thermodynamic Properties
 ------------------------
 
