@@ -228,15 +228,6 @@ The state of a phase can be set using two properties to set the thermodynamic
 state, plus the composition. This state is specified as a mapping in the
 ``state`` field of ``phase`` entry.
 
-The composition can be set using one of the following fields, depending on the
-phase type. The composition is specified as a mapping of species names to
-values. Where necessary, the values will be automatically normalized.
-
-- ``mass-fractions`` or ``Y``
-- ``mole-fractions`` or ``X``
-- ``coverages``
-- ``molalities`` or ``M``
-
 The thermodynamic state can be set in terms of two of the following properties,
 with the valid property pairs deplending on the phase model:
 
@@ -247,6 +238,15 @@ with the valid property pairs deplending on the phase model:
 - ``int-energy``, ``internal-energy`` or ``U``
 - ``specific-volume`` or ``V``
 - ``density`` or ``D``
+
+The composition can be set using one of the following fields, depending on the
+phase type. The composition is specified as a mapping of species names to
+values. Where necessary, the values will be automatically normalized.
+
+- ``mass-fractions`` or ``Y``
+- ``mole-fractions`` or ``X``
+- ``coverages``
+- ``molalities`` or ``M``
 
 Examples:
 
