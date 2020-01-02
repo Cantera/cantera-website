@@ -142,6 +142,29 @@ There are three primary options for creating a new Cantera input file:
                   phases, and/or reactions, using the YAML format.
                   *(New in Cantera 2.5)*
 
+   .. row::
+
+      .. container:: card-deck
+
+         .. container:: card
+
+            .. container::
+               :tagname: a
+               :attributes: href="legacy2yaml.html"
+                            title="Converting CTI and XML input files to YAML"
+
+               .. container:: card-header section-card
+
+                  Convert CTI and XML input files to YAML
+
+            .. container:: card-body
+
+               .. container:: card-text
+
+                  Convert existing Cantera mechanisms in the legacy CTI or XML
+                  formats to the YAML format. *(New in Cantera 2.5)*
+
+
 Understanding Input File Syntax
 ===============================
 
