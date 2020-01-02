@@ -18,6 +18,8 @@ The required input files can be provided via one of several methods:
 
 - Use one of the pre-existing input files provided with Cantera
 - Convert a pre-existing mechanism from Chemkin (CK) format to Cantera (CTI) format
+- Convert a pre-existing mechanism from Chemkin (CK) format to YAML format *(New
+  in Cantera 2.5)*
 - Create your own CTI file, either from scratch (not recommended) or by editing an existing file
 - Create your own YAML file from scratch or by editing an existing file *(New in
   Cantera 2.5)*
@@ -59,61 +61,86 @@ There are three primary options for creating a new Cantera input file:
 
 .. container:: container
 
-   .. container:: card-deck
+   .. row::
 
-      .. container:: card
+      .. container:: card-deck
 
-         .. container::
-            :tagname: a
-            :attributes: href=ck2cti-tutorial.html
-                         title="Chemkin File Conversion"
+         .. container:: card
 
-            .. container:: card-header section-card
+            .. container::
+               :tagname: a
+               :attributes: href=ck2cti-tutorial.html
+                            title="Chemkin File Conversion (CTI)"
 
-               Conversion from Chemkin
+               .. container:: card-header section-card
 
-         .. container:: card-body
+                  Conversion from Chemkin to CTI
 
-            .. container:: card-text
+            .. container:: card-body
 
-               Convert a Chemkin-formatted ('CK') file to the Cantera input format.
+               .. container:: card-text
 
-      .. container:: card
+                  Convert a Chemkin-formatted ('CK') file to the Cantera input
+                  format (CTI).
 
-         .. container::
-            :tagname: a
-            :attributes: href="cti/defining-phases.html"
-                         title="Defining Phases in CTI"
+         .. container:: card
 
-            .. container:: card-header section-card
+            .. container::
+               :tagname: a
+               :attributes: href=ck2yaml-tutorial.html
+                            title="Chemkin File Conversion (YAML)"
 
-               Create a new CTI file
+               .. container:: card-header section-card
 
-         .. container:: card-body
+                  Conversion from Chemkin to YAML
 
-            .. container:: card-text
+            .. container:: card-body
 
-               Create a completely new mechanism, by defining new species,
-               phases, and/or reactions, using the CTI format.
+               .. container:: card-text
 
-      .. container:: card
+                  Convert a Chemkin-formatted ('CK') file to the Cantera YAML
+                  format. *(New in Cantera 2.5)*
 
-         .. container::
-            :tagname: a
-            :attributes: href="yaml/defining-phases.html"
-                         title="Defining Phases in YAML"
+   .. row::
 
-            .. container:: card-header section-card
+      .. container:: card-deck
 
-               Create a new YAML file
+         .. container:: card
 
-         .. container:: card-body
+            .. container::
+               :tagname: a
+               :attributes: href="cti/defining-phases.html"
+                            title="Defining Phases in CTI"
 
-            .. container:: card-text
+               .. container:: card-header section-card
 
-               Create a completely new mechanism, by defining new species,
-               phases, and/or reactions, using the YAML format.
-               *(New in Cantera 2.5)*
+                  Create a new CTI file
+
+            .. container:: card-body
+
+               .. container:: card-text
+
+                  Create a completely new mechanism, by defining new species,
+                  phases, and/or reactions, using the CTI format.
+
+         .. container:: card
+
+            .. container::
+               :tagname: a
+               :attributes: href="yaml/defining-phases.html"
+                            title="Defining Phases in YAML"
+
+               .. container:: card-header section-card
+
+                  Create a new YAML file
+
+            .. container:: card-body
+
+               .. container:: card-text
+
+                  Create a completely new mechanism, by defining new species,
+                  phases, and/or reactions, using the YAML format.
+                  *(New in Cantera 2.5)*
 
 Understanding Input File Syntax
 ===============================
