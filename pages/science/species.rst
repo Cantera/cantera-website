@@ -25,7 +25,6 @@ An element can be defined in the CTI format using the :cti:class:`element`
 entry, or in the YAML format by adding entries to the :ref:`elements
 <sec-yaml-elements>` section of the input file.
 
-
 Species
 =======
 
@@ -34,7 +33,6 @@ For each species, a species definition is required.
 A species can be defined in the CTI format using the :cti:class:`species` entry,
 or in the YAML format by adding an entry to the :ref:`species
 <sec-yaml-species>` section of the input file.
-
 
 Species Name
 ------------
@@ -145,7 +143,6 @@ A NASA-7 parameterization can be defined in the CTI format using the
 :cti:class:`NASA` entry, or in the YAML format by specifying
 :ref:`NASA7 <sec-yaml-nasa7>` as the ``model`` in the species ``thermo`` field.
 
-
 The NASA 9-Coefficient Polynomial Parameterization
 --------------------------------------------------
 
@@ -172,7 +169,6 @@ the following equations:
 A NASA-9 parameterization can be defined in the CTI format using the
 :cti:class:`NASA9` entry, or in the YAML format by specifying
 :ref:`NASA9 <sec-yaml-nasa9>` as the ``model`` in the species ``thermo`` field.
-
 
 The Shomate Parameterization
 ----------------------------
