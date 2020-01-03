@@ -33,29 +33,54 @@ Setting the Thermodynamic Model
 The thermodynamic model used to represent a phase is specified in the ``thermo``
 field. Supported models are:
 
-    - :ref:`binary-solution-tabulated <sec-yaml-binary-solution-tabulated>`
-    - :ref:`compound-lattice <sec-yaml-compound-lattice>`
-    - :ref:`constant-density <sec-yaml-constant-density>`
-    - :ref:`Debye-Huckel <sec-yaml-Debye-Huckel>`
-    - :ref:`edge <sec-yaml-edge>`
-    - :ref:`fixed-chemical-potential <sec-yaml-fixed-chemical-potential>`
-    - :ref:`fixed-stoichiometry <sec-yaml-fixed-stoichiometry>`
-    - :ref:`HMW-electrolyte <sec-yaml-HMW-electrolyte>`
-    - :ref:`ideal-gas <sec-yaml-ideal-gas>`
-    - :ref:`ideal-gas-VPSS <sec-yaml-ideal-gas-VPSS>`
-    - :ref:`ideal-molal-solution <sec-yaml-ideal-molal-solution>`
-    - :ref:`ideal-condensed <sec-yaml-ideal-condensed>`
-    - :ref:`ideal-solution-VPSS <sec-yaml-ideal-solution-VPSS>`
-    - :ref:`ideal-surface <sec-yaml-ideal-surface>`
-    - :ref:`ions-from-neutral-molecule <sec-yaml-ions-from-neutral-molecule>`
-    - :ref:`lattice <sec-yaml-lattice>`
-    - :ref:`liquid-water-IAPWS95 <sec-yaml-liquid-water-IAPWS95>`
-    - :ref:`Margules <sec-yaml-Margules>`
-    - :ref:`Maskell-solid-solution <sec-yaml-Maskell-solid-solution>`
-    - :ref:`electron-cloud <sec-yaml-electron-cloud>`
-    - :ref:`pure-fluid <sec-yaml-pure-fluid>`
-    - :ref:`Redlich-Kister <sec-yaml-Redlich-Kister>`
-    - :ref:`Redlich-Kwong <sec-yaml-Redlich-Kwong>`
+- :ref:`binary-solution-tabulated <sec-yaml-binary-solution-tabulated>`: A
+  binary mixture where the excess enthalpy and entropy are interpolated; *New in
+  Cantera 2.5.0* between tabulated values as a function of mole fraction
+- :ref:`compound-lattice <sec-yaml-compound-lattice>`: A phase that is comprised
+  of a fixed additive combination of other lattice phases
+- :ref:`constant-density <sec-yaml-constant-density>`: A phase with a fixed
+  density, regardless of composition; *Deprecated in Cantera 2.5.0*
+- :ref:`Debye-Huckel <sec-yaml-Debye-Huckel>`: A dilute liquid electrolyte which
+  obeys the Debye-Hückel formulation for nonideality
+- :ref:`edge <sec-yaml-edge>`: A one-dimensional edge between two surfaces
+- :ref:`fixed-chemical-potential <sec-yaml-fixed-chemical-potential>`: An
+  incompressible, single-species phase with a fixed value for the chemical
+  potential
+- :ref:`fixed-stoichiometry <sec-yaml-fixed-stoichiometry>`: An incompressible,
+  single-species phase
+- :ref:`HMW-electrolyte <sec-yaml-HMW-electrolyte>`: A dilute or concentrated
+  liquid electrolyte which obeys the Pitzer formulation for nonideality
+- :ref:`ideal-gas <sec-yaml-ideal-gas>`: A mixture which obeys the ideal gas law
+- :ref:`ideal-gas-VPSS <sec-yaml-ideal-gas-VPSS>`: An ideal gas; Uses "variable
+  pressure standard state" methods for calculating thermodynamic properties
+- :ref:`ideal-molal-solution <sec-yaml-ideal-molal-solution>`: An ideal solution
+  based on the mixing-rule assumption that all molality-based activity
+  coefficients are equal to one
+- :ref:`ideal-condensed <sec-yaml-ideal-condensed>`
+- :ref:`ideal-solution-VPSS <sec-yaml-ideal-solution-VPSS>`: An ideal solution;
+  Uses "variable pressure standard state" methods for calculating thermodynamic
+  properties
+- :ref:`ideal-surface <sec-yaml-ideal-surface>`: A surface between two bulk
+  phases
+- :ref:`ions-from-neutral-molecule <sec-yaml-ions-from-neutral-molecule>`: A
+  phase for representing ionic species based on another phase where those ions
+  are components of neutral molecules
+- :ref:`lattice <sec-yaml-lattice>`: A simple model for an incompressible
+  lattice of solid atoms
+- :ref:`liquid-water-IAPWS95 <sec-yaml-liquid-water-IAPWS95>`: An implementation
+  of the IAPWS95 equation of state for water, for the liquid region only
+- :ref:`Margules <sec-yaml-Margules>`: A model that employs the Margules
+  approximation for the excess Gibbs free energy
+- :ref:`Maskell-solid-solution <sec-yaml-Maskell-solid-solution>`: A condensed,
+  binary, non-ideal solution
+- :ref:`electron-cloud <sec-yaml-electron-cloud>`: A phase representing free
+  electrons in a metal
+- :ref:`pure-fluid <sec-yaml-pure-fluid>`: A phase representing one of several
+  pure substances including liquid, vapor, two-phase, and supercritical regions
+- :ref:`Redlich-Kister <sec-yaml-Redlich-Kister>`: A model that employs the
+  Redlich-Kister approximation for the excess Gibbs free energy
+- :ref:`Redlich-Kwong <sec-yaml-Redlich-Kwong>`: A multi-species mixture obeying
+  the Redlich-Kwong equation of state.
 
 Some thermodynamic models use additional fields in the ``phase`` entry, which
 are described in the linked documentation.
@@ -156,9 +181,9 @@ Setting the Kinetics Model
 The kinetics model to be used, if any, is specified in the ``kinetics`` field.
 Supported model strings are:
 
-    - `gas <{{% ct_docs doxygen/html/de/dae/classCantera_1_1GasKinetics.html#details %}}>`__
-    - `surface <{{% ct_docs doxygen/html/d1/d72/classCantera_1_1InterfaceKinetics.html#details %}}>`__
-    - `edge <{{% ct_docs doxygen/html/d0/df0/classCantera_1_1EdgeKinetics.html#details %}}>`__
+- `gas <{{% ct_docs doxygen/html/de/dae/classCantera_1_1GasKinetics.html#details %}}>`__
+- `surface <{{% ct_docs doxygen/html/d1/d72/classCantera_1_1InterfaceKinetics.html#details %}}>`__
+- `edge <{{% ct_docs doxygen/html/d0/df0/classCantera_1_1EdgeKinetics.html#details %}}>`__
 
 If omitted, no kinetics model will be used.
 
@@ -212,14 +237,27 @@ Setting the Transport Model
 To enable transport property calculation, the transport model to be used can be
 specified in the ``transport`` field. Supported models are:
 
-    - `high-pressure <{{% ct_docs doxygen/html/d9/d63/classCantera_1_1HighPressureGasTransport.html#details %}}>`__
-    - `ionized-gas <{{% ct_docs doxygen/html/d4/d65/classCantera_1_1IonGasTransport.html#details %}}>`__
-    - `mixture-averaged <{{% ct_docs doxygen/html/d9/d17/classCantera_1_1MixTransport.html#details %}}>`__
-    - `mixture-averaged-CK <{{% ct_docs doxygen/html/d9/d17/classCantera_1_1MixTransport.html#details %}}>`__
-    - `multicomponent <{{% ct_docs doxygen/html/df/d7c/classCantera_1_1MultiTransport.html#details %}}>`__
-    - `multicomponent-CK <{{% ct_docs doxygen/html/df/d7c/classCantera_1_1MultiTransport.html#details %}}>`__
-    - `unity-Lewis-number <{{% ct_docs doxygen/html/d3/dd6/classCantera_1_1UnityLewisTransport.html#details %}}>`__
-    - `water <{{% ct_docs doxygen/html/df/d1f/classCantera_1_1WaterTransport.html#details %}}>`__
+- `high-pressure <{{% ct_docs doxygen/html/d9/d63/classCantera_1_1HighPressureGasTransport.html#details %}}>`__:
+  A model for high-pressure gas transport properties based on a method of
+  corresponding states
+- `ionized-gas <{{% ct_docs doxygen/html/d4/d65/classCantera_1_1IonGasTransport.html#details %}}>`__:
+  A model implementing the Stockmayer-(n,6,4) model for transport of ions in
+  a gas
+- `mixture-averaged <{{% ct_docs doxygen/html/d9/d17/classCantera_1_1MixTransport.html#details %}}>`__:
+  The mixture-averaged transport model for ideal gases
+- `mixture-averaged-CK <{{% ct_docs doxygen/html/d9/d17/classCantera_1_1MixTransport.html#details %}}>`__:
+  The mixture-averaged transport model for ideal gases, using polynomial
+  fits corresponding to Chemkin-II
+- `multicomponent <{{% ct_docs doxygen/html/df/d7c/classCantera_1_1MultiTransport.html#details %}}>`__:
+  The multicomponent transport model for ideal gases
+- `multicomponent-CK <{{% ct_docs doxygen/html/df/d7c/classCantera_1_1MultiTransport.html#details %}}>`__:
+  The multicomponent transport model for ideal gases, using polynomial fits
+  corresponding to Chemkin-II
+- `unity-Lewis-number <{{% ct_docs doxygen/html/d3/dd6/classCantera_1_1UnityLewisTransport.html#details %}}>`__:
+  A transport model for ideal gases, where diffusion coefficients for all
+  species are set so that the Lewis number is 1
+- `water <{{% ct_docs doxygen/html/df/d1f/classCantera_1_1WaterTransport.html#details %}}>`__:
+  A transport model for pure water applicable in both liquid and vapor phases
 
 Setting the Initial State
 -------------------------

@@ -119,11 +119,16 @@ entry.
 The parameterization used to provide this information is specified by the
 ``model`` field of the ``thermo`` field. The models available are:
 
-    - :ref:`NASA7 <sec-yaml-nasa7>`
-    - :ref:`NASA9 <sec-yaml-nasa9>`
-    - :ref:`Shomate <sec-yaml-shomate>`
-    - :ref:`constant-cp <sec-yaml-constcp>`
-    - :ref:`piecewise-Gibbs <sec-yaml-piecewise-gibbs>`
+- :ref:`NASA7 <sec-yaml-nasa7>`: 7-coefficient NASA polynomials in one or two
+  temperature regions
+- :ref:`NASA9 <sec-yaml-nasa9>`: 9-coefficient NASA polynomials in one or more
+  temperature regions
+- :ref:`Shomate <sec-yaml-shomate>`: Shomate polynomials in one or two
+  temperature regions
+- :ref:`constant-cp <sec-yaml-constcp>`: Constant heat capacity
+- :ref:`piecewise-Gibbs <sec-yaml-piecewise-gibbs>`: Interpolation between
+  tabulated Gibbs free energies using a constant heat capacity in each
+  temperature interval
 
 The fields used by each model are described and examples provided in the linked
 documentation.
@@ -137,14 +142,22 @@ the ``equation-of-state`` field of each ``species`` entry, with the type of
 parameterization used specified by the ``model`` field of the
 ``equation-of-state`` field. The models available are:
 
-    - :ref:`constant-volume <sec-yaml-eos-constant-volume>`
-    - :ref:`density-temperature-polynomial <sec-yaml-eos-density-temperature-polynomial>`
-    - :ref:`HKFT <sec-yaml-eos-hkft>`
-    - :ref:`ideal-gas <sec-yaml-eos-ideal-gas>`
-    - :ref:`ions-from-neutral-molecule <sec-yaml-eos-ions-from-neutral>`
-    - :ref:`liquid-water-IAPWS95 <sec-yaml-eos-liquid-water-iapws95>`
-    - :ref:`molar-volume-temperature-polynomial <sec-yaml-eos-molar-volume-temperature-polynomial>`
-    - :ref:`Redlich-Kwong <sec-yaml-eos-redlich-kwong>`
+- :ref:`constant-volume <sec-yaml-eos-constant-volume>`: A fixed value of mass
+  density, molar density, or molar volume
+- :ref:`density-temperature-polynomial <sec-yaml-eos-density-temperature-polynomial>`:
+  Mass density parameterized using a cubic polynomial in temperature
+- :ref:`HKFT <sec-yaml-eos-hkft>`: The Helgeson-Kirkham-Flowers-Tanger model for
+  aqueous species
+- :ref:`ideal-gas <sec-yaml-eos-ideal-gas>`: A species following the ideal gas
+  law
+- :ref:`ions-from-neutral-molecule <sec-yaml-eos-ions-from-neutral>`: Used with
+  the `ions-from-neutral-molecule` phase model
+- :ref:`liquid-water-IAPWS95 <sec-yaml-eos-liquid-water-iapws95>`: The IAPWS95
+  equation of state for water, applied only in the liquid region
+- :ref:`molar-volume-temperature-polynomial <sec-yaml-eos-molar-volume-temperature-polynomial>`:
+  Molar volume parameterized using a cubic polynomial in temperature
+- :ref:`Redlich-Kwong <sec-yaml-eos-redlich-kwong>`:
+  A species which follows the Redlich-Kwong equation of state
 
 The fields used by each model are described and examples provided in the linked
 documentation.

@@ -50,12 +50,21 @@ Reaction type
 The type of the rate coefficient parameterization may be specified in the
 ``type`` field of the ``reaction`` entry. Available reaction types are:
 
-    - :ref:`elementary <sec-yaml-elementary>`
-    - :ref:`three-body <sec-yaml-three-body>`
-    - :ref:`falloff <sec-yaml-falloff>`
-    - :ref:`chemically-activated <sec-yaml-chemically-activated>`
-    - :ref:`pressure-dependent-Arrhenius <sec-yaml-pressure-dependent-Arrhenius>`
-    - :ref:`Chebyshev <sec-yaml-Chebyshev>`
+- :ref:`elementary <sec-yaml-elementary>`: A reaction with a rate constant
+  parameterized by a modified Arrhenius expression
+- :ref:`three-body <sec-yaml-three-body>`: A reaction involving a third-body
+  collision
+- :ref:`falloff <sec-yaml-falloff>`: A pressure-dependent reaction where the
+  rate depends on the third-body concentration at low pressure but not at high
+  pressure
+- :ref:`chemically-activated <sec-yaml-chemically-activated>`: A
+  pressure-dependent reaction where the rate depends on the third-body
+  concentration at high pressure but not at low pressure
+- :ref:`pressure-dependent-Arrhenius <sec-yaml-pressure-dependent-Arrhenius>`: A
+  reaction rate parameterized by logarithmically interpolating between modified
+  Arrhenius expressions at different pressures
+- :ref:`Chebyshev <sec-yaml-Chebyshev>`: A reaction rate parameterized by a
+  bivariate Chebyshev polynomial in pressure and temperature
 
 Additional parameters defining the rate constant for each of these reaction
 types are described in the documentation linked above.
