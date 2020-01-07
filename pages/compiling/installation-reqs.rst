@@ -84,7 +84,7 @@ Conda Requirements
 
   .. code:: bash
 
-     conda create --name cantera python=3 scons cython boost numpy
+     conda create --name cantera python=3 scons cython boost numpy ruamel_yaml
      conda activate cantera
 
 * (Optional) If you also want to build the documentation, after you've created the environment and
@@ -230,7 +230,7 @@ Ubuntu & Debian
 
 * In addition to the general packages, building the Python 3 module also requires::
 
-      cython python3 python3-dev python3-setuptools python3-numpy
+      cython python3 python3-dev python3-setuptools python3-numpy python3-ruamel.yaml
 
 * In addition to the general packages, building the Fortran module also requires::
 
@@ -274,7 +274,7 @@ Fedora & RHEL
 
 * In addition to the general packages, building the Python 3 module also requires::
 
-      python3 python3-setuptools python3-devel Cython python3-numpy
+      python3 python3-setuptools python3-devel Cython python3-numpy python3-ruamel-yaml
 
 * In addition to the general packages, building the Fortran module also requires::
 
@@ -320,7 +320,7 @@ OpenSUSE & SUSE Linux Enterprise
 
 * In addition to the general packages, building the Python 3 module also requires::
 
-      python-Cython python3 python3-devel python3-setuptools python3-numpy python3-numpy-devel
+      python-Cython python3 python3-devel python3-setuptools python3-numpy python3-numpy-devel python3-ruamel.yaml
 
 * In addition to the general packages, building the Fortran module also requires::
 
@@ -508,6 +508,10 @@ Windows Requirements
      * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
        and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
        major and minor versions of Python.
+
+   * Ruamel.yaml
+
+     * `pip install ruamel.yaml`
 
 * In addition to the general software, building the MATLAB toolbox also requires:
 
