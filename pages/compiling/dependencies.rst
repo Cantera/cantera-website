@@ -138,6 +138,13 @@ Optional Programs
   * Required version >=0.23 to build the Python module. Must be installed for
     the same Python where SCons is installed.
 
+* `Ruamel.yaml <https://pypi.org/project/ruamel.yaml/>`__
+
+  * Required to convert input files from Chemkin, CTI, and XML to the YAML
+    format
+  * Known to work with versions 0.15.42, 0.15.87, and 0.16.5
+  * Expected to work with versions >= 0.15.0
+
 * `3to2 <https://pypi.org/project/3to2>`__
 
   * Used to convert Python examples to Python 2 syntax.
