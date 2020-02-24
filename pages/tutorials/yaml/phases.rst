@@ -276,6 +276,7 @@ with the valid property pairs deplending on the phase model:
 - ``int-energy``, ``internal-energy`` or ``U``
 - ``specific-volume`` or ``V``
 - ``density`` or ``D``
+- ``vapor-fraction`` or ``Q``
 
 The composition can be set using one of the following fields, depending on the
 phase type. The composition is specified as a mapping of species names to
@@ -302,6 +303,9 @@ Examples:
         CH4: 0.2
         C3H8: 0.1
         CO2: 0.7
+
+For pure fluid phases, the temperature, pressure, and vapor fraction may all be
+specified if and only if they define a consistent state.
 
 Examples
 --------
