@@ -99,7 +99,8 @@ may be declared in the optional ``elements`` entry.
 
 If all of the elements to be added are either standard chemical elements or
 defined in the :ref:`elements <sec-yaml-guide-elements>` section of the current
-input file, the elements can be specified as a list of element symbols, e.g.:
+input file, the elements can be specified as a list of element symbols. For
+example:
 
 .. code:: yaml
 
@@ -112,7 +113,7 @@ element names. The keys can be:
 
 - The name of a section within the current file.
 - The name of an input file and a section in that file, separated by a slash,
-  e.g. ``myfile.yaml/my_elements``. If a relative path is specified, the
+  for example ``myfile.yaml/my_elements``. If a relative path is specified, the
   directory containing the current file is searched first, followed by the
   Cantera data path.
 - The name ``default`` to reference the standard chemical elements.
@@ -138,7 +139,7 @@ those species will be added to the phase automatically. As a more explicit
 alternative, the ``species`` field may be set to the string ``all``.
 
 To include specific species from the ``species`` section of the input file, the
-``species`` entry can be a list of species names from that section, e.g.:
+``species`` entry can be a list of species names from that section. For example:
 
 .. code:: yaml
 

@@ -14,7 +14,7 @@ Getting Started
 First, you'll need to install Cantera on your computer. We have instructions for
 many platforms in our `Installation section </install/index.html>`__.
 
-Start by opening an interactive Python session, e.g., by running `IPython
+Start by opening an interactive Python session, for example by running `IPython
 <http://ipython.org/>`__. Import the Cantera Python module and NumPy by running:
 
 .. code:: python
@@ -265,7 +265,7 @@ file format that is easier to write, called *CTI*. Several reaction mechanism
 files in this format are included with Cantera, including ones that model
 high- temperature air, a hydrogen/oxygen reaction mechanism, and a few surface
 reaction mechanisms. These files are usually located in the ``data``
-subdirectory of the Cantera installation directory, e.g. ``C:\\Program
+subdirectory of the Cantera installation directory, for example ``C:\\Program
 Files\\Cantera\\data`` on Windows or ``/usr/local/cantera/data/`` on
 Unix/Linux/Mac OS X machines, depending on how you installed Cantera and the
 options you specified.
@@ -295,8 +295,8 @@ two bulk phases and the interface between them from file ``diamond.cti``:
     >>> diamond_surf = ct.Interface('diamond.cti' , 'diamond_100',
                                     [gas2, diamond])
 
-Note that the bulk (i.e., 3D or homogeneous) phases that participate in the
-surface reactions must also be passed as arguments to :py:class:`Interface`.
+Note that the bulk (3D) phases that participate in the surface reactions must
+also be passed as arguments to :py:class:`Interface`.
 
 Converting CK-format files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -330,14 +330,14 @@ For a simple list of the properties and methods of this object:
 
     >>> dir(g)
 
-To get help on a specific method, e.g. the ``species_index`` method:
+To get help on a specific method, such as the ``species_index`` method:
 
 .. code:: python
 
     >>> help(g.species_index)
 
 For properties, getting the documentation is slightly trickier, as the usual
-method will give you the help for the *result*, e.g.:
+method will give you the help for the *result*. For example:
 
 .. code:: python
 

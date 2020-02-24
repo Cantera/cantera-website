@@ -79,13 +79,13 @@ Arrhenius Expressions
 ---------------------
 
 Most reaction types in Cantera are parameterized by one or more modified
-Arrhenius expressions, e.g.
+Arrhenius expressions, such as
 
 .. math::
 
    k_f(T) = A T^b \exp(-E_a/\bar{R}T)
 
-Rates in this form can be written as YAML mappings, e.g.
+Rates in this form can be written as YAML mappings. For example:
 
 .. code:: yaml
 
@@ -186,7 +186,7 @@ Negative Reaction Orders
 Normally, reaction orders are required to be positive. However, in some cases
 negative reaction orders provide better fits for experimental data. In these
 cases, the default behavior may be overridden by adding the ``negative-orders``
-field to the reaction entry, e.g.:
+field to the reaction entry. For example:
 
 .. code:: yaml
 

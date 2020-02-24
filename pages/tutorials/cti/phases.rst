@@ -52,7 +52,8 @@ The ``elements.xml`` database contains most elements of the periodic table, with
 their natural-abundance atomic masses. It also contains a few isotopes (D, Tr),
 and an "element" for an electron (E). This pseudo-element can be used to specify
 the composition of charged species. Note that two-character symbols should have
-an uppercase first letter, and a lowercase second letter (e.g. ``Cu``, not ``CU``).
+an uppercase first letter, and a lowercase second letter (for example, ``Cu``,
+not ``CU``).
 
 It should be noted that the order of the element symbols in the string
 determines the order in which they are stored internally by Cantera. For

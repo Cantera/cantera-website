@@ -80,7 +80,7 @@ thermo file.
 Many existing CK format files cause errors in ``ck2cti`` when they are
 processed. Some of these errors may be avoided by specifying the
 ``--permissive`` option. This option allows certain recoverable parsing errors
-(e.g., duplicate transport or thermodynamic data) to be ignored. Other errors
+(for example, duplicate transport or thermodynamic data) to be ignored. Other errors
 may be caused by incorrect formatting of lines in one or more of the input files.
 
 Debugging common errors in CK files

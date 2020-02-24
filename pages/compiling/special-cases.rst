@@ -47,7 +47,7 @@ Intel Compilers
    https://software.intel.com/en-us/forums/intel-c-compiler/topic/684987
 
 * Before compiling Cantera, you may need to set up the appropriate environment
-  variables for the Intel compiler suite, e.g.:
+  variables for the Intel compiler suite. For example:
 
   .. code:: bash
 
