@@ -491,27 +491,27 @@ Windows Requirements
 
           pip3 install C:\Path\to\downloaded\file\package-file-name.whl
 
-   * Cython
+  * Cython
 
-     * http://www.lfd.uci.edu/~gohlke/pythonlibs/#cython
+    * http://www.lfd.uci.edu/~gohlke/pythonlibs/#cython
 
-     * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
-       and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
-       major and minor versions of the Python where you installed SCons.
+    * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
+      and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
+      major and minor versions of the Python where you installed SCons.
 
-     * Cython must be installed in the version of Python that has SCons installed
+    * Cython must be installed in the version of Python that has SCons installed
 
-   * NumPy
+  * NumPy
 
-     * http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
+    * http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
 
-     * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
-       and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
-       major and minor versions of Python.
+    * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
+      and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
+      major and minor versions of Python.
 
-   * Ruamel.yaml
+  * Ruamel.yaml::
 
-     * `pip install ruamel.yaml`
+      pip install ruamel.yaml
 
 * In addition to the general software, building the MATLAB toolbox also requires:
 
