@@ -17,7 +17,7 @@ Elementary Reactions
 --------------------
 
 The basic reaction type is a homogeneous reaction with a pressure-independent
-rate coefficient and mass action kinetics, e.g.
+rate coefficient and mass action kinetics. For example:
 
 .. math::
 

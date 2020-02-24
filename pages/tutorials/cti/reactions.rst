@@ -181,7 +181,7 @@ Note that you can change reaction orders only for irreversible reactions.
 Normally, reaction orders are required to be positive. However, in some cases
 negative reaction orders are found to be better fits for experimental data. In
 these cases, the default behavior may be overridden by adding
-``negative_orders`` to the reaction options, e.g.:
+``negative_orders`` to the reaction options. For example:
 
 .. code:: python
 

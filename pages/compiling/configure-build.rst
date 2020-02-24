@@ -21,7 +21,7 @@ Determine configuration options
   see all of the options on the :ref:`Configuration Options <scons-config>` page.
 
 * Configuration options are specified as additional arguments to the ``scons``
-  command, e.g.:
+  command. For example:
 
   .. code:: bash
 
@@ -48,7 +48,7 @@ Determine configuration options
      scons command option_name=
 
 * Sometimes, changes in your environment can cause SCons's configuration tests
-  (e.g., checking for libraries or compiler capabilities) to unexpectedly fail.
+  (for example, checking for libraries or compiler capabilities) to unexpectedly fail.
   To force SCons to re-run these tests rather than trusting the cached results,
   run scons with the option ``--config=force``.
 
@@ -103,7 +103,7 @@ Python 2 Module Options
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 By default, if SCons detects a Python 2 interpreter installed in a
-default location (i.e., ``python2`` is on the ``PATH`` environment
+default location (that is, if ``python2`` is on the ``PATH`` environment
 variable) or ``python2_package`` is ``full``, SCons will try to build
 the Python module for Python 2. The following SCons options control how
 the Python 2 module is built:
@@ -116,7 +116,7 @@ Python 3 Module Options
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 By default, if SCons detects a Python 3 interpreter installed in a
-default location (i.e., ``python3`` is on the ``PATH`` environment
+default location (that is, if ``python3`` is on the ``PATH`` environment
 variable) or ``python3_package`` is ``full``, SCons will try to build
 the Python module for Python 3. The following SCons options control how
 the Python 3 module is built:
@@ -139,7 +139,7 @@ Windows Only Options
 * In Windows there aren't any proper default locations for many of the packages
   that Cantera depends on, so you will need to specify these paths explicitly.
 
-* Remember to put double quotes around any paths with spaces in them, e.g.
+* Remember to put double quotes around any paths with spaces in them, such as
   ``"C:\Program Files"``.
 
 * By default, SCons attempts to use the same architecture as the copy of Python
@@ -197,8 +197,8 @@ Less Common Options
 Build Commands
 ==============
 
-The following options are possible as commands to SCons, i.e., the first
-argument after ``scons``:
+The following options are possible as commands to SCons (that is, the first
+argument after ``scons``):
 
 .. code:: bash
 
@@ -238,7 +238,7 @@ argument after ``scons``:
 
 * ``scons <command> dump``
     Dump the state of the SCons environment to the
-    screen instead of doing ``<command>``, e.g.
+    screen instead of doing ``<command>``, for example,
     ``scons build dump``. For debugging purposes.
 
 * ``scons samples``

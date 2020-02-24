@@ -32,8 +32,8 @@ of the phase definition.
 
 An element entry has the following fields:
 
-- ``symbol``: The symbol to be used for the element, e.g. when specifying the
-  composition of a species.
+- ``symbol``: The symbol to be used for the element, for example when specifying
+  the composition of a species.
 - ``atomic-weight``: The atomic weight of the element, in unified atomic mass
   units (dalton)
 - ``atomic-number``: The atomic number of the element. Optional.

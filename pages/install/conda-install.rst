@@ -64,7 +64,7 @@ Then, install Cantera in the active enironment by running::
 
 **Option 3: Install the development version of Cantera**
 
-To install a recent development snapshot (i.e., an alpha or beta version) of
+To install a recent development snapshot (that is, an alpha or beta version) of
 Cantera in an existing environment, activate the environment and then run::
 
     conda install --channel cantera/label/dev cantera

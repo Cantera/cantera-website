@@ -228,7 +228,7 @@ from file ``diamond.cti``:
     >> diamonnd_surf = importInterface('diamond.cti','diamond_100',...
                                     gas2, diamond);
 
-Note that the bulk (i.e., 3D) phases that participate in the surface
+Note that the bulk (3D) phases that participate in the surface
 reactions must also be passed as arguments to :mat:func:`importInterface`.
 
 The following command clears all Matlab objects created:

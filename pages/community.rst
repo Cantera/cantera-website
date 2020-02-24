@@ -65,11 +65,11 @@ For installation/compilation problems, please provide:
        scons build >buildlog.txt 2>&1
 
 * The exact version of Cantera you are trying to compile, and how it was
-  obtained (i.e., downloaded source tarball or the specific Git commit).
+  obtained (for example, downloaded source tarball or the specific Git commit).
 * Your operating system, compiler versions, and the versions of any other
   relevant software.
 
-For application problems (i.e., not related to installation or compilation),
+For application problems (that is, not related to installation or compilation),
 please:
 
 * Provide a minimal, complete, and verifiable example that demonstrates

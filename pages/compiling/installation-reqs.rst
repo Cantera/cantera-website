@@ -376,7 +376,7 @@ General Notes
 * It is generally helpful to have SCons and Python in your ``PATH`` environment
   variable. This can be done by checking the appropriate box during the
   installation of Python or can be accomplished by adding the top-level Python
-  directory and the ``Scripts`` subdirectory (e.g.,
+  directory and the ``Scripts`` subdirectory (for example,
   ``C:\Python36;C:\Python36\Scripts``) to your ``PATH``. The dialog to change
   the ``PATH`` is accessible from::
 
@@ -385,9 +385,10 @@ General Notes
   Make sure that the installation of Python that has SCons comes first on your
   ``PATH``.
 
-* In order to use SCons to install Cantera to a system folder (e.g. ``C:\Program
-  Files\Cantera``) you must run the ``scons install`` command in a command
-  prompt that has been launched by selecting the *Run as Administrator* option.
+* In order to use SCons to install Cantera to a system folder (for example,
+  ``C:\Program Files\Cantera``) you must run the ``scons install`` command in a
+  command prompt that has been launched by selecting the *Run as Administrator*
+  option.
 
 .. _sec-windows-reqs:
 
