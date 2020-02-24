@@ -37,9 +37,8 @@ or in the YAML format by adding an entry to the :ref:`species
 Species Name
 ------------
 
-The name of a species may contain embedded parentheses, ``+`` or ``-`` signs to
-indicate the charge, or just about anything else that is a printable character.
-Some example name specifications:
+The name of a species may contain letters, numbers, or just about anything else
+that is a printable, non-whitespace character. Some example name specifications:
 
 .. code::
 
@@ -59,13 +58,18 @@ or on surfaces, there may be several possible ways of defining the species. For
 example, an aqueous species might be defined with or without including the water
 molecules in the solvation cage surrounding it.
 
+The special "element" ``E`` is used in representing charged species, where it
+specifies the net number of electrons compared to the number needed to form a
+neutral species. That is, negatively charged ions will have ``E`` > 0, while
+positively charged ions will have ``E`` < 0.
+
+The number of atoms of an element must be non-negative, with the exception of
+electrons.
+
 For surface species, it is possible to omit the elemental composition, in
 which case it is composed of nothing, and represents an empty surface site. This
 can also be done to represent vacancies in solids. A charged vacancy can be
 defined to be composed solely of electrons.
-
-The number of atoms of an element must be non-negative, except for the special
-"element" ``E`` that represents an electron.
 
 Thermodynamic Properties
 ------------------------
