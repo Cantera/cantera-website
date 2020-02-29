@@ -55,14 +55,14 @@ Sequences
 
 A sequence of multiple items is specified by separating the items by commas and
 enclosing them in square brackets. The individual items can have any type --
-strings, integers, floating-point numbers (or even entries or other lists).
+strings, integers, floating-point numbers, mappings, or sequences.
 
 .. code:: yaml
 
    elements: [O, H, C, N, Ar]
    temperature-ranges: [200.0, 1000.0, 3500.0]
 
-Sequences can also be written in "block" style, using one line for each item in
+Sequences can also be written in block style, using one line for each item in
 the sequence, with each line starting with a dash:
 
 .. code:: yaml
@@ -107,7 +107,7 @@ by commas:
 
    composition: {H: 2, C: 1, O: 1}
 
-In the "block" style, each key is written on a new line, followed by a colon.
+In the block style, each key is written on a new line, followed by a colon.
 The value can be placed either on the same line, or on the following line,
 indented one level:
 
@@ -127,7 +127,7 @@ Sequences of Mappings
 ---------------------
 
 A common structure in Cantera input files is a nested sequence of mappings. This
-can be written in the "block" style as:
+can be written in the block style as:
 
 .. code:: yaml
 
@@ -164,7 +164,7 @@ Many fields have numerical values that represent dimensional quantities---a
 pressure, or a density, for example. If these are entered without specifying the
 units, the default units (set by the ``units`` directive) will be used. However,
 it is also possible to specify the units for each individual dimensional
-quantity (unless stated otherwise). All that is required is to write the units
+quantity, unless stated otherwise. All that is required is to write the units
 after the value, separated by a space:
 
 .. code:: yaml
@@ -282,7 +282,7 @@ would terminate:
 The top part of the error message shows the chain of functions that were called
 before the error was encountered. For the most part, these are internal Cantera
 functions not of direct concern here. The relevant part of this error message is
-the part between the lines of asterisks.  This message says that the YAML parser
+the part between the lines of asterisks. This message says that the YAML parser
 ran into a problem on line 4 of ``gas.yaml``. In many cases, including this one,
 the parser will fail somewhere *after* the actual problem with the input file,
 since it must continue parsing until it finds something that cannot possibly be
@@ -332,7 +332,6 @@ elements:
      reactions: [gri30.yaml/reactions]
 
 it may be imported successfully.
-
 
 .. container:: container
 

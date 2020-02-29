@@ -51,7 +51,6 @@ Elemental Composition
 ---------------------
 
 The elemental composition of each species must be specified.
-
 For gaseous species, the elemental composition is well-defined, since the
 species represent distinct molecules. For species in solid or liquid solutions,
 or on surfaces, there may be several possible ways of defining the species. For
@@ -96,7 +95,6 @@ Transport property models in general require coefficients that express the
 effect of each species on the transport properties of the phase. Currently,
 ideal-gas transport property models are implemented.
 
-
 Transport properties can be defined in the CTI format using the
 :cti:class:`gas_transport` entry, or in the YAML format using the
 :ref:`transport <sec-yaml-species-transport>` field of a ``species`` entry.
@@ -108,7 +106,7 @@ Thermodynamic Property Models
 
 The models described in this section can be used to provide thermodynamic data
 for each species in a phase. Each model implements a different
-*parameterization* (functional form) for the heat capacity. Note that there is
+**parameterization** (functional form) for the heat capacity. Note that there is
 no requirement that all species in a phase use the same parameterization; each
 species can use the one most appropriate to represent how the heat capacity
 depends on temperature.

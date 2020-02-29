@@ -16,9 +16,10 @@
 ck2yaml
 -------
 
-Many existing reaction mechanism files are in "CK format," by which we mean
+Many existing reaction mechanism files are in **CK format**, by which we mean
 the input file format developed for use with the Chemkin-II software package
-as specified in the report describing the Chemkin software [SAND89]_.
+(and subsequent releases) as specified in the report describing the Chemkin
+software [SAND89]_.
 
 Cantera comes with a converter utility program ``ck2yaml`` (or ``ck2yaml.py``)
 that converts CK format into Cantera format. This program should be run from
@@ -47,7 +48,7 @@ command line to ``ck2yaml``.
 
 - ``--thermo``: If the ``--input`` file does not contain the thermodynamic data,
   a separate file containing this information must be specified to the
-  `--thermo`` option.
+  ``--thermo`` option.
 
 - ``--transport``: The ``--input`` file can also optionally contain transport
   information for the species. If it does not, and the user wishes to use a part
@@ -100,8 +101,8 @@ information to help you to locate the error. Many of the most common errors
 are due to an inconsistency of the input files from their standard, as defined
 in the report for Chemkin referenced above. These errors include:
 
-* Each section of the input files must be started with a keyword representing that
-  section and ending with the keyword ``END``. Keywords that may begin a section
+* Each section of the input files must start with a keyword representing that
+  section and end with the keyword ``END``. Keywords that may begin a section
   include:
 
   - ``ELEMENTS`` or ``ELEM``
@@ -179,7 +180,7 @@ in the report for Chemkin referenced above. These errors include:
   the next several lines. The first two temperatures have a width of 10
   columns each (46–55 and 56–65), and represent the lowest temperature and
   highest temperature for which the polynomials are valid. The last
-  temperature has a width of 8 columns (66–73) and is the "common"
+  temperature has a width of 8 columns (66–73) and is the **common**
   temperature, where the switch from low to high occurs. The next 5 columns
   (74–78) are reserved for atomic symbols and are usually left blank for
   the default behavior. Column 79 is blank and finally, the row is ended in
@@ -189,7 +190,7 @@ in the report for Chemkin referenced above. These errors include:
   They contain the coefficients of the polynomial described in
   :ref:`sec-thermo-models` for the NASA 7-coefficient polynomial formulation.
   The second row of the thermo entry (the first after the information row)
-  contains the first five coefficients that apply the the temperature range
+  contains the first five coefficients that apply to the temperature range
   between the midpoint and the upper limit. 15 columns are alloted for each
   coefficient (for a total of 75 columns), with no spaces between them.
   Although the entry above shows spaces between positive coefficients, it is
@@ -211,8 +212,7 @@ in the report for Chemkin referenced above. These errors include:
 
 * It may be the case that scientific formatted numbers are missing the ``E``.
   In this case, numbers often show up as ``1.1+01``, when they should be
-  ``1.1E+01``. You can fix this with a simple Regular Expression find and
-  replace::
+  ``1.1E+01``. You can fix this with a Regular Expression "find and replace"::
 
      Find: (\d+\.\d+)([+-]\d+)
      Replace: \1E\2

@@ -61,14 +61,14 @@ thermodynamic, and transport properties of an individual species.
 The default location for species entries is in the ``species`` section of the
 input file. Species defined in this section will automatically be considered for
 addition to phases defined in the same file. Species can be defined in other
-sections of the input file (or in other input files), and these species
+sections of the input file or in other input files, and these species
 definitions can be used in phase definitions by explicitly referencing the
 section name.
 
 Species Name
 ------------
 
-The name of a species is given in ``name`` field of a ``species`` entry. Names
+The name of a species is given in the ``name`` field of a ``species`` entry. Names
 may include almost all printable characters, with the exception of spaces. The
 use of some characters such as ``[``, ``]``, and ``,`` may require that species
 names be enclosed in quotes when written in YAML. Some valid species names given

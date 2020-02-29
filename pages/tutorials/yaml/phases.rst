@@ -16,7 +16,7 @@ Phases
 
 For each phase that appears in a problem, a corresponding entry should be
 present in the input file(s). The phase entry specifies the elements and species
-present in the phases, and the models to be used for computing thermodynamic,
+present in that phase, and the models to be used for computing thermodynamic,
 kinetic, and transport properties.
 
 Naming the Phase
@@ -312,11 +312,11 @@ Examples
 --------
 
 The following input file defines two equivalent gas phases including all
-reactions and species defined in the input file, (with species and reaction data
-elided). In the second case, the phase definition is simplified by having the
-elements added based on the species definitions, taking the species definitions
-from the default `species` section, and reactions from the default `reactions`
-section.
+reactions and species defined in the input file. The species and reaction data
+is not shown for clarity. In the second case, the phase definition is simplified
+by having the elements added based on the species definitions, taking the
+species definitions from the default ``species`` section, and reactions from the
+default ``reactions`` section.
 
 .. code:: yaml
 
@@ -347,7 +347,7 @@ section.
     ...
 
 An input file defining an interface and its adjacent bulk phases, with full
-species data elided:
+species data not shown for clarity:
 
 .. code:: yaml
 

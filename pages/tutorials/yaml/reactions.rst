@@ -26,7 +26,7 @@ The Reaction Equation
 
 The reaction equation, specified in the ``equation`` field of the reaction
 entry, determines the reactant and product stoichiometry. All tokens (species
-names, stoichiometric coefficients, `+`, and `<=>`) in the reaction equation
+names, stoichiometric coefficients, ``+``, and ``<=>``) in the reaction equation
 must be separated with spaces. Some examples of correctly and incorrectly
 formatted reaction equations are shown below:
 
@@ -101,9 +101,9 @@ reactions), it is usually best not to specify units for :math:`A`, in which case
 they will be computed taking all of these factors into account.
 
 Note: if :math:`b \ne 0`, then the term :math:`T^b` should have units of
-:math:`K^b`, which would change the units of :math:`A`. This is not done,
+:math:`\mathrm{K}^b`, which would change the units of :math:`A`. This is not done,
 however, so the units associated with :math:`A` are really the units for
-:math:`k_f` . One way to formally express this is to replace :math:`T^b` by the
+:math:`k_f`. One way to formally express this is to replace :math:`T^b` by the
 non-dimensional quantity :math:`[T/(1\;\mathrm{K})]^b`.
 
 .. _sec-yaml-reaction-options:
@@ -124,7 +124,7 @@ reaction rate coefficient of the form:
     k_f(T) = \sum_{n=1}^{N} A_n T^{b_n} \exp(-E_n/\hat{R}T)
 
 While Cantera does not provide such a form for reaction rates, it can be
-implemented by defining *N* duplicate reactions, and assigning one rate
+implemented by defining :math:`N` duplicate reactions, and assigning one rate
 coefficient in the sum to each reaction. By adding the field:
 
 .. code:: yaml
