@@ -167,7 +167,7 @@ given by:
    F(T, P_r) = d \bigl[a \exp(-b/T) + \exp(-T/c)\bigr]^{1/(1+\log_{10}^2 P_r )} T^e
 
 In keeping with the nomenclature of Kee et al. [#Kee1989]_, we will refer to this as
-the "SRI" falloff function.
+the **SRI falloff function**.
 
 An SRI falloff function may be specified in the CTI format using the
 :cti:class:`SRI` directive, or in the YAML format using the
@@ -238,7 +238,7 @@ reaction ``type``.
 Chebyshev Reaction Rate Expressions
 -----------------------------------
 
-Chebyshev rate expressions represents a phenomenological rate coefficient
+Chebyshev rate expressions represent a phenomenological rate coefficient
 :math:`k(T,P)` in terms of a bivariate Chebyshev polynomial. The rate constant
 can be written as:
 

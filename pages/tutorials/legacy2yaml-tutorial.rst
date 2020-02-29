@@ -52,7 +52,7 @@ included with Cantera. YAML versions of these files are already included with
 Cantera.
 
 For input files where you have both the CTI and XML versions, ``cti2yaml`` is
-recommended over ``ctml2yaml``. And in cases where the mechanism was originally
+recommended over ``ctml2yaml``. In cases where the mechanism was originally
 converted from a CK-format mechanism, it is recommended to use ``ck2yaml`` if
 the original input files are available.
 
