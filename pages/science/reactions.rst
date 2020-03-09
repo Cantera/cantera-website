@@ -67,15 +67,15 @@ These effects can be accounted for by defining a collision efficiency
 
 .. math::
 
-   k_f(T)[A][B][M]
+   R_f = [\mathrm{A}][\mathrm{B}][\mathrm{M}]k_f(T)
 
 where
 
 .. math::
 
-   [M] = \sum_{\mathrm{k}} \epsilon_{\mathrm{k}} C_{\mathrm{k}}
+   [\mathrm{M}] = \sum_{k} \epsilon_k C_k
 
-where :math:`C_{\mathrm{k}}` is the concentration of species :math:`\mathrm{k}`. Since any constant
+where :math:`C_k` is the concentration of species :math:`k`. Since any constant
 collision efficiency can be absorbed into the rate coefficient :math:`k_f(T)`, the default collision
 efficiency is 1.0.
 
@@ -86,8 +86,8 @@ A three-body reaction may be defined in the CTI format using the
 Falloff Reactions
 -----------------
 
-A falloff reaction is one that has a rate that is first-order in :math:`[M]` at low
-pressure, like a three-body reaction, but becomes zero-order in :math:`[M]` as :math:`[M]`
+A falloff reaction is one that has a rate that is first-order in :math:`[\mathrm{M}]` at low
+pressure, like a three-body reaction, but becomes zero-order in :math:`[\mathrm{M}]` as :math:`[\mathrm{M}]`
 increases. Dissociation/association reactions of polyatomic molecules often
 exhibit this behavior.
 
@@ -283,19 +283,19 @@ Surface Reactions
 Heterogeneous reactions on surfaces are represented by an extended Arrhenius-
 like rate expression, which combines the modified Arrhenius rate expression with
 further corrections dependent on the fractional surface coverages
-:math:`\theta_{\mathrm{k}}` of one or more surface species. The forward rate constant for a
+:math:`\theta_{k}` of one or more surface species. The forward rate constant for a
 reaction of this type is:
 
 .. math::
 
    k_f = A T^b \exp \left( - \frac{E_a}{RT} \right)
-      \prod_{\mathrm{k}} 10^{a_{\mathrm{k}} \theta_{\mathrm{k}}}
-      \theta_{\mathrm{k}}^{m_{\mathrm{k}}}
-      \exp \left( \frac{- E_{\mathrm{k}} \theta_{\mathrm{k}}}{RT} \right)
+      \prod_k 10^{a_k \theta_k}
+      \theta_k^{m_k}
+      \exp \left( \frac{- E_k \theta_k}{RT} \right)
 
 where :math:`A`, :math:`b`, and :math:`E_a` are the modified Arrhenius
-parameters and :math:`a_{\mathrm{k}}`, :math:`m_{\mathrm{k}}`, and :math:`E_{\mathrm{k}}` are the coverage
-dependencies from species :math:`\mathrm{k}`.
+parameters and :math:`a_k`, :math:`m_k`, and :math:`E_k` are the coverage
+dependencies from species :math:`k`.
 
 Surface reactions can be defined in the CTI format using the
 :cti:class:`surface_reaction` entry, with coverage information provided using
