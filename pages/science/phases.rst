@@ -60,7 +60,7 @@ of each species is computed using the expression for an ideal solution:
 
 .. math::
 
-   \mu_k = \mu^0_k + \hat{R}T \log \theta_k,
+   \mu_k = \mu^0_k + RT \log \theta_k,
 
 where :math:`\theta_k` is the coverage of species :math:`k` on the surface. The coverage is related
 to the surface concentration :math:`C_k` by

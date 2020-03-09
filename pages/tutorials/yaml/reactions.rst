@@ -126,7 +126,7 @@ reaction rate coefficient of the form:
 
 .. math::
 
-    k_f(T) = \sum_{n=1}^{N} A_n T^{b_n} \exp(-E_n/\hat{R}T)
+    k_f(T) = \sum_{n=1}^{N} A_n T^{b_n} \exp(-E_n/RT)
 
 While Cantera does not provide such a form for reaction rates, it can be
 implemented by defining :math:`N` duplicate reactions, and assigning one rate
