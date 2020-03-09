@@ -193,9 +193,9 @@ which competes with:
    \mathrm{Si + SiH_4 (+M) \leftrightarrow Si_2H_4 (+M)}
 
 Like falloff reactions, chemically-activated reactions are described by
-blending between a "low pressure" and a "high pressure" rate expression. The
+blending between a low-pressure and a high-pressure rate expression. The
 difference is that the forward rate constant is written as being proportional
-to the *low pressure* rate constant:
+to the *low-pressure* rate constant:
 
 .. math::
 
