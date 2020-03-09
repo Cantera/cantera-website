@@ -62,7 +62,7 @@ Arrhenius function
 
 .. math::
 
-   k_f(T) = A T^b \exp(-E/\bar{R}T)
+   k_f(T) = A T^b \exp(-E/RT)
 
 which is defined with an :cti:class:`Arrhenius` entry:
 
@@ -125,7 +125,7 @@ should be handled.
 
     .. math::
 
-       k_f(T) = \sum_{n=1}^{N} A_n T^{b_n} exp(-E_n/\hat{R}T)
+       k_f(T) = \sum_{n=1}^{N} A_n T^{b_n} exp(-E_n/RT)
 
     While Cantera does not provide such a form for reaction rates, it can be
     implemented by defining *N* duplicate reactions, and assigning one rate
