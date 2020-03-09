@@ -73,12 +73,12 @@ defined to be composed solely of electrons.
 Thermodynamic Properties
 ------------------------
 
-The phase models discussed in the last chapter implement specific models for the
-thermodynamic properties appropriate for the type of phase or interface they
-represent. Although each one may use different expressions to compute the
-properties, they all require thermodynamic property information for the
-individual species. For the phase types implemented at present, the properties
-needed are:
+The phase models discussed in the `Phases section </science/phases.html>`__
+implement specific models for the thermodynamic properties appropriate for the
+type of phase or interface they represent. Although each one may use different
+expressions to compute the properties, they all require thermodynamic property
+information for the individual species. For the phase types implemented at
+present, the properties needed are:
 
 1. the molar heat capacity at constant pressure :math:`\hat{c}^0_p(T)` for a
    range of temperatures and a reference pressure :math:`P_0`;
