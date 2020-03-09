@@ -62,8 +62,9 @@ strings, integers, floating-point numbers, mappings, or sequences.
    elements: [O, H, C, N, Ar]
    temperature-ranges: [200.0, 1000.0, 3500.0]
 
-Sequences can also be written in block style, using one line for each item in
-the sequence, with each line starting with a dash:
+The syntax above, using square brackets to define a list, is called **flow style**
+in YAML. Sequences can also be written in **block style**, using one line
+for each item in the sequence, with each line starting with a dash:
 
 .. code:: yaml
 
@@ -99,7 +100,7 @@ Mappings
 
 A mapping is a container consisting of key--value pairs. The keys in a mapping
 must be unique. Like sequences, there are two ways to write a mapping. In the
-"flow" style, the mapping is enclosed in curly brackets, colons (followed by
+**flow style**, the mapping is enclosed in curly brackets, colons (followed by
 spaces) are used to separate keys and values, and key--value pairs are separated
 by commas:
 
@@ -107,7 +108,7 @@ by commas:
 
    composition: {H: 2, C: 1, O: 1}
 
-In the block style, each key is written on a new line, followed by a colon.
+In the **block style**, each key is written on a new line, followed by a colon.
 The value can be placed either on the same line, or on the following line,
 indented one level:
 
@@ -120,14 +121,14 @@ indented one level:
      O: 1
 
 All keys in Cantera YAML files are treated as strings. A Cantera YAML file is
-itself a mapping, usually in the block style. We refer to the keys in this
-top-level mapping as the "sections" of the input file.
+itself a mapping, usually in the **block style**. We refer to the keys in this
+top-level mapping as the **sections** of the input file.
 
 Sequences of Mappings
 ---------------------
 
 A common structure in Cantera input files is a nested sequence of mappings. This
-can be written in the block style as:
+can be written in the **block style** as:
 
 .. code:: yaml
 
