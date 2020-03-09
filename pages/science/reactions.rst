@@ -23,13 +23,16 @@ rate coefficient and mass action kinetics. For example:
 
    \mathrm{A + B \rightleftharpoons C + D}
 
-with a forward rate constant defined as a modified Arrhenius function:
+with a forward rate constant :math:`k_f` defined as a modified Arrhenius function:
 
 .. math::
 
    k_f = A T^b e^{-E_a / RT}
 
-and the forward reaction rate calculated as:
+where :math:`A` is the pre-exponential factor, :math:`T` is the temperature,
+:math:`b` is the temperature exponent, :math:`E_a` is the activation energy,
+and :math:`R` is the gas constant. The forward reaction rate is then calculated
+as:
 
 .. math::
 
