@@ -83,28 +83,33 @@ Arrhenius expressions, such as
 
 .. math::
 
-   k_f(T) = A T^b \exp(-E_a/\bar{R}T)
+   A T^b e^{-E_a / RT}
 
-Rates in this form can be written as YAML mappings. For example:
+where :math:`A` is the pre-exponential factor, :math:`T` is the temperature,
+:math:`b` is the temperature exponent, :math:`E_a` is the activation energy,
+and :math:`R` is the gas constant. Rates in this form can be written as YAML
+mappings. For example:
 
 .. code:: yaml
 
     {A: 1.0e13, b: 0, E: 7.3 kcal/mol}
 
-The units of the pre-exponential factor :math:`A` can be specified explicitly if
-desired. If not specified, they will be determined based on the ``quantity``,
-``length``, and ``time`` units specified in the governing ``units`` fields.
-Since the units of :math:`A` depend on the reaction order, the units of each
-reactant concentration (dependent on phase type and dimensionality), and the
-units of the rate of progress (different for homogeneous and heterogeneous
-reactions), it is usually best not to specify units for :math:`A`, in which case
-they will be computed taking all of these factors into account.
+The units of :math:`A` can be specified explicitly if desired. If not specified,
+they will be determined based on the ``quantity``, ``length``, and ``time``
+units specified in the governing ``units`` fields. Since the units of :math:`A`
+depend on the reaction order, the units of each reactant concentration
+(dependent on phase type and dimensionality), and the units of the rate of
+progress (different for homogeneous and heterogeneous reactions), it is usually
+best not to specify units for :math:`A`, in which case they will be computed
+taking all of these factors into account.
 
 Note: if :math:`b \ne 0`, then the term :math:`T^b` should have units of
 :math:`\mathrm{K}^b`, which would change the units of :math:`A`. This is not done,
 however, so the units associated with :math:`A` are really the units for
 :math:`k_f`. One way to formally express this is to replace :math:`T^b` by the
 non-dimensional quantity :math:`[T/(1\;\mathrm{K})]^b`.
+
+The key ``E`` is used to specify :math:`E_a`.
 
 .. _sec-yaml-reaction-options:
 
