@@ -17,12 +17,12 @@
 The required input files can be provided via one of several methods:
 
 - Use one of the pre-existing input files provided with Cantera
-- Convert a pre-existing mechanism from Chemkin (CK) format to Cantera (CTI) format
 - Convert a pre-existing mechanism from Chemkin (CK) format to YAML format *(New
   in Cantera 2.5)*
-- Create your own CTI file, either from scratch (not recommended) or by editing an existing file
+- Convert a pre-existing mechanism from Chemkin (CK) format to Cantera (CTI) format
 - Create your own YAML file from scratch or by editing an existing file *(New in
   Cantera 2.5)*
+- Create your own CTI file, either from scratch (not recommended) or by editing an existing file
 
 The first two options will suffice for a majority of Cantera users. Advanced
 users may, however, need to edit an existing input file in order to define
@@ -69,24 +69,6 @@ There are three primary options for creating a new Cantera input file:
 
             .. container::
                :tagname: a
-               :attributes: href=ck2cti-tutorial.html
-                            title="Chemkin File Conversion (CTI)"
-
-               .. container:: card-header section-card
-
-                  Conversion from Chemkin to CTI
-
-            .. container:: card-body
-
-               .. container:: card-text
-
-                  Convert a Chemkin-formatted ('CK') file to the Cantera input
-                  format (CTI).
-
-         .. container:: card
-
-            .. container::
-               :tagname: a
                :attributes: href=ck2yaml-tutorial.html
                             title="Chemkin File Conversion (YAML)"
 
@@ -101,27 +83,27 @@ There are three primary options for creating a new Cantera input file:
                   Convert a Chemkin-formatted ('CK') file to the Cantera YAML
                   format. *(New in Cantera 2.5)*
 
-   .. row::
-
-      .. container:: card-deck
-
          .. container:: card
 
             .. container::
                :tagname: a
-               :attributes: href="cti/defining-phases.html"
-                            title="Defining Phases in CTI"
+               :attributes: href=ck2cti-tutorial.html
+                            title="Chemkin File Conversion (CTI)"
 
                .. container:: card-header section-card
 
-                  Create a new CTI file
+                  Conversion from Chemkin to CTI
 
             .. container:: card-body
 
                .. container:: card-text
 
-                  Create a completely new mechanism, by defining new species,
-                  phases, and/or reactions, using the CTI format.
+                  Convert a Chemkin-formatted ('CK') file to the Cantera input
+                  format (CTI).
+
+   .. row::
+
+      .. container:: card-deck
 
          .. container:: card
 
@@ -141,6 +123,24 @@ There are three primary options for creating a new Cantera input file:
                   Create a completely new mechanism, by defining new species,
                   phases, and/or reactions, using the YAML format.
                   *(New in Cantera 2.5)*
+
+         .. container:: card
+
+            .. container::
+               :tagname: a
+               :attributes: href="cti/defining-phases.html"
+                            title="Defining Phases in CTI"
+
+               .. container:: card-header section-card
+
+                  Create a new CTI file
+
+            .. container:: card-body
+
+               .. container:: card-text
+
+                  Create a completely new mechanism, by defining new species,
+                  phases, and/or reactions, using the CTI format.
 
    .. row::
 
@@ -181,23 +181,6 @@ to errors in the CK syntax formatting).
 
       .. container::
          :tagname: a
-         :attributes: href="cti/cti-syntax.html"
-                      title="CTI Syntax Tutorial"
-
-         .. container:: card-header section-card
-
-            CTI Syntax Tutorial
-
-      .. container:: card-body
-
-         .. container:: card-text
-
-            This tutorial covers the details of the CTI format and its syntax
-
-   .. container:: card
-
-      .. container::
-         :tagname: a
          :attributes: href="yaml/yaml-format.html"
                       title="YAML Format Tutorial"
 
@@ -211,3 +194,20 @@ to errors in the CK syntax formatting).
 
             This tutorial covers the details of the YAML format and its syntax.
             *(New in Cantera 2.5)*
+
+   .. container:: card
+
+      .. container::
+         :tagname: a
+         :attributes: href="cti/cti-syntax.html"
+                      title="CTI Syntax Tutorial"
+
+         .. container:: card-header section-card
+
+            CTI Syntax Tutorial
+
+      .. container:: card-body
+
+         .. container:: card-text
+
+            This tutorial covers the details of the CTI format and its syntax
