@@ -34,9 +34,11 @@ Usage:
            [--thermo=<filename>]
            [--transport=<filename>]
            [--surface=<filename>]
+           [--extra=<filename>]
            [--name=<name>]
            [--output=<filename>]
            [--permissive]
+           [--quiet]
 
 Each of the terms in square brackets is an option that can be passed on the
 command line to ``ck2yaml``.
@@ -60,6 +62,10 @@ command line to ``ck2yaml``.
   and reactions occurring on the surface. Gas phase species and reactions are
   defined in the file specified by the ``--input`` option.
 
+- ``--extra``: This option specifies a YAML file which can be used to add to the
+  ``description`` field or to define custom fields that are included in the YAML
+  output.
+
 - ``--name```: This specifies the name of the phase in the resulting YAML file.
   The default is ``gas``.
 
@@ -68,6 +74,9 @@ command line to ``ck2yaml``.
 
 - ``--permissive``: This option allows certain recoverable parsing errors (for
   example, duplicate thermo data) to be ignored.
+
+- ``--quiet``: Suppresses warning messages, such those about duplicate thermo
+  data.
 
 Example:
 
