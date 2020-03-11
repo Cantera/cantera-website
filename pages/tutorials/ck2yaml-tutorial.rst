@@ -197,7 +197,8 @@ in the report for Chemkin referenced above. These errors include:
 
   The next three lines of the thermodynamic entry have a similar format.
   They contain the coefficients of the polynomial described in
-  :ref:`sec-thermo-models` for the NASA 7-coefficient polynomial formulation.
+  :ref:`Thermodynamic Property Models <sec-thermo-models>` for the NASA
+  7-coefficient polynomial formulation.
   The second row of the thermo entry (the first after the information row)
   contains the first five coefficients that apply to the temperature range
   between the midpoint and the upper limit. 15 columns are alloted for each
