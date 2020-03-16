@@ -18,7 +18,7 @@ Reactors
 
 A Cantera :py:class:`Reactor` represents the simplest form of a chemically reacting system. It
 corresponds to an extensive thermodynamic control volume :math:`V`, in which all state variables are
-homogeneously distributed. The system is generally unsteady, i.e., all states are functions of time.
+homogeneously distributed. The system is generally unsteady -- that is, all states are functions of time.
 In particular, transient state changes due to chemical reactions are possible. However,
 thermodynamic (but not chemical) equilibrium is assumed to be present throughout the reactor at all
 instants of time.
@@ -409,8 +409,8 @@ current state of the system, it can be advanced in time by one of the following 
 The use of the ``advance`` method in a loop has the advantage that it produces
 results corresponding to a predefined time series. These are associated with a
 predefined memory consumption and well comparable between simulation runs with
-different parameters. However, some detail (e.g. a fast ignition process) might
-not be resolved in the output data due to the typically large time steps.
+different parameters. However, some detail (for example, a fast ignition process)
+might not be resolved in the output data due to the typically large time steps.
 
 The ``step`` method results in much more data points because of the small
 timesteps needed. Additionally, the absolute time has to be kept track of
@@ -421,8 +421,8 @@ and the maximum internal time step, the solution sometimes diverges. To solve
 this problem, three parameters can be tuned: The absolute time stepping
 tolerances, the relative time stepping tolerances, and the maximum time step. A
 reduction of the latter value is particularly useful when dealing with abrupt
-changes in the boundary conditions (e.g. opening/closing valves, see also the
-`IC engine example </examples/python/reactors/ic_engine.py.html>`__).
+changes in the boundary conditions (for example, opening/closing valves; see
+also the `IC engine example </examples/python/reactors/ic_engine.py.html>`__).
 
 General Usage in Cantera
 ========================

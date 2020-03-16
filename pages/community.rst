@@ -65,11 +65,11 @@ For installation/compilation problems, please provide:
        scons build >buildlog.txt 2>&1
 
 * The exact version of Cantera you are trying to compile, and how it was
-  obtained (i.e., downloaded source tarball or the specific Git commit).
+  obtained (for example, downloaded source tarball or the specific Git commit).
 * Your operating system, compiler versions, and the versions of any other
   relevant software.
 
-For application problems (i.e., not related to installation or compilation),
+For application problems (that is, not related to installation or compilation),
 please:
 
 * Provide a minimal, complete, and verifiable example that demonstrates
@@ -209,7 +209,7 @@ Finally, please consider financially supporting Cantera's development! Cantera
 is a fiscally sponsored project of NumFOCUS, a 501(c)3 nonprofit dedicated to
 supporting the open source scientific computing community. If you have found
 Cantera to be useful to your research or company, please consider making a
-`donation <https://numfocus.salsalabs.org/donate-to-cantera/index.html>`_
+`donation <https://numfocus.org/donate-to-cantera>`_
 to support our efforts. All donations will be used exclusively to fund the
 development of Cantera's source code, documentation, or community.
 
@@ -223,7 +223,7 @@ development of Cantera's source code, documentation, or community.
 
    .. container:: btn btn-primary
       :tagname: a
-      :attributes: href=https://numfocus.salsalabs.org/donate-to-cantera/index.html
+      :attributes: href=https://numfocus.org/donate-to-cantera
                    title="Donate to Cantera"
                    rel=nofollow
 

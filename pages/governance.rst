@@ -53,6 +53,7 @@ contributors. The steering committee can be contacted at `steering@cantera.org
 order) is:
 
 * Steven DeCaluwe (2018–)
+* Connie Gao (2019-)
 * \C. Franklin Goldsmith (2018–)
 * Kyle Niemeyer (2018–)
 * Raymond Speth (2018–)
@@ -61,8 +62,8 @@ order) is:
 
 The Steering Committee should have at least five members. Members serve in two-year
 cycles (starting in November 2018), with the ability to reaffirm their membership
-at the end of each cycle (without a committee vote) or leave the committee at
-their discretion. (Members can also choose to leave the committee at any time.)
+at the end of each cycle without a committee vote or leave the committee at
+their discretion. Members can also choose to leave the committee at any time.
 
 Voting
 ~~~~~~

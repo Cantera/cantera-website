@@ -22,15 +22,17 @@ h6:hover > a.headerlink {
 section { margin-top: 20px; margin-bottom: 20px; padding: 0 0; }
 
 a.docs:hover { background-color: #007994; color: #ffffff; }
-a.docs, a.dev-docs { color: #000000; }
+a.docs, a.dev-docs, a.release-notes { color: #000000; }
 a.dev-docs:hover { background-color: #fd7f03; color: #ffffff; }
+a.release-notes:hover { background-color: #c80202; color: #ffffff; }
 
 .row { margin: 0 0 20px; }
 
-tt {
+.docutils.literal {
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-weight: bold;
     font-size: 1em;
-    font-size: 87.5%;
+    color: #444;
     word-break: break-word;
 }
 

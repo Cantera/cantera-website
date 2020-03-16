@@ -22,7 +22,7 @@ corresponding to different types of phases, such as ``ideal_gas``,
 using one of the directives corresponding to an implemented phase type.
 
 A map with the full listing of available phase types is provided at the `ThermoPhase Class Reference
-<{{% ct_docs doxygen/html/classCantera_1_1ThermoPhase.html %}}>`__. However, these phase types
+<{{% ct_docs doxygen/html/dc/d38/classCantera_1_1ThermoPhase.html %}}>`__. However, these phase types
 share many common features, and so we will begin by discussing those aspects common to all entries
 for phases. The :cti:class:`phase` class contains the features common to all phase types.
 
@@ -52,7 +52,8 @@ The ``elements.xml`` database contains most elements of the periodic table, with
 their natural-abundance atomic masses. It also contains a few isotopes (D, Tr),
 and an "element" for an electron (E). This pseudo-element can be used to specify
 the composition of charged species. Note that two-character symbols should have
-an uppercase first letter, and a lowercase second letter (e.g. ``Cu``, not ``CU``).
+an uppercase first letter, and a lowercase second letter (for example, ``Cu``,
+not ``CU``).
 
 It should be noted that the order of the element symbols in the string
 determines the order in which they are stored internally by Cantera. For
@@ -405,16 +406,3 @@ If we import this into Matlab, for example, we get a gas mixture containing the
             :attributes: href=cti-species.html
 
             Next: Elements and Species
-
-.. rubric:: References
-
-.. [#Kee1989] R. J. Kee, F. M. Rupley, and J. A. Miller. Chemkin-II: A Fortran
-   chemical kinetics package for the analysis of gasphase chemical
-   kinetics. Technical Report SAND89-8009, Sandia National Laboratories, 1989.
-
-.. [#dl68] G. Dixon-Lewis. Flame structure and flame reaction kinetics,
-   II: Transport phenomena in multicomponent systems. *Proc. Roy. Soc. A*,
-   307:111--135, 1968.
-
-.. [#Kee2017] R. J. Kee, M. E. Coltrin, P. Glarborg, and H. Zhu. *Chemically Reacting Flow:
-   Theory and Practice*. 2nd Ed. John Wiley and Sons, 2017.

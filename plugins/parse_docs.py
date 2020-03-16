@@ -63,10 +63,11 @@ class ParseDocs(Task):
                     elem_id = elem.get("id")
                     parts = elem_id.split(".")
                     try:
-                        title = elem.xpath('code[@class="descname"]/text()')[0]
-                    except IndexError:
+                        title = elem.xpath('code[contains(concat(" ", @class, " "), " descname ")]/text()')[0]
+                    except IndexError as err:
                         self.logger.error(
-                            "Unknown title for class: {}".format(tostring(elem))
+                            "Unknown title for class: {}\n{}".format(err,
+                                tostring(elem))
                         )
                         title = parts[-1]
 

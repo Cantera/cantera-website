@@ -84,7 +84,7 @@ Conda Requirements
 
   .. code:: bash
 
-     conda create --name cantera python=3 scons cython boost numpy
+     conda create --name cantera python=3 scons cython boost numpy ruamel_yaml
      conda activate cantera
 
 * (Optional) If you also want to build the documentation, after you've created the environment and
@@ -230,7 +230,7 @@ Ubuntu & Debian
 
 * In addition to the general packages, building the Python 3 module also requires::
 
-      cython python3 python3-dev python3-setuptools python3-numpy
+      cython python3 python3-dev python3-setuptools python3-numpy python3-ruamel.yaml
 
 * In addition to the general packages, building the Fortran module also requires::
 
@@ -274,7 +274,7 @@ Fedora & RHEL
 
 * In addition to the general packages, building the Python 3 module also requires::
 
-      python3 python3-setuptools python3-devel Cython python3-numpy
+      python3 python3-setuptools python3-devel Cython python3-numpy python3-ruamel-yaml
 
 * In addition to the general packages, building the Fortran module also requires::
 
@@ -320,7 +320,7 @@ OpenSUSE & SUSE Linux Enterprise
 
 * In addition to the general packages, building the Python 3 module also requires::
 
-      python-Cython python3 python3-devel python3-setuptools python3-numpy python3-numpy-devel
+      python-Cython python3 python3-devel python3-setuptools python3-numpy python3-numpy-devel python3-ruamel.yaml
 
 * In addition to the general packages, building the Fortran module also requires::
 
@@ -376,7 +376,7 @@ General Notes
 * It is generally helpful to have SCons and Python in your ``PATH`` environment
   variable. This can be done by checking the appropriate box during the
   installation of Python or can be accomplished by adding the top-level Python
-  directory and the ``Scripts`` subdirectory (e.g.,
+  directory and the ``Scripts`` subdirectory (for example,
   ``C:\Python36;C:\Python36\Scripts``) to your ``PATH``. The dialog to change
   the ``PATH`` is accessible from::
 
@@ -385,9 +385,10 @@ General Notes
   Make sure that the installation of Python that has SCons comes first on your
   ``PATH``.
 
-* In order to use SCons to install Cantera to a system folder (e.g. ``C:\Program
-  Files\Cantera``) you must run the ``scons install`` command in a command
-  prompt that has been launched by selecting the *Run as Administrator* option.
+* In order to use SCons to install Cantera to a system folder (for example,
+  ``C:\Program Files\Cantera``) you must run the ``scons install`` command in a
+  command prompt that has been launched by selecting the *Run as Administrator*
+  option.
 
 .. _sec-windows-reqs:
 
@@ -491,23 +492,27 @@ Windows Requirements
 
           pip3 install C:\Path\to\downloaded\file\package-file-name.whl
 
-   * Cython
+  * Cython
 
-     * http://www.lfd.uci.edu/~gohlke/pythonlibs/#cython
+    * http://www.lfd.uci.edu/~gohlke/pythonlibs/#cython
 
-     * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
-       and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
-       major and minor versions of the Python where you installed SCons.
+    * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
+      and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
+      major and minor versions of the Python where you installed SCons.
 
-     * Cython must be installed in the version of Python that has SCons installed
+    * Cython must be installed in the version of Python that has SCons installed
 
-   * NumPy
+  * NumPy
 
-     * http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
+    * http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
 
-     * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
-       and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
-       major and minor versions of Python.
+    * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
+      and Python X.Y (indicated by ``cpXY`` in the file name), where X and Y are the
+      major and minor versions of Python.
+
+  * Ruamel.yaml::
+
+      pip install ruamel.yaml
 
 * In addition to the general software, building the MATLAB toolbox also requires:
 

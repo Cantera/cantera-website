@@ -19,6 +19,12 @@ from docutils.readers.standalone import Reader
 from docutils.core import Publisher
 from copy import copy
 
+from pathlib import Path
+import tempfile
+import requests
+
+HERE = Path(__file__).parent
+
 
 class ProcessRefTargets(Task):
     """Find and process targets in reST files."""
@@ -75,13 +81,66 @@ class ProcessRefTargets(Task):
                     "name": source,
                     "task_dep": ["process_ref_targets:timeline_changes"],
                     "actions": [
-                        (process_targets, [self.site, self.logger, source, post]),
+                        (
+                            process_targets,
+                            [self.site, self.logger, source, post.permalink()],
+                        ),
                         (update_cache, [self.site]),
                     ],
                     "uptodate": [config_changed(deps_dict, "process_ref_targets")]
                     + post.fragment_deps_uptodate(lang),
                 }
                 yield task
+
+        # These are YAML API docs. However, they are parsed here because they aren't
+        # the typical Sphinx-generated documentation for functions and classes, most
+        # of the text is broken out into sections with ref targets. Note that the
+        # permalink is hard-coded here to point to the dev documentation that will
+        # need to be updated when 2.5.0 is released.
+        temp_dir = tempfile.mkdtemp()
+        # HERE.parent.parent.joinpath("cantera", "doc", "sphinx", "yaml")
+        yaml_docs_path = Path(temp_dir)
+        url_base = "https://raw.githubusercontent.com/Cantera/cantera/master/doc/sphinx/yaml/{}.rst"
+        for name in [
+            "elements",
+            "general",
+            "index",
+            "phases",
+            "reactions",
+            "species",
+        ]:
+            url = url_base.format(name)
+            try:
+                r = requests.get(url)
+                yaml_docs_path.joinpath("{}.rst".format(name)).write_bytes(r.content)
+            except:
+                self.logger.warn(
+                    "Could not download YAML API file: {}.rst".format(name)
+                )
+        if yaml_docs_path.exists():
+            for rest_file in yaml_docs_path.glob("**/*.rst"):
+                permalink = (
+                    "/documentation/dev/sphinx/html/yaml/"
+                    + rest_file.with_suffix(".html").name
+                )
+                yield {
+                    "basename": self.name,
+                    "name": str(rest_file),
+                    "task_dep": ["process_ref_targets:timeline_changes"],
+                    "actions": [
+                        (
+                            process_targets,
+                            [self.site, self.logger, str(rest_file), permalink],
+                        ),
+                        (update_cache, [self.site]),
+                    ],
+                }
+        else:
+            self.logger.warn(
+                "Could not find the API documentation for the YAML format: {}".format(
+                    yaml_docs_path
+                )
+            )
 
 
 def update_cache(site):
@@ -101,7 +160,7 @@ def update_cache(site):
         site.cache.set("anon_ref_targets", site.anon_ref_targets)
 
 
-def process_targets(site, logger, source, post):
+def process_targets(site, logger, source, permalink):
     """Process the target locations in the reST files."""
     site.processing_targets = True
     reader = Reader()
@@ -151,7 +210,7 @@ def process_targets(site, logger, source, post):
                     dup=name, other=site.ref_targets[name][0]
                 )
             )
-        site.anon_ref_targets[name] = post.permalink(), labelid
+        site.anon_ref_targets[name] = permalink, labelid
 
         def clean_astext(node):
             """Like node.astext(), but ignore images.
@@ -169,4 +228,4 @@ def process_targets(site, logger, source, post):
             sectname = clean_astext(node[0])
         else:
             continue
-        site.ref_targets[name] = post.permalink(), labelid, sectname
+        site.ref_targets[name] = permalink, labelid, sectname

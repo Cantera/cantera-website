@@ -16,7 +16,7 @@ Build Systems
 In general, it should be possible to use Cantera with any build system by
 specifying the appropriate header and library paths, and specifying the required
 libraries when linking. It is also necessary to specify the paths for libraries
-used by Cantera, e.g., Sundials, BLAS, and LAPACK.
+used by Cantera, such as Sundials, BLAS, and LAPACK.
 
 pkg-config
 ==========
@@ -92,10 +92,10 @@ CMake
 =====
 
 CMake is a multi-platform build system that uses a high-level project
-description to generate platform-specific build scripts (i.e., on Linux, CMake
-will generate Makefiles). The configuration file for a CMake project is called
-``CMakeLists.txt``. A typical ``CMakeLists.txt`` file for compiling a program
-that uses Cantera might look like this:
+description to generate platform-specific build scripts (for example, on Linux,
+CMake will generate Makefiles). The configuration file for a CMake project is
+called ``CMakeLists.txt``. A typical ``CMakeLists.txt`` file for compiling a
+program that uses Cantera might look like this:
 
 .. code:: cmake
 

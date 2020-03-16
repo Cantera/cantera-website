@@ -69,7 +69,7 @@ Therefore, in the CTML file, reactions are explicitly specified to be reversible
 or irreversible, and the reactants and products are explicitly listed with their
 stoichiometric coefficients. The XML file is, in a sense, a "dumbed-down"
 version of the input file, spelling out explicitly things that are only implied
-in the input file syntax, so that "dumb" (i.e., easy to write) parsers can be
+in the input file syntax, so that "dumb" (that is, easy to write) parsers can be
 used to read the data with minimal risk of misinterpretation.
 
 The reaction definition:

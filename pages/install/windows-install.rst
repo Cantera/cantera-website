@@ -85,13 +85,13 @@
 
 - Download the most recent release (distributed as a "wheel" archive) of the
   1.x series for Python *X.Y* that matches your Python architecture. In the
-  filename, the digits after "cp" indicate the Python version, e.g.
+  filename, the digits after "cp" indicate the Python version. For example,
   ``numpy‑1.11.2+mkl‑cp37‑none‑win_amd64.whl`` is the installer for 64-bit
   Python 3.7. The Windows installers for Cantera 2.4.0 require NumPy 1.10 or
   newer.
 
 - From an administrative command prompt, install the downloaded wheel using
-  pip, e.g.,::
+  pip. For example::
 
       c:\python37\scripts\pip.exe install "%USERPROFILE%\Downloads\numpy‑1.11.2+mkl‑cp37‑none‑win_amd64.whl"
 
@@ -133,7 +133,7 @@
   - From the *Start* screen or menu type "edit environment" and select
     "Edit environment variables for your account".
   - Add a *New* variable with ``PYTHON_CMD`` as the *name* and the full path
-    to the Python executable (e.g., ``C:\python37\python.exe``) as the
+    to the Python executable (for example, ``C:\python37\python.exe``) as the
     *value*.
   - Setting ``PYTHON_CMD`` is not necessary if the path to ``python.exe`` is
     in your ``PATH`` (which can be set from the same configuration dialog).

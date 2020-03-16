@@ -1,6 +1,6 @@
 .. title: Installing Cantera
 .. slug: index
-.. date: 2018-06-15 11:20:56 UTC-04:00
+.. date: 2019-06-26 20:00:00 UTC-04:00
 .. description: Installation instructions for Cantera
 .. type: text
 
@@ -18,98 +18,119 @@
       recommend that all new users install the Python interface via Conda. If you want to use one of
       the other interfaces, please select the installation instructions for your platform.
 
-.. container::
+.. container:: container
 
    .. row::
 
-      .. container:: card-deck
+      .. container:: col-12
 
-         .. container:: card
+         .. container:: card-deck
 
-            .. container:: card-header section-card
-               :attributes: id=heading-conda
-                            href=conda-install.html
-               :tagname: a
+            .. container:: card
 
-               Conda (Highly Recommended)
+               .. container:: card-header section-card
+                  :attributes: id=heading-conda
+                              href=conda-install.html
+                  :tagname: a
 
-            .. container:: card-body
+                  Conda (Highly Recommended)
 
-               Install the Cantera Python interface with Conda (Highly recommended for all users)
+               .. container:: card-body
 
-         .. container:: card
+                  Install the Cantera Python interface with Conda (Highly recommended for all users)
 
-            .. container:: card-header section-card
-               :attributes: id=heading-windows
-                            href=windows-install.html
-               :tagname: a
+            .. container:: card
 
-               Windows Install Instructions
+               .. container:: card-header section-card
+                  :attributes: id=heading-windows
+                              href=windows-install.html
+                  :tagname: a
 
-            .. container:: card-body
+                  Windows Install Instructions
 
-               Install Cantera on Windows. Cantera officially supports the versions of Windows that
-               Microsoft presently supports, although it may continue working on older versions of
-               Windows.
+               .. container:: card-body
 
-         .. container:: card
+                  Install Cantera on Windows. Cantera officially supports the versions of Windows that
+                  Microsoft presently supports, although it may continue working on older versions of
+                  Windows.
 
-            .. container:: card-header section-card
-               :attributes: id=heading-macos
-                            href=macos-install.html
-               :tagname: a
+            .. container:: card
 
-               macOS Install Instructions
+               .. container:: card-header section-card
+                  :attributes: id=heading-macos
+                              href=macos-install.html
+                  :tagname: a
 
-            .. container:: card-body
+                  macOS Install Instructions
 
-               Install Cantera on macOS/Mac OS X. The Cantera installer supports Mac OS X version
-               10.11 (El Capitan) and higher. For older versions of Mac OS X, users should
-               :ref:`compile from source <sec-compiling>`.
+               .. container:: card-body
 
-.. container::
+                  Install Cantera on macOS/Mac OS X. The Cantera installer supports Mac OS X version
+                  10.11 (El Capitan) and higher. For older versions of Mac OS X, users should
+                  :ref:`compile from source <sec-compiling>`.
 
    .. row::
 
-      .. container:: card-deck
+      .. container:: col-12
 
-         .. container:: card
+         .. container:: card-deck
 
-            .. container:: card-header section-card
-               :attributes: id=heading-ubuntu
-                            href=ubuntu-install.html
-               :tagname: a
+            .. container:: card
 
-               Ubuntu Install Instructions
+               .. container:: card-header section-card
+                  :attributes: id=heading-ubuntu
+                              href=ubuntu-install.html
+                  :tagname: a
 
-            .. container:: card-body
+                  Ubuntu Install Instructions
 
-               Install Cantera on Ubuntu using a PPA.
+               .. container:: card-body
 
-         .. container:: card
+                  Install Cantera on Ubuntu using a PPA.
 
-            .. container:: card-header section-card
-               :attributes: id=heading-other-linux
-                            href=other-linux-install.html
-               :tagname: a
+            .. container:: card
 
-               Other Linux Distributions Install Instructions
+               .. container:: card-header section-card
+                  :attributes: id=heading-gentoo
+                              href=gentoo-install.html
+                  :tagname: a
 
-            .. container:: card-body
+                  Gentoo Install Instructions
 
-               Linux distributions other than Ubuntu can install the Python interface via Conda
-               (see :ref:`the Conda instructions <sec-install-conda>`). Other interfaces can be
-               installed by :ref:`compiling from source <sec-compiling>`.
+               .. container:: card-body
 
-         .. container:: card
+                  Install Cantera on Gentoo using a portage.
 
-            .. container:: card-header section-card
-               :attributes: id=heading-compiling
-                            href=compiling-install.html
-               :tagname: a
+            .. container:: card
 
-               Compile Cantera from Source
+               .. container:: card-header section-card
+                  :attributes: id=heading-other-linux
+                              href=other-linux-install.html
+                  :tagname: a
 
-            .. container:: card-body
+                  Other Linux Distributions Install Instructions
 
-               Compile Cantera directly from the source code for your platform.
+               .. container:: card-body
+
+                  Linux distributions other than Ubuntu and Gentoo can install the Python interface via Conda
+                  (see :ref:`the Conda instructions <sec-install-conda>`). Other interfaces can be
+                  installed by :ref:`compiling from source <sec-compiling>`.
+
+   .. row::
+
+      .. container:: col-sm-4 mx-auto
+
+         .. container:: card-deck
+
+            .. container:: card
+
+               .. container:: card-header section-card
+                  :attributes: id=heading-compiling
+                              href=compiling-install.html
+                  :tagname: a
+
+                  Compile Cantera from Source
+
+               .. container:: card-body
+
+                  Compile Cantera for your platform from the source code

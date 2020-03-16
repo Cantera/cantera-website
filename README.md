@@ -10,8 +10,10 @@ site is built using the [Nikola](https://getnikola.com) static site generator.
 3. Clone the Cantera Jupyter examples: `git clone https://github.com/Cantera/cantera-jupyter.git`
 4. Clone the Cantera website source: `git clone https://github.com/Cantera/cantera-website.git`
 5. Enter the website repo: `cd cantera-website`
-6. Inside the website repo, install the required packages: `pip install -r requirements.txt`
-7. Build the website and open in browser: `nikola auto -b`
+6. Copy the current development documentation: `curl -O https://cantera.org/documentation/dev/dev-docs.tar.bz2`
+7. Extract the dev docs: `tar jxf dev-docs.tar.bz2 --strip-components=1 -C api-docs/dev`
+8. Inside the website repo, install the required packages: `pip install -r requirements.txt`
+9. Build the website and open in browser: `nikola auto -b`
 
 ## To add a language of examples
 
@@ -29,3 +31,11 @@ site is built using the [Nikola](https://getnikola.com) static site generator.
    2. `files`: An empty list that gets filled with the names of the examples in this category
    3. `summaries`: A empty dictionary that gets filled with keys that are the example filename and values that are the summary from that example
 4. Add a new key to that dictionary with the folder name as the key and fill in the `name` key in the nested dictionary and set the `files` and `summaries` keys to the empty list and empty dictionary, respectively
+
+## To add a version's release notes
+
+* To add the latest version's release notes: `nikola new_release`
+* To add release notes for a version by its tag name: `nikola new_release -t {tag_name}`
+    - Example: `nikola new_release -t v2.4.0`
+* To add release notes for a version by its release ID: `nikola new_release -i {id}`
+    - Example: `nikola new_release -i 12508904`

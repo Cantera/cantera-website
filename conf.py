@@ -272,6 +272,7 @@ TIMEZONE = "America/New_York"
 
 # This is the "production" version of this dictionary
 DOCS_FOLDERS = {
+    "api-docs/dev": "documentation/dev",
     "api-docs/docs-2.0": "documentation/docs-2.0",
     "api-docs/docs-2.1": "documentation/docs-2.1",
     "api-docs/docs-2.2": "documentation/docs-2.2",
@@ -1047,11 +1048,23 @@ MARKDOWN_EXTENSIONS = [
     "markdown.extensions.fenced_code",
     "markdown.extensions.codehilite",
     "markdown.extensions.extra",
+    "pymdownx.magiclink"
 ]
 
 # Options to be passed to markdown extensions (See https://python-markdown.github.io/reference/)
 # Default is {} (no config at all)
-# MARKDOWN_EXTENSION_CONFIGS = {}
+MARKDOWN_EXTENSION_CONFIGS = {
+    DEFAULT_LANG: {
+        "pymdownx.magiclink": {
+            "hide_protocol": True,
+            "repo_url_shortener": True,
+            "repo_url_shorthand": True,
+            "provider": "github",
+            "user": "Cantera",
+            "repo": "cantera"
+        }
+    }
+}
 
 
 # Extra options to pass to the pandoc command.

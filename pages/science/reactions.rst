@@ -13,25 +13,34 @@
       Here, we describe how Cantera calculates chemical reaction rates for various
       reaction types.
 
-Reactions with a Pressure-Independent Rate
-------------------------------------------
+Elementary Reactions
+--------------------
 
-The :cti:class:`reaction` entry is used to represent homogeneous reactions with
-pressure-independent rate coefficients and mass action kinetics.  Examples of
-reaction entries that implement some reactions in the GRI-Mech 3.0 natural gas
-combustion mechanism [#Smith1997]_ are shown below:
+The basic reaction type is a homogeneous reaction with a pressure-independent
+rate coefficient and mass action kinetics. For example:
 
-.. code:: python
+.. math::
 
-   units(length = 'cm', quantity = 'mol', act_energy = 'cal/mol')
-   ...
-   reaction( "O + H2 <=> H + OH", [3.87000E+04, 2.7, 6260])
-   reaction( "O + HO2 <=> OH + O2", [2.00000E+13, 0.0, 0])
-   reaction( "O + H2O2 <=> OH + HO2", [9.63000E+06, 2.0, 4000])
-   reaction( "O + HCCO <=> H + 2 CO", [1.00000E+14, 0.0, 0])
-   reaction( "H + O2 + AR <=> HO2 + AR", kf=Arrhenius(A=7.00000E+17, b=-0.8, E=0))
-   reaction( equation = "HO2 + C3H7 <=> O2 + C3H8", kf=Arrhenius(2.55000E+10, 0.255, -943))
-   reaction( equation = "HO2 + C3H7 => OH + C2H5 + CH2O", kf=[2.41000E+13, 0.0, 0])
+   \mathrm{A + B \rightleftharpoons C + D}
+
+with a forward rate constant :math:`k_f` defined as a modified Arrhenius function:
+
+.. math::
+
+   k_f = A T^b e^{-E_a / RT}
+
+where :math:`A` is the pre-exponential factor, :math:`T` is the temperature,
+:math:`b` is the temperature exponent, :math:`E_a` is the activation energy,
+and :math:`R` is the gas constant. The forward reaction rate is then calculated
+as:
+
+.. math::
+
+   R_f = [\mathrm{A}] [\mathrm{B}] k_f
+
+An elementary reaction can be defined in the CTI format using the
+:cti:class:`reaction` entry, or in the YAML format using the
+:ref:`elementary <sec-yaml-elementary>` reaction ``type``.
 
 Three-Body Reactions
 --------------------
@@ -58,48 +67,27 @@ These effects can be accounted for by defining a collision efficiency
 
 .. math::
 
-   k_f(T)[A][B][M]
+   R_f = [\mathrm{A}][\mathrm{B}][\mathrm{M}]k_f(T)
 
 where
 
 .. math::
 
-   [M] = \sum_{\mathrm{k}} \epsilon_{\mathrm{k}} C_{\mathrm{k}}
+   [\mathrm{M}] = \sum_{k} \epsilon_k C_k
 
-where :math:`C_{\mathrm{k}}` is the concentration of species :math:`\mathrm{k}`. Since any constant
+where :math:`C_k` is the concentration of species :math:`k`. Since any constant
 collision efficiency can be absorbed into the rate coefficient :math:`k_f(T)`, the default collision
 efficiency is 1.0.
 
-A three-body reaction may be defined using the :cti:class:`three_body_reaction`
-entry. The equation string for a three-body reaction must contain an ``'M'`` or
-``'m'`` on both the reactant and product sides of the equation. The collision
-efficiencies are specified as a string, with the species name followed by a
-colon and the efficiency.
-
-Some examples from GRI-Mech 3.0 are shown below:
-
-.. code:: python
-
-   three_body_reaction("2 O + M <=> O2 + M", [1.20000E+17, -1, 0],
-                       "AR:0.83 C2H6:3 CH4:2 CO:1.75 CO2:3.6 H2:2.4 H2O:15.4 ")
-
-   three_body_reaction("O + H + M <=> OH + M", [5.00000E+17, -1, 0],
-                       efficiencies="AR:0.7 C2H6:3 CH4:2 CO:1.5 CO2:2 H2:2 H2O:6 ")
-
-   three_body_reaction(
-       equation = "H + OH + M <=> H2O + M",
-       rate_coeff=[2.20000E+22, -2, 0],
-       efficiencies="AR:0.38 C2H6:3 CH4:2 H2:0.73 H2O:3.65 "
-   )
-
-As always, the field names are optional *if* the field values are entered in the
-declaration order.
+A three-body reaction may be defined in the CTI format using the
+:cti:class:`three_body_reaction` entry, or in the YAML format using the
+:ref:`three-body <sec-yaml-three-body>` reaction ``type``.
 
 Falloff Reactions
 -----------------
 
-A falloff reaction is one that has a rate that is first-order in :math:`[M]` at low
-pressure, like a three-body reaction, but becomes zero-order in :math:`[M]` as :math:`[M]`
+A falloff reaction is one that has a rate that is first-order in :math:`[\mathrm{M}]` at low
+pressure, like a three-body reaction, but becomes zero-order in :math:`[\mathrm{M}]` as :math:`[\mathrm{M}]`
 increases. Dissociation/association reactions of polyatomic molecules often
 exhibit this behavior.
 
@@ -137,6 +125,10 @@ This expression is used to compute the rate coefficient for falloff
 reactions. The function :math:`F(T, P_r)` is the falloff function, and is
 specified by assigning an embedded entry to the ``falloff`` field.
 
+A falloff reaction may be defined in the CTI format using the
+:cti:class:`falloff_reaction` entry, or in the YAML format using the
+:ref:`falloff <sec-yaml-falloff>` reaction ``type``.
+
 The Troe Falloff Function
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -155,8 +147,12 @@ al. [#Gilbert1983]_:
 
    N = 0.75 - 1.27\; \log_{10} F_{cent}
 
-The :cti:class:`Troe` directive requires specifying the first three parameters
-:math:`(A, T_3, T_1)`. The fourth parameter, :math:`T_2`, is optional, defaulting to 0.0.
+A Troe falloff function may be specified in the CTI format using the
+:cti:class:`Troe` directive, or in the YAML format using the
+:ref:`Troe <sec-yaml-falloff>` field in the reaction entry. The first
+three parameters, :math:`(A, T_3, T_1)`, are required. The fourth parameter,
+:math:`T_2`, is optional; if omitted, the last term of the falloff function is
+not used.
 
 .. _sec-sri-falloff:
 
@@ -174,7 +170,11 @@ given by:
    F(T, P_r) = d \bigl[a \exp(-b/T) + \exp(-T/c)\bigr]^{1/(1+\log_{10}^2 P_r )} T^e
 
 In keeping with the nomenclature of Kee et al. [#Kee1989]_, we will refer to this as
-the "SRI" falloff function. It is implemented by the :cti:class:`SRI` directive.
+the **SRI falloff function**.
+
+An SRI falloff function may be specified in the CTI format using the
+:cti:class:`SRI` directive, or in the YAML format using the
+:ref:`SRI <sec-yaml-falloff>` field in the entry.
 
 Chemically-Activated Reactions
 ------------------------------
@@ -193,35 +193,25 @@ which competes with:
    \mathrm{Si + SiH_4 (+M) \leftrightarrow Si_2H_4 (+M)}
 
 Like falloff reactions, chemically-activated reactions are described by
-blending between a "low pressure" and a "high pressure" rate expression. The
+blending between a low-pressure and a high-pressure rate expression. The
 difference is that the forward rate constant is written as being proportional
-to the *low pressure* rate constant:
+to the *low-pressure* rate constant:
 
 .. math::
 
    k_f(T, P_r) = k_0 \left(\frac{1}{1 + P_r}\right) F(T, P_r)
 
 and the optional blending function :math:`F` may described by any of the
-parameterizations allowed for falloff reactions. Chemically-activated
-reactions can be defined using the :cti:class:`chemically_activated_reaction`
-directive.
+parameterizations allowed for falloff reactions.
 
-An example of a reaction specified with this parameterization:
-
-.. code:: python
-
-   chemically_activated_reaction('CH3 + OH (+ M) <=> CH2O + H2 (+ M)',
-                                 kLow=[2.823201e+02, 1.46878, (-3270.56495, 'cal/mol')],
-                                 kHigh=[5.880000e-14, 6.721, (-3022.227, 'cal/mol')],
-                                 falloff=Troe(A=1.671, T3=434.782, T1=2934.21, T2=3919.0))
-
-In this example, the units of :math:`k_0` (``kLow``) are m\ :sup:`3`\ /kmol/s and the
-units of :math:`k_\infty` (``kHigh``) are 1/s.
+Chemically-activated reactions can be defined in the CTI format using the
+:cti:class:`chemically_activated_reaction` entry, or in the YAML format using
+the :ref:`chemically-activated <sec-yaml-chemically-activated>` reaction ``type``.
 
 Pressure-Dependent Arrhenius Rate Expressions (P-Log)
 -----------------------------------------------------
 
-The :cti:class:`pdep_arrhenius` class represents pressure-dependent reaction rates
+This parameterization represents pressure-dependent reaction rates
 by logarithmically interpolating between Arrhenius rate expressions at various
 pressures. Given two rate expressions at two specific pressures:
 
@@ -243,26 +233,15 @@ rate used in the interpolation formula is the sum of all the rates given at that
 pressure. For pressures outside the given range, the rate expression at the nearest
 pressure is used.
 
-An example of a reaction specified in this format:
-
-.. code:: python
-
-   pdep_arrhenius('R1 + R2 <=> P1 + P2',
-                  [(0.001315789, 'atm'), 2.440000e+10, 1.04, 3980.0],
-                  [(0.039473684, 'atm'), 3.890000e+10, 0.989, 4114.0],
-                  [(1.0, 'atm'), 3.460000e+12, 0.442, 5463.0],
-                  [(10.0, 'atm'), 1.720000e+14, -0.01, 7134.0],
-                  [(100.0, 'atm'), -7.410000e+30, -5.54, 12108.0],
-                  [(100.0, 'atm'), 1.900000e+15, -0.29, 8306.0])
-
-The first argument is the reaction equation. Each subsequent argument is a
-sequence of four elements specifying a pressure and the Arrhenius parameters at
-that pressure.
+P-log reactions can be defined in the CTI format using the
+:cti:class:`pdep_arrhenius` entry, or in the YAML format using the
+:ref:`pressure-dependent-Arrhenius <sec-yaml-pressure-dependent-Arrhenius>`
+reaction ``type``.
 
 Chebyshev Reaction Rate Expressions
 -----------------------------------
 
-Class :cti:class:`chebyshev_reaction` represents a phenomenological rate coefficient
+Chebyshev rate expressions represent a phenomenological rate coefficient
 :math:`k(T,P)` in terms of a bivariate Chebyshev polynomial. The rate constant
 can be written as:
 
@@ -288,24 +267,15 @@ are reduced temperatures and reduced pressures which map the ranges
 P_\mathrm{max})` to :math:`(-1, 1)`.
 
 A Chebyshev rate expression is specified in terms of the coefficient matrix
-:math:`\alpha` and the temperature and pressure ranges. An example of a
-Chebyshev rate expression where :math:`N_T = 6` and :math:`N_P = 4` is:
-
-.. code:: python
-
-   chebyshev_reaction('R1 + R2 <=> P1 + P2',
-                      Tmin=290.0, Tmax=3000.0,
-                      Pmin=(0.001, 'atm'), Pmax=(100.0, 'atm'),
-                      coeffs=[[-1.44280e+01,  2.59970e-01, -2.24320e-02, -2.78700e-03],
-                              [ 2.20630e+01,  4.88090e-01, -3.96430e-02, -5.48110e-03],
-                              [-2.32940e-01,  4.01900e-01, -2.60730e-02, -5.04860e-03],
-                              [-2.93660e-01,  2.85680e-01, -9.33730e-03, -4.01020e-03],
-                              [-2.26210e-01,  1.69190e-01,  4.85810e-03, -2.38030e-03],
-                              [-1.43220e-01,  7.71110e-02,  1.27080e-02, -6.41540e-04]])
+:math:`\alpha` and the temperature and pressure ranges.
 
 Note that the Chebyshev polynomials are not defined outside the interval
 :math:`(-1,1)`, and therefore extrapolation of rates outside the range of
 temperatures and pressure for which they are defined is strongly discouraged.
+
+Chebyshev reactions can be defined in the CTI format using the
+:cti:class:`chebyshev_reaction` entry, or in the YAML format using the
+:ref:`Chebyshev <sec-yaml-Chebyshev>` reaction ``type``.
 
 Surface Reactions
 -----------------
@@ -313,38 +283,26 @@ Surface Reactions
 Heterogeneous reactions on surfaces are represented by an extended Arrhenius-
 like rate expression, which combines the modified Arrhenius rate expression with
 further corrections dependent on the fractional surface coverages
-:math:`\theta_{\mathrm{k}}` of one or more surface species. The forward rate constant for a
+:math:`\theta_{k}` of one or more surface species. The forward rate constant for a
 reaction of this type is:
 
 .. math::
 
    k_f = A T^b \exp \left( - \frac{E_a}{RT} \right)
-      \prod_{\mathrm{k}} 10^{a_{\mathrm{k}} \theta_{\mathrm{k}}}
-      \theta_{\mathrm{k}}^{m_{\mathrm{k}}}
-      \exp \left( \frac{- E_{\mathrm{k}} \theta_{\mathrm{k}}}{RT} \right)
+      \prod_k 10^{a_k \theta_k}
+      \theta_k^{m_k}
+      \exp \left( \frac{- E_k \theta_k}{RT} \right)
 
 where :math:`A`, :math:`b`, and :math:`E_a` are the modified Arrhenius
-parameters and :math:`a_{\mathrm{k}}`, :math:`m_{\mathrm{k}}`, and :math:`E_{\mathrm{k}}` are the coverage
-dependencies from species :math:`\mathrm{k}`. A reaction of this form with a single coverage
-dependency (on the species ``H(S)``) can be written using class
-:cti:class:`surface_reaction` with the ``coverage`` keyword argument supplied to the
-class :cti:class:`Arrhenius`:
+parameters and :math:`a_k`, :math:`m_k`, and :math:`E_k` are the coverage
+dependencies from species :math:`k`.
 
-.. code:: python
-
-   surface_reaction("2 H(S) => H2 + 2 PT(S)",
-                    Arrhenius(A, b, E_a,
-                              coverage=['H(S)', a_1, m_1, E_1]))
-
-For a reaction with multiple coverage dependencies, the following syntax is
-used:
-
-.. code:: python
-
-   surface_reaction("2 H(S) => H2 + 2 PT(S)",
-                    Arrhenius(A, b, E_a,
-                              coverage=[['H(S)', a_1, m_1, E_1],
-                                        ['PT(S)', a_2, m_2, E_2]]))
+Surface reactions can be defined in the CTI format using the
+:cti:class:`surface_reaction` entry, with coverage information provided using
+the ``coverage`` keyword argument supplied to the :cti:class:`Arrhenius`
+directive. In the YAML format, surface reactions are identified by the presence
+of surface species and support several
+:ref:`additional options <sec-yaml-interface-reaction>`.
 
 Sticking Coefficients
 ~~~~~~~~~~~~~~~~~~~~~
@@ -372,11 +330,11 @@ where :math:`\Gamma_\mathrm{tot}` is the total molar site density, :math:`m` is
 the sum of all the surface reactant stoichiometric coefficients, and :math:`W`
 is the molecular weight of the gas phase species.
 
-A reaction of this form can be written as:
+.. TODO: Link to :cti:class:`stick` after 2.5.0 release adds that to the docs
 
-.. code:: python
-
-   surface_reaction("H2O + PT(S) => H2O(S)", stick(a, b, c))
+Sticking reactions can be defined in the CTI format using the `stick` entry, or
+in the YAML format by specifying the rate constant in the reaction's
+:ref:`sticking-coefficient <sec-yaml-interface-reaction>` field.
 
 Additional Options
 ------------------
@@ -399,13 +357,6 @@ the forward rate constant might be given as [#Westbrook1981]_:
    k_f = 4.6 \times 10^{11} [\mathrm{C_8H_{18}}]^{0.25} [\mathrm{O_2}]^{1.5}
           \exp\left(\frac{30.0\,\mathrm{kcal/mol}}{RT}\right)
 
-This reaction could be defined as:
-
-.. code:: python
-
-   reaction("C8H18 + 12.5 O2 => 8 CO2 + 9 H2O", [4.6e11, 0.0, 30.0],
-            order="C8H18:0.25 O2:1.5")
-
 Special care is required in this case since the units of the pre-exponential
 factor depend on the sum of the reaction orders, which may not be an integer.
 
@@ -413,22 +364,8 @@ Note that you can change reaction orders only for irreversible reactions.
 
 Normally, reaction orders are required to be positive. However, in some cases
 negative reaction orders are found to be better fits for experimental data. In
-these cases, the default behavior may be overridden by adding
-``negative_orders`` to the reaction options like the following:
+these cases, the default behavior may be overridden in the input file.
 
-.. code:: python
-
-   reaction("C8H18 + 12.5 O2 => 8 CO2 + 9 H2O", [4.6e11, 0.0, 30.0],
-            order="C8H18:-0.25 O2:1.75", options=['negative_orders'])
-
-Some global reactions could have reactions orders for non-reactant species. One
-should add ``nonreactant_orders`` to the reaction options to use this feature:
-
-.. code:: python
-
-   reaction("C8H18 + 12.5 O2 => 8 CO2 + 9 H2O", [4.6e11, 0.0, 30.0],
-            order="C8H18:-0.25 CO:0.15",
-            options=['negative_orders', 'nonreactant_orders'])
 
 .. rubric:: References
 
