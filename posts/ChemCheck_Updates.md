@@ -1,9 +1,9 @@
 ---
-title: GSoC 2019 Fourth Blog
+title: ChemCheck_Updates
 date: 2020-03-16 14:50 UTC-18:50
-slug: GSoC_2019_Fourth_Blog
-tags: GSoC 2019
-description: 2019 Google Summer of Code Cantera Project Blog
+slug: ChemCheck_Update
+tags: nsf
+description: The updates for ChemCheck
 type: text
 author: Chao Xu
 ---
