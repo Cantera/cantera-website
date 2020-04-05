@@ -90,4 +90,4 @@ Acknowledgements
 ~~~~~~~~~~~~~~~~
 
 This document was inspired by the `conda-forge governance guidelines
-<https://conda-forge.org/docs/governance.html>`__.
+<https://conda-forge.org/docs/orga/governance.html>`__.

@@ -174,7 +174,7 @@ Optional Programs
   * `matlabdomain <https://pypi.org/project/sphinxcontrib-matlabdomain>`__
   * `katex <https://github.com/hagenw/sphinxcontrib-katex/>`__
 
-* `Doxygen <http://www.stack.nl/~dimitri/doxygen/>`__
+* `Doxygen <http://doxygen.nl/>`__
 
   * Required for building the C++ API Documentation
   * Version 1.8 or newer is recommended.

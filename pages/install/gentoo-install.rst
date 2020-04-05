@@ -63,4 +63,3 @@ library). Matplotlib is required to run some of the Python examples. These packa
 .. code-block:: bash
 
     emerge --ask ipython matplotlib
-
