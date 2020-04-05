@@ -99,8 +99,8 @@ independent of the equation of state. For example, it implements methods
 ``temperature()`` and ``setTemperature()``, since the temperature value is
 stored internally.
 
-* `Classes that inherit from ThermoPhase <{{% ct_docs doxygen/html/group__thermoprops.html %}}>`__
-* `Classes that handle standard states for species <{{% ct_docs doxygen/html/group__spthermo.html %}}>`__
+* `Classes that inherit from ThermoPhase <{{% ct_docs doxygen/html/dd/db1/group__thermoprops.html %}}>`__
+* `Classes that handle standard states for species <{{% ct_docs doxygen/html/d1/de1/group__spthermo.html %}}>`__
 
 Example Program
 ===============
@@ -132,8 +132,8 @@ of matter derive.
 
 See `ThermoPhase`_ for the full list of available thermodynamic properties.
 
-.. _ThermoPhase: {{% ct_docs doxygen/html/classCantera_1_1ThermoPhase.html %}}
-.. _IdealGasPhase: {{% ct_docs doxygen/html/classCantera_1_1IdealGasPhase.html %}}
+.. _ThermoPhase: {{% ct_docs doxygen/html/dc/d38/classCantera_1_1ThermoPhase.html %}}
+.. _IdealGasPhase: {{% ct_docs doxygen/html/d7/dfa/classCantera_1_1IdealGasPhase.html %}}
 
 .. container:: container
 

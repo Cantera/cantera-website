@@ -85,7 +85,7 @@ each species present, the non-dimensional chemical potential is also printed.
 This is handy particularly when doing equilibrium calculations. This function
 is very useful to see at a glance the state of some phase.
 
-.. _CanteraError: {{% ct_docs doxygen/html/classCantera_1_1CanteraError.html %}}
+.. _CanteraError: {{% ct_docs doxygen/html/db/ddf/classCantera_1_1CanteraError.html %}}
 
 .. container:: container
 
