@@ -27,7 +27,7 @@ script:
         --checksum
         --rsh='ssh -i ./.ci_support/ctdeploy_key'
         --filter='P /mw_headers.git'
-        --filter='P /documentation/dev'
+        --filter='P /documentation/dev/*'
         --exclude='*.map'
         --exclude='*.md5'
         --delete
