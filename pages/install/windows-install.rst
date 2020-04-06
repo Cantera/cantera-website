@@ -54,9 +54,9 @@
   not using the Python interface to Cantera.
 
 - Cantera can also be used with alternative Python distributions such as the
-  Enthought `Canopy <https://www.enthought.com/product/canopy/>`_
-  distribution. These distributions will generally be based on the 64-bit
-  version of Python 2.7, and will include Numpy as well as many other
+  `Enthought distribution <https://www.enthought.com/enthought-deployment-manager/>`__.
+  These distributions will generally be based on the 64-bit
+  version of Python, and will include Numpy as well as many other
   packages useful for scientific users.
 
 **Install the Visual C++ Redistributable for Visual Studio 2015**

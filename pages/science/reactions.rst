@@ -378,7 +378,7 @@ these cases, the default behavior may be overridden in the input file.
    W. Moriarty, Boris Eiteneer, Mikhail Goldenberg, C. Thomas Bowman, Ronald
    K. Hanson, Soonho Song, William C. Gardiner, Jr., Vitali V. Lissianski, , and
    Zhiwei Qin. GRI-Mech version 3.0, 1997. see
-   http://www.me.berkeley.edu/gri_mech.
+   http://combustion.berkeley.edu/gri-mech/version30/text30.html.
 
 .. [#Stewart1989] P. H. Stewart, C. W. Larson, and D. Golden.
    *Combustion and Flame*, 75:25, 1989.
