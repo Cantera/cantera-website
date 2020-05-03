@@ -142,8 +142,8 @@ too:
 
 .. code:: matlabsession
 
-    >> set(gas1, 'Temperature', 900.0, 'Pressure', 1.e5, 'MoleFractions',...
-    >>                                 'CH4:1,O2:2,N2:7.52');
+    >> set(gas1, 'Temperature', 900.0, 'Pressure', 1.e5, 'MoleFractions', ...
+           'CH4:1,O2:2,N2:7.52');
 
 The :mat:func:`ThermoPhase.set` method also accepts abbreviated property names:
 
@@ -226,7 +226,7 @@ from file ``diamond.cti``:
     >> gas2 = Solution('diamond.cti', 'gas');        % a gas
     >> diamond = Solution('diamond.cti','diamond');  % bulk diamond
     >> diamonnd_surf = importInterface('diamond.cti','diamond_100',...
-    >>                              gas2, diamond);
+                                       gas2, diamond);
 
 Note that the bulk (3D) phases that participate in the surface
 reactions must also be passed as arguments to :mat:func:`importInterface`.
@@ -305,7 +305,7 @@ Interfaces can be imported from XML files too:
 .. code:: matlabsession
 
    >> diamonnd_surf2 = importInterface('diamond.xml','diamond_100',...
-   >>                                gas2, diamond);
+                                       gas2, diamond);
 
 Let's clear out all our Matlab and Cantera objects, before we move on:
 

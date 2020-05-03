@@ -1,4 +1,4 @@
-/* This code is copied from the Python Software Foundation's copybutton.js, which can be found at: 
+/* This code is copied from the Python Software Foundation's copybutton.js, which can be found at:
  * https://github.com/python/python-docs-theme/blob/master/python_docs_theme/static/copybutton.js
  *
  * Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
@@ -8,7 +8,7 @@ $(document).ready(function () {
     /* Add a [>>>] button on the top-right corner of code samples to hide
      * the >>> and ... prompts and the output and thus make the code
      * copyable. */
-    var div = $('.highlight')
+    var div = $('.highlight');
     var pre = div.find('pre');
 
     // get the styles from the current theme
