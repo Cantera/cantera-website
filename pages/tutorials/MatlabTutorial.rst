@@ -464,10 +464,9 @@ Stoichiometric coefficients
 .. code:: matlabsession
 
     >> set(g,'T',1500,'P',oneatm,'X',ones(nSpecies(g),1));
-    >> nu_r   = stoich_r(g)    % reactant stoichiometric coefficient mstix
-    >> nu_p   = stoich_p(g)    % product stoichiometric coefficient mstix
-    >> nu_net = stoich_net(g)  % net (product - reactant) stoichiometric
-    >>                         % coefficient mstix
+    >> nu_r = stoich_r(g) % reactant stoichiometric coefficient matrix
+    >> nu_p = stoich_p(g) % product stoichiometric coefficient matrix
+    >> nu_net = stoich_net(g)  % net (product - reactant) stoichiometric coefficient matrix
 
 For any of these, the ``(k,i)`` matrix element is the stoichiometric
 coefficient of species :math:`k` in reaction :math:`i`. Since these coefficient
@@ -536,9 +535,9 @@ Reaction equations
 
 .. code:: matlabsession
 
-    >> e8    = reactionEqn(g,8)     % equation for reaction 8
+    >> e8 = reactionEqn(g,8)     % equation for reaction 8
     >> e1_10 = reactionEqn(g,1:10)  % equation for rxns 1 - 10
-    >> eqs   = reactionEqn(g)       % all equations
+    >> eqs = reactionEqn(g)       % all equations
 
 Equilibrium constants
 ~~~~~~~~~~~~~~~~~~~~~
