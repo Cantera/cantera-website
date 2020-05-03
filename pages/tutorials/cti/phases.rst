@@ -69,7 +69,7 @@ example, if a phase definition specifies the elements as:
 then when this definition is imported by an application, element-specific
 properties will be ordered in the same way:
 
-.. code:: python
+.. code:: pycon
 
    >>> import cantera as ct
    >>> gas = ct.Solution(source=s)
@@ -330,7 +330,7 @@ reaction mechanism, as follows:
 If we import this into Matlab, for example, we get a gas mixture containing the
 8 species (out of 53 total) that contain only H and O:
 
-.. code:: matlab
+.. code:: matlabsession
 
    >> gas = Solution('gas.cti', 'hydrogen_mech')
 
