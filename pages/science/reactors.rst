@@ -322,26 +322,30 @@ to the reactors previously mentioned:
   detail of how the wall affects the connected reactors.
 
 - :py:class:`Valve`: A valve is a flow devices with mass flow rate that is a function of
-  the pressure drop across it. The default behavior is linear:
+  the pressure drop across it. The mass flow rate is computed as:
 
   .. math::
 
-     \dot m = K_v (P_1 - P_2)
+     \dot m = c g(t) f(\Delta P)
 
-  if :math:`P_1 > P_2.` Otherwise, :math:`\dot m = 0`. However, an arbitrary
-  function can also be specified, such that
+  with *c* being a proportionality constant. Further, *g* and *f* are functions
+  of time :math:`t` and pressure drop :math:`\Delta P` that are set by class
+  methods :py:meth:`setTimeFunction` and :py:meth:`setPressureFunction`,
+  respectively. If no functions are specified, the mass flow rate defaults to:
 
   .. math::
 
-     \dot m = F(P_1 - P_2)
+     \dot m = c \Delta P
 
-  if :math:`P_1 > P_2`, or :math:`\dot m = 0` otherwise. It is never possible
-  for the flow to reverse and go from the downstream to the upstream
-  reactor/reservoir through a line containing a Valve object.
+  The pressure difference between upstream (*1*) and downstream (*2*) reservoir
+  is defined as :math:`\Delta P = P_1 - P_2`. It is never possible for the
+  flow to reverse and go from the downstream to the upstream reactor/reservoir
+  through a line containing a Valve object, which means that the flow rate is
+  set to zero if :math:`P_1 < P_2`.
 
   Valve objects are often used between an upstream reactor and a downstream
   reactor or reservoir to maintain them both at nearly the same pressure. By
-  setting the constant :math:`K_v` to a sufficiently large value, very small
+  setting the constant :math:`c` to a sufficiently large value, very small
   pressure differences will result in flow between the reactors that counteracts
   the pressure difference.
 
@@ -351,11 +355,18 @@ to the reactors previously mentioned:
 
   .. math::
 
-     \dot m = \max(\dot m_0, 0.0)
+     \dot m = m g(t)
 
-  where :math:`\dot m_0` is either a constant value or a function of time. Note
-  that if :math:`\dot m_0 < 0`, the mass flow rate will be set to zero, since
-  reversal of the flow direction is not allowed.
+  where *m* is a mass flow coefficient and *g* is a function of time that is set
+  by the class method :py:meth:`setTimeFunction`. If no function is specified,
+  the mass flow rate defaults to:
+
+  .. math::
+
+     \dot m = m
+
+  Note that if :math:`\dot m < 0`, the mass flow rate will be set to zero,
+  since a reversal of the flow direction is not allowed.
 
   Unlike a real mass flow controller, a :py:class:`MassFlowController` object will maintain
   the flow even if the downstream pressure is greater than the upstream
@@ -374,7 +385,19 @@ to the reactors previously mentioned:
 
   .. math::
 
-     \dot m = \dot m_{\mathrm{master}} + K_v(P_1 - P_2).
+     dot m = \dot m_{\mathrm{master}} + c f(\Delta P)
+
+  where *c* is a proportionality constant and *f* is a function of pressure drop
+  :math:`\Delta P = P_1 - P_2` that is set by the class method
+  :py:meth:`setPressureFunction`. If no function is specified, the mass flow rate
+  defaults to:
+
+  .. math::
+
+     \dot m = \dot m_{\mathrm{master}} + c \Delta P
+
+  Note that if :math:`\dot m < 0`, the mass flow rate will be set to zero,
+  since a reversal of the flow direction is not allowed.
 
 Time Integration
 ----------------
