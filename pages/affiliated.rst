@@ -41,6 +41,13 @@ post on the `Google Users' Group <https://groups.google.com/forum/#!forum/canter
 
 ------------
 
+**Frhodo**: a GUI-based application for simulating experimental data and optimizing chemical kinetics mechanisms.
+
+| `Repository <https://github.com/Argonne-National-Laboratory/Frhodo>`__
+| Maintainer(s): Travis Sikes, Robert Tranter
+
+------------
+
 **PoKITT**: a library for Portable Kinetics, Thermodynamics, and Transport calculations.
 
 | `Repository <https://gitlab.multiscale.utah.edu/common/PoKiTT>`__
