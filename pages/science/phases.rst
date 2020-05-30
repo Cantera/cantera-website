@@ -50,6 +50,83 @@ A stoichiometric solid can be defined in the CTI format using the
 :cti:class:`stoichiometric_solid` entry, or in the YAML format by specifying
 :ref:`fixed-stoichiometry <sec-yaml-fixed-stoichiometry>` in the ``thermo`` field.
 
+Plasma
+------
+
+The **plasma** model support the features in **ideal gas** model. In addition, it calculate electron
+energy distribution function (EEDF) and EEDF-dependent properties, which includes electron transport
+properties and plasma reaction rate coefficients. The electron Boltzmann equation in an ionized gas is
+
+.. math::
+
+   \frac{\partial f}{\partial t} + \bm{v} \cdot \nabla f - \frac{e}{m}\bm{E} \cdot \nabla_\bm{v} f = C[f],
+
+where :math:`f` is the electron distribution in six-dimensional phase space,
+:math:`\bm{v}` are the velocity coordinates, :math:`e` is the elementary charge,
+:math:`m` is the electron mass, :math:`\bm{E}` is the electric field,
+:math:`\nabla_\bm{v}` is the velocity-gradient operator and
+:math:`C` represents the rate of change in :math:`f` due to collisions.
+
+
+Weakly-Ionized Gas Model
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+This model assumes that the electron number density is low so that the collision between two electrons
+is neglected. The EEDF can be calculated by the electron Boltzmann equation with two-term approximation
+[#Hag2005]_,
+
+.. math::
+
+   \frac{d}{d \epsilon}\left(\tilde{W} F_0 - \tilde{D} \frac{d F_0}{d \epsilon}\right)
+   = \tilde{S},
+
+.. math::
+
+   \tilde{W} = -\gamma\epsilon^2\sigma_{\epsilon},
+
+.. math::
+
+   \tilde{D} = \frac{\gamma}{3} \left(\frac{E}{N} \right)^2 \frac{\epsilon}{\tilde{\sigma}_m} +
+                 \frac{\gamma k_B T}{e} \epsilon^2 \sigma_{\epsilon},
+
+.. math::
+
+   \tilde{S} = \sum_{k} \tilde{C}_{0,k} + G,
+
+where :math:`\gamma = (\frac{2 e}{m})^{1/2}`, :math:`\epsilon` is the electron energy,
+:math:`\sigma_{\epsilon}` is the total elastic collision cross section,
+:math:`E` is electric field strength, :math:`N` is gas number density,
+:math:`\tilde{\sigma}_m` is the effective total momentum-transfer cross section,
+:math:`k_B` is Boltzmann constant, :math:`e` is the elementary charge,
+:math:`\tilde{C}_{0,k}` represents the rate of change in EEDF due to collisions,
+:math:`k` is the index of inelastic collision process, and :math:`F_0` is the normalized EEDF.
+
+The inelastic collision terms are,
+
+.. math::
+
+   \tilde{C}_{0,k} = -\gamma X_k \epsilon \sigma_k F_0
+                                \big|^{\epsilon=\epsilon}_{\epsilon=\epsilon + u_k},
+
+.. math::
+
+   \tilde{C}_{0,k} = -\gamma X_k \epsilon \sigma_k F_0
+                                \big|^{\epsilon=\epsilon}_{\epsilon=2\epsilon + u_k},
+
+.. math::
+
+   \tilde{C}_{0,k} = -\gamma X_k \epsilon \sigma_k F_0,
+
+respectively for excitation, ionization, and attchment collision processes. The exponential temporal growth
+model is used to calculate :math:`G`.
+
+.. math::
+
+   G = \left[ \int_0^\infty \left(\sum_{k=ionization} X_k \sigma_k - \sum_{k=attachment} X_k \sigma_k \right)
+       \epsilon F_0 d \epsilon \right] \epsilon^{1/2} F_0,
+
+where :math:`X_k` is the mole fraction of the target species, and :math:`\sigma_k` is the cross section.
+
 Interfaces
 ##########
 
@@ -89,3 +166,7 @@ field.
 
 .. [#Kee2017] R. J. Kee, M. E. Coltrin, P. Glarborg, and H. Zhu. *Chemically Reacting Flow:
    Theory and Practice*. 2nd Ed. John Wiley and Sons, 2017.
+
+.. [#Hag2005] G. J. M. Hagelaar and L. C. Pitchford. Solving the Boltzmann equation
+   to obtain electron transport coefficients and rate coefficients for fluid models.
+   *Plasma Sources Science and Technology* 14.4:722, 2005.
