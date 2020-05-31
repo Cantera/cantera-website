@@ -336,6 +336,64 @@ Sticking reactions can be defined in the CTI format using the `stick` entry, or
 in the YAML format by specifying the rate constant in the reaction's
 :ref:`sticking-coefficient <sec-yaml-interface-reaction>` field.
 
+
+Electron-Temperature Reactions
+------------------------------
+
+A electron-temperautre reaction is usually of the form (but not limited to):
+
+.. math::
+
+   \mathrm{A + B} + e \rightleftharpoons \mathrm{A^- + B}
+
+where :math:`e` represents electron. It is common in a non-equilibrium plasma that the electron
+temperature is much higher than the gas temperature. Therefore, the Arrhenius function is modified
+to depend on the electron temperature. According to reactions (45) and (46) in Kossyi et al. 
+[#Kossyi1992]_, the forward reaction rate coefficient
+:math:`k_f` can be expressed as
+
+.. math::
+
+   k_f = A T_e^b e^{-E_{a,T} / RT} e^{-E_{a,T_e} / RT_e}
+
+where :math:`A` is the pre-exponential factor, :math:`T` is the temperature,
+:math:`b` is the temperature exponent, :math:`E_{a,T}` is the activation energy of gas temperature,
+:math:`E_{a,T_e}` is the activation energy of electron temperature, and :math:`R` is the gas constant.
+
+Plasma Reactions
+----------------
+
+A plasma reaction represents an rection for inelastic electron-molecule collision process. The 
+reactants of plasma reaction are limited to one electron plus one molecule. The products of plasma
+reaction can be different than just one electron and one molecule if the reaction is not set to
+reversible. The rate coefficient and the reverse rate coefficient are calculated with electron
+energy density function (EEDF) and the cross-section of the collision process by
+``PlasmaPhase::rateCoefficient`` and ``PlasmaPhase::reverseRateCoefficient`` respectively. The
+fisrt example represents a reversible reaction for the collision process of excitation,
+
+.. math::
+
+   \mathrm{A} + e \rightleftharpoons \mathrm{A^*} + e,
+
+where :math:`\mathrm{A^*}` is an excited state of molecule :math:`\mathrm{A}`. The second example
+represents an irreversible reaction for the collision process of dissociation,
+
+.. math::
+
+   \mathrm{AB} + e \rightarrow \mathrm{A + B} + e,
+
+The third example represents an irreversible reaction for the collision process of ionization,
+
+.. math::
+
+   \mathrm{A} + e \rightarrow \mathrm{A^+} + e + e,
+
+The forth example represents an irreversible reaction for the collision process of attachment,
+
+.. math::
+
+   \mathrm{A} + e \rightarrow \mathrm{A^-}. 
+
 Additional Options
 ------------------
 
@@ -390,3 +448,7 @@ these cases, the default behavior may be overridden in the input file.
 .. [#Westbrook1981] C. K. Westbrook and F. L. Dryer. Simplified reaction
    mechanisms for the oxidation of hydrocarbon fuels in flames. *Combustion
    Science and Technology* **27**, pp. 31--43. 1981.
+
+.. [#Kossyi1992] I. A. Kossyi, A. Y. Kostinsky, A. A. Matveyev, and V. P. Silakov,
+   Kinetic scheme of the non-equilibrium discharge in nitrogen-oxygen mixtures.
+   *Plasma Sources Science and Technology*, 1.3:207, 1992.
