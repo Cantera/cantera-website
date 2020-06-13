@@ -1,21 +1,17 @@
-
-
 <!DOCTYPE html>
-
 <html prefix="
 og: http://ogp.me/ns# article: http://ogp.me/ns/article#
-"
-lang="en">
+" lang="en">
 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>One-Dimensional Reacting Flows | Cantera </title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
-  <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/cantera.css" type="text/css">
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-  <link rel="stylesheet" href="../_static/katex-math.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/katex-math.css" type="text/css">
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -23,9 +19,9 @@ lang="en">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../_static/katex_autorenderer.js"></script>
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" sizes="16x16"/>
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" sizes="16x16">
 
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="search" title="Search" href="../search.html">
   </head>
   <body>
   <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -81,19 +77,19 @@ lang="en">
                 <div class="body" role="main">
 
   <div class="section" id="one-dimensional-reacting-flows">
-<h1>One-Dimensional Reacting Flows<a class="headerlink" href="#one-dimensional-reacting-flows" title="Permalink to this headline">¶</a></h1>
+<h1>One-Dimensional Reacting Flows<a class="headerlink" href="#one-dimensional-reacting-flows" title="Permalink to this headline">&#182;</a></h1>
 <div class="section" id="domain1d">
-<h2>Domain1D<a class="headerlink" href="#domain1d" title="Permalink to this headline">¶</a></h2>
+<h2>Domain1D<a class="headerlink" href="#domain1d" title="Permalink to this headline">&#182;</a></h2>
 <dl class="class">
 <dt id="Domain1D">
-<em class="property">class </em><code class="descname">Domain1D</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Domain1D</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Domain1D class constructor.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>a</strong> – <p>Integer type of domain. Possible values are</p>
+<li><strong>a</strong> &#8211; <p>Integer type of domain. Possible values are</p>
 <ul>
 <li>1 - Stagnation Flow</li>
 <li>2 - Inlet1D</li>
@@ -105,10 +101,10 @@ lang="en">
 <li>-2 - OutletRes</li>
 </ul>
 </li>
-<li><strong>b</strong> – Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> (for <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">1</span></code>)
+<li><strong>b</strong> &#8211; Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> (for <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">1</span></code>)
 or <a class="reference internal" href="importing.html#Interface" title="Interface"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Interface()</span></code></a> (for <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">6</span></code>). Not used for
 all other valid values of <code class="docutils literal notranslate"><span class="pre">a</span></code>.</li>
-<li><strong>c</strong> – Integer, either 1 or 2, indicating whether an axisymmetric
+<li><strong>c</strong> &#8211; Integer, either 1 or 2, indicating whether an axisymmetric
 stagnation flow or a free flame should be created. If not
 specified, defaults to 1. Ignored if <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">!=</span> <span class="pre">1</span></code>.</li>
 </ul>
@@ -118,13 +114,13 @@ specified, defaults to 1. Ignored if <code class="docutils literal notranslate">
 </table>
 <dl class="function">
 <dt id="Domain1D.AxiStagnFlow">
-<code class="descname">AxiStagnFlow</code><span class="sig-paren">(</span><em>gas</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.AxiStagnFlow" title="Permalink to this definition">¶</a></dt>
+<code class="descname">AxiStagnFlow</code><span class="sig-paren">(</span><em>gas</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.AxiStagnFlow" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get an axisymmetric stagnation flow domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gas</strong> – Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gas</strong> &#8211; Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Domain1D instance representing an axisymmetric
 stagnation flow.</td>
@@ -135,15 +131,15 @@ stagnation flow.</td>
 
 <dl class="function">
 <dt id="Domain1D.AxisymmetricFlow">
-<code class="descname">AxisymmetricFlow</code><span class="sig-paren">(</span><em>gas</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.AxisymmetricFlow" title="Permalink to this definition">¶</a></dt>
+<code class="descname">AxisymmetricFlow</code><span class="sig-paren">(</span><em>gas</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.AxisymmetricFlow" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create an axisymmetric flow domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>gas</strong> – Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a></li>
-<li><strong>id</strong> – String, ID of the flow</li>
+<li><strong>gas</strong> &#8211; Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a></li>
+<li><strong>id</strong> &#8211; String, ID of the flow</li>
 </ul>
 </td>
 </tr>
@@ -156,15 +152,15 @@ stagnation flow.</td>
 
 <dl class="function">
 <dt id="Domain1D.Inlet">
-<code class="descname">Inlet</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.Inlet" title="Permalink to this definition">¶</a></dt>
+<code class="descname">Inlet</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.Inlet" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create an inlet domain.</p>
 <p>Note that an inlet can only be a terminal domain - it must be
 either the leftmost or rightmost domain in a stack.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> – String name of the inlet.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> &#8211; String name of the inlet.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a> representing an inlet.</td>
 </tr>
@@ -174,13 +170,13 @@ either the leftmost or rightmost domain in a stack.</p>
 
 <dl class="function">
 <dt id="Domain1D.Outlet">
-<code class="descname">Outlet</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.Outlet" title="Permalink to this definition">¶</a></dt>
+<code class="descname">Outlet</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.Outlet" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create an outlet domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> – String ID of the outlet.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> &#8211; String ID of the outlet.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a> representing an outlet.</td>
 </tr>
@@ -190,11 +186,11 @@ either the leftmost or rightmost domain in a stack.</p>
 
 <dl class="function">
 <dt id="Domain1D.OutletRes">
-<code class="descname">OutletRes</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.OutletRes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">OutletRes</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.OutletRes" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create an outlet reservoir domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Instance of <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a> representing an outlet
 reservoir.</td>
@@ -205,15 +201,15 @@ reservoir.</td>
 
 <dl class="function">
 <dt id="Domain1D.Surface">
-<code class="descname">Surface</code><span class="sig-paren">(</span><em>id</em>, <em>surface_mech</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.Surface" title="Permalink to this definition">¶</a></dt>
+<code class="descname">Surface</code><span class="sig-paren">(</span><em>id</em>, <em>surface_mech</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.Surface" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a surface domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>id</strong> – String ID of surface</li>
-<li><strong>surface_mech</strong> – Instance of class <a class="reference internal" href="importing.html#Interface" title="Interface"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Interface()</span></code></a> defining
+<li><strong>id</strong> &#8211; String ID of surface</li>
+<li><strong>surface_mech</strong> &#8211; Instance of class <a class="reference internal" href="importing.html#Interface" title="Interface"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Interface()</span></code></a> defining
 the surface reaction mechanism to be used. Optional.</li>
 </ul>
 </td>
@@ -228,13 +224,13 @@ non-reacting or reacting surface.</p>
 
 <dl class="function">
 <dt id="Domain1D.SymmPlane">
-<code class="descname">SymmPlane</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.SymmPlane" title="Permalink to this definition">¶</a></dt>
+<code class="descname">SymmPlane</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.SymmPlane" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a symmetry plane domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> – String ID of the symmetry plane.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> &#8211; String ID of the symmetry plane.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a> representing a symmetry
 plane.</td>
@@ -245,15 +241,15 @@ plane.</td>
 
 <dl class="function">
 <dt id="Domain1D.componentIndex">
-<code class="descname">componentIndex</code><span class="sig-paren">(</span><em>d</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.componentIndex" title="Permalink to this definition">¶</a></dt>
+<code class="descname">componentIndex</code><span class="sig-paren">(</span><em>d</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.componentIndex" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the index of a component given its name.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>name</strong> – String name of the component to look up. If a numeric value
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>name</strong> &#8211; String name of the component to look up. If a numeric value
 is passed, it will be returned.</li>
 </ul>
 </td>
@@ -267,15 +263,15 @@ is passed, it will be returned.</li>
 
 <dl class="function">
 <dt id="Domain1D.componentName">
-<code class="descname">componentName</code><span class="sig-paren">(</span><em>d</em>, <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.componentName" title="Permalink to this definition">¶</a></dt>
+<code class="descname">componentName</code><span class="sig-paren">(</span><em>d</em>, <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.componentName" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the name of a component given its index.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>n</strong> – Integer or vector of integers of components’ names
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>n</strong> &#8211; Integer or vector of integers of components&#8217; names
 to get.</li>
 </ul>
 </td>
@@ -289,13 +285,13 @@ to get.</li>
 
 <dl class="function">
 <dt id="Domain1D.disableEnergy">
-<code class="descname">disableEnergy</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.disableEnergy" title="Permalink to this definition">¶</a></dt>
+<code class="descname">disableEnergy</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.disableEnergy" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Disable the energy equation.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -303,13 +299,13 @@ to get.</li>
 
 <dl class="function">
 <dt id="Domain1D.domainIndex">
-<code class="descname">domainIndex</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.domainIndex" title="Permalink to this definition">¶</a></dt>
+<code class="descname">domainIndex</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.domainIndex" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the domain index.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">This function returns an integer flag denoting the location
 of the domain, beginning with 1 at the left.</td>
@@ -320,13 +316,13 @@ of the domain, beginning with 1 at the left.</td>
 
 <dl class="function">
 <dt id="Domain1D.domainType">
-<code class="descname">domainType</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.domainType" title="Permalink to this definition">¶</a></dt>
+<code class="descname">domainType</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.domainType" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the type of domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">This function returns an integer flag denoting the domain
 type.</td>
@@ -337,13 +333,13 @@ type.</td>
 
 <dl class="function">
 <dt id="Domain1D.enableEnergy">
-<code class="descname">enableEnergy</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.enableEnergy" title="Permalink to this definition">¶</a></dt>
+<code class="descname">enableEnergy</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.enableEnergy" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Enable the energy equation.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -351,15 +347,15 @@ type.</td>
 
 <dl class="function">
 <dt id="Domain1D.gridPoints">
-<code class="descname">gridPoints</code><span class="sig-paren">(</span><em>d</em>, <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.gridPoints" title="Permalink to this definition">¶</a></dt>
+<code class="descname">gridPoints</code><span class="sig-paren">(</span><em>d</em>, <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.gridPoints" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get grid points from a domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>n</strong> – Optional, vector of grid points to be retrieved.</li>
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>n</strong> &#8211; Optional, vector of grid points to be retrieved.</li>
 </ul>
 </td>
 </tr>
@@ -372,13 +368,13 @@ type.</td>
 
 <dl class="function">
 <dt id="Domain1D.isFlow">
-<code class="descname">isFlow</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.isFlow" title="Permalink to this definition">¶</a></dt>
+<code class="descname">isFlow</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.isFlow" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Determine whether a domain is a flow.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">1 if the domain is a flow domain, and 0 otherwise.</td>
 </tr>
@@ -388,13 +384,13 @@ type.</td>
 
 <dl class="function">
 <dt id="Domain1D.isInlet">
-<code class="descname">isInlet</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.isInlet" title="Permalink to this definition">¶</a></dt>
+<code class="descname">isInlet</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.isInlet" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Determine whether a domain is an inlet.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">1 if the domain is an inlet, and 0 otherwise.</td>
 </tr>
@@ -404,13 +400,13 @@ type.</td>
 
 <dl class="function">
 <dt id="Domain1D.isSurface">
-<code class="descname">isSurface</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.isSurface" title="Permalink to this definition">¶</a></dt>
+<code class="descname">isSurface</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.isSurface" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Determine if a domain is a surface.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">1 if the domain is a surface, and 0 otherwise.</td>
 </tr>
@@ -420,13 +416,13 @@ type.</td>
 
 <dl class="function">
 <dt id="Domain1D.massFlux">
-<code class="descname">massFlux</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.massFlux" title="Permalink to this definition">¶</a></dt>
+<code class="descname">massFlux</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.massFlux" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the mass flux.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The mass flux in the domain.</td>
 </tr>
@@ -436,18 +432,18 @@ type.</td>
 
 <dl class="function">
 <dt id="Domain1D.massFraction">
-<code class="descname">massFraction</code><span class="sig-paren">(</span><em>d</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.massFraction" title="Permalink to this definition">¶</a></dt>
+<code class="descname">massFraction</code><span class="sig-paren">(</span><em>d</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.massFraction" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the mass fraction of a species given its integer index.</p>
 <p>This method returns the mass fraction of species <code class="docutils literal notranslate"><span class="pre">k</span></code>, where
 k is the integer index of the species in the flow domain
 to which the boundary domain is attached.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>k</strong> – Integer species index</li>
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>k</strong> &#8211; Integer species index</li>
 </ul>
 </td>
 </tr>
@@ -460,13 +456,13 @@ to which the boundary domain is attached.</p>
 
 <dl class="function">
 <dt id="Domain1D.nComponents">
-<code class="descname">nComponents</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.nComponents" title="Permalink to this definition">¶</a></dt>
+<code class="descname">nComponents</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.nComponents" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the number of components.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Number of variables at each grid point</td>
 </tr>
@@ -476,13 +472,13 @@ to which the boundary domain is attached.</p>
 
 <dl class="function">
 <dt id="Domain1D.nPoints">
-<code class="descname">nPoints</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.nPoints" title="Permalink to this definition">¶</a></dt>
+<code class="descname">nPoints</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.nPoints" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the number of grid points.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Integer number of grid points.</td>
 </tr>
@@ -492,7 +488,7 @@ to which the boundary domain is attached.</p>
 
 <dl class="function">
 <dt id="Domain1D.set">
-<code class="descname">set</code><span class="sig-paren">(</span><em>a</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.set" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set</code><span class="sig-paren">(</span><em>a</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.set" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set properties of a Domain1D.</p>
 <p>The properties that may be set are</p>
 <ul class="simple">
@@ -512,10 +508,10 @@ specified. Mole and mass
 fractions must be input as vectors (either row or column) with
 length equal to the number of species.</p>
 <p>Examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span><span class="mf">600.0</span><span class="p">);</span>
-<span class="o">&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">,</span><span class="mf">600.0</span><span class="p">);</span>
-<span class="o">&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">,</span><span class="mf">600.0</span><span class="p">,</span><span class="s1">&#39;P&#39;</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">oneatm</span><span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span><span class="n">massfracs</span><span class="p">);</span>
-<span class="o">&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">ones</span><span class="p">(</span><span class="n">nSpecies</span><span class="p">(</span><span class="n">gas</span><span class="p">),</span><span class="mi">1</span><span class="p">));</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s1">'Temperature'</span><span class="p">,</span><span class="mf">600.0</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s1">'T'</span><span class="p">,</span><span class="mf">600.0</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s1">'T'</span><span class="p">,</span><span class="mf">600.0</span><span class="p">,</span><span class="s1">'P'</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">oneatm</span><span class="p">,</span><span class="s1">'Y'</span><span class="p">,</span><span class="n">massfracs</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">gas</span><span class="p">,</span><span class="s1">'X'</span><span class="p">,</span><span class="n">ones</span><span class="p">(</span><span class="n">nSpecies</span><span class="p">(</span><span class="n">gas</span><span class="p">),</span><span class="mi">1</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>Alternatively, individual methods to set properties may be
@@ -525,12 +521,12 @@ called (setTemperature, setMoleFractions, etc.)</p>
 <a class="reference internal" href="#Domain1D.setProfile" title="Domain1D.setProfile"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setProfile()</span></code></a>, <a class="reference internal" href="#Domain1D.setSteadyTolerances" title="Domain1D.setSteadyTolerances"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setSteadyTolerances()</span></code></a>, <a class="reference internal" href="#Domain1D.setTemperature" title="Domain1D.setTemperature"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setTemperature()</span></code></a>,
 <a class="reference internal" href="#Domain1D.setTransientTolerances" title="Domain1D.setTransientTolerances"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setTransientTolerances()</span></code></a>, <a class="reference internal" href="#Domain1D.setupGrid" title="Domain1D.setupGrid"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setupGrid()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>a</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>varargin</strong> – Comma separated list of <code class="docutils literal notranslate"><span class="pre">property,</span> <span class="pre">value</span></code> pairs to be set</li>
+<li><strong>a</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>varargin</strong> &#8211; Comma separated list of <code class="docutils literal notranslate"><span class="pre">property,</span> <span class="pre">value</span></code> pairs to be set</li>
 </ul>
 </td>
 </tr>
@@ -540,17 +536,17 @@ called (setTemperature, setMoleFractions, etc.)</p>
 
 <dl class="function">
 <dt id="Domain1D.setBounds">
-<code class="descname">setBounds</code><span class="sig-paren">(</span><em>d</em>, <em>component</em>, <em>lower</em>, <em>upper</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setBounds" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setBounds</code><span class="sig-paren">(</span><em>d</em>, <em>component</em>, <em>lower</em>, <em>upper</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setBounds" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set bounds on the solution components.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>component</strong> – String, component to set the bounds on</li>
-<li><strong>lower</strong> – Lower bound</li>
-<li><strong>upper</strong> – Upper bound</li>
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>component</strong> &#8211; String, component to set the bounds on</li>
+<li><strong>lower</strong> &#8211; Lower bound</li>
+<li><strong>upper</strong> &#8211; Upper bound</li>
 </ul>
 </td>
 </tr>
@@ -560,15 +556,15 @@ called (setTemperature, setMoleFractions, etc.)</p>
 
 <dl class="function">
 <dt id="Domain1D.setCoverageEqs">
-<code class="descname">setCoverageEqs</code><span class="sig-paren">(</span><em>d</em>, <em>onoff</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setCoverageEqs" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setCoverageEqs</code><span class="sig-paren">(</span><em>d</em>, <em>onoff</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setCoverageEqs" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Enable or disable solving the coverage equations.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>onoff</strong> – String, one of <code class="docutils literal notranslate"><span class="pre">'on'</span></code> or <code class="docutils literal notranslate"><span class="pre">'yes'</span></code> to turn solving
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>onoff</strong> &#8211; String, one of <code class="docutils literal notranslate"><span class="pre">'on'</span></code> or <code class="docutils literal notranslate"><span class="pre">'yes'</span></code> to turn solving
 the coverage equations on. One of <code class="docutils literal notranslate"><span class="pre">'off'</span></code> or <code class="docutils literal notranslate"><span class="pre">'no'</span></code>
 to turn off the coverage equations.</li>
 </ul>
@@ -580,19 +576,19 @@ to turn off the coverage equations.</li>
 
 <dl class="function">
 <dt id="Domain1D.setFixedTempProfile">
-<code class="descname">setFixedTempProfile</code><span class="sig-paren">(</span><em>d</em>, <em>profile</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setFixedTempProfile" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setFixedTempProfile</code><span class="sig-paren">(</span><em>d</em>, <em>profile</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setFixedTempProfile" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set a fixed temperature profile.</p>
 <p>Set the temperature profile to use when the
 energy equation is not being solved. The profile must be entered
 as an array of positions / temperatures, which may be in rows or
 columns.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>profile</strong> – n x 2 or 2 x n array of <code class="docutils literal notranslate"><span class="pre">n</span></code> points at which the temperature
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>profile</strong> &#8211; n x 2 or 2 x n array of <code class="docutils literal notranslate"><span class="pre">n</span></code> points at which the temperature
 is specified.</li>
 </ul>
 </td>
@@ -603,15 +599,15 @@ is specified.</li>
 
 <dl class="function">
 <dt id="Domain1D.setID">
-<code class="descname">setID</code><span class="sig-paren">(</span><em>d</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setID" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setID</code><span class="sig-paren">(</span><em>d</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setID" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the ID tag for a domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>id</strong> – String ID to assign</li>
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>id</strong> &#8211; String ID to assign</li>
 </ul>
 </td>
 </tr>
@@ -621,15 +617,15 @@ is specified.</li>
 
 <dl class="function">
 <dt id="Domain1D.setMdot">
-<code class="descname">setMdot</code><span class="sig-paren">(</span><em>d</em>, <em>mdot</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setMdot" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setMdot</code><span class="sig-paren">(</span><em>d</em>, <em>mdot</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setMdot" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the mass flow rate.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>mdot</strong> – Mass flow rate</li>
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>mdot</strong> &#8211; Mass flow rate</li>
 </ul>
 </td>
 </tr>
@@ -639,15 +635,15 @@ is specified.</li>
 
 <dl class="function">
 <dt id="Domain1D.setMoleFractions">
-<code class="descname">setMoleFractions</code><span class="sig-paren">(</span><em>d</em>, <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setMoleFractions" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setMoleFractions</code><span class="sig-paren">(</span><em>d</em>, <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setMoleFractions" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the mole fractions.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>x</strong> – String specifying the species and mole fractions in
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>x</strong> &#8211; String specifying the species and mole fractions in
 the format <code class="docutils literal notranslate"><span class="pre">'SPEC:X,SPEC2:X2'</span></code>.</li>
 </ul>
 </td>
@@ -658,15 +654,15 @@ the format <code class="docutils literal notranslate"><span class="pre">'SPEC:X,
 
 <dl class="function">
 <dt id="Domain1D.setPressure">
-<code class="descname">setPressure</code><span class="sig-paren">(</span><em>d</em>, <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setPressure" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setPressure</code><span class="sig-paren">(</span><em>d</em>, <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setPressure" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the pressure.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>p</strong> – Pressure to be set. Units: Pa</li>
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>p</strong> &#8211; Pressure to be set. Units: Pa</li>
 </ul>
 </td>
 </tr>
@@ -676,19 +672,19 @@ the format <code class="docutils literal notranslate"><span class="pre">'SPEC:X,
 
 <dl class="function">
 <dt id="Domain1D.setProfile">
-<code class="descname">setProfile</code><span class="sig-paren">(</span><em>d</em>, <em>n</em>, <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setProfile" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setProfile</code><span class="sig-paren">(</span><em>d</em>, <em>n</em>, <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setProfile" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the profile of a component.</p>
 <p>Convenience function to allow an instance of <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a> to
 have a profile of its components set when it is part of a <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>n</strong> – Integer index of component, vector of component indices, string
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>n</strong> &#8211; Integer index of component, vector of component indices, string
 of component name, or cell array of strings of component names.</li>
-<li><strong>p</strong> – n x 2 array, whose columns are the relative (normalized) positions
+<li><strong>p</strong> &#8211; n x 2 array, whose columns are the relative (normalized) positions
 and the component values at those points. The number of positions
 <code class="docutils literal notranslate"><span class="pre">n</span></code> is arbitrary.</li>
 </ul>
@@ -700,19 +696,19 @@ and the component values at those points. The number of positions
 
 <dl class="function">
 <dt id="Domain1D.setSteadyTolerances">
-<code class="descname">setSteadyTolerances</code><span class="sig-paren">(</span><em>d</em>, <em>component</em>, <em>rtol</em>, <em>atol</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setSteadyTolerances" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setSteadyTolerances</code><span class="sig-paren">(</span><em>d</em>, <em>component</em>, <em>rtol</em>, <em>atol</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setSteadyTolerances" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the steady-state tolerances.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>component</strong> – String or cell array of strings of component values
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>component</strong> &#8211; String or cell array of strings of component values
 whose tolerances should be set. If <code class="docutils literal notranslate"><span class="pre">'default'</span></code> is
 specified, the tolerance of all components will be set.</li>
-<li><strong>rtol</strong> – Relative tolerance</li>
-<li><strong>atol</strong> – Absolute tolerance</li>
+<li><strong>rtol</strong> &#8211; Relative tolerance</li>
+<li><strong>atol</strong> &#8211; Absolute tolerance</li>
 </ul>
 </td>
 </tr>
@@ -722,15 +718,15 @@ specified, the tolerance of all components will be set.</li>
 
 <dl class="function">
 <dt id="Domain1D.setTemperature">
-<code class="descname">setTemperature</code><span class="sig-paren">(</span><em>d</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setTemperature" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setTemperature</code><span class="sig-paren">(</span><em>d</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setTemperature" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the temperature.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>t</strong> – Temperature to be set. Units: K</li>
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>t</strong> &#8211; Temperature to be set. Units: K</li>
 </ul>
 </td>
 </tr>
@@ -740,19 +736,19 @@ specified, the tolerance of all components will be set.</li>
 
 <dl class="function">
 <dt id="Domain1D.setTransientTolerances">
-<code class="descname">setTransientTolerances</code><span class="sig-paren">(</span><em>d</em>, <em>component</em>, <em>rtol</em>, <em>atol</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setTransientTolerances" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setTransientTolerances</code><span class="sig-paren">(</span><em>d</em>, <em>component</em>, <em>rtol</em>, <em>atol</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setTransientTolerances" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the transient tolerances.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>component</strong> – String or cell array of strings of component values
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>component</strong> &#8211; String or cell array of strings of component values
 whose tolerances should be set. If <code class="docutils literal notranslate"><span class="pre">'default'</span></code> is
 specified, the tolerance of all components will be set.</li>
-<li><strong>rtol</strong> – Relative tolerance</li>
-<li><strong>atol</strong> – Absolute tolerance</li>
+<li><strong>rtol</strong> &#8211; Relative tolerance</li>
+<li><strong>atol</strong> &#8211; Absolute tolerance</li>
 </ul>
 </td>
 </tr>
@@ -762,15 +758,15 @@ specified, the tolerance of all components will be set.</li>
 
 <dl class="function">
 <dt id="Domain1D.setupGrid">
-<code class="descname">setupGrid</code><span class="sig-paren">(</span><em>d</em>, <em>grid</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setupGrid" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setupGrid</code><span class="sig-paren">(</span><em>d</em>, <em>grid</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.setupGrid" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set up the solution grid.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
-<li><strong>grid</strong> – </li>
+<li><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></li>
+<li><strong>grid</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
@@ -780,13 +776,13 @@ specified, the tolerance of all components will be set.</li>
 
 <dl class="function">
 <dt id="Domain1D.temperature">
-<code class="descname">temperature</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.temperature" title="Permalink to this definition">¶</a></dt>
+<code class="descname">temperature</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#Domain1D.temperature" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the boundary temperature.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> – Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> &#8211; Instance of class <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Temperature. Units: K</td>
 </tr>
@@ -798,20 +794,20 @@ specified, the tolerance of all components will be set.</li>
 
 </div>
 <div class="section" id="stack">
-<h2>Stack<a class="headerlink" href="#stack" title="Permalink to this headline">¶</a></h2>
+<h2>Stack<a class="headerlink" href="#stack" title="Permalink to this headline">&#182;</a></h2>
 <dl class="class">
 <dt id="Stack">
-<em class="property">class </em><code class="descname">Stack</code><span class="sig-paren">(</span><em>domains</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Stack</code><span class="sig-paren">(</span><em>domains</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Stack class constructor.</p>
 <p>A stack object is a container for one-dimensional domains,
 which are instances of class Domain1D. The domains are of two
 types - extended domains, and connector domains.</p>
 <p>See also: <a class="reference internal" href="#Domain1D" title="Domain1D"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Domain1D()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>domains</strong> – Vector of domain instances</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>domains</strong> &#8211; Vector of domain instances</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></td>
 </tr>
@@ -819,24 +815,24 @@ types - extended domains, and connector domains.</p>
 </table>
 <dl class="function">
 <dt id="Stack.CounterFlowDiffusionFlame">
-<code class="descname">CounterFlowDiffusionFlame</code><span class="sig-paren">(</span><em>left</em>, <em>flow</em>, <em>right</em>, <em>tp_f</em>, <em>tp_o</em>, <em>oxidizer</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.CounterFlowDiffusionFlame" title="Permalink to this definition">¶</a></dt>
+<code class="descname">CounterFlowDiffusionFlame</code><span class="sig-paren">(</span><em>left</em>, <em>flow</em>, <em>right</em>, <em>tp_f</em>, <em>tp_o</em>, <em>oxidizer</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.CounterFlowDiffusionFlame" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a counter flow diffusion flame stack.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>left</strong> – Object representing the left inlet, which must be
+<li><strong>left</strong> &#8211; Object representing the left inlet, which must be
 created using function <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Inlet()</span></code>.</li>
-<li><strong>flow</strong> – Object representing the flow, created with
+<li><strong>flow</strong> &#8211; Object representing the flow, created with
 function <code class="xref mat mat-func docutils literal notranslate"><span class="pre">AxisymmetricFlow()</span></code>.</li>
-<li><strong>right</strong> – Object representing the right inlet, which must be
+<li><strong>right</strong> &#8211; Object representing the right inlet, which must be
 created using function <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Inlet()</span></code>.</li>
-<li><strong>tp_f</strong> – Object representing the fuel inlet gas, instance of class
+<li><strong>tp_f</strong> &#8211; Object representing the fuel inlet gas, instance of class
 <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a>, and an ideal gas.</li>
-<li><strong>tp_o</strong> – Object representing the oxidizer inlet gas, instance of class
+<li><strong>tp_o</strong> &#8211; Object representing the oxidizer inlet gas, instance of class
 <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a>, and an ideal gas.</li>
-<li><strong>oxidizer</strong> – String representing the oxidizer species. Most commonly O2.</li>
+<li><strong>oxidizer</strong> &#8211; String representing the oxidizer species. Most commonly O2.</li>
 </ul>
 </td>
 </tr>
@@ -850,15 +846,15 @@ inlet, flow, and right inlet.</p>
 
 <dl class="function">
 <dt id="Stack.FreeFlame">
-<code class="descname">FreeFlame</code><span class="sig-paren">(</span><em>gas</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.FreeFlame" title="Permalink to this definition">¶</a></dt>
+<code class="descname">FreeFlame</code><span class="sig-paren">(</span><em>gas</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.FreeFlame" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a freely-propagating flat flame.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>gas</strong> – Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a></li>
-<li><strong>id</strong> – String, ID of the flow</li>
+<li><strong>gas</strong> &#8211; Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a></li>
+<li><strong>id</strong> &#8211; String, ID of the flow</li>
 </ul>
 </td>
 </tr>
@@ -872,30 +868,30 @@ adiabatic flame</p>
 
 <dl class="function">
 <dt id="Stack.npflame_init">
-<code class="descname">npflame_init</code><span class="sig-paren">(</span><em>gas</em>, <em>left</em>, <em>flow</em>, <em>right</em>, <em>fuel</em>, <em>oxidizer</em>, <em>nuox</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.npflame_init" title="Permalink to this definition">¶</a></dt>
+<code class="descname">npflame_init</code><span class="sig-paren">(</span><em>gas</em>, <em>left</em>, <em>flow</em>, <em>right</em>, <em>fuel</em>, <em>oxidizer</em>, <em>nuox</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.npflame_init" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a non-premixed flame stack.</p>
 <p>This function is deprecated in favor of <a class="reference internal" href="#Stack.CounterFlowDiffusionFlame" title="Stack.CounterFlowDiffusionFlame"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">CounterFlowDiffusionFlame()</span></code></a>
 and will be removed after Cantera 2.4.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>gas</strong> – Object representing the gas, instance of class
+<li><strong>gas</strong> &#8211; Object representing the gas, instance of class
 <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a>, and an ideal gas. This object will be used
 to compute all required thermodynamic, kinetic, and transport
 properties. The state of this object should be set
 to an estimate of the gas state emerging from the
 burner before calling StagnationFlame.</li>
-<li><strong>left</strong> – Object representing the left inlet, which must be
+<li><strong>left</strong> &#8211; Object representing the left inlet, which must be
 created using function <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Inlet()</span></code>.</li>
-<li><strong>flow</strong> – Object representing the flow, created with
+<li><strong>flow</strong> &#8211; Object representing the flow, created with
 function <code class="xref mat mat-func docutils literal notranslate"><span class="pre">AxisymmetricFlow()</span></code>.</li>
-<li><strong>right</strong> – Object representing the right inlet, which must be
+<li><strong>right</strong> &#8211; Object representing the right inlet, which must be
 created using function <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Inlet()</span></code>.</li>
-<li><strong>fuel</strong> – String representing the fuel species</li>
-<li><strong>ox</strong> – String representing the oxidizer species</li>
-<li><strong>nuox</strong> – Number of oxidizer molecules required to completely combust
+<li><strong>fuel</strong> &#8211; String representing the fuel species</li>
+<li><strong>ox</strong> &#8211; String representing the oxidizer species</li>
+<li><strong>nuox</strong> &#8211; Number of oxidizer molecules required to completely combust
 one fuel molecule.</li>
 </ul>
 </td>
@@ -910,15 +906,15 @@ inlet, flow, and right inlet.</p>
 
 <dl class="function">
 <dt id="Stack.domainIndex">
-<code class="descname">domainIndex</code><span class="sig-paren">(</span><em>s</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.domainIndex" title="Permalink to this definition">¶</a></dt>
+<code class="descname">domainIndex</code><span class="sig-paren">(</span><em>s</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.domainIndex" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the index of a domain in a stack given its name.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>name</strong> – If double, the value is returned. Otherwise,
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>name</strong> &#8211; If double, the value is returned. Otherwise,
 the name is looked up and its index is returned.</li>
 </ul>
 </td>
@@ -932,15 +928,15 @@ the name is looked up and its index is returned.</li>
 
 <dl class="function">
 <dt id="Stack.grid">
-<code class="descname">grid</code><span class="sig-paren">(</span><em>s</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.grid" title="Permalink to this definition">¶</a></dt>
+<code class="descname">grid</code><span class="sig-paren">(</span><em>s</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.grid" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the grid in one domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>name</strong> – Name of the domain for which the grid
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>name</strong> &#8211; Name of the domain for which the grid
 should be retrieved.</li>
 </ul>
 </td>
@@ -954,17 +950,17 @@ should be retrieved.</li>
 
 <dl class="function">
 <dt id="Stack.plotSolution">
-<code class="descname">plotSolution</code><span class="sig-paren">(</span><em>s</em>, <em>domain</em>, <em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.plotSolution" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plotSolution</code><span class="sig-paren">(</span><em>s</em>, <em>domain</em>, <em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.plotSolution" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Plot a specified solution component.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>domain</strong> – Name of domain from which the component should be
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>domain</strong> &#8211; Name of domain from which the component should be
 retrieved</li>
-<li><strong>component</strong> – Name of the component to be plotted</li>
+<li><strong>component</strong> &#8211; Name of the component to be plotted</li>
 </ul>
 </td>
 </tr>
@@ -974,17 +970,17 @@ retrieved</li>
 
 <dl class="function">
 <dt id="Stack.resid">
-<code class="descname">resid</code><span class="sig-paren">(</span><em>s</em>, <em>domain</em>, <em>rdt</em>, <em>count</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.resid" title="Permalink to this definition">¶</a></dt>
+<code class="descname">resid</code><span class="sig-paren">(</span><em>s</em>, <em>domain</em>, <em>rdt</em>, <em>count</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.resid" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the residuals.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>domain</strong> – Name of the domain</li>
-<li><strong>rdt</strong> – </li>
-<li><strong>count</strong> – </li>
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>domain</strong> &#8211; Name of the domain</li>
+<li><strong>rdt</strong> &#8211; </li>
+<li><strong>count</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
@@ -997,18 +993,18 @@ retrieved</li>
 
 <dl class="function">
 <dt id="Stack.restore">
-<code class="descname">restore</code><span class="sig-paren">(</span><em>s</em>, <em>fname</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.restore" title="Permalink to this definition">¶</a></dt>
+<code class="descname">restore</code><span class="sig-paren">(</span><em>s</em>, <em>fname</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.restore" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Restore a previously-saved solution.</p>
 <p>This method can be used to provide an initial guess for the solution.</p>
 <p>See also: <a class="reference internal" href="#Stack.save" title="Stack.save"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">save()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>fname</strong> – File name of an XML file containing solution information</li>
-<li><strong>id</strong> – ID of the element that should be restored</li>
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>fname</strong> &#8211; File name of an XML file containing solution information</li>
+<li><strong>id</strong> &#8211; ID of the element that should be restored</li>
 </ul>
 </td>
 </tr>
@@ -1018,20 +1014,20 @@ retrieved</li>
 
 <dl class="function">
 <dt id="Stack.save">
-<code class="descname">save</code><span class="sig-paren">(</span><em>s</em>, <em>fname</em>, <em>id</em>, <em>desc</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.save" title="Permalink to this definition">¶</a></dt>
+<code class="descname">save</code><span class="sig-paren">(</span><em>s</em>, <em>fname</em>, <em>id</em>, <em>desc</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.save" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Save a solution to a file.</p>
 <p>The output file is in a format that
 can be used by <a class="reference internal" href="#Stack.restore" title="Stack.restore"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">restore()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>fname</strong> – File name where XML file should be written</li>
-<li><strong>id</strong> – ID to be assigned to the XML element when it is
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>fname</strong> &#8211; File name where XML file should be written</li>
+<li><strong>id</strong> &#8211; ID to be assigned to the XML element when it is
 written</li>
-<li><strong>desc</strong> – Description to be written to the output file</li>
+<li><strong>desc</strong> &#8211; Description to be written to the output file</li>
 </ul>
 </td>
 </tr>
@@ -1041,20 +1037,20 @@ written</li>
 
 <dl class="function">
 <dt id="Stack.saveSoln">
-<code class="descname">saveSoln</code><span class="sig-paren">(</span><em>s</em>, <em>fname</em>, <em>id</em>, <em>desc</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.saveSoln" title="Permalink to this definition">¶</a></dt>
+<code class="descname">saveSoln</code><span class="sig-paren">(</span><em>s</em>, <em>fname</em>, <em>id</em>, <em>desc</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.saveSoln" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Save a solution to a file.</p>
 <p>The output file is in a format that
 can be used by <a class="reference internal" href="#Stack.restore" title="Stack.restore"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">restore()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>fname</strong> – File name where XML file should be written</li>
-<li><strong>id</strong> – ID to be assigned to the XML element when it is
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>fname</strong> &#8211; File name where XML file should be written</li>
+<li><strong>id</strong> &#8211; ID to be assigned to the XML element when it is
 written</li>
-<li><strong>desc</strong> – Description to be written to the output file</li>
+<li><strong>desc</strong> &#8211; Description to be written to the output file</li>
 </ul>
 </td>
 </tr>
@@ -1064,17 +1060,17 @@ written</li>
 
 <dl class="function">
 <dt id="Stack.setFlatProfile">
-<code class="descname">setFlatProfile</code><span class="sig-paren">(</span><em>s</em>, <em>domain</em>, <em>comp</em>, <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setFlatProfile" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setFlatProfile</code><span class="sig-paren">(</span><em>s</em>, <em>domain</em>, <em>comp</em>, <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setFlatProfile" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set a component to a value across the entire domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>domain</strong> – Integer ID of the domain</li>
-<li><strong>comp</strong> – Component to be set</li>
-<li><strong>v</strong> – Double, value to be set</li>
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>domain</strong> &#8211; Integer ID of the domain</li>
+<li><strong>comp</strong> &#8211; Component to be set</li>
+<li><strong>v</strong> &#8211; Double, value to be set</li>
 </ul>
 </td>
 </tr>
@@ -1084,16 +1080,16 @@ written</li>
 
 <dl class="function">
 <dt id="Stack.setMaxJacAge">
-<code class="descname">setMaxJacAge</code><span class="sig-paren">(</span><em>s</em>, <em>ss_age</em>, <em>ts_age</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setMaxJacAge" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setMaxJacAge</code><span class="sig-paren">(</span><em>s</em>, <em>ss_age</em>, <em>ts_age</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setMaxJacAge" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the number of times the Jacobian will be used before it is recomputed.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>ss_age</strong> – Maximum age of the Jacobian for steady state analysis</li>
-<li><strong>ts_age</strong> – Maximum age of the Jacobian for transient analysis. If
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>ss_age</strong> &#8211; Maximum age of the Jacobian for steady state analysis</li>
+<li><strong>ts_age</strong> &#8211; Maximum age of the Jacobian for transient analysis. If
 not specified, defaults to <code class="docutils literal notranslate"><span class="pre">ss_age</span></code>.</li>
 </ul>
 </td>
@@ -1104,7 +1100,7 @@ not specified, defaults to <code class="docutils literal notranslate"><span clas
 
 <dl class="function">
 <dt id="Stack.setProfile">
-<code class="descname">setProfile</code><span class="sig-paren">(</span><em>s</em>, <em>name</em>, <em>comp</em>, <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setProfile" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setProfile</code><span class="sig-paren">(</span><em>s</em>, <em>name</em>, <em>comp</em>, <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setProfile" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Specify a profile for one component.</p>
 <p>The solution vector values for this component will be linearly
 interpolated from the discrete function defined by p(:,1) vs. p(:,2).
@@ -1119,14 +1115,14 @@ usually used to set the initial guess for the solution.</p>
 </pre></div>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>name</strong> – Domain name</li>
-<li><strong>comp</strong> – component number</li>
-<li><strong>p</strong> – n x 2 array, whose columns are the relative (normalized) positions
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>name</strong> &#8211; Domain name</li>
+<li><strong>comp</strong> &#8211; component number</li>
+<li><strong>p</strong> &#8211; n x 2 array, whose columns are the relative (normalized) positions
 and the component values at those points. The number of positions
 <code class="docutils literal notranslate"><span class="pre">n</span></code> is arbitrary.</li>
 </ul>
@@ -1138,21 +1134,21 @@ and the component values at those points. The number of positions
 
 <dl class="function">
 <dt id="Stack.setRefineCriteria">
-<code class="descname">setRefineCriteria</code><span class="sig-paren">(</span><em>s</em>, <em>n</em>, <em>ratio</em>, <em>slope</em>, <em>curve</em>, <em>prune</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setRefineCriteria" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setRefineCriteria</code><span class="sig-paren">(</span><em>s</em>, <em>n</em>, <em>ratio</em>, <em>slope</em>, <em>curve</em>, <em>prune</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setRefineCriteria" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the criteria used to refine the grid.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>n</strong> – Domain number</li>
-<li><strong>ratio</strong> – Maximum size ratio between adjacent cells</li>
-<li><strong>slope</strong> – Maximum relative difference in value between
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>n</strong> &#8211; Domain number</li>
+<li><strong>ratio</strong> &#8211; Maximum size ratio between adjacent cells</li>
+<li><strong>slope</strong> &#8211; Maximum relative difference in value between
 adjacent points</li>
-<li><strong>curve</strong> – Maximum relative difference in slope between
+<li><strong>curve</strong> &#8211; Maximum relative difference in slope between
 adjacent cells</li>
-<li><strong>prune</strong> – Minimum value for slope or curve for which points
+<li><strong>prune</strong> &#8211; Minimum value for slope or curve for which points
 will be retained in the grid. If the computed
 slope or curve value is below prune for all
 components, it will be deleted, unless either
@@ -1166,15 +1162,15 @@ neighboring point is already marked for deletion.</li>
 
 <dl class="function">
 <dt id="Stack.setTimeStep">
-<code class="descname">setTimeStep</code><span class="sig-paren">(</span><em>s</em>, <em>stepsize</em>, <em>steps</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setTimeStep" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setTimeStep</code><span class="sig-paren">(</span><em>s</em>, <em>stepsize</em>, <em>steps</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setTimeStep" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Specify a sequence of time steps.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>stepsize</strong> – Initial step size (s)</li>
-<li><strong>steps</strong> – Vector of number of steps to take before
+<li><strong>stepsize</strong> &#8211; Initial step size (s)</li>
+<li><strong>steps</strong> &#8211; Vector of number of steps to take before
 re-attempting solution of steady-state problem. For
 example, steps = [1, 2, 5, 10] would cause one time
 step to be taken first the the steady-state
@@ -1189,7 +1185,7 @@ would be taken, etc.</li>
 
 <dl class="function">
 <dt id="Stack.setValue">
-<code class="descname">setValue</code><span class="sig-paren">(</span><em>s</em>, <em>n</em>, <em>comp</em>, <em>localPoint</em>, <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setValue" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setValue</code><span class="sig-paren">(</span><em>s</em>, <em>n</em>, <em>comp</em>, <em>localPoint</em>, <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.setValue" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the value of a single entry in the solution vector.</p>
 <p>Example (assuming <code class="docutils literal notranslate"><span class="pre">s</span></code> is an instance of <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setValue</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">)</span>
@@ -1201,15 +1197,15 @@ at the left of each domain, independent of the global index of
 the point, which depends on the location of this domain in the
 stack.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>n</strong> – Domain number</li>
-<li><strong>comp</strong> – Component number</li>
-<li><strong>localPoint</strong> – Local index of the grid point in the domain</li>
-<li><strong>v</strong> – Value</li>
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>n</strong> &#8211; Domain number</li>
+<li><strong>comp</strong> &#8211; Component number</li>
+<li><strong>localPoint</strong> &#8211; Local index of the grid point in the domain</li>
+<li><strong>v</strong> &#8211; Value</li>
 </ul>
 </td>
 </tr>
@@ -1219,16 +1215,16 @@ stack.</p>
 
 <dl class="function">
 <dt id="Stack.solution">
-<code class="descname">solution</code><span class="sig-paren">(</span><em>s</em>, <em>domain</em>, <em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.solution" title="Permalink to this definition">¶</a></dt>
+<code class="descname">solution</code><span class="sig-paren">(</span><em>s</em>, <em>domain</em>, <em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.solution" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get a solution component in one domain.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>domain</strong> – String, name of the domain from which the solution is desired</li>
-<li><strong>component</strong> – String, component for which the solution is desired. If omitted,
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>domain</strong> &#8211; String, name of the domain from which the solution is desired</li>
+<li><strong>component</strong> &#8211; String, component for which the solution is desired. If omitted,
 solutions for all of the components will be returned in an
 <code class="xref mat mat-func docutils literal notranslate"><span class="pre">nPoints()</span></code> x <code class="xref mat mat-func docutils literal notranslate"><span class="pre">nComponents()</span></code> array.</li>
 </ul>
@@ -1244,18 +1240,18 @@ solutions for all of the components will be returned in an
 
 <dl class="function">
 <dt id="Stack.solve">
-<code class="descname">solve</code><span class="sig-paren">(</span><em>s</em>, <em>loglevel</em>, <em>refine_grid</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.solve" title="Permalink to this definition">¶</a></dt>
+<code class="descname">solve</code><span class="sig-paren">(</span><em>s</em>, <em>loglevel</em>, <em>refine_grid</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.solve" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Solve the problem.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
-<li><strong>loglevel</strong> – Integer flag controlling the amount of diagnostic
+<li><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></li>
+<li><strong>loglevel</strong> &#8211; Integer flag controlling the amount of diagnostic
 output. Zero supresses all output, and 5 produces
 very verbose output.</li>
-<li><strong>refine_grid</strong> – Integer, 1 to allow grid refinement, 0 to disallow.</li>
+<li><strong>refine_grid</strong> &#8211; Integer, 1 to allow grid refinement, 0 to disallow.</li>
 </ul>
 </td>
 </tr>
@@ -1265,16 +1261,16 @@ very verbose output.</li>
 
 <dl class="function">
 <dt id="Stack.writeStats">
-<code class="descname">writeStats</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.writeStats" title="Permalink to this definition">¶</a></dt>
+<code class="descname">writeStats</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#Stack.writeStats" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Print statistics for the current solution.</p>
 <p>Prints a summary of the number of function and
 Jacobian evaluations for each grid, and the CPU time spent on
 each one.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> – Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> &#8211; Instance of class <a class="reference internal" href="#Stack" title="Stack"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Stack()</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1304,7 +1300,7 @@ each one.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">Matlab Interface User’s Guide</a><ul>
+  <li><a href="index.html">Matlab Interface User&#8217;s Guide</a><ul>
       <li>Previous: <a href="zero-dim.html" title="previous chapter">Zero-Dimensional Reactor Networks</a></li>
       <li>Next: <a href="data.html" title="next chapter">Physical Constants</a></li>
   </ul></li>
@@ -1314,25 +1310,24 @@ each one.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/matlab/one-dim.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../_sources/matlab/one-dim.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://numfocus.org/donate-to-cantera">
-<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
     </div>
   </div>
@@ -1341,15 +1336,14 @@ each one.</p>
            <!--End of block content-->
 
           <div class="footer">
-            &copy;2001-2018, Cantera Developers.
+            &#169;2001-2018, Cantera Developers.
 
             |
             Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.8</a>
             &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
 
             |
-            <a href="../_sources/matlab/one-dim.rst.txt"
-                rel="nofollow">Page source</a>
+            <a href="../_sources/matlab/one-dim.rst.txt" rel="nofollow">Page source</a>
           </div>
       </div>
   </div>
