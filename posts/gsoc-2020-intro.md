@@ -20,8 +20,12 @@ Cantera has presented me with the opportunity to challenge myself, learn an incr
 
 Over the next few months, I'll be working to create a fast and efficient 0-D steady-state combustion solver to integrate as a new feature into Cantera. Solvers for this type of idealized combustion are typically used in applications like studying stabilization and extinction in high velocity combustion, investigating the formation of poisonous nitrogen oxides during burning, determining the values of global reaction parameters in analytical models, and approximating more complex systems like gas-turbine combustors.
 
-Throughout the summer I'll be posting updates on development progress to the [Cantera blog](https://cantera.org/blog/index.html) and the [Cantera enhancements repository](https://github.com/Cantera/enhancements/issues/31), so be sure to stay tuned! In the meantime, you can read more about this project via the official GSoC [project description](https://summerofcode.withgoogle.com/projects/#4550970131873792), or my more detailed [project proposal](https://summerofcode.withgoogle.com/serve/4784584056635392/).
+Throughout the summer I'll be posting updates on development progress to the [Cantera blog](https://cantera.org/blog/index.html) and the [Cantera enhancements repository](https://github.com/Cantera/enhancements/issues/31), so be sure to stay tuned! In the meantime, you can read more about this project via the official GSoC [project description](https://summerofcode.withgoogle.com/projects/#4550970131873792), or my more detailed [project proposal](https://drive.google.com/file/d/1vaOjydm6wWKgF2M4J3iFwNZNKHX5laBY/view?usp=sharing).
 
 If you're interested in learning more about this project, or have any questions or suggestions regarding its development, feel free to email me at paul_d_blum@yahoo.com.
 
 Looking forward to a great summer!
+
+### Keep Reading:
+
+Next Post - [Blog Post 1](https://cantera.org/blog/gsoc-2020-blog-1)
