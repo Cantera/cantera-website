@@ -26,7 +26,7 @@ CANTERA_WEBSITE = Path(__file__).parent.parent
 def expand_cantera_commits(text):
     """Replaces shorthand Cantera commit references with their full-length hashes"""
     cantera_repo = Repo(Path.cwd().parent / "cantera")
-    commits = cantera_repo.iter_commits("master")
+    commits = cantera_repo.iter_commits("main")
     commit_map = {c.hexsha[:7]: c.hexsha for c in commits}
     pattern = re.compile(r"(?<=\W)[a-z0-9]{7}(?=\W)")
 

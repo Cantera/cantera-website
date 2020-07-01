@@ -126,7 +126,7 @@ Conda Requirements
   Note that it is not possible to simultaneously install the Python 2 and Python 3 interfaces;
   you'll have to use separate builds if you want to install both (however, this is an unlikely
   scenario). In addition, note Cantera 2.4 is the last version that will support Python 2. If
-  you checked out the most recent commit on the ``master`` branch of the git repository,
+  you checked out the most recent commit on the ``main`` branch of the git repository,
   support for Python 2 has already been dropped and you cannot use these options.
 
 * After you've :ref:`cloned the source code <sec-source-code>`, configure the Cantera build by
@@ -149,10 +149,10 @@ Conda Requirements
 
   .. note::
 
-     If you're using commits from the ``master`` branch of the git repository, Python 2 is no
+     If you're using commits from the ``main`` branch of the git repository, Python 2 is no
      longer supported and the version-specific Python package options have been dropped. You
      should just use ``python_package`` instead of ``python3_package`` if you're compiling the
-     ``master`` branch.
+     ``main`` branch.
 
 * Now you can build Cantera with
 
@@ -584,7 +584,7 @@ OS X & macOS Requirements
 
       .. code:: bash
 
-         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
   * Once Homebrew is installed, the rest of the dependencies can be installed with:
 

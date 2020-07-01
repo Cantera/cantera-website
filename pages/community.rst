@@ -20,7 +20,7 @@ About the Cantera Community
 Cantera was originally developed by :doc:`Prof. David G. Goodwin <dave>` at the California
 Institute of Technology. Building on Prof. Goodwin's legacy, Cantera is licensed
 under a `permissive 3-Clause BSD license
-<https://github.com/Cantera/cantera/blob/master/License.txt>`__, ensuring that the
+<https://github.com/Cantera/cantera/blob/main/License.txt>`__, ensuring that the
 software will remain open source and available for all to use.
 
 In this vein, Cantera software relies exclusively upon the volunteer
@@ -114,7 +114,7 @@ Code of Conduct
 
 All online and in-person interactions and communications related to Cantera are
 governed by the `Cantera Code of Conduct
-<https://github.com/Cantera/cantera/blob/master/CODE_OF_CONDUCT.md>`__. This code
+<https://github.com/Cantera/cantera/blob/main/CODE_OF_CONDUCT.md>`__. This code
 of conduct sets expectations for the community to ensure that users and
 contributors are able to participate in a respectful and welcoming environment.
 
@@ -135,7 +135,7 @@ becoming part of the developer community and contributing code!
 `Cantera's code repository <https://github.com/Cantera/cantera>`__ is developed
 openly on `GitHub <https://github.com/>`__. Contributions are welcomed from
 anyone in the community; please see the `Contributors' guide
-<https://github.com/Cantera/cantera/blob/master/CONTRIBUTING.md>`__ for
+<https://github.com/Cantera/cantera/blob/main/CONTRIBUTING.md>`__ for
 assistance in getting started. There are also plenty of current contributors
 who are happy to help, if you do not know how to get started.
 
@@ -147,11 +147,11 @@ Bug Reporting
 - Check to see if you're using the most recent version of Cantera, and
   upgrade if not.
 - Check the `Issue Tracker
-  <https://github.com/Cantera/cantera/issues>`_ to see if the issue
+  <https://github.com/Cantera/cantera/issues>`__ to see if the issue
   has already been reported.
 - Try to generate a `minimal, complete, and verifiable example
-  <https://stackoverflow.com/help/mcve>`_ that demonstrates the observed bug.
-- Create a new issue on the tracker (the "New issue" button is toward the
+  <https://stackoverflow.com/help/mcve>`__ that demonstrates the observed bug.
+- Create a new issue on the tracker (the "New Issue" button is toward the
   upper right-hand corner, just above the list of open issues). Include as
   much information as possible about your system configuration (operating
   system, compiler versions, Python versions, installation method, etc.)
@@ -175,7 +175,7 @@ Citing Cantera
 If you use Cantera in a publication, we would appreciate if you cited the
 version of Cantera that you used. This helps to improve the reproducibility of
 your work, as well as giving credit to the many `authors
-<https://github.com/Cantera/cantera/blob/master/AUTHORS>`_ who have contributed
+<https://github.com/Cantera/cantera/blob/main/AUTHORS>`__ who have contributed
 their time to developing Cantera. The recommended citation for Cantera is as
 follows:
 
@@ -209,7 +209,7 @@ Finally, please consider financially supporting Cantera's development! Cantera
 is a fiscally sponsored project of NumFOCUS, a 501(c)3 nonprofit dedicated to
 supporting the open source scientific computing community. If you have found
 Cantera to be useful to your research or company, please consider making a
-`donation <https://numfocus.org/donate-to-cantera>`_
+`donation <https://numfocus.org/donate-to-cantera>`__
 to support our efforts. All donations will be used exclusively to fund the
 development of Cantera's source code, documentation, or community.
 

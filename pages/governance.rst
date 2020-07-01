@@ -22,7 +22,7 @@ Code of Conduct
 
 All online and in-person interactions and communications related to Cantera are
 governed by the `Cantera Code of Conduct
-<https://github.com/Cantera/cantera/blob/master/CODE_OF_CONDUCT.md>`__. This code
+<https://github.com/Cantera/cantera/blob/main/CODE_OF_CONDUCT.md>`__. This code
 of conduct sets expectations for the community to ensure that users and
 contributors are able to participate in a respectful and welcoming environment.
 

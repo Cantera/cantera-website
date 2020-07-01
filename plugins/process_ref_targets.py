@@ -100,7 +100,7 @@ class ProcessRefTargets(Task):
         temp_dir = tempfile.mkdtemp()
         # HERE.parent.parent.joinpath("cantera", "doc", "sphinx", "yaml")
         yaml_docs_path = Path(temp_dir)
-        url_base = "https://raw.githubusercontent.com/Cantera/cantera/master/doc/sphinx/yaml/{}.rst"
+        url_base = "https://raw.githubusercontent.com/Cantera/cantera/main/doc/sphinx/yaml/{}.rst"
         for name in [
             "elements",
             "general",

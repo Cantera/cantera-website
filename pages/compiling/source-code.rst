@@ -83,9 +83,9 @@ Check out the code using Git:
    git clone --recursive https://github.com/Cantera/cantera.git
    cd cantera
 
-Note that by default, the ``master`` branch is checked out, containing all of
+Note that by default, the ``main`` branch is checked out, containing all of
 the feature updates and bug fixes to the code since the previous stable release.
-The master branch is usually an "alpha" release, corresponding to the ``a`` in
+The main branch is usually an alpha release, corresponding to the ``a`` in
 the version number, and does not usually get a tag.
 
 .. container:: container
