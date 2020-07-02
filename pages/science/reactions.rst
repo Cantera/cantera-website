@@ -217,9 +217,9 @@ pressures. Given two rate expressions at two specific pressures:
 
 .. math::
 
-   P_1: k_1(T) = A_1 T^{b_1} e^{E_1 / RT}
+   P_1: k_1(T) = A_1 T^{b_1} e^{-E_1 / RT}
 
-   P_2: k_2(T) = A_2 T^{b_2} e^{E_2 / RT}
+   P_2: k_2(T) = A_2 T^{b_2} e^{-E_2 / RT}
 
 The rate at an intermediate pressure :math:`P_1 < P < P_2` is computed as
 
