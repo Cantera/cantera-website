@@ -233,6 +233,14 @@ rate used in the interpolation formula is the sum of all the rates given at that
 pressure. For pressures outside the given range, the rate expression at the nearest
 pressure is used.
 
+Negative A-factors can be used for any of the rate expressions at a given pressure.
+However, the sum of all of the rates at a given pressure **must** be positive, due
+to the logarithmic interpolation of the rate for intermediate pressures. When a
+P-log type reaction is initialized, Cantera does a validation check for a range of
+temperatures that the reaction rate at every pressure is positive. Unfortunately, if
+these checks fail, the only options are to remove the reaction or contact the author
+of the reaction/mechanism in question, because the reaction is mathematically unsound.
+
 P-log reactions can be defined in the CTI format using the
 :cti:class:`pdep_arrhenius` entry, or in the YAML format using the
 :ref:`pressure-dependent-Arrhenius <sec-yaml-pressure-dependent-Arrhenius>`
