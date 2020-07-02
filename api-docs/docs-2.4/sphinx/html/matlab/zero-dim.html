@@ -1,31 +1,27 @@
-
-
 <!DOCTYPE html>
-
 <html prefix="
 og: http://ogp.me/ns# article: http://ogp.me/ns/article#
-"
-lang="en">
+" lang="en">
 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Zero-Dimensional Reactor Networks | Cantera </title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
-  <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/katex-math.css" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/cantera.css" type="text/css">
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/katex-math.css" type="text/css">
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../_static/katex_autorenderer.js"></script>
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" sizes="16x16"/>
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" sizes="16x16">
 
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="search" title="Search" href="../search.html">
   </head>
   <body>
   <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -81,12 +77,12 @@ lang="en">
                 <div class="body" role="main">
 
   <div class="section" id="zero-dimensional-reactor-networks">
-<h1>Zero-Dimensional Reactor Networks<a class="headerlink" href="#zero-dimensional-reactor-networks" title="Permalink to this headline">¶</a></h1>
+<h1>Zero-Dimensional Reactor Networks<a class="headerlink" href="#zero-dimensional-reactor-networks" title="Permalink to this headline">&#182;</a></h1>
 <div class="section" id="func">
-<h2>Func<a class="headerlink" href="#func" title="Permalink to this headline">¶</a></h2>
+<h2>Func<a class="headerlink" href="#func" title="Permalink to this headline">&#182;</a></h2>
 <dl class="class">
 <dt id="Func">
-<em class="property">class </em><code class="descname">Func</code><span class="sig-paren">(</span><em>typ</em>, <em>n</em>, <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#Func" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Func</code><span class="sig-paren">(</span><em>typ</em>, <em>n</em>, <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#Func" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Func class constructor.</p>
 <p>A class for functors.
 A functor is an object that behaves like a function. Cantera
@@ -110,15 +106,15 @@ return value would of course be 3.</p>
 <p>You can also create composite functors by adding, multiplying, or
 dividing these basic functors, or other composite functors.</p>
 <p>Note: this MATLAB class shadows the underlying C++ Cantera class
-“Func1”. See the Cantera C++ documentation for more details.</p>
+&#8220;Func1&#8221;. See the Cantera C++ documentation for more details.</p>
 <p>See also: <a class="reference internal" href="#Func.polynom" title="Func.polynom"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">polynom()</span></code></a>, <a class="reference internal" href="#Func.gaussian" title="Func.gaussian"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">gaussian()</span></code></a>, <a class="reference internal" href="#Func.plus" title="Func.plus"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">plus()</span></code></a>,
 <a class="reference internal" href="#Func.rdivide" title="Func.rdivide"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">rdivide()</span></code></a>, <a class="reference internal" href="#Func.times" title="Func.times"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">times()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>typ</strong> – <p>String indicating type of functor to create. Possible values are:</p>
+<li><strong>typ</strong> &#8211; <p>String indicating type of functor to create. Possible values are:</p>
 <ul>
 <li><code class="docutils literal notranslate"><span class="pre">'polynomial'</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">'fourier'</span></code></li>
@@ -131,8 +127,8 @@ dividing these basic functors, or other composite functors.</p>
 <li><code class="docutils literal notranslate"><span class="pre">'periodic'</span></code></li>
 </ul>
 </li>
-<li><strong>n</strong> – Number of parameters required for the functor</li>
-<li><strong>p</strong> – Vector of parameters</li>
+<li><strong>n</strong> &#8211; Number of parameters required for the functor</li>
+<li><strong>p</strong> &#8211; Vector of parameters</li>
 </ul>
 </td>
 </tr>
@@ -143,13 +139,13 @@ dividing these basic functors, or other composite functors.</p>
 </table>
 <dl class="function">
 <dt id="Func.char">
-<code class="descname">char</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.char" title="Permalink to this definition">¶</a></dt>
+<code class="descname">char</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.char" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the formatted string to display the function.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p</strong> – Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p</strong> &#8211; Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Formatted string displaying the function</td>
 </tr>
@@ -159,16 +155,16 @@ dividing these basic functors, or other composite functors.</p>
 
 <dl class="function">
 <dt id="Func.gaussian">
-<code class="descname">gaussian</code><span class="sig-paren">(</span><em>peak</em>, <em>center</em>, <em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.gaussian" title="Permalink to this definition">¶</a></dt>
+<code class="descname">gaussian</code><span class="sig-paren">(</span><em>peak</em>, <em>center</em>, <em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.gaussian" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a Gaussian <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a> instance.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>peak</strong> – The peak value</li>
-<li><strong>center</strong> – Value of x at which the peak is located</li>
-<li><strong>width</strong> – Full width at half-maximum. The value of the
+<li><strong>peak</strong> &#8211; The peak value</li>
+<li><strong>center</strong> &#8211; Value of x at which the peak is located</li>
+<li><strong>width</strong> &#8211; Full width at half-maximum. The value of the
 function at center +/- (width)/2 is one-half
 the peak value.</li>
 </ul>
@@ -180,15 +176,15 @@ the peak value.</li>
 
 <dl class="function">
 <dt id="Func.plus">
-<code class="descname">plus</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.plus" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plus</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.plus" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get a functor representing the sum of two input functors.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>a</strong> – Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
-<li><strong>b</strong> – Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
+<li><strong>a</strong> &#8211; Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
+<li><strong>b</strong> &#8211; Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -203,7 +199,7 @@ and b.</p>
 
 <dl class="function">
 <dt id="Func.polynom">
-<code class="descname">polynom</code><span class="sig-paren">(</span><em>coeffs</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.polynom" title="Permalink to this definition">¶</a></dt>
+<code class="descname">polynom</code><span class="sig-paren">(</span><em>coeffs</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.polynom" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a polynomial <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a> instance.</p>
 <p>The polynomial coefficients are specified by a vector
 <code class="docutils literal notranslate"><span class="pre">[a0</span> <span class="pre">a1</span> <span class="pre">....</span> <span class="pre">aN]</span></code>. Examples:</p>
@@ -212,10 +208,10 @@ and b.</p>
 </pre></div>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>coeffs</strong> – Vector of polynomial coefficients</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>coeffs</strong> &#8211; Vector of polynomial coefficients</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></td>
 </tr>
@@ -225,15 +221,15 @@ and b.</p>
 
 <dl class="function">
 <dt id="Func.rdivide">
-<code class="descname">rdivide</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.rdivide" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rdivide</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.rdivide" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get a functor that is the ratio of the input functors.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>a</strong> – Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
-<li><strong>b</strong> – Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
+<li><strong>a</strong> &#8211; Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
+<li><strong>b</strong> &#8211; Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -246,15 +242,15 @@ and b.</p>
 
 <dl class="function">
 <dt id="Func.times">
-<code class="descname">times</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.times" title="Permalink to this definition">¶</a></dt>
+<code class="descname">times</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#Func.times" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a functor that multiplies two other functors.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>a</strong> – Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
-<li><strong>b</strong> – Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
+<li><strong>a</strong> &#8211; Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
+<li><strong>b</strong> &#8211; Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -269,10 +265,10 @@ and b.</p>
 
 </div>
 <div class="section" id="reactor">
-<h2>Reactor<a class="headerlink" href="#reactor" title="Permalink to this headline">¶</a></h2>
+<h2>Reactor<a class="headerlink" href="#reactor" title="Permalink to this headline">&#182;</a></h2>
 <dl class="class">
 <dt id="Reactor">
-<em class="property">class </em><code class="descname">Reactor</code><span class="sig-paren">(</span><em>contents</em>, <em>typ</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Reactor</code><span class="sig-paren">(</span><em>contents</em>, <em>typ</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Reactor class constructor.</p>
 <p>A <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> object simulates a perfectly-stirred reactor.
 It has a time-dependent state, and may be coupled to other reactors
@@ -285,13 +281,13 @@ contract and/or conduct heat.</p>
 <p>See also: <a class="reference internal" href="#Reactor.Reservoir" title="Reactor.Reservoir"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reservoir()</span></code></a>, <a class="reference internal" href="#Reactor.IdealGasReactor" title="Reactor.IdealGasReactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">IdealGasReactor()</span></code></a>,
 <a class="reference internal" href="#Reactor.IdealGasConstPressureReactor" title="Reactor.IdealGasConstPressureReactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">IdealGasConstPressureReactor()</span></code></a>, <a class="reference internal" href="#Reactor.ConstPressureReactor" title="Reactor.ConstPressureReactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ConstPressureReactor()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>contents</strong> – Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> representing the contents of the
+<li><strong>contents</strong> &#8211; Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> representing the contents of the
 reactor</li>
-<li><strong>typ</strong> – <p>Integer, reactor type. Options are:</p>
+<li><strong>typ</strong> &#8211; <p>Integer, reactor type. Options are:</p>
 <ol class="arabic">
 <li>Reservoir</li>
 <li>Reactor</li>
@@ -311,7 +307,7 @@ reactor</li>
 </table>
 <dl class="function">
 <dt id="Reactor.ConstPressureReactor">
-<code class="descname">ConstPressureReactor</code><span class="sig-paren">(</span><em>contents</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.ConstPressureReactor" title="Permalink to this definition">¶</a></dt>
+<code class="descname">ConstPressureReactor</code><span class="sig-paren">(</span><em>contents</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.ConstPressureReactor" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a constant pressure reactor object.</p>
 <p>A <a class="reference internal" href="#Reactor.ConstPressureReactor" title="Reactor.ConstPressureReactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ConstPressureReactor()</span></code></a> is an instance of class
 <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> where the pressure is held constant. The volume
@@ -323,10 +319,10 @@ consistent with holding the pressure constant. Examples:</p>
 </div>
 <p>See also: <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contents</strong> – Cantera <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be set as the contents of the
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contents</strong> &#8211; Cantera <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be set as the contents of the
 reactor</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
@@ -337,7 +333,7 @@ reactor</td>
 
 <dl class="function">
 <dt id="Reactor.FlowReactor">
-<code class="descname">FlowReactor</code><span class="sig-paren">(</span><em>contents</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.FlowReactor" title="Permalink to this definition">¶</a></dt>
+<code class="descname">FlowReactor</code><span class="sig-paren">(</span><em>contents</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.FlowReactor" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a flow reactor object.</p>
 <p>A reactor representing adiabatic plug flow in a constant-area
 duct. Examples:</p>
@@ -347,10 +343,10 @@ duct. Examples:</p>
 </div>
 <p>See also: <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contents</strong> – Cantera <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be set as the contents of the
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contents</strong> &#8211; Cantera <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be set as the contents of the
 reactor</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
@@ -361,7 +357,7 @@ reactor</td>
 
 <dl class="function">
 <dt id="Reactor.IdealGasConstPressureReactor">
-<code class="descname">IdealGasConstPressureReactor</code><span class="sig-paren">(</span><em>contents</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.IdealGasConstPressureReactor" title="Permalink to this definition">¶</a></dt>
+<code class="descname">IdealGasConstPressureReactor</code><span class="sig-paren">(</span><em>contents</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.IdealGasConstPressureReactor" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a constant pressure reactor with an ideal gas.</p>
 <p>An IdealGasConstPressureReactor is an instance of class Reactor where the
 pressure is held constant. The volume is not a state variable, but
@@ -376,10 +372,10 @@ thermodynamic models). Examples:</p>
 </pre></div>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contents</strong> – Cantera <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be set as the contents of the
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contents</strong> &#8211; Cantera <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be set as the contents of the
 reactor</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
@@ -390,7 +386,7 @@ reactor</td>
 
 <dl class="function">
 <dt id="Reactor.IdealGasReactor">
-<code class="descname">IdealGasReactor</code><span class="sig-paren">(</span><em>contents</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.IdealGasReactor" title="Permalink to this definition">¶</a></dt>
+<code class="descname">IdealGasReactor</code><span class="sig-paren">(</span><em>contents</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.IdealGasReactor" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a reactor with an ideal gas.</p>
 <p>An IdealGasReactor is an instance of class Reactor where the governing
 equations are specialized for the ideal gas equation of state (and do not
@@ -401,10 +397,10 @@ work correctly with other thermodynamic models). Examples:</p>
 </div>
 <p>See also: <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contents</strong> – Cantera <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be set as the contents of the
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contents</strong> &#8211; Cantera <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be set as the contents of the
 reactor</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
@@ -415,7 +411,7 @@ reactor</td>
 
 <dl class="function">
 <dt id="Reactor.Reservoir">
-<code class="descname">Reservoir</code><span class="sig-paren">(</span><em>contents</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.Reservoir" title="Permalink to this definition">¶</a></dt>
+<code class="descname">Reservoir</code><span class="sig-paren">(</span><em>contents</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.Reservoir" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a Reservoir object.</p>
 <p>A <a class="reference internal" href="#Reactor.Reservoir" title="Reactor.Reservoir"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reservoir()</span></code></a> is an instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a>
 configured so that its intensive state is constant in time. A
@@ -431,10 +427,10 @@ reservoirs. Examples:</p>
 </div>
 <p>See also: <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contents</strong> – Cantera <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be set as the contents of the
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contents</strong> &#8211; Cantera <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be set as the contents of the
 reactor</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
@@ -445,13 +441,13 @@ reactor</td>
 
 <dl class="function">
 <dt id="Reactor.density">
-<code class="descname">density</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.density" title="Permalink to this definition">¶</a></dt>
+<code class="descname">density</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.density" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the density of the reactor.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Density of the phase in the input. Units: kg/m**3</td>
 </tr>
@@ -461,14 +457,14 @@ reactor</td>
 
 <dl class="function">
 <dt id="Reactor.enthalpy_mass">
-<code class="descname">enthalpy_mass</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.enthalpy_mass" title="Permalink to this definition">¶</a></dt>
+<code class="descname">enthalpy_mass</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.enthalpy_mass" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>The specific enthalpy of the reactor.</p>
 <p>See also: <a class="reference internal" href="#Reactor.intEnergy_mass" title="Reactor.intEnergy_mass"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">intEnergy_mass()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The specific enthalpy of the reactor contents at the
 end of the last call to <code class="xref mat mat-func docutils literal notranslate"><span class="pre">advance()</span></code> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">step()</span></code>.
@@ -480,15 +476,15 @@ The enthalpy is retrieved from the solution vector. Units: J/kg</td>
 
 <dl class="function">
 <dt id="Reactor.insert">
-<code class="descname">insert</code><span class="sig-paren">(</span><em>r</em>, <em>gas</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.insert" title="Permalink to this definition">¶</a></dt>
+<code class="descname">insert</code><span class="sig-paren">(</span><em>r</em>, <em>gas</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.insert" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Insert a solution or mixture into a reactor.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
-<li><strong>gas</strong> – Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be inserted</li>
+<li><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
+<li><strong>gas</strong> &#8211; Instance of class <a class="reference internal" href="importing.html#Solution" title="Solution"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Solution()</span></code></a> to be inserted</li>
 </ul>
 </td>
 </tr>
@@ -498,14 +494,14 @@ The enthalpy is retrieved from the solution vector. Units: J/kg</td>
 
 <dl class="function">
 <dt id="Reactor.intEnergy_mass">
-<code class="descname">intEnergy_mass</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.intEnergy_mass" title="Permalink to this definition">¶</a></dt>
+<code class="descname">intEnergy_mass</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.intEnergy_mass" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the specific internal energy.</p>
 <p>See also: <a class="reference internal" href="#Reactor.enthalpy_mass" title="Reactor.enthalpy_mass"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">enthalpy_mass()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The specific internal energy of the reactor contents at the
 end of the last call to <code class="xref mat mat-func docutils literal notranslate"><span class="pre">advance()</span></code> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">step()</span></code>.
@@ -518,13 +514,13 @@ Units: J/kg</td>
 
 <dl class="function">
 <dt id="Reactor.mass">
-<code class="descname">mass</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.mass" title="Permalink to this definition">¶</a></dt>
+<code class="descname">mass</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.mass" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the mass of the reactor.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The mass of the reactor contents at the
 end of the last call to <code class="xref mat mat-func docutils literal notranslate"><span class="pre">advance()</span></code> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">step()</span></code>.
@@ -536,15 +532,15 @@ The mass is retrieved from the solution vector. Units: kg</td>
 
 <dl class="function">
 <dt id="Reactor.massFraction">
-<code class="descname">massFraction</code><span class="sig-paren">(</span><em>r</em>, <em>species</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.massFraction" title="Permalink to this definition">¶</a></dt>
+<code class="descname">massFraction</code><span class="sig-paren">(</span><em>r</em>, <em>species</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.massFraction" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the mass fraction of a species.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
-<li><strong>species</strong> – String or the one-based integer index of the species</li>
+<li><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
+<li><strong>species</strong> &#8211; String or the one-based integer index of the species</li>
 </ul>
 </td>
 </tr>
@@ -558,13 +554,13 @@ end of the last call to <code class="xref mat mat-func docutils literal notransl
 
 <dl class="function">
 <dt id="Reactor.massFractions">
-<code class="descname">massFractions</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.massFractions" title="Permalink to this definition">¶</a></dt>
+<code class="descname">massFractions</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.massFractions" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the mass fractions of the species.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The mass fractions of the reactor contents at the
 end of the last call to <code class="xref mat mat-func docutils literal notranslate"><span class="pre">advance()</span></code> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">step()</span></code>.</td>
@@ -575,13 +571,13 @@ end of the last call to <code class="xref mat mat-func docutils literal notransl
 
 <dl class="function">
 <dt id="Reactor.pressure">
-<code class="descname">pressure</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.pressure" title="Permalink to this definition">¶</a></dt>
+<code class="descname">pressure</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.pressure" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the pressure of the reactor.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The pressure of the reactor contents at the
 end of the last call to <code class="xref mat mat-func docutils literal notranslate"><span class="pre">advance()</span></code> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">step()</span></code>.
@@ -593,7 +589,7 @@ Units: Pa</td>
 
 <dl class="function">
 <dt id="Reactor.setChemistry">
-<code class="descname">setChemistry</code><span class="sig-paren">(</span><em>r</em>, <em>flag</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setChemistry" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setChemistry</code><span class="sig-paren">(</span><em>r</em>, <em>flag</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setChemistry" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Enable or disable changing reactor composition by reactions.</p>
 <p>If the chemistry is disabled, then the reactor composition is
 constant. The parameter should be the string <code class="docutils literal notranslate"><span class="pre">'on'</span></code> to enable the
@@ -601,17 +597,17 @@ species equations, or <code class="docutils literal notranslate"><span class="pr
 <p>By default, Reactor objects are created with the species equations
 enabled if there are reactions present in the mechanism file, and
 disabled otherwise.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">setChemistry</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">);</span>
-<span class="o">&gt;&gt;</span> <span class="n">setChemistry</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">);</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">setChemistry</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="s1">'on'</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">setChemistry</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
 </pre></div>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
-<li><strong>flag</strong> – String, either <code class="docutils literal notranslate"><span class="pre">'on'</span></code> or <code class="docutils literal notranslate"><span class="pre">'off'</span></code> to enable and disable
+<li><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
+<li><strong>flag</strong> &#8211; String, either <code class="docutils literal notranslate"><span class="pre">'on'</span></code> or <code class="docutils literal notranslate"><span class="pre">'off'</span></code> to enable and disable
 solving the energy equation, respectively</li>
 </ul>
 </td>
@@ -622,7 +618,7 @@ solving the energy equation, respectively</li>
 
 <dl class="function">
 <dt id="Reactor.setEnergy">
-<code class="descname">setEnergy</code><span class="sig-paren">(</span><em>r</em>, <em>flag</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setEnergy" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setEnergy</code><span class="sig-paren">(</span><em>r</em>, <em>flag</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setEnergy" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Enable or disable solving the energy equation.</p>
 <p>If the energy equation is disabled, then the reactor temperature is
 constant. The parameter should be the string <code class="docutils literal notranslate"><span class="pre">'on'</span></code> to enable the
@@ -630,17 +626,17 @@ energy equation, or <code class="docutils literal notranslate"><span class="pre"
 <p>By default, Reactor objects are created with the energy equation
 enabled, so usually this method is only needed to disable the
 energy equation for isothermal simulations.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">setEnergy</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">);</span>
-<span class="o">&gt;&gt;</span> <span class="n">setEnergy</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">);</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">setEnergy</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="s1">'on'</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">setEnergy</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
 </pre></div>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
-<li><strong>flag</strong> – String, either <code class="docutils literal notranslate"><span class="pre">'on'</span></code> or <code class="docutils literal notranslate"><span class="pre">'off'</span></code> to enable and disable
+<li><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
+<li><strong>flag</strong> &#8211; String, either <code class="docutils literal notranslate"><span class="pre">'on'</span></code> or <code class="docutils literal notranslate"><span class="pre">'off'</span></code> to enable and disable
 solving the energy equation, respectively</li>
 </ul>
 </td>
@@ -651,15 +647,15 @@ solving the energy equation, respectively</li>
 
 <dl class="function">
 <dt id="Reactor.setInitialVolume">
-<code class="descname">setInitialVolume</code><span class="sig-paren">(</span><em>r</em>, <em>v0</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setInitialVolume" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setInitialVolume</code><span class="sig-paren">(</span><em>r</em>, <em>v0</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setInitialVolume" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the initial reactor volume.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
-<li><strong>v0</strong> – Initial volume. Units: m**3</li>
+<li><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
+<li><strong>v0</strong> &#8211; Initial volume. Units: m**3</li>
 </ul>
 </td>
 </tr>
@@ -669,17 +665,17 @@ solving the energy equation, respectively</li>
 
 <dl class="function">
 <dt id="Reactor.setKineticsMgr">
-<code class="descname">setKineticsMgr</code><span class="sig-paren">(</span><em>r</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setKineticsMgr" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setKineticsMgr</code><span class="sig-paren">(</span><em>r</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setKineticsMgr" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the kinetics manager.</p>
 <p>This method is used internally during Reactor initialization, but
 is usually not called by users.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
-<li><strong>k</strong> – Instance of class <a class="reference internal" href="kinetics.html#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Kinetics()</span></code></a>, or another object
+<li><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
+<li><strong>k</strong> &#8211; Instance of class <a class="reference internal" href="kinetics.html#Kinetics" title="Kinetics"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Kinetics()</span></code></a>, or another object
 containing an instance of that class.</li>
 </ul>
 </td>
@@ -690,15 +686,15 @@ containing an instance of that class.</li>
 
 <dl class="function">
 <dt id="Reactor.setMassFlowRate">
-<code class="descname">setMassFlowRate</code><span class="sig-paren">(</span><em>r</em>, <em>mdot</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setMassFlowRate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setMassFlowRate</code><span class="sig-paren">(</span><em>r</em>, <em>mdot</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setMassFlowRate" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the mass flow rate.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
-<li><strong>mdot</strong> – Mass flow rate. Units: kg/s</li>
+<li><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
+<li><strong>mdot</strong> &#8211; Mass flow rate. Units: kg/s</li>
 </ul>
 </td>
 </tr>
@@ -708,17 +704,17 @@ containing an instance of that class.</li>
 
 <dl class="function">
 <dt id="Reactor.setThermoMgr">
-<code class="descname">setThermoMgr</code><span class="sig-paren">(</span><em>r</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setThermoMgr" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setThermoMgr</code><span class="sig-paren">(</span><em>r</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.setThermoMgr" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the thermodynamics manager.</p>
 <p>This method is used internally during Reactor initialization, but
 is usually not called by users.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
-<li><strong>t</strong> – Instance of class <a class="reference internal" href="thermodynamics.html#ThermoPhase" title="ThermoPhase"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ThermoPhase()</span></code></a>, or another object
+<li><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
+<li><strong>t</strong> &#8211; Instance of class <a class="reference internal" href="thermodynamics.html#ThermoPhase" title="ThermoPhase"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ThermoPhase()</span></code></a>, or another object
 containing an instance of that class.</li>
 </ul>
 </td>
@@ -729,13 +725,13 @@ containing an instance of that class.</li>
 
 <dl class="function">
 <dt id="Reactor.temperature">
-<code class="descname">temperature</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.temperature" title="Permalink to this definition">¶</a></dt>
+<code class="descname">temperature</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.temperature" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the temperature of the reactor.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The temperature of the reactor contents at the
 end of the last call to <code class="xref mat mat-func docutils literal notranslate"><span class="pre">advance()</span></code> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">step()</span></code>.
@@ -747,13 +743,13 @@ Units: K</td>
 
 <dl class="function">
 <dt id="Reactor.volume">
-<code class="descname">volume</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.volume" title="Permalink to this definition">¶</a></dt>
+<code class="descname">volume</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Reactor.volume" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the volume of the reactor.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The volume of the reactor contents at the
 end of the last call to <code class="xref mat mat-func docutils literal notranslate"><span class="pre">advance()</span></code> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">step()</span></code>.
@@ -767,10 +763,10 @@ Units: m**3</td>
 
 </div>
 <div class="section" id="reactornet">
-<h2>ReactorNet<a class="headerlink" href="#reactornet" title="Permalink to this headline">¶</a></h2>
+<h2>ReactorNet<a class="headerlink" href="#reactornet" title="Permalink to this headline">&#182;</a></h2>
 <dl class="class">
 <dt id="ReactorNet">
-<em class="property">class </em><code class="descname">ReactorNet</code><span class="sig-paren">(</span><em>reactors</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">ReactorNet</code><span class="sig-paren">(</span><em>reactors</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>ReactorNet class constructor.</p>
 <p>A <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a> object is a container that holds one
 or more <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> objects in a network. <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a>
@@ -787,10 +783,10 @@ more coupled reactors.</p>
 </div>
 <p>See also: <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reactors</strong> – A single instance of <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or a cell array
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reactors</strong> &#8211; A single instance of <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or a cell array
 of instances of <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></td>
@@ -799,15 +795,15 @@ of instances of <a class="reference internal" href="#Reactor" title="Reactor"><c
 </table>
 <dl class="function">
 <dt id="ReactorNet.addReactor">
-<code class="descname">addReactor</code><span class="sig-paren">(</span><em>net</em>, <em>reactor</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.addReactor" title="Permalink to this definition">¶</a></dt>
+<code class="descname">addReactor</code><span class="sig-paren">(</span><em>net</em>, <em>reactor</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.addReactor" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Add a reactor to a network.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>net</strong> – Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></li>
-<li><strong>reactor</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
+<li><strong>net</strong> &#8211; Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></li>
+<li><strong>reactor</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -817,7 +813,7 @@ of instances of <a class="reference internal" href="#Reactor" title="Reactor"><c
 
 <dl class="function">
 <dt id="ReactorNet.advance">
-<code class="descname">advance</code><span class="sig-paren">(</span><em>n</em>, <em>tout</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.advance" title="Permalink to this definition">¶</a></dt>
+<code class="descname">advance</code><span class="sig-paren">(</span><em>n</em>, <em>tout</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.advance" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Advance the state of the reactor network in time.</p>
 <p>Method <a class="reference internal" href="#ReactorNet.advance" title="ReactorNet.advance"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">advance()</span></code></a> integrates the system of ordinary differential
 equations that determine the rate of change of the volume, the
@@ -837,12 +833,12 @@ tout.</p>
 </div>
 <p>See also: <a class="reference internal" href="#ReactorNet.step" title="ReactorNet.step"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">step()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>n</strong> – Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></li>
-<li><strong>tout</strong> – End time of the integration. The solver may take many internal
+<li><strong>n</strong> &#8211; Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></li>
+<li><strong>tout</strong> &#8211; End time of the integration. The solver may take many internal
 time steps to reach <code class="docutils literal notranslate"><span class="pre">tout</span></code>.</li>
 </ul>
 </td>
@@ -853,13 +849,13 @@ time steps to reach <code class="docutils literal notranslate"><span class="pre"
 
 <dl class="function">
 <dt id="ReactorNet.atol">
-<code class="descname">atol</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.atol" title="Permalink to this definition">¶</a></dt>
+<code class="descname">atol</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.atol" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the absolute error tolerance.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Absolute error tolerance.</td>
 </tr>
@@ -869,13 +865,13 @@ time steps to reach <code class="docutils literal notranslate"><span class="pre"
 
 <dl class="function">
 <dt id="ReactorNet.rtol">
-<code class="descname">rtol</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.rtol" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rtol</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.rtol" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the relative error tolerance.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Relative error tolerance.</td>
 </tr>
@@ -885,18 +881,18 @@ time steps to reach <code class="docutils literal notranslate"><span class="pre"
 
 <dl class="function">
 <dt id="ReactorNet.setInitialTime">
-<code class="descname">setInitialTime</code><span class="sig-paren">(</span><em>r</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.setInitialTime" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setInitialTime</code><span class="sig-paren">(</span><em>r</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.setInitialTime" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the initial time of the integration.</p>
 <p>If the time integration has already begun, this restarts the
 integrator using the current solution as the initial condition,
 setting the time to <code class="docutils literal notranslate"><span class="pre">t</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>r</strong> – Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></li>
-<li><strong>t</strong> – Time at which integration should be restarted, using the
+<li><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></li>
+<li><strong>t</strong> &#8211; Time at which integration should be restarted, using the
 current state as the initial condition. Units: s</li>
 </ul>
 </td>
@@ -907,7 +903,7 @@ current state as the initial condition. Units: s</li>
 
 <dl class="function">
 <dt id="ReactorNet.setMaxTimeStep">
-<code class="descname">setMaxTimeStep</code><span class="sig-paren">(</span><em>r</em>, <em>maxstep</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.setMaxTimeStep" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setMaxTimeStep</code><span class="sig-paren">(</span><em>r</em>, <em>maxstep</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.setMaxTimeStep" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the maximum time step.</p>
 <p>The integrator chooses a step size based on the desired error
 tolerances and the rate at which the solution is changing. In
@@ -917,12 +913,12 @@ choose a timestep that is too large, which leads to numerical
 problems later. Use this method to set an upper bound on the
 timestep.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>r</strong> – Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></li>
-<li><strong>maxstep</strong> – Maximum time step</li>
+<li><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></li>
+<li><strong>maxstep</strong> &#8211; Maximum time step</li>
 </ul>
 </td>
 </tr>
@@ -932,16 +928,16 @@ timestep.</p>
 
 <dl class="function">
 <dt id="ReactorNet.setTolerances">
-<code class="descname">setTolerances</code><span class="sig-paren">(</span><em>r</em>, <em>rtol</em>, <em>atol</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.setTolerances" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setTolerances</code><span class="sig-paren">(</span><em>r</em>, <em>rtol</em>, <em>atol</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.setTolerances" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the error tolerances.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>r</strong> – Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></li>
-<li><strong>rtol</strong> – Scalar relative error tolerance</li>
-<li><strong>atol</strong> – Scalar absolute error tolerance</li>
+<li><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></li>
+<li><strong>rtol</strong> &#8211; Scalar relative error tolerance</li>
+<li><strong>atol</strong> &#8211; Scalar absolute error tolerance</li>
 </ul>
 </td>
 </tr>
@@ -951,7 +947,7 @@ timestep.</p>
 
 <dl class="function">
 <dt id="ReactorNet.step">
-<code class="descname">step</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.step" title="Permalink to this definition">¶</a></dt>
+<code class="descname">step</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.step" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Take one internal time step.</p>
 <p>The integrator used to integrate the ODEs (CVODE) takes
 variable-size steps, chosen so that a specified error
@@ -975,10 +971,10 @@ solution.</p>
 </div>
 <p>See also: <a class="reference internal" href="#ReactorNet.advance" title="ReactorNet.advance"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">advance()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Network time after the internal time step. Units: s</td>
 </tr>
@@ -988,13 +984,13 @@ solution.</p>
 
 <dl class="function">
 <dt id="ReactorNet.time">
-<code class="descname">time</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.time" title="Permalink to this definition">¶</a></dt>
+<code class="descname">time</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#ReactorNet.time" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the current value of the time.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> – Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>r</strong> &#8211; Instance of class <a class="reference internal" href="#ReactorNet" title="ReactorNet"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ReactorNet()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Current time in the input ReactorNet. Units: s</td>
 </tr>
@@ -1006,10 +1002,10 @@ solution.</p>
 
 </div>
 <div class="section" id="flowdevice">
-<h2>FlowDevice<a class="headerlink" href="#flowdevice" title="Permalink to this headline">¶</a></h2>
+<h2>FlowDevice<a class="headerlink" href="#flowdevice" title="Permalink to this headline">&#182;</a></h2>
 <dl class="class">
 <dt id="FlowDevice">
-<em class="property">class </em><code class="descname">FlowDevice</code><span class="sig-paren">(</span><em>typ</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">FlowDevice</code><span class="sig-paren">(</span><em>typ</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>FlowDevice class constructor.</p>
 <p>Base class for devices that allow flow between reactors.
 <a class="reference internal" href="#FlowDevice" title="FlowDevice"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">FlowDevice()</span></code></a> objects are assumed to be adiabatic,
@@ -1021,10 +1017,10 @@ pressure difference equals the difference in pressure between the
 upstream and downstream reactors.</p>
 <p>See also: <a class="reference internal" href="#FlowDevice.MassFlowController" title="FlowDevice.MassFlowController"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">MassFlowController()</span></code></a>, <a class="reference internal" href="#FlowDevice.Valve" title="FlowDevice.Valve"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Valve()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>typ</strong> – Type of <a class="reference internal" href="#FlowDevice" title="FlowDevice"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">FlowDevice()</span></code></a> to be created. <code class="docutils literal notranslate"><span class="pre">typ=1</span></code> for
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>typ</strong> &#8211; Type of <a class="reference internal" href="#FlowDevice" title="FlowDevice"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">FlowDevice()</span></code></a> to be created. <code class="docutils literal notranslate"><span class="pre">typ=1</span></code> for
 <a class="reference internal" href="#FlowDevice.MassFlowController" title="FlowDevice.MassFlowController"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">MassFlowController()</span></code></a> and <code class="docutils literal notranslate"><span class="pre">typ=3</span></code> for
 <a class="reference internal" href="#FlowDevice.Valve" title="FlowDevice.Valve"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Valve()</span></code></a></td>
 </tr>
@@ -1034,7 +1030,7 @@ upstream and downstream reactors.</p>
 </table>
 <dl class="function">
 <dt id="FlowDevice.MassFlowController">
-<code class="descname">MassFlowController</code><span class="sig-paren">(</span><em>upstream</em>, <em>downstream</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.MassFlowController" title="Permalink to this definition">¶</a></dt>
+<code class="descname">MassFlowController</code><span class="sig-paren">(</span><em>upstream</em>, <em>downstream</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.MassFlowController" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a mass flow controller.</p>
 <p>Creates an instance of class <a class="reference internal" href="#FlowDevice" title="FlowDevice"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">FlowDevice()</span></code></a> configured to
 simulate a mass flow controller that maintains a constant mass flow
@@ -1045,12 +1041,12 @@ should be used to install the <a class="reference internal" href="#FlowDevice.Ma
 reactors.</p>
 <p>see also: <a class="reference internal" href="#FlowDevice" title="FlowDevice"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">FlowDevice()</span></code></a>, <a class="reference internal" href="#FlowDevice.Valve" title="FlowDevice.Valve"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Valve()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>upstream</strong> – Upstream <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reservoir()</span></code></li>
-<li><strong>downstream</strong> – Downstream <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reservoir()</span></code></li>
+<li><strong>upstream</strong> &#8211; Upstream <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reservoir()</span></code></li>
+<li><strong>downstream</strong> &#8211; Downstream <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reservoir()</span></code></li>
 </ul>
 </td>
 </tr>
@@ -1063,7 +1059,7 @@ reactors.</p>
 
 <dl class="function">
 <dt id="FlowDevice.Valve">
-<code class="descname">Valve</code><span class="sig-paren">(</span><em>upstream</em>, <em>downstream</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.Valve" title="Permalink to this definition">¶</a></dt>
+<code class="descname">Valve</code><span class="sig-paren">(</span><em>upstream</em>, <em>downstream</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.Valve" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Create a valve.</p>
 <p>Create an instance of class <a class="reference internal" href="#FlowDevice" title="FlowDevice"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">FlowDevice()</span></code></a> configured to
 simulate a valve that produces a flow rate proportional to the
@@ -1084,12 +1080,12 @@ large the pressure difference. THIS MAY CHANGE IN A FUTURE
 RELEASE.</p>
 <p>see also: <a class="reference internal" href="#FlowDevice" title="FlowDevice"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">FlowDevice()</span></code></a>, <a class="reference internal" href="#FlowDevice.MassFlowController" title="FlowDevice.MassFlowController"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">MassFlowController()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>upstream</strong> – Upstream reactor or reservoir</li>
-<li><strong>downstream</strong> – Downstream Reactor or reservoir</li>
+<li><strong>upstream</strong> &#8211; Upstream reactor or reservoir</li>
+<li><strong>downstream</strong> &#8211; Downstream Reactor or reservoir</li>
 </ul>
 </td>
 </tr>
@@ -1102,16 +1098,16 @@ RELEASE.</p>
 
 <dl class="function">
 <dt id="FlowDevice.install">
-<code class="descname">install</code><span class="sig-paren">(</span><em>f</em>, <em>upstream</em>, <em>downstream</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.install" title="Permalink to this definition">¶</a></dt>
+<code class="descname">install</code><span class="sig-paren">(</span><em>f</em>, <em>upstream</em>, <em>downstream</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.install" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Install a flow device between reactors or reservoirs.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>f</strong> – Instance of class <a class="reference internal" href="#FlowDevice" title="FlowDevice"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">FlowDevice()</span></code></a> to install</li>
-<li><strong>upstream</strong> – Upstream <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reservoir()</span></code></li>
-<li><strong>downstream</strong> – Downstream <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reservoir()</span></code></li>
+<li><strong>f</strong> &#8211; Instance of class <a class="reference internal" href="#FlowDevice" title="FlowDevice"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">FlowDevice()</span></code></a> to install</li>
+<li><strong>upstream</strong> &#8211; Upstream <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reservoir()</span></code></li>
+<li><strong>downstream</strong> &#8211; Downstream <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reservoir()</span></code></li>
 </ul>
 </td>
 </tr>
@@ -1124,15 +1120,15 @@ RELEASE.</p>
 
 <dl class="function">
 <dt id="FlowDevice.massFlowRate">
-<code class="descname">massFlowRate</code><span class="sig-paren">(</span><em>f</em>, <em>time</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.massFlowRate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">massFlowRate</code><span class="sig-paren">(</span><em>f</em>, <em>time</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.massFlowRate" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the mass flow rate at a given time.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>f</strong> – Instance of class <a class="reference internal" href="#FlowDevice.MassFlowController" title="FlowDevice.MassFlowController"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">MassFlowController()</span></code></a></li>
-<li><strong>time</strong> – Time at which the mass flow rate is desired</li>
+<li><strong>f</strong> &#8211; Instance of class <a class="reference internal" href="#FlowDevice.MassFlowController" title="FlowDevice.MassFlowController"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">MassFlowController()</span></code></a></li>
+<li><strong>time</strong> &#8211; Time at which the mass flow rate is desired</li>
 </ul>
 </td>
 </tr>
@@ -1145,16 +1141,16 @@ RELEASE.</p>
 
 <dl class="function">
 <dt id="FlowDevice.setFunction">
-<code class="descname">setFunction</code><span class="sig-paren">(</span><em>f</em>, <em>mf</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.setFunction" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setFunction</code><span class="sig-paren">(</span><em>f</em>, <em>mf</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.setFunction" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the mass flow rate with class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>.</p>
 <p>See also: <a class="reference internal" href="#FlowDevice.MassFlowController" title="FlowDevice.MassFlowController"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">MassFlowController()</span></code></a>, <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>f</strong> – Instance of class <a class="reference internal" href="#FlowDevice.MassFlowController" title="FlowDevice.MassFlowController"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">MassFlowController()</span></code></a></li>
-<li><strong>mf</strong> – Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
+<li><strong>f</strong> &#8211; Instance of class <a class="reference internal" href="#FlowDevice.MassFlowController" title="FlowDevice.MassFlowController"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">MassFlowController()</span></code></a></li>
+<li><strong>mf</strong> &#8211; Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -1164,16 +1160,16 @@ RELEASE.</p>
 
 <dl class="function">
 <dt id="FlowDevice.setMassFlowRate">
-<code class="descname">setMassFlowRate</code><span class="sig-paren">(</span><em>f</em>, <em>mdot</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.setMassFlowRate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setMassFlowRate</code><span class="sig-paren">(</span><em>f</em>, <em>mdot</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.setMassFlowRate" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the mass flow rate to a constant value.</p>
 <p>See also: <a class="reference internal" href="#FlowDevice.MassFlowController" title="FlowDevice.MassFlowController"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">MassFlowController()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>f</strong> – Instance of class <a class="reference internal" href="#FlowDevice.MassFlowController" title="FlowDevice.MassFlowController"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">MassFlowController()</span></code></a></li>
-<li><strong>mdot</strong> – Mass flow rate</li>
+<li><strong>f</strong> &#8211; Instance of class <a class="reference internal" href="#FlowDevice.MassFlowController" title="FlowDevice.MassFlowController"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">MassFlowController()</span></code></a></li>
+<li><strong>mdot</strong> &#8211; Mass flow rate</li>
 </ul>
 </td>
 </tr>
@@ -1183,7 +1179,7 @@ RELEASE.</p>
 
 <dl class="function">
 <dt id="FlowDevice.setValveCoeff">
-<code class="descname">setValveCoeff</code><span class="sig-paren">(</span><em>f</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.setValveCoeff" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setValveCoeff</code><span class="sig-paren">(</span><em>f</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#FlowDevice.setValveCoeff" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the valve coefficient <span class="math">\(K\)</span>.</p>
 <p>The mass flow rate [kg/s] is computed from the expression</p>
 <div class="math">
@@ -1194,12 +1190,12 @@ RELEASE.</p>
 negative, zero is returned.</p>
 <p>See also: <a class="reference internal" href="#FlowDevice.Valve" title="FlowDevice.Valve"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Valve()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>f</strong> – Instance of class <a class="reference internal" href="#FlowDevice.Valve" title="FlowDevice.Valve"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Valve()</span></code></a></li>
-<li><strong>k</strong> – Value of the valve coefficient. Units: kg/Pa-s</li>
+<li><strong>f</strong> &#8211; Instance of class <a class="reference internal" href="#FlowDevice.Valve" title="FlowDevice.Valve"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Valve()</span></code></a></li>
+<li><strong>k</strong> &#8211; Value of the valve coefficient. Units: kg/Pa-s</li>
 </ul>
 </td>
 </tr>
@@ -1211,10 +1207,10 @@ negative, zero is returned.</p>
 
 </div>
 <div class="section" id="wall">
-<h2>Wall<a class="headerlink" href="#wall" title="Permalink to this headline">¶</a></h2>
+<h2>Wall<a class="headerlink" href="#wall" title="Permalink to this headline">&#182;</a></h2>
 <dl class="class">
 <dt id="Wall">
-<em class="property">class </em><code class="descname">Wall</code><span class="sig-paren">(</span><em>left</em>, <em>right</em>, <em>area</em>, <em>k</em>, <em>u</em>, <em>q</em>, <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Wall</code><span class="sig-paren">(</span><em>left</em>, <em>right</em>, <em>area</em>, <em>k</em>, <em>u</em>, <em>q</em>, <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Wall class constructor.</p>
 <p>A Wall separates two reactors, or a reactor and a reservoir. A wall has a
 finite area, may conduct heat between the two reactors on either
@@ -1247,23 +1243,23 @@ if the intention was to not use a particular argument. Thus, the velocity of
 the wall can be set by using empty strings or 0.0 for each of the arguments before
 the velocity with no harm.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>left</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> to be used as the bulk phase on
+<li><strong>left</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> to be used as the bulk phase on
 the left side of the wall. See <a class="reference internal" href="#Wall.install" title="Wall.install"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">install()</span></code></a></li>
-<li><strong>right</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> to be used as the bulk phase on
+<li><strong>right</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> to be used as the bulk phase on
 the right side of the wall. See <a class="reference internal" href="#Wall.install" title="Wall.install"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">install()</span></code></a></li>
-<li><strong>area</strong> – The area of the wall in m**2. See <a class="reference internal" href="#Wall.area" title="Wall.area"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">area()</span></code></a> and <a class="reference internal" href="#Wall.setArea" title="Wall.setArea"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setArea()</span></code></a>.
+<li><strong>area</strong> &#8211; The area of the wall in m**2. See <a class="reference internal" href="#Wall.area" title="Wall.area"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">area()</span></code></a> and <a class="reference internal" href="#Wall.setArea" title="Wall.setArea"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setArea()</span></code></a>.
 Defaults to 1.0 m**2 if not specified.</li>
-<li><strong>k</strong> – Expansion rate coefficient in m/(s-Pa). See <a class="reference internal" href="#Wall.setExpansionRateCoeff" title="Wall.setExpansionRateCoeff"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setExpansionRateCoeff()</span></code></a>
+<li><strong>k</strong> &#8211; Expansion rate coefficient in m/(s-Pa). See <a class="reference internal" href="#Wall.setExpansionRateCoeff" title="Wall.setExpansionRateCoeff"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setExpansionRateCoeff()</span></code></a>
 and <a class="reference internal" href="#Wall.vdot" title="Wall.vdot"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">vdot()</span></code></a>. Defaults to 0.0 if not specified.</li>
-<li><strong>u</strong> – Heat transfer coefficient in W/(m**2-K). See <a class="reference internal" href="#Wall.setHeatTransferCoeff" title="Wall.setHeatTransferCoeff"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setHeatTransferCoeff()</span></code></a>
+<li><strong>u</strong> &#8211; Heat transfer coefficient in W/(m**2-K). See <a class="reference internal" href="#Wall.setHeatTransferCoeff" title="Wall.setHeatTransferCoeff"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setHeatTransferCoeff()</span></code></a>
 and <a class="reference internal" href="#Wall.qdot" title="Wall.qdot"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">qdot()</span></code></a>. Defaults to 0.0 if not specified.</li>
-<li><strong>q</strong> – Heat flux in W/m**2. Must be an instance of <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>. See
+<li><strong>q</strong> &#8211; Heat flux in W/m**2. Must be an instance of <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>. See
 <a class="reference internal" href="#Wall.setHeatFlux" title="Wall.setHeatFlux"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setHeatFlux()</span></code></a> and <a class="reference internal" href="#Wall.qdot" title="Wall.qdot"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">qdot()</span></code></a>. Defaults to 0.0 if not specified.</li>
-<li><strong>v</strong> – Velocity of the wall in m/s. Must be an instance of <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>. See
+<li><strong>v</strong> &#8211; Velocity of the wall in m/s. Must be an instance of <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>. See
 <a class="reference internal" href="#Wall.setVelocity" title="Wall.setVelocity"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">setVelocity()</span></code></a> and <a class="reference internal" href="#Wall.vdot" title="Wall.vdot"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">vdot()</span></code></a>. Defaults to 0.0 if not specified.</li>
 </ul>
 </td>
@@ -1275,13 +1271,13 @@ and <a class="reference internal" href="#Wall.qdot" title="Wall.qdot"><code clas
 </table>
 <dl class="function">
 <dt id="Wall.area">
-<code class="descname">area</code><span class="sig-paren">(</span><em>w</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.area" title="Permalink to this definition">¶</a></dt>
+<code class="descname">area</code><span class="sig-paren">(</span><em>w</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.area" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the area of the wall.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>w</strong> – Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>w</strong> &#8211; Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Area of the wall in m**2</td>
 </tr>
@@ -1291,17 +1287,17 @@ and <a class="reference internal" href="#Wall.qdot" title="Wall.qdot"><code clas
 
 <dl class="function">
 <dt id="Wall.install">
-<code class="descname">install</code><span class="sig-paren">(</span><em>w</em>, <em>left</em>, <em>right</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.install" title="Permalink to this definition">¶</a></dt>
+<code class="descname">install</code><span class="sig-paren">(</span><em>w</em>, <em>left</em>, <em>right</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.install" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Install a wall between two reactors.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>w</strong> – Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
-<li><strong>left</strong> – Instance of class <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor`or</span>
+<li><strong>w</strong> &#8211; Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
+<li><strong>left</strong> &#8211; Instance of class <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor`or</span>
 <span class="pre">:mat:func:`Reservoir()</span></code></li>
-<li><strong>right</strong> – Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or
+<li><strong>right</strong> &#8211; Instance of class <a class="reference internal" href="#Reactor" title="Reactor"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reactor()</span></code></a> or
 <code class="xref mat mat-func docutils literal notranslate"><span class="pre">Reservoir()</span></code></li>
 </ul>
 </td>
@@ -1312,17 +1308,17 @@ and <a class="reference internal" href="#Wall.qdot" title="Wall.qdot"><code clas
 
 <dl class="function">
 <dt id="Wall.qdot">
-<code class="descname">qdot</code><span class="sig-paren">(</span><em>w</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.qdot" title="Permalink to this definition">¶</a></dt>
+<code class="descname">qdot</code><span class="sig-paren">(</span><em>w</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.qdot" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the total heat transfer through a wall given a time.</p>
 <p>A positive value corresponds to heat flowing from the left-hand
 reactor to the right-hand one.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>w</strong> – Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
-<li><strong>t</strong> – Time at which the heat transfer should be evaluated.</li>
+<li><strong>w</strong> &#8211; Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
+<li><strong>t</strong> &#8211; Time at which the heat transfer should be evaluated.</li>
 </ul>
 </td>
 </tr>
@@ -1335,13 +1331,13 @@ reactor to the right-hand one.</p>
 
 <dl class="function">
 <dt id="Wall.ready">
-<code class="descname">ready</code><span class="sig-paren">(</span><em>w</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.ready" title="Permalink to this definition">¶</a></dt>
+<code class="descname">ready</code><span class="sig-paren">(</span><em>w</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.ready" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Check whether a wall is ready.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>w</strong> – Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>w</strong> &#8211; Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Status of the wall</td>
 </tr>
@@ -1351,15 +1347,15 @@ reactor to the right-hand one.</p>
 
 <dl class="function">
 <dt id="Wall.setArea">
-<code class="descname">setArea</code><span class="sig-paren">(</span><em>w</em>, <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setArea" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setArea</code><span class="sig-paren">(</span><em>w</em>, <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setArea" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the area of a wall.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>w</strong> – Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
-<li><strong>a</strong> – Double area of the wall.</li>
+<li><strong>w</strong> &#8211; Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
+<li><strong>a</strong> &#8211; Double area of the wall.</li>
 </ul>
 </td>
 </tr>
@@ -1369,7 +1365,7 @@ reactor to the right-hand one.</p>
 
 <dl class="function">
 <dt id="Wall.setExpansionRateCoeff">
-<code class="descname">setExpansionRateCoeff</code><span class="sig-paren">(</span><em>w</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setExpansionRateCoeff" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setExpansionRateCoeff</code><span class="sig-paren">(</span><em>w</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setExpansionRateCoeff" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the expansion rate coefficient.</p>
 <p>The expansion rate coefficient
 determines the velocity of the wall for a given pressure
@@ -1382,12 +1378,12 @@ formula</p>
 <p>where <span class="math">\(v\)</span> is velocity, <span class="math">\(K\)</span> is the expansion rate
 coefficient, and <span class="math">\(P\)</span> is the pressure.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>w</strong> – Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
-<li><strong>k</strong> – Double, wall expansion rate coefficient. Units: m/(s-Pa)</li>
+<li><strong>w</strong> &#8211; Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
+<li><strong>k</strong> &#8211; Double, wall expansion rate coefficient. Units: m/(s-Pa)</li>
 </ul>
 </td>
 </tr>
@@ -1397,7 +1393,7 @@ coefficient, and <span class="math">\(P\)</span> is the pressure.</p>
 
 <dl class="function">
 <dt id="Wall.setHeatFlux">
-<code class="descname">setHeatFlux</code><span class="sig-paren">(</span><em>w</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setHeatFlux" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setHeatFlux</code><span class="sig-paren">(</span><em>w</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setHeatFlux" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the heat flux using <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a></p>
 <p>Must be set by an instance of
 class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>, which allows the heat flux to be an
@@ -1405,18 +1401,18 @@ arbitrary function of time. It is possible to specify
 a constant heat flux by using the polynomial functor with
 only the first term specified:</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="p">=</span> <span class="n">Wall</span><span class="p">()</span>
-<span class="n">f</span> <span class="p">=</span> <span class="n">Func</span><span class="p">(</span><span class="s">&#39;polynomial&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="c">% Or f = polynom(10);</span>
+<span class="n">f</span> <span class="p">=</span> <span class="n">Func</span><span class="p">(</span><span class="s">'polynomial'</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="c">% Or f = polynom(10);</span>
 <span class="n">setHeatFlux</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>sets the heat flux through the wall to 10 W/m**2.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>w</strong> – Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
-<li><strong>f</strong> – Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>. Units: W/m**2</li>
+<li><strong>w</strong> &#8211; Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
+<li><strong>f</strong> &#8211; Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>. Units: W/m**2</li>
 </ul>
 </td>
 </tr>
@@ -1426,15 +1422,15 @@ only the first term specified:</p>
 
 <dl class="function">
 <dt id="Wall.setHeatTransferCoeff">
-<code class="descname">setHeatTransferCoeff</code><span class="sig-paren">(</span><em>w</em>, <em>u</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setHeatTransferCoeff" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setHeatTransferCoeff</code><span class="sig-paren">(</span><em>w</em>, <em>u</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setHeatTransferCoeff" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the heat transfer coefficient.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>w</strong> – Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
-<li><strong>u</strong> – Heat transfer coefficient of the wall. Units: W/(m**2-K)</li>
+<li><strong>w</strong> &#8211; Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
+<li><strong>u</strong> &#8211; Heat transfer coefficient of the wall. Units: W/(m**2-K)</li>
 </ul>
 </td>
 </tr>
@@ -1444,15 +1440,15 @@ only the first term specified:</p>
 
 <dl class="function">
 <dt id="Wall.setThermalResistance">
-<code class="descname">setThermalResistance</code><span class="sig-paren">(</span><em>w</em>, <em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setThermalResistance" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setThermalResistance</code><span class="sig-paren">(</span><em>w</em>, <em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setThermalResistance" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the thermal resistance.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>w</strong> – Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
-<li><strong>r</strong> – Double, thermal resistance. Units: K*m**2/W</li>
+<li><strong>w</strong> &#8211; Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
+<li><strong>r</strong> &#8211; Double, thermal resistance. Units: K*m**2/W</li>
 </ul>
 </td>
 </tr>
@@ -1462,25 +1458,25 @@ only the first term specified:</p>
 
 <dl class="function">
 <dt id="Wall.setVelocity">
-<code class="descname">setVelocity</code><span class="sig-paren">(</span><em>w</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setVelocity" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setVelocity</code><span class="sig-paren">(</span><em>w</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.setVelocity" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Set the velocity of the wall using <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>.</p>
 <p>Must be set by an instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>, which allows
 the velocity to be an arbitrary function of time. It is possible
 to specify a constant velocity by using the polynomial functor with
 only the first term specified:</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="p">=</span> <span class="n">Wall</span><span class="p">()</span>
-<span class="n">f</span> <span class="p">=</span> <span class="n">Func</span><span class="p">(</span><span class="s">&#39;polynomial&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="c">% Or f = polynom(10);</span>
+<span class="n">f</span> <span class="p">=</span> <span class="n">Func</span><span class="p">(</span><span class="s">'polynomial'</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="c">% Or f = polynom(10);</span>
 <span class="n">setVelocity</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>sets the velocity of the wall to 10 m/s.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>w</strong> – Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
-<li><strong>f</strong> – Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>. Units: m/s</li>
+<li><strong>w</strong> &#8211; Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
+<li><strong>f</strong> &#8211; Instance of class <a class="reference internal" href="#Func" title="Func"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Func()</span></code></a>. Units: m/s</li>
 </ul>
 </td>
 </tr>
@@ -1490,17 +1486,17 @@ only the first term specified:</p>
 
 <dl class="function">
 <dt id="Wall.vdot">
-<code class="descname">vdot</code><span class="sig-paren">(</span><em>w</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.vdot" title="Permalink to this definition">¶</a></dt>
+<code class="descname">vdot</code><span class="sig-paren">(</span><em>w</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#Wall.vdot" title="Permalink to this definition">&#182;</a></dt>
 <dd><p>Get the rate of volumetric change at a given time.</p>
 <p>A positive value corresponds to the left-hand reactor volume
 increasing, and the right-hand reactor volume decreasing.</p>
 <table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<col class="field-name">
+<col class="field-body">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>w</strong> – Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
-<li><strong>t</strong> – Time at which the volumetric change should be calculated.</li>
+<li><strong>w</strong> &#8211; Instance of class <a class="reference internal" href="#Wall" title="Wall"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Wall()</span></code></a></li>
+<li><strong>t</strong> &#8211; Time at which the volumetric change should be calculated.</li>
 </ul>
 </td>
 </tr>
@@ -1538,7 +1534,7 @@ increasing, and the right-hand reactor volume decreasing.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">Matlab Interface User’s Guide</a><ul>
+  <li><a href="index.html">Matlab Interface User&#8217;s Guide</a><ul>
       <li>Previous: <a href="transport.html" title="previous chapter">Transport Properties</a></li>
       <li>Next: <a href="one-dim.html" title="next chapter">One-Dimensional Reacting Flows</a></li>
   </ul></li>
@@ -1548,25 +1544,24 @@ increasing, and the right-hand reactor volume decreasing.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/matlab/zero-dim.rst.txt"
-            rel="nofollow">Show Source</a></li>
+      <li><a href="../_sources/matlab/zero-dim.rst.txt" rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
     </form>
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><div id="numfocus">
 <h3>Donate to Cantera</h3>
 <a href="https://numfocus.org/donate-to-cantera">
-<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"></a>
 </div>
     </div>
   </div>
@@ -1575,15 +1570,14 @@ increasing, and the right-hand reactor volume decreasing.</p>
            <!--End of block content-->
 
           <div class="footer">
-            &copy;2001-2018, Cantera Developers.
+            &#169;2001-2018, Cantera Developers.
 
             |
             Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.8</a>
             &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
 
             |
-            <a href="../_sources/matlab/zero-dim.rst.txt"
-                rel="nofollow">Page source</a>
+            <a href="../_sources/matlab/zero-dim.rst.txt" rel="nofollow">Page source</a>
           </div>
       </div>
   </div>
