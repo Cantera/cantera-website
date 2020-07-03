@@ -24,7 +24,7 @@ As just hinted at, the solvers that I developed and discussed in my last blog po
 
 Although time integration didn't help convergence with the energy equation, it was exactly what I needed to get PSR v0.1 working! Adding time integration resulted in a capable and accurate PSR solver. I compared this new version of the solver to Cantera's `IdealGasReactor` based on the example code in [combustor.py](https://cantera.org/examples/python/reactors/combustor.py.html), and the results were just about *exactly* the same:
 
-{{% thumbnail "/images/gsoc-2020/v02-results.png" align="center" %}}
+![](/images/gsoc-2020/v0-2-results.png)
 
 Check out the full code for [PSR v0.2 on GitHub](https://github.com/paulblum/cantera/blob/0DSS/samples/cxx/psr/PSRv2.cpp)! The energy equation and fixed-temperature versions of the solver are built in for reference, although they weren't used to produce the results above.
 
