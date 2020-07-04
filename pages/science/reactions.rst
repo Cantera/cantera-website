@@ -217,9 +217,9 @@ pressures. Given two rate expressions at two specific pressures:
 
 .. math::
 
-   P_1: k_1(T) = A_1 T^{b_1} e^{E_1 / RT}
+   P_1: k_1(T) = A_1 T^{b_1} e^{-E_1 / RT}
 
-   P_2: k_2(T) = A_2 T^{b_2} e^{E_2 / RT}
+   P_2: k_2(T) = A_2 T^{b_2} e^{-E_2 / RT}
 
 The rate at an intermediate pressure :math:`P_1 < P < P_2` is computed as
 
@@ -232,6 +232,14 @@ Multiple rate expressions may be given at the same pressure, in which case the
 rate used in the interpolation formula is the sum of all the rates given at that
 pressure. For pressures outside the given range, the rate expression at the nearest
 pressure is used.
+
+Negative A-factors can be used for any of the rate expressions at a given pressure.
+However, the sum of all of the rates at a given pressure **must** be positive, due
+to the logarithmic interpolation of the rate for intermediate pressures. When a
+P-log type reaction is initialized, Cantera does a validation check for a range of
+temperatures that the sum of the reaction rates at each pressure is positive. Unfortunately, if
+these checks fail, the only options are to remove the reaction or contact the author
+of the reaction/mechanism in question, because the reaction is mathematically unsound.
 
 P-log reactions can be defined in the CTI format using the
 :cti:class:`pdep_arrhenius` entry, or in the YAML format using the
