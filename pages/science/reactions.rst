@@ -237,7 +237,7 @@ Negative A-factors can be used for any of the rate expressions at a given pressu
 However, the sum of all of the rates at a given pressure **must** be positive, due
 to the logarithmic interpolation of the rate for intermediate pressures. When a
 P-log type reaction is initialized, Cantera does a validation check for a range of
-temperatures that the reaction rate at every pressure is positive. Unfortunately, if
+temperatures that the sum of the reaction rates at each pressure is positive. Unfortunately, if
 these checks fail, the only options are to remove the reaction or contact the author
 of the reaction/mechanism in question, because the reaction is mathematically unsound.
 
