@@ -220,6 +220,27 @@ in the report for Chemkin referenced above. These errors include:
   Although these numbers create an error in ``ck2yaml`` if present, they are
   harmless and can be ignored by using the ``--permissive`` option.
 
+  If the number of atoms of an element in a thermodynamic entry has more than 3
+  digits, it will cause a conversion error. To avoid the error, the element
+  symbol should have a ``0`` in the first line of the entry. An ampersand
+  (``&``) is added after the index of the first line, and the element symbols
+  and their amounts should be written on the next line as follows::
+
+     BIN6J      PYRENEJ1     C   0H   0    0    0G   300.000  5000.000 1401.000     1&
+     C 778    H 263
+      3.63345177E+01 3.13968020E-02-1.09044660E-05 1.71125597E-09-1.00056355E-13    2
+      4.05143093E+04-1.77494305E+02-1.20603441E+01 1.59247554E-01-1.41562602E-04    3
+      6.26071650E-08-1.09305161E-11 5.56473533E+04 7.68451211E+01                   4
+
+  or on separate lines with ampersand (``&``) as the last character on the line::
+
+     BIN6       PYRENE       C   0H   0    0    0G   300.000  5000.000 1401.000     1&
+     C      778&
+     H      264
+      3.65839677E+01 3.36764102E-02-1.16783938E-05 1.83077466E-09-1.06963777E-13    2
+      9.29809483E+03-1.81272070E+02-1.29758980E+01 1.63790064E-01-1.43851166E-04    3
+      6.31057915E-08-1.09568047E-11 2.48866399E+04 7.94950474E+01                   4
+
 * It may be the case that scientific formatted numbers are missing the ``E``.
   In this case, numbers often show up as ``1.1+01``, when they should be
   ``1.1E+01``. You can fix this with a Regular Expression "find and replace"::
