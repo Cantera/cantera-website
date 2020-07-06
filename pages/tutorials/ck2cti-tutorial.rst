@@ -46,7 +46,7 @@ Each of the terms in square brackets is an option that can be passed on the comm
   the species. This file can also optionally contain thermodynamic information for the species.
 
 - ``--thermo``: If the ``--input`` file does not contain the thermodynamic data, a separate file
-- containing this information must be specified to the `--thermo`` option.
+  containing this information must be specified to the ``--thermo`` option.
 
 - ``--transport``: Finally, the ``--input`` file can also optionally contain transport information
   for the species. If it does not, and the user wishes to use a part of Cantera that relies on some
@@ -200,19 +200,20 @@ in the report for Chemkin referenced above. These errors include:
   Although these numbers create an error in ``ck2cti`` if present, they are
   harmless and can be ignored by using the ``--permissive`` option.
 
-  If the number of atoms of an element in a thermodynamic entry has more than 3 digits, 
-  it will cause a conversion error. To avoid the error, the element symbol
-  should have a ``0`` in the first line of the entry. An ampersand (``&``) is added after the index
-  of the first line, and the element symbols and their amounts should be written
-  on the next line as follows::
-    
-     BIN6J      PYRENEJ1     C   0H   0    0    0G   300.000  5000.000 1401.000     1& 
-     C 778    H 263 
-      3.63345177E+01 3.13968020E-02-1.09044660E-05 1.71125597E-09-1.00056355E-13    2 
-      4.05143093E+04-1.77494305E+02-1.20603441E+01 1.59247554E-01-1.41562602E-04    3 
-      6.26071650E-08-1.09305161E-11 5.56473533E+04 7.68451211E+01                   4 
+  If the number of atoms of an element in a thermodynamic entry has more than 3
+  digits, it will cause a conversion error. To avoid the error, the element
+  symbol should have a ``0`` in the first line of the entry. An ampersand
+  (``&``) is added after the index of the first line, and the element symbols
+  and their amounts should be written on the next line as follows::
+
+     BIN6J      PYRENEJ1     C   0H   0    0    0G   300.000  5000.000 1401.000     1&
+     C 778    H 263
+      3.63345177E+01 3.13968020E-02-1.09044660E-05 1.71125597E-09-1.00056355E-13    2
+      4.05143093E+04-1.77494305E+02-1.20603441E+01 1.59247554E-01-1.41562602E-04    3
+      6.26071650E-08-1.09305161E-11 5.56473533E+04 7.68451211E+01                   4
+
   or on separate lines with ampersand (``&``) as the last character on the line::
-    
+
      BIN6       PYRENE       C   0H   0    0    0G   300.000  5000.000 1401.000     1&
      C      778&
      H      264
