@@ -167,7 +167,7 @@ class RenderMatlabExamples(Task):
                 continue
             matlab_headers["examples"]["files"].append(mat_ex_file)
             doc = ""
-            for line in mat_ex_file.read_text().split("\n"):
+            for line in mat_ex_file.read_text(encoding="utf-8").split("\n"):
                 line = line.strip()
                 if line.startswith("%"):
                     doc = line.strip("%").strip()

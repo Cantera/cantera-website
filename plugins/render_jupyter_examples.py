@@ -76,7 +76,7 @@ def render_example(site, kw, in_name, out_name):
     ipynb_compiler = site.plugin_manager.getPluginByName(
         "ipynb", "PageCompiler"
     ).plugin_object
-    with in_name.open(mode="r") as in_file:
+    with in_name.open(mode="r", encoding="utf-8") as in_file:
         nb_json = ipynb_compiler._nbformat_read(in_file)
     ipynb_raw = ipynb_compiler._compile_string(nb_json)
     ipynb_html = lxml.html.fromstring(ipynb_raw)
@@ -199,8 +199,7 @@ class RenderJupyterExamples(Task):
                 continue
 
             jupyter_headers[ex_category]["files"].append(jpy_ex_file)
-
-            data = json.loads(jpy_ex_file.read_text())
+            data = json.loads(jpy_ex_file.read_text(encoding="utf-8"))
             doc = ""
             for cell in data["cells"]:
                 if cell["cell_type"] != "markdown":
@@ -243,7 +242,7 @@ class RenderJupyterExamples(Task):
             )
             cache_file.parent.mkdir(parents=True, exist_ok=True)
 
-            with cache_file.open(mode="w") as jfile:
+            with cache_file.open(mode="w", encoding="utf-8") as jfile:
                 json.dump(data, jfile)
 
             jupyter_headers[ex_category]["summaries"][jpy_ex_file.name] = doc
