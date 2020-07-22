@@ -26,5 +26,5 @@ for folder in folders:
 
         head = doc.find('head')
         meta = etree.SubElement(head, 'meta', {'name': 'robots', 'content': 'noindex'})
-        with open(html_file, 'w') as file_obj:
+        with open(html_file, 'w', encoding='utf-8') as file_obj:
             file_obj.write(lh.tostring(doc).decode('utf-8'))

@@ -119,7 +119,7 @@ class NewRelease(Command):
 
         # Add a link to the new page to the site's Documentation page
         indexhtml_file = CANTERA_WEBSITE / "pages" / "documentation" / "index.html"
-        indexhtml_content = indexhtml_file.read_text()
+        indexhtml_content = indexhtml_file.read_text(encoding="utf-8")
         sections = html.fragments_fromstring(indexhtml_content)
         for releasenotes_card in sections[-1].xpath('//div[@id="release-notes"]'):
             new_entry = etree.Element(
