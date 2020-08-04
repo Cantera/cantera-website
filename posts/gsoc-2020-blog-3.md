@@ -19,7 +19,7 @@ First, let's take a look at a basic example to see how we might utilize Cantera'
 
 ```pycon
 >>> import cantera as ct                           #import Cantera's Python module
->>> gas = ct.Solution('gri30.cti')                 #create a default GRI-Mech 3.0 gas mixture
+>>> gas = ct.Solution('gri30.yaml')                #create a default GRI-Mech 3.0 gas mixture
 >>> gas.TPX = 1000.0, ct.one_atm, 'H2:2,O2:1,N2:4' #set gas to an interesting state
 >>> reac = ct.IdealGasReactor(gas)                 #create a reactor containing the gas
 >>> sim = ct.ReactorNet([reac])                    #add the reactor to a new ReactorNet simulator
@@ -34,7 +34,7 @@ Equivalently, the following can be compiled and run using Cantera's C++ interfac
 #include "cantera/zerodim.h" //include Cantera's 0D reactor simulation module
 using namespace Cantera;     //activate Cantera namespace to identify scope of class and method references
 int main() {
-    auto gas = newSolution("gri30.cti");  //create a default GRI-Mech 3.0 gas mixture
+    auto gas = newSolution("gri30.yaml"); //create a default GRI-Mech 3.0 gas mixture
     gas->thermo()->setState_TPX(1000.0, OneAtm, "H2:2,O2:1,N2:4"); //set gas to an interesting state
     Reactor reac;                         //create an empty Reactor
     reac.insert(gas);                     //fill the reactor with the specified gas
@@ -47,7 +47,9 @@ int main() {
 }
 ```
 
-For a more advanced example that adds inlets and outlets to the reactor, see Cantera's combustor example ([Python](https://github.com/Cantera/cantera/blob/main/interfaces/cython/cantera/examples/reactors/combustor.py) | [C++](https://github.com/Cantera/cantera/blob/main/samples/cxx/combustor/combustor.cpp)). Additional examples can be found in the [Python Reactor Network Examples](https://cantera.org/examples/python/index.html#python-example-reactors) section of the Cantera website. In any case, Cantera performs reactor network time integration by generating an ODE system that represents the network, and then solving this system via an external `Integrator` object. What is an `Integrator`?
+For a more advanced example that adds inlets and outlets to the reactor, see Cantera's combustor example ([Python](https://github.com/Cantera/cantera/blob/main/interfaces/cython/cantera/examples/reactors/combustor.py) | [C++](https://github.com/Cantera/cantera/blob/main/samples/cxx/combustor/combustor.cpp)). Additional examples can be found in the [Python Reactor Network Examples](https://cantera.org/examples/python/index.html#python-example-reactors) section of the Cantera website.
+
+In any case, after properly configuring a reactor network and its components in Cantera, a call to the `ReactorNet`'s `advance()` method can be used to predict the state of the network at a specified time. Transient physical and chemical interactions are simulated by integrating the network's system of ODE governing equations through time, a process that's actually performed by an external `Integrator` object. What is an `Integrator`?
 
 The `Integrator` class is Cantera's interface for ODE system integrators. This general-purpose ODE system integration tool can be accessed in any Cantera project by including the **Integrator.h** header file in your code:
 
@@ -86,7 +88,7 @@ This call returns a generic `Integrator` pointer, whose `virtual` functions are 
 m_integ(newIntegrator("CVODE"))
 ```
 
-So, what actually happens when you call one of a `ReactorNet`'s time integration functions? Let's follow a call to `ReactorNet::advance()`, like this one to '`sim`', the `ReactorNet` object in Cantera's C++ combustor example:
+So, what actually happens when you call one of a `ReactorNet`'s time integration functions? Let's follow the execution of a call to `ReactorNet::advance()` through the source code. Consider this call to '`sim`', the `ReactorNet` object in Cantera's C++ combustor example:
 
 **combustor.cpp**, line 122 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/samples/cxx/combustor/combustor.cpp#L122))
 
