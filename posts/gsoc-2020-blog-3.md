@@ -10,29 +10,44 @@ author: Paul Blum
 
 ## _How Does Cantera's Reactor Network Time Integration Feature Work?_
 
-There's a great description of the science behind Cantera's reactor network simulation capabilities available on the Cantera website, [here](https://cantera.org/science/reactors.html). You can see these tools in action in Cantera's combustor example, where a reactor network is created from its components and then advanced in time:
-
-- ***C++ Combustor Example:* combustor.cpp** (see this on [GitHub](https://github.com/Cantera/cantera/blob/main/samples/cxx/combustor/combustor.cpp))
-    - Create and fill the inlet `Reservoir`s ([lines 19-41](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/samples/cxx/combustor/combustor.cpp#L19))
-    - Create and fill a `Reactor` ([lines 44-48](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/samples/cxx/combustor/combustor.cpp#L44))
-    - Create and fill the exhaust `Reservior` ([lines 51-54](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/samples/cxx/combustor/combustor.cpp#L51))
-    - Create and install `MassFlowController`s to connect the inlets to the combustor ([lines 65-90](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/samples/cxx/combustor/combustor.cpp#L65))
-    - Create and install a `Valve` to connect the combustor to the outlet and regulate pressure ([lines 92-96](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/samples/cxx/combustor/combustor.cpp#L92))
-    - Create a `ReactorNet` simulator for the `Reactor` ([lines 98-100](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/samples/cxx/combustor/combustor.cpp#L98))
-    - Advance the simulation in time ([line 122](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/samples/cxx/combustor/combustor.cpp#L122))
-- ***Python Combustor Example:* combustor.py** (see this on [GitHub](https://github.com/Cantera/cantera/blob/main/interfaces/cython/cantera/examples/reactors/combustor.py))
-    - Create and fill the inlet `Reservoir` ([lines 24-29](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/interfaces/cython/cantera/examples/reactors/combustor.py#L24))
-    - Create and fill an `IdealGasReactor` ([lines 31-38](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/interfaces/cython/cantera/examples/reactors/combustor.py#L31))
-    - Create and fill the exhaust `Reservior` ([lines 40-41](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/interfaces/cython/cantera/examples/reactors/combustor.py#L40))
-    - Create and install a `MassFlowController` to connect the inlet to the combustor ([line 53](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/interfaces/cython/cantera/examples/reactors/combustor.py#L53))
-    - Create and install a `PressureController` to connect the combustor to the outlet and regulate pressure ([lines 55-59](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/interfaces/cython/cantera/examples/reactors/combustor.py#L55))
-    - Create a `ReactorNet` simulator for the `Reactor` ([lines 61-62](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/interfaces/cython/cantera/examples/reactors/combustor.py#L61))
-    - Advance the simulation to steady state ([line 71](https://github.com/Cantera/cantera/blob/ba13c652b45e74acac1daa929f66a3b6b3f92a63/interfaces/cython/cantera/examples/reactors/combustor.py#L71))
-
-
-This post will go into more developer-oriented detail about how the last step, `ReactorNet`'s [time integration methods](https://cantera.org/science/reactors.html#time-integration), actually work. A `ReactorNet` object doesn't perform time integration on its own. It generates a system of ODE's based on the combined governing equations of all contained `Reactor`s, which is then passed off to an `Integrator` object for solution. What is an `Integrator`?
-
+There's a great description of the science behind Cantera's reactor network simulation capabilities available on the Cantera website, [here](https://cantera.org/science/reactors.html). This post will go into more developer-oriented detail about how the last step, `ReactorNet`'s [time integration methods](https://cantera.org/science/reactors.html#time-integration), actually work. A `ReactorNet` object doesn't perform time integration on its own. It generates a system of ODE's based on the combined governing equations of all contained `Reactor`s, which is then passed off to an `Integrator` object for solution. What is an `Integrator`? How does this work?
 <!-- TEASER_END -->
+
+### Reactor Network Time Integration, Explained.
+
+First, let's take a look at a basic example to see how we might utilize Cantera's time integration functionality. We'll simulate an isolated reactor that is homogeneously filled by a gas mixture (the gas state used in this example is arbitrary, but interesting because it's explosive). Then we'll advance the simulation in time to an (arbitrary) absolute time of 1 second, noting the changes in the state of the gas. Follow along by typing this code into an interactive Python interpreter (like [IPython](https://www.codecademy.com/articles/how-to-use-ipython)):
+
+```pycon
+>>> import cantera as ct                           #import Cantera's Python module
+>>> gas = ct.Solution('gri30.cti')                 #create a default GRI-Mech 3.0 gas mixture
+>>> gas.TPX = 1000.0, ct.one_atm, 'H2:2,O2:1,N2:4' #set gas to an interesting state
+>>> reac = ct.IdealGasReactor(gas)                 #create a reactor containing the gas
+>>> sim = ct.ReactorNet([reac])                    #add the reactor to a new ReactorNet simulator
+>>> gas()                #view the initial state of the mixture (state summary will be printed to console)
+>>> sim.advance(1)       #advance the simulation to the specified absolute time, t = 1 sec
+>>> gas()                #view the updated state of the mixture, reflecting properties at t = 1 sec
+```
+
+Equivalently, the following can be compiled and run using Cantera's C++ interface:
+
+```c++
+#include "cantera/zerodim.h" //include Cantera's 0D reactor simulation module
+using namespace Cantera;     //activate Cantera namespace to identify scope of class and method references
+int main() {
+    auto gas = newSolution("gri30.cti");  //create a default GRI-Mech 3.0 gas mixture
+    gas->thermo()->setState_TPX(1000.0, OneAtm, "H2:2,O2:1,N2:4"); //set gas to an interesting state
+    Reactor reac;                         //create an empty Reactor
+    reac.insert(gas);                     //fill the reactor with the specified gas
+    ReactorNet sim;                       //create an empty ReactorNet simulator
+    sim.addReactor(reac);                 //add the reactor to the ReactorNet
+    std::cout << gas->thermo()->report(); //print the intitial state of the mixture to the console
+    sim.advance(1);                       //advance the simulation to absolute time t = 1 sec
+    std::cout << gas->thermo()->report(); //print the updated state of the mixture to the console
+    return 0;
+}
+```
+
+For a more advanced example that adds inlets and outlets to the reactor, see Cantera's combustor example ([Python](https://github.com/Cantera/cantera/blob/main/interfaces/cython/cantera/examples/reactors/combustor.py) | [C++](https://github.com/Cantera/cantera/blob/main/samples/cxx/combustor/combustor.cpp)). Additional examples can be found in the [Python Reactor Network Examples](https://cantera.org/examples/python/index.html#python-example-reactors) section of the Cantera website. In any case, Cantera performs reactor network time integration by generating an ODE system that represents the network, and then solving this system via an external `Integrator` object. What is an `Integrator`?
 
 The `Integrator` class is Cantera's interface for ODE system integrators. This general-purpose ODE system integration tool can be accessed in any Cantera project by including the **Integrator.h** header file in your code:
 
@@ -59,30 +74,38 @@ Because `CVODES` is written in C, the `CVodesIntegrator` C++ wrapper is used to 
 
 To create an instance of this `CVODES`-type `Integrator`, the factory method can be called with the "CVODE" keyword:
 
-    newIntegrator("CVODE")
+```c++
+newIntegrator("CVODE")
+```
 
 This call returns a generic `Integrator` pointer, whose `virtual` functions are overridden by those of a `CVodesIntegrator`. This is exactly how a `ReactorNet` creates its `CVODES`-type `Integrator` object, before storing it locally as `m_integ` for future reference:
 
 **ReactorNet.cpp**, line 18 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/zeroD/ReactorNet.cpp#L18))
 
-    m_integ(newIntegrator("CVODE"))
+```c++
+m_integ(newIntegrator("CVODE"))
+```
 
 So, what actually happens when you call one of a `ReactorNet`'s time integration functions? Let's follow a call to `ReactorNet::advance()`, like this one to '`sim`', the `ReactorNet` object in Cantera's C++ combustor example:
 
 **combustor.cpp**, line 122 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/samples/cxx/combustor/combustor.cpp#L122))
 
-    sim.advance(tnow);
+```c++
+sim.advance(tnow);
+```
 
 The first thing that `ReactorNet::advance()` does is check for proper initialization, and initialize if needed: 
 
 **ReactorNet.cpp**, line 128 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/zeroD/ReactorNet.cpp#L128))
 
-    void ReactorNet::advance(doublereal time)
-    {
-        if (!m_init) {
-            initialize();
-        } else if (!m_integrator_init) {
-            reinitialize();
+```c++
+void ReactorNet::advance(doublereal time)
+{
+    if (!m_init) {
+        initialize();
+    } else if (!m_integrator_init) {
+        reinitialize();
+```
 
 A `ReactorNet` always needs to be initialized before solving a new reactor network configuration, or after making any changes to the `Integrator`'s settings. Initialization can be done with a call to `ReactorNet::initialize()`, which will allocate new memory, configure `Integrator` settings, initialize all substructures, and populate internal memory appropriately with required data and specifications about the current system.
 
@@ -92,7 +115,9 @@ Once the `ReactorNet` has been properly initialized and its internal memory is u
 
 **ReactorNet.cpp**, line 135 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/zeroD/ReactorNet.cpp#L135))
 
-    m_integ->integrate(time);
+```c++
+m_integ->integrate(time);
+```
 
 The `CVodesIntegrator` wrapper class will then make the appropriate call to the `CVODES` driver function, `CVode()`:
 
@@ -102,7 +127,9 @@ The `CVodesIntegrator` wrapper class will then make the appropriate call to the 
 
 **CVodesIntegrator.cpp**, line 458 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/CVodesIntegrator.cpp#L458))
 
-    int flag = CVode(m_cvode_mem, tout, m_y, &m_time, CV_NORMAL);
+```c++
+int flag = CVode(m_cvode_mem, tout, m_y, &m_time, CV_NORMAL);
+```
 
 There are some interesting things to note about this call to `CVode()`:
 
@@ -122,52 +149,62 @@ An ODE right-hand-side evaluator is always needed in the ODE solution process (i
 
 **Integrator.h**, line 99 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/include/cantera/numerics/Integrator.h#L99))
 
-    /**
-     * Initialize the integrator for a new problem. Call after all options have
-     * been set.
-     * @param t0   initial time
-     * @param func RHS evaluator object for system of equations.
-     */
-    virtual void initialize(doublereal t0, FuncEval& func) {
+```c++
+/**
+ * Initialize the integrator for a new problem. Call after all options have
+ * been set.
+ * @param t0   initial time
+ * @param func RHS evaluator object for system of equations.
+ */
+virtual void initialize(doublereal t0, FuncEval& func) {
+```
 
 Let's take a look at how `ReactorNet` implements this `FuncEval` object. Instead of creating an external `FuncEval` subclass object, it defines *itself* as a `FuncEval` derivative:
 
 **ReactorNet.h**, line 23 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/include/cantera/zeroD/ReactorNet.h#L23))
 
-    class ReactorNet : public FuncEval
+```c++
+class ReactorNet : public FuncEval
+```
 
 Then, it initializes the `Integrator`, using a reference to itself (as a `FuncEval`) from the *['this'](https://www.geeksforgeeks.org/this-pointer-in-c/)* pointer:
 
 **ReactorNet.cpp**, line 112 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/zeroD/ReactorNet.cpp#L112))
 
-    m_integ->initialize(m_time, *this);
+```c++
+m_integ->initialize(m_time, *this);
+```
 
 To be a valid `FuncEval` object, a `ReactorNet` needs to provide implementations for all of `FuncEval`'s virtual functions, particularly the actual ODE right-hand-side computation function, `FuncEval::eval()`. Note that this is declared as a *[pure virtual](https://www.geeksforgeeks.org/pure-virtual-functions-and-abstract-classes/)* function, which makes `FuncEval` an abstract class:
 
 **FuncEval.h**, line 32 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/include/cantera/numerics/FuncEval.h#L32))
 
-    /**
-     * Evaluate the right-hand-side function. Called by the integrator.
-     * @param[in] t time.
-     * @param[in] y solution vector, length neq()
-     * @param[out] ydot rate of change of solution vector, length neq()
-     * @param[in] p sensitivity parameter vector, length nparams()
-     */
-    virtual void eval(double t, double* y, double* ydot, double* p)=0;
+```c++
+/**
+ * Evaluate the right-hand-side function. Called by the integrator.
+ * @param[in] t time.
+ * @param[in] y solution vector, length neq()
+ * @param[out] ydot rate of change of solution vector, length neq()
+ * @param[in] p sensitivity parameter vector, length nparams()
+ */
+virtual void eval(double t, double* y, double* ydot, double* p)=0;
+```
 
 Along with the rest of `FuncEval`'s virtual functions, an appropriate override is provided for `FuncEval::eval()` in `ReactorNet`:
 
 **ReactorNet.cpp**, line 233 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/zeroD/ReactorNet.cpp#L233))
 
-    void ReactorNet::eval(doublereal t, doublereal* y, doublereal* ydot, doublereal* p)
-    {
-        m_time = t; // This will be replaced at the end of the timestep
-        updateState(y);
-        for (size_t n = 0; n < m_reactors.size(); n++) {
-            m_reactors[n]->evalEqs(t, y + m_start[n], ydot + m_start[n], p);
-        }
-        checkFinite("ydot", ydot, m_nv);
+```c++
+void ReactorNet::eval(doublereal t, doublereal* y, doublereal* ydot, doublereal* p)
+{
+    m_time = t; // This will be replaced at the end of the timestep
+    updateState(y);
+    for (size_t n = 0; n < m_reactors.size(); n++) {
+        m_reactors[n]->evalEqs(t, y + m_start[n], ydot + m_start[n], p);
     }
+    checkFinite("ydot", ydot, m_nv);
+}
+```
 
 `ReactorNet`'s `eval()` method invokes calls to `Reactor::evalEqs()`, to evaluate the governing equations of all `Reactor`s contained in the network. This brings us right back to where we started; for more information see Cantera's [reactor network science page](https://cantera.org/science/reactors.html#governing-equations-for-single-reactors).
 
