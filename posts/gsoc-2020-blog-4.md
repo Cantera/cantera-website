@@ -8,14 +8,23 @@ type: text
 author: Paul Blum
 ---
 
+This summer I've been working to add a dedicated steady-state solver to Cantera's `ZeroD` reactor network simulation module. Inspired by my study of `ZeroD`'s current ODE time-integration solver, `CVodesIntegrator` (see [this post](https://cantera.org/blog/gsoc-2020-blog-3)), I developed a nonlinear algebraic solver class called `Cantera_NonLinSol` to be used by `ReactorNet` to solve the steady-state problem:
+
+- ***Class `Cantera_NonLinSol`***: A nonlinear algebraic system solver, built upon Cantera's 1D multi-domain damped newton solver as a simplified interface. 
+    - Implemented in **Cantera_NonLinSol.h** (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/include/cantera/numerics/Cantera_NonLinSol.h))
+
+This blog post will go into detail about the mathematical theory behind solving steady-state reactor systems, and how `Cantera_NonLinSol` can be used to facilitate the process.
+<!-- TEASER_END -->
+
+## _Steady-State Solution in `ReactorNet` Simulations_
+
 Steady-state is reached in a reactor when all internal state variables become constant while time advances, as different internal processes that would normally change these variables become perfectly balanced with each other. The governing equations discussed on Cantera’s [Reactor Science](https://cantera.org/science/reactors.html) page will still dictate the physical properties of the system, but their time derivatives become zero as properties become steady. This means that the governing equations, normally a system of ordinary differential equations, can be reduced to a system of nonlinear algebraic equations:
 
 {{% thumbnail "/images/gsoc-2020/steady-state-eqs.png" align="center" %}}
-<!-- TEASER_END -->
 
-The system can now be solved with a nonlinear algebraic solver, which finds solution values for the state variables that will satisfy the system of equations. This means finding the zeroes to the functions defined on the right-hand-side of each equation. This is standard practice for any algebraic solution, and as such, nonlinear algebraic solvers typically require users to input a residual function that defines their specific system of equations.
+The system can now be solved with a nonlinear algebraic solver, which finds solution values for the state variables that will satisfy the system of equations. This means finding the zeroes to the functions defined on the right-hand-side of each equation. This is standard practice for any algebraic solution, and as such, nonlinear algebraic solvers typically require users to input a *residual function* that evaluates a specific system's right-hand-side functions.
 
-Cantera has a built-in damped Newton/time-stepping hybrid solver, defined in the `OneD` module. This solver was designed for use with multiple-domain one-dimensional problems—this means that it can solve problems with several linked one-dimensional *domains* (each domain can have a different number of state variables), where solutions can be found at *multiple spatial points* within each physical domain. I built `Cantera_NonLinSol`, a simplified interface to the 1D solver to solve *single* systems of nonlinear equations (see the implementation on [GitHub](https://github.com/paulblum/cantera/blob/0DSS/include/cantera/numerics/Cantera_NonLinSol.h)). This interface inputs problems to the Cantera 1D solver as single-domain, single-point systems. I used this interface within Cantera’s `ZeroD` module to solve the steady-state reactor equations and introduce basic steady-state solution capability.
+Cantera has a built-in damped Newton/time-stepping hybrid solver, defined in the `OneD` module. This solver was designed for use with multiple-domain one-dimensional problems—this means that it can solve problems with several linked one-dimensional *domains* (each domain can have a different number of state variables), where solutions can be found at *multiple spatial points* within each physical domain. I designed `Cantera_NonLinSol` as a simplified interface to Cantera's solver, to solve a *single* system of nonlinear equations. This interface inputs problems to the Cantera 1D solver as single-domain, single-point systems. I used `Cantera_NonLinSol` within Cantera’s `ZeroD` module to solve the steady-state reactor equations and introduce basic steady-state solution capability.
 
 What follows is a general outline of how to use this solver, with specific implementation examples included from my work in `ZeroD`:
 
@@ -37,7 +46,7 @@ class ReactorNet : public FuncEval, public Cantera_NonLinSol
 
 `ReactorNet` now exhibits *multiple inheritance*, since it was already a child of class `FuncEval`. The `FuncEval` parent class is used by `Integrator` during ODE time-integration, and its inheritance makes `ReactorNet` an *ODE right-hand-side evaluator*. (Confused? See my [last blog post](https://cantera.org/blog/gsoc-2020-blog-3)!)
 
-*Notice the difference in implementation here:* `Integrator` is an external solver object that uses user-defined functions from *another* class, `FuncEval`. This requires the inclusion of two headers, explicit initialization of an external object, and the passing of the `this` pointer:
+*Notice that the existing time-integration solver, `Integrator`, is not a parent class to `ReactorNet`.* `Integrator` is an external solver object that uses user-defined functions from *another* class, `FuncEval`. This requires the inclusion of two headers, explicit construction of an external object, and the passing of the `this` pointer to locate user definitions:
 
 **ReactorNet.h**, lines 10-11 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/include/cantera/zeroD/ReactorNet.h#L10))
 
@@ -58,15 +67,27 @@ m_integ(newIntegrator("CVODE")),
 m_integ->initialize(m_time, *this);
 ```
 
-In contrast, `Cantera_NonLinSol` requires a single header inclusion, is automatically initialized with the child class, and can call user-provided functions without the use of a pointer.
+In contrast, `Cantera_NonLinSol` is written as an abstract base class that provides nonlinear algebraic solution capability to its children. User-defined function implementations are provided by *overriding* pure virtual functions declared in the parent class. `Cantera_NonLinSol` requires a single header inclusion, is automatically constructed by the child class, and can call user-provided functions without the use of a pointer.
 
 #### *Implement the problem-specific user-defined functions, to provide the solver with the number of equations (`ctNLS_nEqs()`), initial values (`ctNLS_initialValue()`), and residual function (`ctNLS_residFunction()`).*
 
-Steady-state solution is implemented using the same solution vector as in the transient case. This vector is a concatenation of solution vectors for each reactor in the network, formatted as follows:
+Steady-state solution is implemented using the same solution vector as in the transient case. This vector is a concatenation of solution vectors for each reactor in the network, with each sub-vector having the following format:
 
 {{% thumbnail "/images/gsoc-2020/sol-vector.png" align="center" %}}
 
-The size of this vector, `m_nv`, is determined during `ReactorNet` initialization, and is returned by `ctNLS_nEqs()`:
+The size, `m_nv`, of the overall network solution vector is determined during `ReactorNet` initialization, and is returned by `ctNLS_nEqs()`:
+
+**ReactorNet.cpp**, lines 371-377 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L371))
+
+```c++
+m_nv = 0;
+m_start.assign(1, 0);
+for (size_t n = 0; n < m_reactors.size(); n++) {
+    Reactor& r = *m_reactors[n];
+    m_nv += r.neq();
+    m_start.push_back(m_nv);
+}
+```
 
 **ReactorNet.cpp**, lines 397-400 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L397))
 
@@ -77,7 +98,9 @@ size_t ReactorNet::ctNLS_nEqs()
 }
 ```
 
-Numerical solution of the steady-state equations is an initial-value problem, and as such it requires that `ctNLS_initialValue()` be implemented to provide a starting estimate for each component of the solution vector. In my `ReactorNet` implementation, the solution estimate is taken as the user-specified initial state of the network, and can be changed by modifying the contents of contained reactors. A good starting guess for a `Reactor`'s steady-state solution is its inlet's state of fixed enthalpy/pressure chemical equilibrium, which can be obtained using Cantera's `ThermoPhase::equilibrate('HP')`. `ReactorNet::ctNLS_initialValue()` calls the `initialValue()` method of the appropriate `Reactor`, which returns the initial value of the requested solution component:
+Numerical solution of the steady-state equations is an initial-value problem, and as such it requires that `ctNLS_initialValue()` be implemented to provide a starting estimate for each component of the solution vector. In my `ReactorNet` implementation, the solution estimate is taken as the user-specified initial state of the network, and can be changed by modifying the contents of contained reactors. A good starting guess for a `Reactor`'s steady-state solution is its inlet's state of fixed enthalpy/pressure chemical equilibrium, which can be obtained using `ThermoPhase::equilibrate('HP')`.
+
+In the source code, `ReactorNet::ctNLS_initialValue()` calls the `initialValue()` method of the appropriate `Reactor`, which returns the initial value of the requested solution component:
 
 **ReactorNet.cpp**, lines 382-388 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L382))
 
@@ -152,6 +175,12 @@ Cantera_NonLinSol::solve();
 ```
 
 Note that the `Cantera_NonLinSol` namespace is included in this call only for clarity.
+
+This solver is still in its initial development phase, and feedback or suggestions you may be able to provide would definitely contribute to its success! Leave me a comment on [GitHub](https://github.com/Cantera/enhancements/issues/31), the [Cantera User's Group](https://groups.google.com/g/cantera-users), or email me at paul_d_blum@yahoo.com.
+
+Thanks for reading!
+
+@paulblum
 
 ### Keep Reading:
 
