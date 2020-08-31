@@ -184,6 +184,8 @@ Thanks for reading!
 
 ### Keep Reading:
 
+Next Post - [GSoC 2020 Project Summary](https://cantera.org/blog/gsoc-2020-final)
+
 Previous Post - [GSoC 2020 Blog Post 3](https://cantera.org/blog/gsoc-2020-blog-3)
 
 Start from the Beginning - [Introduction](https://cantera.org/blog/gsoc-2020-intro)
