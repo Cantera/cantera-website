@@ -216,6 +216,8 @@ Hope you enjoyed the post.
 
 ### Keep Reading:
 
+Next Post - [GSoC 2020 Blog Post 4](https://cantera.org/blog/gsoc-2020-blog-4)
+
 Previous Post - [GSoC 2020 Blog Post 2](https://cantera.org/blog/gsoc-2020-blog-2)
 
 Start from the Beginning - [Introduction](https://cantera.org/blog/gsoc-2020-intro)
