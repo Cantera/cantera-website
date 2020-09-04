@@ -326,26 +326,27 @@ to the reactors previously mentioned:
 
   .. math::
 
-     \dot m = c g(t) f(\Delta P)
+     \dot m = K_v g(t) f(P_1 - P_2)
 
-  with *c* being a proportionality constant. Further, *g* and *f* are functions
-  of time :math:`t` and pressure drop :math:`\Delta P` that are set by class
-  methods :py:meth:`setTimeFunction` and :py:meth:`setPressureFunction`,
+  with :math:`K_v` being a proportionality constant that is set using the class
+  property :py:attr:`Valve.valve_coeff`. Further, :math:`g` and :math:`f`
+  are functions of time and pressure drop that are set by class methods
+  :py:func:`Valve.set_time_function` and :py:func:`Valve.set_valve_function`,
   respectively. If no functions are specified, the mass flow rate defaults to:
 
   .. math::
 
-     \dot m = c \Delta P
+     \dot m = K_v (P_1 - P_2)
 
   The pressure difference between upstream (*1*) and downstream (*2*) reservoir
-  is defined as :math:`\Delta P = P_1 - P_2`. It is never possible for the
-  flow to reverse and go from the downstream to the upstream reactor/reservoir
-  through a line containing a Valve object, which means that the flow rate is
-  set to zero if :math:`P_1 < P_2`.
+  is defined as :math:`P_1 - P_2`. It is never possible for the flow to reverse
+  and go from the downstream to the upstream reactor/reservoir through a line
+  containing a Valve object, which means that the flow rate is set to zero if
+  :math:`P_1 < P_2`.
 
   Valve objects are often used between an upstream reactor and a downstream
   reactor or reservoir to maintain them both at nearly the same pressure. By
-  setting the constant :math:`c` to a sufficiently large value, very small
+  setting the constant :math:`K_v` to a sufficiently large value, very small
   pressure differences will result in flow between the reactors that counteracts
   the pressure difference.
 
@@ -355,15 +356,16 @@ to the reactors previously mentioned:
 
   .. math::
 
-     \dot m = m g(t)
+     \dot m = m_0 g(t)
 
-  where *m* is a mass flow coefficient and *g* is a function of time that is set
-  by the class method :py:meth:`setTimeFunction`. If no function is specified,
-  the mass flow rate defaults to:
+  where :math:`m_0` is a mass flow coefficient and :math:`g` is a function of time
+  which are set by class property :py:attr:`MassFlowController.mass_flow_coeff`
+  and method :py:func:`MassFlowController.set_time_function`, respectively. If no
+  function is specified, the mass flow rate defaults to:
 
   .. math::
 
-     \dot m = m
+     \dot m = m_0
 
   Note that if :math:`\dot m < 0`, the mass flow rate will be set to zero,
   since a reversal of the flow direction is not allowed.
@@ -385,16 +387,17 @@ to the reactors previously mentioned:
 
   .. math::
 
-     dot m = \dot m_{\mathrm{master}} + c f(\Delta P)
+     \dot m = \dot m_{\text{master}} + K_v f(P_1 - P_2)
 
-  where *c* is a proportionality constant and *f* is a function of pressure drop
-  :math:`\Delta P = P_1 - P_2` that is set by the class method
-  :py:meth:`setPressureFunction`. If no function is specified, the mass flow rate
-  defaults to:
+  where :math:`K_v` is a proportionality constant and :math:`f` is a function of
+  pressure drop :math:`\P_1 - P_2` that are set by class property
+  :py:attr:`PressureController.pressure_coeff` and method
+  :py:func:`PressureController.set_pressure_function`, respectively. If no
+  function is specified, the mass flow rate defaults to:
 
   .. math::
 
-     \dot m = \dot m_{\mathrm{master}} + c \Delta P
+     \dot m = \dot m_{\text{master}} + K_v (P_1 - P_2)
 
   Note that if :math:`\dot m < 0`, the mass flow rate will be set to zero,
   since a reversal of the flow direction is not allowed.
