@@ -102,7 +102,7 @@ formulation is used, the calculation performed is:
 
 .. math::
 
-   j_k^* = \rho \frac{W_k}{\overline{W}} D_{km}^\prime \frac{\partial X_k}{\partial z}
+   j_k^* = - \rho \frac{W_k}{\overline{W}} D_{km}^\prime \frac{\partial X_k}{\partial z}
 
    j_k = j_k^* - Y_k \sum_i j_i^*
 
