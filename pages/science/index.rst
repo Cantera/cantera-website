@@ -55,6 +55,24 @@ technology applications.
 
          .. container::
             :tagname: a
+            :attributes: href=eos.html
+                         title=EoS
+
+            .. container:: card-header section-card
+               :tagname: div
+
+               Equations of State
+
+         .. container:: card-body
+
+            .. container:: card-text
+
+               The theory behind ideal and non-ideal thermodynamic models used in Cantera.
+
+      .. container:: card
+
+         .. container::
+            :tagname: a
             :attributes: href=science-species.html
                          title=Species
 
