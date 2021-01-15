@@ -1,6 +1,5 @@
-Nikola[extras]==8.0.*
-yapsy==1.11.*
+Nikola[extras]==8.1.*
 attrs>=17.4.0
 pymdown-extensions==5.0
 GitPython>=3.0.5,<4.0
-https://github.com/pygments/pygments/archive/master.zip
+Pygments>=2.7.0

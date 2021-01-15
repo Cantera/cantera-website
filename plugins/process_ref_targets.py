@@ -87,8 +87,6 @@ class ProcessRefTargets(Task):
                         ),
                         (update_cache, [self.site]),
                     ],
-                    "uptodate": [config_changed(deps_dict, "process_ref_targets")]
-                    + post.fragment_deps_uptodate(lang),
                 }
                 yield task
 
