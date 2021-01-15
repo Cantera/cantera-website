@@ -15,6 +15,7 @@ env:
   NIKOLA_OUTPUT_DIR: output
   RSYNC_USER: "ctdeploy"
   RSYNC_SERVER: "cantera.org"
+  DEPLOY: ${{ github.event_name == 'push' && github.repository_owner == 'Cantera' && (endswith(github.ref, 'main') || endsWith(github.ref, 'testing')) }}
 
 jobs:
   build:
@@ -62,13 +63,13 @@ jobs:
     # machine that has previously logged in to cantera.org and trusts
     # that it logged in to the right machine
     - name: Set up SSH key and host for deploy
-      if: github.event_name == 'push' && github.repository_owner == 'Cantera' && (github.ref == 'main' || github.ref == 'testing')
+      if: env.DEPLOY == 'true'
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.CTDEPLOY_KEY }}
         known_hosts: ${{ secrets.CTDEPLOY_KNOWN_HOSTS }}
     - name: Upload the docs
-      if: github.event_name == 'push' && github.repository_owner == 'Cantera' && github.ref == 'main'
+      if: env.DEPLOY == 'true' && endsWith(github.ref, 'main')
       env:
         RSYNC_DEST: "cantera"
       run: |
@@ -76,7 +77,7 @@ jobs:
         --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /documentation/dev/*' \
         "${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
     - name: Upload the docs
-      if: github.event_name == 'push' && github.repository_owner == 'Cantera' && github.ref == 'testing'
+      if: env.DEPLOY == 'true' && endsWith(github.ref, 'testing')
       env:
         RSYNC_DEST: "testing.cantera.org"
       run: |
