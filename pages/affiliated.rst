@@ -34,6 +34,14 @@ post on the `Google Users' Group <https://groups.google.com/forum/#!forum/canter
 
 ------------
 
+**ctwrap**: a light-weight Python wrapper facilitating batch simulations.
+
+| `Website <https://microcombustion.github.io/ctwrap/>`__
+| `Repository <https://github.com/microcombustion/ctwrap>`__
+| Maintainer(s): Ingmar Schoegl
+
+------------
+
 **Ember**: a quasi-one-dimensional, unsteady reacting flow solver that can simulate a number of fundamental flame configurations: premixed laminar flames, opposed-flow strained flames (premixed or diffusion), axisymmetric (tubular) flames with positive or negative curvature, and steady 2D flames in a prescribed velocity field.
 
 | `Repository <https://github.com/speth/ember>`__
