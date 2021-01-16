@@ -13,6 +13,7 @@ on:
 
 env:
   NIKOLA_OUTPUT_DIR: output
+  WEBSITE_CLONE_DIR: website
   RSYNC_USER: "ctdeploy"
   RSYNC_SERVER: "cantera.org"
   DEPLOY: ${{ github.event_name == 'push' && github.repository_owner == 'Cantera' && (endswith(github.ref, 'main') || endsWith(github.ref, 'testing')) }}
@@ -23,6 +24,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       name: Checkout the repository
+      with:
+        path: ${{ env.WEBSITE_CLONE_DIR }}
     - uses: actions/checkout@v2
       name: Checkout Cantera repository
       with:
@@ -55,9 +58,11 @@ jobs:
 
     - name: Install dependencies
       run: python3 -m pip install -r requirements.txt
+      working-directory: ${{ env.WEBSITE_CLONE_DIR }}
 
     - name: Build the site
       run: NIKOLA_DEBUG=1 nikola build
+      working-directory: ${{ env.WEBSITE_CLONE_DIR }}
 
     # The known_hosts key is generated with `ssh-keygen -F cantera.org` from a
     # machine that has previously logged in to cantera.org and trusts
@@ -75,7 +80,7 @@ jobs:
       run: |
         rsync -avzP --checksum --exclude='*.map' --exclude='*.md5' \
         --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /documentation/dev/*' \
-        "${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
+        "${WEBSITE_CLONE_DIR}/${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
     - name: Upload the docs
       if: env.DEPLOY == 'true' && endsWith(github.ref, 'testing')
       env:
@@ -83,4 +88,4 @@ jobs:
       run: |
         rsync -avzP --checksum --exclude='*.map' --exclude='*.md5' \
         --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /documentation/dev/*' \
-        "${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
+        "${WEBSITE_CLONE_DIR}/${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
