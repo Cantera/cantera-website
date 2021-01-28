@@ -360,7 +360,7 @@ Options List
     string ``all`` or a comma separated list of variable names such as
     ``LD_LIBRARY_PATH,HOME``.
 
-    - default: ``'LD_LIBRARY_PATH,PYTHONPATH'``
+    - default: ``'PATH,LD_LIBRARY_PATH,PYTHONPATH'``
 
 .. _use-pch-dev:
 
@@ -560,7 +560,7 @@ Options List
 
 * ``versioned_shared_library``: [ ``yes`` | ``no`` ]
     If enabled, create a versioned shared library, with symlinks to the
-    more generic library name, for example ``libcantera_shared.so.2.4.0`` as the
+    more generic library name, for example ``libcantera_shared.so.2.5.0`` as the
     actual library and ``libcantera_shared.so`` and ``libcantera_shared.so.2``
     as symlinks.
 
