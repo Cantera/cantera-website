@@ -115,8 +115,8 @@ program that uses Cantera might look like this:
 
 Several example ``CMakeLists.txt`` files are included with the C++ examples
 contained in the ``samples`` subdirectory of the Cantera installation directory,
-which have the paths and lists of libraries correctly configured for system on
-which they are installed.
+which have the paths and lists of libraries correctly configured for the
+system on which they are installed.
 
 Make
 ====

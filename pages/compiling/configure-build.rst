@@ -167,7 +167,7 @@ option:
 Fortran Module Options
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Building the Fortran module requires a compatible Fortran comiler. SCons will
+Building the Fortran module requires a compatible Fortran compiler. SCons will
 attempt to find a compatible compiler by default in the ``PATH`` environment
 variable. The following options control how the Fortran module is built:
 
