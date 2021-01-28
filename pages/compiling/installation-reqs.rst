@@ -173,10 +173,10 @@ General Notes
 Ubuntu & Debian
 ^^^^^^^^^^^^^^^
 
-* Ubuntu 14.04 LTS (Trusty Tahr) or newer is required; 18.04 LTS (Bionic Beaver)
+* Ubuntu 16.04 LTS (Xenial Xerus) or newer is required; 20.04 LTS (Focal Fossa)
   or newer is recommended
 
-* Debian 7.0 (Wheezy) or newer; 9.0 (Stretch) or newer is recommended
+* Debian 9.0 (Stretch) or newer; 10.0 (Buster) or newer is recommended
 
 * The following packages must be installed to build any of the Cantera modules using
   your choice of package manager::
@@ -349,6 +349,8 @@ Windows Requirements
   * Python
 
     * https://www.python.org/downloads/
+
+    * Cantera supports Python 3.5 and higher
 
     * Be sure to choose the appropriate architecture for your system - either
       32-bit or 64-bit

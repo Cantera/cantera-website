@@ -64,14 +64,14 @@
 - Download the most recent release (distributed as a "wheel" archive) of the
   1.x series for Python *X.Y* that matches your Python architecture. In the
   filename, the digits after "cp" indicate the Python version. For example,
-  ``numpy‑1.11.2+mkl‑cp37‑none‑win_amd64.whl`` is the installer for 64-bit
-  Python 3.7. The Windows installers for Cantera 2.4.0 require NumPy 1.10 or
-  newer.
+  ``numpy‑1.19.5+mkl‑cp39‑cp39‑win_amd64.whl`` is the installer for 64-bit
+  Python 3.9. The Windows installers for Cantera 2.5.0 require NumPy 1.12 or
+  newer (1.14 or newer is recommended).
 
 - From an administrative command prompt, install the downloaded wheel using
   pip. For example::
 
-      c:\python37\scripts\pip.exe install "%USERPROFILE%\Downloads\numpy‑1.11.2+mkl‑cp37‑none‑win_amd64.whl"
+      c:\python39\scripts\pip.exe install "%USERPROFILE%\Downloads\numpy‑1.19.5+mkl‑cp39‑cp39‑win_amd64.whl"
 
 - If you plan on using Cantera from Python, note that we highly recommend
   installing the conda package. If you plan to continue using this Python
@@ -94,10 +94,10 @@
 - Go to the `Cantera Releases <https://github.com/Cantera/cantera/releases>`_
   page.
 
-  - *64-bit*: Download **Cantera-2.4.0-x64.msi** and
-    **Cantera-Python-2.4.0-x64-pyX.Y.msi**.
-  - *32-bit*: Download **Cantera-2.4.0-x86.msi** and
-    **Cantera-Python-2.4.0-x86-pyX.Y.msi**.
+  - *64-bit*: Download **Cantera-2.5.0-x64.msi** and
+    **Cantera-Python-2.5.0-x64-py3.X.msi**.
+  - *32-bit*: Download **Cantera-2.5.0-x86.msi** and
+    **Cantera-Python-2.5.0-x86-py3.Y.msi**.
 
 - If you are only using the Python module, you do not need to download and
   install the base package (the one without Python in the name).
