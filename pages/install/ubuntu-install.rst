@@ -23,8 +23,6 @@ https://launchpad.net/~speth/+archive/ubuntu/cantera
 
 The available packages are:
 
-- ``cantera-python`` - The Cantera Python module for Python 2.
-
 - ``cantera-python3`` - The Cantera Python module for Python 3.
 
 - ``cantera-dev`` - Libraries and header files for compiling your own C++ and

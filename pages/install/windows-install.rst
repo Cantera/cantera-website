@@ -21,11 +21,8 @@
 
 **Choose your Python version and architecture**
 
-- On Windows, Installers are provided for Python 2.7, Python 3.5, Python 3.6,
-  and Python 3.7. Python 3.7 is recommended unless you need to use legacy
-  code that does not work with Python 3. You can install multiple Cantera
-  Python modules simultaneously. Note that Cantera 2.4 will be the last
-  version to support Python 2.7.
+- On Windows, Installers are provided for Python 3.6, Python 3.7, Python 3.8
+  and Python 3.9. You can install multiple Cantera Python modules simultaneously.
 
 - Cantera supports both 32- and 64-bit Python installations.
 
@@ -59,25 +56,6 @@
   version of Python, and will include Numpy as well as many other
   packages useful for scientific users.
 
-**Install the Visual C++ Redistributable for Visual Studio 2015**
-
-- If you are using Python 3.5 or higher you can skip this step as this
-  will have already been installed when you installed Python.
-
-- Go to the `Microsoft Visual C++ Redistributable Download Page
-  <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__.
-
-  - *64-bit*: Download ``vc_redist.x64.exe``
-
-  - *32-bit*: Download ``vc_redist.x86.exe``
-
-- Run the installer.
-
-- If this package is not installed, you will encounter the following error
-  when importing the ``cantera`` module::
-
-     ImportError: DLL load failed: The specified module could not be found.
-
 **Install NumPy and optional Python packages**
 
 - Go to the `Unofficial Windows Binaries for Python Extension Packages page
@@ -109,7 +87,7 @@
 
 - Remove both the main Cantera package and the Python module.
 
-- The Python module will be listed as "Python *X.Y* Cantera ..."
+- The Python module will be listed as "Python *3.X* Cantera ..."
 
 **Install Cantera**
 
