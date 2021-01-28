@@ -61,7 +61,7 @@ Other Required Software
 * Python:
 
   * https://python.org/downloads/
-  * Known to work with 2.7 and 3.6. Expected to work with versions >= 3.3.
+  * Works with versions >= 3.5.
 
 * Boost
 
@@ -144,11 +144,6 @@ Optional Programs
     format
   * Known to work with versions 0.15.42, 0.15.87, and 0.16.5
   * Expected to work with versions >= 0.15.0
-
-* `3to2 <https://pypi.org/project/3to2>`__
-
-  * Used to convert Python examples to Python 2 syntax.
-  * Known to work with version 1.0
 
 * Matlab
 

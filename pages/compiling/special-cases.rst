@@ -89,8 +89,7 @@ Intel Compilers
 
   Another option is to set the :ref:`prefix <prefix>` option to a directory
   for which you have write permissions, and specify the ``USER`` value to the
-  :ref:`python2_prefix <python2-prefix>` or :ref:`python3_prefix <python3-prefix>`
-  option.
+  :ref:`python_prefix <python-prefix>` option.
 
 .. container:: container
 
