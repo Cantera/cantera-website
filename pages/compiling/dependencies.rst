@@ -116,6 +116,13 @@ Other Required Software
   * http://fmtlib.net/latest/index.html
   * Version 3.0.1 or newer is required.
 
+* yaml-cpp
+
+  * If yaml-cpp is not installed, it will be automatically downloaded and the
+    necessary portions will be compiled and installed with Cantera.
+  * https://github.com/jbeder/yaml-cpp
+  * Known to work with version 0.6.3. Version 0.6.0 or newer is required.
+
 * Google Test
 
   * If Google Test is not installed, it will be automatically downloaded and the

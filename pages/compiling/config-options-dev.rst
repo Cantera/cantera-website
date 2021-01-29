@@ -256,6 +256,17 @@ Options List
 
     - default: ``'default'``
 
+.. _system-yamlcpp-dev:
+
+* ``system_yamlcpp``: [``default`` | ``y`` | ``n`` ]
+    Select whether to use the yaml-cpp library from a system installation
+    (``y``), from a Git submodule (``n``), or to decide automatically
+    (``default``). If yaml-cpp is not installed directly into system
+    include and library directories, then you will need to add those
+    directories to ``extra_inc_dirs`` and ``extra_lib_dirs``.
+
+    - default: ``'default'``
+
 .. _system-sundials-dev:
 
 * ``system_sundials``: [ ``default`` | ``y`` | ``n`` ]
