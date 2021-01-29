@@ -63,8 +63,8 @@ Open Matlab and enter the following code:
 
 .. code-block:: matlab
 
-   gas = Solution('gri30.cti')
-   h2o = Solution('liquidvapor.xml','water')
+   gas = Solution('gri30.yaml')
+   h2o = Solution('liquidvapor.yaml','water')
 
 If the installer cannot find the Cantera Python package, it will cause a warning message
 to be printed to the Matlab console when Matlab starts. To resolve this, edit the ``startup.m``
