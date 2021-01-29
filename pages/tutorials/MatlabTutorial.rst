@@ -65,7 +65,7 @@ temperature, a pressure, species mole and mass fractions, etc. As we'll soon
 see, it has many more properties.
 
 The summary of the state of ``gas1`` printed above shows that new objects
-created from the ``gri30.cti`` input file start out with a temperature of 300 K,
+created from the ``gri30.yaml`` input file start out with a temperature of 300 K,
 a pressure of 1 atm, and have a composition that consists of only one species,
 in this case hydrogen. There is nothing special about H2, it just happens to
 be the first species listed in the input file defining GRI-Mech 3.0. In
@@ -220,13 +220,13 @@ Importing multiple phases or interfaces
 A Cantera input file may contain more than one phase specification,
 or may contain specifications of interfaces (surfaces). Here we
 import definitions of two bulk phases and the interface between them
-from file ``diamond.cti``:
+from file ``diamond.yaml``:
 
 .. code:: matlabsession
 
-    >> gas2 = Solution('diamond.cti', 'gas');        % a gas
-    >> diamond = Solution('diamond.cti','diamond');  % bulk diamond
-    >> diamonnd_surf = importInterface('diamond.cti','diamond_100',...
+    >> gas2 = Solution('diamond.yaml', 'gas');        % a gas
+    >> diamond = Solution('diamond.yaml','diamond');  % bulk diamond
+    >> diamonnd_surf = importInterface('diamond.yaml','diamond_100',...
                                        gas2, diamond);
 
 Note that the bulk (3D) phases that participate in the surface
@@ -253,11 +253,11 @@ this is shown here:
 
 .. code:: matlabsession
 
-    >> gas1 = Solution('gri30.cti', 'gri30');
+    >> gas1 = Solution('gri30.yaml', 'gri30');
 
 Function :mat:func:`Solution` constructs an object representing a phase of
 matter by reading in attributes of the phase from a file, which in
-this case is ``gri30.cti``. This file contains several phase
+this case is ``gri30.yaml``. This file contains several phase
 specifications; the one we want here is ``gri30``, which is specified
 by the second argument. This file contains a complete specification
 of the GRI-Mech 3.0 reaction mechanism, including element data
@@ -265,8 +265,8 @@ of the GRI-Mech 3.0 reaction mechanism, including element data
 coefficients to compute thermodynamic and transport properties), and
 reaction data (stoichiometry, rate coefficient parameters).
 
-CTI files distributed with Cantera
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Input files distributed with Cantera
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Several reaction mechanism files in this format are included in the
 Cantera distribution, including ones that model high-temperature
@@ -287,26 +287,15 @@ directory where they are located. Alternatively, you can call function
 
     >> adddir('/usr/local/cantera/my_data_files');
 
-XML files
-~~~~~~~~~
+Cantera currently supports three input formats for data. The primary format,
+introduced in Cantera 2.5.0, is the YAML format. Two older formats (CTI and XML)
+can also be used, but they are deprecated and support for them will be removed
+in a future release. Utilities are provided for converting existing CTI and XML
+files to YAML. For more info, see
+`Converting CTI and XML input files to YAML <legacy2yaml.html>`__.
 
-Note that Cantera has two input formats for data, the human-readable and -writable
-CTI format, and the lower-level XML format. All of the CTI files distributed with
-Cantera are also available as XML files; using the XML files may be somewhat faster
-and does not invoke the Python interpreter to read the CTI file. More information
-on why Cantera uses two file formats is available in the
-:ref:`input files tutorial <sec-two-file-formats>`.
-
-.. code:: matlabsession
-
-    >> gas4 = Solution('gri30.xml','gri30');
-
-Interfaces can be imported from XML files too:
-
-.. code:: matlabsession
-
-   >> diamonnd_surf2 = importInterface('diamond.xml','diamond_100',...
-                                       gas2, diamond);
+To learn more about the input files already available with Cantera and how to
+create new input files, see :doc:`Working With Input Files <input-files>`.
 
 Let's clear out all our Matlab and Cantera objects, before we move on:
 
@@ -315,8 +304,6 @@ Let's clear out all our Matlab and Cantera objects, before we move on:
     >> clear all
     >> cleanup
 
-To learn more about the cti files already available with Cantera and how to
-create new cti files, see :doc:`Working With Input Files <input-files>`
 
 Getting Help
 ============

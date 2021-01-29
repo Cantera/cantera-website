@@ -133,12 +133,12 @@
   .. code-block:: python
 
      import cantera
-     gas = cantera.Solution('gri30.cti')
-     h2o = cantera.PureFluid('liquidvapor.cti', 'water')
+     gas = cantera.Solution('gri30.yaml')
+     h2o = cantera.PureFluid('liquidvapor.yaml', 'water')
 
 - Matlab:
 
   .. code-block:: matlab
 
-     gas = IdealGasMix('gri30.cti')
-     h2o = Solution('liquidvapor.cti','water')
+     gas = IdealGasMix('gri30.yaml')
+     h2o = Solution('liquidvapor.yaml','water')

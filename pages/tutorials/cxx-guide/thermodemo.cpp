@@ -34,7 +34,7 @@ void thermo_demo(const std::string& file, const std::string& phase)
 int main(int argc, char** argv)
 {
     try {
-        thermo_demo("h2o2.cti","ohmech");
+        thermo_demo("h2o2.yaml", "ohmech");
     } catch (CanteraError& err) {
         std::cout << err.what() << std::endl;
         return 1;

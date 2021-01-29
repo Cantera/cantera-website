@@ -27,7 +27,7 @@ some phase of matter. Here, we'll create a gas mixture
 
 .. code:: pycon
 
-    >>> gas1 = ct.Solution('gri30.xml')
+    >>> gas1 = ct.Solution('gri30.yaml')
 
 To view the state of the mixture, *call* the ``gas1`` object as if it were a
 function:
@@ -73,7 +73,7 @@ temperature, a pressure, species mole and mass fractions, etc. As we'll soon
 see, it has many more properties.
 
 The summary of the state of ``gas1`` printed above shows that new objects
-created from the ``gri30.xml`` input file start out with a temperature of 300 K,
+created from the ``gri30.yaml`` input file start out with a temperature of 300 K,
 a pressure of 1 atm, and have a composition that consists of only one species,
 in this case hydrogen. There is nothing special about H2 - it just happens to
 be the first species listed in the input file defining GRI-Mech 3.0. In
@@ -258,12 +258,10 @@ Working With Mechanism Files
 ============================
 
 In previous example, we created an object that models an ideal gas mixture
-with the species and reactions of GRI-Mech 3.0, using the ``gri30.xml`` input
-file included with Cantera. This is a "pre-processed" XML input file written
-in a format that is easy for Cantera to parse. Cantera also supports an input
-file format that is easier to write, called *CTI*. Several reaction mechanism
-files in this format are included with Cantera, including ones that model
-high- temperature air, a hydrogen/oxygen reaction mechanism, and a few surface
+with the species and reactions of GRI-Mech 3.0, using the ``gri30.yaml`` input
+file included with Cantera. Several other reaction mechanism files are
+included with Cantera, including ones that model high- temperature air,
+a hydrogen/oxygen reaction mechanism, and a few surface
 reaction mechanisms. These files are usually located in the ``data``
 subdirectory of the Cantera installation directory, for example ``C:\\Program
 Files\\Cantera\\data`` on Windows or ``/usr/local/cantera/data/`` on
@@ -286,13 +284,13 @@ information.
 
 A Cantera input file may contain more than one phase specification, or may
 contain specifications of interfaces (surfaces). Here we import definitions of
-two bulk phases and the interface between them from file ``diamond.cti``:
+two bulk phases and the interface between them from file ``diamond.yaml``:
 
 .. code:: pycon
 
-    >>> gas2 = ct.Solution('diamond.cti', 'gas')
-    >>> diamond = ct.Solution('diamond.cti', 'diamond')
-    >>> diamond_surf = ct.Interface('diamond.cti' , 'diamond_100',
+    >>> gas2 = ct.Solution('diamond.yaml', 'gas')
+    >>> diamond = ct.Solution('diamond.yaml', 'diamond')
+    >>> diamond_surf = ct.Interface('diamond.yaml' , 'diamond_100',
     ...                             [gas2, diamond])
 
 Note that the bulk (3D) phases that participate in the surface reactions must
@@ -301,8 +299,8 @@ also be passed as arguments to :py:class:`Interface`.
 Converting CK-format files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-See the :doc:`Converting CK-format Files <ck2cti-tutorial>` documentation for
-information on how to convert from CK-format to CTI format.
+See the :doc:`Converting CK-format Files <ck2yaml-tutorial>` documentation for
+information on how to convert from CK-format to Cantera's YAML format.
 
 Getting Help
 ============
@@ -316,7 +314,7 @@ available for it, and get help on using the methods:
 
 .. code:: pycon
 
-    >>> g = ct.Solution('gri30.xml')
+    >>> g = ct.Solution('gri30.yaml')
 
 To get help on the Python class that this object is an instance of:
 
@@ -366,7 +364,7 @@ method:
 .. code:: pycon
 
     >>> import cantera as ct
-    >>> g = ct.Solution('gri30.xml')
+    >>> g = ct.Solution('gri30.yaml')
     >>> g.TPX = 300.0, ct.one_atm, 'CH4:0.95,O2:2,N2:7.52'
     >>> g.equilibrate('TP')
 
@@ -438,7 +436,7 @@ state can be obtained by accessing :py:class:`Reaction` objects with the
 
 .. code:: pycon
 
-    >>> g = ct.Solution('gri30.cti')
+    >>> g = ct.Solution('gri30.yaml')
     >>> r = g.reaction(2) # get a Reaction object
     >>> r
     <ElementaryReaction: H2 + O <=> H + OH>

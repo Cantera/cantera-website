@@ -8,7 +8,7 @@ using namespace Cantera;
 void simple_demo()
 {
     // Create a new phase
-    std::unique_ptr<ThermoPhase> gas(newPhase("h2o2.cti","ohmech"));
+    std::unique_ptr<ThermoPhase> gas(newPhase("h2o2.yaml", "ohmech"));
 
     // Set its state by specifying T (500 K) P (2 atm) and the mole
     // fractions. Note that the mole fractions do not need to sum to
