@@ -21,7 +21,7 @@ Fortran compiler is required only if you plan to build the Fortran module.
 
 * GNU compilers (C/C++/Fortran)
 
-  * Known to work with version 4.8; Expected to work with version >= 4.6
+  * Known to work with version 7.4 and 9.3. Expected to work with version >= 4.6.
 
 * Clang/LLVM (C/C++)
 
@@ -38,8 +38,9 @@ Fortran compiler is required only if you plan to build the Fortran module.
 
 * Microsoft compilers (C/C++)
 
-  * Known to work with versions 12.0 (Visual Studio 2013) and 14.0 (Visual
-    Studio 2015).
+    * Known to work with Visual Studio 2013 (MSVC 12.0), Visual Studio 2015
+      (MSVC 14.0), Visual Studio 2017 (MSVC 14.1), and Visual Studio 2019
+      (MSVC 14.2).
 
 * MinGW (C/C++/Fortran)
 
@@ -75,7 +76,7 @@ Other Required Software
   * If SUNDIALS is not installed, it will be automatically downloaded and the
     necessary portions will be compiled and installed with Cantera.
   * https://computation.llnl.gov/projects/sundials/sundials-software
-  * Known to work with versions >= 2.4, including the 3.x series.
+  * Known to work with versions >= 2.4.
   * To use SUNDIALS with Cantera on a Linux/Unix system, it must be compiled
     with the ``-fPIC`` flag. You can specify this flag when configuring
     SUNDIALS (2.4 or 2.5)::
@@ -129,14 +130,11 @@ Optional Programs
 
   * Required to build the Cantera Python module, and to run significant portions
     of the test suite.
-  * Known to work with versions 1.8.1-1.14.0. Expected to work with
-    versions >= 1.8.1.
-  * Must be installed for each of the Python packages that will be built
+  * Expected to work with versions >= 1.12.0. 1.14.0 or newer is recommended.
 
 * `Cython <http://cython.org/>`__
 
-  * Required version >=0.23 to build the Python module. Must be installed for
-    the same Python where SCons is installed.
+  * Required version >=0.23 to build the Python module.
 
 * `Ruamel.yaml <https://pypi.org/project/ruamel.yaml/>`__
 
