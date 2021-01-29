@@ -446,29 +446,24 @@ Windows Requirements
 
 .. _sec-macos:
 
-OS X & macOS
-------------
+macOS
+-----
 
 General Notes
 ^^^^^^^^^^^^^
 
-* It is not recommended to use the system-installed version of Python to build
-  Cantera. Instead, the following instructions use Homebrew to install a
-  separate copy of Python, independent from the system Python.
+* Cantera 2.5.0 and higher do not support Python 2, which may be installed by default
+  on your computer. You must install Python 3 from another source to be able to build
+  Cantera. The instructions below use Homebrew.
 
 * To download the source code, installing ``git`` via HomeBrew is highly recommended.
 
-* Cython is only required to be installed for the version of Python that also
-  has SCons installed; following the instructions below will install Cython for
-  the version of Python 2 installed in the system directories. The minimum
-  compatible Cython version is 0.23.
-
 .. _sec-mac-os-reqs:
 
-OS X & macOS Requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^
+macOS Requirements
+^^^^^^^^^^^^^^^^^^
 
-* OS X 10.9 (Mavericks) or newer required; 10.10 (Yosemite) or newer is recommended
+* macOS 10.14 (Mojave) or newer required to install Homebrew
 
 * To build any of the Cantera modules, you will need to install
 
@@ -492,32 +487,22 @@ OS X & macOS Requirements
 
       .. code:: bash
 
-         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   * Once Homebrew is installed, the rest of the dependencies can be installed with:
 
     .. code:: bash
 
-       brew install python scons boost
+       brew install python scons boost git libomp
 
     Note that brew installs Python 3 by default, but does not over-write the existing system Python.
-    When you want to use the brew-installed Python, you should use ``python3``.
+    When you want to use the brew-installed Python, you should use ``$(brew --prefix)/bin/python3``.
 
-* In addition to the general software, building the Python 2 module also requires:
-
-  .. code:: bash
-
-     brew install python@2
-     pip install numpy
-
-* In addition to the general software, building the Python 3 module also requires:
+* In addition to the general software, building the Python module also requires:
 
   .. code:: bash
 
-     pip3 install cython numpy
-
-  Note that Cython should be installed into the version of Python that has SCons
-  installed.
+     $(brew --prefix)/bin/pip3 install cython numpy ruamel.yaml
 
 * In addition to the general software, building the Fortran module also requires:
 
