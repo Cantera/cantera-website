@@ -258,7 +258,7 @@ Fedora & RHEL
 OpenSUSE & SUSE Linux Enterprise
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* OpenSUSE 13.2 or newer; Leap 42.2 or newer recommended
+* OpenSUSE Leap 15.1 or newer recommended
 
 * The following packages must be installed to build any of the Cantera modules using
   your choice of package manager::
@@ -315,10 +315,7 @@ General Notes
 * If you want to build the Matlab toolbox and you have a 64-bit copy of Windows,
   by default you will be using a 64-bit copy of Matlab, and therefore you need
   to compile Cantera in 64-bit mode. For simplicity, it is highly recommended
-  that you use a 64-bit version of Python to handle this automatically. Note
-  that the default download from the Python website
-  (https://www.python.org) is for a 32-bit installer, and you will
-  need to select the 64-bit installer specifically.
+  that you use a 64-bit version of Python to handle this automatically.
 
 * It is generally helpful to have SCons and Python in your ``PATH`` environment
   variable. This can be done by checking the appropriate box during the
@@ -370,8 +367,9 @@ Windows Requirements
 
       * https://visualstudio.microsoft.com/downloads/
 
-      * Known to work with Visual Studio 2013 (MSVC 12.0) and Visual Studio 2015
-        (MSVC 14.0)
+      * Known to work with Visual Studio 2013 (MSVC 12.0), Visual Studio 2015
+        (MSVC 14.0), Visual Studio 2017 (MSVC 14.1), and Visual Studio 2019
+        (MSVC 14.2).
 
     * MinGW compilers
 
