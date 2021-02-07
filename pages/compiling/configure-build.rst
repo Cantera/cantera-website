@@ -175,10 +175,10 @@ argument after ``scons``):
 * ``scons clean``
     Delete files created while building Cantera.
 
-* ``[sudo] scons install``
+* ``scons install``
     Install Cantera.
 
-* ``[sudo] scons uninstall``
+* ``scons uninstall``
     Uninstall Cantera.
 
 * ``scons test``
@@ -240,7 +240,7 @@ Compile Cantera & Test
     Compilation completed successfully.
 
     - To run the test suite, type 'scons test'.
-    - To install, type '[sudo] scons install'.
+    - To install, type 'scons install'.
     *******************************************************
 
 * If you do not see this message, check the output for errors to see what went
