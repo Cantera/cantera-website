@@ -1,0 +1,990 @@
+
+
+<!DOCTYPE html>
+
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+"
+lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CTML to YAML conversion | Cantera </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" media="none" onload="this.media='all'" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" media="none" onload="this.media='all'" type="text/css" />
+  <link rel="stylesheet" href="../_static/katex-math.css" media="none" onload="this.media='all'" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+        <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
+        <script type="text/javascript" src="../_static/katex_autorenderer.js"></script>
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" sizes="16x16"/>
+    
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body>
+  <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+  <!-- Menubar -->
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light static-top mb-4">
+      <div class="container"><!-- This keeps the margins nice -->
+          <a class="navbar-brand" href="/index.html">
+          <img src="/assets/img/cantera-logo.png" alt="Cantera" id="logo" class="d-inline-block align-top">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a href="/install/index.html" class="nav-link">Install</a>
+              </li>
+              <li class="nav-item">
+                <a href="/tutorials/index.html" class="nav-link">Tutorials</a>
+              </li>
+              <li class="nav-item">
+                <a href="/examples/index.html" class="nav-link">Examples</a>
+              </li>
+              <li class="nav-item">
+                <a href="/community.html" class="nav-link">Community</a>
+              </li>
+              <li class="nav-item">
+                <a href="/science/index.html" class="nav-link">Science</a>
+              </li>
+              <li class="nav-item">
+                <a href="/documentation/index.html" class="nav-link">Documentation</a>
+              </li>
+              <li class="nav-item">
+                <a href="/blog/index.html" class="nav-link">Blog</a>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+  </nav>
+  <!-- End of Menubar -->
+
+  <div class="container" id="content">
+      <div class="body-content">
+          <!--Body content-->
+          
+          <div class="document">
+            
+            <div class="documentwrapper">
+                <div class="bodywrapper">
+                <div class="body" role="main">
+                  
+  <div class="section" id="module-cantera.ctml2yaml">
+<span id="ctml-to-yaml-conversion"></span><h1>CTML to YAML conversion<a class="headerlink" href="#module-cantera.ctml2yaml" title="Permalink to this headline">¶</a></h1>
+<p>The script <code class="docutils literal notranslate"><span class="pre">ctml2yaml.py</span></code> will convert files from the legacy CTML format to YAML input
+format. The documentation below describes the classes and functions in the script. Each
+function/method is annotated with the Python types that the function accepts.</p>
+<p>Most users will access the functionality of this module via the command line with the
+<code class="docutils literal notranslate"><span class="pre">ctml2yaml</span></code> entry-point script. For programmatic access, the <a class="reference internal" href="#cantera.ctml2yaml.main" title="cantera.ctml2yaml.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a> and/or <a class="reference internal" href="#cantera.ctml2yaml.convert" title="cantera.ctml2yaml.convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert</span></code></a>
+functions should be used. <a class="reference internal" href="#cantera.ctml2yaml.main" title="cantera.ctml2yaml.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a> should be used when command line arguments must be
+processed, while <a class="reference internal" href="#cantera.ctml2yaml.convert" title="cantera.ctml2yaml.convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert</span></code></a> takes an input filename or a string containing the CTML file
+to be converted, and optionally the name of the output file.</p>
+<div class="section" id="module-level-functions">
+<h2>Module-level functions<a class="headerlink" href="#module-level-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="cantera.ctml2yaml.float2string">
+<code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">float2string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><a class="headerlink" href="#cantera.ctml2yaml.float2string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format a float into a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – The floating point data to be formatted.</p>
+</dd>
+</dl>
+<p>Uses NumPy’s <code class="docutils literal notranslate"><span class="pre">format_float_positional()</span></code> and <code class="docutils literal notranslate"><span class="pre">format_float_scientific()</span></code> if they
+are is available, requires NumPy &gt;= 1.14. In that case, values with magnitude
+between 0.01 and 10000 are formatted using <code class="docutils literal notranslate"><span class="pre">format_float_positional</span> <span class="pre">()</span></code> and other
+values are formatted using <code class="docutils literal notranslate"><span class="pre">format_float_scientific()</span></code>. If those NumPy functions
+are not available, returns the <code class="docutils literal notranslate"><span class="pre">repr</span></code> of the input.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cantera.ctml2yaml.represent_float">
+<code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">represent_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; Any<a class="headerlink" href="#cantera.ctml2yaml.represent_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format floating point numbers for ruamel YAML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – The floating point data to be formatted.</p>
+</dd>
+</dl>
+<p>Uses <a class="reference internal" href="#cantera.ctml2yaml.float2string" title="cantera.ctml2yaml.float2string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float2string</span></code></a> to format the floating point input to a string, then inserts
+the resulting string into the YAML tree as a scalar.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cantera.ctml2yaml.get_float_or_quantity">
+<code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">get_float_or_quantity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; QUANTITY<a class="headerlink" href="#cantera.ctml2yaml.get_float_or_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process an XML node into a float value or a value with units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> – The XML node with a value in the text and optionally a units attribute.</p>
+</dd>
+</dl>
+<p>Given XML nodes like:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;E</span> <span class="na">units=</span><span class="s">&quot;cal/mol&quot;</span><span class="nt">&gt;</span>1000.0<span class="nt">&lt;/E&gt;</span>
+<span class="nt">&lt;E&gt;</span>1000.0<span class="nt">&lt;/E&gt;</span>
+</pre></div>
+</div>
+<p>this function returns, respectively:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1000.0</span> <span class="n">cal</span><span class="o">/</span><span class="n">mol</span>
+<span class="mf">1000.0</span>
+</pre></div>
+</div>
+<p>where the first value is a string and the second is a float.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cantera.ctml2yaml.split_species_value_string">
+<code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">split_species_value_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.split_species_value_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split a string of species:value pairs into a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> – An XML node whose text contains the species: value pairs</p>
+</dd>
+</dl>
+<p>Returns a dictionary where the keys of the dictionary are species names and the
+values are the number associated with each species. This is useful for things like
+elemental composition, mole fraction mappings, coverage mappings, etc.</p>
+<p>The algorithm is reimplemented from <code class="docutils literal notranslate"><span class="pre">compositionMap::parseCompString</span></code> in
+<code class="docutils literal notranslate"><span class="pre">base/stringUtils.cpp</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cantera.ctml2yaml.clean_node_text">
+<code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">clean_node_text</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><a class="headerlink" href="#cantera.ctml2yaml.clean_node_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean the text of a node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> – An XML node with a text value.</p>
+</dd>
+</dl>
+<p>Raises <a class="reference internal" href="#cantera.ctml2yaml.MissingNodeText" title="cantera.ctml2yaml.MissingNodeText"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MissingNodeText</span></code></a> if the node text is not present. Otherwise, replaces
+newlines and tab characters with spaces, then strips the resulting string. This
+turns multi-line text values into a single line that can be split on whitespace.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cantera.ctml2yaml.create_species_from_data_node">
+<code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">create_species_from_data_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ctml_tree</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species">cantera.ctml2yaml.Species</a><span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.create_species_from_data_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate lists of <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> instances mapped to the <code class="docutils literal notranslate"><span class="pre">speciesData</span></code> id string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctml_tree</strong> – The root XML node of the CTML document.</p>
+</dd>
+</dl>
+<p>The CTML document is searched for <code class="docutils literal notranslate"><span class="pre">speciesData</span></code> nodes that contain <code class="docutils literal notranslate"><span class="pre">species</span></code>
+child nodes. Each <code class="docutils literal notranslate"><span class="pre">speciesData</span></code> node must have an <code class="docutils literal notranslate"><span class="pre">id</span></code> attribute, which is used
+as the key of the returned dictionary. The values in the dictionary are lists of
+<a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> instances representing the <code class="docutils literal notranslate"><span class="pre">species</span></code> nodes in that <code class="docutils literal notranslate"><span class="pre">speciesData</span></code>
+node. The <code class="docutils literal notranslate"><span class="pre">id</span></code> attribute is also used as the top-level key in the YAML document
+for that set of species, with the exception that <code class="docutils literal notranslate"><span class="pre">species_data</span></code> is changed to
+just <code class="docutils literal notranslate"><span class="pre">species</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">speciesData</span></code> nodes with the same <code class="docutils literal notranslate"><span class="pre">id</span></code> attribute are found, only the first
+section with that <code class="docutils literal notranslate"><span class="pre">id</span></code> is put into the YAML output file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cantera.ctml2yaml.create_reactions_from_data_node">
+<code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">create_reactions_from_data_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ctml_tree</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Reaction" title="cantera.ctml2yaml.Reaction">cantera.ctml2yaml.Reaction</a><span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.create_reactions_from_data_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate lists of <a class="reference internal" href="#cantera.ctml2yaml.Reaction" title="cantera.ctml2yaml.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> instances mapped to the <code class="docutils literal notranslate"><span class="pre">reactionData</span></code> id string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctml_tree</strong> – The root XML node of the CTML document.</p>
+</dd>
+</dl>
+<p>The CTML document is searched for <code class="docutils literal notranslate"><span class="pre">reactionData</span></code> nodes that contain <code class="docutils literal notranslate"><span class="pre">reaction</span></code>
+child nodes. Each <code class="docutils literal notranslate"><span class="pre">reactionData</span></code> node must have an <code class="docutils literal notranslate"><span class="pre">id</span></code> attribute, which is used
+as the key of the returned dictionary. The values in the dictionary are lists of
+<a class="reference internal" href="#cantera.ctml2yaml.Reaction" title="cantera.ctml2yaml.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> instances representing the <code class="docutils literal notranslate"><span class="pre">reaction</span></code> nodes in that <code class="docutils literal notranslate"><span class="pre">reactionData</span></code>
+node. The <code class="docutils literal notranslate"><span class="pre">id</span></code> attribute is also used as the top-level key in the YAML document
+for that set of reactions, with the exception that <code class="docutils literal notranslate"><span class="pre">reaction_data</span></code> is changed to
+just <code class="docutils literal notranslate"><span class="pre">reactions</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">reactionData</span></code> nodes with the same <code class="docutils literal notranslate"><span class="pre">id</span></code> attribute are found, only the first
+section with that <code class="docutils literal notranslate"><span class="pre">id</span></code> is put into the YAML output file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cantera.ctml2yaml.create_phases_from_data_node">
+<code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">create_phases_from_data_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ctml_tree</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em>, <em class="sig-param"><span class="n">species_data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species">cantera.ctml2yaml.Species</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">reaction_data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Reaction" title="cantera.ctml2yaml.Reaction">cantera.ctml2yaml.Reaction</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Phase" title="cantera.ctml2yaml.Phase">cantera.ctml2yaml.Phase</a><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.create_phases_from_data_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a list of <a class="reference internal" href="#cantera.ctml2yaml.Phase" title="cantera.ctml2yaml.Phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Phase</span></code></a> instances from XML <code class="docutils literal notranslate"><span class="pre">phase</span></code> nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctml_tree</strong> – The root XML node of the CTML document.</p></li>
+<li><p><strong>species_data</strong> – Mapping of <code class="docutils literal notranslate"><span class="pre">speciesData</span></code> id strings to lists of <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> instances.</p></li>
+<li><p><strong>reaction_data</strong> – Mapping of <code class="docutils literal notranslate"><span class="pre">reactionData</span></code> id strings to lists of <a class="reference internal" href="#cantera.ctml2yaml.Reaction" title="cantera.ctml2yaml.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> instances.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The CTML document is searched for <code class="docutils literal notranslate"><span class="pre">phase</span></code> nodes, which are processed into <a class="reference internal" href="#cantera.ctml2yaml.Phase" title="cantera.ctml2yaml.Phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Phase</span></code></a>
+instances. For any Lattice-type phases, the child <code class="docutils literal notranslate"><span class="pre">phase</span></code> nodes are un-nested
+from their parent node.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cantera.ctml2yaml.convert">
+<code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">convert</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inpfile</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)">pathlib.Path</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">outfile</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)">pathlib.Path</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">text</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a><a class="headerlink" href="#cantera.ctml2yaml.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an input legacy CTML file to a YAML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inpfile</strong> – The input CTML file name. Exclusive with <code class="docutils literal notranslate"><span class="pre">text</span></code>, only one of the two can be
+specified.</p></li>
+<li><p><strong>outfile</strong> – The output YAML file name.</p></li>
+<li><p><strong>text</strong> – Contains a string with the CTML input file content. Exclusive with <code class="docutils literal notranslate"><span class="pre">inpfile</span></code>,
+only one of the two can be specified.</p></li>
+</ul>
+</dd>
+</dl>
+<p>All files are assumed to be relative to the current working directory of the Python
+process running this script.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cantera.ctml2yaml.main">
+<code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse command line arguments and pass them to <a class="reference internal" href="#cantera.ctml2yaml.convert" title="cantera.ctml2yaml.convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert</span></code></a>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="conversion-classes">
+<h2>Conversion classes<a class="headerlink" href="#conversion-classes" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cantera.ctml2yaml.Phase">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">Phase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">phase</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em>, <em class="sig-param"><span class="n">species_data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species">cantera.ctml2yaml.Species</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">reaction_data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Reaction" title="cantera.ctml2yaml.Reaction">cantera.ctml2yaml.Reaction</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.Phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Represent an XML <code class="docutils literal notranslate"><span class="pre">phase</span></code> node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – XML node containing a phase definition.</p></li>
+<li><p><strong>species_data</strong> – Mapping of species data sources to lists of <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> instances.</p></li>
+<li><p><strong>reaction_data</strong> – Mapping of reaction data sources to lists of <a class="reference internal" href="#cantera.ctml2yaml.Reaction" title="cantera.ctml2yaml.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> instances.</p></li>
+</ul>
+</dd>
+</dl>
+<p>This class processes the XML node of a phase definition and generates a mapping
+for the YAML output. The mapping is stored in the <code class="docutils literal notranslate"><span class="pre">attribs</span></code> instance
+attribute and automatically formatted to YAML by the <a class="reference internal" href="#cantera.ctml2yaml.Phase.to_yaml" title="cantera.ctml2yaml.Phase.to_yaml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_yaml</span></code></a> class
+method.</p>
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.check_elements">
+<code class="sig-name descname">check_elements</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">this_phase_species</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Iterable<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">species_data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species">cantera.ctml2yaml.Species</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a><a class="headerlink" href="#cantera.ctml2yaml.Phase.check_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the species elements for inclusion in the <a class="reference internal" href="#cantera.ctml2yaml.Phase" title="cantera.ctml2yaml.Phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Phase</span></code></a>-level specification.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>this_phase_species</strong> – A list of mappings of species data sources to the species names in that data
+source. Passed as an argument instead of using the <code class="docutils literal notranslate"><span class="pre">species</span></code> key in the
+instance <code class="docutils literal notranslate"><span class="pre">attribs</span></code> dictionary because the attribute could be a mapping or
+a list of mappings, whereas this argument is always a list of mappings.</p></li>
+<li><p><strong>species_data</strong> – Mapping of species data sources (i.e., <code class="docutils literal notranslate"><span class="pre">id</span></code> attributes on <code class="docutils literal notranslate"><span class="pre">speciesData</span></code>
+nodes) to lists of <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> instances.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Some species include a charge node that adds an electron to the species
+composition. The <code class="xref py py-obj docutils literal notranslate"><span class="pre">Phase`s</span> <span class="pre">that</span> <span class="pre">include</span> <span class="pre">these</span> <span class="pre">species</span> <span class="pre">don't</span> <span class="pre">necessarily</span> <span class="pre">include</span>
+<span class="pre">the</span> <span class="pre">electron</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">`Phase</span></code>-level elements list, so we need to update that to
+include it if necessary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.debye_huckel">
+<code class="sig-name descname">debye_huckel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">this_phase_species</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Iterable<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">activity_node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em>, <em class="sig-param"><span class="n">species_data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species">Species</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>QUANTITY<span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.Phase.debye_huckel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the activity coefficients for the <code class="docutils literal notranslate"><span class="pre">DebyeHuckel</span></code> phase-thermo type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>this_phase_species</strong> – A list of mappings of species data sources to the species names in that
+data source. Passed as an argument instead of using the <code class="docutils literal notranslate"><span class="pre">species</span></code> key
+in the instance <code class="docutils literal notranslate"><span class="pre">attribs</span></code> because the attribute could be a mapping or
+a list of mappings, whereas this argument is always a list of mappings.</p></li>
+<li><p><strong>activity_node</strong> – XML <code class="docutils literal notranslate"><span class="pre">activityCoefficients</span></code> node.</p></li>
+<li><p><strong>species_data</strong> – Mapping of species data sources (i.e., <code class="docutils literal notranslate"><span class="pre">id</span></code> attributes on <code class="docutils literal notranslate"><span class="pre">speciesData</span></code>
+nodes) to lists of <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> instances.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.filter_reaction_list">
+<code class="sig-name descname">filter_reaction_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">datasrc</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">filter_text</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">reaction_data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Reaction" title="cantera.ctml2yaml.Reaction">cantera.ctml2yaml.Reaction</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><a class="headerlink" href="#cantera.ctml2yaml.Phase.filter_reaction_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter the reaction_data list to only include specified reactions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datasrc</strong> – The XML source of the reaction data that is being filtered.</p></li>
+<li><p><strong>filter_text</strong> – The text specified in the <code class="docutils literal notranslate"><span class="pre">filter</span></code> node telling which reactions are being
+filtered.</p></li>
+<li><p><strong>reaction_data</strong> – Mapping of reaction data sources (i.e., <code class="docutils literal notranslate"><span class="pre">id</span></code> attributes on
+<code class="docutils literal notranslate"><span class="pre">reactionData</span></code> nodes) to lists of <a class="reference internal" href="#cantera.ctml2yaml.Reaction" title="cantera.ctml2yaml.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> instances.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The YAML format does not support filtering reactions by setting options in the
+<a class="reference internal" href="#cantera.ctml2yaml.Phase" title="cantera.ctml2yaml.Phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Phase</span></code></a> node, like the XML format does. Instead, when filters are used in XML,
+the reactions should be split into separate top-level nodes in the YAML file,
+which then become the data source in the YAML reactions specification. Returns
+a string that should be used as the data source in the YAML file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.get_reaction_array">
+<code class="sig-name descname">get_reaction_array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reactionArray_node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em>, <em class="sig-param"><span class="n">reaction_data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Reaction" title="cantera.ctml2yaml.Reaction">cantera.ctml2yaml.Reaction</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.Phase.get_reaction_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process reactions from a <code class="docutils literal notranslate"><span class="pre">reactionArray</span></code> node in a phase definition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>reactionArray_node</strong> – An XML <code class="docutils literal notranslate"><span class="pre">reactionArray</span></code> node.</p>
+</dd>
+</dl>
+<p>The <code class="docutils literal notranslate"><span class="pre">reactionArray</span></code> node has the data source plus a list of reaction to derive
+from that data source. If the data source specifies an XML file, convert the
+extension to <code class="docutils literal notranslate"><span class="pre">.yaml</span></code>. If the data source <code class="docutils literal notranslate"><span class="pre">id</span></code> is <code class="docutils literal notranslate"><span class="pre">reaction_data</span></code>, reformat
+to just <code class="docutils literal notranslate"><span class="pre">reaction</span></code> for the YAML file. Otherwise, retain the <code class="docutils literal notranslate"><span class="pre">id</span></code> as-is.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.get_species_array">
+<code class="sig-name descname">get_species_array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">speciesArray_node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Iterable<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.Phase.get_species_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a list of species from a <code class="docutils literal notranslate"><span class="pre">speciesArray</span></code> node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>speciesArray_node</strong> – An XML <code class="docutils literal notranslate"><span class="pre">speciesArray</span></code> node.</p>
+</dd>
+</dl>
+<p>The <code class="docutils literal notranslate"><span class="pre">speciesArray</span></code> node has the data source plus a list of species to derive
+from that data source. If the data source specifies an XML file, convert the
+extension to <code class="docutils literal notranslate"><span class="pre">.yaml</span></code>. If the data source <code class="docutils literal notranslate"><span class="pre">id</span></code> is <code class="docutils literal notranslate"><span class="pre">species_data</span></code>, reformat
+to just <code class="docutils literal notranslate"><span class="pre">species</span></code> for the YAML file. Otherwise, retain the <code class="docutils literal notranslate"><span class="pre">id</span></code> as-is.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.get_tabulated_thermo">
+<code class="sig-name descname">get_tabulated_thermo</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tab_thermo_node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.Phase.get_tabulated_thermo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process data from the <code class="docutils literal notranslate"><span class="pre">tabulatedThermo</span></code> node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tab_thermo_node</strong> – The XML node with the tabulated thermodynamics data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.hmw_electrolyte">
+<code class="sig-name descname">hmw_electrolyte</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activity_node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>HMW_THERMO_TYPE<span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.Phase.hmw_electrolyte" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the activity coefficients for an <code class="docutils literal notranslate"><span class="pre">HMW</span></code> phase-thermo type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>activity_coeffs</strong> – XML <code class="docutils literal notranslate"><span class="pre">activityCoefficients</span></code> node.</p>
+</dd>
+</dl>
+<p>The <code class="docutils literal notranslate"><span class="pre">activityCoefficients</span></code> must include the <code class="docutils literal notranslate"><span class="pre">A_debye</span></code> node, as well as
+any interaction parameters between species.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.ideal_molal_solution">
+<code class="sig-name descname">ideal_molal_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activity_coeffs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>QUANTITY<span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.Phase.ideal_molal_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the cutoff data in an <code class="docutils literal notranslate"><span class="pre">IdealMolalSolution</span></code> phase-thermo type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>activity_coeffs</strong> – XML <code class="docutils literal notranslate"><span class="pre">activityCoefficients</span></code> node. For the <code class="docutils literal notranslate"><span class="pre">IdealMolalSolution</span></code> thermo
+type, this node contains information about cutoff limits for the
+thermodynamic properties.</p>
+</dd>
+</dl>
+<p>Returns a (possibly empty) dictionary to update the <a class="reference internal" href="#cantera.ctml2yaml.Phase" title="cantera.ctml2yaml.Phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Phase</span></code></a> attributes. The
+dictionary will be empty when there are no cutoff nodes in the
+<code class="docutils literal notranslate"><span class="pre">activityCoefficients</span></code> node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.margules">
+<code class="sig-name descname">margules</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activity_coeffs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>QUANTITY<span class="p">]</span><span class="p">]</span><span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.Phase.margules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process activity coefficients for a <code class="docutils literal notranslate"><span class="pre">Margules</span></code> phase-thermo type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>activity_coeffs</strong> – XML <code class="docutils literal notranslate"><span class="pre">activityCoefficients</span></code> node. For the <code class="docutils literal notranslate"><span class="pre">Margules</span></code> phase-thermo type
+these are interaction parameters between the species in the phase.</p>
+</dd>
+</dl>
+<p>Returns a list of interaction data values. Margules does not require the
+<code class="docutils literal notranslate"><span class="pre">binaryNeutralSpeciesParameters</span></code> node to be present. Almost a superset of the
+Redlich-Kister parameters, but since the <code class="docutils literal notranslate"><span class="pre">binaryNeutralSpeciesParameters</span></code> are
+processed in a loop, there’s no advantage to re-use Redlich-Kister processing
+because this function would have to go through the same nodes again.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.move_RK_coeffs_to_species">
+<code class="sig-name descname">move_RK_coeffs_to_species</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">this_phase_species</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Iterable<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">activity_coeffs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em>, <em class="sig-param"><span class="n">species_data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species">cantera.ctml2yaml.Species</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a><a class="headerlink" href="#cantera.ctml2yaml.Phase.move_RK_coeffs_to_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the Redlich-Kwong activity coefficient data from phase to species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>this_phase_species</strong> – A list of mappings of species data sources to the species names in that
+data source. Passed as an argument instead of using the <code class="docutils literal notranslate"><span class="pre">species</span></code> key
+in the instance <code class="docutils literal notranslate"><span class="pre">attribs</span></code> because the attribute could be a mapping or
+a list of mappings, whereas this argument is always a list of mappings.</p></li>
+<li><p><strong>activity_coeffs</strong> – XML <code class="docutils literal notranslate"><span class="pre">activityCoefficients</span></code> node.</p></li>
+<li><p><strong>species_data</strong> – Mapping of species data sources (i.e., <code class="docutils literal notranslate"><span class="pre">id</span></code> attributes on <code class="docutils literal notranslate"><span class="pre">speciesData</span></code>
+nodes) to lists of <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> instances.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The YAML format moves the specification of Redlich-Kwong binary interaction
+parameters from the <a class="reference internal" href="#cantera.ctml2yaml.Phase" title="cantera.ctml2yaml.Phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Phase</span></code></a> node into the <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> nodes. This modifies the
+<a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> objects in-place in the <code class="docutils literal notranslate"><span class="pre">species_data</span></code> list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.move_density_to_species">
+<code class="sig-name descname">move_density_to_species</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">this_phase_species</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Iterable<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">phase_thermo</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em>, <em class="sig-param"><span class="n">species_data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species">cantera.ctml2yaml.Species</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a><a class="headerlink" href="#cantera.ctml2yaml.Phase.move_density_to_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the phase density information into each species definition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>this_phase_species</strong> – A list of mappings of species data sources to the species names in that
+data source. Passed as an argument instead of using the <code class="docutils literal notranslate"><span class="pre">species</span></code> key
+in the instance <code class="docutils literal notranslate"><span class="pre">attribs</span></code> because the attribute could be a mapping or
+a list of mappings, whereas this argument is always a list of mappings.</p></li>
+<li><p><strong>phase_thermo</strong> – XML <code class="docutils literal notranslate"><span class="pre">thermo</span></code> node.</p></li>
+<li><p><strong>species_data</strong> – Mapping of species data sources (i.e., <code class="docutils literal notranslate"><span class="pre">id</span></code> attributes on <code class="docutils literal notranslate"><span class="pre">speciesData</span></code>
+nodes) to lists of <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> instances.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The YAML format moves the specification of density for <code class="docutils literal notranslate"><span class="pre">StoichSubstance</span></code>
+phase-thermo types from the <a class="reference internal" href="#cantera.ctml2yaml.Phase" title="cantera.ctml2yaml.Phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Phase</span></code></a> node into the <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> nodes. This modifies
+the <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> objects in-place in the <code class="docutils literal notranslate"><span class="pre">species_data</span></code> list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.redlich_kister">
+<code class="sig-name descname">redlich_kister</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activity_coeffs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>List<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>QUANTITY<span class="p">]</span><span class="p">]</span><span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.Phase.redlich_kister" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process activity coefficients for a Redlich-Kister phase-thermo type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>activity_coeffs</strong> – XML <code class="docutils literal notranslate"><span class="pre">activityCoefficients</span></code> node. For the <code class="docutils literal notranslate"><span class="pre">RedlichKister</span></code> phase-thermo
+type these are interaction parameters between the species in the phase.</p>
+</dd>
+</dl>
+<p>Returns a list of interaction data values. The <code class="docutils literal notranslate"><span class="pre">activityCoefficients</span></code> node
+must have a <code class="docutils literal notranslate"><span class="pre">binaryNeutralSpeciesParameters</span></code> child node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Phase.to_yaml">
+<em class="property">classmethod </em><code class="sig-name descname">to_yaml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">representer</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.Phase.to_yaml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize the class instance to YAML format suitable for ruamel.yaml.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>representer</strong> – An instance of a ruamel.yaml representer type.</p></li>
+<li><p><strong>data</strong> – An instance of this class that will be serialized.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The class instance should have an instance attribute called <code class="docutils literal notranslate"><span class="pre">attribs</span></code> which
+is a dictionary representing the information about the instance. The dictionary
+is serialized using the <code class="docutils literal notranslate"><span class="pre">represent_dict</span></code> method of the <code class="docutils literal notranslate"><span class="pre">representer</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cantera.ctml2yaml.Species">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">Species</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">species_node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.Species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Represent an XML <code class="docutils literal notranslate"><span class="pre">species</span></code> node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>species_node</strong> – The XML node with the species information.</p>
+</dd>
+</dl>
+<p>This class processes the XML node of a species definition and generates a
+mapping for the YAML output. The mapping is stored in the <code class="docutils literal notranslate"><span class="pre">attribs</span></code> instance
+attribute and automatically formatted to YAML by the <a class="reference internal" href="#cantera.ctml2yaml.Species.to_yaml" title="cantera.ctml2yaml.Species.to_yaml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_yaml</span></code></a> class
+method.</p>
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Species.hkft">
+<code class="sig-name descname">hkft</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">species_node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>HKFT_THERMO_TYPE<span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.Species.hkft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a species with HKFT thermo type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>species_node</strong> – The XML node with the species information.</p>
+</dd>
+</dl>
+<p>Requires synthesizing data from the <code class="docutils literal notranslate"><span class="pre">thermo</span></code> node and the <code class="docutils literal notranslate"><span class="pre">standardState</span></code>
+node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Species.process_standard_state_node">
+<code class="sig-name descname">process_standard_state_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">species_node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a><a class="headerlink" href="#cantera.ctml2yaml.Species.process_standard_state_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the <code class="docutils literal notranslate"><span class="pre">standardState</span></code> node in a species definition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>species_node</strong> – The XML node with the species information.</p>
+</dd>
+</dl>
+<p>If the model is <code class="docutils literal notranslate"><span class="pre">IonFromNeutral</span></code> or <code class="docutils literal notranslate"><span class="pre">HKFT</span></code>, this function doesn’t do
+anything to the <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> object. Otherwise, the model data is put into the YAML
+<code class="docutils literal notranslate"><span class="pre">equation-of-state</span></code> node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Species.to_yaml">
+<em class="property">classmethod </em><code class="sig-name descname">to_yaml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">representer</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.Species.to_yaml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize the class instance to YAML format suitable for ruamel.yaml.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>representer</strong> – An instance of a ruamel.yaml representer type.</p></li>
+<li><p><strong>data</strong> – An instance of this class that will be serialized.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The class instance should have an instance attribute called <code class="docutils literal notranslate"><span class="pre">attribs</span></code> which
+is a dictionary representing the information about the instance. The dictionary
+is serialized using the <code class="docutils literal notranslate"><span class="pre">represent_dict</span></code> method of the <code class="docutils literal notranslate"><span class="pre">representer</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cantera.ctml2yaml.SpeciesThermo">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">SpeciesThermo</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">thermo</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.SpeciesThermo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Represent the polynomial-type thermodynamic data for a <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>thermo</strong> – A <code class="docutils literal notranslate"><span class="pre">species/thermo</span></code> XML node. Must have one or more child nodes with tag
+<code class="docutils literal notranslate"><span class="pre">NASA</span></code>, <code class="docutils literal notranslate"><span class="pre">NASA9</span></code>, <code class="docutils literal notranslate"><span class="pre">const_cp</span></code>, <code class="docutils literal notranslate"><span class="pre">Shomate</span></code>, or <code class="docutils literal notranslate"><span class="pre">Mu0</span></code>.</p>
+</dd>
+</dl>
+<p>This class will process the <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a>-level thermodynamic information for the
+polynomial thermo types. The pressure-dependent standard state types are
+processed directly in the <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> instance.</p>
+<dl class="py method">
+<dt id="cantera.ctml2yaml.SpeciesThermo.Mu0">
+<code class="sig-name descname">Mu0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">thermo</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">, </span>Iterable<span class="p">]</span><span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.SpeciesThermo.Mu0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a piecewise Gibbs Free Energy thermodynamic polynomial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>thermo</strong> – A <code class="docutils literal notranslate"><span class="pre">species/thermo</span></code> XML node. There must be one child node with the tag
+<code class="docutils literal notranslate"><span class="pre">Mu0</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.SpeciesThermo.NASA">
+<code class="sig-name descname">NASA</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">thermo</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>THERMO_POLY_TYPE<span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.SpeciesThermo.NASA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a NASA 7-coefficient thermodynamic polynomial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>thermo</strong> – A <code class="docutils literal notranslate"><span class="pre">species/thermo</span></code> XML node. There must be one or more child nodes with
+the tag <code class="docutils literal notranslate"><span class="pre">NASA</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.SpeciesThermo.NASA9">
+<code class="sig-name descname">NASA9</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">thermo</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>THERMO_POLY_TYPE<span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.SpeciesThermo.NASA9" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a NASA 9-coefficient thermodynamic polynomial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>thermo</strong> – A <code class="docutils literal notranslate"><span class="pre">species/thermo</span></code> XML node. There must be one or more child nodes with
+the tag <code class="docutils literal notranslate"><span class="pre">NASA9</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.SpeciesThermo.Shomate">
+<code class="sig-name descname">Shomate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">thermo</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>THERMO_POLY_TYPE<span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.SpeciesThermo.Shomate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a Shomate <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> thermodynamic polynomial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>thermo</strong> – A <code class="docutils literal notranslate"><span class="pre">species/thermo</span></code> XML node. There must be one or more child nodes with
+the tag <code class="docutils literal notranslate"><span class="pre">Shomate</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.SpeciesThermo.const_cp">
+<code class="sig-name descname">const_cp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">thermo</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span>QUANTITY<span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.SpeciesThermo.const_cp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> thermodynamic type with constant specific heat.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>thermo</strong> – A <code class="docutils literal notranslate"><span class="pre">species/thermo</span></code> XML node. There must be one child node with the tag
+<code class="docutils literal notranslate"><span class="pre">const_cp</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.SpeciesThermo.process_polynomial">
+<code class="sig-name descname">process_polynomial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">thermo</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em>, <em class="sig-param"><span class="n">poly_type</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>List<span class="p">[</span>List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span><span class="p">]</span><span class="p">, </span>List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span><span class="p">]</span><a class="headerlink" href="#cantera.ctml2yaml.SpeciesThermo.process_polynomial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the <a class="reference internal" href="#cantera.ctml2yaml.Species" title="cantera.ctml2yaml.Species"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Species</span></code></a> thermodynamic polynomial for several types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>thermo</strong> – A <code class="docutils literal notranslate"><span class="pre">species/thermo</span></code> XML node. Must have one or more child nodes with tag
+<code class="docutils literal notranslate"><span class="pre">NASA</span></code>, <code class="docutils literal notranslate"><span class="pre">NASA9</span></code>, or <code class="docutils literal notranslate"><span class="pre">Shomate</span></code>.</p></li>
+<li><p><strong>poly_type</strong> – A string determining the type of polynomial. One of <code class="docutils literal notranslate"><span class="pre">NASA</span></code>, <code class="docutils literal notranslate"><span class="pre">NASA9</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">Shomate</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>This method converts the polynomial data for the <code class="docutils literal notranslate"><span class="pre">NASA</span></code>, <code class="docutils literal notranslate"><span class="pre">NASA9</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">Shomate</span></code> thermodynamic types into the appropriate YAML structure.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.SpeciesThermo.to_yaml">
+<em class="property">classmethod </em><code class="sig-name descname">to_yaml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">representer</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.SpeciesThermo.to_yaml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize the class instance to YAML format suitable for ruamel.yaml.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>representer</strong> – An instance of a ruamel.yaml representer type.</p></li>
+<li><p><strong>data</strong> – An instance of this class that will be serialized.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The class instance should have an instance attribute called <code class="docutils literal notranslate"><span class="pre">attribs</span></code> which
+is a dictionary representing the information about the instance. The dictionary
+is serialized using the <code class="docutils literal notranslate"><span class="pre">represent_dict</span></code> method of the <code class="docutils literal notranslate"><span class="pre">representer</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cantera.ctml2yaml.SpeciesTransport">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">SpeciesTransport</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transport</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.SpeciesTransport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Represent the Lennard-Jones transport properties of a species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>transport</strong> – A <code class="docutils literal notranslate"><span class="pre">species/transport</span></code> XML node.</p>
+</dd>
+</dl>
+<p>This class only supports one type of transport model, <code class="docutils literal notranslate"><span class="pre">gas_transport</span></code>.</p>
+<dl class="py method">
+<dt id="cantera.ctml2yaml.SpeciesTransport.to_yaml">
+<em class="property">classmethod </em><code class="sig-name descname">to_yaml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">representer</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.SpeciesTransport.to_yaml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize the class instance to YAML format suitable for ruamel.yaml.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>representer</strong> – An instance of a ruamel.yaml representer type.</p></li>
+<li><p><strong>data</strong> – An instance of this class that will be serialized.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The class instance should have an instance attribute called <code class="docutils literal notranslate"><span class="pre">attribs</span></code> which
+is a dictionary representing the information about the instance. The dictionary
+is serialized using the <code class="docutils literal notranslate"><span class="pre">represent_dict</span></code> method of the <code class="docutils literal notranslate"><span class="pre">representer</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cantera.ctml2yaml.Reaction">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">Reaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reaction</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em>, <em class="sig-param"><span class="n">node_motz_wise</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.Reaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Represent an XML <code class="docutils literal notranslate"><span class="pre">reaction</span></code> node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reaction</strong> – The XML node with the reaction information.</p></li>
+<li><p><strong>node_motz_wise</strong> – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <code class="docutils literal notranslate"><span class="pre">reactionData</span></code> node that contains this <code class="docutils literal notranslate"><span class="pre">reaction</span></code> node
+has the <code class="docutils literal notranslate"><span class="pre">motz_wise</span></code> attribute set to <code class="docutils literal notranslate"><span class="pre">True</span></code>. Otherwise, <code class="docutils literal notranslate"><span class="pre">False</span></code>. This
+argument is used to adjust each reaction instead of setting the
+<a class="reference internal" href="#cantera.ctml2yaml.Phase" title="cantera.ctml2yaml.Phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Phase</span></code></a>-level option because the reactions are processed before the phases,
+so it isn’t known at this point what phase these reactions will apply to.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.arrhenius">
+<code class="sig-name descname">arrhenius</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rate_coeff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; ARRHENIUS_TYPE<a class="headerlink" href="#cantera.ctml2yaml.Reaction.arrhenius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a standard Arrhenius-type reaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rate_coeff</strong> – The XML node with rate coefficient information for this reaction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.chebyshev">
+<code class="sig-name descname">chebyshev</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rate_coeff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; CHEBYSHEV_TYPE<a class="headerlink" href="#cantera.ctml2yaml.Reaction.chebyshev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a Chebyshev reaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rate_coeff</strong> – The XML node with rate coefficient information for this reaction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.chemact">
+<code class="sig-name descname">chemact</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rate_coeff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; CHEMACT_TYPE<a class="headerlink" href="#cantera.ctml2yaml.Reaction.chemact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a chemically activated falloff reaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rate_coeff</strong> – The XML node with rate coefficient information for this reaction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.interface">
+<code class="sig-name descname">interface</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rate_coeff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; INTERFACE_TYPE<a class="headerlink" href="#cantera.ctml2yaml.Reaction.interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process an interface reaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rate_coeff</strong> – The XML node with rate coefficient information for this reaction.</p>
+</dd>
+</dl>
+<p>This represents both interface and electrochemical reactions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.lindemann">
+<code class="sig-name descname">lindemann</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rate_coeff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; LINDEMANN_TYPE<a class="headerlink" href="#cantera.ctml2yaml.Reaction.lindemann" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a Lindemann falloff reaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rate_coeff</strong> – The XML node with rate coefficient information for this reaction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.plog">
+<code class="sig-name descname">plog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rate_coeff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; PLOG_TYPE<a class="headerlink" href="#cantera.ctml2yaml.Reaction.plog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a PLOG reaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rate_coeff</strong> – The XML node with rate coefficient information for this reaction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.process_arrhenius_parameters">
+<code class="sig-name descname">process_arrhenius_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arr_node</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; ARRHENIUS_PARAMS<a class="headerlink" href="#cantera.ctml2yaml.Reaction.process_arrhenius_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the parameters from an <code class="docutils literal notranslate"><span class="pre">Arrhenius</span></code> child of a <code class="docutils literal notranslate"><span class="pre">rateCoeff</span></code> node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arr_node</strong> – The XML node with the Arrhenius parameters. Must have three child nodes
+with tags <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, and <code class="docutils literal notranslate"><span class="pre">E</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.process_efficiencies">
+<code class="sig-name descname">process_efficiencies</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">eff_node</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; EFFICIENCY_PARAMS<a class="headerlink" href="#cantera.ctml2yaml.Reaction.process_efficiencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the efficiency information about a reaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eff_node</strong> – The XML efficiency node. The text of the node must be a space-delimited
+string of <code class="docutils literal notranslate"><span class="pre">species:value</span></code> pairs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.sri">
+<code class="sig-name descname">sri</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rate_coeff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; SRI_TYPE<a class="headerlink" href="#cantera.ctml2yaml.Reaction.sri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process an SRI reaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rate_coeff</strong> – The XML node with rate coefficient information for this reaction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.threebody">
+<code class="sig-name descname">threebody</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rate_coeff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; THREEBODY_TYPE<a class="headerlink" href="#cantera.ctml2yaml.Reaction.threebody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a three-body reaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rate_coeff</strong> – The XML node with rate coefficient information for this reaction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.to_yaml">
+<em class="property">classmethod </em><code class="sig-name descname">to_yaml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">representer</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.Reaction.to_yaml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize the class instance to YAML format suitable for ruamel.yaml.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>representer</strong> – An instance of a ruamel.yaml representer type.</p></li>
+<li><p><strong>data</strong> – An instance of this class that will be serialized.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The class instance should have an instance attribute called <code class="docutils literal notranslate"><span class="pre">attribs</span></code> which
+is a dictionary representing the information about the instance. The dictionary
+is serialized using the <code class="docutils literal notranslate"><span class="pre">represent_dict</span></code> method of the <code class="docutils literal notranslate"><span class="pre">representer</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ctml2yaml.Reaction.troe">
+<code class="sig-name descname">troe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rate_coeff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a></span></em><span class="sig-paren">)</span> &#x2192; TROE_TYPE<a class="headerlink" href="#cantera.ctml2yaml.Reaction.troe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a Troe falloff reaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rate_coeff</strong> – The XML node with rate coefficient information for this reaction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="py exception">
+<dt id="cantera.ctml2yaml.MissingXMLNode">
+<em class="property">exception </em><code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">MissingXMLNode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">''</span></em>, <em class="sig-param"><span class="n">node</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.MissingXMLNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#LookupError" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookupError</span></code></a></p>
+<p>Error raised when a required node is missing in the XML tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> – The error message to be displayed to the user.</p></li>
+<li><p><strong>node</strong> – The XML node from which the requested node is missing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="cantera.ctml2yaml.MissingXMLAttribute">
+<em class="property">exception </em><code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">MissingXMLAttribute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">''</span></em>, <em class="sig-param"><span class="n">node</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.MissingXMLAttribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#LookupError" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookupError</span></code></a></p>
+<p>Error raised when a required attribute is missing in the XML node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> – The error message to be displayed to the user.</p></li>
+<li><p><strong>node</strong> – The XML node from which the requested attribute is missing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="cantera.ctml2yaml.MissingNodeText">
+<em class="property">exception </em><code class="sig-prename descclassname">cantera.ctml2yaml.</code><code class="sig-name descname">MissingNodeText</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">''</span></em>, <em class="sig-param"><span class="n">node</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.9)">xml.etree.ElementTree.Element</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ctml2yaml.MissingNodeText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#LookupError" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookupError</span></code></a></p>
+<p>Error raised when the text of an XML node is missing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> – The error message to be displayed to the user.</p></li>
+<li><p><strong>node</strong> – The XML node from which the text is missing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+                </div>
+                </div>
+            </div>
+             <!-- end of block document -->
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CTML to YAML conversion</a><ul>
+<li><a class="reference internal" href="#module-level-functions">Module-level functions</a></li>
+<li><a class="reference internal" href="#conversion-classes">Conversion classes</a></li>
+<li><a class="reference internal" href="#exceptions">Exceptions</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">YAML Input File Reference</a><ul>
+      <li>Previous: <a href="cti_conversion.html" title="previous chapter">CTI to YAML conversion</a></li>
+      <li>Next: <a href="../cti/classes.html" title="next chapter">CTI Class Reference</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/yaml/ctml_conversion.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://numfocus.salsalabs.org/donate-to-cantera/index.html">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+    </div>
+  </div>
+                <div class="clearer"></div>
+          </div>
+           <!--End of block content-->
+
+          <div class="footer">
+            &copy;2001-2021, Cantera Developers.
+            
+            |
+            Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+            &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+            
+            |
+            <a href="../_sources/yaml/ctml_conversion.rst.txt"
+                rel="nofollow">Page source</a>
+          </div>
+      </div>
+  </div>
+
+  <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha256-98vAGjEDGN79TjHkYWVD4s87rvWkdWLHPs5MC3FvFX4=" crossorigin="anonymous"></script>
+  <script async="async" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,797 @@
+
+==============================
+One-Dimensional Reacting Flows
+==============================
+
+Domain1D
+--------
+
+.. mat:class:: Domain1D(a, b, c)
+
+    Domain1D class constructor.
+
+    :param a:
+        Integer type of domain. Possible values are
+    
+        * 1 - Stagnation Flow
+        * 2 - Inlet1D
+        * 3 - Surf1D
+        * 4 - Symm1D
+        * 5 - Outlet1D
+        * 6 - Reacting Surface
+        * 8 - Sim1D
+        * -2 - OutletRes
+    
+    :param b:
+        Instance of class :mat:func:`Solution` (for ``a == 1``)
+        or :mat:func:`Interface` (for ``a == 6``). Not used for
+        all other valid values of ``a``.
+    :param c:
+        Integer, either 1 or 2, indicating whether an axisymmetric
+        stagnation flow or a free flame should be created. If not
+        specified, defaults to 1. Ignored if ``a != 1``.
+    
+
+    .. mat:function:: AxiStagnFlow(gas)
+
+        Get an axisymmetric stagnation flow domain.
+
+        :param gas:
+            Instance of class :mat:func:`Solution`
+        :return:
+            Domain1D instance representing an axisymmetric
+            stagnation flow.
+
+    .. mat:function:: AxisymmetricFlow(gas, id)
+
+        Create an axisymmetric flow domain.
+
+        :param gas:
+            Instance of class :mat:func:`Solution`
+        :param id:
+            String, ID of the flow
+        :return:
+            Domain1D instance representing an axisymmetric flow.
+        
+
+    .. mat:function:: Inlet(id)
+
+        Create an inlet domain.
+
+        Note that an inlet can only be a terminal domain - it must be
+        either the leftmost or rightmost domain in a stack.
+        
+        :param id:
+            String name of the inlet.
+        :return:
+            Instance of class :mat:func:`Domain1D` representing an inlet.
+        
+
+    .. mat:function:: Outlet(id)
+
+        Create an outlet domain.
+
+        :param id:
+            String ID of the outlet.
+        :return:
+            Instance of :mat:func:`Domain1D` representing an outlet.
+        
+
+    .. mat:function:: OutletRes(id)
+
+        Create an outlet reservoir domain.
+
+        :return:
+            Instance of :mat:func:`Domain1D` representing an outlet
+            reservoir.
+        
+
+    .. mat:function:: Surface(id, surface_mech)
+
+        Create a surface domain.
+
+        :param id:
+            String ID of surface
+        :param surface_mech:
+            Instance of class :mat:func:`Interface` defining
+            the surface reaction mechanism to be used. Optional.
+        :return:
+            Instance of class :mat:func:`Domain1D` representing a
+            non-reacting or reacting surface.
+        
+
+    .. mat:function:: SymmPlane(id)
+
+        Create a symmetry plane domain.
+
+        :param id:
+            String ID of the symmetry plane.
+        :return:
+            Instance of class :mat:func:`Domain1D` representing a symmetry
+            plane.
+        
+
+    .. mat:function:: componentIndex(d, name)
+
+        Get the index of a component given its name.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param name:
+            String name of the component to look up. If a numeric value
+            is passed, it will be returned.
+        :return:
+            Index of the component, or input numeric value.
+        
+
+    .. mat:function:: componentName(d, n)
+
+        Get the name of a component given its index.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param n:
+            Integer or vector of integers of components' names
+            to get.
+        :return:
+            Cell array of component names.
+        
+
+    .. mat:function:: disableEnergy(d)
+
+        Disable the energy equation.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        
+
+    .. mat:function:: domainIndex(d)
+
+        Get the domain index.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :return:
+            This function returns an integer flag denoting the location
+            of the domain, beginning with 1 at the left.
+        
+
+    .. mat:function:: domainType(d)
+
+        Get the type of domain.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :return:
+            This function returns an integer flag denoting the domain
+            type.
+        
+
+    .. mat:function:: enableEnergy(d)
+
+        Enable the energy equation.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        
+
+    .. mat:function:: gridPoints(d, n)
+
+        Get grid points from a domain.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param n:
+            Optional, vector of grid points to be retrieved.
+        :return:
+            Vector of grid points. Length of ``n`` or :mat:func:`nPoints`.
+        
+
+    .. mat:function:: isFlow(d)
+
+        Determine whether a domain is a flow.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :return:
+            1 if the domain is a flow domain, and 0 otherwise.
+        
+
+    .. mat:function:: isInlet(d)
+
+        Determine whether a domain is an inlet.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :return:
+            1 if the domain is an inlet, and 0 otherwise.
+        
+
+    .. mat:function:: isSurface(d)
+
+        Determine if a domain is a surface.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :return:
+            1 if the domain is a surface, and 0 otherwise.
+        
+
+    .. mat:function:: massFlux(d)
+
+        Get the mass flux.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :return:
+            The mass flux in the domain.
+        
+
+    .. mat:function:: massFraction(d, k)
+
+        Get the mass fraction of a species given its integer index.
+
+        This method returns the mass fraction of species ``k``, where
+        k is the integer index of the species in the flow domain
+        to which the boundary domain is attached.
+        
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param k:
+            Integer species index
+        :return:
+            Mass fraction of species
+        
+
+    .. mat:function:: nComponents(d)
+
+        Get the number of components.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :return:
+            Number of variables at each grid point
+        
+
+    .. mat:function:: nPoints(d)
+
+        Get the number of grid points.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :return:
+            Integer number of grid points.
+        
+
+    .. mat:function:: set(a,varargin)
+
+        Set properties of a Domain1D.
+
+        The properties that may be set are
+        
+        * Temperature     (T)
+        * Pressure        (P)
+        * Mole Fractions  (X)
+        * Mass Flux       (mdot)
+        * tol
+        * tol-time
+        * grid
+        * bounds
+        * T_fixed
+        * ID
+        
+        Either the full property name or the symbol may be
+        specified. Mole and mass
+        fractions must be input as vectors (either row or column) with
+        length equal to the number of species.
+        
+        Examples::
+        
+            >> set(gas,'Temperature',600.0);
+            >> set(gas,'T',600.0);
+            >> set(gas,'T',600.0,'P',2*oneatm,'Y',massfracs);
+            >> set(gas,'X',ones(nSpecies(gas),1));
+        
+        Alternatively, individual methods to set properties may be
+        called (setTemperature, setMoleFractions, etc.)
+        
+        See also: :mat:func:`setBounds`, :mat:func:`setFixedTempProfile` :mat:func:`setID`,
+        :mat:func:`setMdot`, :mat:func:`setMoleFractions`, :mat:func:`setPressure`,
+        :mat:func:`setProfile`, :mat:func:`setSteadyTolerances`, :mat:func:`setTemperature`,
+        :mat:func:`setTransientTolerances`, :mat:func:`setupGrid`
+        
+        :param a:
+            Instance of class :mat:func:`Domain1D`
+        :param varargin:
+            Comma separated list of ``property, value`` pairs to be set
+        
+
+    .. mat:function:: setBounds(d, component, lower, upper)
+
+        Set bounds on the solution components.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param component:
+            String, component to set the bounds on
+        :param lower:
+            Lower bound
+        :param upper:
+            Upper bound
+        
+
+    .. mat:function:: setCoverageEqs(d, onoff)
+
+        Enable or disable solving the coverage equations.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param onoff:
+            String, one of ``'on'`` or ``'yes'`` to turn solving
+            the coverage equations on. One of ``'off'`` or ``'no'``
+            to turn off the coverage equations.
+        
+
+    .. mat:function:: setFixedTempProfile(d, profile)
+
+        Set a fixed temperature profile.
+
+        Set the temperature profile to use when the
+        energy equation is not being solved. The profile must be entered
+        as an array of positions / temperatures, which may be in rows or
+        columns.
+        
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param profile:
+            n x 2 or 2 x n array of ``n`` points at which the temperature
+            is specified.
+        
+
+    .. mat:function:: setID(d, id)
+
+        Set the ID tag for a domain.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param id:
+            String ID to assign
+        
+
+    .. mat:function:: setMdot(d, mdot)
+
+        Set the mass flow rate.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param mdot:
+            Mass flow rate
+        
+
+    .. mat:function:: setMoleFractions(d, x)
+
+        Set the mole fractions.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param x:
+            String specifying the species and mole fractions in
+            the format ``'SPEC:X,SPEC2:X2'``.
+        
+
+    .. mat:function:: setPressure(d, p)
+
+        Set the pressure.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param p:
+            Pressure to be set. Units: Pa
+        
+
+    .. mat:function:: setProfile(d, n, p)
+
+        Set the profile of a component.
+
+        Convenience function to allow an instance of :mat:func:`Domain1D` to
+        have a profile of its components set when it is part of a :mat:func:`Stack`.
+        
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param n:
+            Integer index of component, vector of component indices, string
+            of component name, or cell array of strings of component names.
+        :param p:
+            n x 2 array, whose columns are the relative (normalized) positions
+            and the component values at those points. The number of positions
+            ``n`` is arbitrary.
+        
+
+    .. mat:function:: setSteadyTolerances(d, component, rtol, atol)
+
+        Set the steady-state tolerances.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param component:
+            String or cell array of strings of component values
+            whose tolerances should be set. If ``'default'`` is
+            specified, the tolerance of all components will be set.
+        :param rtol:
+            Relative tolerance
+        :param atol:
+            Absolute tolerance
+        
+
+    .. mat:function:: setTemperature(d, t)
+
+        Set the temperature.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param t:
+            Temperature to be set. Units: K
+        
+
+    .. mat:function:: setTransientTolerances(d, component, rtol, atol)
+
+        Set the transient tolerances.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param component:
+            String or cell array of strings of component values
+            whose tolerances should be set. If ``'default'`` is
+            specified, the tolerance of all components will be set.
+        :param rtol:
+            Relative tolerance
+        :param atol:
+            Absolute tolerance
+        
+
+    .. mat:function:: setupGrid(d, grid)
+
+        Set up the solution grid.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :param grid:
+        
+
+    .. mat:function:: temperature(d)
+
+        Get the boundary temperature.
+
+        :param d:
+            Instance of class :mat:func:`Domain1D`
+        :return:
+            Temperature. Units: K
+        
+
+Stack
+-----
+
+.. mat:class:: Stack(domains)
+
+    Stack class constructor.
+
+    A stack object is a container for one-dimensional domains,
+    which are instances of class Domain1D. The domains are of two
+    types - extended domains, and connector domains.
+    
+    See also: :mat:func:`Domain1D`
+    
+    :param domains:
+        Vector of domain instances
+    :return:
+        Instance of class :mat:func:`Stack`
+    
+
+    .. mat:function:: CounterFlowDiffusionFlame(left, flow, right, tp_f, tp_o, oxidizer)
+
+        Create a counter flow diffusion flame stack.
+
+        :param left:
+            Object representing the left inlet, which must be
+            created using function :mat:func:`Inlet`.
+        :param flow:
+            Object representing the flow, created with
+            function :mat:func:`AxisymmetricFlow`.
+        :param right:
+            Object representing the right inlet, which must be
+            created using function :mat:func:`Inlet`.
+        :param tp_f:
+            Object representing the fuel inlet gas, instance of class
+            :mat:func:`Solution`, and an ideal gas.
+        :param tp_o:
+            Object representing the oxidizer inlet gas, instance of class
+            :mat:func:`Solution`, and an ideal gas.
+        :param oxidizer:
+            String representing the oxidizer species. Most commonly O2.
+        :return:
+            Instance of :mat:func:`Stack` object representing the left
+            inlet, flow, and right inlet.
+        
+
+    .. mat:function:: FreeFlame(gas, id)
+
+        Create a freely-propagating flat flame.
+
+        :param gas:
+            Instance of class :mat:func:`Solution`
+        :param id:
+            String, ID of the flow
+        :return:
+            Domain1D instance representing a freely propagating,
+            adiabatic flame
+        
+
+    .. mat:function:: domainIndex(s, name)
+
+        Get the index of a domain in a stack given its name.
+
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param name:
+            If double, the value is returned. Otherwise,
+            the name is looked up and its index is returned.
+        :return:
+            Index of domain
+        
+
+    .. mat:function:: grid(s, name)
+
+        Get the grid in one domain.
+
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param name:
+            Name of the domain for which the grid
+            should be retrieved.
+        :return:
+            The grid in domain name
+        
+
+    .. mat:function:: plotSolution(s, domain, component)
+
+        Plot a specified solution component.
+
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param domain:
+            Name of domain from which the component should be
+            retrieved
+        :param component:
+            Name of the component to be plotted
+        
+
+    .. mat:function:: resid(s, domain, rdt, count)
+
+        Get the residuals.
+
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param domain:
+            Name of the domain
+        :param rdt:
+        :param count:
+        :returns:
+        
+
+    .. mat:function:: restore(s, fname, id)
+
+        Restore a previously-saved solution.
+
+        This method can be used to provide an initial guess for the solution.
+        
+        See also: :mat:func:`save`
+        
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param fname:
+            File name of an XML file containing solution information
+        :param id:
+            ID of the element that should be restored
+        
+
+    .. mat:function:: save(s, fname, id, desc)
+
+        Save a solution to a file.
+
+        The output file is in a format that
+        can be used by :mat:func:`restore`
+        
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param fname:
+            File name where XML file should be written
+        :param id:
+            ID to be assigned to the XML element when it is
+            written
+        :param desc:
+            Description to be written to the output file
+        
+
+    .. mat:function:: saveSoln(s, fname, id, desc)
+
+        Save a solution to a file.
+
+        The output file is in a format that
+        can be used by :mat:func:`restore`
+        
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param fname:
+            File name where XML file should be written
+        :param id:
+            ID to be assigned to the XML element when it is
+            written
+        :param desc:
+            Description to be written to the output file
+        
+
+    .. mat:function:: setFlatProfile(s, domain, comp, v)
+
+        Set a component to a value across the entire domain.
+
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param domain:
+            Integer ID of the domain
+        :param comp:
+            Component to be set
+        :param v:
+            Double, value to be set
+        
+
+    .. mat:function:: setMaxJacAge(s, ss_age, ts_age)
+
+        Set the number of times the Jacobian will be used before it is recomputed.
+
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param ss_age:
+            Maximum age of the Jacobian for steady state analysis
+        :param ts_age:
+            Maximum age of the Jacobian for transient analysis. If
+            not specified, defaults to ``ss_age``.
+        
+
+    .. mat:function:: setProfile(s, name, comp, p)
+
+        Specify a profile for one component.
+
+        The solution vector values for this component will be linearly
+        interpolated from the discrete function defined by p(:,1) vs. p(:,2).
+        Note that ``p(1,1) = 0.0`` corresponds to the leftmost grid point in
+        the specified domain, and ``p(1,n) = 1.0`` corresponds to the rightmost
+        grid point. This method can be called at any time, but is
+        usually used to set the initial guess for the solution.
+        
+        Example (assuming ``s`` is an instance of :mat:func:`Stack`)::
+        
+            >> zr = [0 0.1 0.2 0.4 0.8 1];
+            >> v  = [500 650 700 730 800 900];
+            >> setProfile(s, 1, 2, [zr, v]);
+        
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param name:
+            Domain name
+        :param comp:
+            component number
+        :param p:
+            n x 2 array, whose columns are the relative (normalized) positions
+            and the component values at those points. The number of positions
+            ``n`` is arbitrary.
+        
+
+    .. mat:function:: setRefineCriteria(s, n, ratio, slope, curve, prune)
+
+        Set the criteria used to refine the grid.
+
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param n:
+            Domain number
+        :param ratio:
+            Maximum size ratio between adjacent cells
+        :param slope:
+            Maximum relative difference in value between
+            adjacent points
+        :param curve:
+            Maximum relative difference in slope between
+            adjacent cells
+        :param prune:
+            Minimum value for slope or curve for which points
+            will be retained in the grid. If the computed
+            slope or curve value is below prune for all
+            components, it will be deleted, unless either
+            neighboring point is already marked for deletion.
+        
+
+    .. mat:function:: setTimeStep(s, stepsize, steps)
+
+        Specify a sequence of time steps.
+
+        :param stepsize:
+            Initial step size (s)
+        :param steps:
+            Vector of number of steps to take before
+            re-attempting solution of steady-state problem. For
+            example, steps = [1, 2, 5, 10] would cause one time
+            step to be taken first the the steady-state
+            solution attempted. If this failed, two time steps
+            would be taken, etc.
+        
+
+    .. mat:function:: setValue(s, n, comp, localPoint, v)
+
+        Set the value of a single entry in the solution vector.
+
+        Example (assuming ``s`` is an instance of :mat:func:`Stack`)::
+        
+            setValue(s, 3, 5, 1, 5.6)
+        
+        This sets component 5 at the leftmost point (local point 1) in domain 3
+        to the value 5.6. Note that the local index always begins at 1
+        at the left of each domain, independent of the global index of
+        the point, which depends on the location of this domain in the
+        stack.
+        
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param n:
+            Domain number
+        :param comp:
+            Component number
+        :param localPoint:
+            Local index of the grid point in the domain
+        :param v:
+            Value
+        
+
+    .. mat:function:: solution(s, domain, component)
+
+        Get a solution component in one domain.
+
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param domain:
+            String, name of the domain from which the solution is desired
+        :param component:
+            String, component for which the solution is desired. If omitted,
+            solutions for all of the components will be returned in an
+            :mat:func:`nPoints` x :mat:func:`nComponents` array.
+        :return:
+            Either an :mat:func:`nPoints` x 1 vector, or
+            :mat:func:`nPoints` x :mat:func:`nComponents` array.
+        
+
+    .. mat:function:: solve(s, loglevel, refine_grid)
+
+        Solve the problem.
+
+        :param s:
+            Instance of class :mat:func:`Stack`
+        :param loglevel:
+            Integer flag controlling the amount of diagnostic
+            output. Zero supresses all output, and 5 produces
+            very verbose output.
+        :param refine_grid:
+            Integer, 1 to allow grid refinement, 0 to disallow.
+        
+
+    .. mat:function:: writeStats(s)
+
+        Print statistics for the current solution.
+
+        Prints a summary of the number of function and
+        Jacobian evaluations for each grid, and the CPU time spent on
+        each one.
+        
+        :param s:
+            Instance of class :mat:func:`Stack`
+        
+
+

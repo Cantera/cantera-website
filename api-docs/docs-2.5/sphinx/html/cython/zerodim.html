@@ -1,0 +1,1629 @@
+
+
+<!DOCTYPE html>
+
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+"
+lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zero-Dimensional Reactor Networks | Cantera </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" media="none" onload="this.media='all'" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" media="none" onload="this.media='all'" type="text/css" />
+  <link rel="stylesheet" href="../_static/katex-math.css" media="none" onload="this.media='all'" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+        <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
+        <script type="text/javascript" src="../_static/katex_autorenderer.js"></script>
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" sizes="16x16"/>
+    
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body>
+  <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+  <!-- Menubar -->
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light static-top mb-4">
+      <div class="container"><!-- This keeps the margins nice -->
+          <a class="navbar-brand" href="/index.html">
+          <img src="/assets/img/cantera-logo.png" alt="Cantera" id="logo" class="d-inline-block align-top">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a href="/install/index.html" class="nav-link">Install</a>
+              </li>
+              <li class="nav-item">
+                <a href="/tutorials/index.html" class="nav-link">Tutorials</a>
+              </li>
+              <li class="nav-item">
+                <a href="/examples/index.html" class="nav-link">Examples</a>
+              </li>
+              <li class="nav-item">
+                <a href="/community.html" class="nav-link">Community</a>
+              </li>
+              <li class="nav-item">
+                <a href="/science/index.html" class="nav-link">Science</a>
+              </li>
+              <li class="nav-item">
+                <a href="/documentation/index.html" class="nav-link">Documentation</a>
+              </li>
+              <li class="nav-item">
+                <a href="/blog/index.html" class="nav-link">Blog</a>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+  </nav>
+  <!-- End of Menubar -->
+
+  <div class="container" id="content">
+      <div class="body-content">
+          <!--Body content-->
+          
+          <div class="document">
+            
+            <div class="documentwrapper">
+                <div class="bodywrapper">
+                <div class="body" role="main">
+                  
+  <div class="section" id="zero-dimensional-reactor-networks">
+<span id="sec-cython-zerodim"></span><h1>Zero-Dimensional Reactor Networks<a class="headerlink" href="#zero-dimensional-reactor-networks" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#defining-functions" id="id1">Defining Functions</a></p></li>
+<li><p><a class="reference internal" href="#base-classes" id="id2">Base Classes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#reactorbase" id="id3">ReactorBase</a></p></li>
+<li><p><a class="reference internal" href="#flowdevice" id="id4">FlowDevice</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#reactor-networks" id="id5">Reactor Networks</a></p></li>
+<li><p><a class="reference internal" href="#reactors" id="id6">Reactors</a></p>
+<ul>
+<li><p><a class="reference internal" href="#reservoir" id="id7">Reservoir</a></p></li>
+<li><p><a class="reference internal" href="#reactor" id="id8">Reactor</a></p></li>
+<li><p><a class="reference internal" href="#idealgasreactor" id="id9">IdealGasReactor</a></p></li>
+<li><p><a class="reference internal" href="#constpressurereactor" id="id10">ConstPressureReactor</a></p></li>
+<li><p><a class="reference internal" href="#idealgasconstpressurereactor" id="id11">IdealGasConstPressureReactor</a></p></li>
+<li><p><a class="reference internal" href="#flowreactor" id="id12">FlowReactor</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#walls" id="id13">Walls</a></p>
+<ul>
+<li><p><a class="reference internal" href="#wall" id="id14">Wall</a></p></li>
+<li><p><a class="reference internal" href="#wallsurface" id="id15">WallSurface</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#surfaces" id="id16">Surfaces</a></p>
+<ul>
+<li><p><a class="reference internal" href="#reactorsurface" id="id17">ReactorSurface</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#flow-controllers" id="id18">Flow Controllers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#massflowcontroller" id="id19">MassFlowController</a></p></li>
+<li><p><a class="reference internal" href="#valve" id="id20">Valve</a></p></li>
+<li><p><a class="reference internal" href="#pressurecontroller" id="id21">PressureController</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="defining-functions">
+<h2><a class="toc-backref" href="#id1">Defining Functions</a><a class="headerlink" href="#defining-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cantera.Func1">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">Func1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">c</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Func1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This class is used as a wrapper for a function of one variable, i.e.
+<span class="math">\(y = f(t)\)</span>, that is defined in Python and can be called by the
+Cantera C++ core. <a class="reference internal" href="#cantera.Func1" title="cantera.Func1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Func1</span></code></a> objects are constructed from callable Python
+objects, e.g. functions or classes which implement the <code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span> <span class="o">=</span> <span class="n">Func1</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">0.7071067811865475</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span> <span class="o">=</span> <span class="n">Func1</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">10</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Multiplier</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">t</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f3</span> <span class="o">=</span> <span class="n">Func1</span><span class="p">(</span><span class="n">Multiplier</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f3</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="go">30.0</span>
+</pre></div>
+</div>
+<p>For simplicity, constant functions can be defined by passing a constant
+value directly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f4</span> <span class="o">=</span> <span class="n">Func1</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f4</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="go">2.5</span>
+</pre></div>
+</div>
+<p>Note that all methods which accept <a class="reference internal" href="#cantera.Func1" title="cantera.Func1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Func1</span></code></a> objects will also accept the
+callable object and create the wrapper on their own, so it is often not
+necessary to explicitly create a <a class="reference internal" href="#cantera.Func1" title="cantera.Func1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Func1</span></code></a> object.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="base-classes">
+<h2><a class="toc-backref" href="#id2">Base Classes</a><a class="headerlink" href="#base-classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reactorbase">
+<h3><a class="toc-backref" href="#id3">ReactorBase</a><a class="headerlink" href="#reactorbase" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.ReactorBase">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">ReactorBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contents</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>ReactorBase(ThermoPhase contents=None, name=None, volume=None, *)</p>
+<p>Common base class for reactors and reservoirs.</p>
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.T">
+<code class="sig-name descname">T</code><a class="headerlink" href="#cantera.ReactorBase.T" title="Permalink to this definition">¶</a></dt>
+<dd><p>The temperature [K] of the reactor’s contents.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.Y">
+<code class="sig-name descname">Y</code><a class="headerlink" href="#cantera.ReactorBase.Y" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mass fractions of the reactor’s contents.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.density">
+<code class="sig-name descname">density</code><a class="headerlink" href="#cantera.ReactorBase.density" title="Permalink to this definition">¶</a></dt>
+<dd><p>The density [kg/m^3 or kmol/m^3] of the reactor’s contents.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.inlets">
+<code class="sig-name descname">inlets</code><a class="headerlink" href="#cantera.ReactorBase.inlets" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of flow devices installed as inlets to this reactor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorBase.insert">
+<code class="sig-name descname">insert</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">_SolutionBase solution</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorBase.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set <em>solution</em> to be the object used to compute thermodynamic
+properties and kinetic rates for this reactor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.mass">
+<code class="sig-name descname">mass</code><a class="headerlink" href="#cantera.ReactorBase.mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mass of the reactor’s contents.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#cantera.ReactorBase.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the reactor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.outlets">
+<code class="sig-name descname">outlets</code><a class="headerlink" href="#cantera.ReactorBase.outlets" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of flow devices installed as outlets to this reactor</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.reactor_type">
+<code class="sig-name descname">reactor_type</code><em class="property"> = 'None'</em><a class="headerlink" href="#cantera.ReactorBase.reactor_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorBase.syncState">
+<code class="sig-name descname">syncState</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorBase.syncState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the state of the Reactor to match that of the associated
+<a class="reference internal" href="thermo.html#cantera.ThermoPhase" title="cantera.ThermoPhase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThermoPhase</span></code></a> object. After calling syncState(), call
+ReactorNet.reinitialize() before further integration.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.thermo">
+<code class="sig-name descname">thermo</code><a class="headerlink" href="#cantera.ReactorBase.thermo" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="thermo.html#cantera.ThermoPhase" title="cantera.ThermoPhase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThermoPhase</span></code></a> object representing the reactor’s contents.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.type">
+<code class="sig-name descname">type</code><a class="headerlink" href="#cantera.ReactorBase.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of the reactor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.volume">
+<code class="sig-name descname">volume</code><a class="headerlink" href="#cantera.ReactorBase.volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>The volume [m^3] of the reactor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorBase.walls">
+<code class="sig-name descname">walls</code><a class="headerlink" href="#cantera.ReactorBase.walls" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of walls installed on this reactor</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="flowdevice">
+<h3><a class="toc-backref" href="#id4">FlowDevice</a><a class="headerlink" href="#flowdevice" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.FlowDevice">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">FlowDevice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">upstream</span></em>, <em class="sig-param"><span class="n">downstream</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlowDevice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>FlowDevice(upstream, downstream, name=None, *)</p>
+<p>Base class for devices that allow flow between reactors.</p>
+<p>FlowDevice objects are assumed to be adiabatic, non-reactive, and have
+negligible internal volume, so that they are internally always in
+steady-state even if the upstream and downstream reactors are not. The
+fluid enthalpy, chemical composition, and mass flow rate are constant
+across a FlowDevice, and the pressure difference equals the difference in
+pressure between the upstream and downstream reactors.</p>
+<dl class="py attribute">
+<dt id="cantera.FlowDevice.flowdevice_type">
+<code class="sig-name descname">flowdevice_type</code><em class="property"> = 'None'</em><a class="headerlink" href="#cantera.FlowDevice.flowdevice_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.FlowDevice.mass_flow_rate">
+<code class="sig-name descname">mass_flow_rate</code><a class="headerlink" href="#cantera.FlowDevice.mass_flow_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cantera.FlowDevice.mdot">
+<code class="sig-name descname">mdot</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">double t=-999</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlowDevice.mdot" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mass flow rate [kg/s] through this device at time <em>t</em> [s].</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>To be removed after Cantera 2.5. Replaced with the
+<a class="reference internal" href="#cantera.FlowDevice.mass_flow_rate" title="cantera.FlowDevice.mass_flow_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_flow_rate</span></code></a> property.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.FlowDevice.set_pressure_function">
+<code class="sig-name descname">set_pressure_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlowDevice.set_pressure_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the relationship between mass flow rate and the pressure drop across a
+flow device. The mass flow rate [kg/s] is calculated given the pressure
+drop [Pa] and a coefficient set by a flow device specific function.
+The calculation of mass flow rate depends to the flow device.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">FlowDevice</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="o">.</span><span class="n">set_pressure_function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">dP</span><span class="p">:</span> <span class="n">dP</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where FlowDevice is either a Valve or PressureController object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.FlowDevice.set_time_function">
+<code class="sig-name descname">set_time_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlowDevice.set_time_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the time dependence of a flow device. The mass flow rate [kg/s] is
+calculated for a flow device, and multiplied by a function of time.
+The calculation of mass flow rate depends to the flow device.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">FlowDevice</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="o">.</span><span class="n">set_time_function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>where FlowDevice is either a Valve or MassFlowController object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.FlowDevice.type">
+<code class="sig-name descname">type</code><a class="headerlink" href="#cantera.FlowDevice.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of the flow device.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="reactor-networks">
+<h2><a class="toc-backref" href="#id5">Reactor Networks</a><a class="headerlink" href="#reactor-networks" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cantera.ReactorNet">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">ReactorNet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reactors</span><span class="o">=</span><span class="default_value">()</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>ReactorNet(reactors=())</p>
+<p>Networks of reactors. ReactorNet objects are used to simultaneously
+advance the state of one or more coupled reactors.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">&lt;...</span> <span class="n">install</span> <span class="n">walls</span><span class="p">,</span> <span class="n">inlets</span><span class="p">,</span> <span class="n">outlets</span><span class="p">,</span> <span class="n">etc</span><span class="o">...&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">reactor_network</span> <span class="o">=</span> <span class="n">ReactorNet</span><span class="p">([</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reactor_network</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="cantera.ReactorNet.add_reactor">
+<code class="sig-name descname">add_reactor</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">Reactor r</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.add_reactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a reactor to the network.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.advance">
+<code class="sig-name descname">advance</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">double t</em>, <em class="sig-param">bool apply_limit=True</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.advance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Advance the state of the reactor network in time from the current time
+towards time <em>t</em> [s], taking as many integrator timesteps as necessary.
+If <em>apply_limit</em> is true and an advance limit is specified, the reactor
+state at the end of the timestep is estimated prior to advancing. If
+the difference exceed limits, the end time is reduced by half until
+the projected end state remains within specified limits.
+Returns the time reached at the end of integration.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.advance_limits">
+<code class="sig-name descname">advance_limits</code><a class="headerlink" href="#cantera.ReactorNet.advance_limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set absolute limits for state changes during <a class="reference internal" href="#cantera.ReactorNet.advance" title="cantera.ReactorNet.advance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReactorNet.advance</span></code></a>
+(positive values are considered; negative values disable a previously
+set advance limit for a solution component). Note that limits are
+disabled by default (with individual values set to -1.).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.advance_to_steady_state">
+<code class="sig-name descname">advance_to_steady_state</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int max_steps=10000</em>, <em class="sig-param">double residual_threshold=0.</em>, <em class="sig-param">double atol=0.</em>, <em class="sig-param">bool return_residuals=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.advance_to_steady_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Advance the reactor network in time until steady state is reached.</p>
+<p>The steady state is defined by requiring that the state of the system
+only changes below a certain threshold. The residual is computed using
+feature scaling:</p>
+<div class="math">
+\[r = \left| \frac{x(t + \Delta t) - x(t)}{\text{max}(x) + \text{atol}} \right| \cdot \frac{1}{\sqrt{n_x}}
+
+\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_steps</strong> – Maximum number of steps to be taken</p></li>
+<li><p><strong>residual_threshold</strong> – Threshold below which the feature-scaled residual r should drop such
+that the network is defines as steady state. By default,
+residual_threshold is 10 times the solver rtol.</p></li>
+<li><p><strong>atol</strong> – The smallest expected value of interest. Used for feature scaling.
+By default, this atol is identical to the solver atol.</p></li>
+<li><p><strong>return_residuals</strong> – If set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, this function returns the residual time series
+as a vector with length <a class="reference internal" href="#cantera.ReactorNet.max_steps" title="cantera.ReactorNet.max_steps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_steps</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.atol">
+<code class="sig-name descname">atol</code><a class="headerlink" href="#cantera.ReactorNet.atol" title="Permalink to this definition">¶</a></dt>
+<dd><p>The absolute error tolerance used while integrating the reactor
+equations.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.atol_sensitivity">
+<code class="sig-name descname">atol_sensitivity</code><a class="headerlink" href="#cantera.ReactorNet.atol_sensitivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The absolute error tolerance for sensitivity analysis.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.component_name">
+<code class="sig-name descname">component_name</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int i</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.component_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name of the i-th component of the global state vector. The
+name returned includes both the name of the reactor and the specific
+component, e.g. <code class="xref py py-obj docutils literal notranslate"><span class="pre">'reactor1:</span> <span class="pre">CH4'</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.get_derivative">
+<code class="sig-name descname">get_derivative</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.get_derivative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the k-th time derivative of the state vector of the reactor network.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.get_state">
+<code class="sig-name descname">get_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.get_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the combined state vector of the reactor network.</p>
+<p>The combined state vector consists of the concatenated state vectors of
+all entities contained.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.global_component_index">
+<code class="sig-name descname">global_component_index</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">int reactor</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.global_component_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the index of a component named <em>name</em> of a reactor with index
+<em>reactor</em> within the global state vector. I.e. this determines the
+(absolute) index of the component, where <em>reactor</em> is the index of the
+reactor that holds the component. <em>name</em> is either a species name or the
+name of a reactor state variable, e.g. ‘int_energy’, ‘temperature’, etc.
+depending on the reactor’s equations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force initialization of the integrator after initial setup.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.max_err_test_fails">
+<code class="sig-name descname">max_err_test_fails</code><a class="headerlink" href="#cantera.ReactorNet.max_err_test_fails" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum number of error test failures permitted by the CVODES
+integrator in a single time step.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.max_steps">
+<code class="sig-name descname">max_steps</code><a class="headerlink" href="#cantera.ReactorNet.max_steps" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum number of internal integration time-steps that CVODES
+is allowed to take before reaching the next output time.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.max_time_step">
+<code class="sig-name descname">max_time_step</code><a class="headerlink" href="#cantera.ReactorNet.max_time_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/set the maximum time step <em>t</em> [s] that the integrator is
+allowed to use. The default value is set to zero, i.e. no time
+step maximum is used.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.n_sensitivity_params">
+<code class="sig-name descname">n_sensitivity_params</code><a class="headerlink" href="#cantera.ReactorNet.n_sensitivity_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of registered sensitivity parameters.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.n_vars">
+<code class="sig-name descname">n_vars</code><a class="headerlink" href="#cantera.ReactorNet.n_vars" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of state variables in the system. This is the sum of the
+number of variables for each <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reactor</span></code></a> and <a class="reference internal" href="#cantera.Wall" title="cantera.Wall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Wall</span></code></a> in the system.
+Equal to:</p>
+<p><a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reactor</span></code></a> and <a class="reference internal" href="#cantera.IdealGasReactor" title="cantera.IdealGasReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IdealGasReactor</span></code></a>: <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> + 3 (mass, volume,
+internal energy or temperature).</p>
+<p><a class="reference internal" href="#cantera.ConstPressureReactor" title="cantera.ConstPressureReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConstPressureReactor</span></code></a> and <a class="reference internal" href="#cantera.IdealGasConstPressureReactor" title="cantera.IdealGasConstPressureReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IdealGasConstPressureReactor</span></code></a>:
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> + 2 (mass, enthalpy or temperature).</p>
+<p><a class="reference internal" href="#cantera.Wall" title="cantera.Wall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Wall</span></code></a>: number of surface species</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.reinitialize">
+<code class="sig-name descname">reinitialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.reinitialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reinitialize the integrator after making changing to the state of the
+system. Changes to Reactor contents will automatically trigger
+reinitialization.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.rtol">
+<code class="sig-name descname">rtol</code><a class="headerlink" href="#cantera.ReactorNet.rtol" title="Permalink to this definition">¶</a></dt>
+<dd><p>The relative error tolerance used while integrating the reactor
+equations.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.rtol_sensitivity">
+<code class="sig-name descname">rtol_sensitivity</code><a class="headerlink" href="#cantera.ReactorNet.rtol_sensitivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The relative error tolerance for sensitivity analysis.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.sensitivities">
+<code class="sig-name descname">sensitivities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.sensitivities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the sensitivities of all of the solution variables with respect
+to all of the registered parameters. The normalized sensitivity
+coefficient <span class="math">\(S_{ki}\)</span> of the solution variable <span class="math">\(y_k\)</span> with
+respect to sensitivity parameter <span class="math">\(p_i\)</span> is defined as:</p>
+<div class="math">
+\[S_{ki} = \frac{p_i}{y_k} \frac{\partial y_k}{\partial p_i}
+
+\]</div>
+<p>For reaction sensitivities, the parameter is a multiplier on the forward
+rate constant (and implicitly on the reverse rate constant for
+reversible reactions).</p>
+<p>The sensitivities are returned in an array with dimensions <em>(n_vars,
+n_sensitivity_params)</em>, unless no timesteps have been taken, in which
+case the shape is <em>(0, n_sensitivity_params)</em>. The order of the
+variables (i.e., rows) is:</p>
+<p><a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reactor</span></code></a> or <a class="reference internal" href="#cantera.IdealGasReactor" title="cantera.IdealGasReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IdealGasReactor</span></code></a>:</p>
+<ul class="simple">
+<li><p>0  - mass</p></li>
+<li><p>1  - volume</p></li>
+<li><p>2  - internal energy or temperature</p></li>
+<li><p>3+ - mass fractions of the species</p></li>
+</ul>
+<p><a class="reference internal" href="#cantera.ConstPressureReactor" title="cantera.ConstPressureReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConstPressureReactor</span></code></a> or <a class="reference internal" href="#cantera.IdealGasConstPressureReactor" title="cantera.IdealGasConstPressureReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IdealGasConstPressureReactor</span></code></a>:</p>
+<ul class="simple">
+<li><p>0  - mass</p></li>
+<li><p>1  - enthalpy or temperature</p></li>
+<li><p>2+ - mass fractions of the species</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.sensitivity">
+<code class="sig-name descname">sensitivity</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">component</em>, <em class="sig-param">int p</em>, <em class="sig-param">int r=0</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.sensitivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the sensitivity of the solution variable <em>component</em> in
+reactor <em>r</em> with respect to the parameter <em>p</em>. <em>component</em> can be a
+string or an integer. See <code class="xref py py-obj docutils literal notranslate"><span class="pre">component_index</span></code> and <a class="reference internal" href="#cantera.ReactorNet.sensitivities" title="cantera.ReactorNet.sensitivities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sensitivities</span></code></a> to
+determine the integer index for the variables and the definition of the
+resulting sensitivity coefficient. If it is not given, <em>r</em> defaults to
+the first reactor. Returns an empty array until the first time step is
+taken.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.sensitivity_parameter_name">
+<code class="sig-name descname">sensitivity_parameter_name</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int p</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.sensitivity_parameter_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the sensitivity parameter with index <em>p</em>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.set_initial_time">
+<code class="sig-name descname">set_initial_time</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">double t</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.set_initial_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the initial time. Restarts integration from this time using the
+current state as the initial condition. Default: 0.0 s.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.set_max_time_step">
+<code class="sig-name descname">set_max_time_step</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">double t</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.set_max_time_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the maximum time step <em>t</em> [s] that the integrator is allowed
+to use.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>To be deprecated with version 2.5, and removed thereafter.
+Replaced by property <a class="reference internal" href="#cantera.ReactorNet.max_time_step" title="cantera.ReactorNet.max_time_step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_time_step</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorNet.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorNet.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take a single internal time step. The time after taking the step is
+returned.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.time">
+<code class="sig-name descname">time</code><a class="headerlink" href="#cantera.ReactorNet.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current time [s].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorNet.verbose">
+<code class="sig-name descname">verbose</code><a class="headerlink" href="#cantera.ReactorNet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <em>True</em>, verbose debug information will be printed during
+integration. The default is <em>False</em>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="reactors">
+<h2><a class="toc-backref" href="#id6">Reactors</a><a class="headerlink" href="#reactors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reservoir">
+<h3><a class="toc-backref" href="#id7">Reservoir</a><a class="headerlink" href="#reservoir" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.Reservoir">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">Reservoir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contents</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reservoir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.ReactorBase</span></code></p>
+<p>A reservoir is a reactor with a constant state. The temperature,
+pressure, and chemical composition in a reservoir never change from
+their initial values.</p>
+<dl class="py attribute">
+<dt id="cantera.Reservoir.reactor_type">
+<code class="sig-name descname">reactor_type</code><em class="property"> = 'Reservoir'</em><a class="headerlink" href="#cantera.Reservoir.reactor_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="reactor">
+<h3><a class="toc-backref" href="#id8">Reactor</a><a class="headerlink" href="#reactor" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.Reactor">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">Reactor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contents</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">energy</span><span class="o">=</span><span class="default_value">'on'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.ReactorBase</span></code></p>
+<p>Reactor(contents=None, name=None, *, energy=u’on’, **kwargs)</p>
+<p>A homogeneous zero-dimensional reactor. By default, they are closed
+(no inlets or outlets), have fixed volume, and have adiabatic,
+chemically-inert walls. These properties may all be changed by adding
+appropriate components, e.g. <a class="reference internal" href="#cantera.Wall" title="cantera.Wall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Wall</span></code></a>, <a class="reference internal" href="#cantera.MassFlowController" title="cantera.MassFlowController"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MassFlowController</span></code></a> and <a class="reference internal" href="#cantera.Valve" title="cantera.Valve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Valve</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contents</strong> – Reactor contents. If not specified, the reactor is initially empty.
+In this case, call <a class="reference internal" href="#cantera.Reactor.insert" title="cantera.Reactor.insert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">insert</span></code></a> to specify the contents.</p></li>
+<li><p><strong>name</strong> – Used only to identify this reactor in output. If not specified,
+defaults to <code class="docutils literal notranslate"><span class="pre">'Reactor_n'</span></code>, where <em>n</em> is an integer assigned in
+the order <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reactor</span></code></a> objects are created.</p></li>
+<li><p><strong>energy</strong> – Set to <code class="docutils literal notranslate"><span class="pre">'on'</span></code> or <code class="docutils literal notranslate"><span class="pre">'off'</span></code>. If set to <code class="docutils literal notranslate"><span class="pre">'off'</span></code>, the energy
+equation is not solved, and the temperature is held at its
+initial value..</p></li>
+</ul>
+</dd>
+</dl>
+<p>Some examples showing how to create <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reactor</span></code></a> objects are
+shown below.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span> <span class="o">=</span> <span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.xml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Arguments may be specified using keywords in any order:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="n">gas</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span>
+<span class="gp">... </span>             <span class="n">name</span><span class="o">=</span><span class="s1">&#39;isothermal_reactor&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r3</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;adiabatic_reactor&#39;</span><span class="p">,</span> <span class="n">contents</span><span class="o">=</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="cantera.Reactor.add_sensitivity_reaction">
+<code class="sig-name descname">add_sensitivity_reaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reactor.add_sensitivity_reaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that the sensitivity of the state variables with respect to
+reaction <em>m</em> should be computed. <em>m</em> is the 0-based reaction index.
+The reactor must be part of a network first. Specifying the same
+reaction more than one time raises an exception.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reactor.add_sensitivity_species_enthalpy">
+<code class="sig-name descname">add_sensitivity_species_enthalpy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reactor.add_sensitivity_species_enthalpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that the sensitivity of the state variables with respect to
+species <em>k</em> should be computed. The reactor must be part of a network
+first.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reactor.chemistry_enabled">
+<code class="sig-name descname">chemistry_enabled</code><a class="headerlink" href="#cantera.Reactor.chemistry_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>True</em> when the reactor composition is allowed to change due to
+chemical reactions in this reactor. When this is <em>False</em>, the
+reactor composition is held constant.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reactor.component_index">
+<code class="sig-name descname">component_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reactor.component_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the index of the component named <em>name</em> in the system. This
+determines the (relative) index of the component in the vector of
+sensitivity coefficients. <em>name</em> is either a species name or the name of
+a reactor state variable, e.g. ‘int_energy’, ‘temperature’, depending on
+the reactor’s equations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reactor.component_name">
+<code class="sig-name descname">component_name</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int i</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reactor.component_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the component with index <em>i</em> within the array of
+variables returned by <a class="reference internal" href="#cantera.Reactor.get_state" title="cantera.Reactor.get_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_state</span></code></a>. This is the inverse of
+<a class="reference internal" href="#cantera.Reactor.component_index" title="cantera.Reactor.component_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">component_index</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reactor.energy_enabled">
+<code class="sig-name descname">energy_enabled</code><a class="headerlink" href="#cantera.Reactor.energy_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>True</em> when the energy equation is being solved for this reactor.
+When this is <em>False</em>, the reactor temperature is held constant.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reactor.get_state">
+<code class="sig-name descname">get_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reactor.get_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the state vector of the reactor.</p>
+<p>The order of the variables (i.e. rows) is:</p>
+<p><a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reactor</span></code></a> or <a class="reference internal" href="#cantera.IdealGasReactor" title="cantera.IdealGasReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IdealGasReactor</span></code></a>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>0  - mass</p></li>
+<li><p>1  - volume</p></li>
+<li><p>2  - internal energy or temperature</p></li>
+<li><p>3+ - mass fractions of the species</p></li>
+</ul>
+</div></blockquote>
+<p><a class="reference internal" href="#cantera.ConstPressureReactor" title="cantera.ConstPressureReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConstPressureReactor</span></code></a> or <a class="reference internal" href="#cantera.IdealGasConstPressureReactor" title="cantera.IdealGasConstPressureReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IdealGasConstPressureReactor</span></code></a>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>0  - mass</p></li>
+<li><p>1  - enthalpy or temperature</p></li>
+<li><p>2+ - mass fractions of the species</p></li>
+</ul>
+</div></blockquote>
+<p>You can use the function <a class="reference internal" href="#cantera.Reactor.component_index" title="cantera.Reactor.component_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">component_index</span></code></a> to determine the location of
+a specific component from its name, or <a class="reference internal" href="#cantera.Reactor.component_name" title="cantera.Reactor.component_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">component_name</span></code></a> to determine the
+name from the index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reactor.insert">
+<code class="sig-name descname">insert</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">_SolutionBase solution</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reactor.insert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reactor.kinetics">
+<code class="sig-name descname">kinetics</code><a class="headerlink" href="#cantera.Reactor.kinetics" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="kinetics.html#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a> object used for calculating kinetic rates in
+this reactor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reactor.n_vars">
+<code class="sig-name descname">n_vars</code><a class="headerlink" href="#cantera.Reactor.n_vars" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of state variables in the reactor.
+Equal to:</p>
+<p><a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reactor</span></code></a> and <a class="reference internal" href="#cantera.IdealGasReactor" title="cantera.IdealGasReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IdealGasReactor</span></code></a>: <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> + 3 (mass, volume,
+internal energy or temperature).</p>
+<p><a class="reference internal" href="#cantera.ConstPressureReactor" title="cantera.ConstPressureReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConstPressureReactor</span></code></a> and <a class="reference internal" href="#cantera.IdealGasConstPressureReactor" title="cantera.IdealGasConstPressureReactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IdealGasConstPressureReactor</span></code></a>:
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">n_species</span></code> + 2 (mass, enthalpy or temperature).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reactor.reactor_type">
+<code class="sig-name descname">reactor_type</code><em class="property"> = 'Reactor'</em><a class="headerlink" href="#cantera.Reactor.reactor_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reactor.set_advance_limit">
+<code class="sig-name descname">set_advance_limit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">limit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reactor.set_advance_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Limit absolute change of component <em>name</em> during <a class="reference internal" href="#cantera.ReactorNet.advance" title="cantera.ReactorNet.advance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReactorNet.advance</span></code></a>.
+(positive <em>limit</em> values are considered; negative values disable a
+previously set advance limit for a solution component). Note that
+limits are disabled by default (with individual values set to -1.).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="idealgasreactor">
+<h3><a class="toc-backref" href="#id9">IdealGasReactor</a><a class="headerlink" href="#idealgasreactor" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.IdealGasReactor">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">IdealGasReactor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contents</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">energy</span><span class="o">=</span><span class="default_value">'on'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.IdealGasReactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Reactor</span></code></p>
+<p>A constant volume, zero-dimensional reactor for ideal gas mixtures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contents</strong> – Reactor contents. If not specified, the reactor is initially empty.
+In this case, call <code class="xref py py-obj docutils literal notranslate"><span class="pre">insert</span></code> to specify the contents.</p></li>
+<li><p><strong>name</strong> – Used only to identify this reactor in output. If not specified,
+defaults to <code class="docutils literal notranslate"><span class="pre">'Reactor_n'</span></code>, where <em>n</em> is an integer assigned in
+the order <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reactor</span></code></a> objects are created.</p></li>
+<li><p><strong>energy</strong> – Set to <code class="docutils literal notranslate"><span class="pre">'on'</span></code> or <code class="docutils literal notranslate"><span class="pre">'off'</span></code>. If set to <code class="docutils literal notranslate"><span class="pre">'off'</span></code>, the energy
+equation is not solved, and the temperature is held at its
+initial value..</p></li>
+</ul>
+</dd>
+</dl>
+<p>Some examples showing how to create <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reactor</span></code></a> objects are
+shown below.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span> <span class="o">=</span> <span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.xml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Arguments may be specified using keywords in any order:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="n">gas</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span>
+<span class="gp">... </span>             <span class="n">name</span><span class="o">=</span><span class="s1">&#39;isothermal_reactor&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r3</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;adiabatic_reactor&#39;</span><span class="p">,</span> <span class="n">contents</span><span class="o">=</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt id="cantera.IdealGasReactor.reactor_type">
+<code class="sig-name descname">reactor_type</code><em class="property"> = 'IdealGasReactor'</em><a class="headerlink" href="#cantera.IdealGasReactor.reactor_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="constpressurereactor">
+<h3><a class="toc-backref" href="#id10">ConstPressureReactor</a><a class="headerlink" href="#constpressurereactor" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.ConstPressureReactor">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">ConstPressureReactor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contents</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">energy</span><span class="o">=</span><span class="default_value">'on'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ConstPressureReactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Reactor</span></code></p>
+<p>A homogeneous, constant pressure, zero-dimensional reactor. The volume
+of the reactor changes as a function of time in order to keep the
+pressure constant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contents</strong> – Reactor contents. If not specified, the reactor is initially empty.
+In this case, call <code class="xref py py-obj docutils literal notranslate"><span class="pre">insert</span></code> to specify the contents.</p></li>
+<li><p><strong>name</strong> – Used only to identify this reactor in output. If not specified,
+defaults to <code class="docutils literal notranslate"><span class="pre">'Reactor_n'</span></code>, where <em>n</em> is an integer assigned in
+the order <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reactor</span></code></a> objects are created.</p></li>
+<li><p><strong>energy</strong> – Set to <code class="docutils literal notranslate"><span class="pre">'on'</span></code> or <code class="docutils literal notranslate"><span class="pre">'off'</span></code>. If set to <code class="docutils literal notranslate"><span class="pre">'off'</span></code>, the energy
+equation is not solved, and the temperature is held at its
+initial value..</p></li>
+</ul>
+</dd>
+</dl>
+<p>Some examples showing how to create <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reactor</span></code></a> objects are
+shown below.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span> <span class="o">=</span> <span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.xml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Arguments may be specified using keywords in any order:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="n">gas</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span>
+<span class="gp">... </span>             <span class="n">name</span><span class="o">=</span><span class="s1">&#39;isothermal_reactor&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r3</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;adiabatic_reactor&#39;</span><span class="p">,</span> <span class="n">contents</span><span class="o">=</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt id="cantera.ConstPressureReactor.reactor_type">
+<code class="sig-name descname">reactor_type</code><em class="property"> = 'ConstPressureReactor'</em><a class="headerlink" href="#cantera.ConstPressureReactor.reactor_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="idealgasconstpressurereactor">
+<h3><a class="toc-backref" href="#id11">IdealGasConstPressureReactor</a><a class="headerlink" href="#idealgasconstpressurereactor" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.IdealGasConstPressureReactor">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">IdealGasConstPressureReactor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contents</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">energy</span><span class="o">=</span><span class="default_value">'on'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.IdealGasConstPressureReactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Reactor</span></code></p>
+<p>A homogeneous, constant pressure, zero-dimensional reactor for ideal gas
+mixtures. The volume of the reactor changes as a function of time in order
+to keep the pressure constant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contents</strong> – Reactor contents. If not specified, the reactor is initially empty.
+In this case, call <code class="xref py py-obj docutils literal notranslate"><span class="pre">insert</span></code> to specify the contents.</p></li>
+<li><p><strong>name</strong> – Used only to identify this reactor in output. If not specified,
+defaults to <code class="docutils literal notranslate"><span class="pre">'Reactor_n'</span></code>, where <em>n</em> is an integer assigned in
+the order <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reactor</span></code></a> objects are created.</p></li>
+<li><p><strong>energy</strong> – Set to <code class="docutils literal notranslate"><span class="pre">'on'</span></code> or <code class="docutils literal notranslate"><span class="pre">'off'</span></code>. If set to <code class="docutils literal notranslate"><span class="pre">'off'</span></code>, the energy
+equation is not solved, and the temperature is held at its
+initial value..</p></li>
+</ul>
+</dd>
+</dl>
+<p>Some examples showing how to create <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reactor</span></code></a> objects are
+shown below.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span> <span class="o">=</span> <span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.xml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Arguments may be specified using keywords in any order:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="n">gas</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span>
+<span class="gp">... </span>             <span class="n">name</span><span class="o">=</span><span class="s1">&#39;isothermal_reactor&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r3</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;adiabatic_reactor&#39;</span><span class="p">,</span> <span class="n">contents</span><span class="o">=</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt id="cantera.IdealGasConstPressureReactor.reactor_type">
+<code class="sig-name descname">reactor_type</code><em class="property"> = 'IdealGasConstPressureReactor'</em><a class="headerlink" href="#cantera.IdealGasConstPressureReactor.reactor_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="flowreactor">
+<h3><a class="toc-backref" href="#id12">FlowReactor</a><a class="headerlink" href="#flowreactor" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.FlowReactor">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">FlowReactor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contents</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">energy</span><span class="o">=</span><span class="default_value">'on'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FlowReactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Reactor</span></code></p>
+<p>A steady-state plug flow reactor with constant cross sectional area.
+Time integration follows a fluid element along the length of the reactor.
+The reactor is assumed to be frictionless and adiabatic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contents</strong> – Reactor contents. If not specified, the reactor is initially empty.
+In this case, call <code class="xref py py-obj docutils literal notranslate"><span class="pre">insert</span></code> to specify the contents.</p></li>
+<li><p><strong>name</strong> – Used only to identify this reactor in output. If not specified,
+defaults to <code class="docutils literal notranslate"><span class="pre">'Reactor_n'</span></code>, where <em>n</em> is an integer assigned in
+the order <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reactor</span></code></a> objects are created.</p></li>
+<li><p><strong>energy</strong> – Set to <code class="docutils literal notranslate"><span class="pre">'on'</span></code> or <code class="docutils literal notranslate"><span class="pre">'off'</span></code>. If set to <code class="docutils literal notranslate"><span class="pre">'off'</span></code>, the energy
+equation is not solved, and the temperature is held at its
+initial value..</p></li>
+</ul>
+</dd>
+</dl>
+<p>Some examples showing how to create <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reactor</span></code></a> objects are
+shown below.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span> <span class="o">=</span> <span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.xml&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Arguments may be specified using keywords in any order:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="n">gas</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span>
+<span class="gp">... </span>             <span class="n">name</span><span class="o">=</span><span class="s1">&#39;isothermal_reactor&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r3</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;adiabatic_reactor&#39;</span><span class="p">,</span> <span class="n">contents</span><span class="o">=</span><span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt id="cantera.FlowReactor.distance">
+<code class="sig-name descname">distance</code><a class="headerlink" href="#cantera.FlowReactor.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The distance of the fluid element from the inlet of the reactor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.FlowReactor.mass_flow_rate">
+<code class="sig-name descname">mass_flow_rate</code><a class="headerlink" href="#cantera.FlowReactor.mass_flow_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass flow rate per unit area [kg/m^2*s]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.FlowReactor.reactor_type">
+<code class="sig-name descname">reactor_type</code><em class="property"> = 'FlowReactor'</em><a class="headerlink" href="#cantera.FlowReactor.reactor_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.FlowReactor.speed">
+<code class="sig-name descname">speed</code><a class="headerlink" href="#cantera.FlowReactor.speed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Speed [m/s] of the flow in the reactor at the current position</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="walls">
+<h2><a class="toc-backref" href="#id13">Walls</a><a class="headerlink" href="#walls" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="wall">
+<h3><a class="toc-backref" href="#id14">Wall</a><a class="headerlink" href="#wall" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.Wall">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">Wall</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">left</span></em>, <em class="sig-param"><span class="n">right</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">A</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">K</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">U</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">Q</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">velocity</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">kinetics</span><span class="o">=</span><span class="default_value">(None, None)</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Wall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.WallBase</span></code></p>
+<p>A Wall separates two reactors, or a reactor and a reservoir. A wall has a
+finite area, may conduct or radiate heat between the two reactors on either
+side, and may move like a piston.</p>
+<p>Walls are stateless objects in Cantera, meaning that no differential
+equation is integrated to determine any wall property. Since it is the wall
+(piston) velocity that enters the energy equation, this means that it is
+the velocity, not the acceleration or displacement, that is specified.
+The wall velocity is computed from</p>
+<div class="math">
+\[v = K(P_{\rm left} - P_{\rm right}) + v_0(t),
+
+\]</div>
+<p>where <span class="math">\(K\)</span> is a non-negative constant, and <span class="math">\(v_0(t)\)</span> is a
+specified function of time. The velocity is positive if the wall is
+moving to the right.</p>
+<p>The heat flux through the wall is computed from</p>
+<div class="math">
+\[q = U(T_{\rm left} - T_{\rm right}) + \epsilon\sigma (T_{\rm left}^4 - T_{\rm right}^4) + q_0(t),
+
+\]</div>
+<p>where <span class="math">\(U\)</span> is the overall heat transfer coefficient for
+conduction/convection, and <span class="math">\(\epsilon\)</span> is the emissivity. The function
+<span class="math">\(q_0(t)\)</span> is a specified function of time. The heat flux is positive
+when heat flows from the reactor on the left to the reactor on the right.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left</strong> – Reactor or reservoir on the left. Required.</p></li>
+<li><p><strong>right</strong> – Reactor or reservoir on the right. Required.</p></li>
+<li><p><strong>name</strong> – Name string. If omitted, the name is <code class="docutils literal notranslate"><span class="pre">'Wall_n'</span></code>, where <code class="docutils literal notranslate"><span class="pre">'n'</span></code>
+is an integer assigned in the order walls are created.</p></li>
+<li><p><strong>A</strong> – Wall area [m^2]. Defaults to 1.0 m^2.</p></li>
+<li><p><strong>K</strong> – Wall expansion rate parameter [m/s/Pa]. Defaults to 0.0.</p></li>
+<li><p><strong>U</strong> – Overall heat transfer coefficient [W/m^2]. Defaults to 0.0
+(adiabatic wall).</p></li>
+<li><p><strong>Q</strong> – Heat flux function <span class="math">\(q_0(t)\)</span> [W/m^2]. Optional. Default:
+<span class="math">\(q_0(t) = 0.0\)</span>.</p></li>
+<li><p><strong>velocity</strong> – Wall velocity function <span class="math">\(v_0(t)\)</span> [m/s].
+Default: <span class="math">\(v_0(t) = 0.0\)</span>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="cantera.Wall.emissivity">
+<code class="sig-name descname">emissivity</code><a class="headerlink" href="#cantera.Wall.emissivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The emissivity (nondimensional)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Wall.expansion_rate_coeff">
+<code class="sig-name descname">expansion_rate_coeff</code><a class="headerlink" href="#cantera.Wall.expansion_rate_coeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>The coefficient <em>K</em> [m/s/Pa] that determines the velocity of the wall
+as a function of the pressure difference between the adjacent reactors.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Wall.heat_transfer_coeff">
+<code class="sig-name descname">heat_transfer_coeff</code><a class="headerlink" href="#cantera.Wall.heat_transfer_coeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>the overall heat transfer coefficient [W/m^2/K]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Wall.set_heat_flux">
+<code class="sig-name descname">set_heat_flux</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">q</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Wall.set_heat_flux" title="Permalink to this definition">¶</a></dt>
+<dd><p>Heat flux [W/m^2] across the wall. May be either a constant or
+an arbitrary function of time. See <a class="reference internal" href="#cantera.Func1" title="cantera.Func1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Func1</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Wall.set_velocity">
+<code class="sig-name descname">set_velocity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">v</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Wall.set_velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The wall velocity [m/s]. May be either a constant or an arbitrary
+function of time. See <a class="reference internal" href="#cantera.Func1" title="cantera.Func1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Func1</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Wall.wall_type">
+<code class="sig-name descname">wall_type</code><em class="property"> = 'Wall'</em><a class="headerlink" href="#cantera.Wall.wall_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="wallsurface">
+<h3><a class="toc-backref" href="#id15">WallSurface</a><a class="headerlink" href="#wallsurface" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.WallSurface">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">WallSurface</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">wall</span></em>, <em class="sig-param"><span class="n">side</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.WallSurface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="surfaces">
+<h2><a class="toc-backref" href="#id16">Surfaces</a><a class="headerlink" href="#surfaces" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reactorsurface">
+<h3><a class="toc-backref" href="#id17">ReactorSurface</a><a class="headerlink" href="#reactorsurface" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.ReactorSurface">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">ReactorSurface</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">kin</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">r</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">A</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorSurface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>ReactorSurface(kin=None, Reactor r=None, A=None, *)</p>
+<p>Represents a surface in contact with the contents of a reactor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kin</strong> – The <a class="reference internal" href="kinetics.html#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a> or <a class="reference internal" href="importing.html#cantera.Interface" title="cantera.Interface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interface</span></code></a> object representing reactions on this
+surface.</p></li>
+<li><p><strong>r</strong> – The <a class="reference internal" href="#cantera.Reactor" title="cantera.Reactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reactor</span></code></a> into which this surface should be installed.</p></li>
+<li><p><strong>A</strong> – The area of the reacting surface [m^2]</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="cantera.ReactorSurface.add_sensitivity_reaction">
+<code class="sig-name descname">add_sensitivity_reaction</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int m</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorSurface.add_sensitivity_reaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that the sensitivity of the state variables with respect to
+reaction <em>m</em> should be computed. <em>m</em> is the 0-based reaction index.
+The Surface must be installed on a reactor and part of a network first.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorSurface.area">
+<code class="sig-name descname">area</code><a class="headerlink" href="#cantera.ReactorSurface.area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Area on which reactions can occur [m^2]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorSurface.coverages">
+<code class="sig-name descname">coverages</code><a class="headerlink" href="#cantera.ReactorSurface.coverages" title="Permalink to this definition">¶</a></dt>
+<dd><p>The fraction of sites covered by each surface species.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactorSurface.install">
+<code class="sig-name descname">install</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">Reactor r</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactorSurface.install" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactorSurface.kinetics">
+<code class="sig-name descname">kinetics</code><a class="headerlink" href="#cantera.ReactorSurface.kinetics" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="kinetics.html#cantera.InterfaceKinetics" title="cantera.InterfaceKinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InterfaceKinetics</span></code></a> object used for calculating reaction rates on
+this surface.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="flow-controllers">
+<h2><a class="toc-backref" href="#id18">Flow Controllers</a><a class="headerlink" href="#flow-controllers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="massflowcontroller">
+<h3><a class="toc-backref" href="#id19">MassFlowController</a><a class="headerlink" href="#massflowcontroller" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.MassFlowController">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">MassFlowController</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">upstream</span></em>, <em class="sig-param"><span class="n">downstream</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mdot</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.MassFlowController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.FlowDevice</span></code></p>
+<p>MassFlowController(upstream, downstream, name=None, *, mdot=1.)</p>
+<p>A mass flow controller maintains a specified mass
+flow rate independent of upstream and downstream conditions. The equation
+used to compute the mass flow rate is</p>
+<div class="math">
+\[\dot m = \max(\dot m_0*g(t), 0.),
+
+\]</div>
+<p>where <span class="math">\(\dot m_0\)</span> is a constant value and <span class="math">\(g(t)\)</span> is a function of
+time. Both <span class="math">\(\dot m_0\)</span> and <span class="math">\(g(t)\)</span> can be set individually by
+the property <a class="reference internal" href="#cantera.MassFlowController.mass_flow_coeff" title="cantera.MassFlowController.mass_flow_coeff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_flow_coeff</span></code></a> and the method <a class="reference internal" href="#cantera.MassFlowController.set_time_function" title="cantera.MassFlowController.set_time_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_time_function</span></code></a>,
+respectively. The property <a class="reference internal" href="#cantera.MassFlowController.mass_flow_rate" title="cantera.MassFlowController.mass_flow_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_flow_rate</span></code></a> combines the former
+into a single interface. Note that if <span class="math">\(\dot m_0*g(t) &lt; 0\)</span>, the mass flow
+rate will be set to zero, since reversal of the flow direction is not allowed.</p>
+<p>Unlike a real mass flow controller, a MassFlowController object will
+maintain the flow even if the downstream pressure is greater than the
+upstream pressure. This allows simple implementation of loops, in which
+exhaust gas from a reactor is fed back into it through an inlet. But note
+that this capability should be used with caution, since no account is
+taken of the work required to do this.</p>
+<dl class="py attribute">
+<dt id="cantera.MassFlowController.flowdevice_type">
+<code class="sig-name descname">flowdevice_type</code><em class="property"> = 'MassFlowController'</em><a class="headerlink" href="#cantera.MassFlowController.flowdevice_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.MassFlowController.mass_flow_coeff">
+<code class="sig-name descname">mass_flow_coeff</code><a class="headerlink" href="#cantera.MassFlowController.mass_flow_coeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the mass flow rate [kg/s] through the mass flow controller
+as a constant, which may be modified by a function of time, see
+<a class="reference internal" href="#cantera.MassFlowController.set_time_function" title="cantera.MassFlowController.set_time_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_time_function</span></code></a>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mfc</span> <span class="o">=</span> <span class="n">MassFlowController</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mfc</span><span class="o">.</span><span class="n">mass_flow_coeff</span> <span class="o">=</span> <span class="mf">1e-4</span>  <span class="c1"># Set the flow rate to a constant</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mfc</span><span class="o">.</span><span class="n">mass_flow_coeff</span>  <span class="c1"># Get the flow rate value</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.MassFlowController.mass_flow_rate">
+<code class="sig-name descname">mass_flow_rate</code><a class="headerlink" href="#cantera.MassFlowController.mass_flow_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the mass flow rate [kg/s] through this controller to be either
+a constant or an arbitrary function of time. See <a class="reference internal" href="#cantera.Func1" title="cantera.Func1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Func1</span></code></a>, or get its
+current value.</p>
+<p>Note that depending on the argument type, this method either changes
+the property <a class="reference internal" href="#cantera.MassFlowController.mass_flow_coeff" title="cantera.MassFlowController.mass_flow_coeff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_flow_coeff</span></code></a> or calls the <a class="reference internal" href="#cantera.MassFlowController.set_time_function" title="cantera.MassFlowController.set_time_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_time_function</span></code></a> method.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mfc</span><span class="o">.</span><span class="n">mass_flow_rate</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mfc</span><span class="o">.</span><span class="n">mass_flow_rate</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.MassFlowController.mdot">
+<code class="sig-name descname">mdot</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">double t=-999</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.MassFlowController.mdot" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mass flow rate [kg/s] through this device at time <em>t</em> [s].</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>To be removed after Cantera 2.5. Replaced with the
+<a class="reference internal" href="#cantera.MassFlowController.mass_flow_rate" title="cantera.MassFlowController.mass_flow_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_flow_rate</span></code></a> property.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.MassFlowController.set_mass_flow_rate">
+<code class="sig-name descname">set_mass_flow_rate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.MassFlowController.set_mass_flow_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the mass flow rate [kg/s] through this controller to be either
+a constant or an arbitrary function of time. See <a class="reference internal" href="#cantera.Func1" title="cantera.Func1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Func1</span></code></a>.</p>
+<p>Note that depending on the argument type, this method either changes
+the property <a class="reference internal" href="#cantera.MassFlowController.mass_flow_coeff" title="cantera.MassFlowController.mass_flow_coeff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_flow_coeff</span></code></a> or calls the <a class="reference internal" href="#cantera.MassFlowController.set_time_function" title="cantera.MassFlowController.set_time_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_time_function</span></code></a> method.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mfc</span><span class="o">.</span><span class="n">set_mass_flow_rate</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mfc</span><span class="o">.</span><span class="n">set_mass_flow_rate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>To be deprecated with version 2.5, and removed thereafter.
+Replaced by property <a class="reference internal" href="#cantera.MassFlowController.mass_flow_rate" title="cantera.MassFlowController.mass_flow_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_flow_rate</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.MassFlowController.set_pressure_function">
+<code class="sig-name descname">set_pressure_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.MassFlowController.set_pressure_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the relationship between mass flow rate and the pressure drop across a
+flow device. The mass flow rate [kg/s] is calculated given the pressure
+drop [Pa] and a coefficient set by a flow device specific function.
+The calculation of mass flow rate depends to the flow device.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">FlowDevice</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="o">.</span><span class="n">set_pressure_function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">dP</span><span class="p">:</span> <span class="n">dP</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where FlowDevice is either a Valve or PressureController object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.MassFlowController.set_time_function">
+<code class="sig-name descname">set_time_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.MassFlowController.set_time_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the time dependence of a flow device. The mass flow rate [kg/s] is
+calculated for a flow device, and multiplied by a function of time.
+The calculation of mass flow rate depends to the flow device.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">FlowDevice</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="o">.</span><span class="n">set_time_function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>where FlowDevice is either a Valve or MassFlowController object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.MassFlowController.type">
+<code class="sig-name descname">type</code><a class="headerlink" href="#cantera.MassFlowController.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of the flow device.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="valve">
+<h3><a class="toc-backref" href="#id20">Valve</a><a class="headerlink" href="#valve" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.Valve">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">Valve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">upstream</span></em>, <em class="sig-param"><span class="n">downstream</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">K</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Valve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.FlowDevice</span></code></p>
+<p>Valve(upstream, downstream, name=None, *, K=1.)</p>
+<p>In Cantera, a <a class="reference internal" href="#cantera.Valve" title="cantera.Valve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Valve</span></code></a> is a flow device with mass flow rate that is a
+function of the pressure drop across it. The default behavior is linear:</p>
+<div class="math">
+\[\dot m = K_v*(P_1 - P_2)
+
+\]</div>
+<p>where <span class="math">\(K_v\)</span> is a constant set by the <a class="reference internal" href="#cantera.Valve.set_valve_coeff" title="cantera.Valve.set_valve_coeff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_valve_coeff</span></code></a> method.
+Note that <span class="math">\(P_1\)</span> must be greater than <span class="math">\(P_2\)</span>; otherwise,
+<span class="math">\(\dot m = 0\)</span>. However, an arbitrary function can also be specified,
+such that</p>
+<div class="math">
+\[\dot m = K_v*f(P_1 - P_2)
+
+\]</div>
+<p>where <span class="math">\(f\)</span> is the arbitrary function that multiplies <span class="math">\(K_v\)</span> given
+a single argument, the pressure differential. Further, a valve opening function
+<span class="math">\(g\)</span> may be specified using the method <a class="reference internal" href="#cantera.Valve.set_time_function" title="cantera.Valve.set_time_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_time_function</span></code></a>, such that</p>
+<div class="math">
+\[\dot m = K_v*g(t)*f(P_1 - P_2)
+
+\]</div>
+<p>See the documentation for the <a class="reference internal" href="#cantera.Valve.valve_coeff" title="cantera.Valve.valve_coeff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valve_coeff</span></code></a> property as well as the
+<a class="reference internal" href="#cantera.Valve.set_pressure_function" title="cantera.Valve.set_pressure_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pressure_function</span></code></a> and <a class="reference internal" href="#cantera.Valve.set_time_function" title="cantera.Valve.set_time_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_time_function</span></code></a> methods for examples. Note that
+it is never possible for the flow to reverse and go from the downstream to the
+upstream reactor/reservoir through a line containing a <a class="reference internal" href="#cantera.Valve" title="cantera.Valve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Valve</span></code></a> object.</p>
+<p><a class="reference internal" href="#cantera.Valve" title="cantera.Valve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Valve</span></code></a> objects are often used between an upstream reactor and a
+downstream reactor or reservoir to maintain them both at nearly the same
+pressure. By setting the constant <span class="math">\(K_v\)</span> to a sufficiently large
+value, very small pressure differences will result in flow between the
+reactors that counteracts the pressure difference.</p>
+<dl class="py attribute">
+<dt id="cantera.Valve.flowdevice_type">
+<code class="sig-name descname">flowdevice_type</code><em class="property"> = 'Valve'</em><a class="headerlink" href="#cantera.Valve.flowdevice_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Valve.mass_flow_rate">
+<code class="sig-name descname">mass_flow_rate</code><a class="headerlink" href="#cantera.Valve.mass_flow_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Valve.mdot">
+<code class="sig-name descname">mdot</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">double t=-999</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Valve.mdot" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mass flow rate [kg/s] through this device at time <em>t</em> [s].</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>To be removed after Cantera 2.5. Replaced with the
+<a class="reference internal" href="#cantera.Valve.mass_flow_rate" title="cantera.Valve.mass_flow_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_flow_rate</span></code></a> property.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Valve.set_pressure_function">
+<code class="sig-name descname">set_pressure_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Valve.set_pressure_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the relationship between mass flow rate and the pressure drop across a
+flow device. The mass flow rate [kg/s] is calculated given the pressure
+drop [Pa] and a coefficient set by a flow device specific function.
+The calculation of mass flow rate depends to the flow device.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">FlowDevice</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="o">.</span><span class="n">set_pressure_function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">dP</span><span class="p">:</span> <span class="n">dP</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where FlowDevice is either a Valve or PressureController object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Valve.set_time_function">
+<code class="sig-name descname">set_time_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Valve.set_time_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the time dependence of a flow device. The mass flow rate [kg/s] is
+calculated for a flow device, and multiplied by a function of time.
+The calculation of mass flow rate depends to the flow device.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">FlowDevice</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="o">.</span><span class="n">set_time_function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>where FlowDevice is either a Valve or MassFlowController object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Valve.set_valve_coeff">
+<code class="sig-name descname">set_valve_coeff</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Valve.set_valve_coeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the relationship between mass flow rate and the pressure drop across
+the valve. If a number is given, it is the proportionality constant
+[kg/s/Pa]. If a function is given, it should compute the mass flow
+rate [kg/s] given the pressure drop [Pa].</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">V</span> <span class="o">=</span> <span class="n">Valve</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">V</span><span class="o">.</span><span class="n">set_valve_coeff</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">)</span>  <span class="c1"># Set the value of K to a constant</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">V</span><span class="o">.</span><span class="n">set_valve_coeff</span><span class="p">(</span><span class="k">lambda</span> <span class="n">dP</span><span class="p">:</span> <span class="p">(</span><span class="mf">1e-5</span> <span class="o">*</span> <span class="n">dP</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Set to a function</span>
+</pre></div>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>To be deprecated with version 2.5, and removed thereafter.
+Functionality is now handled by property <a class="reference internal" href="#cantera.Valve.valve_coeff" title="cantera.Valve.valve_coeff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valve_coeff</span></code></a> and
+<a class="reference internal" href="#cantera.Valve.set_pressure_function" title="cantera.Valve.set_pressure_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pressure_function</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Valve.set_valve_function">
+<code class="sig-name descname">set_valve_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Valve.set_valve_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the relationship between mass flow rate and the pressure drop across the
+valve. The mass flow rate [kg/s] is calculated given the pressure drop [Pa].</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">V</span> <span class="o">=</span> <span class="n">Valve</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">V</span><span class="o">.</span><span class="n">set_valve_function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">dP</span><span class="p">:</span> <span class="p">(</span><span class="mf">1e-5</span> <span class="o">*</span> <span class="n">dP</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>To be deprecated with version 2.5, and removed thereafter.
+Renamed to <a class="reference internal" href="#cantera.Valve.set_pressure_function" title="cantera.Valve.set_pressure_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pressure_function</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Valve.type">
+<code class="sig-name descname">type</code><a class="headerlink" href="#cantera.Valve.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of the flow device.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Valve.valve_coeff">
+<code class="sig-name descname">valve_coeff</code><a class="headerlink" href="#cantera.Valve.valve_coeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set valve coefficient, i.e. the proportionality constant between mass
+flow rate and pressure drop [kg/s/Pa].</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">V</span> <span class="o">=</span> <span class="n">Valve</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">V</span><span class="o">.</span><span class="n">valve_coeff</span> <span class="o">=</span> <span class="mf">1e-4</span>  <span class="c1"># Set the value of K to a constant</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">V</span><span class="o">.</span><span class="n">valve_coeff</span>  <span class="c1"># Get the value of K</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pressurecontroller">
+<h3><a class="toc-backref" href="#id21">PressureController</a><a class="headerlink" href="#pressurecontroller" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.PressureController">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">PressureController</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">upstream</span></em>, <em class="sig-param"><span class="n">downstream</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">master</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">K</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.PressureController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.FlowDevice</span></code></p>
+<p>PressureController(upstream, downstream, name=None, *, master=None, K=1.)</p>
+<p>A PressureController is designed to be used in conjunction with another
+‘master’ flow controller, typically a <a class="reference internal" href="#cantera.MassFlowController" title="cantera.MassFlowController"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MassFlowController</span></code></a>. The master
+flow controller is installed on the inlet of the reactor, and the
+corresponding <a class="reference internal" href="#cantera.PressureController" title="cantera.PressureController"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PressureController</span></code></a> is installed on the outlet of the
+reactor. The <a class="reference internal" href="#cantera.PressureController" title="cantera.PressureController"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PressureController</span></code></a> mass flow rate is equal to the master
+mass flow rate, plus a small correction dependent on the pressure
+difference:</p>
+<div class="math">
+\[\dot m = \dot m_{\rm master} + K_v(P_1 - P_2).
+
+\]</div>
+<p>As an alternative, an arbitrary function of pressure differential can be
+specified using the method <a class="reference internal" href="#cantera.PressureController.set_pressure_function" title="cantera.PressureController.set_pressure_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pressure_function</span></code></a>, such that</p>
+<div class="math">
+\[\dot m = \dot m_{\rm master} + K_v*f(P_1 - P_2)
+
+\]</div>
+<p>where <span class="math">\(f\)</span> is the arbitrary function of a single argument.</p>
+<dl class="py attribute">
+<dt id="cantera.PressureController.flowdevice_type">
+<code class="sig-name descname">flowdevice_type</code><em class="property"> = 'PressureController'</em><a class="headerlink" href="#cantera.PressureController.flowdevice_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.PressureController.mass_flow_rate">
+<code class="sig-name descname">mass_flow_rate</code><a class="headerlink" href="#cantera.PressureController.mass_flow_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cantera.PressureController.mdot">
+<code class="sig-name descname">mdot</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">double t=-999</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.PressureController.mdot" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mass flow rate [kg/s] through this device at time <em>t</em> [s].</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>To be removed after Cantera 2.5. Replaced with the
+<a class="reference internal" href="#cantera.PressureController.mass_flow_rate" title="cantera.PressureController.mass_flow_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_flow_rate</span></code></a> property.</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.PressureController.pressure_coeff">
+<code class="sig-name descname">pressure_coeff</code><a class="headerlink" href="#cantera.PressureController.pressure_coeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/set the proportionality constant <span class="math">\(K_v\)</span> [kg/s/Pa] between the
+pressure drop and the mass flow rate.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.PressureController.set_master">
+<code class="sig-name descname">set_master</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">FlowDevice d</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.PressureController.set_master" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the “master” <a class="reference internal" href="#cantera.FlowDevice" title="cantera.FlowDevice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlowDevice</span></code></a> used to compute this device’s mass flow
+rate.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.PressureController.set_pressure_coeff">
+<code class="sig-name descname">set_pressure_coeff</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">double k</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.PressureController.set_pressure_coeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the proportionality constant <span class="math">\(K_v\)</span> [kg/s/Pa] between the pressure
+drop and the mass flow rate.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>To be deprecated with version 2.5, and removed thereafter.
+Replaced by property <a class="reference internal" href="#cantera.PressureController.pressure_coeff" title="cantera.PressureController.pressure_coeff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pressure_coeff</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.PressureController.set_pressure_function">
+<code class="sig-name descname">set_pressure_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.PressureController.set_pressure_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the relationship between mass flow rate and the pressure drop across a
+flow device. The mass flow rate [kg/s] is calculated given the pressure
+drop [Pa] and a coefficient set by a flow device specific function.
+The calculation of mass flow rate depends to the flow device.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">FlowDevice</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="o">.</span><span class="n">set_pressure_function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">dP</span><span class="p">:</span> <span class="n">dP</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where FlowDevice is either a Valve or PressureController object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.PressureController.set_time_function">
+<code class="sig-name descname">set_time_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.PressureController.set_time_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the time dependence of a flow device. The mass flow rate [kg/s] is
+calculated for a flow device, and multiplied by a function of time.
+The calculation of mass flow rate depends to the flow device.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">FlowDevice</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">reactor1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="o">.</span><span class="n">set_time_function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>where FlowDevice is either a Valve or MassFlowController object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.PressureController.type">
+<code class="sig-name descname">type</code><a class="headerlink" href="#cantera.PressureController.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of the flow device.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+                </div>
+                </div>
+            </div>
+             <!-- end of block document -->
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Zero-Dimensional Reactor Networks</a><ul>
+<li><a class="reference internal" href="#defining-functions">Defining Functions</a></li>
+<li><a class="reference internal" href="#base-classes">Base Classes</a><ul>
+<li><a class="reference internal" href="#reactorbase">ReactorBase</a></li>
+<li><a class="reference internal" href="#flowdevice">FlowDevice</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reactor-networks">Reactor Networks</a></li>
+<li><a class="reference internal" href="#reactors">Reactors</a><ul>
+<li><a class="reference internal" href="#reservoir">Reservoir</a></li>
+<li><a class="reference internal" href="#reactor">Reactor</a></li>
+<li><a class="reference internal" href="#idealgasreactor">IdealGasReactor</a></li>
+<li><a class="reference internal" href="#constpressurereactor">ConstPressureReactor</a></li>
+<li><a class="reference internal" href="#idealgasconstpressurereactor">IdealGasConstPressureReactor</a></li>
+<li><a class="reference internal" href="#flowreactor">FlowReactor</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#walls">Walls</a><ul>
+<li><a class="reference internal" href="#wall">Wall</a></li>
+<li><a class="reference internal" href="#wallsurface">WallSurface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#surfaces">Surfaces</a><ul>
+<li><a class="reference internal" href="#reactorsurface">ReactorSurface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#flow-controllers">Flow Controllers</a><ul>
+<li><a class="reference internal" href="#massflowcontroller">MassFlowController</a></li>
+<li><a class="reference internal" href="#valve">Valve</a></li>
+<li><a class="reference internal" href="#pressurecontroller">PressureController</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Python Module Documentation</a><ul>
+      <li>Previous: <a href="transport.html" title="previous chapter">Transport Properties</a></li>
+      <li>Next: <a href="onedim.html" title="next chapter">One-dimensional Reacting Flows</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/cython/zerodim.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://numfocus.salsalabs.org/donate-to-cantera/index.html">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+    </div>
+  </div>
+                <div class="clearer"></div>
+          </div>
+           <!--End of block content-->
+
+          <div class="footer">
+            &copy;2001-2021, Cantera Developers.
+            
+            |
+            Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+            &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+            
+            |
+            <a href="../_sources/cython/zerodim.rst.txt"
+                rel="nofollow">Page source</a>
+          </div>
+      </div>
+  </div>
+
+  <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha256-98vAGjEDGN79TjHkYWVD4s87rvWkdWLHPs5MC3FvFX4=" crossorigin="anonymous"></script>
+  <script async="async" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</body>
+</html>

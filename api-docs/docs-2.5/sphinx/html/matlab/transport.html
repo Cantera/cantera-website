@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+"
+lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transport Properties | Cantera </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" media="none" onload="this.media='all'" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" media="none" onload="this.media='all'" type="text/css" />
+  <link rel="stylesheet" href="../_static/katex-math.css" media="none" onload="this.media='all'" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+        <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
+        <script type="text/javascript" src="../_static/katex_autorenderer.js"></script>
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" sizes="16x16"/>
+    
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body>
+  <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+  <!-- Menubar -->
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light static-top mb-4">
+      <div class="container"><!-- This keeps the margins nice -->
+          <a class="navbar-brand" href="/index.html">
+          <img src="/assets/img/cantera-logo.png" alt="Cantera" id="logo" class="d-inline-block align-top">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a href="/install/index.html" class="nav-link">Install</a>
+              </li>
+              <li class="nav-item">
+                <a href="/tutorials/index.html" class="nav-link">Tutorials</a>
+              </li>
+              <li class="nav-item">
+                <a href="/examples/index.html" class="nav-link">Examples</a>
+              </li>
+              <li class="nav-item">
+                <a href="/community.html" class="nav-link">Community</a>
+              </li>
+              <li class="nav-item">
+                <a href="/science/index.html" class="nav-link">Science</a>
+              </li>
+              <li class="nav-item">
+                <a href="/documentation/index.html" class="nav-link">Documentation</a>
+              </li>
+              <li class="nav-item">
+                <a href="/blog/index.html" class="nav-link">Blog</a>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+  </nav>
+  <!-- End of Menubar -->
+
+  <div class="container" id="content">
+      <div class="body-content">
+          <!--Body content-->
+          
+          <div class="document">
+            
+            <div class="documentwrapper">
+                <div class="bodywrapper">
+                <div class="body" role="main">
+                  
+  <div class="section" id="transport-properties">
+<h1>Transport Properties<a class="headerlink" href="#transport-properties" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="transport">
+<h2>Transport<a class="headerlink" href="#transport" title="Permalink to this headline">¶</a></h2>
+<dl class="mat class">
+<dt id="Transport">
+<em class="property">class </em><code class="sig-name descname">Transport</code><span class="sig-paren">(</span><em class="sig-param">th</em>, <em class="sig-param">model</em>, <em class="sig-param">loglevel</em><span class="sig-paren">)</span><a class="headerlink" href="#Transport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transport class constructor.</p>
+<p>Create a new instance of class <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a>. One to three arguments
+may be supplied. The first must be an instance of class
+<a class="reference internal" href="thermodynamics.html#ThermoPhase" title="ThermoPhase"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ThermoPhase()</span></code></a>. The second (optional) argument is the type of
+model desired, specified by the string <code class="docutils literal notranslate"><span class="pre">'default'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Mix'</span></code> or
+<code class="docutils literal notranslate"><span class="pre">'Multi'</span></code>. <code class="docutils literal notranslate"><span class="pre">'default'</span></code> uses the default transport specified in the
+<a class="reference internal" href="utilities.html#XML_Node" title="XML_Node"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">XML_Node()</span></code></a>. The third argument is the logging level desired.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>th</strong> – Instance of class <a class="reference internal" href="thermodynamics.html#ThermoPhase" title="ThermoPhase"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">ThermoPhase()</span></code></a></p></li>
+<li><p><strong>model</strong> – String indicating the transport model to use. Possible values
+are <code class="docutils literal notranslate"><span class="pre">'default'</span></code>, <code class="docutils literal notranslate"><span class="pre">'None'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Mix'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'Multi'</span></code>.
+Optional.</p></li>
+<li><p><strong>loglevel</strong> – Level of diagnostic logging. Default if not specified is 4.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Instance of class <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a></p>
+</dd>
+</dl>
+<dl class="mat function">
+<dt id="Transport.binDiffCoeffs">
+<code class="sig-name descname">binDiffCoeffs</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span><a class="headerlink" href="#Transport.binDiffCoeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the binary diffusion coefficents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> – Instance of class <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a> (or another
+object derived from Transport)
+for which binary diffusion coefficients are desired.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A matrix of binary diffusion coefficients.
+The matrix is symmetric: d(i,j) = d(j,i). Units: m**2/s</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt id="Transport.electricalConductivity">
+<code class="sig-name descname">electricalConductivity</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span><a class="headerlink" href="#Transport.electricalConductivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the electrical conductivity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> – Instance of class <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a> (or another
+object derived from Transport)
+for which the electrical conductivity is desired.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Electrical conductivity in S/m</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt id="Transport.mixDiffCoeffs">
+<code class="sig-name descname">mixDiffCoeffs</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span><a class="headerlink" href="#Transport.mixDiffCoeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the mixture-averaged diffusion coefficients.</p>
+<p>Object <code class="docutils literal notranslate"><span class="pre">a</span></code> must belong to a class derived from
+Transport, and that was constructed by specifying the <code class="docutils literal notranslate"><span class="pre">'Mix'</span></code>
+option. If <code class="docutils literal notranslate"><span class="pre">'Mix'</span></code> was not specified, you will get the error message</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">****</span> <span class="n">Method</span> <span class="n">getMixDiffCoeffs</span> <span class="ow">not</span> <span class="n">implemented</span><span class="o">.</span> <span class="o">****</span>
+</pre></div>
+</div>
+<p>In this case, try method <a class="reference internal" href="#Transport.multiDiffCoeffs" title="Transport.multiDiffCoeffs"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">multiDiffCoeffs()</span></code></a>, or create a
+new gas mixture model that uses a mixture-averaged transport manager,
+for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">gas</span> <span class="o">=</span> <span class="n">GRI30</span><span class="p">(</span><span class="s1">&#39;Mix&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>See also: <code class="xref mat mat-func docutils literal notranslate"><span class="pre">MultiDiffCoeffs()</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> – Instance of class <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a> (or another
+object derived from Transport)
+for which mixture-averaged diffusion coefficients are desired.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Vector of length nSpecies with the mixture-averaged diffusion
+coefficients. Units: m**2/s</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt id="Transport.multiDiffCoeffs">
+<code class="sig-name descname">multiDiffCoeffs</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span><a class="headerlink" href="#Transport.multiDiffCoeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the multicomponent diffusion coefficients.</p>
+<p>Object <code class="docutils literal notranslate"><span class="pre">a</span></code> must belong to a class derived from
+Transport, and that was constructed by specifying the <code class="docutils literal notranslate"><span class="pre">'Multi'</span></code>
+option. If <code class="docutils literal notranslate"><span class="pre">'Multi'</span></code> was not specified, you will get the
+error message</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">****</span> <span class="n">Method</span> <span class="n">getMultiDiffCoeffs</span> <span class="ow">not</span> <span class="n">implemented</span><span class="o">.</span> <span class="o">****</span>
+</pre></div>
+</div>
+<p>In this case, try method <a class="reference internal" href="#Transport.mixDiffCoeffs" title="Transport.mixDiffCoeffs"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">mixDiffCoeffs()</span></code></a>, or create a
+new gas mixture model that uses a mixture-averaged transport manager,
+for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">gas</span> <span class="o">=</span> <span class="n">GRI30</span><span class="p">(</span><span class="s1">&#39;Multi&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> – Instance of class <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a> (or another
+object derived from Transport)
+for which multicomponent diffusion coefficients are desired.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Vector of length nSpecies with the multicomponent diffusion
+coefficients. Units: m**2/s</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt id="Transport.setParameters">
+<code class="sig-name descname">setParameters</code><span class="sig-paren">(</span><em class="sig-param">tr</em>, <em class="sig-param">type</em>, <em class="sig-param">k</em>, <em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#Transport.setParameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parameters.</p>
+<p>Set parameters of the <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a> instance.
+Not defined for all transport types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tr</strong> – Instance of class <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a> (or another
+object derived from Transport)</p></li>
+<li><p><strong>type</strong> – </p></li>
+<li><p><strong>k</strong> – </p></li>
+<li><p><strong>p</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt id="Transport.setThermalConductivity">
+<code class="sig-name descname">setThermalConductivity</code><span class="sig-paren">(</span><em class="sig-param">tr</em>, <em class="sig-param">lam</em><span class="sig-paren">)</span><a class="headerlink" href="#Transport.setThermalConductivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the thermal conductivity.</p>
+<p>This method can only be used with transport models that
+support directly setting the value of the thermal
+conductivity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tr</strong> – Instance of class <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a> (or another
+object derived from Transport)</p></li>
+<li><p><strong>lam</strong> – Thermal conductivity in W/(m-K)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt id="Transport.thermalConductivity">
+<code class="sig-name descname">thermalConductivity</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span><a class="headerlink" href="#Transport.thermalConductivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the thermal conductivity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> – Instance of class <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a> (or another
+object derived from Transport)
+for which the thermal conductivity is desired.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Thermal conductivity. Units: W/m-K</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt id="Transport.thermalDiffCoeffs">
+<code class="sig-name descname">thermalDiffCoeffs</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span><a class="headerlink" href="#Transport.thermalDiffCoeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the thermal diffusion coefficients.</p>
+<p>Object <code class="docutils literal notranslate"><span class="pre">a</span></code> must belong to a class derived from
+Transport, and that was constructed by specifying the <code class="docutils literal notranslate"><span class="pre">'Multi'</span></code>
+option. If <code class="docutils literal notranslate"><span class="pre">'Multi'</span></code> was not specified, the returned values will
+all be zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> – Instance of class <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a> (or another
+object derived from Transport)
+for which the thermal diffusion coefficients are desired.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Vector of thermal diffusion coefficients of length nSpecies</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt id="Transport.viscosity">
+<code class="sig-name descname">viscosity</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span><a class="headerlink" href="#Transport.viscosity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the dynamic viscosity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> – Instance of class <a class="reference internal" href="#Transport" title="Transport"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">Transport()</span></code></a> (or another
+object derived from Transport)
+for which the viscosity is desired.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dynamic viscosity. Units: Pa*s</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+                </div>
+                </div>
+            </div>
+             <!-- end of block document -->
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Transport Properties</a><ul>
+<li><a class="reference internal" href="#transport">Transport</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Matlab Interface User’s Guide</a><ul>
+      <li>Previous: <a href="kinetics.html" title="previous chapter">Chemical Kinetics</a></li>
+      <li>Next: <a href="zero-dim.html" title="next chapter">Zero-Dimensional Reactor Networks</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/matlab/transport.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://numfocus.salsalabs.org/donate-to-cantera/index.html">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+    </div>
+  </div>
+                <div class="clearer"></div>
+          </div>
+           <!--End of block content-->
+
+          <div class="footer">
+            &copy;2001-2021, Cantera Developers.
+            
+            |
+            Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+            &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+            
+            |
+            <a href="../_sources/matlab/transport.rst.txt"
+                rel="nofollow">Page source</a>
+          </div>
+      </div>
+  </div>
+
+  <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha256-98vAGjEDGN79TjHkYWVD4s87rvWkdWLHPs5MC3FvFX4=" crossorigin="anonymous"></script>
+  <script async="async" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</body>
+</html>

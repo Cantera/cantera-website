@@ -1,0 +1,1320 @@
+
+
+<!DOCTYPE html>
+
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+"
+lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chemical Kinetics | Cantera </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" media="none" onload="this.media='all'" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../_static/cantera.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" media="none" onload="this.media='all'" type="text/css" />
+  <link rel="stylesheet" href="../_static/katex-math.css" media="none" onload="this.media='all'" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+        <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
+        <script type="text/javascript" src="../_static/katex_autorenderer.js"></script>
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" sizes="16x16"/>
+    
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body>
+  <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+  <!-- Menubar -->
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light static-top mb-4">
+      <div class="container"><!-- This keeps the margins nice -->
+          <a class="navbar-brand" href="/index.html">
+          <img src="/assets/img/cantera-logo.png" alt="Cantera" id="logo" class="d-inline-block align-top">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a href="/install/index.html" class="nav-link">Install</a>
+              </li>
+              <li class="nav-item">
+                <a href="/tutorials/index.html" class="nav-link">Tutorials</a>
+              </li>
+              <li class="nav-item">
+                <a href="/examples/index.html" class="nav-link">Examples</a>
+              </li>
+              <li class="nav-item">
+                <a href="/community.html" class="nav-link">Community</a>
+              </li>
+              <li class="nav-item">
+                <a href="/science/index.html" class="nav-link">Science</a>
+              </li>
+              <li class="nav-item">
+                <a href="/documentation/index.html" class="nav-link">Documentation</a>
+              </li>
+              <li class="nav-item">
+                <a href="/blog/index.html" class="nav-link">Blog</a>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+  </nav>
+  <!-- End of Menubar -->
+
+  <div class="container" id="content">
+      <div class="body-content">
+          <!--Body content-->
+          
+          <div class="document">
+            
+            <div class="documentwrapper">
+                <div class="bodywrapper">
+                <div class="body" role="main">
+                  
+  <div class="section" id="chemical-kinetics">
+<h1>Chemical Kinetics<a class="headerlink" href="#chemical-kinetics" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#kinetics-managers" id="id1">Kinetics Managers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#kinetics" id="id2">Kinetics</a></p></li>
+<li><p><a class="reference internal" href="#interfacekinetics" id="id3">InterfaceKinetics</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#reactions" id="id4">Reactions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#reaction" id="id5">Reaction</a></p></li>
+<li><p><a class="reference internal" href="#elementaryreaction" id="id6">ElementaryReaction</a></p></li>
+<li><p><a class="reference internal" href="#threebodyreaction" id="id7">ThreeBodyReaction</a></p></li>
+<li><p><a class="reference internal" href="#falloffreaction" id="id8">FalloffReaction</a></p></li>
+<li><p><a class="reference internal" href="#chemicallyactivatedreaction" id="id9">ChemicallyActivatedReaction</a></p></li>
+<li><p><a class="reference internal" href="#plogreaction" id="id10">PlogReaction</a></p></li>
+<li><p><a class="reference internal" href="#chebyshevreaction" id="id11">ChebyshevReaction</a></p></li>
+<li><p><a class="reference internal" href="#interfacereaction" id="id12">InterfaceReaction</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#auxilliary-reaction-data" id="id13">Auxilliary Reaction Data</a></p>
+<ul>
+<li><p><a class="reference internal" href="#arrhenius" id="id14">Arrhenius</a></p></li>
+<li><p><a class="reference internal" href="#falloff" id="id15">Falloff</a></p></li>
+<li><p><a class="reference internal" href="#troefalloff" id="id16">TroeFalloff</a></p></li>
+<li><p><a class="reference internal" href="#srifalloff" id="id17">SriFalloff</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#reaction-path-analysis" id="id18">Reaction Path Analysis</a></p>
+<ul>
+<li><p><a class="reference internal" href="#reactionpathdiagram" id="id19">ReactionPathDiagram</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="kinetics-managers">
+<h2><a class="toc-backref" href="#id1">Kinetics Managers</a><a class="headerlink" href="#kinetics-managers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="kinetics">
+<h3><a class="toc-backref" href="#id2">Kinetics</a><a class="headerlink" href="#kinetics" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.Kinetics">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">Kinetics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">infile</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">phaseid</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">phases</span><span class="o">=</span><span class="default_value">()</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera._SolutionBase</span></code></p>
+<p>Instances of class <a class="reference internal" href="#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a> are responsible for evaluating reaction rates
+of progress, species production rates, and other quantities pertaining to
+a reaction mechanism.</p>
+<dl class="py method">
+<dt id="cantera.Kinetics.add_reaction">
+<code class="sig-name descname">add_reaction</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">Reaction rxn</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.add_reaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new reaction to this phase.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.creation_rates">
+<code class="sig-name descname">creation_rates</code><a class="headerlink" href="#cantera.Kinetics.creation_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creation rates for each species. [kmol/m^3/s] for bulk phases or
+[kmol/m^2/s] for surface phases.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.delta_enthalpy">
+<code class="sig-name descname">delta_enthalpy</code><a class="headerlink" href="#cantera.Kinetics.delta_enthalpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in enthalpy for each reaction [J/kmol].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.delta_entropy">
+<code class="sig-name descname">delta_entropy</code><a class="headerlink" href="#cantera.Kinetics.delta_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in entropy for each reaction [J/kmol/K].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.delta_gibbs">
+<code class="sig-name descname">delta_gibbs</code><a class="headerlink" href="#cantera.Kinetics.delta_gibbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in Gibbs free energy for each reaction [J/kmol].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.delta_standard_enthalpy">
+<code class="sig-name descname">delta_standard_enthalpy</code><a class="headerlink" href="#cantera.Kinetics.delta_standard_enthalpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in standard-state enthalpy (independent of composition) for
+each reaction [J/kmol].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.delta_standard_entropy">
+<code class="sig-name descname">delta_standard_entropy</code><a class="headerlink" href="#cantera.Kinetics.delta_standard_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in standard-state entropy (independent of composition) for
+each reaction [J/kmol/K].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.delta_standard_gibbs">
+<code class="sig-name descname">delta_standard_gibbs</code><a class="headerlink" href="#cantera.Kinetics.delta_standard_gibbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change in standard-state Gibbs free energy (independent of composition)
+for each reaction [J/kmol].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.destruction_rates">
+<code class="sig-name descname">destruction_rates</code><a class="headerlink" href="#cantera.Kinetics.destruction_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destruction rates for each species. [kmol/m^3/s] for bulk phases or
+[kmol/m^2/s] for surface phases.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.equilibrium_constants">
+<code class="sig-name descname">equilibrium_constants</code><a class="headerlink" href="#cantera.Kinetics.equilibrium_constants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equilibrium constants in concentration units for all reactions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.forward_rate_constants">
+<code class="sig-name descname">forward_rate_constants</code><a class="headerlink" href="#cantera.Kinetics.forward_rate_constants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward rate constants for all reactions. The computed values include
+all temperature-dependent, pressure-dependent, and third body
+contributions. Units are a combination of kmol, m^3 and s, that depend
+on the rate expression for the reaction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.forward_rates_of_progress">
+<code class="sig-name descname">forward_rates_of_progress</code><a class="headerlink" href="#cantera.Kinetics.forward_rates_of_progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward rates of progress for the reactions. [kmol/m^3/s] for bulk
+phases or [kmol/m^2/s] for surface phases.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.heat_production_rates">
+<code class="sig-name descname">heat_production_rates</code><a class="headerlink" href="#cantera.Kinetics.heat_production_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the volumetric heat production rates [W/m^3] on a per-reaction
+basis. The sum over all reactions results in the total volumetric heat
+release rate.
+Example: C. K. Law: Combustion Physics (2006), Fig. 7.8.6</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">heat_production_rates</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># heat production rate of the 2nd reaction</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.heat_release_rate">
+<code class="sig-name descname">heat_release_rate</code><a class="headerlink" href="#cantera.Kinetics.heat_release_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the total volumetric heat release rate [W/m^3].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.is_reversible">
+<code class="sig-name descname">is_reversible</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int i_reaction</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.is_reversible" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if reaction <code class="xref py py-obj docutils literal notranslate"><span class="pre">i_reaction</span></code> is reversible.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.kinetics_model">
+<code class="sig-name descname">kinetics_model</code><a class="headerlink" href="#cantera.Kinetics.kinetics_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return type of kinetics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.kinetics_species_index">
+<code class="sig-name descname">kinetics_species_index</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">species</em>, <em class="sig-param">int phase=0</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.kinetics_species_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of species <em>species</em> of phase <em>phase</em> within arrays returned
+by methods of class <a class="reference internal" href="#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a>. If <em>species</em> is a string, the <em>phase</em>
+argument is unused.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.kinetics_species_name">
+<code class="sig-name descname">kinetics_species_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.kinetics_species_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the species with index <em>k</em> in the arrays returned by methods
+of class <a class="reference internal" href="#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.kinetics_species_names">
+<code class="sig-name descname">kinetics_species_names</code><a class="headerlink" href="#cantera.Kinetics.kinetics_species_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all species names, corresponding to the arrays returned by
+methods of class <a class="reference internal" href="#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.modify_reaction">
+<code class="sig-name descname">modify_reaction</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int irxn</em>, <em class="sig-param">Reaction rxn</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.modify_reaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify the <a class="reference internal" href="#cantera.Reaction" title="cantera.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> with index <code class="docutils literal notranslate"><span class="pre">irxn</span></code> to have the same rate
+parameters as <code class="docutils literal notranslate"><span class="pre">rxn</span></code>. <code class="docutils literal notranslate"><span class="pre">rxn</span></code> must have the same reactants and products
+and be of the same type (i.e. <a class="reference internal" href="#cantera.ElementaryReaction" title="cantera.ElementaryReaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementaryReaction</span></code></a>, <a class="reference internal" href="#cantera.FalloffReaction" title="cantera.FalloffReaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FalloffReaction</span></code></a>,
+<a class="reference internal" href="#cantera.PlogReaction" title="cantera.PlogReaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlogReaction</span></code></a>, etc.) as the existing reaction. This method does not
+modify the third-body efficiencies, reaction orders, or reversibility of
+the reaction.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.multiplier">
+<code class="sig-name descname">multiplier</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int i_reaction</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.multiplier" title="Permalink to this definition">¶</a></dt>
+<dd><p>A scaling factor applied to the rate coefficient for reaction
+<em>i_reaction</em>. Can be used to carry out sensitivity analysis or to
+selectively disable a particular reaction. See <a class="reference internal" href="#cantera.Kinetics.set_multiplier" title="cantera.Kinetics.set_multiplier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_multiplier</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.n_phases">
+<code class="sig-name descname">n_phases</code><a class="headerlink" href="#cantera.Kinetics.n_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of phases in the reaction mechanism.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.n_reactions">
+<code class="sig-name descname">n_reactions</code><a class="headerlink" href="#cantera.Kinetics.n_reactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of reactions in the reaction mechanism.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.n_total_species">
+<code class="sig-name descname">n_total_species</code><a class="headerlink" href="#cantera.Kinetics.n_total_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total number of species in all phases participating in the kinetics
+mechanism.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.net_production_rates">
+<code class="sig-name descname">net_production_rates</code><a class="headerlink" href="#cantera.Kinetics.net_production_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Net production rates for each species. [kmol/m^3/s] for bulk phases or
+[kmol/m^2/s] for surface phases.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.net_rates_of_progress">
+<code class="sig-name descname">net_rates_of_progress</code><a class="headerlink" href="#cantera.Kinetics.net_rates_of_progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Net rates of progress for the reactions. [kmol/m^3/s] for bulk phases
+or [kmol/m^2/s] for surface phases.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.product_stoich_coeff">
+<code class="sig-name descname">product_stoich_coeff</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">k_spec</em>, <em class="sig-param">int i_reaction</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.product_stoich_coeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>The stoichiometric coefficient of species <em>k_spec</em> as a product in
+reaction <em>i_reaction</em>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.product_stoich_coeffs">
+<code class="sig-name descname">product_stoich_coeffs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.product_stoich_coeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>The array of product stoichiometric coefficients. Element <em>[k,i]</em> of
+this array is the product stoichiometric coefficient of species <em>k</em> in
+reaction <em>i</em>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.products">
+<code class="sig-name descname">products</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int i_reaction</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.products" title="Permalink to this definition">¶</a></dt>
+<dd><p>The products portion of the reaction equation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.reactant_stoich_coeff">
+<code class="sig-name descname">reactant_stoich_coeff</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">k_spec</em>, <em class="sig-param">int i_reaction</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.reactant_stoich_coeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>The stoichiometric coefficient of species <em>k_spec</em> as a reactant in
+reaction <em>i_reaction</em>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.reactant_stoich_coeffs">
+<code class="sig-name descname">reactant_stoich_coeffs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.reactant_stoich_coeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>The array of reactant stoichiometric coefficients. Element <em>[k,i]</em> of
+this array is the reactant stoichiometric coefficient of species <em>k</em> in
+reaction <em>i</em>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.reactants">
+<code class="sig-name descname">reactants</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int i_reaction</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.reactants" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reactants portion of the reaction equation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.reaction">
+<code class="sig-name descname">reaction</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int i_reaction</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.reaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a <a class="reference internal" href="#cantera.Reaction" title="cantera.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> object representing the reaction with index
+<code class="docutils literal notranslate"><span class="pre">i_reaction</span></code>. Changes to this object do not affect the <a class="reference internal" href="#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a> or
+<a class="reference internal" href="importing.html#cantera.Solution" title="cantera.Solution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Solution</span></code></a> object until the <a class="reference internal" href="#cantera.Kinetics.modify_reaction" title="cantera.Kinetics.modify_reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modify_reaction</span></code></a> function is called.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.reaction_equation">
+<code class="sig-name descname">reaction_equation</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int i_reaction</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.reaction_equation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The equation for the specified reaction. See also <a class="reference internal" href="#cantera.Kinetics.reaction_equations" title="cantera.Kinetics.reaction_equations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reaction_equations</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.reaction_equations">
+<code class="sig-name descname">reaction_equations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">indices</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.reaction_equations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list containing the reaction equation for all reactions in the
+mechanism (if <em>indices</em> is unspecified) or the equations for each
+reaction in the sequence <em>indices</em>. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">reaction_equations</span><span class="p">()</span>
+<span class="go">[&#39;2 O + M &lt;=&gt; O2 + M&#39;, &#39;O + H + M &lt;=&gt; OH + M&#39;, &#39;O + H2 &lt;=&gt; H + OH&#39;, ...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gas</span><span class="o">.</span><span class="n">reaction_equations</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">[&#39;O + H + M &lt;=&gt; OH + M&#39;, &#39;O + H2 &lt;=&gt; H + OH&#39;]</span>
+</pre></div>
+</div>
+<p>See also <a class="reference internal" href="#cantera.Kinetics.reaction_equation" title="cantera.Kinetics.reaction_equation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reaction_equation</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.reaction_phase_index">
+<code class="sig-name descname">reaction_phase_index</code><a class="headerlink" href="#cantera.Kinetics.reaction_phase_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of the phase where the reactions occur.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.reaction_type">
+<code class="sig-name descname">reaction_type</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int i_reaction</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.reaction_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of reaction <em>i_reaction</em>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.reactions">
+<code class="sig-name descname">reactions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.reactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all <a class="reference internal" href="#cantera.Reaction" title="cantera.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> objects. Changes to these objects do not
+affect the <a class="reference internal" href="#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a> or <a class="reference internal" href="importing.html#cantera.Solution" title="cantera.Solution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Solution</span></code></a> object until the <a class="reference internal" href="#cantera.Kinetics.modify_reaction" title="cantera.Kinetics.modify_reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modify_reaction</span></code></a>
+function is called.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.reverse_rate_constants">
+<code class="sig-name descname">reverse_rate_constants</code><a class="headerlink" href="#cantera.Kinetics.reverse_rate_constants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse rate constants for all reactions. The computed values include
+all temperature-dependent, pressure-dependent, and third body
+contributions. Units are a combination of kmol, m^3 and s, that depend
+on the rate expression for the reaction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Kinetics.reverse_rates_of_progress">
+<code class="sig-name descname">reverse_rates_of_progress</code><a class="headerlink" href="#cantera.Kinetics.reverse_rates_of_progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse rates of progress for the reactions. [kmol/m^3/s] for bulk
+phases or [kmol/m^2/s] for surface phases.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Kinetics.set_multiplier">
+<code class="sig-name descname">set_multiplier</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">double value</em>, <em class="sig-param">int i_reaction=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Kinetics.set_multiplier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the multiplier for for reaction <em>i_reaction</em> to <em>value</em>.
+If <em>i_reaction</em> is not specified, then the multiplier for all reactions
+is set to <em>value</em>. See <a class="reference internal" href="#cantera.Kinetics.multiplier" title="cantera.Kinetics.multiplier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiplier</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="interfacekinetics">
+<h3><a class="toc-backref" href="#id3">InterfaceKinetics</a><a class="headerlink" href="#interfacekinetics" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.InterfaceKinetics">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">InterfaceKinetics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">infile</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">adjacent</span><span class="o">=</span><span class="default_value">()</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.InterfaceKinetics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Kinetics</span></code></p>
+<p>A kinetics manager for heterogeneous reaction mechanisms. The
+reactions are assumed to occur at an interface between bulk phases.</p>
+<dl class="py method">
+<dt id="cantera.InterfaceKinetics.advance_coverages">
+<code class="sig-name descname">advance_coverages</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">double dt</em>, <em class="sig-param">double rtol=1e-7</em>, <em class="sig-param">double atol=1e-14</em>, <em class="sig-param">double max_step_size=0</em>, <em class="sig-param">int max_steps=20000</em>, <em class="sig-param">int max_error_test_failures=7</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.InterfaceKinetics.advance_coverages" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method carries out a time-accurate advancement of the surface
+coverages for a specified amount of time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.InterfaceKinetics.advance_coverages_to_steady_state">
+<code class="sig-name descname">advance_coverages_to_steady_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.InterfaceKinetics.advance_coverages_to_steady_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method advances the surface coverages to steady state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.InterfaceKinetics.get_creation_rates">
+<code class="sig-name descname">get_creation_rates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.InterfaceKinetics.get_creation_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creation rates for each species in phase <em>phase</em>. Use the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">creation_rates</span></code> property to get the creation rates for species in all
+phases.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.InterfaceKinetics.get_destruction_rates">
+<code class="sig-name descname">get_destruction_rates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.InterfaceKinetics.get_destruction_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destruction rates for each species in phase <em>phase</em>. Use the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">destruction_rates</span></code> property to get the destruction rates for species
+in all phases.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.InterfaceKinetics.get_net_production_rates">
+<code class="sig-name descname">get_net_production_rates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.InterfaceKinetics.get_net_production_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Net production rates for each species in phase <em>phase</em>. Use the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">net_production_rates</span></code> property to get the net_production rates for
+species in all phases.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.InterfaceKinetics.phase_index">
+<code class="sig-name descname">phase_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.InterfaceKinetics.phase_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the index of the phase <em>phase</em>, where <em>phase</em> may specified using
+the phase object, the name, or the index itself.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="reactions">
+<h2><a class="toc-backref" href="#id4">Reactions</a><a class="headerlink" href="#reactions" title="Permalink to this headline">¶</a></h2>
+<p>These classes contain the definition of a single reaction and its associated
+rate expression, independent of a specific <a class="reference internal" href="#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a> object.</p>
+<div class="section" id="reaction">
+<h3><a class="toc-backref" href="#id5">Reaction</a><a class="headerlink" href="#reaction" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.Reaction">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">Reaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reactants</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">products</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class which stores data about a reaction and its rate parameterization so
+that it can be added to a <a class="reference internal" href="#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reactants</strong> – Value used to set <a class="reference internal" href="#cantera.Reaction.reactants" title="cantera.Reaction.reactants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reactants</span></code></a></p></li>
+<li><p><strong>products</strong> – Value used to set <a class="reference internal" href="#cantera.Reaction.products" title="cantera.Reaction.products"><code class="xref py py-obj docutils literal notranslate"><span class="pre">products</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<p>The static methods <a class="reference internal" href="#cantera.Reaction.listFromFile" title="cantera.Reaction.listFromFile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">listFromFile</span></code></a>, <a class="reference internal" href="#cantera.Reaction.listFromYaml" title="cantera.Reaction.listFromYaml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">listFromYaml</span></code></a>, <a class="reference internal" href="#cantera.Reaction.listFromCti" title="cantera.Reaction.listFromCti"><code class="xref py py-obj docutils literal notranslate"><span class="pre">listFromCti</span></code></a>, and
+<a class="reference internal" href="#cantera.Reaction.listFromXml" title="cantera.Reaction.listFromXml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">listFromXml</span></code></a> can be used to create lists of <a class="reference internal" href="#cantera.Reaction" title="cantera.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> objects from
+existing definitions in the YAML, CTI, or XML formats. All of the following
+will produce a list of the 325 reactions which make up the GRI 3.0
+mechanism:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reaction</span><span class="o">.</span><span class="n">listFromFile</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">,</span> <span class="n">gas</span><span class="p">)</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reaction</span><span class="o">.</span><span class="n">listFromCti</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;path/to/gri30.cti&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reaction</span><span class="o">.</span><span class="n">listFromXml</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;path/to/gri30.xml&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>where <code class="xref py py-obj docutils literal notranslate"><span class="pre">gas</span></code> is a <a class="reference internal" href="importing.html#cantera.Solution" title="cantera.Solution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Solution</span></code></a> object with the appropriate thermodynamic model,
+which is the <code class="xref py py-obj docutils literal notranslate"><span class="pre">ideal-gas</span></code> model in this case.</p>
+<p>The static method <a class="reference internal" href="#cantera.Reaction.listFromYaml" title="cantera.Reaction.listFromYaml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">listFromYaml</span></code></a> can be used to create lists of <a class="reference internal" href="#cantera.Reaction" title="cantera.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a>
+objects from a YAML list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rxns</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">  - equation: O + H2 &lt;=&gt; H + OH</span>
+<span class="s1">    rate-constant: {A: 3.87e+04, b: 2.7, Ea: 6260.0}</span>
+<span class="s1">  - equation: O + HO2 &lt;=&gt; OH + O2</span>
+<span class="s1">    rate-constant: {A: 2.0e+13, b: 0.0, Ea: 0.0}</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reaction</span><span class="o">.</span><span class="n">listFromYaml</span><span class="p">(</span><span class="n">rxns</span><span class="p">,</span> <span class="n">gas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The methods <a class="reference internal" href="#cantera.Reaction.fromYaml" title="cantera.Reaction.fromYaml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromYaml</span></code></a>, <a class="reference internal" href="#cantera.Reaction.fromCti" title="cantera.Reaction.fromCti"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromCti</span></code></a>, and <a class="reference internal" href="#cantera.Reaction.fromXml" title="cantera.Reaction.fromXml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromXml</span></code></a> can be used to create
+individual <a class="reference internal" href="#cantera.Reaction" title="cantera.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> objects from definitions in these formats. In the case
+of using YAML or CTI definitions, it is important to verify that either the
+pre-exponential factor and activation energy are supplied in SI units, or
+that they have their units specified:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reaction</span><span class="o">.</span><span class="n">fromYaml</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;{equation: O + H2 &lt;=&gt; H + OH,</span>
+<span class="s1">        rate-constant: {A: 3.87e+04 cm^3/mol/s, b: 2.7, Ea: 6260 cal/mol}}&#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="n">gas</span><span class="p">)</span>
+
+<span class="n">R</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reaction</span><span class="o">.</span><span class="n">fromCti</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;reaction(&#39;O + H2 &lt;=&gt; H + OH&#39;,</span>
+<span class="s1">        [3.87e1, 2.7, 2.619184e7])&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">R</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Reaction</span><span class="o">.</span><span class="n">fromCti</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;reaction(&#39;O + H2 &lt;=&gt; H + OH&#39;,</span>
+<span class="s1">                [(3.87e4, &#39;cm3/mol/s&#39;), 2.7, (6260, &#39;cal/mol&#39;)])&#39;&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt id="cantera.Reaction.ID">
+<code class="sig-name descname">ID</code><a class="headerlink" href="#cantera.Reaction.ID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the identification string for the reaction, which can be used in
+filtering operations.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reaction.allow_negative_orders">
+<code class="sig-name descname">allow_negative_orders</code><a class="headerlink" href="#cantera.Reaction.allow_negative_orders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set a flag which is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if negative reaction orders are allowed.
+Default is <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reaction.allow_nonreactant_orders">
+<code class="sig-name descname">allow_nonreactant_orders</code><a class="headerlink" href="#cantera.Reaction.allow_nonreactant_orders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set a flag which is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if reaction orders can be specified for
+non-reactant species. Default is <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reaction.duplicate">
+<code class="sig-name descname">duplicate</code><a class="headerlink" href="#cantera.Reaction.duplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set a flag which is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if this reaction is marked as a duplicate
+or <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> otherwise.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reaction.equation">
+<code class="sig-name descname">equation</code><a class="headerlink" href="#cantera.Reaction.equation" title="Permalink to this definition">¶</a></dt>
+<dd><p>A string giving the chemical equation for this reaction. Determined
+automatically based on <a class="reference internal" href="#cantera.Reaction.reactants" title="cantera.Reaction.reactants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reactants</span></code></a> and <a class="reference internal" href="#cantera.Reaction.products" title="cantera.Reaction.products"><code class="xref py py-obj docutils literal notranslate"><span class="pre">products</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reaction.fromCti">
+<em class="property">static </em><code class="sig-name descname">fromCti</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reaction.fromCti" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Reaction object from its CTI string representation.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>The CTI input format is deprecated and will be removed in Cantera 3.0.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reaction.fromXml">
+<em class="property">static </em><code class="sig-name descname">fromXml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reaction.fromXml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Reaction object from its XML string representation.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>The XML input format is deprecated and will be removed in Cantera 3.0.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reaction.fromYaml">
+<em class="property">static </em><code class="sig-name descname">fromYaml</code><span class="sig-paren">(</span><em class="sig-param">text</em>, <em class="sig-param">Kinetics kinetics</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reaction.fromYaml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <a class="reference internal" href="#cantera.Reaction" title="cantera.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> object from its YAML string representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – The YAML reaction string</p></li>
+<li><p><strong>kinetics</strong> – A <a class="reference internal" href="#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a> object whose associated phase(s) contain the species
+involved in the reaction.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reaction.listFromCti">
+<em class="property">static </em><code class="sig-name descname">listFromCti</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reaction.listFromCti" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a list of <a class="reference internal" href="#cantera.Reaction" title="cantera.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> objects from all the reactions defined in a
+CTI string.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>The CTI input format is deprecated and will be removed in Cantera 3.0.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reaction.listFromFile">
+<em class="property">static </em><code class="sig-name descname">listFromFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">Kinetics kinetics=None</em>, <em class="sig-param">section=u'reactions'</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reaction.listFromFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a list of Reaction objects from all of the reactions defined in a
+YAML, CTI, or XML file.</p>
+<p>For YAML input files, a <a class="reference internal" href="#cantera.Kinetics" title="cantera.Kinetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kinetics</span></code></a> object is required as the second
+argument, and reactions from the section <em>section</em> will be returned.</p>
+<p>Directories on Cantera’s input file path will be searched for the
+specified file.</p>
+<p>In the case of an XML file, the <code class="docutils literal notranslate"><span class="pre">&lt;reactions&gt;</span></code> nodes are assumed to be
+children of the <code class="docutils literal notranslate"><span class="pre">&lt;reactionsData&gt;</span></code> node in a document with a <code class="docutils literal notranslate"><span class="pre">&lt;ctml&gt;</span></code>
+root node, as in the XML files produced by conversion from CTI files.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>The CTI and XML input formats are deprecated and will be removed in
+Cantera 3.0.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reaction.listFromXml">
+<em class="property">static </em><code class="sig-name descname">listFromXml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reaction.listFromXml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a list of Reaction objects from all the reaction defined in an
+XML string. The <code class="docutils literal notranslate"><span class="pre">&lt;reaction&gt;</span></code> nodes are assumed to be children of the
+<code class="docutils literal notranslate"><span class="pre">&lt;reactionData&gt;</span></code> node in a document with a <code class="docutils literal notranslate"><span class="pre">&lt;ctml&gt;</span></code> root node, as in
+the XML files produced by conversion from CTI files.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.5: </span>The XML input format is deprecated and will be removed in Cantera 3.0.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.Reaction.listFromYaml">
+<em class="property">static </em><code class="sig-name descname">listFromYaml</code><span class="sig-paren">(</span><em class="sig-param">text</em>, <em class="sig-param">Kinetics kinetics</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Reaction.listFromYaml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a list of <a class="reference internal" href="#cantera.Reaction" title="cantera.Reaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reaction</span></code></a> objects from all the reactions defined in a
+YAML string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reaction.orders">
+<code class="sig-name descname">orders</code><a class="headerlink" href="#cantera.Reaction.orders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the reaction order with respect to specific species as a dict
+with species names as the keys and orders as the values, or as a
+composition string. By default, mass-action kinetics is assumed, with
+the reaction order for each reactant species equal to each its
+stoichiometric coefficient.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reaction.product_string">
+<code class="sig-name descname">product_string</code><a class="headerlink" href="#cantera.Reaction.product_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>A string representing the products side of the chemical equation for
+this reaction. Determined automatically based on <a class="reference internal" href="#cantera.Reaction.products" title="cantera.Reaction.products"><code class="xref py py-obj docutils literal notranslate"><span class="pre">products</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reaction.products">
+<code class="sig-name descname">products</code><a class="headerlink" href="#cantera.Reaction.products" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the products in this reaction as a dict where the keys are
+species names and the values, are the stoichiometric coefficients, e.g.
+<code class="docutils literal notranslate"><span class="pre">{'CH3':1,</span> <span class="pre">'H2O':1}</span></code>, or as a composition string, e.g.
+<code class="docutils literal notranslate"><span class="pre">'CH3:1,</span> <span class="pre">H2O:1'</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reaction.reactant_string">
+<code class="sig-name descname">reactant_string</code><a class="headerlink" href="#cantera.Reaction.reactant_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>A string representing the reactants side of the chemical equation for
+this reaction. Determined automatically based on <a class="reference internal" href="#cantera.Reaction.reactants" title="cantera.Reaction.reactants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reactants</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reaction.reactants">
+<code class="sig-name descname">reactants</code><a class="headerlink" href="#cantera.Reaction.reactants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the reactants in this reaction as a dict where the keys are
+species names and the values, are the stoichiometric coefficients, e.g.
+<code class="docutils literal notranslate"><span class="pre">{'CH4':1,</span> <span class="pre">'OH':1}</span></code>, or as a composition string, e.g.
+<code class="docutils literal notranslate"><span class="pre">'CH4:1,</span> <span class="pre">OH:1'</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Reaction.reversible">
+<code class="sig-name descname">reversible</code><a class="headerlink" href="#cantera.Reaction.reversible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set a flag which is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if this reaction is reversible or <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>
+otherwise.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="elementaryreaction">
+<h3><a class="toc-backref" href="#id6">ElementaryReaction</a><a class="headerlink" href="#elementaryreaction" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.ElementaryReaction">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">ElementaryReaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reactants</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">products</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ElementaryReaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Reaction</span></code></p>
+<p>A reaction which follows mass-action kinetics with a modified Arrhenius
+reaction rate.</p>
+<dl class="py attribute">
+<dt id="cantera.ElementaryReaction.allow_negative_pre_exponential_factor">
+<code class="sig-name descname">allow_negative_pre_exponential_factor</code><a class="headerlink" href="#cantera.ElementaryReaction.allow_negative_pre_exponential_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set whether the rate coefficient is allowed to have a negative
+pre-exponential factor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ElementaryReaction.rate">
+<code class="sig-name descname">rate</code><a class="headerlink" href="#cantera.ElementaryReaction.rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the <a class="reference internal" href="#cantera.Arrhenius" title="cantera.Arrhenius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Arrhenius</span></code></a> rate coefficient for this reaction.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="threebodyreaction">
+<h3><a class="toc-backref" href="#id7">ThreeBodyReaction</a><a class="headerlink" href="#threebodyreaction" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.ThreeBodyReaction">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">ThreeBodyReaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reactants</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">products</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ThreeBodyReaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.ElementaryReaction</span></code></p>
+<p>A reaction with a non-reacting third body “M” that acts to add or remove
+energy from the reacting species.</p>
+<dl class="py attribute">
+<dt id="cantera.ThreeBodyReaction.default_efficiency">
+<code class="sig-name descname">default_efficiency</code><a class="headerlink" href="#cantera.ThreeBodyReaction.default_efficiency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the default third-body efficiency for this reaction, used for
+species used for species not in <a class="reference internal" href="#cantera.ThreeBodyReaction.efficiencies" title="cantera.ThreeBodyReaction.efficiencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">efficiencies</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ThreeBodyReaction.efficiencies">
+<code class="sig-name descname">efficiencies</code><a class="headerlink" href="#cantera.ThreeBodyReaction.efficiencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> defining non-default third-body efficiencies for this
+reaction, where the keys are the species names and the values are the
+efficiencies.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ThreeBodyReaction.efficiency">
+<code class="sig-name descname">efficiency</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">species</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ThreeBodyReaction.efficiency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the efficiency of the third body named <em>species</em> considering both
+the default efficiency and species-specific efficiencies.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="falloffreaction">
+<h3><a class="toc-backref" href="#id8">FalloffReaction</a><a class="headerlink" href="#falloffreaction" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.FalloffReaction">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">FalloffReaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reactants</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">products</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FalloffReaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Reaction</span></code></p>
+<p>A reaction that is first-order in [M] at low pressure, like a third-body
+reaction, but zeroth-order in [M] as pressure increases.</p>
+<dl class="py attribute">
+<dt id="cantera.FalloffReaction.allow_negative_pre_exponential_factor">
+<code class="sig-name descname">allow_negative_pre_exponential_factor</code><a class="headerlink" href="#cantera.FalloffReaction.allow_negative_pre_exponential_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set whether the rate coefficient is allowed to have a negative
+pre-exponential factor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.FalloffReaction.default_efficiency">
+<code class="sig-name descname">default_efficiency</code><a class="headerlink" href="#cantera.FalloffReaction.default_efficiency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the default third-body efficiency for this reaction, used for
+species used for species not in <a class="reference internal" href="#cantera.FalloffReaction.efficiencies" title="cantera.FalloffReaction.efficiencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">efficiencies</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.FalloffReaction.efficiencies">
+<code class="sig-name descname">efficiencies</code><a class="headerlink" href="#cantera.FalloffReaction.efficiencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> defining non-default third-body efficiencies for this
+reaction, where the keys are the species names and the values are the
+efficiencies.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.FalloffReaction.efficiency">
+<code class="sig-name descname">efficiency</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">species</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.FalloffReaction.efficiency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the efficiency of the third body named <em>species</em> considering both
+the default efficiency and species-specific efficiencies.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.FalloffReaction.falloff">
+<code class="sig-name descname">falloff</code><a class="headerlink" href="#cantera.FalloffReaction.falloff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the <a class="reference internal" href="#cantera.Falloff" title="cantera.Falloff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Falloff</span></code></a> function used to blend the high- and low-pressure
+rate coefficients</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.FalloffReaction.high_rate">
+<code class="sig-name descname">high_rate</code><a class="headerlink" href="#cantera.FalloffReaction.high_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the <a class="reference internal" href="#cantera.Arrhenius" title="cantera.Arrhenius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Arrhenius</span></code></a> rate constant in the high-pressure limit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.FalloffReaction.low_rate">
+<code class="sig-name descname">low_rate</code><a class="headerlink" href="#cantera.FalloffReaction.low_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the <a class="reference internal" href="#cantera.Arrhenius" title="cantera.Arrhenius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Arrhenius</span></code></a> rate constant in the low-pressure limit</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="chemicallyactivatedreaction">
+<h3><a class="toc-backref" href="#id9">ChemicallyActivatedReaction</a><a class="headerlink" href="#chemicallyactivatedreaction" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.ChemicallyActivatedReaction">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">ChemicallyActivatedReaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reactants</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">products</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ChemicallyActivatedReaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.FalloffReaction</span></code></p>
+<p>A reaction where the rate decreases as pressure increases due to collisional
+stabilization of a reaction intermediate. Like a <a class="reference internal" href="#cantera.FalloffReaction" title="cantera.FalloffReaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FalloffReaction</span></code></a>, except
+that the forward rate constant is written as being proportional to the low-
+pressure rate constant.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="plogreaction">
+<h3><a class="toc-backref" href="#id10">PlogReaction</a><a class="headerlink" href="#plogreaction" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.PlogReaction">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">PlogReaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reactants</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">products</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.PlogReaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Reaction</span></code></p>
+<p>A pressure-dependent reaction parameterized by logarithmically interpolating
+between Arrhenius rate expressions at various pressures.</p>
+<dl class="py attribute">
+<dt id="cantera.PlogReaction.rates">
+<code class="sig-name descname">rates</code><a class="headerlink" href="#cantera.PlogReaction.rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the rate coefficients for this reaction, which are given as a
+list of (pressure, <a class="reference internal" href="#cantera.Arrhenius" title="cantera.Arrhenius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Arrhenius</span></code></a>) tuples.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="chebyshevreaction">
+<h3><a class="toc-backref" href="#id11">ChebyshevReaction</a><a class="headerlink" href="#chebyshevreaction" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.ChebyshevReaction">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">ChebyshevReaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reactants</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">products</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ChebyshevReaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Reaction</span></code></p>
+<p>A pressure-dependent reaction parameterized by a bivariate Chebyshev
+polynomial in temperature and pressure.</p>
+<dl class="py attribute">
+<dt id="cantera.ChebyshevReaction.Pmax">
+<code class="sig-name descname">Pmax</code><a class="headerlink" href="#cantera.ChebyshevReaction.Pmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum pressure [Pa] for the Chebyshev fit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ChebyshevReaction.Pmin">
+<code class="sig-name descname">Pmin</code><a class="headerlink" href="#cantera.ChebyshevReaction.Pmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum pressure [Pa] for the Chebyshev fit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ChebyshevReaction.Tmax">
+<code class="sig-name descname">Tmax</code><a class="headerlink" href="#cantera.ChebyshevReaction.Tmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum temperature [K] for the Chebyshev fit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ChebyshevReaction.Tmin">
+<code class="sig-name descname">Tmin</code><a class="headerlink" href="#cantera.ChebyshevReaction.Tmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum temperature [K] for the Chebyshev fit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ChebyshevReaction.coeffs">
+<code class="sig-name descname">coeffs</code><a class="headerlink" href="#cantera.ChebyshevReaction.coeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>2D array of Chebyshev coefficients of size <code class="xref py py-obj docutils literal notranslate"><span class="pre">(nTemperature,</span> <span class="pre">nPressure)</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ChebyshevReaction.nPressure">
+<code class="sig-name descname">nPressure</code><a class="headerlink" href="#cantera.ChebyshevReaction.nPressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of pressures over which the Chebyshev fit is computed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ChebyshevReaction.nTemperature">
+<code class="sig-name descname">nTemperature</code><a class="headerlink" href="#cantera.ChebyshevReaction.nTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of temperatures over which the Chebyshev fit is computed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ChebyshevReaction.set_parameters">
+<code class="sig-name descname">set_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">Tmin</span></em>, <em class="sig-param"><span class="n">Tmax</span></em>, <em class="sig-param"><span class="n">Pmin</span></em>, <em class="sig-param"><span class="n">Pmax</span></em>, <em class="sig-param"><span class="n">coeffs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ChebyshevReaction.set_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simultaneously set values for <a class="reference internal" href="#cantera.ChebyshevReaction.Tmin" title="cantera.ChebyshevReaction.Tmin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tmin</span></code></a>, <a class="reference internal" href="#cantera.ChebyshevReaction.Tmax" title="cantera.ChebyshevReaction.Tmax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tmax</span></code></a>, <a class="reference internal" href="#cantera.ChebyshevReaction.Pmin" title="cantera.ChebyshevReaction.Pmin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pmin</span></code></a>, <a class="reference internal" href="#cantera.ChebyshevReaction.Pmax" title="cantera.ChebyshevReaction.Pmax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pmax</span></code></a>, and
+<a class="reference internal" href="#cantera.ChebyshevReaction.coeffs" title="cantera.ChebyshevReaction.coeffs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coeffs</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="interfacereaction">
+<h3><a class="toc-backref" href="#id12">InterfaceReaction</a><a class="headerlink" href="#interfacereaction" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.InterfaceReaction">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">InterfaceReaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reactants</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">products</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.InterfaceReaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.ElementaryReaction</span></code></p>
+<p>A reaction occurring on an <a class="reference internal" href="importing.html#cantera.Interface" title="cantera.Interface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interface</span></code></a> (i.e. a surface or an edge)</p>
+<dl class="py attribute">
+<dt id="cantera.InterfaceReaction.coverage_deps">
+<code class="sig-name descname">coverage_deps</code><a class="headerlink" href="#cantera.InterfaceReaction.coverage_deps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set a dict containing adjustments to the Arrhenius rate expression
+dependent on surface species coverages. The keys of the dict are species
+names, and the values are tuples specifying the three coverage
+parameters <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">m,</span> <span class="pre">E)</span></code> which are the modifiers for the pre-exponential
+factor [m, kmol, s units], the temperature exponent [nondimensional],
+and the activation energy [J/kmol], respectively.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.InterfaceReaction.is_sticking_coefficient">
+<code class="sig-name descname">is_sticking_coefficient</code><a class="headerlink" href="#cantera.InterfaceReaction.is_sticking_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set a boolean indicating if the rate coefficient for this reaction
+is expressed as a sticking coefficient rather than the forward rate
+constant.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.InterfaceReaction.sticking_species">
+<code class="sig-name descname">sticking_species</code><a class="headerlink" href="#cantera.InterfaceReaction.sticking_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the sticking species. Needed only for reactions with
+multiple non-surface reactant species, where the sticking species is
+ambiguous.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.InterfaceReaction.use_motz_wise_correction">
+<code class="sig-name descname">use_motz_wise_correction</code><a class="headerlink" href="#cantera.InterfaceReaction.use_motz_wise_correction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set a boolean indicating whether to use the correction factor
+developed by Motz &amp; Wise for reactions with high (near-unity) sticking
+coefficients when converting the sticking coefficient to a rate
+coefficient.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="auxilliary-reaction-data">
+<h2><a class="toc-backref" href="#id13">Auxilliary Reaction Data</a><a class="headerlink" href="#auxilliary-reaction-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="arrhenius">
+<h3><a class="toc-backref" href="#id14">Arrhenius</a><a class="headerlink" href="#arrhenius" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.Arrhenius">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">Arrhenius</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">b</span></em>, <em class="sig-param"><span class="n">E</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Arrhenius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A reaction rate coefficient which depends on temperature only and follows
+the modified Arrhenius form:</p>
+<div class="math">
+\[k_f = A T^b \exp{-\tfrac{E}{RT}}\]</div>
+<p>where <em>A</em> is the <a class="reference internal" href="#cantera.Arrhenius.pre_exponential_factor" title="cantera.Arrhenius.pre_exponential_factor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pre_exponential_factor</span></code></a>, <em>b</em> is the <a class="reference internal" href="#cantera.Arrhenius.temperature_exponent" title="cantera.Arrhenius.temperature_exponent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">temperature_exponent</span></code></a>,
+and <em>E</em> is the <a class="reference internal" href="#cantera.Arrhenius.activation_energy" title="cantera.Arrhenius.activation_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">activation_energy</span></code></a>.</p>
+<dl class="py attribute">
+<dt id="cantera.Arrhenius.activation_energy">
+<code class="sig-name descname">activation_energy</code><a class="headerlink" href="#cantera.Arrhenius.activation_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>The activation energy <em>E</em> [J/kmol].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Arrhenius.pre_exponential_factor">
+<code class="sig-name descname">pre_exponential_factor</code><a class="headerlink" href="#cantera.Arrhenius.pre_exponential_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The pre-exponential factor <em>A</em> in units of m, kmol, and s raised to
+powers depending on the reaction order.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Arrhenius.temperature_exponent">
+<code class="sig-name descname">temperature_exponent</code><a class="headerlink" href="#cantera.Arrhenius.temperature_exponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>The temperature exponent <em>b</em>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="falloff">
+<h3><a class="toc-backref" href="#id15">Falloff</a><a class="headerlink" href="#falloff" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.Falloff">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">Falloff</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coeffs</span><span class="o">=</span><span class="default_value">()</span></em>, <em class="sig-param"><span class="n">init</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.Falloff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A parameterization used to describe the fall-off in reaction rate constants
+due to intermolecular energy transfer. These functions are used by reactions
+defined using the <a class="reference internal" href="#cantera.FalloffReaction" title="cantera.FalloffReaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FalloffReaction</span></code></a> and <a class="reference internal" href="#cantera.ChemicallyActivatedReaction" title="cantera.ChemicallyActivatedReaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChemicallyActivatedReaction</span></code></a>
+classes.</p>
+<p>This base class implements the simple falloff function
+<span class="math">\(F(T,P_r) = 1.0\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> – Not used for the “simple” falloff parameterization.</p></li>
+<li><p><strong>init</strong> – Used internally when wrapping <a class="reference external" href="../../../doxygen/html/d3/d3a/classCantera_1_1Falloff.html">Falloff</a> objects returned from C++.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="cantera.Falloff.parameters">
+<code class="sig-name descname">parameters</code><a class="headerlink" href="#cantera.Falloff.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>The array of parameters used to define this falloff function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.Falloff.type">
+<code class="sig-name descname">type</code><a class="headerlink" href="#cantera.Falloff.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>A string defining the type of the falloff parameterization</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="troefalloff">
+<h3><a class="toc-backref" href="#id16">TroeFalloff</a><a class="headerlink" href="#troefalloff" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.TroeFalloff">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">TroeFalloff</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coeffs</span><span class="o">=</span><span class="default_value">()</span></em>, <em class="sig-param"><span class="n">init</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.TroeFalloff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Falloff</span></code></p>
+<p>The 3- or 4-parameter Troe falloff function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> – An array of 3 or 4 parameters: <span class="math">\([a, T^{***}, T^*, T^{**}]\)</span> where
+the final parameter is optional (with a default value of 0).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="srifalloff">
+<h3><a class="toc-backref" href="#id17">SriFalloff</a><a class="headerlink" href="#srifalloff" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.SriFalloff">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">SriFalloff</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coeffs</span><span class="o">=</span><span class="default_value">()</span></em>, <em class="sig-param"><span class="n">init</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.SriFalloff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cantera._cantera.Falloff</span></code></p>
+<p>The 3- or 5-parameter SRI falloff function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> – An array of 3 or 5 parameters: <span class="math">\([a, b, c, d, e]\)</span> where the last
+two parameters are optional (with default values of 1 and 0,
+respectively).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="reaction-path-analysis">
+<h2><a class="toc-backref" href="#id18">Reaction Path Analysis</a><a class="headerlink" href="#reaction-path-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reactionpathdiagram">
+<h3><a class="toc-backref" href="#id19">ReactionPathDiagram</a><a class="headerlink" href="#reactionpathdiagram" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="cantera.ReactionPathDiagram">
+<em class="property">class </em><code class="sig-prename descclassname">cantera.</code><code class="sig-name descname">ReactionPathDiagram</code><span class="sig-paren">(</span><em class="sig-param">Kinetics kin</em>, <em class="sig-param">str element</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactionPathDiagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>ReactionPathDiagram(Kinetics kin, unicode element)</p>
+<p>Create a reaction path diagram for the fluxes of the element <em>element</em>
+according the the net reaction rates determined by the Kinetics object
+<em>kin</em>.</p>
+<dl class="py method">
+<dt id="cantera.ReactionPathDiagram.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">ReactionPathDiagram other</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactionPathDiagram.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add fluxes from <code class="xref py py-obj docutils literal notranslate"><span class="pre">other</span></code> to this diagram</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.arrow_width">
+<code class="sig-name descname">arrow_width</code><a class="headerlink" href="#cantera.ReactionPathDiagram.arrow_width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the arrow width. If &lt; 0, then scale with flux value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.bold_color">
+<code class="sig-name descname">bold_color</code><a class="headerlink" href="#cantera.ReactionPathDiagram.bold_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the color for bold lines</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.bold_threshold">
+<code class="sig-name descname">bold_threshold</code><a class="headerlink" href="#cantera.ReactionPathDiagram.bold_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the minimum relative flux for bold lines</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactionPathDiagram.build">
+<code class="sig-name descname">build</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactionPathDiagram.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the reaction path diagram. Called automatically by methods which
+return representations of the diagram, e.g. write_dot().</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.dashed_color">
+<code class="sig-name descname">dashed_color</code><a class="headerlink" href="#cantera.ReactionPathDiagram.dashed_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the color for dashed lines</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactionPathDiagram.display_only">
+<code class="sig-name descname">display_only</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int k</em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactionPathDiagram.display_only" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.dot_options">
+<code class="sig-name descname">dot_options</code><a class="headerlink" href="#cantera.ReactionPathDiagram.dot_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set options for the ‘dot’ program</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.flow_type">
+<code class="sig-name descname">flow_type</code><a class="headerlink" href="#cantera.ReactionPathDiagram.flow_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the way flows are drawn. Either ‘NetFlow’ or ‘OneWayFlow’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.font">
+<code class="sig-name descname">font</code><a class="headerlink" href="#cantera.ReactionPathDiagram.font" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the name of the font used</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactionPathDiagram.get_data">
+<code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactionPathDiagram.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a (roughly) human-readable representation of the reaction path
+diagram.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactionPathDiagram.get_dot">
+<code class="sig-name descname">get_dot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactionPathDiagram.get_dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string containing the reaction path diagram formatted for use
+by Graphviz’s ‘dot’ program.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.label_threshold">
+<code class="sig-name descname">label_threshold</code><a class="headerlink" href="#cantera.ReactionPathDiagram.label_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the minimum relative flux for labels</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.log">
+<code class="sig-name descname">log</code><a class="headerlink" href="#cantera.ReactionPathDiagram.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logging messages generated while building the reaction path diagram</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.normal_color">
+<code class="sig-name descname">normal_color</code><a class="headerlink" href="#cantera.ReactionPathDiagram.normal_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the color for normal-weight lines</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.normal_threshold">
+<code class="sig-name descname">normal_threshold</code><a class="headerlink" href="#cantera.ReactionPathDiagram.normal_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the maximum relative flux for dashed lines</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.scale">
+<code class="sig-name descname">scale</code><a class="headerlink" href="#cantera.ReactionPathDiagram.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the scaling factor for the fluxes. Set to -1 to normalize by the
+maximum net flux.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.show_details">
+<code class="sig-name descname">show_details</code><a class="headerlink" href="#cantera.ReactionPathDiagram.show_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set whether to show the details of which reactions contribute to the
+flux.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.threshold">
+<code class="sig-name descname">threshold</code><a class="headerlink" href="#cantera.ReactionPathDiagram.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the threshold for the minimum flux relative value that will be
+plotted.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cantera.ReactionPathDiagram.title">
+<code class="sig-name descname">title</code><a class="headerlink" href="#cantera.ReactionPathDiagram.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get/Set the diagram title</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cantera.ReactionPathDiagram.write_dot">
+<code class="sig-name descname">write_dot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cantera.ReactionPathDiagram.write_dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the reaction path diagram formatted for use by Graphviz’s ‘dot’
+program to the file named <em>filename</em>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+                </div>
+                </div>
+            </div>
+             <!-- end of block document -->
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Chemical Kinetics</a><ul>
+<li><a class="reference internal" href="#kinetics-managers">Kinetics Managers</a><ul>
+<li><a class="reference internal" href="#kinetics">Kinetics</a></li>
+<li><a class="reference internal" href="#interfacekinetics">InterfaceKinetics</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reactions">Reactions</a><ul>
+<li><a class="reference internal" href="#reaction">Reaction</a></li>
+<li><a class="reference internal" href="#elementaryreaction">ElementaryReaction</a></li>
+<li><a class="reference internal" href="#threebodyreaction">ThreeBodyReaction</a></li>
+<li><a class="reference internal" href="#falloffreaction">FalloffReaction</a></li>
+<li><a class="reference internal" href="#chemicallyactivatedreaction">ChemicallyActivatedReaction</a></li>
+<li><a class="reference internal" href="#plogreaction">PlogReaction</a></li>
+<li><a class="reference internal" href="#chebyshevreaction">ChebyshevReaction</a></li>
+<li><a class="reference internal" href="#interfacereaction">InterfaceReaction</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#auxilliary-reaction-data">Auxilliary Reaction Data</a><ul>
+<li><a class="reference internal" href="#arrhenius">Arrhenius</a></li>
+<li><a class="reference internal" href="#falloff">Falloff</a></li>
+<li><a class="reference internal" href="#troefalloff">TroeFalloff</a></li>
+<li><a class="reference internal" href="#srifalloff">SriFalloff</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reaction-path-analysis">Reaction Path Analysis</a><ul>
+<li><a class="reference internal" href="#reactionpathdiagram">ReactionPathDiagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Python Module Documentation</a><ul>
+      <li>Previous: <a href="thermo.html" title="previous chapter">Thermodynamic Properties</a></li>
+      <li>Next: <a href="transport.html" title="next chapter">Transport Properties</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/cython/kinetics.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script><div id="numfocus">
+<h3>Donate to Cantera</h3>
+<a href="https://numfocus.salsalabs.org/donate-to-cantera/index.html">
+<img src="../_static/powered_by_NumFOCUS.png" border="0" alt="NumFOCUS"/></a>
+</div>
+    </div>
+  </div>
+                <div class="clearer"></div>
+          </div>
+           <!--End of block content-->
+
+          <div class="footer">
+            &copy;2001-2021, Cantera Developers.
+            
+            |
+            Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+            &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+            
+            |
+            <a href="../_sources/cython/kinetics.rst.txt"
+                rel="nofollow">Page source</a>
+          </div>
+      </div>
+  </div>
+
+  <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha256-98vAGjEDGN79TjHkYWVD4s87rvWkdWLHPs5MC3FvFX4=" crossorigin="anonymous"></script>
+  <script async="async" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</body>
+</html>
