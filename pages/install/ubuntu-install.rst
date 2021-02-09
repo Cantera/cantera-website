@@ -20,7 +20,7 @@
 As of Cantera 2.5.0, packages are available for Ubuntu 18.04 (Bionic Beaver), Ubuntu 20.04
 (Focal Fossa), and Ubuntu 20.10 (Groovy Gorilla). To see which Ubuntu releases and Cantera
 versions are currently available, visit
-https://launchpad.net/~speth/+archive/ubuntu/cantera
+https://launchpad.net/~cantera-team/+archive/ubuntu/cantera
 
 The available packages are:
 
@@ -36,7 +36,7 @@ To add the Cantera PPA:
 .. code-block:: bash
 
    sudo apt install software-properties-common
-   sudo apt-add-repository ppa:speth/cantera
+   sudo apt-add-repository ppa:cantera-team/cantera
 
 To install all of the Cantera packages:
 
