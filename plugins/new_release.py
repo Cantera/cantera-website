@@ -100,6 +100,7 @@ class NewRelease(Command):
             "(https://github.com/Cantera/cantera/releases/tag/{})".format(date, slug)
             + release_text[end_of_firstline:]
         )
+        release_text = release_text.replace("\r\n", "\n").replace("\r", "\n")
 
         # Create a new markdown page with the formatted release information
         self.site.plugin_manager.getPluginByName(
