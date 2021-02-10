@@ -329,7 +329,7 @@ to the reactors previously mentioned:
      \dot m = K_v g(t) f(P_1 - P_2)
 
   with :math:`K_v` being a proportionality constant that is set using the class
-  property :py:attr:`Valve.valve_coeff`. Further, :math:`g` and :math:`f`
+  property :py:func:`Valve.valve_coeff`. Further, :math:`g` and :math:`f`
   are functions of time and pressure drop that are set by class methods
   :py:func:`Valve.set_time_function` and :py:func:`Valve.set_valve_function`,
   respectively. If no functions are specified, the mass flow rate defaults to:
@@ -341,10 +341,10 @@ to the reactors previously mentioned:
   The pressure difference between upstream (*1*) and downstream (*2*) reservoir
   is defined as :math:`P_1 - P_2`. It is never possible for the flow to reverse
   and go from the downstream to the upstream reactor/reservoir through a line
-  containing a Valve object, which means that the flow rate is set to zero if
+  containing a :py:class:`Valve` object, which means that the flow rate is set to zero if
   :math:`P_1 < P_2`.
 
-  Valve objects are often used between an upstream reactor and a downstream
+  :py:class:`Valve` objects are often used between an upstream reactor and a downstream
   reactor or reservoir to maintain them both at nearly the same pressure. By
   setting the constant :math:`K_v` to a sufficiently large value, very small
   pressure differences will result in flow between the reactors that counteracts
@@ -359,7 +359,7 @@ to the reactors previously mentioned:
      \dot m = m_0 g(t)
 
   where :math:`m_0` is a mass flow coefficient and :math:`g` is a function of time
-  which are set by class property :py:attr:`MassFlowController.mass_flow_coeff`
+  which are set by class property :py:func:`MassFlowController.mass_flow_coeff`
   and method :py:func:`MassFlowController.set_time_function`, respectively. If no
   function is specified, the mass flow rate defaults to:
 
@@ -379,7 +379,7 @@ to the reactors previously mentioned:
 
 - :py:class:`PressureController`: A pressure controller is designed to be used in
   conjunction with another 'master' flow controller, typically a
-  MassFlowController. The master flow controller is installed on the inlet of
+  :py:class:`MassFlowController`. The master flow controller is installed on the inlet of
   the reactor, and the corresponding :py:class:`PressureController` is installed on on
   outlet of the reactor. The :py:class:`PressureController` mass flow rate is equal to the
   master mass flow rate, plus a small correction dependent on the pressure
@@ -391,7 +391,7 @@ to the reactors previously mentioned:
 
   where :math:`K_v` is a proportionality constant and :math:`f` is a function of
   pressure drop :math:`\P_1 - P_2` that are set by class property
-  :py:attr:`PressureController.pressure_coeff` and method
+  :py:func:`PressureController.pressure_coeff` and method
   :py:func:`PressureController.set_pressure_function`, respectively. If no
   function is specified, the mass flow rate defaults to:
 
@@ -417,7 +417,7 @@ current state of the system, it can be advanced in time by one of the following 
   :math:`\Delta t_{\mathrm{max}}`. The new time :math:`t_{\mathrm{new}}` is
   returned by this function.
 
-- ``advance``\ :math:`(t_{\mathrm{new}})`: This method computes the state of the
+- ``advance(``\ :math:`t_{\mathrm{new}}`\ ``)``: This method computes the state of the
   system at time :math:`t_{\mathrm{new}}`. :math:`t_{\mathrm{new}}` describes
   the absolute time from the initial time of the system. By calling this method
   in a for loop for pre-defined times, the state of the system is obtained for
