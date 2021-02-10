@@ -14,7 +14,7 @@
    .. class:: lead
 
       Windows installers are provided for stable versions of Cantera. These
-      installation instructions are for Cantera 2.4.0. Use these installers if you
+      installation instructions are for Cantera 2.5.0. Use these installers if you
       want to work with a copy of Python downloaded from `Python.org
       <https://www.python.org/>`__. If you are using Anaconda / Miniconda, see the
       directions :ref:`for conda <sec-install-conda>`.

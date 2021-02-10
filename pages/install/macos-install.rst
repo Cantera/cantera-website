@@ -34,22 +34,22 @@ following commands in Terminal:
 
 This installs the minimal Conda installation called Miniconda in a folder in your home directory.
 
-Next, install Cantera into an environment called ``cantera24``:
+Next, install Cantera into an environment called ``cantera25``:
 
 .. code-block:: bash
 
-   $HOME/miniconda3/bin/conda create -n cantera24 -c cantera cantera
+   $HOME/miniconda3/bin/conda create -n cantera25 -c cantera cantera
 
 **Download and run the Matlab Interface Installer**
 
 Download the Matlab Interface Installer package from GitHub:
-https://github.com/Cantera/cantera/releases/tag/v2.4.0
+https://github.com/Cantera/cantera/releases/tag/v2.5.0
 
 When the file has downloaded, find it in Finder, hold Control and click the file. Choose
 "Open" from the resulting menu, and select "Open" in the security dialog that appears.
 Click "Continue" to proceed in the installer (noting that the installer may open in the background;
 you can find its icon on the Dock), agreeing to the
-`Cantera license terms <https://github.com/Cantera/cantera/blob/v2.4.0/License.txt>`__
+`Cantera license terms <https://github.com/Cantera/cantera/blob/v2.5.0/License.txt>`__
 and the terms of the other open source software that we use.
 
 By default, the installer will add some lines to the file ``$HOME/Documents/MATLAB/startup.m``
