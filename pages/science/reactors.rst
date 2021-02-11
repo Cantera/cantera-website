@@ -405,9 +405,11 @@ to the reactors previously mentioned:
 Time Integration
 ----------------
 
-Cantera provides an ODE solver for solving the stiff equations of reacting systems. If Cantera is
-installed with SUNDIALS (the default), the optimized solver from SUNDIALS is used. Starting off the
-current state of the system, it can be advanced in time by one of the following methods:
+Cantera uses the CVODES solver from the
+`SUNDIALS <https://computing.llnl.gov/projects/sundials>`__
+package to integrate the stiff ODEs of reacting systems. Starting off the
+current state of the system, it can be advanced in time by one of the
+following methods:
 
 - ``step()``: The step method computes the state of the system at the a priori
   unspecified time :math:`t_{\mathrm{new}}`. The time :math:`t_{\mathrm{new}}`
