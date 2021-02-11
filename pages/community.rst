@@ -83,28 +83,6 @@ please:
   read by text readers for visually impaired users. Instead, please copy and
   paste any relevant text directly into your message. Thanks!
 
-Gitter
-~~~~~~
-
-For less formal and not-directly-relevant-to-Cantera discussions, we have set up
-a `Cantera chat room <https://gitter.im/Cantera/Lobby>`__ on Gitter. This is a
-forum where you can have conversations with other Cantera community members
-which are not directly relevant to the broader Cantera Users' Group. This may
-involve discussing applications based on Cantera, the scientific theory
-underpinning some of Cantera's functionality, broader questions about the
-scientific computing landscape, or perhaps just conversations to get to know
-other members of the Cantera community.
-
-A few notes:
-
-* This forum is not directly moderated or supported by the Cantera developers
-  or Steering Committee. While developers may periodically read or respond to
-  posts, there is no expectation of any official Cantera support through
-  this forum.
-* Posts or questions directly relevant to Cantera usage or support should
-  still be directed to the Cantera Users' Group. Having this information in a
-  single, searchable repository is a great benefit to our users, and we do not
-  want Cantera-relevant information spread across multiple venues.
 
 Interacting with the Cantera Community
 --------------------------------------
