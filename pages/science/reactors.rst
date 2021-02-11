@@ -561,15 +561,15 @@ The governing equations of Plug-Flow Reactors are [Kee2017]_:
 
      \frac{d(\rho u A)}{dz} =  P' \sum_k \dot{s}_k W_k
 
-  where:math: `u` is the axial velocity in (m/s) and :math:`P'` is the chemically active
+  where :math:`u` is the axial velocity in (m/s) and :math:`P'` is the chemically active
   channel perimeter in m (chemically active perimeter per unit length).
 
 - Continuity equation of species :math:`k`:
 
- .. math::
+  .. math::
 
-    \rho u \frac{d Y_k}{dz} + Y_k P' \sum_k \dot{s}_k W_k =
-      \dot{\omega}_k W_k + P' \dot{s}_k W_k
+     \rho u \frac{d Y_k}{dz} + Y_k P' \sum_k \dot{s}_k W_k =
+     \dot{\omega}_k W_k + P' \dot{s}_k W_k
 
 - Energy conservation:
 
