@@ -15,30 +15,16 @@
 These headers are designed for use in C++ application programs, and are not
 included by the Cantera core. The headers and their functions are:
 
-``IdealGasMix.h``
-    Provides class `IdealGasMix <{{% ct_docs doxygen/html/db/d19/classCantera_1_1IdealGasMix.html %}}>`__.
-
-``Interface.h``
-    Provides class `Interface <{{% ct_docs doxygen/html/db/dc7/classCantera_1_1Interface.html %}}>`__.
-
-``integrators.h``
-    ODE Integrators.
-
-``kinetics.h``
-    Base kinetics classes and functions for creating
-    `Kinetics <{{% ct_docs doxygen/html/d4/dc4/classCantera_1_1Kinetics.html %}}>`__ objects from
-    input files.
-
-``onedim.h``
-    One-dimensional reacting flows.
-
-``reactionpaths.h``
-    Reaction path diagrams.
 
 ``thermo.h``
     Base thermodynamic classes and functions for creating
     `ThermoPhase <{{% ct_docs doxygen/html/dc/d38/classCantera_1_1ThermoPhase.html %}}>`__
     objects from input files.
+
+``kinetics.h``
+    Base kinetics classes and functions for creating
+    `Kinetics <{{% ct_docs doxygen/html/d4/dc4/classCantera_1_1Kinetics.html %}}>`__ objects from
+    input files.
 
 ``transport.h``
     Base transport property classes and functions for creating
@@ -47,6 +33,13 @@ included by the Cantera core. The headers and their functions are:
 
 ``zerodim.h``
     Zero-dimensional reactor networks.
+
+``onedim.h``
+    One-dimensional reacting flows.
+
+``reactionpaths.h``
+    Reaction path diagrams.
+
 
 .. container:: container
 
