@@ -439,10 +439,18 @@ results corresponding to a predefined time series. These are associated with a
 predefined memory consumption and well comparable between simulation runs with
 different parameters. However, some detail (for example, a fast ignition process)
 might not be resolved in the output data due to the typically large time steps.
+To avoid losing this detail, the
+`Reactor::setAdvanceLimit <{{% ct_docs doxygen/html/dc/d5e/classCantera_1_1Reactor.html#a9b630edc7d836e901886d7fd81134d9e %}}>`__
+method (C++) or the :py:func:`Reactor.set_advance_limit` method (Python) can be
+used to set the maximum amount that a specified solution component can change
+between output times. For an example of this feature's use, see the example
+`reactor1.py </examples/python/reactors/reactor1.py.html>`__.
 
-The ``step`` method results in much more data points because of the small
+The ``step`` method results in many more data points because of the small
 timesteps needed. Additionally, the absolute time has to be kept track of
 manually.
+
+
 
 Even though Cantera comes pre-defined with typical parameters for tolerances
 and the maximum internal time step, the solution sometimes diverges. To solve
