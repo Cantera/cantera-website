@@ -1,7 +1,6 @@
 #include "cantera/thermo.h"
 #include "cantera/kinetics.h"
 #include "cantera/transport.h"
-#include "cantera/base/Solution.h"
 
 using namespace Cantera;
 
@@ -9,10 +8,20 @@ using namespace Cantera;
 // program.
 void simple_demo2()
 {
-    // Create a new Phase, including Kinetics and Transport objects
-    std::shared_ptr<Solution> soln = newSolution("gri30.yaml", "gri30", "mixture-averaged");
-    std::shared_ptr<ThermoPhase> gas = soln->thermo();
-    std::shared_ptr<Kinetics> kin = soln->kinetics();
+    std::string inputFile = "gri30.yaml";
+    std::string phaseName = "gri30";
+
+    // Create a new ThermoPhase. Based on the phase definition in the input
+    // file, this will be an IdealGasPhase object.
+    std::unique_ptr<ThermoPhase> gas(newPhase(inputFile, phaseName));
+
+    // List of phases participating in reactions (just one for homogeneous
+    // kinetics)
+    std::vector<ThermoPhase*> phases{gas.get()};
+
+    // Create the Kinetics object. Based on the phase definition in the input
+    // file, this will be a GasKinetics object.
+    std::unique_ptr<Kinetics> kin(newKinetics(phases, inputFile, phaseName));
 
     // Set an "interesting" mixture state where we will observe non-zero reaction
     // rates.
@@ -35,8 +44,9 @@ void simple_demo2()
     }
     writelog("\n");
 
-    // Create a Transport object
-    std::shared_ptr<Transport> trans = soln->transport();
+    // Create a Transport object. Based on the phase definition in the input
+    // file, this will be a MixTransport object.
+    std::unique_ptr<Transport> trans(newDefaultTransportMgr(gas.get()));
     writelog("T        viscosity     thermal conductivity\n");
     writelog("------   -----------   --------------------\n");
     for (size_t n = 0; n < 5; n++) {
