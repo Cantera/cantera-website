@@ -109,7 +109,7 @@ formulation is used, the calculation performed is:
 where :math:`\overline{W}` is the mean molecular weight of the mixture, :math:`D_{km}^\prime` is the
 mixture-averaged diffusion coefficient for species :math:`k`, and :math:`X_k` is the mole fraction
 for species :math:`k`. The diffusion coefficients used here are those computed by the method
-``GasTransport::getMixDiffCoeffs``.
+`GasTransport::getMixDiffCoeffs <{{% ct_docs doxygen/html/d8/d58/classCantera_1_1GasTransport.html#a699001499937e42f790551f01bce4424 %}}>`__.
 The correction applied by the second equation ensures that the sum of the mass fluxes is zero, a
 condition which is not inherently guaranteed by the mixture-averaged formulation.
 
