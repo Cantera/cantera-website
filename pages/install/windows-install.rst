@@ -21,8 +21,9 @@
 
 **Choose your Python version and architecture**
 
-- On Windows, Installers are provided for Python 3.6, Python 3.7, Python 3.8
-  and Python 3.9. You can install multiple Cantera Python modules simultaneously.
+- On Windows, Installers are provided for Python 3.5, Python 3.6, Python 3.7,
+  Python 3.8 and Python 3.9. You can install multiple Cantera Python modules
+  simultaneously.
 
 - Cantera supports both 32- and 64-bit Python installations.
 
@@ -30,7 +31,7 @@
   machine architecture.
 
 - The rest of these instructions will refer to your chosen version of Python
-  as *X.Y*.
+  as *3.X*.
 
 - If you are using Matlab, you must use the same architecture for Cantera and
   Matlab. Matlab defaults to 64-bit if you are running a 64-bit operating
@@ -41,9 +42,9 @@
 - Go to `python.org <https://www.python.org/>`__.
 
   - *64-bit*: Download the most recent "Windows X86-64 MSI Installer" for
-    Python *X.Y*.
+    Python *3.X*.
   - *32-bit*: Download the most recent "Windows x86 MSI Installer" for
-     Python *X.Y*.
+    Python *3.X*.
 
 - Run the installer. The default installation options should be fine.
 
@@ -56,30 +57,35 @@
   version of Python, and will include Numpy as well as many other
   packages useful for scientific users.
 
-**Install NumPy and optional Python packages**
-
-- Go to the `Unofficial Windows Binaries for Python Extension Packages page
-  <http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy>`_.
-
-- Download the most recent release (distributed as a "wheel" archive) of the
-  1.x series for Python *X.Y* that matches your Python architecture. In the
-  filename, the digits after "cp" indicate the Python version. For example,
-  ``numpy‑1.19.5+mkl‑cp39‑cp39‑win_amd64.whl`` is the installer for 64-bit
-  Python 3.9. The Windows installers for Cantera 2.5.0 require NumPy 1.12 or
-  newer (1.14 or newer is recommended).
-
-- From an administrative command prompt, install the downloaded wheel using
-  pip. For example::
-
-      c:\python39\scripts\pip.exe install "%USERPROFILE%\Downloads\numpy‑1.19.5+mkl‑cp39‑cp39‑win_amd64.whl"
+**Install required and optional Python packages**
 
 - If you plan on using Cantera from Python, note that we highly recommend
-  installing the conda package. If you plan to continue using this Python
-  installation, you may also want to install IPython (an advanced
-  interactive Python interpreter) and Matplotlib (a plotting library), which
-  are also available from the above link (note that you may also need to
-  download additional dependencies for each of these packages). Matplotlib
-  is required to run some of the Python examples.
+  installing the `conda package </install/conda-install.html>`__ instead of
+  using the standalone installer. Installation with this procedure is sufficient
+  if you will mainly be using a different interface, such as Matlab.
+
+- Open a Command Prompt. If you chose a to install Python for all users, you
+  should open the Command Prompt as Administrator.
+
+- Install Cantera's required dependencies by running:
+
+  .. code:: bash
+
+     py -m pip install numpy ruamel.yaml
+
+- Some Cantera features and examples require additional Python packages.
+  These can be installed by running:
+
+  .. code:: bash
+
+     py -m pip install h5py pandas matplotlib
+
+- You may also want to install IPython, an advanced interactive Python interpreter:
+
+  .. code:: bash
+
+     py -m pip install ipython
+
 
 **Remove old versions of Cantera**
 
