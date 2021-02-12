@@ -14,7 +14,7 @@
    .. class:: lead
 
       Windows installers are provided for stable versions of Cantera. These
-      installation instructions are for Cantera 2.5.0. Use these installers if you
+      installation instructions are for Cantera 2.5.1. Use these installers if you
       want to work with a copy of Python downloaded from `Python.org
       <https://www.python.org/>`__. If you are using Anaconda / Miniconda, see the
       directions :ref:`for conda <sec-install-conda>`.
@@ -64,7 +64,7 @@
   using the standalone installer. Installation with this procedure is sufficient
   if you will mainly be using a different interface, such as Matlab.
 
-- Open a Command Prompt. If you chose a to install Python for all users, you
+- Open a Command Prompt. If you chose to install Python for all users, you
   should open the Command Prompt as Administrator.
 
 - Install Cantera's required dependencies by running:
@@ -100,10 +100,10 @@
 - Go to the `Cantera Releases <https://github.com/Cantera/cantera/releases>`_
   page.
 
-  - *64-bit*: Download **Cantera-2.5.0-x64.msi** and
-    **Cantera-Python-2.5.0-x64-py3.X.msi**.
-  - *32-bit*: Download **Cantera-2.5.0-x86.msi** and
-    **Cantera-Python-2.5.0-x86-py3.Y.msi**.
+  - *64-bit*: Download **Cantera-2.5.1-x64.msi** and
+    **Cantera-Python-2.5.1-x64-py3.X.msi**.
+  - *32-bit*: Download **Cantera-2.5.1-x86.msi** and
+    **Cantera-Python-2.5.1-x86-py3.Y.msi**.
 
 - If you are only using the Python module, you do not need to download and
   install the base package (the one without Python in the name).
