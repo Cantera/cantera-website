@@ -160,7 +160,7 @@ follows:
    David G. Goodwin, Raymond L. Speth, Harry K. Moffat, and Bryan W. Weber.
    *Cantera: An object-oriented software toolkit for chemical kinetics,
    thermodynamics, and transport processes*. https://www.cantera.org,
-   2018. Version 2.4.0. doi:10.5281/zenodo.1174508
+   2021. Version 2.5.1. doi:10.5281/zenodo.4527812
 
 The following BibTeX entry may also be used:
 
@@ -171,14 +171,15 @@ The following BibTeX entry may also be used:
                  and Bryan W. Weber",
        title = "Cantera: An Object-oriented Software Toolkit for Chemical
                 Kinetics, Thermodynamics, and Transport Processes",
-       year = 2018,
-       note = "Version 2.4.0",
+       year = 2021,
+       note = "Version 2.5.1",
        howpublished = "\url{https://www.cantera.org}",
-       doi = {10.5281/zenodo.1174508}
+       doi = {10.5281/zenodo.4527812}
    }
 
-If you are using a different version of Cantera, update the ``note`` and
-``year`` fields accordingly.
+If you are using a different version of Cantera, update the ``year``, ``note``
+and ``doi`` fields accordingly. You can find the correct DOI for other versions
+of Cantera in `Cantera's Zenodo Entry <https://doi.org/10.5281/zenodo.742000>`__.
 
 Donations
 ~~~~~~~~~
