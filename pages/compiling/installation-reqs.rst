@@ -159,7 +159,7 @@ General Notes
   the version of Python installed in the system directories. The minimum
   compatible Cython version is 0.23. If your distribution does not contain a
   suitable version, you may be able to install a more recent version using
-  ``pip``.
+  Pip.
 
 * Users of other distributions should install the equivalent packages, which
   may have slightly different names.
@@ -392,35 +392,12 @@ Windows Requirements
       the headers from Boost
 
 * In addition to the general software, building the Python module also requires
+  several Python packages: Cython, NumPy, and Ruamel.yaml. All of these can be
+  installed using `pip`:
 
-  * Pip
+  .. code:: bash
 
-    * Most packages will be downloaded as Wheel (``*.whl``) files. To install
-      these files, type::
-
-          pip3 install C:\Path\to\downloaded\file\package-file-name.whl
-
-  * Cython
-
-    * http://www.lfd.uci.edu/~gohlke/pythonlibs/#cython
-
-    * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
-      and Python 3.X (indicated by ``cp3X`` in the file name), where X is the
-      minor version of the Python where you installed SCons.
-
-    * Cython must be installed in the version of Python that has SCons installed
-
-  * NumPy
-
-    * http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
-
-    * Download the ``*.whl`` file for your Python architecture (32-bit or 64-bit)
-      and Python 3.X (indicated by ``cp3X`` in the file name), where X is the minor
-      version of Python.
-
-  * Ruamel.yaml::
-
-      pip install ruamel.yaml
+     py -m pip install cython numpy ruamel.yaml
 
 * In addition to the general software, building the MATLAB toolbox also requires:
 
