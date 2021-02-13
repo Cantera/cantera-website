@@ -390,7 +390,7 @@ to the reactors previously mentioned:
      \dot m = \dot m_{\text{master}} + K_v f(P_1 - P_2)
 
   where :math:`K_v` is a proportionality constant and :math:`f` is a function of
-  pressure drop :math:`\P_1 - P_2` that are set by class property
+  pressure drop :math:`P_1 - P_2` that are set by class property
   :py:func:`PressureController.pressure_coeff` and method
   :py:func:`PressureController.set_pressure_function`, respectively. If no
   function is specified, the mass flow rate defaults to:
