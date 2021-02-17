@@ -698,8 +698,25 @@ OUTPUT_FOLDER = os.getenv("NIKOLA_OUTPUT_DIR", "output")
 # <https://getnikola.com/handbook.html#post-processing-filters>
 #
 from nikola import filters
+import typogrify.filters as typo
+from functools import partial
 
-FILTERS = {".html": [filters.typogrify, filters.add_header_permalinks]}
+FILTERS = {
+    ".html": [
+        partial(
+            filters.typogrify_custom,
+            typogrify_filters=[
+                typo.amp,
+                typo.widont,
+                typo.smartypants,
+                typo.caps,
+                typo.initial_quotes,
+            ],
+            ignore_tags=["title", ".math"],
+        ),
+        filters.add_header_permalinks,
+    ]
+}
 
 # Executable for the "yui_compressor" filter (defaults to 'yui-compressor').
 # YUI_COMPRESSOR_EXECUTABLE = 'yui-compressor'
