@@ -70,6 +70,13 @@ post on the `Google Users' Group <https://groups.google.com/forum/#!forum/canter
 
 ------------
 
+**gas-properties**: a python GUI for calculating properties of gases, equilibrium states, and isentropic compression. Similar to unsupported GasEQ software.
+
+| `Repository <https://github.com/jsantner/gas-properties>`__
+| Maintainer(s): Jeff Santner
+
+------------
+
 **PoKITT**: a library for Portable Kinetics, Thermodynamics, and Transport calculations.
 
 | `Repository <https://gitlab.multiscale.utah.edu/common/PoKiTT>`__
