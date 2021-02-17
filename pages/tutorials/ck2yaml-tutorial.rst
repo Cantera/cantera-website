@@ -66,7 +66,7 @@ command line to ``ck2yaml``.
   ``description`` field or to define custom fields that are included in the YAML
   output.
 
-- ``--name```: This specifies the name of the phase in the resulting YAML file.
+- ``--name``: This specifies the name of the phase in the resulting YAML file.
   The default is ``gas``.
 
 - ``--output``: Specifies the output file name. By default, the output file name

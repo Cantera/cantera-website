@@ -30,7 +30,7 @@ BLOG_EMAIL = "steering@cantera.org"
 BLOG_DESCRIPTION = "This site is for the Cantera software"  # (translatable)
 
 # The most recent major release version of Cantera
-CANTERA_VERSION = "2.4"
+CANTERA_VERSION = "2.5"
 
 # The default context used when looking up :class: or :func: roles
 # Options are 'py', 'cti', or 'mat'
@@ -278,6 +278,7 @@ DOCS_FOLDERS = {
     "api-docs/docs-2.2": "documentation/docs-2.2",
     "api-docs/docs-2.3": "documentation/docs-2.3",
     "api-docs/docs-2.4": "documentation/docs-2.4",
+    "api-docs/docs-2.5": "documentation/docs-2.5",
 }
 
 FILES_FOLDERS = {"files/survey2013": "survey2013", "files/license": ""}

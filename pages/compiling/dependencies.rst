@@ -21,7 +21,7 @@ Fortran compiler is required only if you plan to build the Fortran module.
 
 * GNU compilers (C/C++/Fortran)
 
-  * Known to work with version 4.8; Expected to work with version >= 4.6
+  * Known to work with version 7.4 and 9.3. Expected to work with version >= 4.6.
 
 * Clang/LLVM (C/C++)
 
@@ -38,8 +38,9 @@ Fortran compiler is required only if you plan to build the Fortran module.
 
 * Microsoft compilers (C/C++)
 
-  * Known to work with versions 12.0 (Visual Studio 2013) and 14.0 (Visual
-    Studio 2015).
+    * Known to work with Visual Studio 2013 (MSVC 12.0), Visual Studio 2015
+      (MSVC 14.0), Visual Studio 2017 (MSVC 14.1), and Visual Studio 2019
+      (MSVC 14.2).
 
 * MinGW (C/C++/Fortran)
 
@@ -61,7 +62,7 @@ Other Required Software
 * Python:
 
   * https://python.org/downloads/
-  * Known to work with 2.7 and 3.6. Expected to work with versions >= 3.3.
+  * Works with versions >= 3.5.
 
 * Boost
 
@@ -75,7 +76,7 @@ Other Required Software
   * If SUNDIALS is not installed, it will be automatically downloaded and the
     necessary portions will be compiled and installed with Cantera.
   * https://computation.llnl.gov/projects/sundials/sundials-software
-  * Known to work with versions >= 2.4, including the 3.x series.
+  * Known to work with versions >= 2.4.
   * To use SUNDIALS with Cantera on a Linux/Unix system, it must be compiled
     with the ``-fPIC`` flag. You can specify this flag when configuring
     SUNDIALS (2.4 or 2.5)::
@@ -115,6 +116,13 @@ Other Required Software
   * http://fmtlib.net/latest/index.html
   * Version 3.0.1 or newer is required.
 
+* yaml-cpp
+
+  * If yaml-cpp is not installed, it will be automatically downloaded and the
+    necessary portions will be compiled and installed with Cantera.
+  * https://github.com/jbeder/yaml-cpp
+  * Known to work with version 0.6.3. Version 0.6.0 or newer is required.
+
 * Google Test
 
   * If Google Test is not installed, it will be automatically downloaded and the
@@ -129,14 +137,11 @@ Optional Programs
 
   * Required to build the Cantera Python module, and to run significant portions
     of the test suite.
-  * Known to work with versions 1.8.1-1.14.0. Expected to work with
-    versions >= 1.8.1.
-  * Must be installed for each of the Python packages that will be built
+  * Expected to work with versions >= 1.12.0. 1.14.0 or newer is recommended.
 
 * `Cython <http://cython.org/>`__
 
-  * Required version >=0.23 to build the Python module. Must be installed for
-    the same Python where SCons is installed.
+  * Required version >=0.23 to build the Python module.
 
 * `Ruamel.yaml <https://pypi.org/project/ruamel.yaml/>`__
 
@@ -144,11 +149,6 @@ Optional Programs
     format
   * Known to work with versions 0.15.42, 0.15.87, and 0.16.5
   * Expected to work with versions >= 0.15.0
-
-* `3to2 <https://pypi.org/project/3to2>`__
-
-  * Used to convert Python examples to Python 2 syntax.
-  * Known to work with version 1.0
 
 * Matlab
 

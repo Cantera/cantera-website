@@ -17,53 +17,42 @@
       (PPA). Note that the Matlab packages are not available from this archive; to install the
       Matlab packages on Ubuntu, you must :ref:`compile the source code <sec-compiling>`.
 
-As of Cantera 2.4.0, packages are available for Ubuntu 16.04 (Xenial Xerus) and Ubuntu 18.04 (Bionic
-Beaver). To see which Ubuntu releases and Cantera versions are currently available, visit
-https://launchpad.net/~speth/+archive/ubuntu/cantera
+As of Cantera 2.5.0, packages are available for Ubuntu 18.04 (Bionic Beaver), Ubuntu 20.04
+(Focal Fossa), and Ubuntu 20.10 (Groovy Gorilla). To see which Ubuntu releases and Cantera
+versions are currently available, visit
+https://launchpad.net/~cantera-team/+archive/ubuntu/cantera
 
 The available packages are:
-
-- ``cantera-python`` - The Cantera Python module for Python 2.
 
 - ``cantera-python3`` - The Cantera Python module for Python 3.
 
 - ``cantera-dev`` - Libraries and header files for compiling your own C++ and
   Fortran 90 programs that use Cantera.
 
+- ``cantera-common`` - Cantera data files and example programs
+
 To add the Cantera PPA:
 
 .. code-block:: bash
 
-   sudo aptitude install python-software-properties
-   sudo apt-add-repository ppa:speth/cantera
-   sudo aptitude update
+   sudo apt install software-properties-common
+   sudo apt-add-repository ppa:cantera-team/cantera
 
 To install all of the Cantera packages:
 
 .. code-block:: bash
 
-   sudo aptitude install cantera-python cantera-python3 cantera-dev
+   sudo apt install cantera-python3 cantera-dev
 
-or install whichever subset you need by adjusting the above command.
+or install whichever subset you need by adjusting the above command. The ``cantera-common``
+package is installed as a dependency if any other Cantera packages are selected.
 
 If you plan on using Cantera from Python, you may also want to install IPython
 (an advanced interactive Python interpreter) and Matplotlib (a plotting
-library). Matplotlib is required to run some of the Python examples. For Python
-2, these packages can be installed with:
+library). Matplotlib is required to run some of the Python examples. These packages
+can be installed with:
 
 .. code-block:: bash
 
-    pip2 install ipython matplotlib
-
-And for Python 3, these packages can be installed with:
-
-.. code-block:: bash
-
+    sudo apt install python3-pip
     pip3 install ipython matplotlib
-
-You may need to install ``pip`` first; instructions can be found on the `pip
-installation instructions <https://pip.pypa.io/en/latest/installing/index.html#install-pip>`__.
-You may need to
-have superuser access to install packages into the system directories.
-Alternatively, you can add ``--user`` after ``pip install`` but before the
-package names to install into your local user directory.

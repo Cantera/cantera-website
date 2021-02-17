@@ -86,45 +86,6 @@ options control how the Python module is built:
 * :ref:`python_package <python-package>`
 * :ref:`python_prefix <python-prefix>`
 
-Note that these general options should not be used at the same time
-as the Python-version specific options discussed below. If SCons
-detects that it is being run with Python 2, and the
-:ref:`python2_package <python2-package>` option is set, the build will
-raise an error and exit; or if SCons detects that it is being run with
-Python 3, and the :ref:`python3_package <python3-package>` option is
-set, the build will raise an error and exit.
-
-If a user wishes to build multiple Python interfaces, or a Python
-interface for the version of Python that is not running SCons, they
-should use the version-specific options below, and set the
-:ref:`python_package <python-package>` option to ``none``.
-
-Python 2 Module Options
-^^^^^^^^^^^^^^^^^^^^^^^
-
-By default, if SCons detects a Python 2 interpreter installed in a
-default location (that is, if ``python2`` is on the ``PATH`` environment
-variable) or ``python2_package`` is ``full``, SCons will try to build
-the Python module for Python 2. The following SCons options control how
-the Python 2 module is built:
-
-* :ref:`python2_cmd <python2-cmd>`
-* :ref:`python2_package <python2-package>`
-* :ref:`python2_prefix <python2-prefix>`
-
-Python 3 Module Options
-^^^^^^^^^^^^^^^^^^^^^^^
-
-By default, if SCons detects a Python 3 interpreter installed in a
-default location (that is, if ``python3`` is on the ``PATH`` environment
-variable) or ``python3_package`` is ``full``, SCons will try to build
-the Python module for Python 3. The following SCons options control how
-the Python 3 module is built:
-
-* :ref:`python3_cmd <python3-cmd>`
-* :ref:`python3_package <python3-package>`
-* :ref:`python3_prefix <python3-prefix>`
-
 Windows Only Options
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -167,7 +128,7 @@ option:
 Fortran Module Options
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Building the Fortran module requires a compatible Fortran comiler. SCons will
+Building the Fortran module requires a compatible Fortran compiler. SCons will
 attempt to find a compatible compiler by default in the ``PATH`` environment
 variable. The following options control how the Fortran module is built:
 
@@ -214,10 +175,10 @@ argument after ``scons``):
 * ``scons clean``
     Delete files created while building Cantera.
 
-* ``[sudo] scons install``
+* ``scons install``
     Install Cantera.
 
-* ``[sudo] scons uninstall``
+* ``scons uninstall``
     Uninstall Cantera.
 
 * ``scons test``
@@ -279,7 +240,7 @@ Compile Cantera & Test
     Compilation completed successfully.
 
     - To run the test suite, type 'scons test'.
-    - To install, type '[sudo] scons install'.
+    - To install, type 'scons install'.
     *******************************************************
 
 * If you do not see this message, check the output for errors to see what went

@@ -83,28 +83,6 @@ please:
   read by text readers for visually impaired users. Instead, please copy and
   paste any relevant text directly into your message. Thanks!
 
-Gitter
-~~~~~~
-
-For less formal and not-directly-relevant-to-Cantera discussions, we have set up
-a `Cantera chat room <https://gitter.im/Cantera/Lobby>`__ on Gitter. This is a
-forum where you can have conversations with other Cantera community members
-which are not directly relevant to the broader Cantera Users' Group. This may
-involve discussing applications based on Cantera, the scientific theory
-underpinning some of Cantera's functionality, broader questions about the
-scientific computing landscape, or perhaps just conversations to get to know
-other members of the Cantera community.
-
-A few notes:
-
-* This forum is not directly moderated or supported by the Cantera developers
-  or Steering Committee. While developers may periodically read or respond to
-  posts, there is no expectation of any official Cantera support through
-  this forum.
-* Posts or questions directly relevant to Cantera usage or support should
-  still be directed to the Cantera Users' Group. Having this information in a
-  single, searchable repository is a great benefit to our users, and we do not
-  want Cantera-relevant information spread across multiple venues.
 
 Interacting with the Cantera Community
 --------------------------------------
@@ -182,7 +160,7 @@ follows:
    David G. Goodwin, Raymond L. Speth, Harry K. Moffat, and Bryan W. Weber.
    *Cantera: An object-oriented software toolkit for chemical kinetics,
    thermodynamics, and transport processes*. https://www.cantera.org,
-   2018. Version 2.4.0. doi:10.5281/zenodo.1174508
+   2021. Version 2.5.1. doi:10.5281/zenodo.4527812
 
 The following BibTeX entry may also be used:
 
@@ -193,14 +171,15 @@ The following BibTeX entry may also be used:
                  and Bryan W. Weber",
        title = "Cantera: An Object-oriented Software Toolkit for Chemical
                 Kinetics, Thermodynamics, and Transport Processes",
-       year = 2018,
-       note = "Version 2.4.0",
+       year = 2021,
+       note = "Version 2.5.1",
        howpublished = "\url{https://www.cantera.org}",
-       doi = {10.5281/zenodo.1174508}
+       doi = {10.5281/zenodo.4527812}
    }
 
-If you are using a different version of Cantera, update the ``note`` and
-``year`` fields accordingly.
+If you are using a different version of Cantera, update the ``year``, ``note``
+and ``doi`` fields accordingly. You can find the correct DOI for other versions
+of Cantera in `Cantera's Zenodo Entry <https://doi.org/10.5281/zenodo.742000>`__.
 
 Donations
 ~~~~~~~~~

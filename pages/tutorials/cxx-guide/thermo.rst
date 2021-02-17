@@ -28,7 +28,7 @@ prints its temperature is shown below:
    int main(int argc, char** argv)
    {
        std::unique_ptr<Cantera::ThermoPhase> gas(
-           Cantera::newPhase("h2o2.cti", "ohmech"));
+           Cantera::newPhase("h2o2.yaml", "ohmech"));
        std::cout << gas->temperature() << std::endl;
        return 0;
    }

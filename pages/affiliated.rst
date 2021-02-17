@@ -21,6 +21,13 @@ post on the `Google Users' Group <https://groups.google.com/forum/#!forum/canter
 
 ------------
 
+**Arrhenius.jl**: differential combustion modeling software in Julia.
+
+| `Repository <https://github.com/DENG-MIT/Arrhenius.jl>`__
+| Maintainer(s): Weiqi Ji
+
+------------
+
 **ASALI**: graphical user interface for calculating properties using Cantera.
 
 | `Repository <https://github.com/srebughini/ASALI>`__
@@ -31,6 +38,21 @@ post on the `Google Users' Group <https://groups.google.com/forum/#!forum/canter
 **BIOVIA Materials Studio**: commercial modeling and simulation software for materials science and chemistry.
 
 | `Website <https://www.3dsbiovia.com/products/collaborative-science/biovia-materials-studio/>`__
+
+------------
+
+**CollectionOfMechanisms**: a hub for combustion reaction mechanisms including converted Cantera XML and YAML based mechanisms.
+
+| `Repository <https://github.com/jiweiqi/CollectionOfMechanisms>`__
+| Maintainer(s): Weiqi Ji
+
+------------
+
+**ctwrap**: a light-weight Python wrapper facilitating batch simulations.
+
+| `Website <https://microcombustion.github.io/ctwrap/>`__
+| `Repository <https://github.com/microcombustion/ctwrap>`__
+| Maintainer(s): Ingmar Schoegl
 
 ------------
 
@@ -67,6 +89,13 @@ post on the `Google Users' Group <https://groups.google.com/forum/#!forum/canter
 
 | `Repository <https://github.com/Niemeyer-Research-Group/pyMARS>`__
 | Maintainer(s): Phillip Mestas, Kyle Niemeyer
+
+------------
+
+**reactorch**: A Differentiable Reacting Flow Simulation Package in PyTorch.
+
+| `Repository <https://github.com/DENG-MIT/reactorch>`__
+| Maintainer(s): Weiqi Ji
 
 ------------
 

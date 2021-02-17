@@ -181,9 +181,7 @@ class RenderMatlabExamples(Task):
                 )
             name = mat_ex_file.stem.replace("_", " ")
             if doc.lower().replace("_", " ").startswith(name):
-                # This is too aggressive at removing leading -
-                # It also removes from things like "zero-dimensional"
-                doc = doc[len(name) :].replace("-", "").strip()  # NOQA: E203
+                doc = doc[len(name) :].lstrip("- ")  # NOQA: E203
             matlab_headers["examples"]["summaries"][mat_ex_file.name] = doc
 
             out_name = kw["output_folder"].joinpath(

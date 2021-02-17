@@ -65,7 +65,11 @@ Options List
 * ``toolchain``: [ ``msvc`` | ``mingw`` | ``intel`` ]
     The preferred compiler toolchain. Windows only.
 
-    - default: ``'msvc'``
+    - default:
+
+      - ``g++`` is on the path, MSVC is not on the path, and ``msvc_version``
+        is not specified: ``'mingw'``
+      - Otherwise: ``'msvc'``
 
 .. _cxx-dev:
 
@@ -86,7 +90,10 @@ Options List
 * ``prefix``: [ ``/path/to/prefix`` ]
     Set this to the directory where Cantera should be installed.
 
-    - default: ``''``
+    - default:
+
+      - Linux / macOS / other Unix systems: ``'/usr/local'``
+      - Windows: ``'C:\Program Files\Cantera'``
 
 .. _python-package-dev:
 
@@ -124,7 +131,10 @@ Options List
     To install to the current user's ``site-packages`` directory, use
     ``python_prefix=USER``.
 
-    - default: ``''``
+    - default:
+
+      - Windows: ``''``
+      - Otherwise: ``'$prefix'``
 
 .. _python3-package-dev:
 
@@ -246,6 +256,17 @@ Options List
 
     - default: ``'default'``
 
+.. _system-yamlcpp-dev:
+
+* ``system_yamlcpp``: [``default`` | ``y`` | ``n`` ]
+    Select whether to use the yaml-cpp library from a system installation
+    (``y``), from a Git submodule (``n``), or to decide automatically
+    (``default``). If yaml-cpp is not installed directly into system
+    include and library directories, then you will need to add those
+    directories to ``extra_inc_dirs`` and ``extra_lib_dirs``.
+
+    - default: ``'default'``
+
 .. _system-sundials-dev:
 
 * ``system_sundials``: [ ``default`` | ``y`` | ``n`` ]
@@ -350,14 +371,17 @@ Options List
     string ``all`` or a comma separated list of variable names such as
     ``LD_LIBRARY_PATH,HOME``.
 
-    - default: ``'LD_LIBRARY_PATH,PYTHONPATH'``
+    - default: ``'PATH,LD_LIBRARY_PATH,PYTHONPATH'``
 
 .. _use-pch-dev:
 
 * ``use_pch``: [ ``yes`` | ``no`` ]
     Use a precompiled-header to speed up compilation
 
-    - default: ``'yes'``
+    - default:
+
+      - If using the Intel C/C++ compiler: ``'no'``
+      - Otherwise: ``'yes'``
 
 .. _cxx-flags-dev:
 
@@ -365,7 +389,13 @@ Options List
     Compiler flags passed to the C++ compiler only. Separate multiple
     options with spaces -- for example, ``cxx_flags='-g -Wextra -O3 --std=c++11'``
 
-    - default: ``''``
+    - default:
+
+      - If using GCC: ``'-std=c++0x'``
+      - If using GCC on Cygwin: ``'-std=gnu++0x'``
+      - If using MSVC: ``'/EHsc'``
+      - If using Clang: ``'-std=c++11'``
+      - If using ICC: ``'-std=c++0x'``
 
 .. _cc-flags-dev:
 
@@ -373,14 +403,22 @@ Options List
     Compiler flags passed to both the C and C++ compilers, regardless of
     optimization level
 
-    - default: ``''``
+    - default:
+
+      - If using GCC: ``''``
+      - If using MSVC: ``'/MD /nologo /D_SCL_SECURE_NO_WARNINGS /D_CRT_SECURE_NO_WARNINGS'``
+      - If using Clang: ``'-fcolor-diagnostics'``
+      - If using ICC: ``'-vec-report0 -diag-disable 1478'``
 
 .. _thread-flags-dev:
 
 * ``thread_flags``: [ ``string`` ]
     Compiler and linker flags for POSIX multithreading support.
 
-    - default: ``''``
+    - default:
+
+      - If compiling on Windows: ``''``
+      - Otherwise: ``'-pthread'``
 
 .. _optimize-dev:
 
@@ -397,7 +435,12 @@ Options List
     Additional compiler flags passed to the C/C++ compiler when
     ``optimize=yes``.
 
-    - default: ``''``
+    - default:
+
+      - If using GCC: ``'-O3 -Wno-inline'``
+      - If using MSVC: ``'/O2'``
+      - If using Clang: ``'-O3'``
+      - If using ICC: ``'-O3'``
 
 .. _no-optimize-flags-dev:
 
@@ -405,7 +448,10 @@ Options List
     Additional compiler flags passed to the C/C++ compiler when
     ``optimize=no``.
 
-    - default: ``''``
+    - default:
+
+      - If using MSVC: ``'/Od /Ob0'``
+      - Otherwise: ``'-O0'``
 
 .. _debug-dev:
 
@@ -420,7 +466,10 @@ Options List
     Additional compiler flags passed to the C/C++ compiler when
     ``debug=yes``.
 
-    - default: ``''``
+    - default:
+
+      - If using MSVC: ``'/Zi /Fd${TARGET}.pdb'``
+      - Otherwise: ``'-g'``
 
 .. _no-debug-flags-dev:
 
@@ -435,7 +484,10 @@ Options List
 * ``debug_linker_flags``: [ ``string`` ]
     Additional options passed to the linker when ``debug=yes``.
 
-    - default: ``''``
+    - default:
+
+      - If using MSVC: ``'/DEBUG'``
+      - Otherwise: ``''``
 
 .. _no-debug-linker-flags-dev:
 
@@ -451,7 +503,11 @@ Options List
     extra warnings. Used only when compiling source code that is part of
     Cantera (for example, excluding code in the 'ext' directory).
 
-    - default: ``''``
+    - default:
+
+      - If using MSVC: ``'/W3'``
+      - If using ICC: ``'-Wcheck'``
+      - Otherwise: ``'-Wall'``
 
 .. _extra-inc-dirs-dev:
 
@@ -515,11 +571,14 @@ Options List
 
 * ``versioned_shared_library``: [ ``yes`` | ``no`` ]
     If enabled, create a versioned shared library, with symlinks to the
-    more generic library name, for example ``libcantera_shared.so.2.4.0`` as the
+    more generic library name, for example ``libcantera_shared.so.2.5.0`` as the
     actual library and ``libcantera_shared.so`` and ``libcantera_shared.so.2``
     as symlinks.
 
-    - default: ``'no'``
+    - default:
+
+      - If compiling with MinGW or when using SCons < 2.4.0: ``'no'``
+      - Otherwise: ``'yes'``
 
 .. _layout-dev:
 
@@ -532,4 +591,7 @@ Options List
     with a prefix like '/opt/cantera'. 'debian' installs to the
     stage directory in a layout used for generating Debian packages.
 
-    - default: ``'standard'``
+    - default:
+
+      - Windows: ``'compact'``
+      - Otherwise: ``'standard'``

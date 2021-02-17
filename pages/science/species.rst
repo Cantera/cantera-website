@@ -120,7 +120,7 @@ The NASA 7-Coefficient Polynomial Parameterization
 
 The NASA 7-coefficient polynomial parameterization is used to compute the
 species reference-state thermodynamic properties :math:`\hat{c}^0_p(T)`,
-:math:`\hat{h}^0(T)` and :math:`\hat{s}^0(T)`.
+:math:`\hat{h}^0(T)`, and :math:`\hat{s}^0(T)`.
 
 The NASA parameterization represents :math:`\hat{c}^0_p(T)` with a fourth-order
 polynomial:
@@ -128,9 +128,9 @@ polynomial:
 .. math::
 
    \frac{c_p^0(T)}{R} = a_0 + a_1 T + a_2 T^2 + a_3 T^3 + a_4 T^4
-
-   \frac{h^0(T)}{RT} = a_0 + \frac{a1}{2}T + \frac{a_2}{3} T^2 +
-                     \frac{a_3}{4} T^3 + \frac{a_4}{5} T^4 + \frac{a_5}{T}
+   
+   \frac{h^0 (T)}{R T} = a_0 + \frac{a_1}{2} T + \frac{a_2}{3} T^2 +
+                         \frac{a_3}{4} T^3 + \frac{a_4}{5} T^4 + \frac{a_5}{T}
 
    \frac{s^0(T)}{R} = a_0 \ln T + a_1 T + \frac{a_2}{2} T^2 + \frac{a_3}{3} T^3 +
                       \frac{a_4}{4} T^4 + a_6
@@ -161,7 +161,7 @@ the following equations:
    \frac{C_p^0(T)}{R} = a_0 T^{-2} + a_1 T^{-1} + a_2 + a_3 T
                   + a_4 T^2 + a_5 T^3 + a_6 T^4
 
-   \frac{H^0(T)}{RT} = - a_0 T^{-2} + a_1 \frac{\ln T}{T} + a_2
+   \frac{H^0(T)}{R T} = - a_0 T^{-2} + a_1 \frac{\ln T}{T} + a_2
        + \frac{a_3}{2} T + \frac{a_4}{3} T^2  + \frac{a_5}{4} T^3 +
        \frac{a_6}{5} T^4 + \frac{a_7}{T}
 

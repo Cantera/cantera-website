@@ -23,7 +23,7 @@ Stable Release
 
   .. code:: bash
 
-      git checkout tags/v2.4.0
+      git checkout tags/v2.5.0
       git submodule update
 
   A list of all the tags can be shown by:
@@ -52,7 +52,7 @@ Beta Release
 
   .. code:: bash
 
-     git checkout tags/v2.4.0b2
+     git checkout tags/v2.5.0b1
      git submodule update
 
   Note that the most recent beta version might be older than the most recent
@@ -68,10 +68,10 @@ Beta Release
 
   .. code:: bash
 
-     git checkout 2.4
+     git checkout 2.5
      git submodule update
 
-  This branch has all the work on the 2.4.x version of the software.
+  This branch has all the work on the 2.5.x version of the software.
 
 Development Version
 -------------------

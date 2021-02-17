@@ -1,0 +1,91 @@
+name: Build and deploy
+
+on:
+  push:
+    # Build when main or testing is pushed to
+    branches:
+      - main
+      - testing
+  pull_request:
+    # Build when a pull request targets main
+    branches:
+      - main
+
+env:
+  NIKOLA_OUTPUT_DIR: output
+  WEBSITE_CLONE_DIR: website
+  RSYNC_USER: "ctdeploy"
+  RSYNC_SERVER: "cantera.org"
+  DEPLOY: ${{ github.event_name == 'push' && github.repository_owner == 'Cantera' && (endswith(github.ref, 'main') || endsWith(github.ref, 'testing')) }}
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout the repository
+      with:
+        path: ${{ env.WEBSITE_CLONE_DIR }}
+    - uses: actions/checkout@v2
+      name: Checkout Cantera repository
+      with:
+        submodules: recursive
+        repository: Cantera/cantera
+        path: cantera
+        ref: 2.5
+    - uses: actions/checkout@v2
+      name: Checkout Cantera Jupyter repository
+      with:
+        repository: Cantera/cantera-jupyter
+        path: cantera-jupyter
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+        architecture: x64
+    - name: Upgrade pip
+      run: python3 -m pip install -U pip setuptools wheel
+    - name: Get pip cache dir
+      id: pip-cache
+      run: echo "::set-output name=dir::$(python3 -m pip cache dir)"
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ${{ steps.pip-cache.outputs.dir }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: python3 -m pip install -r requirements.txt
+      working-directory: ${{ env.WEBSITE_CLONE_DIR }}
+
+    - name: Build the site
+      run: NIKOLA_DEBUG=1 nikola build
+      working-directory: ${{ env.WEBSITE_CLONE_DIR }}
+
+    # The known_hosts key is generated with `ssh-keygen -F cantera.org` from a
+    # machine that has previously logged in to cantera.org and trusts
+    # that it logged in to the right machine
+    - name: Set up SSH key and host for deploy
+      if: env.DEPLOY == 'true'
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.CTDEPLOY_KEY }}
+        known_hosts: ${{ secrets.CTDEPLOY_KNOWN_HOSTS }}
+    - name: Upload the docs
+      if: env.DEPLOY == 'true' && endsWith(github.ref, 'main')
+      env:
+        RSYNC_DEST: "cantera"
+      run: |
+        rsync -avzP --checksum --exclude='*.map' --exclude='*.md5' \
+        --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /documentation/dev/*' \
+        "${WEBSITE_CLONE_DIR}/${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
+    - name: Upload the docs
+      if: env.DEPLOY == 'true' && endsWith(github.ref, 'testing')
+      env:
+        RSYNC_DEST: "testing.cantera.org"
+      run: |
+        rsync -avzP --checksum --exclude='*.map' --exclude='*.md5' \
+        --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /documentation/dev/*' \
+        "${WEBSITE_CLONE_DIR}/${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}

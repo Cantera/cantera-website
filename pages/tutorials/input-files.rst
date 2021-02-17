@@ -19,12 +19,12 @@ The required input files can be provided via one of several methods:
 - Use one of the pre-existing input files provided with Cantera
 - Convert a pre-existing mechanism from Chemkin (CK) format to YAML format *(New
   in Cantera 2.5)*
-- Convert a pre-existing mechanism from Chemkin (CK) format to Cantera (CTI) format
+- Convert a pre-existing mechanism from Chemkin (CK) format to Cantera (CTI) format (not recommended)
 - Create your own YAML file from scratch or by editing an existing file *(New in
   Cantera 2.5)*
 - Create your own CTI file, either from scratch (not recommended) or by editing an existing file
 
-The first two options will suffice for a majority of Cantera users. Advanced
+The first option will suffice for a majority of Cantera users. Advanced
 users may, however, need to edit an existing input file in order to define
 additional species, reactions, or entirely new phases. Even if you need to
 create an entirely new input file, it is still advisable to start from an existing
@@ -37,15 +37,15 @@ easily lead to errors, if one forgets that this file does not represent the orig
 Input files distributed with Cantera
 ====================================
 
-Several reaction mechanism files in the CTI format are included in the Cantera distribution,
-including ones that model natural gas combustion (``gri30.cti``), high-temperature air
-(``air.cti``), a hydrogen/oxygen reaction mechanism (``h2o2.cti``), some pure fluids in the
-liquid-vapor region (``liquidvapor.cti``), and a few surface reaction mechanisms (such as
-``ptcombust.cti``, ``diamond.cti``, etc.), among others. Under Windows, these files may be located
+Several reaction mechanism files are included in the Cantera distribution,
+including ones that model natural gas combustion (``gri30.yaml``), high-temperature air
+(``air.yaml``), a hydrogen/oxygen reaction mechanism (``h2o2.yaml``), some pure fluids in the
+liquid-vapor region (``liquidvapor.yaml``), and a few surface reaction mechanisms (such as
+``ptcombust.yaml``, ``diamond.yaml``, etc.), among others. Under Windows, these files may be located
 in ``C:\Program Files\Cantera\data`` depending on how you installed Cantera and the options you
 specified. On a Unix/Linux/macOS machine, they are usually kept in the ``data`` subdirectory
-within the Cantera installation directory. Starting with Cantera 2.5, corresponding
-versions of these input files in the YAML format are also installed.
+within the Cantera installation directory. Corresponding versions of these input files in the
+CTI and XML format are also installed, for backwards compatibility.
 
 Please see the tutorials for :doc:`Python <python-tutorial>` and :doc:`Matlab <matlab-tutorial>`
 for instructions on how to import from these pre-existing files.

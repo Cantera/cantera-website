@@ -19,9 +19,9 @@ object types:
 - ``Transport`` - computes transport properties for a `ThermoPhase`
 
 This program uses "factory" functions to create derived objects objects of the
-appropriate type which are specified in the input file ``gri30.cti``.
+appropriate type which are specified in the input file ``gri30.yaml``.
 
-.. include:: pages/tutorials/cxx-guide/demo1b.cpp
+.. include:: pages/tutorials/cxx-guide/factory_demo.cpp
    :code: c++
 
 This program produces the output below::

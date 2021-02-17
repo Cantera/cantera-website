@@ -39,3 +39,19 @@ site is built using the [Nikola](https://getnikola.com) static site generator.
     - Example: `nikola new_release -t v2.4.0`
 * To add release notes for a version by its release ID: `nikola new_release -i {id}`
     - Example: `nikola new_release -i 12508904`
+
+## Cheat sheet for linking to content in various places:
+* To link to another section on the same page (using the title of the section):
+    `Governing Equations for Single Reactors`_
+* To link to an external site:
+  * `YAML 1.2 <https://yaml.org/spec/1.2/spec.html>`__
+* To link to a Python class:
+  * :py:class:`ConstPressureReactor`
+* To link to a C++ class:
+  * `ThermoPhase <{{% ct_docs doxygen/html/dc/d38/classCantera_1_1ThermoPhase.html %}}>`__
+* To link to an example:
+  * `IC engine example </examples/python/reactors/ic_engine.py.html>`__
+* To link to a label in the YAML API docs:
+  * :ref:`three-body <sec-yaml-three-body>`
+* To link to a class defined in `ctml_writer`:
+  * :cti:class:`falloff_reaction`
