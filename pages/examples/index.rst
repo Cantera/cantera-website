@@ -13,55 +13,86 @@
       Cantera includes example scripts for a number of applications. Depending on which interface
       you're using, select one of the categories below.
 
-.. container:: card-deck
 
-   .. container:: card
+.. container:: container
 
-      .. container::
-         :tagname: a
-         :attributes: href="python/index.html"
-                      title="Python Examples"
+   .. row::
 
-         .. container:: card-header section-card
+      .. container:: col-12
 
-            Python Examples
+         .. container:: card-deck
 
-      .. container:: card-body
+            .. container:: card
 
-         .. container:: card-text
+               .. container::
+                  :tagname: a
+                  :attributes: href="python/index.html"
+                              title="Python Examples"
 
-            Examples of using the Python interface
+                  .. container:: card-header section-card
 
-   .. container:: card
+                     Python Examples
 
-      .. container::
-         :tagname: a
-         :attributes: href="matlab/index.html"
-                      title="Matlab Examples"
+               .. container:: card-body
 
-         .. container:: card-header section-card
+                  .. container:: card-text
 
-            Matlab Examples
+                     Examples of using the Python interface
 
-      .. container:: card-body
+            .. container:: card
 
-         .. container:: card-text
+               .. container::
+                  :tagname: a
+                  :attributes: href="matlab/index.html"
+                              title="Matlab Examples"
 
-            Examples of using the Matlab interface
+                  .. container:: card-header section-card
 
-   .. container:: card
+                     Matlab Examples
 
-      .. container::
-         :tagname: a
-         :attributes: href="jupyter/index.html"
-                      title="Jupyter Notebook Examples"
+               .. container:: card-body
 
-         .. container:: card-header section-card
+                  .. container:: card-text
 
-            Jupyter Notebook Examples
+                     Examples of using the Matlab interface
 
-      .. container:: card-body
+            .. container:: card
 
-         .. container:: card-text
+               .. container::
+                  :tagname: a
+                  :attributes: href="jupyter/index.html"
+                              title="Jupyter Notebook Examples"
 
-            Examples of using the Jupyter Notebook and the Python interface.
+                  .. container:: card-header section-card
+
+                     Jupyter Notebook Examples
+
+               .. container:: card-body
+
+                  .. container:: card-text
+
+                     Examples of using the Jupyter Notebook and the Python interface.
+
+   .. row::
+
+      .. container:: col-12
+
+         .. container:: card-deck
+
+            .. container:: card
+
+               .. container::
+                  :tagname: a
+                  :attributes: href="cxx/index.html"
+                              title="C++ Examples"
+
+                  .. container:: card-header section-card
+
+                     C++ Examples
+
+               .. container:: card-body
+
+                  .. container:: card-text
+
+                     Examples of using Cantera directly from C++ applications.
+
