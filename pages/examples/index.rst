@@ -96,3 +96,20 @@
 
                      Examples of using Cantera directly from C++ applications.
 
+            .. container:: card
+
+               .. container::
+                  :tagname: a
+                  :attributes: href="fortran/index.html"
+                              title="Fortran Examples"
+
+                  .. container:: card-header section-card
+
+                     Fortran Examples
+
+               .. container:: card-body
+
+                  .. container:: card-text
+
+                     Examples of using the Cantera Fortran 90 interface, and of using Cantera from Fortran 77.
+

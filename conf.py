@@ -301,6 +301,7 @@ EXAMPLES_FOLDERS = {
     "../cantera-jupyter": "examples/jupyter",
     "../cantera/samples/matlab": "examples/matlab",
     "../cantera/samples/cxx": "examples/cxx",
+    "../cantera/samples/f90": "examples/fortran"
 }
 # Which means process listings from 'listings' into 'output/listings'
 
