@@ -13,7 +13,7 @@ from pathlib import Path
 from nikola.plugin_categories import Task
 from nikola import utils
 from pygments import highlight
-from pygments.lexers import FortranLexer, CppLexer
+from pygments.lexers import FortranLexer, FortranFixedLexer, CppLexer
 from itertools import chain
 import re
 import natsort
@@ -71,6 +71,8 @@ def render_example(site, kw, in_name, out_name):
     """
     if str(in_name).endswith('.cpp'):
         lexer = CppLexer()
+    elif str(in_name).endswith('.f'):
+        lexer = FortranFixedLexer()
     else:
         lexer = FortranLexer()
     code = highlight(
