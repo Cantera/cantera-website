@@ -36,8 +36,8 @@ def render_example_index(site, kw, headers, output_file):
     """
     n = 3
     for head_dict in headers.values():
-        head_files = head_dict["files"]
-        head_dict["files"] = [
+        head_files = head_dict["names"]
+        head_dict["names"] = [
             head_files[i : i + n] for i in range(0, len(head_files), n)  # NOQA: E203
         ]
 
@@ -54,8 +54,8 @@ def render_example_index(site, kw, headers, output_file):
     site.render_template("cxx-example-index.tmpl", str(output_file), context)
 
 
-def render_example(site, kw, in_name, out_name):
-    """Render a single .m file to HTML with formatting.
+def render_example(site, kw, in_names, out_name):
+    """Render a set of .h and .cpp files to HTML with formatting.
 
     Parameters
     ==========
@@ -63,29 +63,32 @@ def render_example(site, kw, in_name, out_name):
         An instance of a Nikola site, available in any plugin as ``self.site``
     kw:
         A dictionary of keywords for this task
-    in_name:
-        The file to be rendered, as an instance of pathlib.Path
+    in_names:
+        The files to be rendered, as a list of pathlib.Path objects
     out_name:
         A pathlib.Path instance pointing to the rendered output file
 
     """
-    code = highlight(
-        in_name.read_bytes(), CppLexer(), utils.NikolaPygmentsHTML(in_name.name)
-    )
+    items = []
+    for source_file in in_names:
+        code = highlight(
+            source_file.read_bytes(),
+            CppLexer(),
+            utils.NikolaPygmentsHTML(source_file.name)
+        )
+        items.append({
+            "code": code,
+            "title": source_file.name,
+            "source_link": source_file.name,
+        })
 
-    title = in_name.name
-    permalink = out_name.relative_to(kw["output_folder"])
-    source_link = permalink.stem  # remove '.html'
     context = {
-        "code": code,
-        "title": title,
-        "permalink": str(permalink),
+        "items": items,
+        "title": out_name,
         "lang": kw["default_lang"],
-        "description": title,
-        "source_link": source_link,
         "pagekind": ["example"],
     }
-    site.render_template("examples.tmpl", str(out_name), context)
+    site.render_template("multifile-example.tmpl", str(out_name), context)
 
 
 class RenderCxxExamples(Task):
@@ -101,7 +104,7 @@ class RenderCxxExamples(Task):
 
     def set_site(self, site):
         """Set Nikola site."""
-        # Verify that a Python output folder appears only once in EXAMPLES_FOLDERS
+        # Verify that a C++ output folder appears only once in EXAMPLES_FOLDERS
         found_cxx = False
         for source, dest in site.config["EXAMPLES_FOLDERS"].items():
             if "cxx" in dest:
@@ -157,83 +160,116 @@ class RenderCxxExamples(Task):
             "cxx-example-index.tmpl"
         )
         folder = Path(self.input_folder).resolve()
-        cxx_examples = list(chain(folder.glob("**/*.cpp"), folder.glob("**/*.h")))
-        cxx_headers = {
-            "examples": {"name": "Examples", "files": [], "summaries": {}}
+        cxx_examples = {
+            subdir: list(chain(subdir.glob("*.h"), subdir.glob("*.cpp")))
+            for subdir in folder.glob("*")
+        }
+        cxx_headings = {
+            "examples": {
+                "name": "Examples",
+                "names": [],
+                "titles": {},
+                "summaries": {},
+            }
         }
 
-        uptodate["d"] = cxx_headers.keys()
+        uptodate["d"] = cxx_headings.keys()
         uptodate["f"] = list(map(str, cxx_examples))
 
-        for cxx_ex_file in cxx_examples:
-            # Try to get the first comment block in the file to use as a description
-            cxx_headers["examples"]["files"].append(cxx_ex_file)
+
+        for subdir, cxx_ex_files in cxx_examples.items():
+            if not cxx_ex_files:
+                # Skip items that are not directories containing C++ files
+                continue
+
+            # Take the first non-empty, non "@file..." line as the title.
+            # Take the following comments, up to the next blank line
+            # (not including comment characters) as the summary.
             doc = []
-            in_block_comment = False
-            for line in cxx_ex_file.read_text(encoding="utf-8").split("\n"):
-                line = line.strip()
-                if '*/' in line:
-                    in_block_comment = False
-                    line = line[:line.find('*/')]
-                if line.startswith('/*'):
-                    doc.append(line.lstrip('/* !'))
-                    in_block_comment = True
-                if in_block_comment or line.startswith("//")  or line.startswith('* '):
-                    doc.append(line.lstrip('/* !'))
-                elif doc:
+            def append_doc(line):
+                line = line.lstrip('/* !')
+                if line.startswith('@file'):
+                    line = re.sub(r'@file \w+.\w+\s*', '', line)
+                doc.append(line)
+
+            for ex_file in cxx_ex_files:
+                if not ex_file.name.endswith('.cpp'):
+                    continue
+                in_block_comment = False
+                for line in ex_file.read_text(encoding="utf-8").split("\n"):
+                    line = line.strip()
+                    if '*/' in line:
+                        in_block_comment = False
+                        append_doc(line[:line.find('*/')])
+                    elif line.startswith('/*'):
+                        in_block_comment = True
+                        append_doc(line)
+                    elif in_block_comment or line.startswith("//")  or line.startswith('* '):
+                        append_doc(line)
+                    elif any(doc):
+                        break
+
+            title = ''
+            summary = []
+            for line in doc:
+                if line and not title:
+                    title = line
+                elif line:
+                    summary.append(line)
+                elif summary:
                     break
-            doc = ' '.join(doc).strip()
-            print(cxx_ex_file, '======\n', doc, '\n================\n')
-            if doc.startswith('@file'):
-                doc = re.sub(r'@file \w+.\w+ ', '', doc)
-            if not doc:
+            summary = ' '.join(summary)
+            if not summary:
                 self.logger.warn(
-                    "The C++ example {!s} doesn't have an appropriate summary. The "
-                    "first comment line of the C++ file is taken as the "
-                    "summary.".format(cxx_ex_file)
+                    f"The C++ example {ex_file!s} doesn't have an appropriate summary"
                 )
-            name = cxx_ex_file.stem.replace("_", " ")
-            cxx_headers["examples"]["summaries"][cxx_ex_file.name] = doc
+            name = subdir.stem.replace("_", " ")
+
+            cxx_headings["examples"]["names"].append(name)
+            cxx_headings["examples"]["titles"][name] = title
+            cxx_headings["examples"]["summaries"][name] = summary
             out_name = kw["output_folder"].joinpath(
-                self.examples_folder, cxx_ex_file.name + '.html'
+                self.examples_folder, name.replace(' ', '-') + '.html'
             )
 
             yield {
                 "basename": self.name,
                 "name": str(out_name),
-                "file_dep": examples_template_deps + [cxx_ex_file],
+                "file_dep": examples_template_deps + cxx_ex_files,
                 "targets": [out_name],
-                "actions": [(render_example, [self.site, kw, cxx_ex_file, out_name])],
+                "actions": [(render_example, [self.site, kw, cxx_ex_files, out_name])],
                 # This is necessary to reflect changes in blog title,
                 # sidebar links, etc.
                 "uptodate": [utils.config_changed(uptodate, "cxx_examples:source")],
                 "clean": True,
             }
 
-            out_name = kw["output_folder"].joinpath(
-                self.examples_folder, cxx_ex_file.name
-            )
-            yield {
-                "basename": self.name,
-                "name": str(out_name),
-                "file_dep": [cxx_ex_file],
-                "targets": [out_name],
-                "actions": [(utils.copy_file, [cxx_ex_file, out_name])],
-                "clean": True,
-            }
+            for ex_file in cxx_ex_files:
+                out_name = kw["output_folder"].joinpath(
+                    self.examples_folder, ex_file.name
+                )
+                yield {
+                    "basename": self.name,
+                    "name": str(out_name),
+                    "file_dep": cxx_ex_files,
+                    "targets": [out_name],
+                    "actions": [(utils.copy_file, [ex_file, out_name])],
+                    "clean": True,
+                }
 
-        cxx_headers["examples"]["files"] = natsort.natsorted(
-            cxx_headers["examples"]["files"], alg=natsort.IC
+        cxx_headings["examples"]["names"] = natsort.natsorted(
+            cxx_headings["examples"]["names"], alg=natsort.IC
         )
 
         out_name = kw["output_folder"].joinpath(self.examples_folder, kw["index_file"])
+        all_files = [str(name[0]) for name in chain(cxx_examples.values()) if name]
         yield {
             "basename": self.name,
             "name": str(out_name),
-            "file_dep": index_template_deps + list(map(str, cxx_examples)),
+            "file_dep": index_template_deps + all_files,
             "targets": [out_name],
             "actions": [
-                (render_example_index, [self.site, kw, cxx_headers, out_name])
+                (render_example_index, [self.site, kw, cxx_headings, out_name])
             ],
             # This is necessary to reflect changes in blog title,
             # sidebar links, etc.

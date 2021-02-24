@@ -5,21 +5,20 @@
 
 <p>This is an index of the C++ examples included with Cantera.</p>
 
-{% for head, file_dict in headers.items() %}
+{% for head, ex_dict in headers.items() %}
   <div class="section" id="cxx-example">
     <h2 class="cxx-example-header example-header">
-      {{ file_dict['name'] }}
+      {{ ex_dict['name'] }}
       <a class="headerlink" href="#cxx-example" title="Permalink to this headline">¶</a>
     </h2>
-    {% for row in file_dict['files'] %}
+    {% for row in ex_dict.names %}
     <div class="card-deck cxx-example-row example-row">
-      {% for file in row %}
-      {% set fname = file.name %}
+      {% for name in row %}
       <!-- <div class="col-sm-4"> -->
         <div class="card">
-          <a href="{{ fname }}.html"><h5 class="card-header">{{ fname }}</h5></a>
+          <a href="{{ name }}.html"><h5 class="card-header">{{ ex_dict.titles[name] }}</h5></a>
           <div class="card-body">
-            <p class="card-text">{{ file_dict['summaries'][fname] }}</p>
+            <p class="card-text">{{ ex_dict.summaries[name] }}</p>
           </div>
         </div>
       <!-- </div> -->

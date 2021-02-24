@@ -167,43 +167,67 @@ class RenderFortranExamples(Task):
             folder.glob("../f77/*.cpp"),
         ))
         fortran_headers = {
-            "examples": {"name": "Examples", "files": [], "summaries": {}}
+            "examples": {
+                "name": "Examples",
+                "files": [],
+                "titles": {},
+                "summaries": {},
+            }
         }
 
         uptodate["d"] = fortran_headers.keys()
         uptodate["f"] = list(map(str, fortran_examples))
 
         for fortran_ex_file in fortran_examples:
-            # Try to get the first comment block in the file to use as a description
-            # Combination of detection for F77, F90, and C/C++ comments
+            # Take the first non-empty, non "@file..." line as the title.
+            # Take the following comments, up to the next blank line
+            # (not including comment characters) as the summary.
+            # Combination of detection for F77, F90, and C/C++ comments.
             fortran_headers["examples"]["files"].append(fortran_ex_file)
             doc = []
+            def append_doc(line):
+                line = line.lstrip('/* !')
+                if line.startswith('@file'):
+                    line = re.sub(r'@file \w+.\w+\s*', '', line)
+                doc.append(line)
+
             in_block_comment = False
             for line in fortran_ex_file.read_text(encoding="utf-8").split("\n"):
                 line = line.strip()
                 if '*/' in line:
                     in_block_comment = False
-                    line = line[:line.find('*/')]
+                    append_doc(line[:line.find('*/')])
                 if line.startswith('/*'):
-                    doc.append(line.lstrip('/* !'))
+                    append_doc(line)
                     in_block_comment = True
-                if in_block_comment or line.startswith('!') or line.startswith("//")  or line.startswith('* '):
-                    doc.append(line.lstrip('/* !'))
+                if (in_block_comment or line.startswith('!') or line.startswith("//")
+                    or line.startswith('* ')):
+                    append_doc(line)
                 elif line.startswith('c     '):
-                    doc.append(line[6:])
-                elif doc:
+                    append_doc(line[6:])
+                elif line == 'c':
+                    append_doc('')
+                elif any(doc):
                     break
-            doc = ' '.join(doc).strip()
 
-            print(fortran_ex_file, '======\n', doc, '\n================\n')
-            if not doc:
+            title = ''
+            summary = []
+            for line in doc:
+                if line and not title:
+                    title = line
+                elif line:
+                    summary.append(line)
+                elif summary:
+                    break
+            summary = ' '.join(summary)
+
+            if not summary:
                 self.logger.warn(
-                    "The Fortran example {!s} doesn't have an appropriate summary. The "
-                    "first comment line of the Fortran file is taken as the "
-                    "summary.".format(fortran_ex_file)
+                    f"The Fortran example {fortran_ex_file!s} doesn't have "
+                    "an appropriate summary."
                 )
-            name = fortran_ex_file.stem.replace("_", " ")
-            fortran_headers["examples"]["summaries"][fortran_ex_file.name] = doc
+            fortran_headers["examples"]["summaries"][fortran_ex_file.name] = summary
+            fortran_headers["examples"]["titles"][fortran_ex_file.name] = title
             out_name = kw["output_folder"].joinpath(
                 self.examples_folder, fortran_ex_file.name + '.html'
             )

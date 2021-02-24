@@ -17,7 +17,7 @@
       {% set fname = file.name %}
       <!-- <div class="col-sm-4"> -->
         <div class="card">
-          <a href="{{ fname }}.html"><h5 class="card-header">{{ fname }}</h5></a>
+          <a href="{{ fname }}.html"><h5 class="card-header">{{ file_dict.titles[fname] }}</h5></a>
           <div class="card-body">
             <p class="card-text">{{ file_dict['summaries'][fname] }}</p>
           </div>
