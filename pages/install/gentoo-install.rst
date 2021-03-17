@@ -13,7 +13,7 @@
 
    .. class:: lead
 
-      Gentoo `sci-libs/cantera-2.4.0 <https://packages.gentoo.org/packages/sci-libs/cantera>`__ package is provided using a main portage tree.
+      Gentoo `sci-libs/cantera <https://packages.gentoo.org/packages/sci-libs/cantera>`__ package is provided using a main portage tree.
       Additionally the `app-doc/cantera-docs <https://packages.gentoo.org/packages/app-doc/cantera-docs>`__ package
       is provided for offline Documentation API reference for Cantera package libraries.
       Note that the Matlab interface is not available from this package; to install the
@@ -23,7 +23,7 @@ The following interfaces and tools are installed by default:
 
 - C++ Libraries and header files for compiling your own programs that use Cantera.
 
-- `CTI tools <../tutorials/ck2cti-tutorial.html>`__ (``cti`` USE flag, optional).
+- `YAML tools <../tutorials/ck2yaml-tutorial.html>`__ and legacy `CTI tools <../tutorials/ck2cti-tutorial.html>`__ (``cti`` USE flag, optional).
 
 - Python module for Python 3 (``python`` USE flag with appropriate ``PYTHON_SINGLE_TARGET``, optional).
 
@@ -40,7 +40,7 @@ To install ``sci-libs/cantera`` and ``app-doc/cantera-docs`` packages:
 
     emerge --ask cantera cantera-docs
 
-Most likely these packages and/or some of their dependencies still have unstable status in the Gentoo portage tree
+Most likely the latest versions of these packages and/or some of their dependencies still have unstable status in the Gentoo portage tree
 and then you have to ``unmask`` (allow to install within stable system) them preliminarily using `/etc/portage/package.accept_keywords <https://wiki.gentoo.org/wiki//etc/portage/package.accept_keywords>`__.
 
 If ``/etc/portage/package.accept_keywords`` is present in your system as file then (for 64-bit architecture) you could unmask ``sci-libs/cantera`` package by running command (as root)
