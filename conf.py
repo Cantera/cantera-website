@@ -300,6 +300,8 @@ EXAMPLES_FOLDERS = {
     "../cantera/interfaces/cython/cantera/examples": "examples/python",
     "../cantera-jupyter": "examples/jupyter",
     "../cantera/samples/matlab": "examples/matlab",
+    "../cantera/samples/cxx": "examples/cxx",
+    "../cantera/samples/f90": "examples/fortran"
 }
 # Which means process listings from 'listings' into 'output/listings'
 
