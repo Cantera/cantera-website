@@ -44,7 +44,7 @@ post on the `Google Users' Group <https://groups.google.com/forum/#!forum/canter
 **CollectionOfMechanisms**: a hub for combustion reaction mechanisms including converted Cantera XML and YAML based mechanisms.
 
 | `Repository <https://github.com/jiweiqi/CollectionOfMechanisms>`__
-| Maintainer(s): Weiqi Ji
+| Maintainer(s): Weiqi Ji, Jeff Santner
 
 ------------
 
