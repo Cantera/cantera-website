@@ -125,6 +125,40 @@ where :math:`D_{ki}` is the multicomponent diffusion coefficient and
 :math:`D_k^T` is the Soret diffusion coefficient (used only if calculation of
 this term is specifically enabled).
 
+The Drift-Diffusion Model
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To account for the transport of charged species in a flame, the drift term is added to the
+diffusive fluxes of the mixture-average formulation according to [Ped1993]_,
+
+.. math::
+  
+   j_k^* = \rho \frac{W_k}{\overline{W}} D_{km}^\prime \frac{\partial X_k}{\partial z} +
+           s_k \mu_k E Y_k,
+
+where :math:`s_k` is the sign of charge (1,-1, and 0 respectively for positive, negative, and
+neutral charge), :math:`\mu_k` is the mobility, and :math:`E` is the electric field.
+The diffusion coefficients and mobilities of charged species can be more accurately calculated by
+**IonGasTransport::getMixDiffCoeffs** and **IonGasTransport::getMobilities**. In addition, the
+correction can only be applied to the fluxes of neutral species to ensure the accuracy of the
+fluxed of charged species,
+
+.. math::
+
+    j_k = j_k^* - \frac {1 - |s_k|} {1 - \sum_i |s_i| Y_i} Y_k \sum_i j_i^*.
+
+The equation for electrostatics is added to obtain the electric field,
+
+.. math::
+
+    \frac{\partial E}{\partial z} = \frac{e}{\epsilon_0}(n_+ - n_-),
+
+    E|_{z=0} = 0,
+
+where :math:`n_+` and :math:`n_-` represent respectively the number densities of positively and negatively
+charged species.
+
+
 Boundary Conditions
 ===================
 
@@ -214,3 +248,6 @@ for each surface species :math:`i` are computed such that :math:`\dot{s}_i = 0`.
 
 .. [Kee2017] R. J. Kee, M. E. Coltrin, P. Glarborg, and H. Zhu. *Chemically Reacting Flow:
    Theory and Practice*. 2nd Ed. John Wiley and Sons, 2017.
+
+.. [Ped1993] T. Pederson and R. C. Brown. Simulation of electric field effects in premixed
+   methane flames. *Combustion and Flames*, 94.4:433-448, 1993.
