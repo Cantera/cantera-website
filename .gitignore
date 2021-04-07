@@ -112,5 +112,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-#mac hidden files
+# VS Code
+.vscode/
+
+# macOS hidden files
 *.DS_Store
