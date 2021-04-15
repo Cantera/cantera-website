@@ -285,6 +285,47 @@ Chebyshev reactions can be defined in the CTI format using the
 :cti:class:`chebyshev_reaction` entry, or in the YAML format using the
 :ref:`Chebyshev <sec-yaml-Chebyshev>` reaction ``type``.
 
+.. _sec-Blowers-Masel:
+
+Blowers-Masel Reactions
+-----------------------
+
+Blowers-Masel rate expression represents the approximation porposed by Blowers
+and Masel [#BlowersMasel2000]_ to automatically scale activation energy
+as we change species' enthalpies. The activation energy estimation can be written
+as:
+
+.. math::
+
+   E_a = 0 \;\text{if } \Delta H \leq -4 E_a^0
+
+   E_a = \Delta H \;\text{if } \Delta H \geq 4 E_a^0
+
+   E_a =  \frac{\left( w + \frac{\Delta H }{2} \right)  (V_P - 2 w + \Delta H) ^2}
+               {V_P^2 - 4 w^2 + \Delta H^2} \;\text{Otherwise}
+
+where
+
+.. math::
+
+   V_P = 2 w \frac{w + E_a^0}{w - E_a^0},
+
+:math:`w` is the average of the bond dissociation energy of the bond breaking and that being formed,
+:math:`E_a^0` is the intrinsic activation energy, and :math:`\Delta H` is the enthalpy change of the reaction.
+Note that the expression is very insensitive to :math:`w` as long as :math:`w \ge 2 E_a^0`, so we can use
+an arbitrary high value of :math:`w = 1000 kJ/mol`.
+
+After :math:`E_a` is evaluated, the reaction rate can be calculated as modified Arrhenius expression
+
+.. math::
+
+   k_f = A T^b e^{-E_a / RT}.
+
+Blowers Masel reaction can be defined in the YAML format using the
+:ref:`Blowers-Masel <sec-yaml-Blowers-Masel>` reaction ``type``.
+
+.. _sec-surface:
+
 Surface Reactions
 -----------------
 
@@ -344,6 +385,21 @@ Sticking reactions can be defined in the CTI format using the `stick` entry, or
 in the YAML format by specifying the rate constant in the reaction's
 :ref:`sticking-coefficient <sec-yaml-interface-reaction>` field.
 
+Surface Blowers-Masel Reactions
+-------------------------------
+
+Surface Blowers-Masel Reactions have the same Arrhenius-like rate expression described in
+:ref:`Surface Reactions<sec-surface>`, and the activation energy :math:`E_a` is determined
+as described in :ref:`Blowers-Masel Reactions<sec-Blowers-Masel>`.
+
+Surface Blowers-Masel reactions can be identified by the presence of surface spcecies and
+the defined :ref:`Blowers-Masel<sec-yaml-surface-Blowers-Masel>` reaction ``type`` in YAML
+format.
+
+Note that surface Blowers-Masel reactions also support all the :ref:`additional options <sec-yaml-interface-reaction>`
+described in :ref:`Surface Reactions<sec-surface>` and :ref:`sticking-coefficient <sec-yaml-interface-reaction>` field in YAML
+format.
+
 Additional Options
 ------------------
 
@@ -398,3 +454,7 @@ these cases, the default behavior may be overridden in the input file.
 .. [#Westbrook1981] C. K. Westbrook and F. L. Dryer. Simplified reaction
    mechanisms for the oxidation of hydrocarbon fuels in flames. *Combustion
    Science and Technology* **27**, pp. 31--43. 1981.
+
+.. [#BlowersMasel2000] Blowers, P., & Masel, R. (2000). Engineering approximations
+   for activation energies in hydrogen transfer reactions. *AIChE Journal*, 46(10),
+   2041-2052. https://doi.org/10.1002/aic.690461015
