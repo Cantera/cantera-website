@@ -118,3 +118,10 @@ post on the `Google Users' Group <https://groups.google.com/forum/#!forum/canter
 
 | `Website <http://shepherd.caltech.edu/EDL/PublicResources/sdt/>`__
 | Maintainer(s): Joseph E. Shepherd
+
+------------
+
+**ChemCheck**: A tool to help Cantera users to detect chemical and syntax errors in kinetic models
+
+ | `Repository <https://github.com/comocheng/ChemCheck>`__
+ | Maintainer(s): Chao Xu, Richard West
