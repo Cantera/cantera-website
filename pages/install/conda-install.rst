@@ -13,8 +13,8 @@
 
     .. class:: lead
 
-      `Anaconda <https://www.anaconda.com/downloads>`__ and
-      `Miniconda <https://conda.io/miniconda.html>`__ are Python distributions that include the
+      `Anaconda <https://www.anaconda.com/products/individual#Downloads>`__ and
+      `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ are Python distributions that include the
       ``conda`` package manager, which can be used to install Cantera. Both distributions are
       available for Linux, macOS, and Windows. Note that installing Cantera using Conda will only
       provide the Cantera Python module. If you want to use the other Cantera interfaces
@@ -25,16 +25,18 @@ Anaconda and Miniconda both include ``conda``; the difference is that Anaconda i
 number of Python packages that are widely used in scientific applications, while Miniconda is a
 minimal distribution that only includes Python and Conda, although all of the packages available in
 Anaconda can be installed in Miniconda. For more details on how to use conda, see the `conda
-documentation <https://conda.io/docs/intro.html>`__.
+documentation <https://docs.conda.io/projects/conda/en/latest/user-guide/index.html>`__.
 
 **Option 1: Create a new environment for Cantera**
 
 If you have just installed Anaconda or Miniconda, the following instructions
 will create a conda environment where you can use Cantera. For this example, the
-environment is named ``spam``. From the command line (or the Anaconda Prompt
-on Windows), run::
+environment is named ``ct-env``. From the command line (or the Anaconda Prompt
+on Windows), run:
 
-    conda create --name spam --channel cantera cantera ipython matplotlib
+.. code:: shell
+
+   conda create --name ct-env --channel cantera cantera ipython matplotlib jupyter
 
 This will create an environment with Cantera, IPython, Matplotlib, and all their
 dependencies installed. Although Conda can install a large set of packages by
@@ -45,32 +47,77 @@ obtained are specified by adding the ``--channel`` option in the ``install`` or
 ``cantera`` channel, so we add ``--channel cantera`` and to tell Conda to look at the
 ``cantera`` channel in addition to the default channels.
 
-To use the scripts and modules installed in the ``spam`` environment,
-you must activate it it by running::
+To use the scripts and modules installed in the ``ct-env`` environment, including Jupyter,
+you must activate it it by running:
 
-    conda activate spam
+.. code:: shell
 
-**Option 2: Install Cantera in an existing environment**
+   conda activate ct-env
 
-First, activate your environment (assumed here to be named ``baked_beans``; if you've
-forgotten the name of the conda environment you wanted to use, the command
-``conda env list`` can help). This is done by running::
+**Option 2: Create a new environment using an environment file**
 
-    conda activate baked_beans
+This option is similar to **Option 1** but includes a few other packages that
+you may find helpful as you're working with Cantera. Copy and paste the contents
+of the file shown below into a file called ``environment.yaml``. Then, save the
+the file somewhere and remember that location.
 
-Then, install Cantera in the active enironment by running::
+.. code:: yaml
 
-    conda install --channel cantera cantera
+   name: ct-env
+   channels:
+   - cantera  # or use cantera/label/dev for alpha/beta packages
+   - defaults
+   dependencies:
+   - python  # Cantera supports Python 3.6 and up
+   - cantera
+   - ipython  # optional (needed for nicer interactive command line)
+   - jupyter  # optional (needed for Jupyter Notebook)
+   - matplotlib  # optional (needed for plots)
+   - python-graphviz  # optional (needed for reaction path diagrams)
+   - h5py  # optional (needed for HDF/H5 output)
+   - pandas  # optional (needed for pandas interface)
+
+From the command line (or the
+Anaconda Prompt on Windows), change directory into the folder where you saved
+``environment.yaml``:
+
+.. code:: shell
+
+   cd folder/where/you/saved
+
+and then run:
+
+.. code:: shell
+
+   conda env create -f environment.yaml
+
+This will create an environment called ``ct-env``. Once you've done that, you
+need to activate the environment before using any scripts or modules that you
+just installed:
+
+.. code:: shell
+
+   conda activate ct-env
 
 **Option 3: Install the development version of Cantera**
 
 To install a recent development snapshot (that is, an alpha or beta version) of
-Cantera in an existing environment, activate the environment and then run::
+Cantera, use the ``cantera/label/dev`` channel. Assuming you have an environment
+named ``ct-dev``, you can type:
 
-    conda install --channel cantera/label/dev cantera
+.. code:: shell
 
-If you later want to revert back to the stable version, first remove and then
-reinstall Cantera::
+   conda activate ct-dev
+   conda install --channel cantera/label/dev cantera
 
-    conda remove cantera
-    conda install --channel cantera cantera
+If you later want to revert back to the stable version in that environment, first
+remove and then reinstall Cantera:
+
+.. code:: shell
+
+   conda activate ct-dev
+   conda remove cantera
+   conda install --channel cantera cantera
+
+Alternatively, you can remove the ``ct-dev`` environment and follow Options 1 or 2
+above to create a new environment.
