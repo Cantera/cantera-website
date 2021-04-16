@@ -290,7 +290,9 @@ Chebyshev reactions can be defined in the CTI format using the
 Blowers-Masel Reactions
 -----------------------
 
-Blowers-Masel rate expression represents the approximation porposed by Blowers
+**New in Cantera 2.6**
+
+The Blowers-Masel rate expression is an approximation proposed by Blowers
 and Masel [#BlowersMasel2000]_ to automatically scale activation energy
 as we change species' enthalpies. The activation energy estimation can be written
 as:
