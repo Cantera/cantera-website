@@ -292,10 +292,16 @@ Blowers-Masel Reactions
 
 **New in Cantera 2.6**
 
-The Blowers-Masel rate expression is an approximation proposed by Blowers
-and Masel [#BlowersMasel2000]_ to automatically scale activation energy
-as we change species' enthalpies. The activation energy estimation can be written
-as:
+In some circumstances like thermodynamic sensitivity analysis, or
+modeling heterogeneous reactions from one catalyst surface to another,
+the enthalpy of reactions needs to be tweaked. Since reactions' energetics
+is changed, the activation energy of reactions should also be adjusted accordingly
+to provide accurate simulation results. The enthalpy can be modified by changing
+temperature and revising NASA polynomial coefficients in Cantera. To predict the
+activation energy change, the Blowers-Masel rate expression is implemented, which
+is an approximation proposed by Blowers and Masel [#BlowersMasel2000]_ to automatically
+scale activation energy as species' enthalpies are changed in hydrogen transfer reactions.
+The activation energy estimation can be written as:
 
 .. math::
 
@@ -323,8 +329,10 @@ After :math:`E_a` is evaluated, the reaction rate can be calculated as modified 
 
    k_f = A T^b e^{-E_a / RT}.
 
+.. TODO: Update the link once version 2.6 is released
+
 Blowers Masel reaction can be defined in the YAML format using the
-:ref:`Blowers-Masel <sec-yaml-Blowers-Masel>` reaction ``type``.
+`Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-blowers-masel>`__ reaction ``type``.
 
 .. _sec-surface:
 
@@ -390,17 +398,20 @@ in the YAML format by specifying the rate constant in the reaction's
 Surface Blowers-Masel Reactions
 -------------------------------
 
+.. TODO: Update the link once version 2.6 is released
+
 Surface Blowers-Masel Reactions have the same Arrhenius-like rate expression described in
-:ref:`Surface Reactions<sec-surface>`, and the activation energy :math:`E_a` is determined
+`Surface Reactions <https://cantera.org/science/reactions.html#surface-reactions>`__,
+and the activation energy :math:`E_a` is determined
 as described in :ref:`Blowers-Masel Reactions<sec-Blowers-Masel>`.
 
 Surface Blowers-Masel reactions can be identified by the presence of surface spcecies and
-the defined :ref:`Blowers-Masel<sec-yaml-surface-Blowers-Masel>` reaction ``type`` in YAML
-format.
+the defined `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-surface-blowers-masel>`__
+reaction ``type`` in YAML format.
 
-Note that surface Blowers-Masel reactions also support all the :ref:`additional options <sec-yaml-interface-reaction>`
-described in :ref:`Surface Reactions<sec-surface>` and :ref:`sticking-coefficient <sec-yaml-interface-reaction>` field in YAML
-format.
+Note that surface Blowers-Masel reactions also support all the `additional options <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
+described in `Surface Reactions <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
+and `sticking-coefficient <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__ field in YAML format.
 
 Additional Options
 ------------------
