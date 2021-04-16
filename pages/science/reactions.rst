@@ -299,12 +299,12 @@ as:
 
 .. math::
 
-   E_a = 0 \;\text{if } \Delta H \leq -4 E_a^0
-
-   E_a = \Delta H \;\text{if } \Delta H \geq 4 E_a^0
-
-   E_a =  \frac{\left( w + \frac{\Delta H }{2} \right)  (V_P - 2 w + \Delta H) ^2}
-               {V_P^2 - 4 w^2 + \Delta H^2} \;\text{Otherwise}
+   E_a = \begin{cases}
+      0 & \text{if } \Delta H \leq -4 E_a^0 \\
+      \Delta H & \text{if } \Delta H \geq 4 E_a^0 \\
+      \frac{\left( w + \frac{\Delta H }{2} \right)  (V_P - 2 w + \Delta H) ^2}
+               {V_P^2 - 4 w^2 + \Delta H^2} & \text{Otherwise}
+      \end{cases}
 
 where
 
