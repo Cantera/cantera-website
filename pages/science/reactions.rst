@@ -314,7 +314,7 @@ where
 
 :math:`w` is the average of the bond dissociation energy of the bond breaking and that being formed,
 :math:`E_a^0` is the intrinsic activation energy, and :math:`\Delta H` is the enthalpy change of the reaction.
-Note that the expression is very insensitive to :math:`w` as long as :math:`w \ge 2 E_a^0`, so we can use
+Note that the expression is insensitive to :math:`w` as long as :math:`w \ge 2 E_a^0`, so we can use
 an arbitrary high value of :math:`w = 1000 kJ/mol`.
 
 After :math:`E_a` is evaluated, the reaction rate can be calculated as modified Arrhenius expression
