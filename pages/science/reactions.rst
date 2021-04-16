@@ -403,7 +403,7 @@ Surface Blowers-Masel Reactions
 Surface Blowers-Masel Reactions have the same Arrhenius-like rate expression described in
 `Surface Reactions <https://cantera.org/science/reactions.html#surface-reactions>`__,
 and the activation energy :math:`E_a` is determined
-as described in :ref:`Blowers-Masel Reactions<sec-Blowers-Masel>`.
+as described in `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-blowers-masel>`__.
 
 Surface Blowers-Masel reactions can be identified by the presence of surface spcecies and
 the defined `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-surface-blowers-masel>`__
