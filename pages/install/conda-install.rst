@@ -65,10 +65,10 @@ the file somewhere and remember that location.
 
    name: ct-env
    channels:
-   - cantera
+   - cantera  # or use cantera/label/dev for alpha/beta packages
    - defaults
    dependencies:
-   - python
+   - python  # Cantera supports Python 3.6 and up
    - cantera
    - ipython  # optional (needed for nicer interactive command line)
    - jupyter  # optional (needed for Jupyter Notebook)
@@ -99,35 +99,25 @@ just installed:
 
    conda activate ct-env
 
-**Option 3: Install Cantera in an existing environment**
-
-First, activate your environment (assumed here to be named ``ct-env``; if you've
-forgotten the name of the conda environment you wanted to use, the command
-``conda env list`` can help). This is done by running:
-
-.. code:: shell
-
-   conda activate ct-env
-
-Then, install Cantera in the active enironment by running:
-
-.. code:: shell
-
-   conda install --channel cantera cantera
-
-**Option 4: Install the development version of Cantera**
+**Option 3: Install the development version of Cantera**
 
 To install a recent development snapshot (that is, an alpha or beta version) of
-Cantera in an existing environment, activate the environment and then run:
+Cantera, use the ``cantera/label/dev`` channel. Assuming you have an environment
+named ``ct-dev``, you can type:
 
 .. code:: shell
 
+   conda activate ct-dev
    conda install --channel cantera/label/dev cantera
 
-If you later want to revert back to the stable version, first remove and then
-reinstall Cantera:
+If you later want to revert back to the stable version in that environment, first
+remove and then reinstall Cantera:
 
 .. code:: shell
 
+   conda activate ct-dev
    conda remove cantera
    conda install --channel cantera cantera
+
+Alternatively, you can remove the ``ct-dev`` environment and follow Options 1 or 2
+above to create a new environment.
