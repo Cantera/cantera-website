@@ -701,7 +701,7 @@ OUTPUT_FOLDER = os.getenv("NIKOLA_OUTPUT_DIR", "output")
 #
 from nikola import filters
 
-FILTERS = {".html": [filters.typogrify, filters.add_header_permalinks]}
+FILTERS = {".html": [filters.add_header_permalinks]}
 
 # Executable for the "yui_compressor" filter (defaults to 'yui-compressor').
 # YUI_COMPRESSOR_EXECUTABLE = 'yui-compressor'
