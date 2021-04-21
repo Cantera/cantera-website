@@ -398,6 +398,8 @@ in the YAML format by specifying the rate constant in the reaction's
 Surface Blowers-Masel Reactions
 -------------------------------
 
+**New in Cantera 2.6**
+
 .. TODO: Update the link once version 2.6 is released
 
 Surface Blowers-Masel Reactions have the same Arrhenius-like rate expression described in
