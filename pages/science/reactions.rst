@@ -408,8 +408,8 @@ and the activation energy :math:`E_a` is determined
 as described in `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-blowers-masel>`__.
 
 Surface Blowers-Masel reactions can be identified by the presence of surface spcecies and
-the defined `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-surface-blowers-masel>`__
-reaction ``type`` in YAML format.
+the `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-surface-blowers-masel>`__
+reaction ``type`` in a YAML input file.
 
 Note that surface Blowers-Masel reactions also support all the `additional options <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
 described in `Surface Reactions <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
