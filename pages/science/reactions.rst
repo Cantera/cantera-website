@@ -323,7 +323,7 @@ where
 Note that the expression is insensitive to :math:`w` as long as :math:`w \ge 2 E_a^0`, so we can use
 an arbitrarily high value of :math:`w = 1000\text{ kJ/mol}`.
 
-After :math:`E_a` is evaluated, the reaction rate can be calculated as modified Arrhenius expression
+After :math:`E_a` is evaluated, the reaction rate can be calculated using the modified Arrhenius expression
 
 .. math::
 
