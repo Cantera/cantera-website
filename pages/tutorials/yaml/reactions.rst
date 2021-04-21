@@ -66,7 +66,7 @@ The type of the rate coefficient parameterization may be specified in the
 - :ref:`Chebyshev <sec-yaml-Chebyshev>`: A reaction rate parameterized by a
   bivariate Chebyshev polynomial in pressure and temperature
 - :ref:`Blowers-Masel <sec-yaml-Blowers-Masel>`: A reaction rate constant parameterized
-   as modified Arrhenius reaction with one additional bond energy parameter to
+   as a modified Arrhenius reaction with one additional bond energy parameter to
    scale the activation energy according to the enthalpy of the reaction.
 
 Additional parameters defining the rate constant for each of these reaction
