@@ -95,15 +95,17 @@ An input file containing only species definitions (which can be referenced from
 phase definitions in other input files) can be created by specifying only a
 thermo file.
 
-Many existing CK format files cause errors in ``ck2yaml`` when they are
-processed. Some of these errors may be avoided by specifying the
-``--permissive`` option. This option allows certain recoverable parsing errors
-(for example, duplicate transport or thermodynamic data) to be ignored. Other
-errors may be caused by incorrect formatting of lines in one or more of the
-input files.
-
 Debugging common errors in CK files
 -----------------------------------
+
+.. note::
+
+   Many existing CK format files cause errors in ``ck2yaml`` when they are
+   processed. Some of these errors may be avoided by specifying the
+   ``--permissive`` option. This option allows certain recoverable parsing errors
+   (for example, duplicate transport or thermodynamic data) to be ignored. Other
+   errors may be caused by incorrect formatting of lines in one or more of the
+   input files.
 
 When ``ck2yaml`` encounters an error, it attempts to print the surrounding
 information to help you to locate the error. Many of the most common errors
