@@ -412,8 +412,8 @@ the `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/react
 reaction ``type`` in a YAML input file.
 
 Note that surface Blowers-Masel reactions also support all the `additional options <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
-described in `Surface Reactions <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
-and `sticking-coefficient <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__ field in YAML format.
+described in the `Surface Reactions <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
+and `sticking-coefficient <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__ fields in a YAML input file.
 
 Additional Options
 ------------------
