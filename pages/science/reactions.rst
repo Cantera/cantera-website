@@ -294,13 +294,11 @@ Blowers-Masel Reactions
 
 In some circumstances like thermodynamic sensitivity analysis, or
 modeling heterogeneous reactions from one catalyst surface to another,
-the enthalpy of reactions needs to be tweaked. Since reactions' energetics
-is changed, the activation energy of reactions should also be adjusted accordingly
-to provide accurate simulation results. The enthalpy can be modified by changing
-temperature and revising NASA polynomial coefficients in Cantera. To predict the
-activation energy change, the Blowers-Masel rate expression is implemented, which
-is an approximation proposed by Blowers and Masel [#BlowersMasel2000]_ to automatically
-scale activation energy as species' enthalpies are changed in hydrogen transfer reactions.
+the enthalpy change of a reaction (:math:`\Delta H`) can be modified. Due to the change in :math:`\Delta H`,
+the activation energy of the reaction must be adjusted accordingly to provide accurate simulation results. To
+adjust the activation energy due to changes in the reaction enthalpy, the Blowers-Masel rate expression is
+available. This approximation was proposed by Blowers and Masel [#BlowersMasel2000]_ to automatically
+scale activation energy as the reaction enthalpy is changed.
 The activation energy estimation can be written as:
 
 .. math::
