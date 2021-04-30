@@ -285,6 +285,55 @@ Chebyshev reactions can be defined in the CTI format using the
 :cti:class:`chebyshev_reaction` entry, or in the YAML format using the
 :ref:`Chebyshev <sec-yaml-Chebyshev>` reaction ``type``.
 
+.. _sec-Blowers-Masel:
+
+Blowers-Masel Reactions
+-----------------------
+
+**New in Cantera 2.6**
+
+In some circumstances like thermodynamic sensitivity analysis, or
+modeling heterogeneous reactions from one catalyst surface to another,
+the enthalpy change of a reaction (:math:`\Delta H`) can be modified. Due to the change in :math:`\Delta H`,
+the activation energy of the reaction must be adjusted accordingly to provide accurate simulation results. To
+adjust the activation energy due to changes in the reaction enthalpy, the Blowers-Masel rate expression is
+available. This approximation was proposed by Blowers and Masel [#BlowersMasel2000]_ to automatically
+scale activation energy as the reaction enthalpy is changed.
+The activation energy estimation can be written as:
+
+.. math::
+
+   E_a = \begin{cases}
+      0 & \text{if } \Delta H \leq -4 E_a^0 \\
+      \Delta H & \text{if } \Delta H \geq 4 E_a^0 \\
+      \frac{\left( w + \frac{\Delta H }{2} \right)  (V_P - 2 w + \Delta H) ^2}
+               {V_P^2 - 4 w^2 + \Delta H^2} & \text{Otherwise}
+      \end{cases}
+
+where
+
+.. math::
+
+   V_P = 2 w \frac{w + E_a^0}{w - E_a^0},
+
+:math:`w` is the average of the bond dissociation energy of the bond breaking and that being formed,
+:math:`E_a^0` is the intrinsic activation energy, and :math:`\Delta H` is the enthalpy change of the reaction.
+Note that the expression is insensitive to :math:`w` as long as :math:`w \ge 2 E_a^0`, so we can use
+an arbitrarily high value of :math:`w = 1000\text{ kJ/mol}`.
+
+After :math:`E_a` is evaluated, the reaction rate can be calculated using the modified Arrhenius expression
+
+.. math::
+
+   k_f = A T^b e^{-E_a / RT}.
+
+.. TODO: Update the link once version 2.6 is released
+
+Blowers Masel reaction can be defined in the YAML format using the
+`Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-blowers-masel>`__ reaction ``type``.
+
+.. _sec-surface:
+
 Surface Reactions
 -----------------
 
@@ -344,6 +393,25 @@ Sticking reactions can be defined in the CTI format using the `stick` entry, or
 in the YAML format by specifying the rate constant in the reaction's
 :ref:`sticking-coefficient <sec-yaml-interface-reaction>` field.
 
+Surface Blowers-Masel Reactions
+-------------------------------
+
+**New in Cantera 2.6**
+
+.. TODO: Update the link once version 2.6 is released
+
+Surface Blowers-Masel Reactions have the same Arrhenius-like rate expression described in
+:ref:`Surface Reactions<sec-surface>`, and the activation energy :math:`E_a` is determined
+as described in :ref:`Blowers-Masel Reactions<sec-Blowers-Masel>`.
+
+Surface Blowers-Masel reactions can be identified by the presence of surface spcecies and
+the `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-surface-blowers-masel>`__
+reaction ``type`` in a YAML input file.
+
+Note that surface Blowers-Masel reactions also support all the `additional options <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
+described in the `Surface Reactions <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
+and `sticking-coefficient <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__ fields in a YAML input file.
+
 Additional Options
 ------------------
 
@@ -398,3 +466,7 @@ these cases, the default behavior may be overridden in the input file.
 .. [#Westbrook1981] C. K. Westbrook and F. L. Dryer. Simplified reaction
    mechanisms for the oxidation of hydrocarbon fuels in flames. *Combustion
    Science and Technology* **27**, pp. 31--43. 1981.
+
+.. [#BlowersMasel2000] Blowers, P., & Masel, R. (2000). Engineering approximations
+   for activation energies in hydrogen transfer reactions. *AIChE Journal*, 46(10),
+   2041-2052. https://doi.org/10.1002/aic.690461015

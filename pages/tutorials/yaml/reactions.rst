@@ -65,14 +65,18 @@ The type of the rate coefficient parameterization may be specified in the
   Arrhenius expressions at different pressures
 - :ref:`Chebyshev <sec-yaml-Chebyshev>`: A reaction rate parameterized by a
   bivariate Chebyshev polynomial in pressure and temperature
+- :ref:`Blowers-Masel <sec-yaml-Blowers-Masel>`: A reaction rate constant parameterized
+   as a modified Arrhenius reaction with one additional bond energy parameter to
+   scale the activation energy according to the enthalpy of the reaction.
 
 Additional parameters defining the rate constant for each of these reaction
 types are described in the documentation linked above.
 
 The default parameterization is ``elementary``. Reactions involving surface
 species are automatically identified as :ref:`interface <sec-yaml-interface-reaction>`
-reactions, and reactions involving charge transfer are
-automatically identified as :ref:`electrochemical <sec-yaml-electrochemical-reaction>`
+reactions, reactions involving surface species with specified ``type`` as ``Blowers-Masel``
+are treated as :ref:`surface-Blowers-Masel <sec-yaml-surface-Blowers-Masel>`, and reactions
+involving charge transfer are automatically identified as :ref:`electrochemical <sec-yaml-electrochemical-reaction>`
 reactions.
 
 Arrhenius Expressions
