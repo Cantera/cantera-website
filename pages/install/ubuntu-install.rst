@@ -17,9 +17,9 @@
       (PPA). Note that the Matlab packages are not available from this archive; to install the
       Matlab packages on Ubuntu, you must :ref:`compile the source code <sec-compiling>`.
 
-As of Cantera 2.5.0, packages are available for Ubuntu 18.04 (Bionic Beaver), Ubuntu 20.04
-(Focal Fossa), and Ubuntu 20.10 (Groovy Gorilla). To see which Ubuntu releases and Cantera
-versions are currently available, visit
+As of Cantera 2.5.1, packages are available for Ubuntu 18.04 (Bionic Beaver), Ubuntu 20.04
+(Focal Fossa), Ubuntu 20.10 (Groovy Gorilla), and Ubuntu 21.04 (Hirsute Hippo). To see which Ubuntu
+releases and Cantera versions are currently available, visit
 https://launchpad.net/~cantera-team/+archive/ubuntu/cantera
 
 The available packages are:
