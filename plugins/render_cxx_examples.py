@@ -223,13 +223,13 @@ class RenderCxxExamples(Task):
                 self.logger.warn(
                     f"The C++ example {ex_file!s} doesn't have an appropriate summary"
                 )
-            name = subdir.stem.replace("_", " ")
+            name = subdir.stem.replace('_', '-')
 
             cxx_headings["examples"]["names"].append(name)
             cxx_headings["examples"]["titles"][name] = title
             cxx_headings["examples"]["summaries"][name] = summary
             out_name = kw["output_folder"].joinpath(
-                self.examples_folder, name.replace(' ', '-') + '.html'
+                self.examples_folder, name + '.html'
             )
 
             yield {
@@ -262,6 +262,7 @@ class RenderCxxExamples(Task):
         )
 
         out_name = kw["output_folder"].joinpath(self.examples_folder, kw["index_file"])
+        
         all_files = [str(name[0]) for name in chain(cxx_examples.values()) if name]
         yield {
             "basename": self.name,
