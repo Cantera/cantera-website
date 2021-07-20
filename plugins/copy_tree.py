@@ -9,6 +9,7 @@ for the API documentation.
 """
 from shutil import copytree, ignore_patterns, rmtree
 import os
+from pathlib import Path
 
 from nikola.plugin_categories import Task
 from nikola.utils import config_changed
@@ -21,6 +22,8 @@ class CopyTree(Task):
 
     def gen_tasks(self):
         """Copy docs files into the output folder."""
+        # Put these into a dictionary so that if they change,
+        # the task is marked as out-of-date
         kw = {
             "docs_folders": self.site.config["DOCS_FOLDERS"],
             "output_folder": self.site.config["OUTPUT_FOLDER"],
@@ -37,11 +40,13 @@ class CopyTree(Task):
 
         for src, rel_dst in kw["docs_folders"].items():
             final_dst = os.path.join(kw["output_folder"], rel_dst)
+            all_files = [i for i in Path(src).glob("**/*") if not i.is_dir()]
             yield {
                 "basename": self.name,
                 "name": rel_dst,
                 "targets": [final_dst],
                 "uptodate": [config_changed(kw, "copy_tree")],
+                "file_dep": all_files,
                 "actions": [
                     (
                         copytree_task,
