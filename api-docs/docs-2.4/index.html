@@ -1,133 +1,278 @@
-<!--
-.. title: Cantera Documentation
-.. slug: index
-.. date: 2018-06-09 13:57:46 UTC-04:00
-.. description: API documentation for the Cantera interfaces
-.. type: text
--->
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
 
-<div class="jumbotron">
-  <h1 class="display-3">Cantera 2.4.0 Documentation</h1>
-  <p class="lead">
-    Sometimes you just need a little more detail. You'll find documentation for
-    (almost) every function in Cantera right here. This is the documentation for
-    a deprecated release, Cantera 2.4.0. For other versions, see the links
-    at the bottom of the page.
-  </p>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="API documentation for the Cantera interfaces">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cantera Documentation | Cantera</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css"
+    integrity="sha256-cLMYWYYutHkt+KpNqjg7NVkYSQ+E2VbrXsEvOqU7mL0=" crossorigin="anonymous">
+  <link href="/assets/css/rst.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/code.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/theme.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/custom.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+  <meta name="theme-color" content="#5670d4">
+  <meta name="generator" content="Nikola (getnikola.com)">
+  <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="/rss.xml">
+  <link rel="canonical" href="https://cantera.org/documentation/">
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="16x16">
+  <!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <meta name="author" content="Cantera Developers">
+  <meta property="og:site_name" content="Cantera">
+  <meta property="og:title" content="Cantera Documentation">
+  <meta property="og:url" content="https://cantera.org/documentation/">
+  <meta property="og:description" content="API documentation for the Cantera interfaces">
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2018-06-09T13:57:46-04:00">
+</head>
 
-  <div id="searchbox" style="display: inline-block" role="search">
-    <h3>Search the documentation</h3>
-    <div class="searchformwrapper">
-      <form class="search" action="sphinx/html/search.html" method="get">
-        <input type="text" name="q" size="50" />
-        <input type="submit" value="Go" />
-        <input type="hidden" name="check_keywords" value="yes" />
-        <input type="hidden" name="area" value="default" />
-      </form>
+<body>
+  <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+  <!-- Menubar -->
+
+  <nav class="navbar navbar-expand-md static-top mb-4
+navbar-light bg-light
+">
+    <div class="container">
+      <!-- This keeps the margins nice -->
+      <a class="navbar-brand" href="https://cantera.org/">
+        <img src="/assets/img/cantera-logo.png" alt="Cantera" id="logo" class="d-inline-block align-top"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar"
+        aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="bs-navbar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="/install/index.html" class="nav-link">Install</a>
+          </li>
+          <li class="nav-item">
+            <a href="/tutorials/index.html" class="nav-link">Tutorials</a>
+          </li>
+          <li class="nav-item">
+            <a href="/examples/index.html" class="nav-link">Examples</a>
+          </li>
+          <li class="nav-item">
+            <a href="/community.html" class="nav-link">Community</a>
+          </li>
+          <li class="nav-item">
+            <a href="/science/index.html" class="nav-link">Science</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Documentation</a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog/index.html" class="nav-link">Blog</a>
+
+
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-right"></ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav><!-- End of Menubar -->
+  <div class="container" id="content" role="main">
+    <div class="body-content">
+      <!--Body content-->
+
+      <article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article">
+        <div class="e-content entry-content" itemprop="articleBody text">
+
+          <div class="jumbotron">
+            <h1 class="display-3">Cantera 2.4.0 Documentation</h1>
+            <p class="lead">
+              Sometimes you just need a little more detail. You'll find documentation for
+              (almost) every function in Cantera right here. This is the documentation for
+              a deprecated release, Cantera 2.4.0. For other versions, see the links
+              at the bottom of the page.
+            </p>
+
+            <div id="searchbox" style="display: inline-block" role="search">
+              <h3>Search the documentation</h3>
+              <div class="searchformwrapper">
+                <form class="search" action="sphinx/html/search.html" method="get">
+                  <input type="text" name="q" size="50" />
+                  <input type="submit" value="Go" />
+                  <input type="hidden" name="check_keywords" value="yes" />
+                  <input type="hidden" name="area" value="default" />
+                </form>
+              </div>
+            </div>
+          </div>
+          <blockquote>
+            <div>
+              <div class="admonition warning">
+                <p class="first admonition-title">Warning</p>
+                <p class="last">This documentation is for an old version of Cantera. You can find docs for newer
+                  versions <a class="reference external" href="https://cantera.org/documentation">here</a>.</p>
+              </div>
+            </div>
+          </blockquote>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card" id="python-docs">
+                <div class="card-header section-card">
+                  Python
+                </div>
+                <div class="list-group list-group-flush">
+                  <a href="sphinx/html/cython/importing.html" class="list-group-item docs">
+                    Objects Representing Phases (<code>Solution</code>s, <code>PureFluid</code>s,
+                    <code>Interface</code>s, etc.)
+                  </a>
+                  <a href="sphinx/html/cython/thermo.html" class="list-group-item docs">
+                    Thermodynamic Properties (Temperature, pressure, energy, etc.)
+                  </a>
+                  <a href="sphinx/html/cython/kinetics.html" class="list-group-item docs">
+                    Chemical Kinetics (Reactions, rates of progress, reaction path analysis, etc.)
+                  </a>
+                  <a href="sphinx/html/cython/transport.html" class="list-group-item docs">
+                    Transport Properties (Diffusion, viscosity, thermal conductivity, etc.)
+                  </a>
+                  <a href="sphinx/html/cython/zerodim.html" class="list-group-item docs">
+                    Zero-Dimensional Reactor Networks (<code>Reactor</code>s, <code>IdealGasReactor</code>s,
+                    <code>Wall</code>s,
+                    etc.)
+                  </a>
+                  <a href="sphinx/html/cython/onedim.html" class="list-group-item docs">
+                    One-dimensional Reacting Flows (<code>FreeFlame</code>s, <code>BurnerFlame</code>s, Flow Domains,
+                    Boundaries,
+                    etc.)
+                  </a>
+                  <a href="sphinx/html/cython/constants.html" class="list-group-item docs">
+                    Physical Constants (Universal constants, built into Cantera for convenience)
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card" id="matlab-docs">
+                <div class="card-header section-card">
+                  Matlab
+                </div>
+                <div class="list-group list-group-flush">
+                  <a href="sphinx/html/matlab/importing.html" class="list-group-item docs">
+                    Objects Representing Phases (<code>Solution</code>s, <code>PureFluid</code>s,
+                    <code>Interface</code>s, etc.)
+                  </a>
+                  <a href="sphinx/html/matlab/thermodynamics.html" class="list-group-item docs">
+                    Thermodynamic Properties (Temperature, pressure, energy, etc.)
+                  </a>
+                  <a href="sphinx/html/matlab/kinetics.html" class="list-group-item docs">
+                    Chemical Kinetics (Reactions, rates of progress, reaction path analysis, etc.)
+                  </a>
+                  <a href="sphinx/html/matlab/transport.html" class="list-group-item docs">
+                    Transport Properties (Diffusion, viscosity, thermal conductivity, etc.)
+                  </a>
+                  <a href="sphinx/html/matlab/zero-dim.html" class="list-group-item docs">
+                    Zero-Dimensional Reactor Networks (<code>Reactor</code>s, <code>IdealGasReactor</code>s,
+                    <code>Wall</code>s,
+                    etc.)
+                  </a>
+                  <a href="sphinx/html/matlab/one-dim.html" class="list-group-item docs">
+                    One-dimensional Reacting Flows (<code>FreeFlame</code>s, <code>BurnerFlame</code>s, Flow Domains,
+                    Boundaries,
+                    etc.)
+                  </a>
+                  <a href="sphinx/html/matlab/data.html" class="list-group-item docs">
+                    Physical Constants (Universal constants, built into Cantera for convenience)
+                  </a>
+                  <a href="sphinx/html/matlab/utilities.html" class="list-group-item docs">
+                    Utility functions (XML Parsers, conversion scripts, etc.)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card" id="cxx-docs">
+                <div class="card-header section-card">
+                  C++
+                </div>
+                <div class="list-group list-group-flush">
+                  <a href="doxygen/html/modules.html" class="list-group-item docs">List of Cantera Modules</a>
+                  <a href="doxygen/html/classes.html" class="list-group-item docs">List of Cantera Classes</a>
+                  <a href="doxygen/html/da/d58/deprecated.html" class="list-group-item docs">List of Deprecated
+                    Functions and Classes</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card" id="other-docs">
+                <div class="card-header section-card">
+                  Other Documentation
+                </div>
+                <div class="list-group list-group-flush">
+                  <a href="/tutorials/input-files.html" class="list-group-item docs">CTI Input File Tutorial</a>
+                  <a href="sphinx/html/cti/classes.html" class="list-group-item docs">
+                    CTI Input File Class Reference
+                  </a>
+                  <a href="/documentation/glossary.html" class="list-group-item docs">Glossary of Terms</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-center">
+            <a href="/documentation/index.html" class="btn btn-lg btn-outline-primary">Go Back to the Current
+              Documentation</a>
+          </p>
+
+      </article>
+      <!--End of body content-->
+      <footer id="footer">
+        <div class="footer" role="navigation">
+          <div class="navbar-text">
+            <ul class="footer-text">
+              <li><a href="/index.html">Home</a></li>
+              <li><a href="/community.html#citing-cantera">Citing</a></li>
+              <li><a href="/install/index.html">Install</a></li>
+              <li><a href="/tutorials/index.html">Tutorials</a></li>
+              <li><a href="/examples/index.html">Examples</a></li>
+              <li><a href="/community.html">Community</a></li>
+              <li><a href="/science/index.html">Science</a></li>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="/blog/index.html">Blog</a></li>
+            </ul>
+          </div>
+          <p>Contents © 2021 <a href="mailto:steering@cantera.org">Cantera Developers</a> - Powered by <a
+              href="https://getnikola.com" rel="nofollow">Nikola</a> </p>
+
+        </div>
+      </footer>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card" id="python-docs">
-      <div class="card-header section-card">
-        Python
-      </div>
-      <div class="list-group list-group-flush">
-        <a href="sphinx/html/cython/importing.html" class="list-group-item docs">
-          Objects Representing Phases (<code>Solution</code>s, <code>PureFluid</code>s, <code>Interface</code>s, etc.)
-        </a>
-        <a href="sphinx/html/cython/thermo.html" class="list-group-item docs">
-          Thermodynamic Properties (Temperature, pressure, energy, etc.)
-        </a>
-        <a href="sphinx/html/cython/kinetics.html" class="list-group-item docs">
-          Chemical Kinetics (Reactions, rates of progress, reaction path analysis, etc.)
-        </a>
-        <a href="sphinx/html/cython/transport.html" class="list-group-item docs">
-          Transport Properties (Diffusion, viscosity, thermal conductivity, etc.)
-        </a>
-        <a href="sphinx/html/cython/zerodim.html" class="list-group-item docs">
-          Zero-Dimensional Reactor Networks (<code>Reactor</code>s, <code>IdealGasReactor</code>s, <code>Wall</code>s,
-          etc.)
-        </a>
-        <a href="sphinx/html/cython/onedim.html" class="list-group-item docs">
-          One-dimensional Reacting Flows (<code>FreeFlame</code>s, <code>BurnerFlame</code>s, Flow Domains, Boundaries,
-          etc.)
-        </a>
-        <a href="sphinx/html/cython/constants.html" class="list-group-item docs">
-          Physical Constants (Universal constants, built into Cantera for convenience)
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card" id="matlab-docs">
-      <div class="card-header section-card">
-        Matlab
-      </div>
-      <div class="list-group list-group-flush">
-        <a href="sphinx/html/matlab/importing.html" class="list-group-item docs">
-          Objects Representing Phases (<code>Solution</code>s, <code>PureFluid</code>s, <code>Interface</code>s, etc.)
-        </a>
-        <a href="sphinx/html/matlab/thermodynamics.html" class="list-group-item docs">
-          Thermodynamic Properties (Temperature, pressure, energy, etc.)
-        </a>
-        <a href="sphinx/html/matlab/kinetics.html" class="list-group-item docs">
-          Chemical Kinetics (Reactions, rates of progress, reaction path analysis, etc.)
-        </a>
-        <a href="sphinx/html/matlab/transport.html" class="list-group-item docs">
-          Transport Properties (Diffusion, viscosity, thermal conductivity, etc.)
-        </a>
-        <a href="sphinx/html/matlab/zero-dim.html" class="list-group-item docs">
-          Zero-Dimensional Reactor Networks (<code>Reactor</code>s, <code>IdealGasReactor</code>s, <code>Wall</code>s,
-          etc.)
-        </a>
-        <a href="sphinx/html/matlab/one-dim.html" class="list-group-item docs">
-          One-dimensional Reacting Flows (<code>FreeFlame</code>s, <code>BurnerFlame</code>s, Flow Domains, Boundaries,
-          etc.)
-        </a>
-        <a href="sphinx/html/matlab/data.html" class="list-group-item docs">
-          Physical Constants (Universal constants, built into Cantera for convenience)
-        </a>
-        <a href="sphinx/html/matlab/utilities.html" class="list-group-item docs">
-          Utility functions (XML Parsers, conversion scripts, etc.)
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"
+    integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"
+    integrity="sha256-ULQV01VS9LCI2ePpLsmka+W0mawFpEA0rtxnezUj4A4=" crossorigin="anonymous"></script>
+  <script src="/assets/js/copybutton.js"></script>
+  <script>
+    baguetteBox.run('div#content', {
+      ignoreClass: 'islink',
+      captions: function (element) {
+        return element.getElementsByTagName('img')[0].alt;
+      }
+    });
+  </script>
+</body>
 
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card" id="cxx-docs">
-      <div class="card-header section-card">
-        C++
-      </div>
-      <div class="list-group list-group-flush">
-        <a href="doxygen/html/modules.html" class="list-group-item docs">List of Cantera Modules</a>
-        <a href="doxygen/html/classes.html" class="list-group-item docs">List of Cantera Classes</a>
-        <a href="doxygen/html/da/d58/deprecated.html" class="list-group-item docs">List of Deprecated
-          Functions and Classes</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card" id="other-docs">
-      <div class="card-header section-card">
-        Other Documentation
-      </div>
-      <div class="list-group list-group-flush">
-        <a href="/tutorials/input-files.html" class="list-group-item docs">CTI Input File Tutorial</a>
-        <a href="sphinx/html/cti/classes.html" class="list-group-item docs">
-          CTI Input File Class Reference
-        </a>
-        <a href="/documentation/glossary.html" class="list-group-item docs">Glossary of Terms</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<p class="text-center">
-  <a href="/documentation/index.html" class="btn btn-lg btn-outline-primary">Go Back to the Current Documentation</a>
-</p>
+</html>
