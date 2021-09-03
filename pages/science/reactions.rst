@@ -157,13 +157,17 @@ not used.
 Tsang's Approximation to :math:`F_{cent}`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Wing Tsang presented approximations for the value of :math:`F_{cent}` for Troe falloff in databases of reactions, e.g. [#Tsang1991]_.
+**New in Cantera 2.6.0**
+
+Wing Tsang presented approximations for the value of :math:`F_{cent}` for Troe
+falloff in databases of reactions, for example, Tsang and Herron [#Tsang1991]_.
 Tsang's approximations are linear in temperature:
 
 .. math::
-    F_{cent} = A + B*T
+    F_{cent} = A + BT
 
-The remaining equations for :math:`C`, :math:`N`, :math:`f_1`, and :math:`F` from Troe falloff are not affected:
+where :math:`A` and :math:`B` are constants. The remaining equations for :math:`C`,
+:math:`N`, :math:`f_1`, and :math:`F` from Troe falloff are not affected:
 
 .. math::
 
@@ -175,7 +179,8 @@ The remaining equations for :math:`C`, :math:`N`, :math:`f_1`, and :math:`F` fro
 
    N = 0.75 - 1.27\; \log_{10} F_{cent}
 
-A Tsang falloff function may be specified in the YAML format using the :ref:`Tsang <sec-yaml-falloff>` field in the reaction entry.
+A Tsang falloff function may be specified in the YAML format using the
+:ref:`Tsang <sec-yaml-falloff>` field in the reaction entry.
 
 .. _sec-sri-falloff:
 
