@@ -154,6 +154,34 @@ three parameters, :math:`(A, T_3, T_1)`, are required. The fourth parameter,
 :math:`T_2`, is optional; if omitted, the last term of the falloff function is
 not used.
 
+Tsang's Approximation to :math:`F_{cent}`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**New in Cantera 2.6.0**
+
+Wing Tsang presented approximations for the value of :math:`F_{cent}` for Troe
+falloff in databases of reactions, for example, Tsang and Herron [#Tsang1991]_.
+Tsang's approximations are linear in temperature:
+
+.. math::
+    F_{cent} = A + BT
+
+where :math:`A` and :math:`B` are constants. The remaining equations for :math:`C`,
+:math:`N`, :math:`f_1`, and :math:`F` from Troe falloff are not affected:
+
+.. math::
+
+   \log_{10} F(T, P_r) = \frac{\log_{10} F_{cent}(T)}{1 + f_1^2}
+
+   f_1 = (\log_{10} P_r + C) / (N - 0.14 (\log_{10} P_r + C))
+
+   C = -0.4 - 0.67\; \log_{10} F_{cent}
+
+   N = 0.75 - 1.27\; \log_{10} F_{cent}
+
+A Tsang falloff function may be specified in the YAML format using the
+:ref:`Tsang <sec-yaml-falloff>` field in the reaction entry.
+
 .. _sec-sri-falloff:
 
 The SRI Falloff Function
@@ -445,16 +473,12 @@ these cases, the default behavior may be overridden in the input file.
 
 .. rubric:: References
 
+.. [#Lindemann1922] F. Lindemann. *Trans. Faraday Soc.*, 17:598, 1922.
+
 .. [#Gilbert1983] R. G. Gilbert, K. Luther, and
    J. Troe. *Ber. Bunsenges. Phys. Chem.*, 87:169, 1983.
 
-.. [#Lindemann1922] F. Lindemann. *Trans. Faraday Soc.*, 17:598, 1922.
-
-.. [#Smith1997] Gregory P. Smith, David M. Golden, Michael Frenklach, Nigel
-   W. Moriarty, Boris Eiteneer, Mikhail Goldenberg, C. Thomas Bowman, Ronald
-   K. Hanson, Soonho Song, William C. Gardiner, Jr., Vitali V. Lissianski, , and
-   Zhiwei Qin. GRI-Mech version 3.0, 1997. see
-   http://combustion.berkeley.edu/gri-mech/version30/text30.html.
+.. [#Tsang1991] W. Tsang and J. Herron. *Journal of Physical and Chemical Reference Data*, 20:4, 1991.
 
 .. [#Stewart1989] P. H. Stewart, C. W. Larson, and D. Golden.
    *Combustion and Flame*, 75:25, 1989.
@@ -463,10 +487,10 @@ these cases, the default behavior may be overridden in the input file.
    chemical kinetics package for the analysis of gas-phase chemical
    kinetics. Technical Report SAND89-8009, Sandia National Laboratories, 1989.
 
-.. [#Westbrook1981] C. K. Westbrook and F. L. Dryer. Simplified reaction
-   mechanisms for the oxidation of hydrocarbon fuels in flames. *Combustion
-   Science and Technology* **27**, pp. 31--43. 1981.
-
 .. [#BlowersMasel2000] Blowers, P., & Masel, R. (2000). Engineering approximations
    for activation energies in hydrogen transfer reactions. *AIChE Journal*, 46(10),
    2041-2052. https://doi.org/10.1002/aic.690461015
+
+.. [#Westbrook1981] C. K. Westbrook and F. L. Dryer. Simplified reaction
+   mechanisms for the oxidation of hydrocarbon fuels in flames. *Combustion
+   Science and Technology* **27**, pp. 31--43. 1981.
