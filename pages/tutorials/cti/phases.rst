@@ -12,6 +12,9 @@
       Cantera simulations model interactions between and within different phases of matter, as
       described here.
 
+      Note that the legacy CTI input file format will be deprecated in Cantera 2.6
+      and fully replaced by the YAML input file format in Cantera 3.0.
+
 Phases
 ======
 

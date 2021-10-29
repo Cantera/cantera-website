@@ -10,7 +10,10 @@
 
    .. class:: lead
 
-      A description of how elements and species are defined in CTI input files
+      A description of how elements and species are defined in legacy CTI input files
+
+      Note that the legacy CTI input file format will be deprecated in Cantera 2.6
+      and fully replaced by the YAML input file format in Cantera 3.0.
 
 Elements
 ========
