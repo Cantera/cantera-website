@@ -1,4 +1,4 @@
-.. slug: defining-phases
+.. slug: defining-phases-cti
 .. title: Defining Phases
 
 .. jumbotron::

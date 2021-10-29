@@ -292,7 +292,7 @@ Other Examples
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=defining-phases.html
+            :attributes: href=defining-phases-cti.html
                          title="Defining Phases"
 
             Return: Defining Phases
