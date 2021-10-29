@@ -64,6 +64,17 @@ jobs:
       run: NIKOLA_DEBUG=1 nikola build
       working-directory: ${{ env.WEBSITE_CLONE_DIR }}
 
+    # Create artifact containing output
+    - name: Create archive for website output
+      run: |
+        cd ${{ env.WEBSITE_CLONE_DIR }}; \
+        tar -czf website.tar.gz ${{ env.NIKOLA_OUTPUT_DIR }}
+    - name: Store archive of website output
+      uses: actions/upload-artifact@v2
+      with:
+        path: ${{ env.WEBSITE_CLONE_DIR }}/website.tar.gz
+        retention-days: 5
+
     # The known_hosts key is generated with `ssh-keygen -F cantera.org` from a
     # machine that has previously logged in to cantera.org and trusts
     # that it logged in to the right machine
