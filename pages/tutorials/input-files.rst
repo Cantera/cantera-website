@@ -23,9 +23,9 @@ The required input files can be provided via one of several methods:
 - Create your own YAML file from scratch or by editing an existing file *(New in
   Cantera 2.5)*
 - Convert a pre-existing mechanism from Chemkin (CK) format to the legacy Cantera (CTI)
-  format *(Not recommended due to deprecation of CTI in Cantera 2.6)*
-- Create your own CTI file, either from scratch (not recommended) or by editing an existing file
-  *(Not recommended due to deprecation of CTI in Cantera 2.6)*
+  format *(Not recommended due to pending deprecation of CTI in Cantera 2.6)*
+- Create your own CTI file, either from scratch or by editing an existing file
+  *(Not recommended due to pending deprecation of CTI in Cantera 2.6)*
 
 The first option will suffice for tutorials and introductory work with thermodynamic
 phases and reaction kinetics. Most modern reaction mechanisms are published in Chemkin
@@ -105,7 +105,7 @@ There are three primary options for creating a new Cantera input file:
 
                   Convert a Chemkin-formatted ('CK') file to the Cantera legacy input
                   format (CTI).
-                  *(Not recommended due to deprecation of CTI in favor of YAML)*
+                  *(Not recommended due to pending deprecation of CTI in favor of YAML)*
 
    .. row::
 
@@ -147,7 +147,7 @@ There are three primary options for creating a new Cantera input file:
 
                   Create a completely new mechanism, by defining new species,
                   phases, and/or reactions, using the legacy CTI format.
-                  *(Deprecated in Cantera 2.6)*
+                  *(Not recommended due to pending deprecation of CTI in favor of YAML)*
 
    .. row::
 
@@ -218,4 +218,5 @@ to errors in the CK syntax formatting).
          .. container:: card-text
 
             This tutorial covers the details of the legacy CTI format and its syntax
-            *(Deprecated in Cantera 2.6)*
+            *(Note that the legacy CTI input file format will be deprecated in Cantera 2.6
+            and fully replaced by YAML input in Cantera 3.0.)*
