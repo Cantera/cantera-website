@@ -13,6 +13,9 @@
       If you want to convert a Chemkin-format file to CTI format, or you're having
       errors when you try to do so, this section will help.
 
+      Note that the legacy CTI input file format will be deprecated in Cantera 2.6
+      and fully replaced by the YAML input file format in Cantera 3.0.
+
 CK2CTI
 ------
 

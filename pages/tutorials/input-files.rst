@@ -23,6 +23,7 @@ The required input files can be provided via one of several methods:
 - Create your own YAML file from scratch or by editing an existing file *(New in
   Cantera 2.5)*
 - Create your own CTI file, either from scratch (not recommended) or by editing an existing file
+  *(Not recommended due to deprecation of CTI in Cantera 2.6)*
 
 The first option will suffice for a majority of Cantera users. Advanced
 users may, however, need to edit an existing input file in order to define
@@ -98,8 +99,9 @@ There are three primary options for creating a new Cantera input file:
 
                .. container:: card-text
 
-                  Convert a Chemkin-formatted ('CK') file to the Cantera input
+                  Convert a Chemkin-formatted ('CK') file to the Cantera legacy input
                   format (CTI).
+                  *(Not recommended due to deprecation of CTI in favor of YAML)*
 
    .. row::
 
@@ -140,7 +142,8 @@ There are three primary options for creating a new Cantera input file:
                .. container:: card-text
 
                   Create a completely new mechanism, by defining new species,
-                  phases, and/or reactions, using the CTI format.
+                  phases, and/or reactions, using the legacy CTI format.
+                  *(Deprecated in Cantera 2.6)*
 
    .. row::
 
@@ -210,4 +213,5 @@ to errors in the CK syntax formatting).
 
          .. container:: card-text
 
-            This tutorial covers the details of the CTI format and its syntax
+            This tutorial covers the details of the legacy CTI format and its syntax
+            *(Deprecated in Cantera 2.6)*
