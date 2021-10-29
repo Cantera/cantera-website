@@ -134,7 +134,7 @@ There are three primary options for creating a new Cantera input file:
 
             .. container::
                :tagname: a
-               :attributes: href="cti/defining-phases.html"
+               :attributes: href="cti/defining-phases-cti.html"
                             title="Defining Phases in CTI"
 
                .. container:: card-header section-card

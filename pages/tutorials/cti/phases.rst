@@ -398,7 +398,7 @@ If we import this into Matlab, for example, we get a gas mixture containing the
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=defining-phases.html
+            :attributes: href=defining-phases-cti.html
 
             Return: Defining Phases
 

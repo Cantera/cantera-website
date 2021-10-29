@@ -270,7 +270,7 @@ extract a portion of a large reaction mechanism, as described in :ref:`sec-phase
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=defining-phases.html
+            :attributes: href=defining-phases-cti.html
 
             Return: Defining Phases
 
