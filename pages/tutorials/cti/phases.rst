@@ -13,7 +13,7 @@
       described here.
 
       Note that the legacy CTI input file format will be deprecated in Cantera 2.6
-      and fully replaced by the YAML input file format in Cantera 3.0.
+      and fully replaced by :doc:`YAML <defining-phases>` input in Cantera 3.0.
 
 Phases
 ======
