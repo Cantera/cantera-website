@@ -192,7 +192,7 @@ Examples of compound units:
    A: 1.0e20 cm^6/mol^2-s  # error ('s' should be in denominator)
    density: 3.0g/cm^3  # error (missing space between value and units)
 
-See the `Units API <{{% ct_dev_docs sphinx/html/yaml/general.html#units %}}>`__
+See the `Units API <{{% ct_docs sphinx/html/yaml/general.html#units %}}>`__
 documentation for additional details, including the full set of supported units.
 
 Default units
@@ -360,7 +360,7 @@ it may be imported successfully.
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href={{% ct_dev_docs sphinx/html/yaml/index.html %}}
+            :attributes: href={{% ct_docs sphinx/html/yaml/index.html %}}
                          title="YAML Format Reference"
 
             Next: YAML Format Reference

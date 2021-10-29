@@ -119,7 +119,7 @@ Additional Information
 
       .. container::
          :tagname: a
-         :attributes: href={{% ct_dev_docs sphinx/html/yaml/index.html %}}
+         :attributes: href={{% ct_docs sphinx/html/yaml/index.html %}}
                       title="YAML Format Reference"
 
          .. container:: card-header section-card
