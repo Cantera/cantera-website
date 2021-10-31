@@ -11,7 +11,7 @@
    .. class:: lead
 
       This document lists the options available for compiling Cantera with
-      SCons. This list is for the current release of Cantera, version 2.4. For
+      SCons. This list is for the current release of Cantera, version 2.5.1. For
       the development version, see `this list <config-options-dev.html>`_.
 
    The default values are operating-system dependent. To see the defaults for your current operating
@@ -54,7 +54,7 @@ Options List
 
 .. _target-arch:
 
-* ``target_arch``: [ ``string`` ]
+* ``target_arch``: [ ``amd64`` | ``x86`` ]
     Target architecture. The default is the same architecture as the
     installed version of Python. Windows only.
 
@@ -83,14 +83,25 @@ Options List
 
 .. _prefix:
 
-* ``prefix``: [ ``/path/to/prefix`` ]
+* ``prefix``: [ ``path/to/prefix`` ]
     Set this to the directory where Cantera should be installed.
 
     - default: ``''``
 
+.. _libdirname:
+
+* ``libdirname``: [ ``path/to/libdirname`` ]
+    Set this to the directory where Cantera libraries should be installed.
+    Some distributions (for example, Fedora/RHEL) use ``lib64`` instead of ``lib`` on 64-bit systems
+    or could use some other library directory name instead of ``lib`` depends
+    on architecture and profile (for example, Gentoo ``libx32`` on x32 profile).
+    If user didn't set ``libdirname`` configuration variable set it to default value ``lib``
+
+    - default: ``'lib'``
+
 .. _python-package:
 
-* ``python_package``: [ ``y`` | ``n`` | ``full`` | ``minimal`` | ``none`` | ``default`` ]
+* ``python_package``: [ ``y`` | ``n`` | ``new`` | ``full`` | ``minimal`` | ``none`` | ``default`` ]
     If you plan to work in Python, then you need the ``full`` Cantera Python
     package. If, on the other hand, you will only use Cantera from some
     other language (for example, MATLAB or Fortran 90/95) and only need Python
@@ -106,24 +117,16 @@ Options List
 
 .. _python-cmd:
 
-* ``python_cmd``: [ ``/path/to/python_cmd`` ]
-    Cantera needs to know where to find the Python interpreter. If the
-    ``python_cmd`` option is not set, then the configuration
-    process will use the same Python interpreter being used by SCons.
-
-    - default: ``''``
-
-.. _python-array-home:
-
-* ``python_array_home``: [ ``/path/to/python_array_home`` ]
-    If NumPy was installed using the ``--home`` option, set this to the home
-    directory for NumPy for Python.
+* ``python_cmd``: [ ``path/to/python_cmd`` ]
+    Cantera needs to know where to find the Python interpreter. If
+    PYTHON_CMD is not set, then the configuration process will use the
+    same Python interpreter being used by SCons.
 
     - default: ``''``
 
 .. _python-prefix:
 
-* ``python_prefix``: [ ``/path/to/python_prefix`` ]
+* ``python_prefix``: [ ``path/to/python_prefix`` ]
     Use this option if you want to install the Cantera Python package to
     an alternate location. On Unix-like systems, the default is the same
     as the ``prefix`` option. If the ``python_prefix`` option is set to
@@ -134,85 +137,27 @@ Options List
 
     - default: ``''``
 
-.. _python2-package:
-
-* ``python2_package``: [ ``y`` | ``n`` | ``full`` | ``minimal`` | ``none`` | ``default`` ]
-    Controls whether or not the Python 2 module will be built. By
-    default, the module will be built if the Python 2 interpreter
-    and the required dependencies (NumPy for Python 2 and Cython
-    for the version of Python for which SCons is installed) can be
-    found.
-
-    - default: ``'default'``
-
-.. _python2-cmd:
-
-* ``python2_cmd``: [ ``/path/to/python2_cmd`` ]
-    The path to the Python 2 interpreter. The default is
-    ``python2``; if this executable cannot be found, this
-    value must be specified to build the Python 2 module.
-
-    - default: ``'python2'``
-
-.. _python2-array-home:
-
-* ``python2_array_home``: [ ``/path/to/python2_array_home`` ]
-    If NumPy was installed using the ``--home`` option, set this to the home
-    directory for NumPy for Python 2.
-
-    - default: ``''``
-
-.. _python2-prefix:
-
-* ``python2_prefix``: [ ``/path/to/python2_prefix`` ]
-    Use this option if you want to install the Cantera Python 2 package to
-    an alternate location. On Unix-like systems, the default is the same
-    as the ``prefix`` option. If the ``python_prefix`` option is set to
-    the empty string or the ``prefix`` option is not set, then the package
-    will be installed to the system default ``site-packages`` directory.
-    To install to the current user's ``site-packages`` directory, use
-    ``python2_prefix=USER``.
-
-    - default: ``''``
-
 .. _python3-package:
 
 * ``python3_package``: [ ``y`` | ``n`` | ``full`` | ``minimal`` | ``none`` | ``default`` ]
-    Controls whether or not the Python 3 module will be built. By
-    default, the module will be built if the Python 3 interpreter
-    and the required dependencies (NumPy for Python 3 and Cython
-    for the version of Python for which SCons is installed) can be
-    found.
+    Deprecated synonym for the ``python_package`` option. Will be overridden
+    if ``python_package`` is set.
 
     - default: ``'default'``
 
 .. _python3-cmd:
 
-* ``python3_cmd``: [ ``/path/to/python3_cmd`` ]
-    The path to the Python 3 interpreter. The default is
-    ``python3``; if this executable cannot be found, this
-    value must be specified to build the Python 3 module.
-
-    - default: ``'python3'``
-
-.. _python3-array-home:
-
-* ``python3_array_home``: [ ``/path/to/python3_array_home`` ]
-    If NumPy was installed using the ``--home`` option, set this to the home
-    directory for NumPy for Python 3.
+* ``python3_cmd``: [ ``path/to/python3_cmd`` ]
+    Deprecated synonym for the ``python_cmd`` option. Will be overridden
+    if ``python_cmd`` is set.
 
     - default: ``''``
 
 .. _python3-prefix:
 
-* ``python3_prefix``: [ ``/path/to/python3_prefix`` ]
-    Use this option if you want to install the Cantera Python 3 package to
-    an alternate location. On Unix-like systems, the default is the same
-    as the ``prefix`` option. If the ``python_prefix`` option is set to
-    the empty string or the ``prefix`` option is not set, then the package
-    will be installed to the system default ``site-packages`` directory.
-    To install to the current user's ``site-packages`` directory, use
-    ``python3_prefix=USER``.
+* ``python3_prefix``: [ ``path/to/python3_prefix`` ]
+    Deprecated synonym for the ``python_prefix`` option. Will be overridden
+    if ``python_prefix`` is set.
 
     - default: ``''``
 
@@ -221,19 +166,19 @@ Options List
 * ``matlab_toolbox``: [ ``y`` | ``n`` | ``default`` ]
     This variable controls whether the MATLAB toolbox will be built. If
     set to ``y``, you will also need to set the value of the ``matlab_path``
-    variable. If ``matlab_toolbox`` is set to ``default``, the MATLAB toolbox
-    will be built if ``matlab_path`` is set.
+    variable. If set to ``default``, the MATLAB toolbox will be built if
+    ``matlab_path`` is set.
 
     - default: ``'default'``
 
 .. _matlab-path:
 
-* ``matlab_path``: [ ``/path/to/matlab_path`` ]
+* ``matlab_path``: [ ``path/to/matlab_path`` ]
     Path to the MATLAB install directory. This should be the directory
     containing the ``extern``, ``bin``, etc. subdirectories. Typical values
-    are: ``C:/Program Files/MATLAB/R2011a`` on Windows,
-    ``/Applications/MATLAB_R2011a.app`` on OS X, or ``/opt/MATLAB/R2011a``
-    on Linux.
+    are: ``"C:/Program Files/MATLAB/R2011a"`` on Windows,
+    ``"/Applications/MATLAB_R2011a.app"`` on OS X, or
+    ``"/opt/MATLAB/R2011a"`` on Linux.
 
     - default: ``''``
 
@@ -249,9 +194,9 @@ Options List
 
 .. _fortran:
 
-* ``FORTRAN``: [ ``/path/to/FORTRAN`` ]
+* ``FORTRAN``: [ ``path/to/FORTRAN`` ]
     The Fortran (90) compiler. If unspecified, the builder will look for
-    a compatible compiler (gfortran, ifort, g95) in the ``PATH`` environment
+    a compatible compiler (pgfortran, gfortran, ifort, g95) in the ``PATH`` environment
     variable. Used only for compiling the Fortran 90 interface.
 
     - default: ``''``
@@ -266,8 +211,8 @@ Options List
 .. _coverage:
 
 * ``coverage``: [ ``yes`` | ``no`` ]
-    Enable collection of code coverage information with gcov. Available
-    only when compiling with gcc.
+    Enable collection of code coverage information with gcov.
+    Available only when compiling with gcc.
 
     - default: ``'no'``
 
@@ -287,36 +232,55 @@ Options List
 
 .. _sphinx-cmd:
 
-* ``sphinx_cmd``: [ ``/path/to/sphinx_cmd`` ]
+* ``sphinx_cmd``: [ ``path/to/sphinx_cmd`` ]
     Command to use for building the Sphinx documentation.
 
     - default: ``'sphinx-build'``
 
+.. _sphinx-options:
+
+* ``sphinx_options``: [ ``string`` ]
+    Options passed to the ``sphinx_cmd`` command line. Separate multiple
+    options with spaces, for example, ``"-W --keep-going"``.
+
+    - default: ``''``
+
 .. _system-eigen:
 
-* ``system_eigen``: [ ``default`` | ``y`` | ``n`` ]
+* ``system_eigen``: [ ``y`` | ``n`` | ``default`` ]
     Select whether to use Eigen from a system installation (``y``), from a
-    Git submodule (``n``), or to decide automatically (``default``). If
-    Eigen is not installed directly into a system include directory --
-    for example, it is installed in ``/opt/include/eigen3/Eigen``, then you will
-    need to add ``/opt/include/eigen3`` to the ``extra_inc_dirs`` option.
+    Git submodule (``n``), or to decide automatically (``default``). If Eigen
+    is not installed directly into a system include directory, for example, it is
+    installed in ``/opt/include/eigen3/Eigen``, then you will need to add
+    ``/opt/include/eigen3`` to ``extra_inc_dirs``.
 
     - default: ``'default'``
 
 .. _system-fmt:
 
-* ``system_fmt``: [ ``default`` | ``y`` | ``n`` ]
+* ``system_fmt``: [ ``y`` | ``n`` | ``default`` ]
     Select whether to use the fmt library from a system installation
     (``y``), from a Git submodule (``n``), or to decide automatically
     (``default``).
 
     - default: ``'default'``
 
+.. _system-yamlcpp:
+
+* ``system_yamlcpp``: [ ``y`` | ``n`` | ``default`` ]
+    Select whether to use the yaml-cpp library from a system installation
+    (``y``), from a Git submodule (``n``), or to decide automatically
+    (``default``). If yaml-cpp is not installed directly into system
+    include and library directories, then you will need to add those
+    directories to ``extra_inc_dirs`` and ``extra_lib_dirs``.
+
+    - default: ``'default'``
+
 .. _system-sundials:
 
-* ``system_sundials``: [ ``default`` | ``y`` | ``n`` ]
-    Select whether to use SUNDIALS from a system installation (``y``),
-    from a Git submodule (``n``), or to decide automatically (``default``).
+* ``system_sundials``: [ ``y`` | ``n`` | ``default`` ]
+    Select whether to use SUNDIALS from a system installation (``y``), from
+    a Git submodule (``n``), or to decide automatically (``default``).
     Specifying ``sundials_include`` or ``sundials_libdir`` changes the
     default to ``y``.
 
@@ -324,40 +288,41 @@ Options List
 
 .. _sundials-include:
 
-* ``sundials_include``: [ ``/path/to/sundials_include`` ]
+* ``sundials_include``: [ ``path/to/sundials_include`` ]
     The directory where the SUNDIALS header files are installed. This
-    should be the directory that contains the ``cvodes``, ``nvector``, etc.
+    should be the directory that contains the ``"cvodes"``, ``"nvector"``, etc.
     subdirectories. Not needed if the headers are installed in a
-    standard location such as ``/usr/include``.
+    standard location, for example, ``/usr/include``.
 
     - default: ``''``
 
 .. _sundials-libdir:
 
-* ``sundials_libdir``: [ ``/path/to/sundials_libdir`` ]
-    The directory where the SUNDIALS static libraries are installed. Not
-    needed if the libraries are installed in a standard location such as
-    ``/usr/lib``.
+* ``sundials_libdir``: [ ``path/to/sundials_libdir`` ]
+    The directory where the SUNDIALS static libraries are installed.
+    Not needed if the libraries are installed in a standard location,
+    for example, ``/usr/lib``.
 
     - default: ``''``
 
 .. _blas-lapack-libs:
 
 * ``blas_lapack_libs``: [ ``string`` ]
-    Cantera can use BLAS and LAPACK libraries available on your system
-    if you have optimized versions available (for example, Intel MKL).
-    Otherwise, Cantera will use Eigen for linear algebra support. To use
-    BLAS and LAPACK, set ``blas_lapack_libs`` to the the list of libraries
-    that should be passed to the linker, separated by commas -- for example,
-    ``"lapack,blas"`` or ``"lapack,f77blas,cblas,atlas"``.
+    Cantera can use BLAS and LAPACK libraries available on your system if
+    you have optimized versions available (for example, Intel MKL). Otherwise,
+    Cantera will use Eigen for linear algebra support. To use BLAS
+    and LAPACK, set ``blas_lapack_libs`` to the the list of libraries
+    that should be passed to the linker, separated by commas, for example,
+    ``"lapack,blas"`` or ``"lapack,f77blas,cblas,atlas"``. Eigen is required
+    whether or not BLAS/LAPACK are used.
 
     - default: ``''``
 
 .. _blas-lapack-dir:
 
-* ``blas_lapack_dir``: [ ``/path/to/blas_lapack_dir`` ]
+* ``blas_lapack_dir``: [ ``path/to/blas_lapack_dir`` ]
     Directory containing the libraries specified by ``blas_lapack_libs``. Not
-    needed if the libraries are installed in a standard location such as
+    needed if the libraries are installed in a standard location, for example,
     ``/usr/lib``.
 
     - default: ``''``
@@ -367,7 +332,7 @@ Options List
 * ``lapack_names``: [ ``lower`` | ``upper`` ]
     Set depending on whether the procedure names in the specified
     libraries are lowercase or uppercase. If you don't know, run ``nm`` on
-    the library file (for example, ``nm libblas.a``).
+    the library file (for example, ``"nm libblas.a"``).
 
     - default: ``'lower'``
 
@@ -390,7 +355,7 @@ Options List
 
 .. _system-googletest:
 
-* ``system_googletest``: [ ``unspecified`` | ``default`` | ``y`` | ``n`` ]
+* ``system_googletest``: [ ``y`` | ``n`` | ``unspecified`` | ``default`` ]
     Select whether to use gtest/gmock from system
     installation (``y``), from a Git submodule (``n``), or to decide
     automatically (``default``). Deprecated option, please use ``googletest`` instead.
@@ -400,7 +365,7 @@ Options List
 
 .. _googletest:
 
-* ``googletest``: [ ``'default'`` | ``'system'`` | ``'submodule'`` | ``'none'`` ]
+* ``googletest``: [ ``default`` | ``system`` | ``submodule`` | ``none`` ]
     Select whether to use gtest/gmock from system
     installation (``system``), from a Git submodule (``submodule``), to decide
     automatically (``default``) or don't look for gtest/gmock (``none``)
@@ -413,31 +378,30 @@ Options List
 
 * ``env_vars``: [ ``string`` ]
     Environment variables to propagate through to SCons. Either the
-    string ``all`` or a comma separated list of variable names such as
+    string ``"all"`` or a comma separated list of variable names, for example,
     ``LD_LIBRARY_PATH,HOME``.
 
-    - default: ``'LD_LIBRARY_PATH,PYTHONPATH'``
+    - default: ``''``
 
 .. _use-pch:
 
 * ``use_pch``: [ ``yes`` | ``no`` ]
     Use a precompiled-header to speed up compilation
 
-    - default: ``'yes'``
+    - default: ``''``
 
 .. _cxx-flags:
 
 * ``cxx_flags``: [ ``string`` ]
     Compiler flags passed to the C++ compiler only. Separate multiple
-    options with spaces, such as ``cxx_flags='-g -Wextra -O3 --std=c++11'``
+    options with spaces, for example, ``"cxx_flags='-g -Wextra -O3 --std=c++11'"``
 
     - default: ``''``
 
 .. _cc-flags:
 
 * ``cc_flags``: [ ``string`` ]
-    Compiler flags passed to both the C and C++ compilers, regardless of
-    optimization level
+    Compiler flags passed to both the C and C++ compilers, regardless of optimization level.
 
     - default: ``''``
 
@@ -460,16 +424,14 @@ Options List
 .. _optimize-flags:
 
 * ``optimize_flags``: [ ``string`` ]
-    Additional compiler flags passed to the C/C++ compiler when
-    ``optimize=yes``.
+    Additional compiler flags passed to the C/C++ compiler when ``optimize=yes``.
 
     - default: ``''``
 
 .. _no-optimize-flags:
 
 * ``no_optimize_flags``: [ ``string`` ]
-    Additional compiler flags passed to the C/C++ compiler when
-    ``optimize=no``.
+    Additional compiler flags passed to the C/C++ compiler when ``optimize=no``.
 
     - default: ``''``
 
@@ -483,16 +445,14 @@ Options List
 .. _debug-flags:
 
 * ``debug_flags``: [ ``string`` ]
-    Additional compiler flags passed to the C/C++ compiler when
-    ``debug=yes``.
+    Additional compiler flags passed to the C/C++ compiler when ``debug=yes``.
 
     - default: ``''``
 
 .. _no-debug-flags:
 
 * ``no_debug_flags``: [ ``string`` ]
-    Additional compiler flags passed to the C/C++ compiler when
-    ``debug=no``.
+    Additional compiler flags passed to the C/C++ compiler when ``debug=no``.
 
     - default: ``''``
 
@@ -514,41 +474,42 @@ Options List
 
 * ``warning_flags``: [ ``string`` ]
     Additional compiler flags passed to the C/C++ compiler to enable
-    extra warnings. Used only when compiling source code that is part of
-    Cantera (for example, excluding code in the 'ext' directory).
+    extra warnings. Used only when compiling source code that is part
+    of Cantera (for example, excluding code in the ``ext`` directory).
 
     - default: ``''``
 
 .. _extra-inc-dirs:
 
 * ``extra_inc_dirs``: [ ``string`` ]
-    Additional directories to search for header files (colon-separated
-    list).
+    Additional directories to search for header files, with multiple
+    directories separated by colons (\*nix, macOS) or semicolons (Windows)
 
     - default: ``''``
 
 .. _extra-lib-dirs:
 
 * ``extra_lib_dirs``: [ ``string`` ]
-    Additional directories to search for libraries (colon-separated
-    list).
+    Additional directories to search for libraries, with multiple
+    directories separated by colons (\*nix, macOS) or semicolons (Windows)
 
     - default: ``''``
 
 .. _boost-inc-dir:
 
-* ``boost_inc_dir``: [ ``/path/to/boost_inc_dir`` ]
+* ``boost_inc_dir``: [ ``path/to/boost_inc_dir`` ]
     Location of the Boost header files. Not needed if the headers are
-    installed in a standard location such as ``/usr/include``.
+    installed in a standard location, for example, ``/usr/include``.
 
     - default: ``''``
 
 .. _stage-dir:
 
-* ``stage_dir``: [ ``/path/to/stage_dir`` ]
-    Directory relative to the Cantera source directory to be used as a
-    staging area for building for example, a Debian package. If specified,
-    ``scons install`` will install files to ``stage_dir/prefix/...``.
+* ``stage_dir``: [ ``path/to/stage_dir`` ]
+    Directory relative to the Cantera source directory to be
+    used as a staging area for building for example, a Debian
+    package. If specified, 'scons install' will install files
+    to ``stage_dir/prefix/...``.
 
     - default: ``''``
 
@@ -562,18 +523,20 @@ Options List
 .. _gtest-flags:
 
 * ``gtest_flags``: [ ``string`` ]
-    Additional options passed to each GTest test suite, such as
-    `--gtest_filter=*pattern*`. Separate multiple options with spaces.
+    Additional options passed to each GTest test suite, for example,
+    '--gtest_filter=*pattern*'. Separate multiple options with spaces.
+
+    - default: ``''``
 
 .. _renamed-shared-libraries:
 
 * ``renamed_shared_libraries``: [ ``yes`` | ``no`` ]
     If this option is turned on, the shared libraries that are created
-    will be renamed to have a ``_shared`` extension added to their base
-    name. If not, the base names will be the same as the static
-    libraries. In some cases this simplifies subsequent linking
-    environments with static libraries and avoids a bug with using
-    valgrind with the ``-static`` linking flag.
+    will be renamed to have a ``_shared`` extension added to their base name.
+    If not, the base names will be the same as the static libraries.
+    In some cases this simplifies subsequent linking environments with
+    static libraries and avoids a bug with using valgrind with
+    the ``-static`` linking flag.
 
     - default: ``'yes'``
 
@@ -581,21 +544,37 @@ Options List
 
 * ``versioned_shared_library``: [ ``yes`` | ``no`` ]
     If enabled, create a versioned shared library, with symlinks to the
-    more generic library name, for example ``libcantera_shared.so.2.4.0`` as the
+    more generic library name, for example, ``libcantera_shared.so.2.5.0`` as the
     actual library and ``libcantera_shared.so`` and ``libcantera_shared.so.2``
     as symlinks.
 
-    - default: ``'no'``
+    - default: ``''``
+
+.. _use-rpath-linkage:
+
+* ``use_rpath_linkage``: [ ``yes`` | ``no`` ]
+    If enabled, link to all shared libraries using ``rpath``, i.e., a fixed
+    run-time search path for dynamic library loading.
+
+    - default: ``'yes'``
 
 .. _layout:
 
 * ``layout``: [ ``standard`` | ``compact`` | ``debian`` ]
-    The layout of the directory structure. 'standard' installs files to
-    several subdirectories under 'prefix' -- for example, $prefix/bin,
-    $prefix/include/cantera, $prefix/lib. This layout is best used in
-    conjunction with 'prefix'='/usr/local'. 'compact' puts all installed
+    The layout of the directory structure. ``standard`` installs files to
+    several subdirectories under 'prefix', for example, ``prefix/bin``,
+    ``prefix/include/cantera``, ``prefix/lib`` etc. This layout is best used in
+    conjunction with ``"prefix='/usr/local'"``. ``compact`` puts all installed
     files in the subdirectory defined by 'prefix'. This layout is best
-    with a prefix like '/opt/cantera'. 'debian' installs to the
-    stage directory in a layout used for generating Debian packages.
+    with a prefix like ``/opt/cantera``. ``debian`` installs to the stage
+    directory in a layout used for generating Debian packages.
 
-    - default: ``'standard'``
+    - default: ``''``
+
+.. _fast-fail-tests:
+
+* ``fast_fail_tests``: [ ``yes`` | ``no`` ]
+    If enabled, tests will exit at the first failure.
+
+    - default: ``'no'``
+
