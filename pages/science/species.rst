@@ -145,6 +145,8 @@ A NASA-7 parameterization can be defined in the CTI format using the
 :cti:class:`NASA` entry, or in the YAML format by specifying
 :ref:`NASA7 <sec-yaml-nasa7>` as the ``model`` in the species ``thermo`` field.
 
+.. _sec-thermo-nasa9:
+
 The NASA 9-Coefficient Polynomial Parameterization
 --------------------------------------------------
 
@@ -167,6 +169,9 @@ the following equations:
 
    \frac{s^0(T)}{R} = - \frac{a_0}{2} T^{-2} - a_1 T^{-1} + a_2 \ln T
       + a_3 T + \frac{a_4}{2} T^2 + \frac{a_5}{3} T^3  + \frac{a_6}{4} T^4 + a_8
+
+A common source for species data in the NASA9 format is the
+:ref:`NASA ThermoBuild <sec-thermobuild>` tool.
 
 A NASA-9 parameterization can be defined in the CTI format using the
 :cti:class:`NASA9` entry, or in the YAML format by specifying

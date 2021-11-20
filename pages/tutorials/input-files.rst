@@ -171,6 +171,23 @@ There are three primary options for creating a new Cantera input file:
                   Convert existing Cantera mechanisms in the legacy CTI or XML
                   formats to the YAML format. *(New in Cantera 2.5)*
 
+         .. container:: card
+
+            .. container::
+               :tagname: a
+               :attributes: href="thermobuild.html"
+                            title="Importing data from NASA ThermoBuild"
+
+               .. container:: card-header section-card
+
+                  Importing data from NASA ThermoBuild
+
+            .. container:: card-body
+
+               .. container:: card-text
+
+                  Import thermodynamic data for a range of species from this
+                  web-based tool.
 
 Understanding Input File Syntax
 ===============================

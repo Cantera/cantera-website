@@ -151,8 +151,8 @@ parameterization in three different temperature regions:
            note='Gurvich,1991 pt1 p27 pt2 p24. [g 9/99]')
 
 Thermodynamic data for a range of species can be obtained from the
-`NASA ThermoBuild <http://cearun.grc.nasa.gov/cea/index_ds.html>`__ tool. Using the web
-interface, an input file can be obtained for a set of species. This input file
+`NASA ThermoBuild <https://cearun.grc.nasa.gov/ThermoBuild/index_ds.html>`__ tool. Using
+the web interface, an input file can be obtained for a set of species. This input file
 should then be modified so that the first line reads "`thermo nasa9`", as in the
 following example:
 
