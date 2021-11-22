@@ -8,3 +8,4 @@ nbconvert==5.6.1
 # Pin until the bootstrap.py plugin here can be updated.
 # Something with docutils==0.17 broke that plugin
 docutils==0.16
+scons>=3.0.0

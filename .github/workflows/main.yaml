@@ -34,6 +34,12 @@ jobs:
         path: cantera
         ref: 2.5
     - uses: actions/checkout@v2
+      name: Checkout Cantera 'main' repository
+      with:
+        submodules: recursive
+        repository: Cantera/cantera
+        path: cantera-dev
+    - uses: actions/checkout@v2
       name: Checkout Cantera Jupyter repository
       with:
         repository: Cantera/cantera-jupyter
@@ -59,6 +65,14 @@ jobs:
     - name: Install dependencies
       run: python3 -m pip install -r requirements.txt
       working-directory: ${{ env.WEBSITE_CLONE_DIR }}
+
+    # Parse SCons configuration for development version and move reST file
+    - name: Parse configuration options from Cantera SConstruct as reST
+      run: |
+        cd cantera-dev
+        python3 `which scons` help --restructured-text --dev --output=scons-config-options-dev.rst
+        cd ..
+        mv -f cantera-dev/scons-config-options-dev.rst ${{ env.WEBSITE_CLONE_DIR }}/pages/compiling/
 
     - name: Build the site
       run: NIKOLA_DEBUG=1 nikola build
