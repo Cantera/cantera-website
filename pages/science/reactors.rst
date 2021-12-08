@@ -149,9 +149,10 @@ for an open system:
 
 .. math::
 
-   \frac{dU}{dt} = - p \frac{dV}{dt} - \dot{Q} +
+   \frac{dU}{dt} = - p \frac{dV}{dt} + \dot{Q} +
                     \sum_{in} \dot{m}_{in} h_{in} - h \sum_{out} \dot{m}_{out}
 
+where :math:`\dot{Q}` is the net rate of heat addition to the system. [1]_
 
 Constant Pressure Reactor
 *************************
@@ -171,7 +172,7 @@ Noting that :math:`dp/dt = 0` and substituting into the energy equation yields:
 
 .. math::
 
-   \frac{dH}{dt} = - \dot{Q} + \sum_{in} \dot{m}_{in} h_{in}
+   \frac{dH}{dt} = \dot{Q} + \sum_{in} \dot{m}_{in} h_{in}
                    - h \sum_{out} \dot{m}_{out}
 
 
@@ -196,7 +197,7 @@ temperature:
 
 .. math::
 
-   m c_v \frac{dT}{dt} = - p \frac{dV}{dt} - \dot{Q}
+   m c_v \frac{dT}{dt} = - p \frac{dV}{dt} + \dot{Q}
        + \sum_{in} \dot{m}_{in} \left( h_{in} - \sum_k u_k Y_{k,in} \right)
        - \frac{p V}{m} \sum_{out} \dot{m}_{out} - \sum_k \dot{m}_{k,gen} u_k
 
@@ -224,7 +225,7 @@ temperature:
 
 .. math::
 
-   m c_p \frac{dT}{dt} = - \dot{Q} - \sum_k h_k \dot{m}_{k,gen}
+   m c_p \frac{dT}{dt} = \dot{Q} - \sum_k h_k \dot{m}_{k,gen}
        + \sum_{in} \dot{m}_{in} \left(h_{in} - \sum_k h_k Y_{k,in} \right)
 
 Wall Interactions
@@ -249,8 +250,8 @@ The total rate of heat transfer through all walls is:
 
    \dot{Q} = \sum_w f_w \dot{Q}_w
 
-where :math:`f_w = \pm 1` indicates the facing of the wall (+1 for the reactor
-on the left, -1 for the reactor on the right). The heat flux :math:`\dot{Q}_w`
+where :math:`f_w = \pm 1` indicates the facing of the wall (-1 for the reactor
+on the left, +1 for the reactor on the right). The heat flux :math:`\dot{Q}_w`
 through a wall :math:`w` connecting reactors "left" and "right" is computed as:
 
 .. math::
@@ -664,3 +665,10 @@ an example of a `custom ODE solver </examples/python/reactors/custom.py.html>`__
 
 .. [Kee2017] R. J. Kee, M. E. Coltrin, P. Glarborg, and H. Zhu. *Chemically Reacting Flow:
    Theory and Practice*. 2nd Ed. John Wiley and Sons, 2017.
+
+.. rubric:: Footnotes
+
+.. [1] Prior to Cantera 2.6, the sense of the net heat flow was reversed, with positive
+   :math:`\dot{Q}` representing heat removal from the system. However, the sense of heat
+   flow through a wall between two reactors was the same, with a positive value
+   representing heat flow from the left reactor to the right reactor.
