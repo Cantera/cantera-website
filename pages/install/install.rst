@@ -33,11 +33,11 @@
                               href=conda-install.html
                   :tagname: a
 
-                  Conda (Highly Recommended)
+                  Conda / All platforms (Highly Recommended)
 
                .. container:: card-body
 
-                  Install the Cantera Python interface with Conda (Highly recommended for all users)
+                  Install the Cantera Python or MATLAB interface with Conda (Highly recommended for all users)
 
             .. container:: card
 
