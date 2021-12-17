@@ -71,7 +71,7 @@
 
    .. row::
 
-      .. container:: col-12
+      .. container:: col-sm-4 mx-auto
 
          .. container:: card-deck
 
