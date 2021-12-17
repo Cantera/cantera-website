@@ -13,8 +13,8 @@
    .. class:: lead
 
       A FreeBSD package is maintained by the Cantera community in the ``science`` port.
-      Note that the Matlab package is not available from this port; to install the
-      Matlab packages on FreeBSD, you must :ref:`compile Cantera's source code
+      Note that the Matlab interface is not available from this port; to install the
+      Matlab interface on FreeBSD, you must :ref:`compile Cantera's source code
       <sec-compiling>`.
 
 Further information about the Cantera package can be found on `FreeBSD.org
