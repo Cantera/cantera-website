@@ -16,8 +16,8 @@
       (COPR) repository. Note that the Matlab interface is not available from this archive;
       to install the Matlab interface on Fedora, you must :ref:`compile the source code <sec-compiling>`.
 
-As of Cantera 2.6.0, packages are available for Fedora Linux 33, 34, 35, and
-Rawhide as well as CentOS Stream 8 and Enterprise Linux 8.
+As of Cantera 2.6.0, packages are available for currently supported releases of Fedora Linux
+and Fedora Rawhide as well as CentOS Stream 8 and Enterprise Linux 8.
 
 Packages for current supported Fedora releases and Rawhide are at
 `<https://copr.fedorainfracloud.org/coprs/fuller/Cantera/>`__.
@@ -33,11 +33,17 @@ The available packages are:
 
 - ``cantera-common`` - Cantera data files and example programs
 
-To add the Cantera COPR:
+To add the Cantera COPR for Fedora:
 
 .. code-block:: bash
 
    $ dnf copr enable fuller/Cantera
+
+To add the Cantera COPR for CentOS Stream or Enterprise Linux:
+
+.. code-block:: bash
+
+   $ dnf copr enable fuller/Cantera-EL
 
 To install all of the Cantera packages:
 
