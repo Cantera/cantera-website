@@ -169,10 +169,10 @@ class RenderJupyterExamples(Task):
             "jupyter-example-index.tmpl"
         )
         jupyter_headers = OrderedDict(
-            thermo=dict(name="Thermodynamics", files=[], summaries={}),
-            reactors=dict(name="Reactor Networks", files=[], summaries={}),
-            flames=dict(name="One-Dimensional Flames", files=[], summaries={}),
-            electrochemistry=dict(name="Electrochemistry", files=[], summaries={}),
+            thermo=dict(name="Thermodynamics", files=[], summaries={}, titles={}),
+            reactors=dict(name="Reactor Networks", files=[], summaries={}, titles={}),
+            flames=dict(name="One-Dimensional Flames", files=[], summaries={}, titles={}),
+            electrochemistry=dict(name="Electrochemistry", files=[], summaries={}, titles={}),
         )
 
         def get_b64_str(parent, img_fname):
@@ -201,11 +201,20 @@ class RenderJupyterExamples(Task):
             jupyter_headers[ex_category]["files"].append(jpy_ex_file)
             data = json.loads(jpy_ex_file.read_text(encoding="utf-8"))
             doc = ""
+            title = ""
             for cell in data["cells"]:
                 if cell["cell_type"] != "markdown":
                     continue
                 if not doc:
-                    doc = cell["source"][0].replace("#", "").strip()
+                    doc = []
+                    for line in cell["source"]:
+                        if doc and title and not line.strip():
+                            break
+                        if not title and line.startswith("#"):
+                            title = line.replace("#", "").strip()
+                        else:
+                            doc.append(line.strip())
+                    doc = " ".join(doc)
                 for img_idx, cell_src in enumerate(cell["source"]):
                     if "img" in cell_src:
                         img = lxml.html.fromstring(cell_src)
@@ -245,6 +254,16 @@ class RenderJupyterExamples(Task):
             with cache_file.open(mode="w", encoding="utf-8") as jfile:
                 json.dump(data, jfile)
 
+            if not title or not doc:
+                self.logger.warn(
+                    f"The Jupyter example {jpy_ex_file.name!s} doesn't have a parseable"
+                    " title and/or summary"
+                )
+
+            if not title:
+                title = jpy_ex_file.name
+
+            jupyter_headers[ex_category]["titles"][jpy_ex_file.name] = title
             jupyter_headers[ex_category]["summaries"][jpy_ex_file.name] = doc
 
             out_name = kw["output_folder"].joinpath(
