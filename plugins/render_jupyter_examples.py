@@ -82,6 +82,14 @@ def render_example(site, kw, in_name, out_name):
     ipynb_html = lxml.html.fromstring(ipynb_raw)
     code = lxml.html.tostring(ipynb_html, encoding="unicode")
 
+    data_files = set()
+    pattern = re.compile(r"data/(\w*?\.\w*)")
+    for cell in nb_json["cells"]:
+        if cell["cell_type"] != "code":
+            continue
+        for match in pattern.findall(cell["source"]):
+            data_files.add(match)
+
     title = in_name.name
 
     permalink = out_name.relative_to(kw["output_folder"])
@@ -89,6 +97,7 @@ def render_example(site, kw, in_name, out_name):
     context = {
         "code": code,
         "title": title,
+        "data_files": data_files,
         "permalink": str(permalink),
         "lang": kw["default_lang"],
         "description": title,
