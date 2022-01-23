@@ -1,5 +1,5 @@
 .. title: Installing Cantera on Fedora
-.. date: 2021-10-19 17:49:00 UTC+03:00
+.. date: 2022-01-23 16:16:00 UTC+02:00
 .. description: Installation instructions for Cantera on Fedora
 .. type: text
 .. _sec-install-fedora-rhel:
@@ -26,12 +26,14 @@ Builds for CentOS Stream and Enterprise Linux are at
 
 The available packages are:
 
-- ``cantera-python3`` - The Cantera Python module for Python 3.
+- ``python3-cantera`` - The Cantera Python module for Python 3.
 
-- ``cantera-devel`` - Libraries and header files for compiling your own C++ and
+- ``cantera-devel`` - Shared object libraries and header files for compiling your own C++ and
   Fortran 90 programs that use Cantera.
 
-- ``cantera-common`` - Cantera data files and example programs
+- ``cantera-common`` - Cantera data files and example programs.
+
+- ``cantera-static`` - Static libraries for C++ and Fortran 90 development.
 
 To add the Cantera COPR for Fedora:
 
@@ -49,7 +51,7 @@ To install all of the Cantera packages:
 
 .. code-block:: bash
 
-   $ dnf install cantera-python3 cantera-devel
+   $ dnf install python3-cantera cantera-devel
 
 or install whichever subset you need by adjusting the above command. The ``cantera-common``
 package is installed as a dependency if any other Cantera packages are selected.
