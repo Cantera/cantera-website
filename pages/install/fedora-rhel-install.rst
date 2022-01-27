@@ -1,5 +1,5 @@
 .. title: Installing Cantera on Fedora
-.. date: 2021-10-19 17:49:00 UTC+03:00
+.. date: 2022-01-23 16:16:00 UTC+02:00
 .. description: Installation instructions for Cantera on Fedora
 .. type: text
 .. _sec-install-fedora-rhel:
@@ -17,39 +17,34 @@
       to install the Matlab interface on Fedora, you must :ref:`compile the source code <sec-compiling>`.
 
 As of Cantera 2.6.0, packages are available for currently supported releases of Fedora Linux
-and Fedora Rawhide as well as CentOS Stream 8 and Enterprise Linux 8.
-
-Packages for current supported Fedora releases and Rawhide are at
-`<https://copr.fedorainfracloud.org/coprs/fuller/Cantera/>`__.
-Builds for CentOS Stream and Enterprise Linux are at
-`<https://copr.fedorainfracloud.org/coprs/fuller/Cantera-EL/>`__.
+and Fedora Rawhide as well as Enterprise Linux 8.
 
 The available packages are:
 
-- ``cantera-python3`` - The Cantera Python module for Python 3.
+- ``python3-cantera`` - The Cantera Python module for Python 3.
 
-- ``cantera-devel`` - Libraries and header files for compiling your own C++ and
+- ``cantera-devel`` - Shared object libraries and header files for compiling your own C++ and
   Fortran 90 programs that use Cantera.
 
-- ``cantera-common`` - Cantera data files and example programs
+- ``cantera-common`` - Cantera data files and example programs.
 
-To add the Cantera COPR for Fedora:
+- ``cantera-static`` - Static libraries for C++ and Fortran 90 development.
+
+Cantera is available in the official repositories for Fedora - no configuration
+changes are required.
+
+On Enterprise Linux, if not already enabled, add the "Extra Packages for Enterprise
+Linux" (EPEL) repository:
 
 .. code-block:: bash
 
-   $ dnf copr enable fuller/Cantera
-
-To add the Cantera COPR for CentOS Stream or Enterprise Linux:
-
-.. code-block:: bash
-
-   $ dnf copr enable fuller/Cantera-EL
+   $ dnf install epel-release
 
 To install all of the Cantera packages:
 
 .. code-block:: bash
 
-   $ dnf install cantera-python3 cantera-devel
+   $ dnf install python3-cantera cantera-devel
 
 or install whichever subset you need by adjusting the above command. The ``cantera-common``
 package is installed as a dependency if any other Cantera packages are selected.
