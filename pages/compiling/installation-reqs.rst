@@ -84,7 +84,7 @@ Conda Requirements
 
   .. code:: bash
 
-     conda create --name cantera python=3 scons cython boost numpy ruamel_yaml
+     conda create --name cantera python=3 scons cython boost numpy ruamel.yaml
      conda activate cantera
 
 * (Optional) If you also want to build the documentation, after you've created the environment and
