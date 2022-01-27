@@ -17,12 +17,7 @@
       to install the Matlab interface on Fedora, you must :ref:`compile the source code <sec-compiling>`.
 
 As of Cantera 2.6.0, packages are available for currently supported releases of Fedora Linux
-and Fedora Rawhide as well as CentOS Stream 8 and Enterprise Linux 8.
-
-Packages for current supported Fedora releases and Rawhide are at
-`<https://copr.fedorainfracloud.org/coprs/fuller/Cantera/>`__.
-Builds for CentOS Stream and Enterprise Linux are at
-`<https://copr.fedorainfracloud.org/coprs/fuller/Cantera-EL/>`__.
+and Fedora Rawhide as well as Enterprise Linux 8.
 
 The available packages are:
 
@@ -35,17 +30,15 @@ The available packages are:
 
 - ``cantera-static`` - Static libraries for C++ and Fortran 90 development.
 
-To add the Cantera COPR for Fedora:
+Cantera is available in the official repositories for Fedora - no configuration
+changes are required.
+
+On Enterprise Linux, if not already enabled, add the "Extra Packages for Enterprise
+Linux" (EPEL) repository:
 
 .. code-block:: bash
 
-   $ dnf copr enable fuller/Cantera
-
-To add the Cantera COPR for CentOS Stream or Enterprise Linux:
-
-.. code-block:: bash
-
-   $ dnf copr enable fuller/Cantera-EL
+   $ dnf install epel-release
 
 To install all of the Cantera packages:
 
