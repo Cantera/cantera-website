@@ -13,8 +13,9 @@
       If you want to convert a Chemkin-format file to CTI format, or you're having
       errors when you try to do so, this section will help.
 
-      Note that the legacy CTI input file format will be deprecated in Cantera 2.6
-      and fully replaced by :doc:`YAML <defining-phases>` input in Cantera 3.0.
+      Note that the legacy CTI input file is deprecated in Cantera 2.5, and will be
+      removed in Cantera 3.0. It is superseded by the :doc:`YAML <defining-phases>`
+      format. ```ck2cti``` is replaced by :doc:```ck2yaml`` <ck2yaml-tutorial>`.
 
 CK2CTI
 ------
