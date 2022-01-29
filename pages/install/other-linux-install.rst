@@ -16,5 +16,5 @@ recommend that you use the Conda package, described
 :ref:`on the Conda installation page <sec-install-conda>`. However, due to the limitations of 
 distributing binary packages, the Conda package will not work on all Linux distributions 
 (for instance, RHEL 6 is not supported). For these platforms, or if you want to use an interface other
-than the Python interface, you'll have to compile and install Cantera yourself. Instructions for
-that are in the :ref:`compiling section <sec-compiling>`.
+than the Python or MATLAB interface, you'll have to compile and install Cantera 
+yourself. Instructions for that are in the :ref:`compiling section <sec-compiling>`.

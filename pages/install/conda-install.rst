@@ -41,10 +41,10 @@ Python interface
 
 Cantera's Python interface is available from two channels:
 
-1. The official ``cantera`` channel. This channel should be used if you installed NumPy
-   from the default channel in conda. This channel also has pre-release versions of
-   Cantera for testing.
-2. The ``conda-forge`` channel. This channel should be used if you installed NumPy from
+1. The official ``cantera`` channel. This channel should be used if you installed
+   Python from the default channel in conda or if you're working on Windows. This
+   channel also has pre-release versions of Cantera for testing.
+2. The ``conda-forge`` channel. This channel should be used if you installed Python from
    the ``conda-forge`` channel. This channel supports more CPU architectures than the
    official channel.
 
