@@ -260,6 +260,38 @@ specified in the ``transport`` field. Supported models are:
 - `water <{{% ct_docs doxygen/html/df/d1f/classCantera_1_1WaterTransport.html#details %}}>`__:
   A transport model for pure water applicable in both liquid and vapor phases
 
+Declaring Adjacent Phases
+-------------------------
+
+For interface phases (surfaces and edges), the names of phases adjacent to the interface
+can be specified, in which case these additional phases can be automatically constructed
+when creating the interface phase. This behavior is useful when the interface has
+reactions that include species from one of these adjacent phases, since those phases
+must be known when adding such reactions to the interface.
+
+If the definitions of the adjacent phases are contained in the `phases` section of the
+same input file as the interface, they can be specified as a list of names:
+
+.. code:: yaml
+
+    adjacent: [gas, bulk]
+
+Alternatively, if the adjacent phase definitions are in other sections or other input
+files, they can be specified as a list of single-key mappings where the key is the
+section name (or file and section name) and the value is the phase name:
+
+.. code:: yaml
+
+    adjacent:
+    - {sectionname: gas} # a phase defined in a different section of the same YAML file
+    - {path/to/other-file.yaml/phases: bulk} # a phase defined in the 'phases' section
+                                             # of a different YAML file
+
+Since an interface kinetics mechanism is defined for the lowest-dimensional phase
+involved in the mechanism, only higher-dimensional adjacent phases should be specified.
+For example, when defining a surface, adjacent bulk phases may be specified, but
+adjacent edges must not.
+
 Setting the Initial State
 -------------------------
 
@@ -370,6 +402,7 @@ species data not shown for clarity:
 
     - name: anode-surface
       thermo: ideal-surface
+      adjacent: [graphite, electrolyte]
       kinetics: surface
       reactions: [graphite-anode-reactions]
       species: [{anode-species: all}]
