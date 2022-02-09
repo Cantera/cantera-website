@@ -157,8 +157,6 @@ not used.
 Tsang's Approximation to :math:`F_{cent}`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**New in Cantera 2.6.0**
-
 Wing Tsang presented approximations for the value of :math:`F_{cent}` for Troe
 falloff in databases of reactions, for example, Tsang and Herron [#Tsang1991]_.
 Tsang's approximations are linear in temperature:
@@ -180,7 +178,7 @@ where :math:`A` and :math:`B` are constants. The remaining equations for :math:`
    N = 0.75 - 1.27\; \log_{10} F_{cent}
 
 A Tsang falloff function may be specified in the YAML format using the
-:ref:`Tsang <sec-yaml-falloff>` field in the reaction entry.
+:ref:`Tsang <sec-yaml-falloff>` field in the reaction entry. *(New in Cantera 2.6)*
 
 .. _sec-sri-falloff:
 
@@ -318,8 +316,6 @@ Chebyshev reactions can be defined in the CTI format using the
 Blowers-Masel Reactions
 -----------------------
 
-**New in Cantera 2.6**
-
 In some circumstances like thermodynamic sensitivity analysis, or
 modeling heterogeneous reactions from one catalyst surface to another,
 the enthalpy change of a reaction (:math:`\Delta H`) can be modified. Due to the change in :math:`\Delta H`,
@@ -359,6 +355,7 @@ After :math:`E_a` is evaluated, the reaction rate can be calculated using the mo
 
 Blowers Masel reaction can be defined in the YAML format using the
 `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-blowers-masel>`__ reaction ``type``.
+*(New in Cantera 2.6)*
 
 .. _sec-surface:
 
@@ -424,15 +421,14 @@ in the YAML format by specifying the rate constant in the reaction's
 Surface Blowers-Masel Reactions
 -------------------------------
 
-**New in Cantera 2.6**
-
 .. TODO: Update the link once version 2.6 is released
 
 Surface Blowers-Masel Reactions have the same Arrhenius-like rate expression described in
 :ref:`Surface Reactions<sec-surface>`, and the activation energy :math:`E_a` is determined
-as described in :ref:`Blowers-Masel Reactions<sec-Blowers-Masel>`.
+as described in :ref:`Blowers-Masel Reactions<sec-Blowers-Masel>`. *(New in Cantera 2.6)*
 
-Surface Blowers-Masel reactions can be identified by the presence of surface spcecies and
+
+Surface Blowers-Masel reactions can be identified by the presence of surface species and
 the `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-surface-blowers-masel>`__
 reaction ``type`` in a YAML input file.
 
