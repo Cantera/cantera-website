@@ -12,6 +12,9 @@
       Cantera simulations model interactions between and within different phases of matter, as
       described here.
 
+      Note that the legacy CTI input file format will be deprecated in Cantera 2.6
+      and fully replaced by :doc:`YAML <defining-phases>` input in Cantera 3.0.
+
 Phases
 ======
 
@@ -395,7 +398,7 @@ If we import this into Matlab, for example, we get a gas mixture containing the
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=defining-phases.html
+            :attributes: href=defining-phases-cti.html
 
             Return: Defining Phases
 

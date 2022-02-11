@@ -33,11 +33,11 @@
                               href=conda-install.html
                   :tagname: a
 
-                  Conda (Highly Recommended)
+                  Conda / All platforms (Highly Recommended)
 
                .. container:: card-body
 
-                  Install the Cantera Python interface with Conda (Highly recommended for all users)
+                  Install the Cantera Python or MATLAB interface with Conda (Highly recommended for all users)
 
             .. container:: card
 
@@ -104,6 +104,38 @@
             .. container:: card
 
                .. container:: card-header section-card
+                  :attributes: id=heading-freebsd
+                              href=freebsd-install.html
+                  :tagname: a
+
+                  FreeBSD Install Instructions
+
+               .. container:: card-body
+
+                  Install Cantera on FreeBSD using ``pkg``.
+
+   .. row::
+
+      .. container:: col-12
+
+         .. container:: card-deck
+
+            .. container:: card
+
+               .. container:: card-header section-card
+                  :attributes: id=heading-fedora-rhel
+                              href=fedora-rhel-install.html
+                  :tagname: a
+
+                  Fedora/Enterprise Linux Install Instructions
+
+               .. container:: card-body
+
+                  Install Cantera on Fedora or Enterprise Linux using ``yum``/``dnf``.
+
+            .. container:: card
+
+               .. container:: card-header section-card
                   :attributes: id=heading-other-linux
                               href=other-linux-install.html
                   :tagname: a
@@ -112,15 +144,9 @@
 
                .. container:: card-body
 
-                  Linux distributions other than Ubuntu and Gentoo can install the Python interface via Conda
-                  (see :ref:`the Conda instructions <sec-install-conda>`). Other interfaces can be
-                  installed by :ref:`compiling from source <sec-compiling>`.
-
-   .. row::
-
-      .. container:: col-sm-4 mx-auto
-
-         .. container:: card-deck
+                  Linux distributions other than those listed here can install Cantera
+                  via Conda (see :ref:`the Conda instructions <sec-install-conda>`) or
+                  by :ref:`compiling from source <sec-compiling>`.
 
             .. container:: card
 

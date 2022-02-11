@@ -16,19 +16,24 @@
 
 The required input files can be provided via one of several methods:
 
-- Use one of the pre-existing input files provided with Cantera
+- Use one of the pre-existing input files that are distributed with Cantera (note that
+  these input files are provided for convenience, and may not be suited for research)
 - Convert a pre-existing mechanism from Chemkin (CK) format to YAML format *(New
   in Cantera 2.5)*
-- Convert a pre-existing mechanism from Chemkin (CK) format to Cantera (CTI) format (not recommended)
 - Create your own YAML file from scratch or by editing an existing file *(New in
   Cantera 2.5)*
-- Create your own CTI file, either from scratch (not recommended) or by editing an existing file
+- Convert a pre-existing mechanism from Chemkin (CK) format to the legacy Cantera (CTI)
+  format *(Deprecated in Cantera 2.5; to be removed in Cantera 3.0)*
+- Create your own CTI file, either from scratch or by editing an existing file
+  *(Deprecated in Cantera 2.5; to be removed in Cantera 3.0)*
 
-The first option will suffice for a majority of Cantera users. Advanced
-users may, however, need to edit an existing input file in order to define
-additional species, reactions, or entirely new phases. Even if you need to
-create an entirely new input file, it is still advisable to start from an existing
-file, to cut down on syntax errors.
+The first option will suffice for tutorials and introductory work with thermodynamic
+phases and reaction kinetics. Most modern reaction mechanisms are published in Chemkin
+(CK) format, and can be converted to Cantera's YAML format using the ``ck2yaml``
+conversion tool (option 2). Advanced users may, however, need to edit an existing input
+file in order to define additional species, reactions, or entirely new phases. Even if
+you need to create an entirely new input file, it is still advisable to start from an
+existing file, to cut down on syntax errors.
 
 Whenever you edit a Cantera input file, it is *highly advised* that you begin by copying the existing file and
 saving it under a new name, before editing the new file. Editing a file under its original name can
@@ -98,8 +103,9 @@ There are three primary options for creating a new Cantera input file:
 
                .. container:: card-text
 
-                  Convert a Chemkin-formatted ('CK') file to the Cantera input
+                  Convert a Chemkin-formatted ('CK') file to the Cantera legacy input
                   format (CTI).
+                  *(Deprecated in Cantera 2.5; to be removed in Cantera 3.0)*
 
    .. row::
 
@@ -128,7 +134,7 @@ There are three primary options for creating a new Cantera input file:
 
             .. container::
                :tagname: a
-               :attributes: href="cti/defining-phases.html"
+               :attributes: href="cti/defining-phases-cti.html"
                             title="Defining Phases in CTI"
 
                .. container:: card-header section-card
@@ -140,7 +146,8 @@ There are three primary options for creating a new Cantera input file:
                .. container:: card-text
 
                   Create a completely new mechanism, by defining new species,
-                  phases, and/or reactions, using the CTI format.
+                  phases, and/or reactions, using the legacy CTI format.
+                  *(Deprecated in Cantera 2.5; To be removed in Cantera 3.0)*
 
    .. row::
 
@@ -164,6 +171,23 @@ There are three primary options for creating a new Cantera input file:
                   Convert existing Cantera mechanisms in the legacy CTI or XML
                   formats to the YAML format. *(New in Cantera 2.5)*
 
+         .. container:: card
+
+            .. container::
+               :tagname: a
+               :attributes: href="thermobuild.html"
+                            title="Importing data from NASA ThermoBuild"
+
+               .. container:: card-header section-card
+
+                  Importing data from NASA ThermoBuild
+
+            .. container:: card-body
+
+               .. container:: card-text
+
+                  Import thermodynamic data for a range of species from this
+                  web-based tool.
 
 Understanding Input File Syntax
 ===============================
@@ -210,4 +234,5 @@ to errors in the CK syntax formatting).
 
          .. container:: card-text
 
-            This tutorial covers the details of the CTI format and its syntax
+            This tutorial covers the details of the legacy CTI format and its syntax
+            *(Deprecated in Cantera 2.5; to be removed in Cantera 3.0)*

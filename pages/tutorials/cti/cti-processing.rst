@@ -10,8 +10,11 @@
 
    .. class:: lead
 
-      A description of how Cantera processes input files, to help with debugging any errors that
-      occur.
+      A description of how Cantera processes legacy CTI input files, to help with
+      debugging any errors that occur.
+
+      Note that the legacy CTI input file format will be deprecated in Cantera 2.6
+      and fully replaced by :doc:`YAML <defining-phases>` input in Cantera 3.0.
 
 Cantera Input Files
 ===================
@@ -267,7 +270,7 @@ extract a portion of a large reaction mechanism, as described in :ref:`sec-phase
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=defining-phases.html
+            :attributes: href=defining-phases-cti.html
 
             Return: Defining Phases
 

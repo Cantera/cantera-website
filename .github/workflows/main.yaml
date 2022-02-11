@@ -34,6 +34,12 @@ jobs:
         path: cantera
         ref: 2.5
     - uses: actions/checkout@v2
+      name: Checkout Cantera 'main' repository
+      with:
+        submodules: recursive
+        repository: Cantera/cantera
+        path: cantera-dev
+    - uses: actions/checkout@v2
       name: Checkout Cantera Jupyter repository
       with:
         repository: Cantera/cantera-jupyter
@@ -60,9 +66,28 @@ jobs:
       run: python3 -m pip install -r requirements.txt
       working-directory: ${{ env.WEBSITE_CLONE_DIR }}
 
+    # Parse SCons configuration for development version and move reST file
+    - name: Parse configuration options from Cantera SConstruct as reST
+      run: |
+        cd cantera-dev
+        python3 `which scons` help --restructured-text --dev --output=scons-config-options-dev.rst
+        cd ..
+        mv -f cantera-dev/scons-config-options-dev.rst ${{ env.WEBSITE_CLONE_DIR }}/pages/compiling/
+
     - name: Build the site
       run: NIKOLA_DEBUG=1 nikola build
       working-directory: ${{ env.WEBSITE_CLONE_DIR }}
+
+    # Create artifact containing output
+    - name: Create archive for website output
+      run: |
+        cd ${{ env.WEBSITE_CLONE_DIR }}; \
+        tar -czf website.tar.gz ${{ env.NIKOLA_OUTPUT_DIR }}
+    - name: Store archive of website output
+      uses: actions/upload-artifact@v2
+      with:
+        path: ${{ env.WEBSITE_CLONE_DIR }}/website.tar.gz
+        retention-days: 5
 
     # The known_hosts key is generated with `ssh-keygen -F cantera.org` from a
     # machine that has previously logged in to cantera.org and trusts

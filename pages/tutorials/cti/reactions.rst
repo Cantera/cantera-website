@@ -10,7 +10,10 @@
 
    .. class:: lead
 
-      A description of how reactions are defined in CTI input files
+      A description of how reactions are defined in legacy CTI input files
+
+      Note that the legacy CTI input file format will be deprecated in Cantera 2.6
+      and fully replaced by :doc:`YAML <defining-phases>` input in Cantera 3.0.
 
 Basic Reactions
 ===============
@@ -289,7 +292,7 @@ Other Examples
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=defining-phases.html
+            :attributes: href=defining-phases-cti.html
                          title="Defining Phases"
 
             Return: Defining Phases

@@ -9,7 +9,10 @@
 
    .. class:: lead
 
-      CTI is the human-readable input format for Cantera, and we describe it's syntax here
+      CTI is the legacy human-readable input format for Cantera, and we describe it's syntax here
+
+      Note that the legacy CTI input file format will be deprecated in Cantera 2.6
+      and fully replaced by :doc:`YAML <defining-phases>` input in Cantera 3.0.
 
 Input File Syntax
 =================
@@ -318,7 +321,7 @@ pressure     ``'Pa', 'atm', 'bar'``
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=defining-phases.html
+            :attributes: href=defining-phases-cti.html
                          title="Defining Phases"
 
             Return: Defining Phases

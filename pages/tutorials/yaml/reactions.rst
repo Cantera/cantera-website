@@ -65,15 +65,23 @@ The type of the rate coefficient parameterization may be specified in the
   Arrhenius expressions at different pressures
 - :ref:`Chebyshev <sec-yaml-Chebyshev>`: A reaction rate parameterized by a
   bivariate Chebyshev polynomial in pressure and temperature
+- `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-blowers-masel>`__: A
+  reaction rate constant parameterized as a modified Arrhenius reaction with
+  one additional bond energy parameter to scale the activation energy according
+  to the enthalpy of the reaction *(New in Cantera 2.6)*
 
 Additional parameters defining the rate constant for each of these reaction
 types are described in the documentation linked above.
 
 The default parameterization is ``elementary``. Reactions involving surface
 species are automatically identified as :ref:`interface <sec-yaml-interface-reaction>`
-reactions, and reactions involving charge transfer are
-automatically identified as :ref:`electrochemical <sec-yaml-electrochemical-reaction>`
-reactions.
+reactions, reactions involving surface species with specified ``type`` as ``Blowers-Masel``
+are treated as
+`surface-Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-surface-blowers-masel>`__,
+and reactions involving charge transfer are automatically identified as
+:ref:`electrochemical <sec-yaml-electrochemical-reaction>` reactions.
+
+.. TODO: Update Blowers-Masel links once version 2.6 is released
 
 Arrhenius Expressions
 ---------------------

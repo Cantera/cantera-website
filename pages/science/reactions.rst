@@ -154,6 +154,32 @@ three parameters, :math:`(A, T_3, T_1)`, are required. The fourth parameter,
 :math:`T_2`, is optional; if omitted, the last term of the falloff function is
 not used.
 
+Tsang's Approximation to :math:`F_{cent}`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Wing Tsang presented approximations for the value of :math:`F_{cent}` for Troe
+falloff in databases of reactions, for example, Tsang and Herron [#Tsang1991]_.
+Tsang's approximations are linear in temperature:
+
+.. math::
+    F_{cent} = A + BT
+
+where :math:`A` and :math:`B` are constants. The remaining equations for :math:`C`,
+:math:`N`, :math:`f_1`, and :math:`F` from Troe falloff are not affected:
+
+.. math::
+
+   \log_{10} F(T, P_r) = \frac{\log_{10} F_{cent}(T)}{1 + f_1^2}
+
+   f_1 = (\log_{10} P_r + C) / (N - 0.14 (\log_{10} P_r + C))
+
+   C = -0.4 - 0.67\; \log_{10} F_{cent}
+
+   N = 0.75 - 1.27\; \log_{10} F_{cent}
+
+A Tsang falloff function may be specified in the YAML format using the
+:ref:`Tsang <sec-yaml-falloff>` field in the reaction entry. *(New in Cantera 2.6)*
+
 .. _sec-sri-falloff:
 
 The SRI Falloff Function
@@ -285,6 +311,54 @@ Chebyshev reactions can be defined in the CTI format using the
 :cti:class:`chebyshev_reaction` entry, or in the YAML format using the
 :ref:`Chebyshev <sec-yaml-Chebyshev>` reaction ``type``.
 
+.. _sec-Blowers-Masel:
+
+Blowers-Masel Reactions
+-----------------------
+
+In some circumstances like thermodynamic sensitivity analysis, or
+modeling heterogeneous reactions from one catalyst surface to another,
+the enthalpy change of a reaction (:math:`\Delta H`) can be modified. Due to the change in :math:`\Delta H`,
+the activation energy of the reaction must be adjusted accordingly to provide accurate simulation results. To
+adjust the activation energy due to changes in the reaction enthalpy, the Blowers-Masel rate expression is
+available. This approximation was proposed by Blowers and Masel [#BlowersMasel2000]_ to automatically
+scale activation energy as the reaction enthalpy is changed.
+The activation energy estimation can be written as:
+
+.. math::
+
+   E_a = \begin{cases}
+      0 & \text{if } \Delta H \leq -4 E_a^0 \\
+      \Delta H & \text{if } \Delta H \geq 4 E_a^0 \\
+      \frac{\left( w + \frac{\Delta H }{2} \right)  (V_P - 2 w + \Delta H) ^2}
+               {V_P^2 - 4 w^2 + \Delta H^2} & \text{Otherwise}
+      \end{cases}
+
+where
+
+.. math::
+
+   V_P = 2 w \frac{w + E_a^0}{w - E_a^0},
+
+:math:`w` is the average of the bond dissociation energy of the bond breaking and that being formed,
+:math:`E_a^0` is the intrinsic activation energy, and :math:`\Delta H` is the enthalpy change of the reaction.
+Note that the expression is insensitive to :math:`w` as long as :math:`w \ge 2 E_a^0`, so we can use
+an arbitrarily high value of :math:`w = 1000\text{ kJ/mol}`.
+
+After :math:`E_a` is evaluated, the reaction rate can be calculated using the modified Arrhenius expression
+
+.. math::
+
+   k_f = A T^b e^{-E_a / RT}.
+
+.. TODO: Update the link once version 2.6 is released
+
+Blowers Masel reaction can be defined in the YAML format using the
+`Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-blowers-masel>`__ reaction ``type``.
+*(New in Cantera 2.6)*
+
+.. _sec-surface:
+
 Surface Reactions
 -----------------
 
@@ -344,6 +418,24 @@ Sticking reactions can be defined in the CTI format using the `stick` entry, or
 in the YAML format by specifying the rate constant in the reaction's
 :ref:`sticking-coefficient <sec-yaml-interface-reaction>` field.
 
+Surface Blowers-Masel Reactions
+-------------------------------
+
+.. TODO: Update the link once version 2.6 is released
+
+Surface Blowers-Masel Reactions have the same Arrhenius-like rate expression described in
+:ref:`Surface Reactions<sec-surface>`, and the activation energy :math:`E_a` is determined
+as described in :ref:`Blowers-Masel Reactions<sec-Blowers-Masel>`. *(New in Cantera 2.6)*
+
+
+Surface Blowers-Masel reactions can be identified by the presence of surface species and
+the `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-surface-blowers-masel>`__
+reaction ``type`` in a YAML input file.
+
+Note that surface Blowers-Masel reactions also support all the `additional options <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
+described in the `Surface Reactions <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
+and `sticking-coefficient <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__ fields in a YAML input file.
+
 Additional Options
 ------------------
 
@@ -377,16 +469,12 @@ these cases, the default behavior may be overridden in the input file.
 
 .. rubric:: References
 
+.. [#Lindemann1922] F. Lindemann. *Trans. Faraday Soc.*, 17:598, 1922.
+
 .. [#Gilbert1983] R. G. Gilbert, K. Luther, and
    J. Troe. *Ber. Bunsenges. Phys. Chem.*, 87:169, 1983.
 
-.. [#Lindemann1922] F. Lindemann. *Trans. Faraday Soc.*, 17:598, 1922.
-
-.. [#Smith1997] Gregory P. Smith, David M. Golden, Michael Frenklach, Nigel
-   W. Moriarty, Boris Eiteneer, Mikhail Goldenberg, C. Thomas Bowman, Ronald
-   K. Hanson, Soonho Song, William C. Gardiner, Jr., Vitali V. Lissianski, , and
-   Zhiwei Qin. GRI-Mech version 3.0, 1997. see
-   http://combustion.berkeley.edu/gri-mech/version30/text30.html.
+.. [#Tsang1991] W. Tsang and J. Herron. *Journal of Physical and Chemical Reference Data*, 20:4, 1991.
 
 .. [#Stewart1989] P. H. Stewart, C. W. Larson, and D. Golden.
    *Combustion and Flame*, 75:25, 1989.
@@ -394,6 +482,10 @@ these cases, the default behavior may be overridden in the input file.
 .. [#Kee1989] R. J. Kee, F. M. Rupley, and J. A. Miller. Chemkin-II: A Fortran
    chemical kinetics package for the analysis of gas-phase chemical
    kinetics. Technical Report SAND89-8009, Sandia National Laboratories, 1989.
+
+.. [#BlowersMasel2000] Blowers, P., & Masel, R. (2000). Engineering approximations
+   for activation energies in hydrogen transfer reactions. *AIChE Journal*, 46(10),
+   2041-2052. https://doi.org/10.1002/aic.690461015
 
 .. [#Westbrook1981] C. K. Westbrook and F. L. Dryer. Simplified reaction
    mechanisms for the oxidation of hydrocarbon fuels in flames. *Combustion
