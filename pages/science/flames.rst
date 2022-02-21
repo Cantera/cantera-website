@@ -96,7 +96,7 @@ differential equation for the scalar :math:`\Lambda`:
 Diffusive Fluxes
 ----------------
 
-The species diffusive mass fluxes :math:`j_k` are computed according to either a
+This feature is only available when using class `IonFlow`. The species diffusive mass fluxes :math:`j_k` are computed according to either a
 mixture-averaged or multicomponent formulation. If the mixture-averaged
 formulation is used, the calculation performed is:
 
@@ -140,8 +140,7 @@ where :math:`s_k` is the sign of charge (1,-1, and 0 respectively for positive, 
 neutral charge), :math:`\mu_k` is the mobility, and :math:`E` is the electric field.
 The diffusion coefficients and mobilities of charged species can be more accurately calculated by
 **IonGasTransport::getMixDiffCoeffs** and **IonGasTransport::getMobilities**. In addition, the
-correction can only be applied to the fluxes of neutral species to ensure the accuracy of the
-fluxed of charged species,
+following correction is applied instead to preserve the correct fluxes of charged species:
 
 .. math::
 
@@ -151,12 +150,14 @@ The equation for electrostatics is added to obtain the electric field,
 
 .. math::
 
-    \frac{\partial E}{\partial z} = \frac{e}{\epsilon_0}(n_+ - n_-),
+    \frac{\partial E}{\partial z} = \frac{e}{\epsilon_0}\sum_k Z_k n_k ,
+
+   n_k = N_a \rho Y_k / W_k,
 
     E|_{z=0} = 0,
 
-where :math:`n_+` and :math:`n_-` represent respectively the number densities of positively and negatively
-charged species.
+where :math:\`Z_k` is the charge number, `n_k` is the number density, and `N-a` is
+the Avogadro number.
 
 
 Boundary Conditions
@@ -251,3 +252,4 @@ for each surface species :math:`i` are computed such that :math:`\dot{s}_i = 0`.
 
 .. [Ped1993] T. Pederson and R. C. Brown. Simulation of electric field effects in premixed
    methane flames. *Combustion and Flames*, 94.4:433-448, 1993.
+   DOI: https://doi.org/10.1016/0010-2180(93)90125-M.
