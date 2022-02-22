@@ -436,6 +436,24 @@ Note that surface Blowers-Masel reactions also support all the `additional optio
 described in the `Surface Reactions <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
 and `sticking-coefficient <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__ fields in a YAML input file.
 
+Two-Temperature-Plasma Reactions
+--------------------------------
+
+The two-temperature-plasma reaction is commonly used for non-equilibrium plasmas. The
+reaction rate of a two-temperature-plasma reaction depends on both gas and electron
+temperature [#Kossyi1992]_, and can be expressed as:
+
+.. math::
+
+   k_f = A T_e^b \exp \left( - \frac{E_{a,g}}{RT} \right)
+      \exp \left(\frac{E_{a,e}(T_e - T)}{R T T_e}\right),
+
+where :math:`A` is the pre-exponential factor, :math:`T` is the temperature, :math:`T_e`
+is the electron temperature, :math:`b` is the electron temperature exponent,
+:math:`E_{a,g}` is the activation energy for gas, :math:`E_{a,e}` is the activation
+energy for electron and :math:`R` is the gas constant. *(New in Cantera 2.6)*
+
+
 Additional Options
 ------------------
 
@@ -490,3 +508,9 @@ these cases, the default behavior may be overridden in the input file.
 .. [#Westbrook1981] C. K. Westbrook and F. L. Dryer. Simplified reaction
    mechanisms for the oxidation of hydrocarbon fuels in flames. *Combustion
    Science and Technology* **27**, pp. 31--43. 1981.
+
+.. [#Kossyi1992] I. A. Kossyi, A. Y. Kostinsky, A. A. Matveyev. and V. P.
+   Kinetic scheme of the non-equilibrium discharge in nitrogen-oxygen mixtures.
+   mechanisms for the oxidation of hydrocarbon fuels in flames.
+   *Plasma Sources Science and Technology* **1**, no. 3, pp. 207. 1992.
+   DOI: https://doi.org/10.1088/0963-0252/1/3/011
