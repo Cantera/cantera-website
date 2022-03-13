@@ -27,17 +27,20 @@ installation options <sec-install>`. Windows users should install a 64-bit versi
 Anaconda or Miniconda, since the Cantera Conda packages are only available for 64-bit
 installations.
 
-Both Anaconda and Minconda include the ``conda`` package manager; the difference is that
-Anaconda includes a large number of Python packages that are widely used in scientific
-applications, while Miniconda is a minimal distribution that only includes Python and
-Conda, although all of the packages available in Anaconda can be installed in Miniconda.
-For more details on how to use conda, see the `conda
+Both Anaconda and Miniconda include the ``conda`` package manager; the difference is
+that Anaconda includes a large number of Python packages that are widely used in
+scientific applications, while Miniconda is a minimal distribution that only includes
+Python and Conda, although all of the packages available in Anaconda can be installed in
+Miniconda. For more details on how to use conda, see the `conda
 documentation <https://docs.conda.io/projects/conda/en/latest/user-guide/index.html>`__.
 
 Conda can install a large set of packages by default and it is possible to install
 packages such as Cantera that are maintained independently. These additional channels
 from which packages may be obtained are specified by adding the ``--channel`` option in
 the ``install`` or ``create`` commands.
+
+For instructions on upgrading an existing conda-based installation of Cantera, see
+:ref:`Upgrading from an earlier Cantera version <sec-conda-python-upgrade>`.
 
 .. _sec-conda-python-interface:
 
@@ -146,6 +149,23 @@ remove and then reinstall Cantera:
 Alternatively, you can remove the ``ct-dev`` environment and follow Options 1 or 2
 above to create a new environment.
 
+.. _sec-conda-python-upgrade:
+
+Upgrading from an earlier Cantera version
+-----------------------------------------
+
+If you already have Cantera installed in a conda environment (named, for example,
+``ct-dev``), you can upgrade it to the latest version available by running the commands:
+
+.. code:: shell
+
+   conda activate ct-dev
+   conda update --channel cantera cantera
+
+This assumes you are using Python from the default conda channel. If you installed
+Python from the ``conda-forge`` channel, you should specify the option
+``--channel conda-forge``.
+
 .. _sec-conda-matlab-interface:
 
 MATLAB interface
@@ -164,3 +184,15 @@ plan to use Cantera via MATLAB, the Python interface is required to convert inpu
 In this case, Cantera must be installed from the ``cantera`` channel, so we add
 ``--channel cantera`` and to tell Conda to look at the ``cantera`` channel in addition
 to the default channels.
+
+Upgrading from an earlier Cantera version
+-----------------------------------------
+
+If you already have the Cantera MATLAB interface installed in a conda environment
+(named, for example, ``ct-dev``), you can upgrade it to the latest version available
+by running the commands:
+
+.. code:: shell
+
+   conda activate ct-dev
+   conda update --channel cantera cantera cantera-matlab
