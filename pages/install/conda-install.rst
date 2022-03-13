@@ -16,17 +16,22 @@
       `Anaconda <https://www.anaconda.com/products/individual#Downloads>`__ and
       `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ are Python
       distributions that include the ``conda`` package manager, which can be used to
-      install Cantera. Both distributions are available for Linux, macOS (Intel and
-      ARM/M1), and Windows. Note that installing Cantera using Conda will only provide
-      the Cantera :ref:`Python <sec-conda-python-interface>` or :ref:`MATLAB
-      <sec-conda-matlab-interface>` interfaces. If you want to use the other Cantera
-      interfaces (to use Cantera from Fortran, C++, or C) then see the :ref:`OS-specific
-      installation options <sec-install>`.
+      install Cantera.
 
-Anaconda and Miniconda both include ``conda``; the difference is that Anaconda includes a large
-number of Python packages that are widely used in scientific applications, while Miniconda is a
-minimal distribution that only includes Python and Conda, although all of the packages available in
-Anaconda can be installed in Miniconda. For more details on how to use conda, see the `conda
+Both the Anaconda and Miniconda distributions are available for Linux, macOS (Intel and
+ARM/M1), and Windows. Note that installing Cantera using Conda will only provide
+the Cantera :ref:`Python <sec-conda-python-interface>` or :ref:`MATLAB
+<sec-conda-matlab-interface>` interfaces. If you want to use the other Cantera
+interfaces (to use Cantera from Fortran, C++, or C) then see the :ref:`OS-specific
+installation options <sec-install>`. Windows users should install a 64-bit version of
+Anaconda or Miniconda, since the Cantera Conda packages are only available for 64-bit
+installations.
+
+Both Anaconda and Minconda include the ``conda`` package manager; the difference is that
+Anaconda includes a large number of Python packages that are widely used in scientific
+applications, while Miniconda is a minimal distribution that only includes Python and
+Conda, although all of the packages available in Anaconda can be installed in Miniconda.
+For more details on how to use conda, see the `conda
 documentation <https://docs.conda.io/projects/conda/en/latest/user-guide/index.html>`__.
 
 Conda can install a large set of packages by default and it is possible to install
