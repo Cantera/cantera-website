@@ -56,3 +56,17 @@ can be installed with:
 
     sudo apt install python3-pip
     pip3 install ipython matplotlib
+
+Upgrading from an earlier Cantera version
+-----------------------------------------
+
+If you already have Cantera installed from the ``cantera-team`` PPA, you can ensure that
+you have the latest available version installed by running:
+
+.. code-block:: bash
+
+    sudo apt update
+    sudo apt install cantera-python3
+
+If you also have the ``cantera-dev`` package installed, it should also be included on
+the ``apt install`` command line.
