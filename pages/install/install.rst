@@ -14,149 +14,55 @@
 
    .. class:: lead
 
-      The following instructions detail how to install Cantera on a variety of platforms. We highly
-      recommend that all new users install the Python interface via Conda. If you want to use one of
-      the other interfaces, please select the installation instructions for your platform.
+      The following instructions detail how to install the different Cantera interfaces
+      on a variety of platforms. We highly recommend that all new users install the
+      Python interface via :ref:`Conda <sec-install-conda>`.
 
-.. container:: container
+Installing the Cantera Python Interface
+=======================================
 
-   .. row::
+- The easiest way to install the Cantera Python interface on all operating systems is by
+  using :ref:`Conda <sec-install-conda>`.
 
-      .. container:: col-12
+- Windows users can use
+  :ref:`MSI installer packages <sec-install-windows>`.
 
-         .. container:: card-deck
+- Ubuntu users can install the ``cantera-python3`` package from the
+  :ref:`Cantera PPA <sec-install-ubuntu>`.
 
-            .. container:: card
+- Fedora / Enterprise Linux users can install ``python3-cantera`` using
+  :ref:`dnf <sec-install-fedora-rhel>`.
 
-               .. container:: card-header section-card
-                  :attributes: id=heading-conda
-                              href=conda-install.html
-                  :tagname: a
+- Gentoo users can install using :ref:`emerge <sec-install-gentoo>`.
 
-                  Conda / All platforms (Highly Recommended)
+- FreeBSD users can install using :ref:`pkg <sec-install-freebsd>`.
 
-               .. container:: card-body
+- If you want to use the current development version, or add features of your own, you
+  should :ref:`compile Cantera from source <sec-compiling>`.
 
-                  Install the Cantera Python or MATLAB interface with Conda (Highly recommended for all users)
+Installing the Cantera Matlab Toolbox
+=====================================
+- The Cantera Matlab toolbox can be installed on all operating systems using
+  :ref:`Conda <sec-install-conda>`.
 
-            .. container:: card
+- Windows users can use :ref:`MSI installer packages <sec-install-windows>`.
 
-               .. container:: card-header section-card
-                  :attributes: id=heading-windows
-                              href=windows-install.html
-                  :tagname: a
+- macOS users can also install using a :ref:`.pkg installer <sec-install-macos>`.
 
-                  Windows Install Instructions
+- If you want to use the current development version, or add features of your own, you
+  should :ref:`compile Cantera from source <sec-compiling>`.
 
-               .. container:: card-body
+Installing the Cantera C++ Interface & Fortran 90 Module
+========================================================
+- Ubuntu users can install the ``cantera-dev`` package from the
+  :ref:`Cantera PPA <sec-install-ubuntu>`.
 
-                  Install Cantera on Windows. Cantera officially supports the versions of Windows that
-                  Microsoft presently supports, although it may continue working on older versions of
-                  Windows.
+- Fedora / Enterprise Linux users can install packages using
+  :ref:`yum/dnf <sec-install-fedora-rhel>`.
 
-            .. container:: card
+- Gentoo users can install using :ref:`emerge <sec-install-gentoo>`.
 
-               .. container:: card-header section-card
-                  :attributes: id=heading-macos
-                              href=macos-install.html
-                  :tagname: a
+- FreeBSD users can install using :ref:`pkg <sec-install-freebsd>`.
 
-                  macOS Install Instructions
-
-               .. container:: card-body
-
-                  Install Cantera on macOS/Mac OS X. The Cantera installer supports Mac OS X version
-                  10.11 (El Capitan) and higher. For older versions of Mac OS X, users should
-                  :ref:`compile from source <sec-compiling>`.
-
-   .. row::
-
-      .. container:: col-12
-
-         .. container:: card-deck
-
-            .. container:: card
-
-               .. container:: card-header section-card
-                  :attributes: id=heading-ubuntu
-                              href=ubuntu-install.html
-                  :tagname: a
-
-                  Ubuntu Install Instructions
-
-               .. container:: card-body
-
-                  Install Cantera on Ubuntu using a PPA.
-
-            .. container:: card
-
-               .. container:: card-header section-card
-                  :attributes: id=heading-gentoo
-                              href=gentoo-install.html
-                  :tagname: a
-
-                  Gentoo Install Instructions
-
-               .. container:: card-body
-
-                  Install Cantera on Gentoo using a portage.
-
-            .. container:: card
-
-               .. container:: card-header section-card
-                  :attributes: id=heading-freebsd
-                              href=freebsd-install.html
-                  :tagname: a
-
-                  FreeBSD Install Instructions
-
-               .. container:: card-body
-
-                  Install Cantera on FreeBSD using ``pkg``.
-
-   .. row::
-
-      .. container:: col-12
-
-         .. container:: card-deck
-
-            .. container:: card
-
-               .. container:: card-header section-card
-                  :attributes: id=heading-fedora-rhel
-                              href=fedora-rhel-install.html
-                  :tagname: a
-
-                  Fedora/Enterprise Linux Install Instructions
-
-               .. container:: card-body
-
-                  Install Cantera on Fedora or Enterprise Linux using ``yum``/``dnf``.
-
-            .. container:: card
-
-               .. container:: card-header section-card
-                  :attributes: id=heading-other-linux
-                              href=other-linux-install.html
-                  :tagname: a
-
-                  Other Linux Distributions Install Instructions
-
-               .. container:: card-body
-
-                  Linux distributions other than those listed here can install Cantera
-                  via Conda (see :ref:`the Conda instructions <sec-install-conda>`) or
-                  by :ref:`compiling from source <sec-compiling>`.
-
-            .. container:: card
-
-               .. container:: card-header section-card
-                  :attributes: id=heading-compiling
-                              href=compiling-install.html
-                  :tagname: a
-
-                  Compile Cantera from Source
-
-               .. container:: card-body
-
-                  Compile Cantera for your platform from the source code
+- Users of Windows, macOS, and other Linux distributions should
+  :ref:`compile Cantera from source <sec-compiling>`.
