@@ -83,7 +83,7 @@ def render_example(site, kw, in_name, out_name):
     code = lxml.html.tostring(ipynb_html, encoding="unicode")
 
     data_files = set()
-    pattern = re.compile(r"data/(\w*?\.\w*)")
+    pattern = re.compile(r"data/([\w-]+?\.\w*)")
     for cell in nb_json["cells"]:
         if cell["cell_type"] != "code":
             continue
