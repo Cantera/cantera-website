@@ -6,16 +6,24 @@
 <p>Cantera examples in the form of <a href="https://jupyter.org" title="Jupyter">Jupyter</a>
 notebooks. To see the rendered notebooks, browse the files below.</p>
 
-<p><strong>Existing Cantera users</strong>: If you have Cantera and the Jupyter Notebook server
-installed on your local machine, simply download any Jupyter notebook by clicking the "Source" link
-at the top of each example page and you should be able to run it.</p>
+<p><strong>Existing Cantera users</strong>: If you have Cantera and the Jupyter Notebook
+server installed on your local machine, simply download any Jupyter notebook by clicking
+the "Source" link at the top of each example page and you should be able to run it. For
+some examples, you will also need to download the additional data files listed below the
+"Source" link. These data files should either be placed in a subdirectory named "data"
+one level up from the directory containing the notebook file, or the notebook can be
+modified to point to the location of these data files on your computer. Alternatively,
+you can download all of these examples and their accompanying data files by cloning the
+<a href="https://github.com/Cantera/cantera-jupyter">cantera-jupyter</a> repository from
+GitHub.
+</p>
 
 <p><strong>New Cantera Users</strong>: If you don't have an existing Cantera installation and you
 just want to experiment, you can give Cantera a test drive in the cloud. Click on the Binder link
 below to launch an interactive environment where you can run these examples. For this, there is no
 installation required, but you cannot save and resume your work.</p>
 
-<a href="https://mybinder.org:/repo/cantera/cantera-jupyter" rel="nofollow">
+<a href="https://mybinder.org/v2/gh/Cantera/cantera-jupyter/main" rel="nofollow">
   <img src="https://camo.githubusercontent.com/70c5b4d050d4019f4f20b170d75679a9316ac5e5/687474703a2f2f6d7962696e6465722e6f72672f62616467652e737667" alt="Binder" data-canonical-src="https://mybinder.org/badge.svg" style="max-width:100%;">
 </a>
 
@@ -31,7 +39,7 @@ installation required, but you cannot save and resume your work.</p>
       {% set fname = file.name %}
       <!-- <div class="col-sm-4"> -->
         <div class="card">
-          <a href="{{ head }}/{{ fname }}.html"><h5 class="card-header">{{ fname }}</h5></a>
+          <a href="{{ head }}/{{ fname }}.html"><h5 class="card-header">{{ file_dict['titles'][fname] }}</h5></a>
           <div class="card-body">
             <p class="card-text">{{ file_dict['summaries'][fname] }}</p>
           </div>

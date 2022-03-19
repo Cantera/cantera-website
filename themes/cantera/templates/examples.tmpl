@@ -13,6 +13,15 @@
         <small><a href="{{ source_link }}">({{ messages("Source") }})</a></small>
     {% endif %}
     </h1>
+    {% if data_files %}
+    Data files used in this example:
+      {% for i, file in enumerate(data_files) -%}
+        <a href="https://raw.githubusercontent.com/Cantera/cantera-jupyter/main/data/{{ file }}">{{ file }}</a>
+        {%- if i + 1 != data_files | length -%}
+        ,
+        {% endif %}
+      {% endfor %}
+    {% endif %}
     {{ code }}
 {% endif %}
 {% if title.endswith('.ipynb') %}
