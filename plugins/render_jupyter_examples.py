@@ -182,6 +182,7 @@ class RenderJupyterExamples(Task):
             reactors=dict(name="Reactor Networks", files=[], summaries={}, titles={}),
             flames=dict(name="One-Dimensional Flames", files=[], summaries={}, titles={}),
             electrochemistry=dict(name="Electrochemistry", files=[], summaries={}, titles={}),
+            input=dict(name="Input Files", files=[], summaries={}, titles={}),
         )
 
         def get_b64_str(parent, img_fname):
