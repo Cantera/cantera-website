@@ -54,13 +54,13 @@ extended to model a wide range of science and technology applications.
 
          .. container::
             :tagname: a
-            :attributes: href=reactions.html
-                         title=Reactions
+            :attributes: href=kinetics.html
+                         title=Kinetics
 
             .. container:: card-header section-card
                :tagname: div
 
-               Reactions
+               Kinetics and Reaction Rates
 
          .. container:: card-body
 
