@@ -1,4 +1,4 @@
-.. slug: reactions
+.. slug: kinetics
 .. has_math: true
 .. title: Modeling Chemical Reactions
 
