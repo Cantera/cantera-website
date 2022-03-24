@@ -80,11 +80,11 @@ expressions to compute the properties, they all require thermodynamic property
 information for the individual species. For the phase types implemented at
 present, the properties needed are:
 
-1. the molar heat capacity at constant pressure :math:`\hat{c}^0_p(T)` for a
-   range of temperatures and a reference pressure :math:`P_0`;
-2. the molar enthalpy :math:`\hat{h}(T_0, P_0)` at :math:`P_0` and a reference
-   temperature :math:`T_0`;
-3. the absolute molar entropy :math:`\hat{s}(T_0, P_0)` at :math:`(T_0, P_0)`.
+1. the molar heat capacity at constant pressure :math:`\hat{c}^\circ_p(T)` for a
+   range of temperatures and a reference pressure :math:`p^\circ`;
+2. the molar enthalpy :math:`\hat{h}(T^\circ, p^\circ)` at :math:`p^\circ` and a reference
+   temperature :math:`T^\circ`;
+3. the absolute molar entropy :math:`\hat{s}(T^\circ, p^\circ)` at :math:`(T^\circ, p^\circ)`.
 
 See: :ref:`the Thermodynamic Models section <sec-thermo-models>`
 
@@ -119,20 +119,20 @@ The NASA 7-Coefficient Polynomial Parameterization
 --------------------------------------------------
 
 The NASA 7-coefficient polynomial parameterization is used to compute the
-species reference-state thermodynamic properties :math:`\hat{c}^0_p(T)`,
-:math:`\hat{h}^0(T)`, and :math:`\hat{s}^0(T)`.
+species reference-state thermodynamic properties :math:`\hat{c}^\circ_p(T)`,
+:math:`\hat{h}^\circ(T)`, and :math:`\hat{s}^\circ(T)`.
 
-The NASA parameterization represents :math:`\hat{c}^0_p(T)` with a fourth-order
+The NASA parameterization represents :math:`\hat{c}^\circ_p(T)` with a fourth-order
 polynomial:
 
 .. math::
 
-   \frac{c_p^0(T)}{R} = a_0 + a_1 T + a_2 T^2 + a_3 T^3 + a_4 T^4
+   \frac{\hat{c}_p^\circ(T)}{\overline{R}} = a_0 + a_1 T + a_2 T^2 + a_3 T^3 + a_4 T^4
    
-   \frac{h^0 (T)}{R T} = a_0 + \frac{a_1}{2} T + \frac{a_2}{3} T^2 +
+   \frac{\hat{h}^\circ (T)}{\overline{R} T} = a_0 + \frac{a_1}{2} T + \frac{a_2}{3} T^2 +
                          \frac{a_3}{4} T^3 + \frac{a_4}{5} T^4 + \frac{a_5}{T}
 
-   \frac{s^0(T)}{R} = a_0 \ln T + a_1 T + \frac{a_2}{2} T^2 + \frac{a_3}{3} T^3 +
+   \frac{\hat{s}^\circ(T)}{\overline{R}} = a_0 \ln T + a_1 T + \frac{a_2}{2} T^2 + \frac{a_3}{3} T^3 +
                       \frac{a_4}{4} T^4 + a_6
 
 Note that this is the "old" NASA polynomial form, used in the original NASA
@@ -160,14 +160,14 @@ the following equations:
 
 .. math::
 
-   \frac{C_p^0(T)}{R} = a_0 T^{-2} + a_1 T^{-1} + a_2 + a_3 T
+   \frac{\hat{c}_p^\circ(T)}{\overline{R}} = a_0 T^{-2} + a_1 T^{-1} + a_2 + a_3 T
                   + a_4 T^2 + a_5 T^3 + a_6 T^4
 
-   \frac{H^0(T)}{R T} = - a_0 T^{-2} + a_1 \frac{\ln T}{T} + a_2
+   \frac{\hat{h}^\circ(T)}{\overline{R} T} = - a_0 T^{-2} + a_1 \frac{\ln T}{T} + a_2
        + \frac{a_3}{2} T + \frac{a_4}{3} T^2  + \frac{a_5}{4} T^3 +
        \frac{a_6}{5} T^4 + \frac{a_7}{T}
 
-   \frac{s^0(T)}{R} = - \frac{a_0}{2} T^{-2} - a_1 T^{-1} + a_2 \ln T
+   \frac{\hat{s}^\circ(T)}{\overline{R}} = - \frac{a_0}{2} T^{-2} - a_1 T^{-1} + a_2 \ln T
       + a_3 T + \frac{a_4}{2} T^2 + \frac{a_5}{3} T^3  + \frac{a_6}{4} T^4 + a_8
 
 A common source for species data in the NASA9 format is the
@@ -184,12 +184,12 @@ The Shomate parameterization is:
 
 .. math::
 
-   \hat{c}_p^0(T) = A + Bt + Ct^2 + Dt^3 + \frac{E}{t^2}
+   \hat{c}_p^\circ(T) = A + Bt + Ct^2 + Dt^3 + \frac{E}{t^2}
 
-   \hat{h}^0(T) = At + \frac{Bt^2}{2} + \frac{Ct^3}{3} + \frac{Dt^4}{4} -
+   \hat{h}^\circ(T) = At + \frac{Bt^2}{2} + \frac{Ct^3}{3} + \frac{Dt^4}{4} -
                   \frac{E}{t} + F
 
-   \hat{s}^0(T) = A \ln t + B t + \frac{Ct^2}{2} + \frac{Dt^3}{3} -
+   \hat{s}^\circ(T) = A \ln t + B t + \frac{Ct^2}{2} + \frac{Dt^3}{3} -
                   \frac{E}{2t^2} + G
 
 where :math:`t = T / 1000 K`. It requires 7 coefficients :math:`A`, :math:`B`, :math:`C`, :math:`D`,
@@ -213,14 +213,14 @@ thermodynamic properties:
 
 .. math::
 
-   \hat{c}_p^0(T) = \hat{c}_p^0(T_0)
+   \hat{c}_p^\circ(T) = \hat{c}_p^\circ(T^\circ)
 
-   \hat{h}^0(T) = \hat{h}^0(T_0) + \hat{c}_p^0\cdot(T-T_0)
+   \hat{h}^\circ(T) = \hat{h}^\circ(T_0) + \hat{c}_p^\circ\cdot(T-T^\circ)
 
-   \hat{s}^0(T) = \hat{s}^0(T_0) + \hat{c}_p^0 \ln (T/T_0)
+   \hat{s}^\circ(T) = \hat{s}^\circ(T_0) + \hat{c}_p^\circ \ln (T/T^\circ)
 
-The parameterization uses four constants: :math:`T_0, \hat{c}_p^0(T_0),
-\hat{h}^0(T_0), \hat{s}^0(T)`. The default value of :math:`T_0` is 298.15 K; the
+The parameterization uses four constants: :math:`T^\circ, \hat{c}_p^\circ(T^\circ),
+\hat{h}^\circ(T^\circ), \hat{s}^\circ(T)`. The default value of :math:`T^\circ` is 298.15 K; the
 default value for the other parameters is 0.0.
 
 A constant heat capacity parameterization can be defined in the CTI format using

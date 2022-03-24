@@ -21,7 +21,7 @@
 
    <h2 class="display-4">Chemical Kinetic Theory</h2>
 
-These sections describe some of the basic scientific theory underpinning the various ways that Cantera models phases
+These sections describe some of the fundamental scientific theory underpinning the ways that Cantera models phases
 of matter. This involves calculations for thermodynamic and transport properties and chemical
 reaction rates. The above information gives some insight into the basic constitutive models
 available in Cantera: capabilities for calculating the basic thermodynamic, chemical kinetic, and transport properties of phases of matter, which can be
