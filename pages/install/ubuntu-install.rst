@@ -70,3 +70,32 @@ you have the latest available version installed by running:
 
 If you also have the ``cantera-dev`` package installed, it should also be included on
 the ``apt install`` command line.
+
+Installing pre-release Cantera versions
+---------------------------------------
+
+Sometimes, pre-release (alpha or beta) versions of Cantera which represent work toward
+the next Cantera release will be available for users who want to use cutting-edge
+features or test compatibility with the new version before it is released. To see the
+latest Cantera versions available from this PPA, visit
+https://launchpad.net/~cantera-team/+archive/ubuntu/cantera-unstable.
+
+These packages can be installed by additionally enabling the
+``cantera-team/cantera-unstable`` PPA and then upgrading Cantera:
+
+.. code-block:: bash
+
+    sudo apt-add-repository ppa:cantera-team/cantera-unstable
+    sudo apt install cantera-python3 cantera-dev
+
+You should also have the ``cantera-team/cantera`` PPA enabled, since the
+``cantera-unstable`` PPA *only* includes development versions.
+
+If you later want to remove the development version and return to the latest stable
+version, run the commands:
+
+.. code-block:: bash
+
+    sudo apt-add-repository --remove ppa:cantera-team/cantera-unstable
+    sudo apt remove cantera cantera-common cantera-dev cantera-python3
+    sudo apt install cantera-python3 cantera-dev
