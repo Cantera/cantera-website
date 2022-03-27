@@ -1,5 +1,0 @@
-reactor1.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/reactor1.m
-   :language: matlab

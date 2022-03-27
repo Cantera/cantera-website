@@ -1,7 +1,0 @@
-.. _matlab-example-periodic_cstr.m:
-
-periodic_cstr.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/periodic_cstr.m
-   :language: matlab

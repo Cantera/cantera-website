@@ -1,4 +1,0 @@
-adiabatic_flame.py
-=======================================================================
-
-.. literalinclude:: ../../../../interfaces/cython/cantera/examples/onedim/adiabatic_flame.py

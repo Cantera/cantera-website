@@ -1,7 +1,0 @@
-.. _matlab-example-surfreactor.m:
-
-surfreactor.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/surfreactor.m
-   :language: matlab

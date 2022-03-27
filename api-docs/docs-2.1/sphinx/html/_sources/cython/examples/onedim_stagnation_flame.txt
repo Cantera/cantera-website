@@ -1,4 +1,0 @@
-stagnation_flame.py
-=======================================================================
-
-.. literalinclude:: ../../../../interfaces/cython/cantera/examples/onedim/stagnation_flame.py

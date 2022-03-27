@@ -1,9 +1,0 @@
-:orphan:
-
-.. _matlab-example-catcomb.m:
-
-catcomb.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/catcomb.m
-   :language: matlab

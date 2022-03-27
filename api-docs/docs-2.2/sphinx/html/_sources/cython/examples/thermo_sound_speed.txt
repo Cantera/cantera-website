@@ -1,6 +1,0 @@
-.. _py-example-sound_speed.py:
-
-sound_speed.py
-=======================================================================
-
-.. literalinclude:: ../../../../interfaces/cython/cantera/examples/thermo/sound_speed.py

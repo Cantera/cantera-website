@@ -1,8 +1,0 @@
-:orphan:
-
-.. _py-example-mechanism_reduction.py:
-
-mechanism_reduction.py
-=======================================================================
-
-.. literalinclude:: ../../../../interfaces/cython/cantera/examples/kinetics/mechanism_reduction.py

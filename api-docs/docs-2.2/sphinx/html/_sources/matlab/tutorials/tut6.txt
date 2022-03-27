@@ -1,7 +1,0 @@
-.. _matlab-example-tut6.m:
-
-tut6.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/tut6.m
-   :language: matlab

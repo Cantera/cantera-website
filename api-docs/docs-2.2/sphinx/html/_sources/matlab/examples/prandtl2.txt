@@ -1,7 +1,0 @@
-.. _matlab-example-prandtl2.m:
-
-prandtl2.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/prandtl2.m
-   :language: matlab
