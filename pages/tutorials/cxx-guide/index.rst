@@ -10,115 +10,125 @@
 
       This guide shows the basics of using the C++ interface
 
-.. container:: card-deck
+.. container:: container
 
-   .. container:: card
+   .. row::
 
-      .. container::
-         :tagname: a
-         :attributes: href=compiling.html
-                      title="Compiling Cantera C++ Applications"
+      .. container:: col-12
 
-         .. container:: card-header section-card
+         .. container:: card-deck
 
-            Compiling Cantera C++ Applications
+            .. container:: card
 
-      .. container:: card-body
+               .. container::
+                  :tagname: a
+                  :attributes: href=compiling.html
+                              title="Compiling Cantera C++ Applications"
 
-         .. class:: card-text
+                  .. container:: card-header section-card
 
-            Instructions to compile Cantera C++ applications using a variety of build systems,
-            including make, CMake, SCons, etc. Note: This section is about compiling Cantera
-            applications that use the Cantera library; instructions to compile the Cantera library
-            are over :doc:`there <installation-reqs>`.
+                     Compiling Cantera C++ Applications
 
-   .. container:: card
+               .. container:: card-body
 
-      .. container::
-         :tagname: a
-         :attributes: href=headers.html
-                      title="Cantera C++ Header Files"
+                  .. class:: card-text
 
-         .. container:: card-header section-card
+                     Instructions to compile Cantera C++ applications using a variety of build systems,
+                     including make, CMake, SCons, etc. Note: This section is about compiling Cantera
+                     applications that use the Cantera library; instructions to compile the Cantera library
+                     are over :doc:`there <installation-reqs>`.
 
-            Cantera C++ Header Files
+            .. container:: card
 
-      .. container:: card-body
+               .. container::
+                  :tagname: a
+                  :attributes: href=headers.html
+                              title="Cantera C++ Header Files"
 
-         .. class:: card-text
+                  .. container:: card-header section-card
 
-            Information about the header files used to include Cantera functionality in your C++
-            application.
+                     Cantera C++ Header Files
 
-   .. container:: card
+               .. container:: card-body
 
-      .. container::
-         :tagname: a
-         :attributes: href=simple-example.html
-                      title="A Very Simple C++ Program"
+                  .. class:: card-text
 
-         .. container:: card-header section-card
+                     Information about the header files used to include Cantera functionality in your C++
+                     application.
 
-            A Very Simple C++ Program
+            .. container:: card
 
-      .. container:: card-body
+               .. container::
+                  :tagname: a
+                  :attributes: href=simple-example.html
+                              title="A Very Simple C++ Program"
 
-         .. class:: card-text
+                  .. container:: card-header section-card
 
-            A simple example of a C++ program including error handling
+                     A Very Simple C++ Program
 
-.. container:: card-deck
+               .. container:: card-body
 
-   .. container:: card
+                  .. class:: card-text
 
-      .. container::
-         :tagname: a
-         :attributes: href=thermo.html
-                      title="Computing Thermodynamic Properties"
+                     A simple example of a C++ program including error handling
 
-         .. container:: card-header section-card
+   .. row::
 
-            Computing Thermodynamic Properties
+      .. container:: col-12
 
-      .. container:: card-body
+         .. container:: card-deck
 
-         .. class:: card-text
+            .. container:: card
 
-            An example demonstrating the calculation of various thermodynamic properties associated
-            with a particular phase of a substance.
+               .. container::
+                  :tagname: a
+                  :attributes: href=thermo.html
+                              title="Computing Thermodynamic Properties"
 
-   .. container:: card
+                  .. container:: card-header section-card
 
-      .. container::
-         :tagname: a
-         :attributes: href=equil-example.html
-                      title="Chemical Equilibrium Example Program"
+                     Computing Thermodynamic Properties
 
-         .. container:: card-header section-card
+               .. container:: card-body
 
-            Chemical Equilibrium Example Program
+                  .. class:: card-text
 
-      .. container:: card-body
+                     An example demonstrating the calculation of various thermodynamic properties associated
+                     with a particular phase of a substance.
 
-         .. class:: card-text
+            .. container:: card
 
-            An example using the built-in equilibration algorithms to compute the chemical
-            equilibrium of a mixture.
+               .. container::
+                  :tagname: a
+                  :attributes: href=equil-example.html
+                              title="Chemical Equilibrium Example Program"
 
-   .. container:: card
+                  .. container:: card-header section-card
 
-      .. container::
-         :tagname: a
-         :attributes: href=factories.html
-                      title="Creating ThermoPhase, Kinetics, and Transport objects"
+                     Chemical Equilibrium Example Program
 
-         .. container:: card-header section-card
+               .. container:: card-body
 
-            Creating ``ThermoPhase``, ``Kinetics``, and ``Transport`` objects
+                  .. class:: card-text
 
-      .. container:: card-body
+                     An example using the built-in equilibration algorithms to compute the chemical
+                     equilibrium of a mixture.
 
-         .. class:: card-text
+            .. container:: card
 
-            How to create objects that allow calculation of thermodynamic properties and kinetic and
-            transport rates.
+               .. container::
+                  :tagname: a
+                  :attributes: href=factories.html
+                              title="Creating ThermoPhase, Kinetics, and Transport objects"
+
+                  .. container:: card-header section-card
+
+                     Creating ThermoPhase, Kinetics, and Transport objects
+
+               .. container:: card-body
+
+                  .. class:: card-text
+
+                     How to create objects that allow calculation of thermodynamic properties and kinetic and
+                     transport rates.
