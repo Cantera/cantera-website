@@ -212,10 +212,11 @@ for each surface species :math:`i` are computed such that :math:`\dot{s}_i = 0`.
 
 The Drift-Diffusion Model
 =========================
+`IonFlow <{{% ct_docs doxygen/html/d4/db9/classCantera_1_1IonFlow.html %}}>`__.
 
-This feature is only available when using class **IonFlow**. To account for the
-transport of charged species in a flame, the drift term is added to the diffusive fluxes
-of the mixture-average formulation according to [Ped1993]_,
+This feature is only available when using class `IonFlow <{{% ct_docs doxygen/html/d4/db9/classCantera_1_1IonFlow.html %}}>`__.
+To account for the transport of charged species in a flame, the drift term is added to
+the diffusive fluxes of the mixture-average formulation according to [Ped1993]_,
 
 .. math::
 
@@ -225,7 +226,8 @@ of the mixture-average formulation according to [Ped1993]_,
 where :math:`s_k` is the sign of charge (1,-1, and 0 respectively for positive, negative,
 and neutral charge), :math:`\mu_k` is the mobility, and :math:`E` is the electric field.
 The diffusion coefficients and mobilities of charged species can be more accurately
-calculated by **IonGasTransport::getMixDiffCoeffs** and **IonGasTransport::getMobilities**.
+calculated by `IonGasTransport::getMixDiffCoeffs <{{% ct_docs doxygen/html/d4/d65/classCantera_1_1IonGasTransport.html#a431711980258846b25827541b65c2728 %}}>`__
+and `IonGasTransport::getMobilities <{{% ct_docs doxygen/html/d4/d65/classCantera_1_1IonGasTransport.html#a702cbb6f244cfb9f448ac0630def9893 %}}>`__.
 The following correction is applied instead to preserve the correct fluxes of charged species:
 
 .. math::
