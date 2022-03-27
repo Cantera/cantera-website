@@ -240,6 +240,7 @@ Compile Cantera & Test
     Compilation completed successfully.
 
     - To run the test suite, type 'scons test'.
+    - To list available tests, type 'scons test-help'.
     - To install, type 'scons install'.
     *******************************************************
 
