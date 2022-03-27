@@ -13,14 +13,13 @@
 
    .. class:: lead
 
-      Ubuntu packages are provided for recent versions of Ubuntu using a Personal Package Archive
-      (PPA). Note that the Matlab packages are not available from this archive; to install the
-      Matlab packages on Ubuntu, you must :ref:`compile the source code <sec-compiling>`.
+      Ubuntu packages are provided for recent versions of Ubuntu using a Personal
+      Package Archive (PPA).
 
-As of Cantera 2.5.1, packages are available for Ubuntu 18.04 (Bionic Beaver), Ubuntu 20.04
-(Focal Fossa), Ubuntu 20.10 (Groovy Gorilla), Ubuntu 21.04 (Hirsute Hippo), and
-Ubuntu 21.10 (Impish Indri). To see which Ubuntu releases and Cantera versions are
-currently available, visit https://launchpad.net/~cantera-team/+archive/ubuntu/cantera.
+As of Cantera 2.6.0, packages are available for Ubuntu 20.04 (Focal Fossa), Ubuntu 21.10
+(Impish Indri), and Ubuntu 22.04 (Jammy Jellyfish). To see which Ubuntu releases and
+Cantera versions are currently supported, visit
+https://launchpad.net/~cantera-team/+archive/ubuntu/cantera.
 
 The available packages are:
 
@@ -30,6 +29,14 @@ The available packages are:
   Fortran 90 programs that use Cantera.
 
 - ``cantera-common`` - Cantera data files and example programs
+
+Note that the Matlab packages are not available from this archive; to install the
+Matlab packages on Ubuntu, you must install it using
+:ref:`conda <sec-conda-matlab-interface>`
+or :ref:`compile the source code <sec-compiling>`.
+
+Installing
+----------
 
 To add the Cantera PPA:
 
