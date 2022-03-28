@@ -53,6 +53,11 @@ General Notes
 * You will need to install compilers for your system by following the instructions in the sections
   below to install the compiler for your operating system.
 
+* By default, Cantera is installed into the active conda environment, where the
+  layout of the directory structure corresponds to the
+  [configuration option](https://cantera.org/compiling/configure-build.html)
+  ``layout=conda``.
+
 .. _sec-conda-reqs:
 
 Conda Requirements
@@ -154,18 +159,10 @@ Conda Requirements
   containing ``sphinx``, ``doxygen``, ``graphviz``, ``pip`` as well as all relevant
   items listed for the ``pip:`` entry in ``environment.yaml``.
 
-* Now you can build and test Cantera with
-
-  .. code:: bash
-
-     scons build
-     scons test
-
-* To install Cantera, use the command
-
-  .. code:: bash
-
-     scons install
+* (Cantera < 2.6 only) On previous Cantera versions, the build process requires
+  configuration options ``boost_inc_dir`` and ``prefix`` (see
+  [configuration options](https://cantera.org/compiling/configure-build.html));
+  starting with Cantera 2.6, these settings are detected automatically.
 
 .. note::
 
