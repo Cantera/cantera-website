@@ -41,7 +41,7 @@ Intel Compilers
 ===============
 
 * The following instructions refer to the `Intel OneAPI Toolkit
-  <https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html>`_.
+  <https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html>`__.
 
 * Before compiling Cantera, you may need to set up the appropriate environment
   variables for the Intel compiler suite. For example:

@@ -31,15 +31,14 @@ Fortran compiler is required only if you plan to build the Fortran module.
 
 * Intel compilers (C/C++/Fortran)
 
-  * Known to work with version 14.0 and Intel OneAPI Toolkits.
-  * The 2017 version of the Intel compiler is **NOT RECOMMENDED** because of a
-    bug in the C compiler.
+  * Known to work with the Intel OneAPI Compilers (version 2022.0.2).
+  * Some earlier versions of the Intel compiler (including the 2017 version) are
+    **NOT RECOMMENDED** because of a bug in the C compiler.
 
 * Microsoft compilers (C/C++)
 
-  * Known to work with Visual Studio 2013 (MSVC 12.0), Visual Studio 2015
-    (MSVC 14.0), Visual Studio 2017 (MSVC 14.1), Visual Studio 2019
-    (MSVC 14.2) and Visual Studio 2022 (MSVC 14.3).
+  * Known to work with Visual Studio 2015 (MSVC 14.0), Visual Studio 2017 (MSVC 14.1),
+    Visual Studio 2019 (MSVC 14.2) and Visual Studio 2022 (MSVC 14.3).
 
 * MinGW (C/C++/Fortran)
 

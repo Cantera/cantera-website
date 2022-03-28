@@ -61,23 +61,38 @@ Conda Requirements
 * Install `Anaconda <https://www.anaconda.com/download/>`__ or
   `Miniconda <https://conda.io/miniconda.html>`__.
 
-* On Windows, use the Anaconda Prompt to run the following steps (available from the Start Menu).
-  On macOS and Linux, the installer should add the appropriate activation mechanism for your normal terminal by
-  default. You can test this by running
+* Launch the command line interface:
 
-  .. code:: bash
+   * On macOS and Linux, the installer should add the appropriate activation mechanism
+     for your normal terminal by default. You can test this by running
 
-     conda --version
+     .. code:: bash
 
-  in the terminal. If there is no output or an error appears, locate your Conda installation and run the
-  following code in the terminal:
+      conda --version
 
-  .. code:: bash
+     in the terminal. If there is no output or an error appears, locate your Conda
+     installation and run the following code in the terminal:
 
-     /path/to/conda/install/folder/bin/conda init [name of your shell]
+     .. code:: bash
 
-  If you have not changed any defaults for your terminal, the name of your shell is most likely ``bash``.
-  Then restart your terminal or shell.
+       /path/to/conda/install/folder/bin/conda init -all
+
+     Then restart your terminal or shell.
+
+   * On Windows, use the Anaconda PowerShell to run the build process (available from
+     the Start Menu). When using MSVC compilers, you also need to set environment
+     variables for x64-native tools (see `Developer command file locations
+     <https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-170#developer_command_file_locations>`__)
+     by running
+
+     .. code:: bash
+
+       . "C:\path\to\MSVC\Auxiliary\Build\vcvars64.bat"
+
+     (note that the period ``'.'`` is part of the command). The path can be found as
+     follows: locate the **x64 Native Tools Command Prompt** in the Start Menu,
+     right-click, select **More > Open File Location**, right-click on the shortcut,
+     select **Properties** and copy the **Target** command.
 
 * Create an environment ``ct-build`` with the dependencies to build Cantera. Create a
   file called ``environment.yaml`` with the following content
@@ -96,20 +111,25 @@ Conda Requirements
      # - eigen  # uncomment to override Cantera default
      # - yaml-cpp  # uncomment to override Cantera default
      # - libgomp  # optional (OpenMP implementation when using GCC)
-     - cython  # needed to build python package
-     - numpy  # needed to build python package
+     - cython  # needed to build Python package
+     - numpy  # needed to build Python package
      - pytest  # needed for the Python test suite
      - ruamel.yaml  # needed for converter scripts
-     # - sphinx  # optional (used for documentation)
-     # - doxygen  # optional (used for documentation)
-     # - graphviz  # optional (needed for documentation)
-     # - python-graphviz  # optional (needed for reaction path diagrams)
      # - h5py  # optional (needed for HDF/H5 output)
      # - pandas  # optional (needed for pandas interface)
      # - scipy  # optional (needed for some examples)
      # - matplotlib  # optional (needed for plots)
+     # - python-graphviz  # optional (needed for reaction path diagrams)
      - ipython  # optional (needed for nicer interactive command line)
      # - jupyter  # optional (needed for Jupyter Notebook)
+     # - sphinx  # optional (needed for documentation)
+     # - doxygen  # optional (needed for documentation)
+     # - graphviz  # optional (needed for documentation)
+     # - pip  # optional (needed if PyPI managed packages are used)
+     # - pip:  # optional (list of PyPI managed packages)
+     #   - sphinxcontrib-matlabdomain  # optional (needed for documentation)
+     #   - sphinxcontrib-katex  # optional (needed for documentation)
+     #   - sphinxcontrib-doxylink  # optional (needed for documentation)
 
   The environment is then created and activated using
 
@@ -130,14 +150,9 @@ Conda Requirements
   forced by providing version numbers (example: replace ``sundials`` by
   ``sundials=5.8`` to install version ``5.8``).
 
-* (Optional) If you want to build the documentation, make sure to have uncommented
-  lines containing ``sphinx``, ``doxygen`` and ``graphviz`` in the file
-  ``environment.yaml`` above. In addition, you also need to install the following
-  dependencies
-
-  .. code:: bash
-
-     pip install sphinxcontrib-matlabdomain sphinxcontrib-katex sphinxcontrib-doxylink
+* (Optional) If you want to build the documentation, make sure to uncomment lines
+  containing ``sphinx``, ``doxygen``, ``graphviz``, ``pip`` as well as all relevant
+  items listed for the ``pip:`` entry in ``environment.yaml``.
 
 * Now you can build and test Cantera with
 
