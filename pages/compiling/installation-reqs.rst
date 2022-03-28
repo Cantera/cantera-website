@@ -63,36 +63,36 @@ Conda Requirements
 
 * Launch the command line interface:
 
-   * On macOS and Linux, the installer should add the appropriate activation mechanism
-     for your normal terminal by default. You can test this by running
+  * On macOS and Linux, the installer should add the appropriate activation mechanism
+    for your normal terminal by default. You can test this by running
 
-     .. code:: bash
+    .. code:: bash
 
-      conda --version
+     conda --version
 
-     in the terminal. If there is no output or an error appears, locate your Conda
-     installation and run the following code in the terminal:
+    in the terminal. If there is no output or an error appears, locate your Conda
+    installation and run the following code in the terminal:
 
-     .. code:: bash
+    .. code:: bash
 
-       /path/to/conda/install/folder/bin/conda init -all
+      /path/to/conda/install/folder/bin/conda init -all
 
-     Then restart your terminal or shell.
+    Then restart your terminal or shell.
 
-   * On Windows, use the Anaconda PowerShell to run the build process (available from
-     the Start Menu). When using MSVC compilers, you also need to set environment
-     variables for x64-native tools (see `Developer command file locations
-     <https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-170#developer_command_file_locations>`__)
-     by running
+  * On Windows, use the Anaconda PowerShell to run the build process (available from
+    the Start Menu). When using MSVC compilers, you also need to set environment
+    variables for x64-native tools (see `Developer command file locations
+    <https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-170#developer_command_file_locations>`__)
+    by running
 
-     .. code:: bash
+    .. code:: bash
 
-       . "C:\path\to\MSVC\Auxiliary\Build\vcvars64.bat"
+      . "C:\path\to\MSVC\Auxiliary\Build\vcvars64.bat"
 
-     (note that the period ``'.'`` is part of the command). The path can be found as
-     follows: locate the **x64 Native Tools Command Prompt** in the Start Menu,
-     right-click, select **More > Open File Location**, right-click on the shortcut,
-     select **Properties** and copy the **Target** command.
+    (note that the period ``'.'`` is part of the command). The path can be found as
+    follows: locate the **x64 Native Tools Command Prompt** in the Start Menu,
+    right-click, select **More > Open File Location**, right-click on the shortcut,
+    select **Properties** and copy the **Target** command.
 
 * Create an environment ``ct-build`` with the dependencies to build Cantera. Create a
   file called ``environment.yaml`` with the following content
