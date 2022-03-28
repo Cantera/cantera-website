@@ -59,73 +59,119 @@ Conda Requirements
 ^^^^^^^^^^^^^^^^^^
 
 * Install `Anaconda <https://www.anaconda.com/download/>`__ or
-  `Miniconda <https://conda.io/miniconda.html>`__. We highly recommend using the Python 3 version
-  unless you have a specific reason not to.
+  `Miniconda <https://conda.io/miniconda.html>`__.
 
-* On Windows, use the Anaconda Prompt to run the following steps (available from the Start Menu).
-  On macOS and Linux, the installer should add the appropriate activation mechanism for your normal terminal by
-  default. You can test this by running
+* Launch the command line interface:
+
+   * On macOS and Linux, the installer should add the appropriate activation mechanism
+     for your normal terminal by default. You can test this by running
+
+     .. code:: bash
+
+      conda --version
+
+     in the terminal. If there is no output or an error appears, locate your Conda
+     installation and run the following code in the terminal:
+
+     .. code:: bash
+
+       /path/to/conda/install/folder/bin/conda init -all
+
+     Then restart your terminal or shell.
+
+   * On Windows, use the Anaconda PowerShell to run the build process (available from
+     the Start Menu). When using MSVC compilers, you also need to set environment
+     variables for x64-native tools (see `Developer command file locations
+     <https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-170#developer_command_file_locations>`__)
+     by running
+
+     .. code:: bash
+
+       . "C:\path\to\MSVC\Auxiliary\Build\vcvars64.bat"
+
+     (note that the period ``'.'`` is part of the command). The path can be found as
+     follows: locate the **x64 Native Tools Command Prompt** in the Start Menu,
+     right-click, select **More > Open File Location**, right-click on the shortcut,
+     select **Properties** and copy the **Target** command.
+
+* Create an environment ``ct-build`` with the dependencies to build Cantera. Create a
+  file called ``environment.yaml`` with the following content
+
+  .. code:: yaml
+
+     name: ct-build
+     channels:
+     - conda-forge
+     dependencies:
+     - python  # Cantera supports Python 3.7 and up
+     - scons  # build system
+     - boost-cpp  # C++ dependency
+     # - sundials  # uncomment to override Cantera default
+     # - fmt  # uncomment to override Cantera default
+     # - eigen  # uncomment to override Cantera default
+     # - yaml-cpp  # uncomment to override Cantera default
+     # - libgomp  # optional (OpenMP implementation when using GCC)
+     - cython  # needed to build Python package
+     - numpy  # needed to build Python package
+     - pytest  # needed for the Python test suite
+     - ruamel.yaml  # needed for converter scripts
+     # - h5py  # optional (needed for HDF/H5 output)
+     # - pandas  # optional (needed for pandas interface)
+     # - scipy  # optional (needed for some examples)
+     # - matplotlib  # optional (needed for plots)
+     # - python-graphviz  # optional (needed for reaction path diagrams)
+     - ipython  # optional (needed for nicer interactive command line)
+     # - jupyter  # optional (needed for Jupyter Notebook)
+     # - sphinx  # optional (needed for documentation)
+     # - doxygen  # optional (needed for documentation)
+     # - graphviz  # optional (needed for documentation)
+     # - pip  # optional (needed if PyPI managed packages are used)
+     # - pip:  # optional (list of PyPI managed packages)
+     #   - sphinxcontrib-matlabdomain  # optional (needed for documentation)
+     #   - sphinxcontrib-katex  # optional (needed for documentation)
+     #   - sphinxcontrib-doxylink  # optional (needed for documentation)
+
+  The environment is then created and activated using
 
   .. code:: bash
 
-     conda --version
+     conda env create -f environment.yaml
+     conda activate ct-build
 
-  in the terminal. If there's no output or an error appears, locate your Conda installation and run the
-  following code in the terminal:
-
-  .. code:: bash
-
-     /path/to/conda/install/folder/bin/conda init [name of your shell]
-
-  If you haven't changed any defaults for your terminal, the name of your shell is most likely ``bash``.
-  Then restart your terminal or shell.
-
-* Create an environment with the dependencies to build Cantera
+  After creating the enviroment, it can be updated from within ``ct-build`` using
 
   .. code:: bash
 
-     conda create --name cantera python=3 scons cython boost numpy ruamel.yaml
-     conda activate cantera
+     conda env update -f environment.yaml --prune
 
-* (Optional) If you also want to build the documentation, after you've created the environment and
-  activated it, you'll also need to install the following dependencies
+* (Optional) If you want to override external libraries packaged with Cantera
+  (``sundials``, ``fmt``, ``eigen``, ``yaml-cpp``), simply uncomment corresponding
+  lines in the file ``environment.yaml`` above. Note that specific versions can be
+  forced by providing version numbers (example: replace ``sundials`` by
+  ``sundials=5.8`` to install version ``5.8``).
 
-  .. code:: bash
+* (Optional) If you want to build the documentation, make sure to uncomment lines
+  containing ``sphinx``, ``doxygen``, ``graphviz``, ``pip`` as well as all relevant
+  items listed for the ``pip:`` entry in ``environment.yaml``.
 
-     conda install sphinx doxygen graphviz
-     pip install sphinxcontrib-matlabdomain sphinxcontrib-katex sphinxcontrib-doxylink
-
-* After you've :ref:`cloned the source code <sec-source-code>`, configure the Cantera build by
-  adding the following options to a file called ``cantera.conf`` in the root of the source directory
-  (creating the file if it doesn't exist).
-
-  On macOS and Linux, add the following code to your ``cantera.conf`` file:
-
-  .. code:: python
-
-     python_package = 'full'
-     boost_inc_dir = '/path/to/conda/install/folder/envs/cantera/include'
-
-  On Windows, add the following code to your ``cantera.conf`` file:
-
-  .. code:: python
-
-     python_package = 'full'
-     boost_inc_dir = '/path/to/conda/install/folder/envs/cantera/Library/include'
-
-* Now you can build Cantera with
+* Now you can build and test Cantera with
 
   .. code:: bash
 
      scons build
+     scons test
 
 * To install Cantera, use the command
 
   .. code:: bash
 
-     scons install prefix=$CONDA_PREFIX
+     scons install
 
-  to make sure that the files end up in the right directory
+.. note::
+
+   As the compiled code is based on the conda environment ``ct-build``, it is only
+   usable from within that environment. This means that in order to use the compiled
+   Cantera package, you have to activate your ``ct-build`` environment first.
 
 .. container:: container
 
