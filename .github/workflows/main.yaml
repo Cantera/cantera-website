@@ -7,9 +7,10 @@ on:
       - main
       - testing
   pull_request:
-    # Build when a pull request targets main
+    # Build when a pull request targets main or testing
     branches:
       - main
+      - testing
 
 env:
   NIKOLA_OUTPUT_DIR: output
