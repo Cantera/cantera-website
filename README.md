@@ -3,6 +3,10 @@
 This repository contains the source code for the [cantera.org](https://cantera.org) website. The
 site is built using the [Nikola](https://getnikola.com) static site generator.
 
+While the state of the website corresponds to the `main` branch, upcoming changes can
+be previewed on [testing.cantera.org](https://testing.cantera.org), which is based on
+the `testing` branch of the repository.
+
 ## To build the website
 
 1. Create a virtual environment for Nikola (i.e., using conda or virtualenv)
