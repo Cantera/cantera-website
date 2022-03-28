@@ -1,8 +1,0 @@
-:orphan:
-
-.. _py-example-catalytic_combustion.py:
-
-catalytic_combustion.py
-=======================================================================
-
-.. literalinclude:: ../../../../interfaces/cython/cantera/examples/surface_chemistry/catalytic_combustion.py

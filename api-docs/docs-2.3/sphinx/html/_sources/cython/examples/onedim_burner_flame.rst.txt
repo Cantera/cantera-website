@@ -1,8 +1,0 @@
-:orphan:
-
-.. _py-example-burner_flame.py:
-
-burner_flame.py
-=======================================================================
-
-.. literalinclude:: ../../../../interfaces/cython/cantera/examples/onedim/burner_flame.py

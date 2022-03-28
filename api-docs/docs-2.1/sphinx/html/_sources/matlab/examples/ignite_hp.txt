@@ -1,5 +1,0 @@
-ignite_hp.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/ignite_hp.m
-   :language: matlab

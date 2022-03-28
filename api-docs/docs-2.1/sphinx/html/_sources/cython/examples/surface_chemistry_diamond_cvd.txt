@@ -1,4 +1,0 @@
-diamond_cvd.py
-=======================================================================
-
-.. literalinclude:: ../../../../interfaces/cython/cantera/examples/surface_chemistry/diamond_cvd.py

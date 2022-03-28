@@ -1,7 +1,0 @@
-.. _matlab-example-run_examples.m:
-
-run_examples.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/run_examples.m
-   :language: matlab

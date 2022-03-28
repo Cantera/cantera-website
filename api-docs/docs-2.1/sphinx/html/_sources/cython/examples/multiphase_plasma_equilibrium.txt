@@ -1,4 +1,0 @@
-plasma_equilibrium.py
-=======================================================================
-
-.. literalinclude:: ../../../../interfaces/cython/cantera/examples/multiphase/plasma_equilibrium.py

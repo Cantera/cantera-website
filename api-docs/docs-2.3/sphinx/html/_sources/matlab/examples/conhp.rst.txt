@@ -1,9 +1,0 @@
-:orphan:
-
-.. _matlab-example-conhp.m:
-
-conhp.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/conhp.m
-   :language: matlab

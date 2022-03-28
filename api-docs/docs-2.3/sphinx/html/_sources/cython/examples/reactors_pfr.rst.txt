@@ -1,8 +1,0 @@
-:orphan:
-
-.. _py-example-pfr.py:
-
-pfr.py
-=======================================================================
-
-.. literalinclude:: ../../../../interfaces/cython/cantera/examples/reactors/pfr.py
