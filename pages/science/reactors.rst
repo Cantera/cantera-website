@@ -49,27 +49,23 @@ Network. Each reactor in a network may be connected so that the contents of one 
 another. Reactors may also be in contact with one another or the environment via walls that conduct
 heat or move to do work.
 
-Governing Equations for Single Reactors
+Reactor Types and Governing Equations
 =======================================
 
-The state variables for Cantera's general reactor model are
+The governing equations defining Cantera's supported reactor models are described below.
+
+Listed are all state variables used in Cantera's reactor models:
 
 - :math:`m`, the mass of the reactor's contents (in kg)
 
 - :math:`V`, the reactor volume (in m\ :sup:`3`) (not a state variable for
   :py:class:`ConstPressureReactor` and :py:class:`IdealGasConstPressureReactor`)
 
-- A state variable describing the energy of the system, depending on the
-  configuration (see `Energy Conservation`_ for further explanation):
+- :math:`U`, the total internal energy of the reactors contents (in J)
 
-  - General :py:class:`Reactor`: :math:`U`, the total internal energy of the reactors
-    contents (in J)
+- :math:`H`, the total enthalpy of the reactors contents (in J)
 
-  - :py:class:`ConstPressureReactor`: :math:`H`, the total enthalpy of the reactors
-    contents (in J)
-
-  - :py:class:`IdealGasReactor` and :py:class:`IdealGasConstPressureReactor`: :math:`T`,
-    the temperature (in K)
+- :math:`T`, the temperature (in K)
 
 - :math:`Y_k`, the mass fractions for each species (dimensionless)
 
