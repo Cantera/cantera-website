@@ -157,24 +157,24 @@ your work, as well as giving credit to the many `authors
 their time to developing Cantera. The recommended citation for Cantera is as
 follows:
 
-   David G. Goodwin, Raymond L. Speth, Harry K. Moffat, and Bryan W. Weber.
-   *Cantera: An object-oriented software toolkit for chemical kinetics,
+   David G. Goodwin, Harry K. Moffat, Ingmar Schoegl, Raymond L. Speth, and Bryan W.
+   Weber. *Cantera: An object-oriented software toolkit for chemical kinetics,
    thermodynamics, and transport processes*. https://www.cantera.org,
-   2021. Version 2.5.1. doi:10.5281/zenodo.4527812
+   2022. Version 2.6.0. doi:10.5281/zenodo.6387882
 
 The following BibTeX entry may also be used:
 
 .. code:: bibtex
 
    @misc{cantera,
-       author = "David G. Goodwin and Raymond L. Speth and Harry K. Moffat
-                 and Bryan W. Weber",
+       author = "David G. Goodwin and Harry K. Moffat and Ingmar Schoegl and Raymond L.
+                 Speth and Harry K. Moffat and Bryan W. Weber",
        title = "Cantera: An Object-oriented Software Toolkit for Chemical
                 Kinetics, Thermodynamics, and Transport Processes",
-       year = 2021,
-       note = "Version 2.5.1",
+       year = 2022,
+       note = "Version 2.6.0",
        howpublished = "\url{https://www.cantera.org}",
-       doi = {10.5281/zenodo.4527812}
+       doi = {10.5281/zenodo.6387882}
    }
 
 If you are using a different version of Cantera, update the ``year``, ``note``
