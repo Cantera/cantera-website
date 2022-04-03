@@ -25,7 +25,7 @@ It supports all of the options in the widely-used model described by Kee et al.
 [#Kee1989]_, plus some additional options for species thermodynamic properties
 and reaction rate expressions.
 
-Ideal gas mixtures can be defined in the CTI format using the
+Ideal gas mixtures can be defined in the legacy CTI format using the
 :cti:class:`ideal_gas` entry, or in the YAML format by specifying
 :ref:`ideal-gas <sec-yaml-ideal-gas>` in the ``thermo`` field.
 
@@ -37,7 +37,7 @@ given by the composition of the one species present. A stoichiometric solid can 
 condensed phase that can participate in heterogeneous reactions. (Of course, there cannot be
 homogeneous reactions, since the composition is fixed.)
 
-A stoichiometric solid can be defined in the CTI format using the
+A stoichiometric solid can be defined in the legacy CTI format using the
 :cti:class:`stoichiometric_solid` entry, or in the YAML format by specifying
 :ref:`fixed-stoichiometry <sec-yaml-fixed-stoichiometry>` in the ``thermo`` field.
 
@@ -62,7 +62,7 @@ to the surface concentration :math:`C_k` by
 
 where :math:`n_k` is the number of sites covered or blocked by species :math:`k`.
 
-An interface can be defined in the CTI format using the
+An interface can be defined in the legacy CTI format using the
 :cti:class:`ideal_interface` entry, or in the YAML format by specifying
 :ref:`ideal-surface <sec-yaml-ideal-surface>` in the ``thermo``
 field.

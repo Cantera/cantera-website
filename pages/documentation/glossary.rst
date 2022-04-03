@@ -11,7 +11,7 @@ the names of variables and classes:
 
 * **CK**: Chemkin
 * **CT**: Cantera
-* **CTI**: Cantera Input
+* **CTI**: Cantera Input *(Deprecated in Cantera 2.5)*
 * **CTML**: Cantera Markup Language
 * **HKFT**: Helgeson-Kirkham-Flowers-Tanger
 * **HMW**: Harvie, Møller, and Weare

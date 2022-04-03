@@ -290,7 +290,7 @@ directory where they are located. Alternatively, you can call function
 Cantera currently supports three input formats for data. The primary format,
 introduced in Cantera 2.5.0, is the YAML format. Two older formats (CTI and XML)
 can also be used, but they are deprecated and support for them will be removed
-in a future release. Utilities are provided for converting existing CTI and XML
+in a Cantera 3.0. Utilities are provided for converting existing CTI and XML
 files to YAML. For more info, see
 `Converting CTI and XML input files to YAML <legacy2yaml.html>`__.
 
