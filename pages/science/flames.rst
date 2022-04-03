@@ -39,7 +39,7 @@ similarity solution to reduce the three-dimensional governing equations to a
 single dimension.
 
 The governing equations for a steady axisymmetric stagnation flow follow those
-derived in Section 6.2 of [Kee2017]_:
+derived in Section 7.2 of [Kee2017]_:
 
 *Continuity*:
 
