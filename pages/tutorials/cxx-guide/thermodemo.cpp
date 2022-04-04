@@ -1,11 +1,15 @@
 #include "cantera/thermo.h"
+#include "cantera/base/Solution.h"
 #include <iostream>
 
 using namespace Cantera;
 
 void thermo_demo(const std::string& file, const std::string& phase)
 {
-    shared_ptr<ThermoPhase> gas(newPhase(file, phase));
+    // Create a new Solution object
+    auto sol = newSolution("h2o2.yaml", "ohmech", "None");
+    auto gas = sol->thermo();
+
     gas->setState_TPX(1500.0, 2.0*OneAtm, "O2:1.0, H2:3.0, AR:1.0");
 
     // temperature, pressure, and density
