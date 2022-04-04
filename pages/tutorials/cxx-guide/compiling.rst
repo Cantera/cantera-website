@@ -18,6 +18,17 @@ specifying the appropriate header and library paths, and specifying the required
 libraries when linking. It is also necessary to specify the paths for libraries
 used by Cantera, such as Sundials, BLAS, and LAPACK.
 
+Instructions below assume a Linux operating system where Cantera's libraries are
+installed in a standard location such as ``/usr/lib`` or ``/usr/local/lib``. If Cantera
+is installed to a custom location, environment variables ``LD_LIBRARY_PATH`` and
+``PKG_CONFIG_PATH`` need to be specified. If they are not already set elsewhere, they
+can be set from the command line as:
+
+.. code:: bash
+
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/lib
+   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/path/to/lib/pkgconfig
+
 pkg-config
 ==========
 
@@ -67,7 +78,7 @@ look like this:
               CPPPATH=['/usr/local/cantera/include',
                        '/usr/local/sundials/include'],
               LIBS=['cantera', 'sundials_cvodes', 'sundials_ida',
-                    'sundials_nvecserial', 'lapack', 'blas'],
+                    'sundials_nvecserial', 'lapack', 'blas', 'fmt', 'yaml-cpp'],
               LIBPATH=['/usr/local/cantera/lib',
                        '/usr/local/sundials/lib'],
               LINKFLAGS=['-g', '-pthread'])
