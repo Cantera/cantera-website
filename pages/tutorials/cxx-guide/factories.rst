@@ -4,7 +4,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Creating ``ThermoPhase``, ``Kinetics``, and ``Transport`` objects</h1>
+      <h1 class="display-3">Creating <code>ThermoPhase</code>, <code>Kinetics</code>, and <code>Transport</code> objects</h1>
 
    .. class:: lead
 
@@ -18,7 +18,7 @@ object types:
 - ``Kinetics`` - represents a kinetic mechanism involving one or more phases)
 - ``Transport`` - computes transport properties for a `ThermoPhase`
 
-This program uses "factory" functions to create derived objects objects of the
+This program uses factory functions to create derived objects objects of the
 appropriate type which are specified in the input file ``gri30.yaml``.
 
 .. include:: pages/tutorials/cxx-guide/factory_demo.cpp
