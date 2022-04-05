@@ -26,7 +26,9 @@ might look like this:
 
 .. code:: bash
 
-   g++ combustor.cpp -o combustor -pthread -O3 -std=c++0x -I/opt/cantera-2.5.1/include -L/opt/cantera-2.5.1/lib -lcantera -lsundials_cvodes -lsundials_ida -lsundials_nvecserial
+   g++ combustor.cpp -o combustor -pthread -O3 -std=c++11 \
+   -I/opt/cantera-2.5.1/include -L/opt/cantera-2.5.1/lib \
+   -lcantera -lsundials_cvodes -lsundials_ida -lsundials_nvecserial -lfmt -lyaml-cpp
 
 The locations of the Cantera header files (specified by the ``-I`` option) and the
 libraries (specified by the ``-L`` option) will vary depending on where you
