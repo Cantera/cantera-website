@@ -10,8 +10,8 @@
 
       Learn how to generate the major objects to represent phase information in C++
 
-The following program demonstrates the general method for creating the following
-object types:
+The following program demonstrates the general method for accessing the following
+object types from a ``Solution`` object:
 
 - ``ThermoPhase`` - represents the thermodynamic properties of mixtures containing
   one or more species)
