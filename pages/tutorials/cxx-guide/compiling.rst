@@ -29,6 +29,8 @@ can be set from the command line as:
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/lib
    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/path/to/lib/pkgconfig
 
+where ``/path/to/lib`` should be replaced by Cantera's library installation path.
+
 pkg-config
 ==========
 
