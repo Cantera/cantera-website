@@ -46,7 +46,7 @@ Please click either of the cards below for details on the species and phase mode
 
          .. container::
             :tagname: a
-            :attributes: href=science-species.html
+            :attributes: href=species-thermo.html
                          title=Species
 
             .. container:: card-header section-card
@@ -64,7 +64,7 @@ Please click either of the cards below for details on the species and phase mode
 
          .. container::
             :tagname: a
-            :attributes: href=phases.html
+            :attributes: href=phase-thermo.html
                          title=Phases
 
             .. container:: card-header section-card

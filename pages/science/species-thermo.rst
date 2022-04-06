@@ -1,4 +1,4 @@
-.. slug: science-species
+.. slug: species-thermo
 .. has_math: true
 .. title: Elements and Species
 
@@ -6,7 +6,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Elements and Species</h1>
+      <h1 class="display-3">Elements and Species Thermodynamics</h1>
 
    .. class:: lead
 
@@ -87,17 +87,6 @@ present, the properties needed are:
 3. the absolute molar entropy :math:`\hat{s}(T^\circ, p^\circ)` at :math:`(T^\circ, p^\circ)`.
 
 See: :ref:`the Thermodynamic Models section <sec-thermo-models>`
-
-Species Transport Coefficients
-------------------------------
-
-Transport property models in general require coefficients that express the
-effect of each species on the transport properties of the phase. Currently,
-ideal-gas transport property models are implemented.
-
-Transport properties can be defined in the CTI format using the
-:cti:class:`gas_transport` entry, or in the YAML format using the
-:ref:`transport <sec-yaml-species-transport>` field of a ``species`` entry.
 
 .. _sec-thermo-models:
 
