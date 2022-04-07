@@ -73,7 +73,7 @@ defined to be composed solely of electrons.
 Thermodynamic Properties
 ------------------------
 
-The phase models discussed in the `Phases section </science/phases.html>`__
+The phase models discussed in the `Phases section </science/phases-thermo.html>`__
 implement specific models for the thermodynamic properties appropriate for the
 type of phase or interface they represent. Although each one may use different
 expressions to compute the properties, they all require thermodynamic property
@@ -86,7 +86,7 @@ present, the properties needed are:
    temperature :math:`T^\circ`;
 3. the absolute molar entropy :math:`\hat{s}(T^\circ, p^\circ)` at :math:`(T^\circ, p^\circ)`.
 
-See: :ref:`the Thermodynamic Models section <sec-thermo-models>`
+The superscript :math:`^\circ` here represents the *reference state*--a specified state (i.e. set of conditions :math:`T^\circ` and :math:`p^\circ` and fixed chemical composition) at which thermodynamic properties are known.
 
 .. _sec-thermo-models:
 
@@ -204,12 +204,12 @@ thermodynamic properties:
 
    \hat{c}_p^\circ(T) = \hat{c}_p^\circ(T^\circ)
 
-   \hat{h}^\circ(T) = \hat{h}^\circ(T_0) + \hat{c}_p^\circ\cdot(T-T^\circ)
+   \hat{h}^\circ(T) = \hat{h}^\circ\left(T_0\right) + \hat{c}_p^\circ \left(T-T^\circ\right)
 
-   \hat{s}^\circ(T) = \hat{s}^\circ(T_0) + \hat{c}_p^\circ \ln (T/T^\circ)
+   \hat{s}^\circ(T) = \hat{s}^\circ(T_0) + \hat{c}_p^\circ \ln{\left(\frac{T}{T^\circ}\right)}
 
 The parameterization uses four constants: :math:`T^\circ, \hat{c}_p^\circ(T^\circ),
-\hat{h}^\circ(T^\circ), \hat{s}^\circ(T)`. The default value of :math:`T^\circ` is 298.15 K; the
+\hat{h}^\circ(T^\circ), and \hat{s}^\circ(T)`. The default value of :math:`T^\circ` is 298.15 K; the
 default value for the other parameters is 0.0.
 
 A constant heat capacity parameterization can be defined in the CTI format using
