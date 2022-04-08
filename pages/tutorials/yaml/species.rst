@@ -6,7 +6,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Elements and Species</h1>
+      <h1 class="display-3">Elements and Species in YAML</h1>
 
    .. class:: lead
 

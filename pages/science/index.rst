@@ -21,12 +21,11 @@
 
    <h2 class="display-4">Chemical Kinetic Theory</h2>
 
-These sections describe some of the theory underpinning the various ways that Cantera models phases
+These sections describe some of the fundamental scientific theory underpinning the ways that Cantera models phases
 of matter. This involves calculations for thermodynamic and transport properties and chemical
 reaction rates. The above information gives some insight into the basic constitutive models
-available in Cantera: capabilities for calculating the basic properties of
-phases of matter, which can be extended to model a wide range of science and
-technology applications.
+available in Cantera: capabilities for calculating the basic thermodynamic, chemical kinetic, and transport properties of phases of matter, which can be
+extended to model a wide range of science and technology applications.
 
 .. container:: container
    :tagname: section
@@ -37,56 +36,55 @@ technology applications.
 
          .. container::
             :tagname: a
-            :attributes: href=phases.html
-                         title=Phases
+            :attributes: href=thermodynamics.html
+                         title=Thermodynamics
 
             .. container:: card-header section-card
                :tagname: div
 
-               Phases
+               Thermodynamics
 
          .. container:: card-body
 
             .. container:: card-text
 
-               The theory behind some of Cantera's phase models.
+               The theory behind how Cantera calculates species and phase thermodynamic properties.
 
       .. container:: card
 
          .. container::
             :tagname: a
-            :attributes: href=science-species.html
-                         title=Species
+            :attributes: href=kinetics.html
+                         title=Kinetics
 
             .. container:: card-header section-card
                :tagname: div
 
-               Species
+               Kinetics and Reaction Rates
 
          .. container:: card-body
 
             .. container:: card-text
 
-               The models Cantera uses to calculate species properties (thermodynamic and
-               transport).
+               The models and equations that Cantera uses to calculate chemical reaction rates.
 
       .. container:: card
 
          .. container::
             :tagname: a
-            :attributes: href=reactions.html
-                         title=Reactions
+            :attributes: href=transport.html
+                         title=Transport
 
             .. container:: card-header section-card
                :tagname: div
 
-               Reactions
+               Transport
 
          .. container:: card-body
 
             .. container:: card-text
 
-               The models that Cantera uses to calculate chemical reaction rates.
+               The models that Cantera uses to calculate transport properties and rates.
 
 .. raw:: html
 

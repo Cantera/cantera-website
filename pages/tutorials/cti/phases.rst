@@ -215,7 +215,7 @@ The Transport Model
 A *transport model* is a set of equations used to compute transport
 properties. For :cti:class:`ideal_gas` phases, multiple transport models are
 available; the one desired can be selected by assigning a string to this
-field. See :ref:`Transport Models <sec-transport-models>` for more details.
+field. See :ref:`Transport Models <sec-phase-transport-models>` for more details.
 
 The Initial State
 ^^^^^^^^^^^^^^^^^
