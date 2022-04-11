@@ -1,21 +1,20 @@
-.. title: Deriving Constant Pressure Reactor Governing Equations
+.. title: CVODES and Time Integration in Cantera
 .. has_math: true
 
 .. jumbotron::
 
    .. raw:: html
 
-      <h1 class="display-3">Deriving Constant Pressure Reactor Governing 
-      Equations</h1>
+      <h1 class="display-3">CVODES and Time Integration in Cantera</h1>
 
    .. class:: lead
 
-      This guide shows you how to derive the governing equations used to define a 
-      Constant Pressure Reactor
+      This guide explains ways Cantera can solve governing equations of 
+      a transient Reactor or Reactor Network problem. Additional insights 
+      into CVODES's solver are also provided.
 
-Constant Pressure Reactor
-*************************
-
+Advancing a Reactor Network in Time
+***********************************
 
 Starting off the current state of the system, it can be advanced in time by 
 one of the following methods:
@@ -58,7 +57,6 @@ between output times. For an example of this feature's use, see the example
 The ``step`` method results in many more data points because of the small
 timesteps needed. Additionally, the absolute time has to be kept track of
 manually.
-
 
 Even though Cantera comes pre-defined with typical parameters for tolerances
 and the maximum internal time step, the solution sometimes diverges. To solve

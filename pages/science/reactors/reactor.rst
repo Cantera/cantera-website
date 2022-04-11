@@ -83,4 +83,4 @@ for :math:`dm/dt`, the equation for each homogeneous phase species is:
                       \dot{m}_{k,gen} - Y_k \dot{m}_{wall}
                       \tag{4}
 
-Equations 1-4 are the overning equations for a Control Volume Reactor.
+Equations 1-4 are the governing equations for a Control Volume Reactor.

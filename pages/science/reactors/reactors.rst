@@ -508,8 +508,8 @@ conditions, you can run your simulation for a long time until the states are con
 `surface reactor example </examples/python/reactors/surf_pfr.py.html>`__ *and the * `combustor example
 </examples/python/reactors/combustor.py.html>`__ *).*
 
-Time Integration in Cantera's Reactors
---------------------------------------
+Time Integration for Reactors and Reactor Networks
+--------------------------------------------------
 .. container:: container
 
    .. row:: 
