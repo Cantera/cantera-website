@@ -52,247 +52,121 @@ heat or move to do work.
 Reactor Types and Governing Equations
 =======================================
 
-The governing equations defining Cantera's supported reactor models are described below.
+All reactor types are modelled using combinations of Cantera's governing equations of state. 
+The specific governing equations defining Cantera's supported reactor models are derived and described below.
 
-Listed are all state variables used in Cantera's reactor models:
+.. container:: container
 
-- :math:`m`, the mass of the reactor's contents (in kg)
+   .. row:: 
 
-- :math:`V`, the reactor volume (in m\ :sup:`3`) (not a state variable for
-  :py:class:`ConstPressureReactor` and :py:class:`IdealGasConstPressureReactor`)
+      .. container:: col-12
 
-- :math:`U`, the total internal energy of the reactors contents (in J)
+         .. container:: card-deck
 
-- :math:`H`, the total enthalpy of the reactors contents (in J)
+            .. container:: card
 
-- :math:`T`, the temperature (in K)
+               .. container::
+                  :tagname: a
+                  :attributes: href="reactor.html"
+                              title="Control Volume Reactor"
 
-- :math:`Y_k`, the mass fractions for each species (dimensionless)
+                  .. container:: card-header section-card
 
-Mass Conservation
------------------
+                     Control Volume Reactor
+                     
+                     ..
 
-The total mass of the reactor's contents changes as a result of flow through
-the reactor's inlets and outlets, and production of homogeneous phase species
-on the reactor walls:
 
-.. math::
+               .. container:: card-body
 
-   \frac{dm}{dt} = \sum_{in} \dot{m}_{in} - \sum_{out} \dot{m}_{out} +
-                    \dot{m}_{wall}
+                  .. container:: card-text
 
-Species Conservation
---------------------
+                     Derivations of governing equations for a Control Volume Reactor
+            .. container:: card
 
-The rate at which species :math:`k` is generated through homogeneous phase
-reactions is :math:`V \dot{\omega}_k W_k`, and the total rate at which species
-:math:`k` is generated is:
+               .. container::
+                  :tagname: a
+                  :attributes: href="constpresreactor.html"
+                              title="Constant Pressure Reactor"
 
-.. math::
+                  .. container:: card-header section-card
 
-   \dot{m}_{k,gen} = V \dot{\omega}_k W_k + \dot{m}_{k,wall}
+                     Constant Pressure Reactor
 
-The rate of change in the mass of each species is:
+               .. container:: card-body
 
-.. math::
+                  .. container:: card-text
 
-   \frac{d(mY_k)}{dt} = \sum_{in} \dot{m}_{in} Y_{k,in} -
-                         \sum_{out} \dot{m}_{out} Y_k +
-                         \dot{m}_{k,gen}
+                     Derivations of governing equations for a Constant Pressure Reactor
 
-Expanding the derivative on the left hand side and substituting the equation
-for :math:`dm/dt`, the equation for each homogeneous phase species is:
+            .. container:: card
 
-.. math::
+               .. container::
+                  :tagname: a
+                  :attributes: href="idealgasreactor.html"
+                              title="Ideal Gas Reactor"
 
-   m \frac{dY_k}{dt} = \sum_{in} \dot{m}_{in} (Y_{k,in} - Y_k)+
-                      \dot{m}_{k,gen} - Y_k \dot{m}_{wall}
+                  .. container:: card-header section-card
 
+                     Ideal Gas Reactor
 
-Reactor Volume
---------------
+               .. container:: card-body
 
-The reactor volume changes as a function of time due to the motion of one or
-more walls:
+                  .. container:: card-text
 
-.. math::
+                     Derivations of governing equations for a Ideal Gas Reactor
+               
+            .. container:: card
 
-   \frac{dV}{dt} = \sum_w f_w A_w v_w(t)
+               .. container::
+                  :tagname: a
+                  :attributes: href="idealgasconstpresreactor.html"
+                              title="Ideal Gas Constant Pressure Reactor"
 
-where :math:`f_w = \pm 1` indicates the facing of the wall (whether moving the wall increases or
-decreases the volume of the reactor), :math:`A_w` is the
-surface area of the wall, and :math:`v_w(t)` is the velocity of the wall as a
-function of time.
+                  .. container:: card-header section-card
 
-For the :py:class:`ConstPressureReactor` and :py:class:`IdealGasConstPressureReactor`, the
-volume is not a state variable, but instead takes on whatever value is
-consistent with holding the pressure constant.
+                     Ideal Gas Constant Pressure Reactor
 
-Energy Conservation
--------------------
+               .. container:: card-body
 
-The solution of the energy equation can be enabled or disabled by changing the
-``energy_enabled`` flag. It is enabled by default.
+                  .. container:: card-text
 
-The implemented formulation of the energy equation depends on which reactor
-model is used.
+                     Derivations of governing equations for an Ideal Gas Constant Pressure Reactor
 
-Standard Reactor
-****************
+.. container:: container
 
-The equation for the total internal energy is found by writing the first law
-for an open system:
+   .. row:: 
 
-.. math::
+      .. container:: col-12
 
-   \frac{dU}{dt} = - p \frac{dV}{dt} - \dot{Q} +
-                    \sum_{in} \dot{m}_{in} h_{in} - h \sum_{out} \dot{m}_{out}
+         .. container:: card-deck
 
+            .. container:: card
 
-Constant Pressure Reactor
-*************************
+               .. container::
+                  :tagname: a
+                  :attributes: href="delegatedreactor.html"
+                              title="Delegated Reactor"
 
-For this reactor model, the pressure is held constant. The volume is not a
-state variable, but instead takes on whatever value is consistent with holding
-the pressure constant. The total enthalpy replaces the total internal energy
-as a state variable. Using the definition of the total enthalpy:
+                  .. container:: card-header section-card
 
-.. math::
+                     Delegated Reactor
+                     
+                     ..
 
-   H = U + pV
 
-   \frac{d H}{d t} = \frac{d U}{d t} + p \frac{dV}{dt} + V \frac{dp}{dt}
+               .. container:: card-body
 
-Noting that :math:`dp/dt = 0` and substituting into the energy equation yields:
+                  .. container:: card-text
 
-.. math::
+                     In some cases, Cantera's solver is insufficient to describe 
+                     a certain configuration. In this situation, Cantera can 
+                     still be used to provide chemical and thermodynamic computations, 
+                     but external ODE solvers can be applied. This links to Delegated 
+                     Reactor documentation.
 
-   \frac{dH}{dt} = - \dot{Q} + \sum_{in} \dot{m}_{in} h_{in}
-                   - h \sum_{out} \dot{m}_{out}
-
-
-Ideal Gas Reactor
-*****************
-
-In case of the Ideal Gas Reactor Model, the reactor temperature :math:`T` is
-used instead of the total internal energy :math:`U` as a state variable. For an
-ideal gas, we can rewrite the total internal energy in terms of the mass
-fractions and temperature:
-
-.. math::
-
-   U = m \sum_k Y_k u_k(T)
-
-   \frac{dU}{dt} = u \frac{dm}{dt}
-                   + m c_v \frac{dT}{dt}
-                   + m \sum_k u_k \frac{dY_k}{dt}
-
-Substituting the corresponding derivatives yields an equation for the
-temperature:
-
-.. math::
-
-   m c_v \frac{dT}{dt} = - p \frac{dV}{dt} - \dot{Q}
-       + \sum_{in} \dot{m}_{in} \left( h_{in} - \sum_k u_k Y_{k,in} \right)
-       - \frac{p V}{m} \sum_{out} \dot{m}_{out} - \sum_k \dot{m}_{k,gen} u_k
-
-While this form of the energy equation is somewhat more complicated, it
-significantly reduces the cost of evaluating the system Jacobian, since the
-derivatives of the species equations are taken at constant temperature instead
-of constant internal energy.
-
-Ideal Gas Constant Pressure Reactor
-***********************************
-
-As for the Ideal Gas Reactor, we replace the total enthalpy as a state
-variable with the temperature by writing the total enthalpy in terms of the
-mass fractions and temperature:
-
-.. math::
-
-   H = m \sum_k Y_k h_k(T)
-
-   \frac{dH}{dt} = h \frac{dm}{dt} + m c_p \frac{dT}{dt}
-                   + m \sum_k h_k \frac{dY_k}{dt}
-
-Substituting the corresponding derivatives yields an equation for the
-temperature:
-
-.. math::
-
-   m c_p \frac{dT}{dt} = - \dot{Q} - \sum_k h_k \dot{m}_{k,gen}
-       + \sum_{in} \dot{m}_{in} \left(h_{in} - \sum_k h_k Y_{k,in} \right)
-
-Wall Interactions
------------------
-
-Walls are stateless objects in Cantera, meaning that no differential equation
-is integrated to determine any wall property. Since it is the wall (piston)
-velocity that enters the energy equation, this means that it is the velocity,
-not the acceleration or displacement, that is specified. The wall velocity is
-computed from
-
-.. math::
-
-   v = K(P_{\mathrm{left}} - P_{\mathrm{right}}) + v_0(t),
-
-where :math:`K` is a non-negative constant, and :math:`v_0(t)` is a specified
-function of time. The velocity is positive if the wall is moving to the right.
-
-The total rate of heat transfer through all walls is:
-
-.. math::
-
-   \dot{Q} = \sum_w f_w \dot{Q}_w
-
-where :math:`f_w = \pm 1` indicates the facing of the wall (+1 for the reactor
-on the left, -1 for the reactor on the right). The heat flux :math:`\dot{Q}_w`
-through a wall :math:`w` connecting reactors "left" and "right" is computed as:
-
-.. math::
-
-   \dot{Q}_w = U A (T_{\mathrm{left}} - T_{\mathrm{right}})
-             + \epsilon\sigma A (T_{\mathrm{left}}^4 - T_{\mathrm{right}}^4)
-             + A q_0(t)
-
-where :math:`U` is a user-specified heat transfer coefficient (W/m\ :sup:`2`-K),
-:math:`A` is the wall area (m\ :sup:`2`), :math:`\epsilon` is the user-specified
-emissivity, :math:`\sigma` is the Stefan-Boltzmann radiation constant, and
-:math:`q_0(t)` is a user-specified, time-dependent heat flux (W/m\ :sup:`2`).
-This definition is such that positive :math:`q_0(t)` implies heat transfer from
-the "left" reactor to the "right" reactor. Each of the user-specified terms
-defaults to 0.
-
-In case of surface reactions, there can be a net generation (or destruction) of
-homogeneous (gas) phase species at the wall. The molar rate of production for
-each homogeneous phase species :math:`k` on wall :math:`w` is
-:math:`\dot{s}_{k,w}` (in kmol/s/m\ :sup:`2`). The total (mass) production rate
-for homogeneous phase species :math:`k` on all walls is:
-
-.. math::
-
-   \dot{m}_{k,wall} = W_k \sum_w A_w \dot{s}_{k,w}
-
-where :math:`W_k` is the molecular weight of species :math:`k` and :math:`A_w`
-is the area of each wall. The net mass flux from all walls is then:
-
-.. math::
-
-   \dot{m}_{wall} = \sum_k \dot{m}_{k,wall}
-
-For each surface species :math:`i`, the rate of change of the site fraction
-:math:`\theta_{i,w}` on each wall :math:`w` is integrated with time:
-
-.. math::
-
-   \frac{d\theta_{i,w}}{dt} = \frac{\dot{s}_{i,w} n_i}{\Gamma_w}
-
-where :math:`\Gamma_w` is the total surface site density on wall :math:`w` and
-:math:`n_i` is the number of surface sites occupied by a molecule of species
-:math:`i` (sometimes referred to within Cantera as the molecule's "size").
-
-Reactor Networks and Devices
-============================
+Reactor Peripherals and Reactor Networks
+========================================
 
 While reactors by themselves just define the above governing equations of the
 reactor, the time integration is performed in reactor networks. A reactor
@@ -314,7 +188,7 @@ to the reactors previously mentioned:
 
 - :py:class:`Wall`: A wall separates two reactors, or a reactor and a reservoir. A wall
   has a finite area, may conduct or radiate heat between the two reactors on
-  either side, and may move like a piston. See the `Wall Interactions`_ section for
+  either side, and may move like a piston. See the `Wall Interactions`_ section below for
   detail of how the wall affects the connected reactors.
 
 - :py:class:`Valve`: A valve is a flow devices with mass flow rate that is a function of
@@ -398,96 +272,77 @@ to the reactors previously mentioned:
   Note that if :math:`\dot m < 0`, the mass flow rate will be set to zero,
   since a reversal of the flow direction is not allowed.
 
-Time Integration
-----------------
+  Cantera comes with a broad variety of well-commented example scrips for reactor
+  networks. Please see the `Cantera Examples </examples/index.html>`__ for further 
+  information.
 
-Cantera uses the CVODES solver from the
-`SUNDIALS <https://computing.llnl.gov/projects/sundials>`__
-package to integrate the stiff ODEs of reacting systems. Starting off the
-current state of the system, it can be advanced in time by one of the
-following methods:
+Wall Interactions
+-----------------
 
-- ``step()``: The step method computes the state of the system at the a priori
-  unspecified time :math:`t_{\mathrm{new}}`. The time :math:`t_{\mathrm{new}}`
-  is internally computed so that all states of the system only change within a
-  (specifiable) band of absolute and relative tolerances. Additionally, the time
-  step must not be larger than a predefined maximum time step
-  :math:`\Delta t_{\mathrm{max}}`. The new time :math:`t_{\mathrm{new}}` is
-  returned by this function.
+Walls are stateless objects in Cantera, meaning that no differential equation
+is integrated to determine any wall property. Since it is the wall (piston)
+velocity that enters the energy equation, this means that it is the velocity,
+not the acceleration or displacement, that is specified. The wall velocity is
+computed from
 
-- ``advance(``\ :math:`t_{\mathrm{new}}`\ ``)``: This method computes the state of the
-  system at time :math:`t_{\mathrm{new}}`. :math:`t_{\mathrm{new}}` describes
-  the absolute time from the initial time of the system. By calling this method
-  in a for loop for pre-defined times, the state of the system is obtained for
-  exactly the times specified. Internally, several ``step()`` calls are
-  typically performed to reach the accurate state at time
-  :math:`t_{\mathrm{new}}`.
+.. math::
 
-- ``advance_to_steady_state(max_steps, residual_threshold, atol,
-  write_residuals)`` [Python interface only]: If the steady state solution of a
-  reactor network is of interest, this method can be used. Internally, the
-  steady state is approached by time stepping. The network is considered to be
-  at steady state if the feature-scaled residual of the state vector is below a
-  given threshold value (which by default is 10 times the time step ``rtol``).
+   v = K(P_{\mathrm{left}} - P_{\mathrm{right}}) + v_0(t),
 
-The use of the ``advance`` method in a loop has the advantage that it produces
-results corresponding to a predefined time series. These are associated with a
-predefined memory consumption and well comparable between simulation runs with
-different parameters. However, some detail (for example, a fast ignition process)
-might not be resolved in the output data due to the typically large time steps.
-To avoid losing this detail, the
-`Reactor::setAdvanceLimit <{{% ct_docs doxygen/html/dc/d5e/classCantera_1_1Reactor.html#a9b630edc7d836e901886d7fd81134d9e %}}>`__
-method (C++) or the :py:func:`Reactor.set_advance_limit` method (Python) can be
-used to set the maximum amount that a specified solution component can change
-between output times. For an example of this feature's use, see the example
-`reactor1.py </examples/python/reactors/reactor1.py.html>`__.
+where :math:`K` is a non-negative constant, and :math:`v_0(t)` is a specified
+function of time. The velocity is positive if the wall is moving to the right.
 
-The ``step`` method results in many more data points because of the small
-timesteps needed. Additionally, the absolute time has to be kept track of
-manually.
+The total rate of heat transfer through all walls is:
 
+.. math::
 
+   \dot{Q} = \sum_w f_w \dot{Q}_w
 
-Even though Cantera comes pre-defined with typical parameters for tolerances
-and the maximum internal time step, the solution sometimes diverges. To solve
-this problem, three parameters can be tuned: The absolute time stepping
-tolerances, the relative time stepping tolerances, and the maximum time step. A
-reduction of the latter value is particularly useful when dealing with abrupt
-changes in the boundary conditions (for example, opening/closing valves; see
-also the `IC engine example </examples/python/reactors/ic_engine.py.html>`__).
+where :math:`f_w = \pm 1` indicates the facing of the wall (+1 for the reactor
+on the left, -1 for the reactor on the right). The heat flux :math:`\dot{Q}_w`
+through a wall :math:`w` connecting reactors "left" and "right" is computed as:
 
-General Usage in Cantera
-========================
+.. math::
 
-In Cantera, the following steps are typically necessary to investigate a
-reactor network:
+   \dot{Q}_w = U A (T_{\mathrm{left}} - T_{\mathrm{right}})
+             + \epsilon\sigma A (T_{\mathrm{left}}^4 - T_{\mathrm{right}}^4)
+             + A q_0(t)
 
-1. Define ``Solution`` objects for the fluids to be flowing through your reactor
-   network.
+where :math:`U` is a user-specified heat transfer coefficient (W/m\ :sup:`2`-K),
+:math:`A` is the wall area (m\ :sup:`2`), :math:`\epsilon` is the user-specified
+emissivity, :math:`\sigma` is the Stefan-Boltzmann radiation constant, and
+:math:`q_0(t)` is a user-specified, time-dependent heat flux (W/m\ :sup:`2`).
+This definition is such that positive :math:`q_0(t)` implies heat transfer from
+the "left" reactor to the "right" reactor. Each of the user-specified terms
+defaults to 0.
 
-2. Define the reactor type(s) and reservoir(s) that describe your system. Chose
-   Ideal Gas (Constant Pressure) Reactor(s) if you only consider ideal gas
-   phases.
+In case of surface reactions, there can be a net generation (or destruction) of
+homogeneous (gas) phase species at the wall. The molar rate of production for
+each homogeneous phase species :math:`k` on wall :math:`w` is
+:math:`\dot{s}_{k,w}` (in kmol/s/m\ :sup:`2`). The total (mass) production rate
+for homogeneous phase species :math:`k` on all walls is:
 
-3. *Optional:* Set up the boundary conditions and flow devices between reactors
-   or reservoirs.
+.. math::
 
-4. Define a reactor network which contains all the reactors previously created.
+   \dot{m}_{k,wall} = W_k \sum_w A_w \dot{s}_{k,w}
 
-5. Advance the simulation in time, typically in a for- or while-loop. Note that
-   only the current state is stored in Cantera by default. If you want to
-   observe the transient states, you manually have to keep track of them.
+where :math:`W_k` is the molecular weight of species :math:`k` and :math:`A_w`
+is the area of each wall. The net mass flux from all walls is then:
 
-6. Analyze the data.
+.. math::
 
-Note that Cantera always solves a transient problem. If you are interested in steady-state
-conditions, you can run your simulation for a long time until the states are converged (see the
-`surface reactor example </examples/python/reactors/surf_pfr.py.html>`__ and the `combustor example
-</examples/python/reactors/combustor.py.html>`__).
+   \dot{m}_{wall} = \sum_k \dot{m}_{k,wall}
 
-Cantera comes with a broad variety of well-commented example scrips for reactor
-networks. Please see the `Cantera Examples </examples/index.html>`__ for further
-information.
+For each surface species :math:`i`, the rate of change of the site fraction
+:math:`\theta_{i,w}` on each wall :math:`w` is integrated with time:
+
+.. math::
+
+   \frac{d\theta_{i,w}}{dt} = \frac{\dot{s}_{i,w} n_i}{\Gamma_w}
+
+where :math:`\Gamma_w` is the total surface site density on wall :math:`w` and
+:math:`n_i` is the number of surface sites occupied by a molecule of species
+:math:`i` (sometimes referred to within Cantera as the molecule's "size").
 
 Common Reactor Types and their Implementation in Cantera
 ========================================================
@@ -518,7 +373,7 @@ Continuously Stirred Tank Reactor
 A Continuously Stirred Tank Reactor (CSTR), also often referred to as
 Well-Stirred Reactor (WSR), Perfectly Stirred Reactor (PSR), or Longwell
 Reactor, is essentially a single Cantera reactor with an inlet, an outlet, and
-constant volume. Therefore, the `Governing Equations for Single Reactors`_
+constant volume. Therefore, the governing equations for single reactors
 defined above apply accordingly.
 
 Steady state solutions to CSTRs are often of interest. In this case, the mass
@@ -648,13 +503,42 @@ An example for this procedure can be found in the `PFR example
 </examples/python/reactors/pfr.py.html>`__ and the `surface PFR example
 </examples/python/reactors/surf_pfr.py.html>`__.
 
-Advanced Concepts
-=================
+*Cantera always solves a transient problem. If you are interested in steady-state
+conditions, you can run your simulation for a long time until the states are converged (see the* 
+`surface reactor example </examples/python/reactors/surf_pfr.py.html>`__ *and the * `combustor example
+</examples/python/reactors/combustor.py.html>`__ *).*
 
-In some cases, Cantera's solver is insufficient to describe a certain
-configuration. In this situation, Cantera can still be used to provide chemical
-and thermodynamic computations, but external ODE solvers can be applied. See
-an example of a `custom ODE solver </examples/python/reactors/custom.py.html>`__.
+Time Integration in Cantera's Reactors
+--------------------------------------
+.. container:: container
+
+   .. row:: 
+
+      .. container:: col-12
+
+         .. container:: card-deck
+
+            .. container:: card
+
+               .. container::
+                  :tagname: a
+                  :attributes: href="cvodes.html"
+                              title="CVODES"
+
+                  .. container:: card-header section-card
+
+                     CVODES Documentation
+                     
+                     ..
+
+
+               .. container:: card-body
+
+                  .. container:: card-text
+
+                     Cantera uses the CVODES solver from the `SUNDIALS 
+                     <https://computing.llnl.gov/projects/sundials>`__ 
+                     package to integrate the stiff ODEs of reacting systems.
 
 .. rubric:: References
 

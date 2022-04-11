@@ -5,28 +5,33 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Deriving Constant Pressure Reactor Governing Equations</h1>
+      <h1 class="display-3">Deriving Constant Pressure Reactor Governing 
+      Equations</h1>
 
    .. class:: lead
 
-      This guide shows you how to derive the governing equations used to define a Constant Pressure Reactor
+      This guide shows you how to derive the governing equations used to define a 
+      Constant Pressure Reactor
 
 Constant Pressure Reactor
-****************
+*************************
 
-A Constant Pressure Reactor is defined by the four state variables: 
+For this reactor model, the pressure is held constant. The volume is not a
+state variable, but instead takes on whatever value is consistent with holding
+the pressure constant. The total enthalpy replaces the total internal energy
+as a state variable. 
+
+A Constant Pressure Reactor is defined by the three state variables: 
 
 - :math:`m`, the mass of the reactor's contents (in kg)
 
-- :math:`V`, the reactor volume (in m\ :sup:`3`)
-
-- :math:`U`, the total internal energy of the reactors contents (in J)
+- :math:`H`, the total enthalpy of the reactors contents (in J)
 
 - :math:`Y_k`, the mass fractions for each species (dimensionless)
 
 The total mass of the reactor's contents changes as a result of flow through
 the reactor's inlets and outlets, and production of homogeneous phase species
-on the reactor walls:
+on the reactor :py:class:`Wall`:
 
 .. math::
 
@@ -34,26 +39,21 @@ on the reactor walls:
                     \dot{m}_{wall}
                     \tag{1}
 
-The equation for the total internal energy is found by writing the first law
-for an open system:
-The reactor volume changes as a function of time due to the motion of one or
-more walls:
+Using the definition of the total enthalpy:
 
 .. math::
 
-   \frac{dV}{dt} = \sum_w f_w A_w v_w(t)
-   \tag{2}
+   H = U + pV
 
-where :math:`f_w = \pm 1` indicates the facing of the wall (whether moving the wall increases or
-decreases the volume of the reactor), :math:`A_w` is the
-surface area of the wall, and :math:`v_w(t)` is the velocity of the wall as a
-function of time.
+   \frac{d H}{d t} = \frac{d U}{d t} + p \frac{dV}{dt} + V \frac{dp}{dt}
+
+Noting that :math:`dp/dt = 0` and substituting into the energy equation yields:
 
 .. math::
 
-   \frac{dU}{dt} = - p \frac{dV}{dt} - \dot{Q} +
-                    \sum_{in} \dot{m}_{in} h_{in} - h \sum_{out} \dot{m}_{out}
-   \tag{3}
+   \frac{dH}{dt} = - \dot{Q} + \sum_{in} \dot{m}_{in} h_{in}
+                   - h \sum_{out} \dot{m}_{out}
+                   - \tag{2}
 
 The rate at which species :math:`k` is generated through homogeneous phase
 reactions is :math:`V \dot{\omega}_k W_k`, and the total rate at which species
@@ -78,6 +78,6 @@ for :math:`dm/dt`, the equation for each homogeneous phase species is:
 
    m \frac{dY_k}{dt} = \sum_{in} \dot{m}_{in} (Y_{k,in} - Y_k)+
                       \dot{m}_{k,gen} - Y_k \dot{m}_{wall}
-                      \tag{4}
+                      \tag{3}
 
-Equations 1-4 are the overning equations for a Standard Reactor.
+Equations 1-3 are the governing equations for a Constant Pressure Reactor.
