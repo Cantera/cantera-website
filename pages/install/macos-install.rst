@@ -13,43 +13,27 @@
 
    .. class:: lead
 
-      The Python interface for Cantera should be installed using Anaconda / Miniconda;
-      directions for that can be found :ref:`on the Conda install page <sec-install-conda>`.
-      If you would like to use the Matlab toolbox, these instructions are for you.
-      The Cantera Matlab toolbox requires macOS/Mac OS X version 10.11 (El Capitan) or higher and
-      a 64-bit Intel processor.
+      The Cantera Matlab toolbox can be installed using a macOS-specific installer. The
+      toolbox requires macOS/Mac OS X version 10.11 (El Capitan) or higher and a 64-bit
+      Intel or M1 processor.
 
-**Install Conda and the Python Interface**
+To install the Cantera Python package, see the :ref:`pip <sec-install-pip>` or
+:ref:`conda <sec-install-conda>` instructions. The Python package is required if:
 
-Cantera requires Python and the Python interface to be able to process input files (see
-:ref:`Why Two File Formats? <sec-two-file-formats>` for more information). The easiest way
-to obtain the Cantera Python interface is via Conda. First install Miniconda by running the
-following commands in Terminal:
-
-.. code-block:: bash
-
-   cd Downloads
-   curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o miniconda.sh;
-   bash miniconda.sh
-
-This installs the minimal Conda installation called Miniconda in a folder in your home directory.
-
-Next, install Cantera into an environment called ``cantera25``:
-
-.. code-block:: bash
-
-   $HOME/miniconda3/bin/conda create -n cantera25 -c cantera cantera
+- You need to work with legacy CTI or XML input files
+- You need to convert legacy input files to YAML
+- You need to convert Chemkin-format input files to YAML
 
 **Download and run the Matlab Interface Installer**
 
 Download the Matlab Interface Installer package from GitHub:
-https://github.com/Cantera/cantera/releases/tag/v2.5.1
+https://github.com/Cantera/cantera/releases/tag/v2.6.0
 
 When the file has downloaded, find it in Finder, hold Control and click the file. Choose
 "Open" from the resulting menu, and select "Open" in the security dialog that appears.
 Click "Continue" to proceed in the installer (noting that the installer may open in the background;
 you can find its icon on the Dock), agreeing to the
-`Cantera license terms <https://github.com/Cantera/cantera/blob/v2.5.1/License.txt>`__
+`Cantera license terms <https://github.com/Cantera/cantera/blob/v2.6.0/License.txt>`__
 and the terms of the other open source software that we use.
 
 By default, the installer will add some lines to the file ``$HOME/Documents/MATLAB/startup.m``

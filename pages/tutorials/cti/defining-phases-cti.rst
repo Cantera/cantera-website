@@ -11,8 +11,9 @@
 
       A guide to Cantera's legacy CTI input file format
 
-      Note that the legacy CTI input file format will be deprecated in Cantera 2.6
-      and fully replaced by :doc:`YAML <defining-phases>` input in Cantera 3.0.
+      Note that the legacy CTI input file format was deprecated in Cantera 2.5 in
+      favor of the :doc:`YAML <defining-phases>` input format, and will be removed
+      in Cantera 3.0.
 
 Virtually every Cantera simulation involves one or more phases of
 matter. Depending on the calculation being performed, it may be necessary to

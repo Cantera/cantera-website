@@ -95,7 +95,7 @@ the file somewhere and remember that location.
    - cantera  # or use cantera/label/dev for alpha/beta packages
    - defaults
    dependencies:
-   - python  # Cantera supports Python 3.6 and up
+   - python  # Cantera supports Python 3.7 and up
    - cantera
    - ipython  # optional (needed for nicer interactive command line)
    - jupyter  # optional (needed for Jupyter Notebook)
