@@ -1,4 +1,4 @@
-.. slug: phases
+.. slug: phase-thermo
 .. has_math: true
 .. title: Modeling Phases
 
@@ -6,7 +6,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Modeling Phases in Cantera</h1>
+      <h1 class="display-3">Modeling Phase Thermodynamics in Cantera</h1>
 
    .. class:: lead
 
@@ -28,15 +28,6 @@ and reaction rate expressions.
 Ideal gas mixtures can be defined in the CTI format using the
 :cti:class:`ideal_gas` entry, or in the YAML format by specifying
 :ref:`ideal-gas <sec-yaml-ideal-gas>` in the ``thermo`` field.
-
-.. _sec-transport-models:
-
-Transport Models
-^^^^^^^^^^^^^^^^
-
-Two transport models are available for use with ideal gas mixtures. The first is a multicomponent
-transport model that is based on the model described by Dixon-Lewis [#dl68]_ (see also Kee et al.
-[#Kee2017]_). The second is a model that uses the mixture-averaged rule.
 
 Stoichiometric Solid
 --------------------
@@ -82,10 +73,3 @@ field.
 .. [#Kee1989] R. J. Kee, F. M. Rupley, and J. A. Miller. Chemkin-II: A Fortran
    chemical kinetics package for the analysis of gasphase chemical
    kinetics. Technical Report SAND89-8009, Sandia National Laboratories, 1989.
-
-.. [#dl68] G. Dixon-Lewis. Flame structure and flame reaction kinetics,
-   II: Transport phenomena in multicomponent systems. *Proc. Roy. Soc. A*,
-   307:111--135, 1968.
-
-.. [#Kee2017] R. J. Kee, M. E. Coltrin, P. Glarborg, and H. Zhu. *Chemically Reacting Flow:
-   Theory and Practice*. 2nd Ed. John Wiley and Sons, 2017.

@@ -20,18 +20,13 @@ phases. The first step is to create an object that represents each phase. A
 simple, complete program that creates an object representing a gas mixture and
 prints its temperature is shown below:
 
-.. code:: c++
+.. include:: pages/tutorials/cxx-guide/thermobasic.cpp
+   :code: c++
 
-   #include "cantera/thermo.h"
-   #include <iostream>
-
-   int main(int argc, char** argv)
-   {
-       std::unique_ptr<Cantera::ThermoPhase> gas(
-           Cantera::newPhase("h2o2.yaml", "ohmech"));
-       std::cout << gas->temperature() << std::endl;
-       return 0;
-   }
+Here, ``newSolution`` imports all information held by a YAML input file into a Cantera
+`Solution`_ object, which is accessed by the pointer ``sol``. The thermodynamic
+information is accessible via ``sol->thermo()``, which itself returns a pointer to
+a `ThermoPhase`_ object.
 
 Class `ThermoPhase`_ is the base class for Cantera classes that represent
 phases of matter. It defines the public interface for all classes that represent
@@ -132,6 +127,7 @@ of matter derive.
 
 See `ThermoPhase`_ for the full list of available thermodynamic properties.
 
+.. _Solution: {{% ct_docs doxygen/html/d5/d40/classCantera_1_1Solution.html %}}
 .. _ThermoPhase: {{% ct_docs doxygen/html/dc/d38/classCantera_1_1ThermoPhase.html %}}
 .. _IdealGasPhase: {{% ct_docs doxygen/html/d7/dfa/classCantera_1_1IdealGasPhase.html %}}
 

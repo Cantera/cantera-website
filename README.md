@@ -13,7 +13,7 @@ site is built using the [Nikola](https://getnikola.com) static site generator.
 6. Copy the current development documentation: `curl -O https://cantera.org/documentation/dev/dev-docs.tar.bz2`
 7. Extract the dev docs: `tar jxf dev-docs.tar.bz2 --strip-components=1 -C api-docs/dev`
 8. Inside the website repo, install the required packages: `pip install -r requirements.txt`
-9. Build the website and open in browser: `nikola auto -b`
+9. Build the website and open in browser: `nikola auto -b` or use `nikola serve -p 9000 -b` for different port
 
 ## To add a language of examples
 

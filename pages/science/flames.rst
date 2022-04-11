@@ -39,7 +39,7 @@ similarity solution to reduce the three-dimensional governing equations to a
 single dimension.
 
 The governing equations for a steady axisymmetric stagnation flow follow those
-derived in Section 6.2 of [Kee2017]_:
+derived in Section 7.2 of [Kee2017]_:
 
 *Continuity*:
 
@@ -210,7 +210,48 @@ where :math:`\dot{s}_k` is the molar production rate of the gas-phase species
 :math:`k` on the surface. In addition, the surface coverages :math:`\theta_i`
 for each surface species :math:`i` are computed such that :math:`\dot{s}_i = 0`.
 
+The Drift-Diffusion Model
+=========================
+`IonFlow <{{% ct_docs doxygen/html/d4/db9/classCantera_1_1IonFlow.html %}}>`__.
+
+This feature is only available when using class `IonFlow <{{% ct_docs doxygen/html/d4/db9/classCantera_1_1IonFlow.html %}}>`__.
+To account for the transport of charged species in a flame, the drift term is added to
+the diffusive fluxes of the mixture-average formulation according to [Ped1993]_,
+
+.. math::
+
+   j_k^* = \rho \frac{W_k}{\overline{W}} D_{km}^\prime \frac{\partial X_k}{\partial z} +
+           s_k \mu_k E Y_k,
+
+where :math:`s_k` is the sign of charge (1,-1, and 0 respectively for positive, negative,
+and neutral charge), :math:`\mu_k` is the mobility, and :math:`E` is the electric field.
+The diffusion coefficients and mobilities of charged species can be more accurately
+calculated by `IonGasTransport::getMixDiffCoeffs <{{% ct_docs doxygen/html/d4/d65/classCantera_1_1IonGasTransport.html#a431711980258846b25827541b65c2728 %}}>`__
+and `IonGasTransport::getMobilities <{{% ct_docs doxygen/html/d4/d65/classCantera_1_1IonGasTransport.html#a702cbb6f244cfb9f448ac0630def9893 %}}>`__.
+The following correction is applied instead to preserve the correct fluxes of charged species:
+
+.. math::
+
+    j_k = j_k^* - \frac {1 - |s_k|} {1 - \sum_i |s_i| Y_i} Y_k \sum_i j_i^*.
+
+In addition, Gauss's law is solved simultaneously with the species and energy equations,
+
+.. math::
+
+    \frac{\partial E}{\partial z} = \frac{e}{\epsilon_0}\sum_k Z_k n_k ,
+
+   n_k = N_a \rho Y_k / W_k,
+
+    E|_{z=0} = 0,
+
+where :math:`Z_k` is the charge number, :math:`n_k` is the number density,
+and :math:`N_a` is the Avogadro number.
+
 .. rubric:: References
 
 .. [Kee2017] R. J. Kee, M. E. Coltrin, P. Glarborg, and H. Zhu. *Chemically Reacting Flow:
    Theory and Practice*. 2nd Ed. John Wiley and Sons, 2017.
+
+.. [Ped1993] T. Pederson and R. C. Brown. Simulation of electric field effects in premixed
+   methane flames. *Combustion and Flames*, 94.4:433-448, 1993.
+   DOI: https://doi.org/10.1016/0010-2180(93)90125-M.
