@@ -161,7 +161,7 @@ Conda Requirements
 
 * (Cantera < 2.6 only) On previous Cantera versions, the build process requires
   configuration options ``boost_inc_dir`` and ``prefix`` (see
-  [configuration options](https://cantera.org/compiling/configure-build.html));
+  `configuration options <https://cantera.org/compiling/configure-build.html>`__);
   starting with Cantera 2.6, these settings are detected automatically.
 
 .. note::
