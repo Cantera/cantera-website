@@ -74,7 +74,7 @@ Additional parameters defining the rate constant for each of these reaction
 types are described in the documentation linked above.
 
 The default parameterization is ``elementary``. Reactions involving surface
-species are automatically identified as :ref:`interface <sec-yaml-interface-reaction>`
+species are automatically identified as :ref:`interface <sec-yaml-interface-Arrhenius>`
 reactions, reactions involving surface species with specified ``type`` as ``Blowers-Masel``
 are treated as
 `surface-Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-surface-blowers-masel>`__,

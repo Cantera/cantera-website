@@ -390,7 +390,7 @@ Surface reactions can be defined in the CTI format using the
 the ``coverage`` keyword argument supplied to the :cti:class:`Arrhenius`
 directive. In the YAML format, surface reactions are identified by the presence
 of surface species and support several
-:ref:`additional options <sec-yaml-interface-reaction>`.
+:ref:`additional options <sec-yaml-interface-Arrhenius>`.
 
 .. TODO: Update the link once version 2.6 is released
 
@@ -436,7 +436,7 @@ is the molecular weight of the gas phase species.
 
 Sticking reactions can be defined in the CTI format using the `stick` entry, or
 in the YAML format by specifying the rate constant in the reaction's
-:ref:`sticking-coefficient <sec-yaml-interface-reaction>` field.
+:ref:`sticking-coefficient <sec-yaml-sticking-Arrhenius>` field.
 
 In YAML, the sticking reaction ``type`` defaults to ``sticking-Arrhenius``, where
 the rate expression uses the
