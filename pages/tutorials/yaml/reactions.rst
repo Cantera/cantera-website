@@ -10,7 +10,8 @@
 
    .. class:: lead
 
-      A description of how reactions are defined in YAML input files
+      A description of how reactions are defined in YAML input files. For additional
+      information, see: :ref:`YAML reaction <sec-yaml-reactions>` documentation.
 
 Common Attributes
 =================

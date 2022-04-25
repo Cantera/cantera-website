@@ -10,7 +10,9 @@
 
    .. class:: lead
 
-      A description of how elements and species are defined in YAML input files
+      A description of how elements and species are defined in YAML input files.
+      For additional information, see: :ref:`YAML elements <sec-yaml-elements>`
+      and :ref:`YAML species <sec-yaml-species>` documentation.
 
 .. _sec-yaml-guide-elements:
 
