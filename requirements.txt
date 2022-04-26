@@ -1,4 +1,4 @@
-Nikola[extras]==8.2.0
+Nikola[extras]==8.2.1
 yapsy==1.11.*
 attrs>=17.4.0
 pymdown-extensions==5.0
