@@ -13,6 +13,8 @@
       Here, we describe how Cantera calculates chemical reaction rates for various
       reaction types.
 
+.. _sec-elementary:
+
 Elementary Reactions
 --------------------
 
@@ -390,18 +392,18 @@ Surface reactions can be defined in the CTI format using the
 the ``coverage`` keyword argument supplied to the :cti:class:`Arrhenius`
 directive. In the YAML format, surface reactions are identified by the presence
 of surface species and support several
-:ref:`additional options <sec-yaml-interface-Arrhenius>`.
+`additional options <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface-arrhenius>`__.
 
-.. TODO: Update the link once version 2.6 is released
+.. TODO: Update links once version 2.6 is released
 
 In YAML, the surface reaction ``type`` defaults to ``interface-Arrhenius``, where
-the rate expression uses the
-:ref:`Arrhenius <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-interface-Arrhenius>`__
-parameterization. As an alternative, Cantera also supports the
-``interface-Blowers-Masel`` surface reaction ``type``, which uses the
-:ref:`Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-interface-Blowers-Masel>`__
-parameterization *(New in Cantera 2.6)*. The prefix ``interface-`` is
-not required as it is inferred automatically.
+the rate expression uses the :ref:`Arrhenius <sec-elementary>` parameterization (see
+`YAML documentation <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface-arrhenius>`__).
+As an alternative, Cantera also supports the ``interface-Blowers-Masel`` surface
+reaction ``type``, which uses the :ref:`Blowers-Masel <sec-Blowers-Masel>`
+parameterization (see
+`YAML documentation <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface-blowers-masel>`__;
+*New in Cantera 2.6*).
 
 .. _sec-sticking:
 
@@ -436,16 +438,16 @@ is the molecular weight of the gas phase species.
 
 Sticking reactions can be defined in the CTI format using the `stick` entry, or
 in the YAML format by specifying the rate constant in the reaction's
-:ref:`sticking-coefficient <sec-yaml-sticking-Arrhenius>` field.
+`sticking-coefficient <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sticking-arrhenius>`__ field.
 
 In YAML, the sticking reaction ``type`` defaults to ``sticking-Arrhenius``, where
-the rate expression uses the
-:ref:`Arrhenius <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-sticking-Arrhenius>`__
-parameterization. As an alternative, Cantera also supports the
-``sticking-Blowers-Masel`` surface reaction ``type``, which uses the
-:ref:`Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-sticking-Blowers-Masel>`__
-parameterization *(New in Cantera 2.6)*. The prefix ``sticking-`` is
-not required as it is inferred automatically.
+the rate expression uses the :ref:`Arrhenius <sec-elementary>` parameterization (see
+`YAML documentation <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sticking-arrhenius>`__).
+As an alternative, Cantera also supports the ``sticking-Blowers-Masel`` surface
+reaction ``type``, which uses the :ref:`Blowers-Masel <sec-Blowers-Masel>`
+parameterization (see
+`YAML documentation <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sticking-blowers-masel>`__;
+*New in Cantera 2.6*).
 
 .. _sec-plasma:
 
