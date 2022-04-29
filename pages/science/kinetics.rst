@@ -13,6 +13,8 @@
       Here, we describe how Cantera calculates chemical reaction rates for various
       reaction types.
 
+.. _sec-elementary:
+
 Elementary Reactions
 --------------------
 
@@ -42,6 +44,10 @@ An elementary reaction can be defined in the CTI format using the
 :cti:class:`reaction` entry, or in the YAML format using the
 :ref:`elementary <sec-yaml-elementary>` reaction ``type``.
 
+In YAML, the reaction ``type`` entry can be omitted, as it represents the default. In
+case the ``type`` entry is omitted and a species occurs on both sides, Cantera
+infers that the reaction type is :ref:`three-body <sec-yaml-three-body>`.
+
 Three-Body Reactions
 --------------------
 
@@ -53,7 +59,9 @@ A three-body reaction is a gas-phase reaction of the form:
 
 Here :math:`\mathrm{M}` is an unspecified collision partner that carries away excess energy to
 stabilize the :math:`\mathrm{AB}` molecule (forward direction) or supplies energy to break the
-:math:`\mathrm{AB}` bond (reverse direction).
+:math:`\mathrm{AB}` bond (reverse direction). In addition to the generic collision partner
+:math:`\mathrm{M}`, it is also possible to explicitly specify a colliding species. In this case,
+the reaction type is automatically inferred by Cantera.
 
 Different species may be more or less effective in acting as the collision partner. A species that
 is much lighter than :math:`\mathrm{A}` and :math:`\mathrm{B}` may not be able to transfer much of
@@ -353,7 +361,7 @@ After :math:`E_a` is evaluated, the reaction rate can be calculated using the mo
 
 .. TODO: Update the link once version 2.6 is released
 
-Blowers Masel reaction can be defined in the YAML format using the
+Blowers Masel reactions can be defined in the YAML format using the
 `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-blowers-masel>`__ reaction ``type``.
 *(New in Cantera 2.6)*
 
@@ -384,14 +392,28 @@ Surface reactions can be defined in the CTI format using the
 the ``coverage`` keyword argument supplied to the :cti:class:`Arrhenius`
 directive. In the YAML format, surface reactions are identified by the presence
 of surface species and support several
-:ref:`additional options <sec-yaml-interface-reaction>`.
+`additional options <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface-arrhenius>`__.
 
-Sticking Coefficients
-~~~~~~~~~~~~~~~~~~~~~
+.. TODO: Update links once version 2.6 is released
 
-Collisions between gas-phase molecules and surfaces which result in the gas-
-phase molecule sticking to the surface can be described as a reaction which is
-parameterized by a sticking coefficient:
+In YAML, the surface reaction ``type`` defaults to ``interface-Arrhenius``, where
+the rate expression uses the :ref:`Arrhenius <sec-elementary>` parameterization (see
+`YAML documentation <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface-arrhenius>`__).
+As an alternative, Cantera also supports the ``interface-Blowers-Masel`` surface
+reaction ``type``, which uses the :ref:`Blowers-Masel <sec-Blowers-Masel>`
+parameterization (see
+`YAML documentation <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface-blowers-masel>`__;
+*New in Cantera 2.6*).
+
+.. _sec-sticking:
+
+Sticking Reactions
+------------------
+
+Sticking reactions represent a special case of surface reactions, where collisions
+between gas-phase molecules and surfaces result in the gas-phase molecule sticking to
+the surface. This process can be described as a reaction which is parameterized by a
+sticking coefficient:
 
 .. math::
 
@@ -416,25 +438,18 @@ is the molecular weight of the gas phase species.
 
 Sticking reactions can be defined in the CTI format using the `stick` entry, or
 in the YAML format by specifying the rate constant in the reaction's
-:ref:`sticking-coefficient <sec-yaml-interface-reaction>` field.
+`sticking-coefficient <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sticking-arrhenius>`__ field.
 
-Surface Blowers-Masel Reactions
--------------------------------
+In YAML, the sticking reaction ``type`` defaults to ``sticking-Arrhenius``, where
+the rate expression uses the :ref:`Arrhenius <sec-elementary>` parameterization (see
+`YAML documentation <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sticking-arrhenius>`__).
+As an alternative, Cantera also supports the ``sticking-Blowers-Masel`` surface
+reaction ``type``, which uses the :ref:`Blowers-Masel <sec-Blowers-Masel>`
+parameterization (see
+`YAML documentation <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sticking-blowers-masel>`__;
+*New in Cantera 2.6*).
 
-.. TODO: Update the link once version 2.6 is released
-
-Surface Blowers-Masel Reactions have the same Arrhenius-like rate expression described in
-:ref:`Surface Reactions<sec-surface>`, and the activation energy :math:`E_a` is determined
-as described in :ref:`Blowers-Masel Reactions<sec-Blowers-Masel>`. *(New in Cantera 2.6)*
-
-
-Surface Blowers-Masel reactions can be identified by the presence of surface species and
-the `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-surface-blowers-masel>`__
-reaction ``type`` in a YAML input file.
-
-Note that surface Blowers-Masel reactions also support all the `additional options <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
-described in the `Surface Reactions <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__
-and `sticking-coefficient <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#interface>`__ fields in a YAML input file.
+.. _sec-plasma:
 
 Two-Temperature-Plasma Reactions
 --------------------------------
@@ -453,6 +468,7 @@ is the electron temperature, :math:`b` is the electron temperature exponent,
 :math:`E_{a,g}` is the activation energy for gas, :math:`E_{a,e}` is the activation
 energy for electron and :math:`R` is the gas constant. *(New in Cantera 2.6)*
 
+.. _sec-additional-options:
 
 Additional Options
 ------------------

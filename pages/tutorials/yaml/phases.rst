@@ -9,7 +9,9 @@
 
    .. class:: lead
 
-      A description of how phases and interfaces are defined in YAML input files
+      A description of how phases and interfaces are defined in YAML input files.
+
+.. TODO: Add link to :ref:`YAML phases <sec-yaml-phases>` once version 2.6 is released
 
 Phases
 ======
