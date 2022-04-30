@@ -50,11 +50,21 @@ Python interface
 Cantera's Python interface is available from two channels:
 
 1. The official ``cantera`` channel. This channel should be used if you installed
-   Python from the default channel in conda or if you're working on Windows. This
-   channel also has pre-release versions of Cantera for testing.
+   Python from the default channel in conda. This channel also has pre-release versions
+   of Cantera for testing. Cantera packages are available in this channel for the
+   following platforms:
+
+   - Windows (32- and 64-bit Intel)
+   - Linux (64-bit Intel)
+   - macOS (64-bit Intel)
+
 2. The ``conda-forge`` channel. This channel should be used if you installed Python from
-   the ``conda-forge`` channel. This channel supports more CPU architectures than the
-   official channel.
+   the ``conda-forge`` channel or if your OS/processor combination is not supported by
+   the ``cantera`` channel. Cantera packages are available in this channel for the
+   following platforms:
+
+   - Linux (64-bit Intel, 64-bit ARM, and 64-bit PPCLE)
+   - macOS (64-bit Intel and 64-bit ARM (M1))
 
 **Option 1: Create a new environment for Cantera**
 
