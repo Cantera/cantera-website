@@ -9,7 +9,6 @@ from nikola.plugin_categories import Task
 from nikola.utils import get_logger
 from lxml.html import tostring, parse
 
-
 class ParseDocs(Task):
     """Parse the documentation to find link targets."""
 
@@ -63,7 +62,12 @@ class ParseDocs(Task):
                     elem_id = elem.get("id")
                     parts = elem_id.split(".")
                     try:
-                        title = elem.xpath('code[contains(concat(" ", @class, " "), " descname ")]/text()')[0]
+                        # This pattern worked for the Cantera 2.5.1 docs
+                        node = elem.xpath('code[contains(concat(" ", @class, " "), " descname ")]')
+                        if not len(node):
+                            # Output from Sphinx 4.4.0 seems to fit this pattern
+                            node = elem.xpath('span[contains(concat(" ", @class, " "), " descname ")]')[0]
+                        title = node[0].text
                     except IndexError as err:
                         self.logger.error(
                             "Unknown title for class: {}\n{}".format(err,
