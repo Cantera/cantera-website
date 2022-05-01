@@ -1,4 +1,0 @@
-sensitivity1.py
-=======================================================================
-
-.. literalinclude:: ../../../../interfaces/cython/cantera/examples/reactors/sensitivity1.py

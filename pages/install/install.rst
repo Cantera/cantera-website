@@ -21,11 +21,12 @@
 Installing the Cantera Python Interface
 =======================================
 
-- The easiest way to install the Cantera Python interface on all operating systems is by
+- If you don't already have Python installed (or already use Conda), the easiest way to
+  install the Cantera Python interface on all operating systems is by
   using :ref:`Conda <sec-install-conda>`.
 
-- Windows users can use
-  :ref:`MSI installer packages <sec-install-windows>`.
+- If you already have a different Python installation, Cantera can be installed using
+  :ref:`Pip <sec-install-pip>`.
 
 - Ubuntu users can install the ``cantera-python3`` package from the
   :ref:`Cantera PPA <sec-install-ubuntu>`.

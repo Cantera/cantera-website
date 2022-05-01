@@ -1,5 +1,0 @@
-catcomb.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/catcomb.m
-   :language: matlab

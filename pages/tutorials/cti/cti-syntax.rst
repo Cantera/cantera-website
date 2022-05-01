@@ -11,8 +11,9 @@
 
       CTI is the legacy human-readable input format for Cantera, and we describe it's syntax here
 
-      Note that the legacy CTI input file format will be deprecated in Cantera 2.6
-      and fully replaced by :doc:`YAML <defining-phases>` input in Cantera 3.0.
+      Note that the legacy CTI input file format was deprecated in Cantera 2.5 in
+      favor of the :doc:`YAML <defining-phases>` input format, and will be removed
+      in Cantera 3.0.
 
 Input File Syntax
 =================

@@ -40,18 +40,15 @@ Building the Conda Package
 Intel Compilers
 ===============
 
-.. warning::
-
-   We **DO NOT RECOMMEND** using the Intel compilers to build Cantera, due to a bug
-   in recent versions, which has been documented on the Intel forums:
-   https://software.intel.com/en-us/forums/intel-c-compiler/topic/684987
+* The following instructions refer to the `Intel OneAPI Toolkit
+  <https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html>`__.
 
 * Before compiling Cantera, you may need to set up the appropriate environment
   variables for the Intel compiler suite. For example:
 
   .. code:: bash
 
-     source /opt/intel/bin/compilervars.sh intel64
+     source /opt/intel/oneapi/setvars.sh
 
 * For the Intel compiler to work with SCons, these environment variables need
   to be passed through SCons by using the command line option:
@@ -72,7 +69,7 @@ Intel Compilers
 
   .. code:: bash
 
-     scons build env_vars=all CC=icc CXX=icpc FORTRAN=ifort blas_lapack_libs=mkl_rt blas_lapack_dir=$(MKLROOT)/lib/intel64
+     scons build env_vars=all CC=icx CXX=icpx FORTRAN=ifx blas_lapack_libs=mkl_rt blas_lapack_dir=$(MKLROOT)/lib/intel64
 
 * When installing Cantera after building with the Intel compiler, the normal
   method of using ``sudo`` to install Cantera to the system default directories
@@ -83,7 +80,7 @@ Intel Compilers
 
      scons build ...
      sudo -s
-     source /path/to/compilervars.sh intel64
+     source /path/to/setvars.sh
      scons install
      exit
 

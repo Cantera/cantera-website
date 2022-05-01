@@ -13,8 +13,9 @@
       A description of how Cantera processes legacy CTI input files, to help with
       debugging any errors that occur.
 
-      Note that the legacy CTI input file format will be deprecated in Cantera 2.6
-      and fully replaced by :doc:`YAML <defining-phases>` input in Cantera 3.0.
+      Note that the legacy CTI input file format was deprecated in Cantera 2.5 in
+      favor of the :doc:`YAML <defining-phases>` input format, and will be removed
+      in Cantera 3.0.
 
 Cantera Input Files
 ===================

@@ -1,7 +1,0 @@
-.. _matlab-example-reactor_ode.m:
-
-reactor_ode.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/reactor_ode.m
-   :language: matlab

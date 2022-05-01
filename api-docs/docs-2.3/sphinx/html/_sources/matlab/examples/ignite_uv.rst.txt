@@ -1,9 +1,0 @@
-:orphan:
-
-.. _matlab-example-ignite_uv.m:
-
-ignite_uv.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/ignite_uv.m
-   :language: matlab

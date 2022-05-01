@@ -1,9 +1,0 @@
-:orphan:
-
-.. _matlab-example-tut1.m:
-
-tut1.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/tut1.m
-   :language: matlab

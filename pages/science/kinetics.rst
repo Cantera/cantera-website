@@ -40,7 +40,7 @@ as:
 
    R_f = [\mathrm{A}] [\mathrm{B}] k_f
 
-An elementary reaction can be defined in the CTI format using the
+An elementary reaction can be defined in the legacy CTI format using the
 :cti:class:`reaction` entry, or in the YAML format using the
 :ref:`elementary <sec-yaml-elementary>` reaction ``type``.
 
@@ -87,7 +87,7 @@ where :math:`C_k` is the concentration of species :math:`k`. Since any constant
 collision efficiency can be absorbed into the rate coefficient :math:`k_f(T)`, the default collision
 efficiency is 1.0.
 
-A three-body reaction may be defined in the CTI format using the
+A three-body reaction may be defined in the legacy CTI format using the
 :cti:class:`three_body_reaction` entry, or in the YAML format using the
 :ref:`three-body <sec-yaml-three-body>` reaction ``type``.
 
@@ -133,7 +133,7 @@ This expression is used to compute the rate coefficient for falloff
 reactions. The function :math:`F(T, P_r)` is the falloff function, and is
 specified by assigning an embedded entry to the ``falloff`` field.
 
-A falloff reaction may be defined in the CTI format using the
+A falloff reaction may be defined in the legacy CTI format using the
 :cti:class:`falloff_reaction` entry, or in the YAML format using the
 :ref:`falloff <sec-yaml-falloff>` reaction ``type``.
 
@@ -155,7 +155,7 @@ al. [#Gilbert1983]_:
 
    N = 0.75 - 1.27\; \log_{10} F_{cent}
 
-A Troe falloff function may be specified in the CTI format using the
+A Troe falloff function may be specified in the legacy CTI format using the
 :cti:class:`Troe` directive, or in the YAML format using the
 :ref:`Troe <sec-yaml-falloff>` field in the reaction entry. The first
 three parameters, :math:`(A, T_3, T_1)`, are required. The fourth parameter,
@@ -206,7 +206,7 @@ given by:
 In keeping with the nomenclature of Kee et al. [#Kee1989]_, we will refer to this as
 the **SRI falloff function**.
 
-An SRI falloff function may be specified in the CTI format using the
+An SRI falloff function may be specified in the legacy CTI format using the
 :cti:class:`SRI` directive, or in the YAML format using the
 :ref:`SRI <sec-yaml-falloff>` field in the entry.
 
@@ -238,7 +238,7 @@ to the *low-pressure* rate constant:
 and the optional blending function :math:`F` may described by any of the
 parameterizations allowed for falloff reactions.
 
-Chemically-activated reactions can be defined in the CTI format using the
+Chemically-activated reactions can be defined in the legacy CTI format using the
 :cti:class:`chemically_activated_reaction` entry, or in the YAML format using
 the :ref:`chemically-activated <sec-yaml-chemically-activated>` reaction ``type``.
 
@@ -275,7 +275,7 @@ temperatures that the sum of the reaction rates at each pressure is positive. Un
 these checks fail, the only options are to remove the reaction or contact the author
 of the reaction/mechanism in question, because the reaction is mathematically unsound.
 
-P-log reactions can be defined in the CTI format using the
+P-log reactions can be defined in the legacy CTI format using the
 :cti:class:`pdep_arrhenius` entry, or in the YAML format using the
 :ref:`pressure-dependent-Arrhenius <sec-yaml-pressure-dependent-Arrhenius>`
 reaction ``type``.
@@ -315,7 +315,7 @@ Note that the Chebyshev polynomials are not defined outside the interval
 :math:`(-1,1)`, and therefore extrapolation of rates outside the range of
 temperatures and pressure for which they are defined is strongly discouraged.
 
-Chebyshev reactions can be defined in the CTI format using the
+Chebyshev reactions can be defined in the legacy CTI format using the
 :cti:class:`chebyshev_reaction` entry, or in the YAML format using the
 :ref:`Chebyshev <sec-yaml-Chebyshev>` reaction ``type``.
 
@@ -387,7 +387,7 @@ where :math:`A`, :math:`b`, and :math:`E_a` are the modified Arrhenius
 parameters and :math:`a_k`, :math:`m_k`, and :math:`E_k` are the coverage
 dependencies from species :math:`k`.
 
-Surface reactions can be defined in the CTI format using the
+Surface reactions can be defined in the legacy CTI format using the
 :cti:class:`surface_reaction` entry, with coverage information provided using
 the ``coverage`` keyword argument supplied to the :cti:class:`Arrhenius`
 directive. In the YAML format, surface reactions are identified by the presence
@@ -434,9 +434,7 @@ where :math:`\Gamma_\mathrm{tot}` is the total molar site density, :math:`m` is
 the sum of all the surface reactant stoichiometric coefficients, and :math:`W`
 is the molecular weight of the gas phase species.
 
-.. TODO: Link to :cti:class:`stick` after 2.5.0 release adds that to the docs
-
-Sticking reactions can be defined in the CTI format using the `stick` entry, or
+Sticking reactions can be defined in the legacy CTI format using the `stick` entry, or
 in the YAML format by specifying the rate constant in the reaction's
 `sticking-coefficient <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sticking-arrhenius>`__ field.
 

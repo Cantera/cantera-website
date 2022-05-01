@@ -1,5 +1,0 @@
-tut4.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/tut4.m
-   :language: matlab

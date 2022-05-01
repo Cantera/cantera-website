@@ -1,6 +1,0 @@
-.. _py-example-isentropic.py:
-
-isentropic.py
-=======================================================================
-
-.. literalinclude:: ../../../../interfaces/cython/cantera/examples/thermo/isentropic.py

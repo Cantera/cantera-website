@@ -1,9 +1,0 @@
-:orphan:
-
-.. _matlab-example-conuv.m:
-
-conuv.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/conuv.m
-   :language: matlab

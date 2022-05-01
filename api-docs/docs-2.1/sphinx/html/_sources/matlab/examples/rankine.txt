@@ -1,5 +1,0 @@
-rankine.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/rankine.m
-   :language: matlab

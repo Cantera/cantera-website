@@ -1,9 +1,0 @@
-:orphan:
-
-.. _matlab-example-prandtl1.m:
-
-prandtl1.m
-=======================================================================
-
-.. literalinclude:: ../../../../samples/matlab/prandtl1.m
-   :language: matlab

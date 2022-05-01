@@ -26,6 +26,7 @@ jobs:
     - uses: actions/checkout@v2
       name: Checkout the repository
       with:
+        submodules: recursive
         path: ${{ env.WEBSITE_CLONE_DIR }}
     - uses: actions/checkout@v2
       name: Checkout Cantera repository
@@ -33,7 +34,7 @@ jobs:
         submodules: recursive
         repository: Cantera/cantera
         path: cantera
-        ref: 2.5
+        ref: 2.6
     - uses: actions/checkout@v2
       name: Checkout Cantera 'main' repository
       with:
