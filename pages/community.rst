@@ -168,7 +168,7 @@ The following BibTeX entry may also be used:
 
    @misc{cantera,
        author = "David G. Goodwin and Harry K. Moffat and Ingmar Schoegl and Raymond L.
-                 Speth and Harry K. Moffat and Bryan W. Weber",
+                 Speth and Bryan W. Weber",
        title = "Cantera: An Object-oriented Software Toolkit for Chemical
                 Kinetics, Thermodynamics, and Transport Processes",
        year = 2022,
