@@ -89,14 +89,6 @@ the Python module is built:
 
 * :ref:`python_prefix <python-prefix-dev>`
 
-For backwards compatibility, the following options are also allowed, but are
-overridden by the above options. These options will be removed in a future
-version of Cantera:
-
-* :ref:`python3_cmd <python3-cmd-dev>`
-* :ref:`python3_package <python3-package-dev>`
-* :ref:`python3_prefix <python3-prefix-dev>`
-
 Windows Only Options
 ^^^^^^^^^^^^^^^^^^^^
 
