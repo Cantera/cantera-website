@@ -55,7 +55,7 @@ General Notes
 
 * By default, Cantera is installed into the active conda environment, where the
   layout of the directory structure corresponds to the
-  [configuration option](https://cantera.org/compiling/configure-build.html)
+  `configuration option <https://cantera.org/compiling/configure-build.html>`__
   ``layout=conda``.
 
 .. _sec-conda-reqs:
