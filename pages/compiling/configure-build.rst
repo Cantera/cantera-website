@@ -9,7 +9,7 @@
 
    .. class:: lead
 
-      These directions are for the current release of Cantera, version 2.4. For
+      These directions are for the current release of Cantera, version 2.6. For
       the development version, see `these instructions <configure-build-dev.html>`_.
 
 .. _sec-determine-config:
