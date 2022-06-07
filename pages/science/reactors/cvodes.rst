@@ -71,9 +71,9 @@ How Does Cantera's Reactor Network Time Integration Feature Actually Work?
 
 There's a great description of the science behind Cantera's reactor network 
 simulation capabilities available on the Cantera website, 
-`here <https://cantera.org/science/reactors.html>`__. This section will go into more 
+`here <https://cantera.org/science/reactors/reactors.html>`__. This section will go into more 
 developer-oriented detail about how the last step, `ReactorNet`'s 
-`time integration methods <https://cantera.org/science/reactors.html#time-
+`time integration methods <https://cantera.org/science/reactors/reactors.html#time-
 integration-for-reactor-networks>`__, actually work. A `ReactorNet` object doesn't 
 perform time integration on its own. It generates a system of ODE's based on the 
 combined governing equations of all contained `Reactor`s, which is then passed 
@@ -178,13 +178,12 @@ The ODE system was actually already specified using `CVodeInit()`, one of the me
 `ReactorNet::initialize()` routine. `CVODES` requires that its user provide a C function that defines their ODE, 
 able to compute the right-hand side of the ODE system (dy/dt) for a given value of the independent variable, `t`, 
 and the state vector, `y`. For more information about ODE right-hand side function requirements, 
-see `CVODES User Guide <https://sundials.readthedocs.io/en/latest/cvodes/index.html>`__, section 4.6.1.
+see `CVODES User Guide <https://sundials.readthedocs.io/en/latest/cvodes/Usage/SIM.html#user-supplied-functions>`__.
 
 The `CVodesIntegrator` wrapper class provides a useful C++ interface for configuring this C function by pairing with 
-`FuncEval`, an abstract base class for ODE right-hand-side function evaluators. Classes derived from `FuncEval` will 
-implement the evaluation of the provided ODE system.
-
-Class `FuncEval`: An abstract base class for ODE right-hand-side function evaluators. (`Documentation <https://cantera.org/documentation/docs-2.4/doxygen/html/d1/dd1/classCantera_1_1FuncEval.html>`__)
+`FuncEval`, an abstract base class for ODE right-hand-side function evaluators (`Documentation 
+<https://cantera.org/documentation/docs-2.4/doxygen/html/d1/dd1/classCantera_1_1FuncEval.html>`__). Classes derived 
+from `FuncEval` will implement the evaluation of the provided ODE system.
 
 An ODE right-hand-side evaluator is always needed in the ODE solution process (it's the only way to describe the system!), and for that reason a `FuncEval` object is a required parameter 
 when initializing any type of `Integrator`.
