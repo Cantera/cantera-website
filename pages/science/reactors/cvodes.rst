@@ -113,9 +113,7 @@ Step 2: `advance()` method called
 
 In any case, after properly configuring a reactor network and its components in Cantera, a call to the 
 `ReactorNet`'s `advance()` method can be used to predict the state of the network at a specified time. 
-`ReactorNet` is reinitialized after each timestep to update the initial conditions to match the 
-steady state solution found by CVODES. The initial condition information is passed off to the 
-`Integrator` when calling `advance()`.
+The initial condition information is passed off to the `Integrator` when calling `advance()`.
 Transient physical and chemical interactions are simulated by integrating the network's system of ODE 
 governing equations through time, a process that's actually performed by an external `Integrator` object.
 
@@ -128,49 +126,48 @@ The `Integrator` class is Cantera's interface for ODE system integrators.
 defines a set of *virtual* functionalities that derived classes (the actual ODE system integrators) will 
 provide implementations for.
 
-**Integrator.h** creates a `newIntegrator()`, described below:
-
-Factory Method `newIntegrator()`: Creates and returns a pointer to an `Integrator` instance of type `itype`.
-
-- `Integrator* newIntegrator(const std::string& itype)`;
-- Declared in Integrator.h, line 237 (see this on `GitHub <https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/include/cantera/numerics/Integrator.h#L237>`__)
-- Implemented in ODE_integrators.cpp, line 13 (see this on `GitHub <https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/ODE_integrators.cpp#L13>`__)
-
-The `newIntegrator()` instance will automatically have an `itype` of `CVODES`, which is installed with Cantera.
-The `newIntegrator()` will be stored as variable `m_integ`.
+**Integrator.h** creates a `newIntegrator()`. Factory Method `newIntegrator()` creates and returns a 
+pointer to an `Integrator` instance of type `itype`. The `newIntegrator()` instance will automatically 
+have an `itype` of `CVODES`, which is installed with Cantera. The `newIntegrator()` will be stored as 
+variable `m_integ`.
 
 Step 4: Communicate with CVODES using a wrapper function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Because `CVODES` is written in C, the `CVodesIntegrator` C++ wrapper is used to access the solver:
-
-- Class `CVodesIntegrator`: A C++ wrapper class for `CVODES`. (`Documentation <https://cantera.org/documentation/docs-2.4/doxygen/html/d9/d6b/classCantera_1_1CVodesIntegrator.html>`__)
-- Declared in **CVodesIntegrator.h**, line 25 (see this on `GitHub <https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/include/cantera/numerics/CVodesIntegrator.h#L25>`__)
-- Implemented in **CVodesIntegrator.cpp**, line 79 (see this on `GitHub <https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/CVodesIntegrator.cpp#L79>`__)
-- Included in **ODE_integrators.cpp**, line 8 (see this on `GitHub <https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/ODE_integrators.cpp#L8>`__)
-
-The `CVodesIntegrator` wrapper class will then make the appropriate call to the `CVODES` driver function, `CVode()`.
+Because `CVODES` is written in C, the `CVodesIntegrator` C++ wrapper is used to access the solver.
+The `CVodesIntegrator` class is a C++ wrapper class for `CVODES`. (`Documentation 
+<https://cantera.org/documentation/docs-2.4/doxygen/html/d9/d6b/classCantera_1_1CVodesIntegrator.html>`__)
+The `CVodesIntegrator` class makes the appropriate call to the `CVODES` driver function, `CVode()`.
 
 Step 5: `Cvode()` driver function is called
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Method `CVode()`: Main driver of the `CVODES` package. Integrates over a time interval defined by the user, by calling `cvStep()` to do internal time steps. (*Documentation:* see `CVODES User Guide 
-<https://sundials.readthedocs.io/en/latest/cvodes/index.html>`__)
+Method `CVode()` is the main driver of the `CVODES` package. `CVode()` integrates over a time interval defined by 
+the user, by calling `cvStep()` to do internal time steps (not specified by the user). (*Documentation:* 
+see `CVODES User Guide <https://sundials.readthedocs.io/en/latest/cvodes/index.html>`__)
 
-- `int CVode(void *cvode_mem, realtype tout, N_Vector yout, realtype *tret, int itask)`;
-- Implemented in **cvodes.c**, line 2771 (see this on `GitHub <https://github.com/LLNL/sundials/blob/887af4374af2271db9310d31eaa9b5aeff49e829/src/cvodes/cvodes.c#L2771>`__)
-
-**CVodesIntegrator.cpp**, line 458 (see this on `GitHub <https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/CVodesIntegrator.cpp#L458>`__)
+The arguments taken by the `CVode()` method is shown below:
 
 .. code-block::
 
-    int flag = CVode(m_cvode_mem, tout, m_y, &m_time, CV_NORMAL);
+    int CVode(void *cvode_mem, realtype tout, N_Vector yout, realtype *tret, int itask);
 
 There are some interesting things to note about this call to `CVode()`:
 
 - `m_cvode_mem` is a pointer to the block of memory that was allocated and configured during initialization.
-- After execution, `m_y` will contain the computed solution vector, and will later be used to update the `ReactorNet` to its time-integrated state .
-- The `CV_NORMAL` option tells the solver that it should continue taking internal timesteps until it has reached user-specified `tout` (or just passed it, in which case solutions are reached by interpolation). This provides the appropriate functionality for `ReactorNet::advance()`. The alternate option, `CV_ONE_STEP`, tells the solver to take a single internal step, and is used in `ReactorNet::step()`.
+- After execution, `m_y` will contain the computed solution vector, and will later be used to update the `ReactorNet` 
+  to its time-integrated state.
+- The `CV_NORMAL` option tells the solver that it should continue taking internal timesteps until it has reached 
+  user-specified `tout` (or just passed it, in which case solutions are reached by interpolation). This provides the 
+  appropriate functionality for `ReactorNet::advance()`. The alternate option, `CV_ONE_STEP`, tells the solver to take 
+  a single internal step, and is used in `ReactorNet::step()`.
+
+The result of the `CVode()` method is assigned to the `flag` object. `CVode()` returns 1 or 0, correpsonding to 
+a successful or unsuccessful integration, respectively. 
+
+.. code-block::
+
+    int flag = CVode(m_cvode_mem, tout, m_y, &m_time, CV_NORMAL);
 
 Step 6: `FuncEval` class describes ODEs to solve
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -187,9 +184,7 @@ The `CVodesIntegrator` wrapper class provides a useful C++ interface for configu
 `FuncEval`, an abstract base class for ODE right-hand-side function evaluators. Classes derived from `FuncEval` will 
 implement the evaluation of the provided ODE system.
 
-- Class `FuncEval`: An abstract base class for ODE right-hand-side function evaluators. (`Documentation <https://cantera.org/documentation/docs-2.4/doxygen/html/d1/dd1/classCantera_1_1FuncEval.html>`__)
-- Declared in **FuncEval.h**, line 26 (see this on `GitHub <https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/include/cantera/numerics/FuncEval.h#L26>`__)
-- Implemented in **FuncEval.cpp**, line 7 (see this on `GitHub <https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/FuncEval.cpp#L7>`__)
+Class `FuncEval`: An abstract base class for ODE right-hand-side function evaluators. (`Documentation <https://cantera.org/documentation/docs-2.4/doxygen/html/d1/dd1/classCantera_1_1FuncEval.html>`__)
 
 An ODE right-hand-side evaluator is always needed in the ODE solution process (it's the only way to describe the system!), and for that reason a `FuncEval` object is a required parameter 
 when initializing any type of `Integrator`.
@@ -226,9 +221,7 @@ Step 7: `eval()` is called to solve provided ODEs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Along with the rest of `FuncEval`'s virtual functions, an appropriate override is provided for `FuncEval::eval()` in 
-`ReactorNet`:
-
-**ReactorNet.cpp**, line 233 (see this on `GitHub <https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/zeroD/ReactorNet.cpp#L233>`__)
+`ReactorNet`
 
 .. code-block::
 
@@ -245,6 +238,6 @@ Along with the rest of `FuncEval`'s virtual functions, an appropriate override i
 
 `ReactorNet`'s `eval()` method invokes calls to `Reactor::evalEqs()`, to evaluate the governing equations of all 
 `Reactors` contained in the network. This brings us right back to where we started; for more information see 
-Cantera's `reactor network science page <https://cantera.org/science/reactors.html#governing-equations-for-single-reactors>`__. 
+Cantera's `reactor network science page </science/reactors/reactors.html>`__. 
 
 This documentation is based off @paulblum's `blog post <https://cantera.org/blog/gsoc-2020-blog-3.html>`__.
