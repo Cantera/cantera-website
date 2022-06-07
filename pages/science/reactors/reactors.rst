@@ -81,7 +81,9 @@ The specific governing equations defining Cantera's supported reactor models are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for a Control Volume Reactor
+                     Derivations of governing equations for a Control Volume Reactor.
+                     A reactor where the volume is prescribed by the motion of the 
+                     reactor's walls.
             .. container:: card
 
                .. container::
@@ -97,7 +99,8 @@ The specific governing equations defining Cantera's supported reactor models are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for a Constant Pressure Reactor
+                     Derivations of governing equations for a Constant Pressure Reactor.
+                     A reactor where the pressure is held constant by varying the volume.
 
             .. container:: card
 
@@ -114,7 +117,9 @@ The specific governing equations defining Cantera's supported reactor models are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for an Ideal Gas Reactor
+                     Derivations of governing equations for an Ideal Gas Reactor.
+                     A reactor where all gasses follow the ideal gas law,
+                     and temperature is the energy equation state variable.
                      
 .. container:: container
 
@@ -139,7 +144,9 @@ The specific governing equations defining Cantera's supported reactor models are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for an Ideal Gas Constant Pressure Reactor
+                     Derivations of governing equations for an Ideal Gas Constant Pressure Reactor.
+                     A reactor where all gasses follow the ideal gas law, pressure is held
+                     constant, and temperature is the energy equation state variable.
                
             .. container:: card
                
@@ -159,7 +166,9 @@ The specific governing equations defining Cantera's supported reactor models are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for a Plug Flow Reactor
+                     Derivations of governing equations for a Plug Flow Reactor.
+                     A steady-state reactor channel where typically an ideal gas 
+                     flows through it at a constant mass flow rate.
 
 In some cases, Cantera's solver is insufficient to describe 
 a certain configuration. In this situation, there are two options for customizing

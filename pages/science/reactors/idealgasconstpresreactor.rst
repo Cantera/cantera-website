@@ -14,8 +14,7 @@
       Cantera's Ideal Gas Constant Pressure Reactor model.
 
       More information on the Ideal Gas Constant Pressure Reactor class can
-       be found `here. 
-      <https://cantera.org/documentation/docs-2.6/doxygen/html/dc/d5d/classCantera_1_1IdealGasConstPressureReactor.html>`__
+      be found `here. <https://cantera.org/documentation/docs-2.6/doxygen/html/dc/d5d/classCantera_1_1IdealGasConstPressureReactor.html>`__
 
 Ideal Gas Constant Pressure Reactor
 ***********************************
