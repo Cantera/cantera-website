@@ -10,8 +10,8 @@
 
    .. class:: lead
 
-      Here, we describe how Cantera uses species and phase information to calculate thermodynamic properties. 
-      
+      Here, we describe how Cantera uses species and phase information to calculate thermodynamic properties.
+
    Thermodynamic properties typically depend on information at both the species and phase levels. The user must specify thermodynamic models for both levels, and these selections must be compatible with one another. For instance: one cannot pair certain non-ideal species thermodyamic models with an ideal phase model.
 
    - The user must specify a thermodynamic model for each species and provide inputs that inform how species properties are calculated. For example, the user specifies how the reference enthalpy and entropy values for each species are calcualted, as a function of temperature.
@@ -19,7 +19,7 @@
 
 Example: The Ideal Gas Model
 ============================
-For a simple example: in the Ideal Gas model, one might use 7-parameter NASA polynomials to specify the species reference thermodynamic quantities.  These would be used to calculate the reference molar enthalpy :math:`\hat{h}_k^\circ(T)` and entropy :math:`\hat{s}_k^\circ(T)` for a given species :math:`k` as a function of temperature :math:`T`. See the `NASA Polynomials Species Thermo entry </science/science-species.html#the-nasa-7-coefficient-polynomial-parameterization>`__ for more information.
+For a simple example: in the Ideal Gas model, one might use 7-parameter NASA polynomials to specify the species reference thermodynamic quantities.  These would be used to calculate the reference molar enthalpy :math:`\hat{h}_k^\circ(T)` and entropy :math:`\hat{s}_k^\circ(T)` for a given species :math:`k` as a function of temperature :math:`T`. See the `NASA Polynomials Species Thermo entry </science/species-thermo.html#the-nasa-7-coefficient-polynomial-parameterization>`__ for more information.
 
 At the phase level, the Ideal Gas Law provides the :math:`P`-:math:`\hat{v}`-:math:`T` relationship. The ideal gas law is an example of an equation of state. This is used, for example, to calculate the pressure as a function of molar volume :math:`\hat{v}`, and temperature, :math:`T`:
 
@@ -78,4 +78,3 @@ Please click either of the cards below for details on the species and phase mode
 
                The theory behind some of Cantera's phase models, such as the Ideal Gas Law.
 
-      
