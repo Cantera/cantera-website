@@ -63,7 +63,7 @@ temperature:
 
 .. math::
 
-   m c_v \frac{dT}{dt} = - p \frac{dV}{dt} - \dot{Q}
+   m c_v \frac{dT}{dt} = - p \frac{dV}{dt} + \dot{Q}
        + \sum_{in} \dot{m}_{in} \left( h_{in} - \sum_k u_k Y_{k,in} \right)
        - \frac{p V}{m} \sum_{out} \dot{m}_{out} - \sum_k \dot{m}_{k,gen} u_k
   \tag{3}

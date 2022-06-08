@@ -51,7 +51,7 @@ Noting that :math:`dp/dt = 0` and substituting into the energy equation yields:
 
 .. math::
 
-   \frac{dH}{dt} = - \dot{Q} + \sum_{in} \dot{m}_{in} h_{in}
+   \frac{dH}{dt} = \dot{Q} + \sum_{in} \dot{m}_{in} h_{in}
                    - h \sum_{out} \dot{m}_{out}
                    \tag{2}
 
