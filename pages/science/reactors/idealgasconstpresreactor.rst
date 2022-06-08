@@ -53,7 +53,7 @@ temperature:
 
 .. math::
 
-   m c_p \frac{dT}{dt} = - \dot{Q} - \sum_k h_k \dot{m}_{k,gen}
+   m c_p \frac{dT}{dt} = \dot{Q} - \sum_k h_k \dot{m}_{k,gen}
        + \sum_{in} \dot{m}_{in} \left(h_{in} - \sum_k h_k Y_{k,in} \right)
   \tag{2}
 

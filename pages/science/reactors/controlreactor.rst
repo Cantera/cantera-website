@@ -40,8 +40,6 @@ on the reactor :py:class:`Wall`.
                     \dot{m}_{wall}
                     \tag{1}
 
-The equation for the total internal energy is found by writing the first law
-for an open system:
 The reactor volume changes as a function of time due to the motion of one or
 more walls:
 
@@ -55,11 +53,16 @@ decreases the volume of the reactor), :math:`A_w` is the
 surface area of the wall, and :math:`v_w(t)` is the velocity of the wall as a
 function of time.
 
+The equation for the total internal energy is found by writing the first law
+for an open system:
+
 .. math::
 
-   \frac{dU}{dt} = - p \frac{dV}{dt} - \dot{Q} +
+   \frac{dU}{dt} = - p \frac{dV}{dt} + \dot{Q} +
                     \sum_{in} \dot{m}_{in} h_{in} - h \sum_{out} \dot{m}_{out}
    \tag{3}
+
+Where :math:`\dot{Q}` is the net rate of heat addition to the system. [1]_
 
 The rate at which species :math:`k` is generated through homogeneous phase
 reactions is :math:`V \dot{\omega}_k W_k`, and the total rate at which species
