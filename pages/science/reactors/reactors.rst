@@ -301,7 +301,7 @@ to the reactors previously mentioned:
   with :math:`K_v` being a proportionality constant that is set using the class
   property :py:func:`Valve.valve_coeff`. Further, :math:`g` and :math:`f`
   are functions of time and pressure drop that are set by class methods
-  :py:func:`Valve.set_time_function` and :py:func:`Valve.set_valve_function`,
+  :py:func:`Valve.set_time_function` and :py:func:`Valve.set_pressure_function`,
   respectively. If no functions are specified, the mass flow rate defaults to:
 
   .. math::

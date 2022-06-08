@@ -62,7 +62,7 @@ for an open system:
                     \sum_{in} \dot{m}_{in} h_{in} - h \sum_{out} \dot{m}_{out}
    \tag{3}
 
-Where :math:`\dot{Q}` is the net rate of heat addition to the system. [1]_
+Where :math:`\dot{Q}` is the net rate of heat addition to the system.
 
 The rate at which species :math:`k` is generated through homogeneous phase
 reactions is :math:`V \dot{\omega}_k W_k`, and the total rate at which species
