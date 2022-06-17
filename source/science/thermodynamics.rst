@@ -77,4 +77,3 @@ Please click either of the cards below for details on the species and phase mode
             .. container:: card-text
 
                The theory behind some of Cantera's phase models, such as the Ideal Gas Law.
-
