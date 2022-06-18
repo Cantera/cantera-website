@@ -439,14 +439,26 @@ state can be obtained by accessing :py:class:`Reaction` objects with the
     >>> g = ct.Solution('gri30.yaml')
     >>> r = g.reaction(2) # get a Reaction object
     >>> r
-    <ElementaryReaction: H2 + O <=> H + OH>
+    H2 + O <=> H + OH    <Reaction(Arrhenius)>
 
     >>> r.reactants
     {'H2': 1.0, 'O': 1.0}
     >>> r.products
     {'H': 1.0, 'OH': 1.0}
+
+..
+    @todo: fix :py:attr:`ReactionRate.input_data` below (does not work in Nikola/Sphinx)
+
+Information about specific reaction rate parameterizations should be queried using the
+``input_data`` property, which returns a YAML-compatible dictionary that represents
+input data needed to create the corresponding rate object:
+
+.. code:: pycon
+
     >>> r.rate
-    Arrhenius(A=38.7, b=2.7, E=2.61918e+07)
+    <ArrheniusRate at 1c0a71f02b0>
+    >>> r.rate.input_data
+    {'rate-constant': {'A': 38.7, 'b': 2.7, 'Ea': 26191840.0}}
 
 If we are interested in only certain types of reactions, we can use this
 information to filter the full list of reactions to find the just the ones of
