@@ -40,8 +40,14 @@ keep_warnings = True
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions: list[str] = ["myst_parser", "sphinx.ext.duration", "sphinx.ext.mathjax"]
+extensions: list[str] = [
+    "sphinx_design",
+    "myst_parser",
+    "sphinx.ext.duration",
+    "sphinx.ext.mathjax",
+]
 
+myst_enable_extensions = ["colon_fence"]
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 

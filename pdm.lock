@@ -277,6 +277,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "sphinx-design"
+version = "0.2.0"
+requires_python = ">=3.7"
+summary = "A sphinx extension for designing beautiful, view size responsive web components."
+dependencies = [
+    "sphinx<6,>=4",
+]
+
+[[package]]
 name = "sphinxcontrib-applehelp"
 version = "1.0.2"
 requires_python = ">=3.5"
@@ -350,7 +359,7 @@ summary = "Backport of pathlib-compatible object wrapper for zip files"
 
 [metadata]
 lock_version = "3.1"
-content_hash = "sha256:9a9616217c469eb0d299031792ea4049979645d1017d9c0cca1fc076723a4df9"
+content_hash = "sha256:5bc8823693a2cf7e9f05110c9adb77851ab1f8c6fcf9fc237d21c74e36493cac"
 
 [metadata.files]
 "alabaster 0.7.12" = [
@@ -561,6 +570,10 @@ content_hash = "sha256:9a9616217c469eb0d299031792ea4049979645d1017d9c0cca1fc0767
 "sphinx 5.0.2" = [
     {file = "Sphinx-5.0.2-py3-none-any.whl", hash = "sha256:d3e57663eed1d7c5c50895d191fdeda0b54ded6f44d5621b50709466c338d1e8"},
     {file = "Sphinx-5.0.2.tar.gz", hash = "sha256:b18e978ea7565720f26019c702cd85c84376e948370f1cd43d60265010e1c7b0"},
+]
+"sphinx-design 0.2.0" = [
+    {file = "sphinx_design-0.2.0-py3-none-any.whl", hash = "sha256:5c7117cb4b566bd769dcb4314a64d72257ae89724b4917a8f2ef55459e1d861b"},
+    {file = "sphinx_design-0.2.0.tar.gz", hash = "sha256:b148a5258061a46ee826d57ea0729260f29b4e9131d2a681545e0d4f3c0f19ee"},
 ]
 "sphinxcontrib-applehelp 1.0.2" = [
     {file = "sphinxcontrib_applehelp-1.0.2-py2.py3-none-any.whl", hash = "sha256:806111e5e962be97c29ec4c1e7fe277bfd19e9652fb1a4392105b43e01af885a"},
