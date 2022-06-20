@@ -13,6 +13,7 @@
    .. class:: lead
 
       A community-maintained FreeBSD port ``science/cantera`` and package are available.
+      This port provides the Octave interface when the OCTAVE option is turned on.
       Note that the Matlab interface is not available from this port; to install the
       Matlab interface on FreeBSD, you must :ref:`compile Cantera's source code
       <sec-compiling>`.
