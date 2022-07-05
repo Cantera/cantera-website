@@ -12,8 +12,9 @@
 
    .. class:: lead
 
-      RPM packages are provided for supported versions of Fedora Linux using a Community Projects
-      (COPR) repository. Note that the Matlab interface is not available from this archive;
+      RPM packages are provided for supported versions of Fedora Linux.
+      Stable builds are available in the official repositories and development builds are in a
+      Community Projects (COPR) repository. The Matlab interface is not available from this archive;
       to install the Matlab interface on Fedora, you must :ref:`compile the source code <sec-compiling>`.
 
 As of Cantera 2.6.0, packages are available for currently supported releases of Fedora Linux
@@ -57,3 +58,11 @@ can be installed with:
 .. code-block:: bash
 
     $ dnf install python3-matplotlib python3-ipython
+
+To access the development builds of Cantera 3+, enable the COPR, then install as described
+above:
+
+.. code-block:: bash
+
+    $ dnf copr enable fuller/cantera-test 
+
