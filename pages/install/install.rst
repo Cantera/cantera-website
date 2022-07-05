@@ -34,6 +34,9 @@ Installing the Cantera Python Interface
 - Fedora / Enterprise Linux users can install ``python3-cantera`` using
   :ref:`dnf <sec-install-fedora-rhel>`.
 
+- OpenSUSE users can install packages using
+  :ref:`zypper <sec-install-opensuse>`.
+
 - Gentoo users can install using :ref:`emerge <sec-install-gentoo>`.
 
 - FreeBSD users can install using :ref:`pkg <sec-install-freebsd>`.
@@ -60,6 +63,9 @@ Installing the Cantera C++ Interface & Fortran 90 Module
 
 - Fedora / Enterprise Linux users can install packages using
   :ref:`yum/dnf <sec-install-fedora-rhel>`.
+
+- OpenSUSE users can install packages using
+  :ref:`zypper <sec-install-opensuse>`.
 
 - Gentoo users can install using :ref:`emerge <sec-install-gentoo>`.
 
