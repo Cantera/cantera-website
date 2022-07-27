@@ -1,6 +1,7 @@
 Nikola[extras]==8.2.1
 yapsy==1.11.*
 attrs>=17.4.0
+Markdown==3.3.7
 pymdown-extensions==5.0
 GitPython>=3.0.5,<4.0
 Pygments>=2.7.0
