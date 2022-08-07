@@ -298,7 +298,8 @@ FILES_FOLDERS = {"files/survey2013": "survey2013", "files/license": ""}
 # the site. The format is a dictionary of {source: relative destination}.
 # Default is:
 EXAMPLES_FOLDERS = {
-    "../cantera/interfaces/cython/cantera/examples": "examples/python",
+    # "../cantera/samples/python": "examples/python", # starting with Cantera 3.0
+    "../cantera/interfaces/cython/cantera/examples": "examples/python", # Cantera 2.6
     "../cantera-jupyter": "examples/jupyter",
     "../cantera/samples/matlab": "examples/matlab",
     "../cantera/samples/cxx": "examples/cxx",
