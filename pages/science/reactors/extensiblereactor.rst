@@ -15,19 +15,23 @@ Extensible Reactors
 *******************
 
 In some cases, Cantera's existing governing equations are insufficient 
-in describing a certain configuration. In this situation, Cantera 
+in describing a certain configuration, but the internal integrator is 
+still well suited to solve the desired system. In this situation, Cantera 
 Reactors' governing equations can be modified to the user's specific 
-needs. An Extensible Reactor allows modifications of a Reactor class' 
-`governing equations </science/reactors/reactors.html>`__. If the governing equations 
-must be entirely replaced or an integrator besides CVODES is desired, a 
-`Custom Reactor </science/reactors/customreactor.html>`__
+needs while still using the CVODES integrator. An Extensible Reactor allows 
+for modifications of a Reactor class' 
+`governing equations </science/reactors/reactors.html>`__. 
+An Extensible Reactor is also known as a Delegated Reactor. If the governing 
+equations must be entirely replaced or an integrator besides CVODES is 
+desired, a `Custom Reactor </science/reactors/customreactor.html>`__
 may be a more appropriate Reactor class to use.
 
-The state variables available for modification 
-depend on the type of Reactor base class chosen. For example, choosing 
-an `Ideal Gas Constant Pressure Reactor </science/reactors/
-idealgasconstpresreactor.html>`__ allows
-the user to modify the governing equations corresponding to 
+The variables in the governing equations that are differentiated with 
+respect to time are known as the state variables.
+The state variables depend on the type of Reactor base class chosen. 
+For example, choosing an `Ideal Gas Constant Pressure Reactor 
+<idealgasconstpresreactor.html#ideal-gas-constant-pressure-reactor>`__ 
+allows the user to modify the governing equations corresponding to 
 the following state variables:
 
 - :math:`m`, the mass of the reactor's contents (in kg)
@@ -97,64 +101,81 @@ Will change to:
 
    m_{rock} c_{p,rock}\frac{dT}{dt} + m_{gas}\frac{dT}{dt} = - \dot{Q}
 
-1. Define objects, properties, and initial conditions.
+The governing equations will be modified through the user created Python class' methods.
+For each method, the name should be prefixed with **before_**, **after_**, or 
+**replace_**, indicating whether the this method should be called before, after, 
+or instead of the corresponding method from the base class.
 
 .. code-block:: python
+
+  #1 Define objects, properties, and initial conditions.
 
    #create gas object
    gas = ct.Solution('h2o2.yaml')
    gas.TPX = 500, ct.one_atm, 'H2:2,O2:1,N2:4'
-   gas_initial_enthalpy = gas.enthalpy_mass
 
    #define properties of gas and solid
    mass_gas = 20 #[kg]
    Q = 100 #[J/s]
-   mass_lump = 10 #[kg]
-   cp_lump = 1.0 #[J/kgK]
+   mass_rock = 10 #[kg]
+   cp_rock = 1.0 #[J/kgK]
 
    #initialize time at zero
    time = 0 #[s]
    n_steps = 300
 
-2. Define a new custom Reactor class. Here we named it "DummyReactor" and 
-chose the Ideal Gas Constant Pressure Reactor as the base class to inheret
-governing equations from. An Extensible Reactor is also known as a Delegated 
-Reactor.
-
-.. code-block:: python
+  #2 Define a new custom Reactor class. Here we named it "DummyReactor" and 
+   #chose the Ideal Gas Constant Pressure Reactor as the base class to inheret
+   #governing equations from. 
 
    #define a class representing reactor with a solid mass and gas inside of it
-
-   class DummyReactor(ct.DelegatedIdealGasConstPressureReactor):
+   class RockReactor(ct.DelegatedIdealGasConstPressureReactor):
 
       #modify energy equation to include solid mass in reactor
+      
+      #after the initial solution for time t is computed ask Cantera to solve the modified 
+      #equation. The index 1 refers to modification of governing equation 2 in the reactor
+      #documentation (recall that indexing begins at 0).
 
       def after_eval(self, t, LHS, RHS):
-
+      #although the time variable t is not used directly in the method definition it is a 
+      #required argument for the internal solver.
          self.m_mass = mass_gas
 
-         LHS[1] = mass_rock*cp_rock+self.m_mass*self.thermo.cp_mass
+         #as the arguments for after_eval are positional arguments, you may name them as you wish
+         #rather than use the default RHS and LHS nomenclature.
+         LHS[1] = mass_rock * cp_rock + self.m_mass * self.thermo.cp_mass
 
          RHS[1] = -Q
 
-3. Initialize the new Reactor class and Reactor Network.
-
-.. code-block:: python
-
-   r1 = DummyReactor(gas)
+   #Initialize the new Reactor class and Reactor Network.
+   r1 = RockReactor(gas)
    r1_net = ct.ReactorNet([r1])
 
-4. Integrate custom equations over desired time.
-
-.. code-block:: python
-
+   #3 Integrate custom equations over desired time.
    for n in range(n_steps):
       time += 4.e-4
       r1_net.advance(time)
 
-5. The final state vector for your reactor network contains the final gas 
+The final state vector for your reactor network contains the final gas 
 properties obtained from Cantera using the modified equation(s).
+
+Details on functions in addition to ``eval()`` 
+that are able to be modified with **before_**, **after_**, or 
+**replace_** can be found `here 
+<https://cantera.org/documentation/dev/sphinx/html/cython/zerodim.html?highlight=
+extensible#extensiblereactor>`__.
+
+An Extensible Reactor is also known as a Delegated Reactor.
+
+
+
+
+
+
 
 More in-depth documentation on the different ways to modify equations using
 an Extensible Reactor can be found `here <https://www.cantera.org/documentation
-/dev/doxygen/html/de/d7e/classCantera_1_1ReactorDelegator.html>`__.
+/dev/doxygen/html/de/d7e/classCantera_1_1ReactorDelegator.html>`__ and `here 
+<https://cantera.org/documentation/dev/sphinx/html/cython/zerodim.html?highlight=
+extensible#extensiblereactor>`__.

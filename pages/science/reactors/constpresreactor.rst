@@ -39,6 +39,11 @@ on the reactor :py:class:`Wall`:
                     \dot{m}_{wall}
                     \tag{1}
 
+Where the subscripts *in* and *out* refer to the sum of the superscipted property
+over all inlets and outlets respectively. A dot above a variable signifies a time 
+derivative. A Reactor *wall* is defined `here.
+<http://127.0.0.1:8887/documentation/docs-2.6/sphinx/html/cython/zerodim.html#cantera.Wall>`__ 
+
 Using the definition of the total enthalpy:
 
 .. math::
@@ -54,6 +59,13 @@ Noting that :math:`dp/dt = 0` and substituting into the energy equation yields:
    \frac{dH}{dt} = \dot{Q} + \sum_{in} \dot{m}_{in} h_{in}
                    - h \sum_{out} \dot{m}_{out}
                    \tag{2}
+
+Where the total specific enthalpy :math:`h` is defined as :math:`h = \sum_k{h_k Y_k}`.
+The enthalpy terms in equation 2 appear due to enthalpy flowing an and out 
+of the reactor. The rate of heat transfer :math:`\dot{Q}` can replace 
+:math:`\frac{d U}{d t} + p \frac{dV}{dt}` in the above equation due to the first law 
+of thermodynamics, which states :math:`\dot{Q} = \dot{H}` in a closed system where 
+no work is done. Positive :math:`\dot{Q}` represents heat addition to the system.
 
 The rate at which species :math:`k` is generated through homogeneous phase
 reactions is :math:`V \dot{\omega}_k W_k`, and the total rate at which species
