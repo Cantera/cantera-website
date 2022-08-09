@@ -39,8 +39,10 @@ Mass conservation:
    \frac{d(\rho u A)}{dz} =  P' \sum_k \dot{s}_k W_k
    \tag{1}
 
-where :math:`u` is the axial velocity in (m/s) and :math:`P'` is the chemically active
-channel perimeter in m (chemically active perimeter per unit length).
+where :math:`u` is the axial velocity in (m/s), :math:`\rho` is the fluid density in
+(kg/m\ :sup:`3`), :math:`\dot{s}_k` is the surface rate of production of species *k*, 
+:math:`W_k` is the molecular weight of species *k*, and :math:`P'` is the chemically 
+active channel perimeter in m (chemically active perimeter per unit length).
 
 Energy conservation:
 

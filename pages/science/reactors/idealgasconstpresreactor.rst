@@ -37,6 +37,11 @@ on the reactor :py:class:`Wall`:
                     \dot{m}_{wall}
                     \tag{1}
 
+Where the subscripts *in* and *out* refer to the sum of the superscipted property
+over all inlets and outlets respectively. A dot above a variable signifies a time 
+derivative. Reactor *Walls* are defined `here.
+<http://127.0.0.1:8887/documentation/docs-2.6/sphinx/html/cython/zerodim.html#cantera.Wall>`__ 
+
 As for the Ideal Gas Reactor, we replace the total enthalpy as a state
 variable with the temperature by writing the total enthalpy in terms of the
 mass fractions and temperature:

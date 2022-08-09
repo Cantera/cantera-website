@@ -37,6 +37,11 @@ on the reactor walls:
                     \dot{m}_{wall}
                     \tag{1}
 
+Where the subscripts *in* and *out* refer to the sum of the superscipted property
+over all inlets and outlets respectively. A dot above a variable signifies a time 
+derivative. Reactor *Walls* are defined `here.
+<http://127.0.0.1:8887/documentation/docs-2.6/sphinx/html/cython/zerodim.html#cantera.Wall>`__ 
+
 The reactor volume changes as a function of time due to the motion of one or
 more walls:
 
@@ -44,6 +49,11 @@ more walls:
 
    \frac{dV}{dt} = \sum_w f_w A_w v_w(t)
    \tag{2}
+
+Where :math:`f_w = \pm 1` indicates the facing of the wall (whether moving the wall increases or
+decreases the volume of the reactor), :math:`A_w` is the
+surface area of the wall, and :math:`v_w(t)` is the velocity of the wall as a
+function of time.
 
 In case of the Ideal Gas Reactor Model, the reactor temperature :math:`T` is
 used instead of the total internal energy :math:`U` as a state variable. For an
