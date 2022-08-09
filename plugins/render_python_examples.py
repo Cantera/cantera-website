@@ -1,12 +1,12 @@
-"""Render the Matlab examples from the Cantera repository into Nikola listings.
+"""Render the Python examples from the Cantera repository into Nikola listings.
 
-This plugin renders Matlab examples from the main Cantera repository into the
+This plugin renders Python examples from the main Cantera repository into the
 examples/matlab output folder. It looks for the examples in the folder configured
 in the top-level conf.py file in the ``EXAMPLES_FOLDERS`` dictionary. That
 dictionary has keys with the source folder and values with the destination
 folder (relative to the ``OUTPUT_FOLDER``). The relevant source folder is found
-as the key associated with the value that contains the string ``matlab``,
-typically ``"../cantera/samples/matlab": "examples/matlab"``.
+as the key associated with the value that contains the string ``python``,
+typically ``"../cantera/samples/python": "examples/python"``.
 """
 from pathlib import Path
 import ast

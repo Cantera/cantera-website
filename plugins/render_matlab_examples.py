@@ -6,7 +6,7 @@ in the top-level conf.py file in the ``EXAMPLES_FOLDERS`` dictionary. That
 dictionary has keys with the source folder and values with the destination
 folder (relative to the ``OUTPUT_FOLDER``). The relevant source folder is found
 as the key associated with the value that contains the string ``matlab``,
-typically ``"../cantera/interfaces/cython/cantera/examples": "examples/python"``.
+typically ``"../cantera/samples/matlab": "examples/matlab"``.
 """
 from pathlib import Path
 
