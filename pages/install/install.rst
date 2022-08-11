@@ -47,7 +47,7 @@ Installing the Cantera Python Interface
 Installing the Cantera Matlab Toolbox
 =====================================
 - The Cantera Matlab toolbox can be installed on all operating systems using
-  :ref:`Conda <sec-install-conda>`.
+  :ref:`Conda <sec-conda-matlab-interface>`.
 
 - Windows users can use :ref:`MSI installer packages <sec-install-windows>`.
 
@@ -59,7 +59,7 @@ Installing the Cantera Matlab Toolbox
 Installing the Cantera C++ Interface & Fortran 90 Module
 ========================================================
 - The Cantera development interface can be installed on all operating systems using
-  :ref:`Conda <sec-install-conda>` (*experimental*).
+  :ref:`Conda <sec-conda-development-interface>` (*experimental*).
 
 - Ubuntu users can install the ``cantera-dev`` package from the
   :ref:`Cantera PPA <sec-install-ubuntu>`.

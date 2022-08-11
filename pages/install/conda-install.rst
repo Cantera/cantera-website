@@ -207,16 +207,19 @@ by running the commands:
    conda activate ct-dev
    conda update --channel cantera cantera cantera-matlab
 
+.. _sec-conda-development-interface:
+
 Development (C++ & Fortran 90) Interface
 ========================================
 
 **Warning:** The ``conda`` package for Cantera's development interface is experimental.
 For the most recent version of the package, use the ``cantera/label/dev`` channel
-instead of the stable ``cantera`` channel.
+instead of the stable ``cantera`` channel. The development interface for stable releases
+is also available from the ``conda-forge`` channel.
 
-Cantera's development interface can be installed from the ``cantera`` channel. In this
-example, the command will create a new conda environment named ``ct-dev``. From the
-command line (or the Anaconda Prompt on Windows), run:
+In the following example, Cantera's development interface is installed from the
+``cantera/label/dev`` channel. From the command line (or the Anaconda Prompt on
+Windows), create a new conda environment named ``ct-dev`` using:
 
 .. code:: shell
 
@@ -257,20 +260,28 @@ programs can be compiled as follows using the ``pkg-config`` build system:
    $ g++ demo.cpp -o demo $(pkg-config --cflags --libs cantera)
    $ ./demo
 
+A simple sample program for the Fortran 90 interface can be compiled as follows:
+
+.. code::shell
+
+   $ cd /path/to/conda/envs/ct-env/share/cantera/samples/f90
+   $ gfortran demo.f90 -o demo -I/path/to/conda/envs/ct-env/include/cantera
+   $ ./demo
+
 Windows Systems
 ---------------
 
-Installation folders for the C++ and Fortran 90 interface are:
+Installation folders for the C++ interface are:
 
 .. code:: shell
 
-   library files               path\to\conda\envs\ct-dev\Library\lib
-   C++ headers                 path\to\conda\envs\ct-dev\Library\include
-   samples                     path\to\conda\envs\ct-dev\share\cantera\samples
-   data files                  path\to\conda\envs\ct-dev\share\cantera\data
+   library files               path/to/conda/envs/ct-dev/Library/lib
+   C++ headers                 path/to/conda/envs/ct-dev/Library/include
+   samples                     path/to/conda/envs/ct-dev/share/cantera/samples
+   data files                  path/to/conda/envs/ct-dev/share/cantera/data
 
-The development package on Windows is experimental. While all libraries and headers are
-installed, compilation of custom programs is untested.
+The development package on Windows is experimental, with Fortran 90 currently not being
+supported.
 
 Upgrading from an earlier Cantera version
 -----------------------------------------
