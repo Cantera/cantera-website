@@ -58,6 +58,9 @@ Installing the Cantera Matlab Toolbox
 
 Installing the Cantera C++ Interface & Fortran 90 Module
 ========================================================
+- The Cantera development interface can be installed on all operating systems using
+  :ref:`Conda <sec-install-conda>` (*experimental*).
+
 - Ubuntu users can install the ``cantera-dev`` package from the
   :ref:`Cantera PPA <sec-install-ubuntu>`.
 

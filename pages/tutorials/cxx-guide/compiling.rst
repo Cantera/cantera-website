@@ -1,4 +1,5 @@
 .. title: Compiling Cantera C++ Programs
+.. _sec-compiling-cplusplus:
 
 .. jumbotron::
 
