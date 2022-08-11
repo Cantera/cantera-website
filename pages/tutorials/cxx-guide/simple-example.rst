@@ -17,6 +17,9 @@ specification of a gas mixture from an input file, and then builds a new object
 representing the mixture. It then sets the thermodynamic state and composition
 of the gas mixture, and prints out a summary of its properties.
 
+..
+   TODO: Update example to use "core.h" after release of Cantera 3.0
+
 .. include:: pages/tutorials/cxx-guide/demo1a.cpp
    :code: c++
 
