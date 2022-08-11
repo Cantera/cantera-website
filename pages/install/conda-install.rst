@@ -182,12 +182,12 @@ MATLAB interface
 ================
 
 Cantera's MATLAB interface can be installed from the ``cantera`` channel. In this
-example, the command will create a new conda environment named ``ct-env``. From the
+example, the command will create a new conda environment named ``ct-dev``. From the
 command line (or the Anaconda Prompt on Windows), run:
 
 .. code:: shell
 
-   conda create --name ct-env --channel cantera cantera cantera-matlab
+   conda create --name ct-dev --channel cantera cantera cantera-matlab
 
 This will create an environment with Cantera's Python and MATLAB interfaces. Even if you
 plan to use Cantera via MATLAB, the Python interface is required to convert input files.
@@ -206,3 +206,80 @@ by running the commands:
 
    conda activate ct-dev
    conda update --channel cantera cantera cantera-matlab
+
+Development (C++ & Fortran 90) Interface
+========================================
+
+**Warning:** The ``conda`` package for Cantera's development interface is experimental.
+For the most recent version of the package, use the ``cantera/label/dev`` channel
+instead of the stable ``cantera`` channel.
+
+Cantera's development interface can be installed from the ``cantera`` channel. In this
+example, the command will create a new conda environment named ``ct-dev``. From the
+command line (or the Anaconda Prompt on Windows), run:
+
+.. code:: shell
+
+   conda create --name ct-dev --channel cantera/label/dev libcantera-devel
+
+This will create an environment with Cantera's development interface. In this case,
+the addition of ``--channel cantera/label/dev`` ensures that the package is pulled
+from the most recent available Cantera version. Note that ``label/dev`` refers to the
+experimental development *channel* of Cantera, and not the development *interface*.
+
+C++ header and libraries are installed within the ``ct-dev`` environment folder, which
+itself depends on the type of ``conda`` installation, and is abbreviated as
+``path/to/conda/envs`` below. Within the ``ct-dev`` folder, locations follow ``conda``
+recommendations for a given operating system.
+
+Linux and macOS Systems
+-----------------------
+
+Installation folders for the C++ and Fortran 90 interface are:
+
+.. code:: shell
+
+   library files               path/to/conda/envs/ct-dev/lib
+   pkg-config                  path/to/conda/envs/ct-dev/lib/pkgconfig
+   C++ headers                 path/to/conda/envs/ct-dev/include
+   samples                     path/to/conda/envs/ct-dev/share/cantera/samples
+   data files                  path/to/conda/envs/ct-dev/share/cantera/data
+
+C++ programs can be compiled according to instructions outlined in the
+:ref:`C++ Guide <sec-compiling-cplusplus>`. As an example, individual Cantera sample
+programs can be compiled as follows using the ``pkg-config`` build system:
+
+.. code:: shell
+
+   $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/conda/envs/ct-env/lib
+   $ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/path/to/conda/envs/ct-env/lib/pkgconfig
+   $ cd /path/to/conda/envs/ct-env/share/cantera/samples/cxx/demo
+   $ g++ demo.cpp -o demo $(pkg-config --cflags --libs cantera)
+   $ ./demo
+
+Windows Systems
+---------------
+
+Installation folders for the C++ and Fortran 90 interface are:
+
+.. code:: shell
+
+   library files               path\to\conda\envs\ct-dev\Library\lib
+   C++ headers                 path\to\conda\envs\ct-dev\Library\include
+   samples                     path\to\conda\envs\ct-dev\share\cantera\samples
+   data files                  path\to\conda\envs\ct-dev\share\cantera\data
+
+The development package on Windows is experimental. While all libraries and headers are
+installed, compilation of custom programs is untested.
+
+Upgrading from an earlier Cantera version
+-----------------------------------------
+
+If you already have the Cantera development interface installed in a conda environment
+(named, for example, ``ct-dev``), you can upgrade it to the latest version available
+by running the commands:
+
+.. code:: shell
+
+   conda activate ct-dev
+   conda update --channel cantera/label/dev libcantera-devel
