@@ -119,6 +119,7 @@ Conda Requirements
      - cython  # needed to build Python package
      - numpy  # needed to build Python package
      - pytest  # needed for the Python test suite
+     # - pytest-cov  # optional (needed if running with test coverage enabled)
      - ruamel.yaml  # needed for converter scripts
      # - h5py  # optional (needed for HDF/H5 output)
      # - pandas  # optional (needed for pandas interface)
@@ -216,10 +217,9 @@ General Notes
 Ubuntu & Debian
 ^^^^^^^^^^^^^^^
 
-* Ubuntu 16.04 LTS (Xenial Xerus) or newer is required; 20.04 LTS (Focal Fossa)
-  or newer is recommended
+* Ubuntu 20.04 LTS (Focal Fossa) or newer
 
-* Debian 9.0 (Stretch) or newer; 10.0 (Buster) or newer is recommended
+* Debian 10.0 (Buster) or newer
 
 * The following packages must be installed to build any of the Cantera modules using
   your choice of package manager::
@@ -228,7 +228,7 @@ Ubuntu & Debian
 
 * In addition to the general packages, building the Python 3 module also requires::
 
-      cython python3 python3-dev python3-setuptools python3-numpy python3-ruamel.yaml
+      cython python3 python3-dev python3-setuptools python3-numpy python3-ruamel.yaml python3-pytest python3-pytest-cov
 
 * In addition to the general packages, building the Fortran module also requires::
 
@@ -268,7 +268,7 @@ Fedora & RHEL
 
 * In addition to the general packages, building the Python 3 module also requires::
 
-      python3 python3-setuptools python3-devel Cython python3-numpy python3-ruamel-yaml
+      python3 python3-setuptools python3-devel Cython python3-numpy python3-ruamel-yaml python3-pytest python3-pytest-cov
 
 * In addition to the general packages, building the Fortran module also requires::
 
@@ -301,7 +301,7 @@ Fedora & RHEL
 OpenSUSE & SUSE Linux Enterprise
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* OpenSUSE Leap 15.1 or newer recommended
+* OpenSUSE Leap 15.3 or newer recommended
 
 * The following packages must be installed to build any of the Cantera modules using
   your choice of package manager::
@@ -310,7 +310,7 @@ OpenSUSE & SUSE Linux Enterprise
 
 * In addition to the general packages, building the Python module also requires::
 
-      python3-devel python3-setuptools python3-numpy python3-numpy-devel python3-ruamel.yaml
+      python3-devel python3-setuptools python3-numpy python3-numpy-devel python3-ruamel.yaml python3-pytest python3-pytest-cov
 
 * In addition to the general packages, building the Fortran module also requires::
 
@@ -435,12 +435,12 @@ Windows Requirements
       the headers from Boost
 
 * In addition to the general software, building the Python module also requires
-  several Python packages: Cython, NumPy, and Ruamel.yaml. All of these can be
-  installed using `pip`:
+  several Python packages: Cython, NumPy, Ruamel.yaml, pytest, and pytest-cov. All of
+  these can be installed using `pip`:
 
   .. code:: bash
 
-     py -m pip install cython numpy ruamel.yaml
+     py -m pip install cython numpy ruamel.yaml pytest pytest-cov
 
 * In addition to the general software, building the MATLAB toolbox also requires:
 
@@ -522,7 +522,7 @@ macOS Requirements
 
   .. code:: bash
 
-     $(brew --prefix)/bin/pip3 install cython numpy ruamel.yaml
+     $(brew --prefix)/bin/pip3 install cython numpy ruamel.yaml pytest pytest-cov
 
 * In addition to the general software, building the Fortran module also requires:
 
