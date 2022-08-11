@@ -20,6 +20,9 @@ phases. The first step is to create an object that represents each phase. A
 simple, complete program that creates an object representing a gas mixture and
 prints its temperature is shown below:
 
+..
+   TODO: Update example to use "core.h" after release of Cantera 3.0
+
 .. include:: pages/tutorials/cxx-guide/thermobasic.cpp
    :code: c++
 

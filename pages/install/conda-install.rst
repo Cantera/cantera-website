@@ -260,14 +260,6 @@ programs can be compiled as follows using the ``pkg-config`` build system:
    $ g++ demo.cpp -o demo $(pkg-config --cflags --libs cantera)
    $ ./demo
 
-A simple sample program for the Fortran 90 interface can be compiled as follows:
-
-.. code::shell
-
-   $ cd /path/to/conda/envs/ct-env/share/cantera/samples/f90
-   $ gfortran demo.f90 -o demo -I/path/to/conda/envs/ct-env/include/cantera
-   $ ./demo
-
 Windows Systems
 ---------------
 

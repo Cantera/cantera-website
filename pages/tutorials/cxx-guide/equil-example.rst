@@ -15,6 +15,9 @@
 In the program below, the ``equilibrate`` method is called to set the gas to a
 state of chemical equilibrium, holding the temperature and pressure fixed.
 
+..
+   TODO: Update example to use "core.h" after release of Cantera 3.0
+
 .. include:: pages/tutorials/cxx-guide/demoequil.cpp
    :code: c++
 
