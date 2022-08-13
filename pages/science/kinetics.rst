@@ -106,7 +106,7 @@ Lindemann form [#Lindemann1922]_:
 
    k_f(T, [{\mathrm{M}}]) = \frac{k_0[{ \mathrm{M}}]}{1 + \frac{k_0{ [\mathrm{M}]}}{k_\infty}}
 
-In the low-pressure limit, this approaches :math:`k0{[\mathrm{M}]}`, and in the
+In the low-pressure limit, this approaches :math:`k_0{[\mathrm{M}]}`, and in the
 high-pressure limit it approaches :math:`k_\infty`.
 
 Defining the non-dimensional reduced pressure:
