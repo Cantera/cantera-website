@@ -248,16 +248,38 @@ Installation folders for the C++ and Fortran 90 interface are:
    samples                     path/to/conda/envs/ct-dev/share/cantera/samples
    data files                  path/to/conda/envs/ct-dev/share/cantera/data
 
-C++ programs can be compiled according to instructions outlined in the
-:ref:`C++ Guide <sec-compiling-cplusplus>`. As an example, individual Cantera sample
-programs can be compiled as follows using the ``pkg-config`` build system:
+In addition to ``libcantera-devel``, installation of additional packages is recommended:
 
 .. code:: shell
 
-   $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/conda/envs/ct-env/lib
-   $ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/path/to/conda/envs/ct-env/lib/pkgconfig
-   $ cd /path/to/conda/envs/ct-env/share/cantera/samples/cxx/demo
+   $ conda activate ct-dev
+   $ conda install make cmake scons pkg-config
+
+C++ programs can be compiled according to instructions outlined in the
+:ref:`C++ Guide <sec-compiling-cplusplus>`. Sample folders for C++ and Fortran include
+preconfigured instruction files to facilitate compilation using the build tools
+``Make``, ``SCons`` and ``CMake``, for example:
+
+.. code:: shell
+
+   $ cd /path/to/conda/envs/ct-dev/share/cantera/samples/cxx/demo
+   $ make  # uses Makefile; or
+   $ scons  # uses SConstruct; or
+   $ cmake . && cmake --build .  # uses CMakeLists.txt
+
+In addition, individual C++ Cantera sample programs can also be compiled using the
+``pkg-config`` build system:
+
+.. code:: shell
+
+   $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/conda/envs/ct-dev/lib
+   $ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/path/to/conda/envs/ct-dev/lib/pkgconfig
    $ g++ demo.cpp -o demo $(pkg-config --cflags --libs cantera)
+
+In all cases, the build process yields the executable ``demo``, which is run as:
+
+.. code:: shell
+
    $ ./demo
 
 Windows Systems
