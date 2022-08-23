@@ -5,7 +5,7 @@ Markdown==3.3.7
 pymdown-extensions==5.0
 GitPython>=3.0.5,<4.0
 Pygments>=2.7.0
-nbconvert==6.4.3
+nbconvert==6.5.1
 nbformat>=5.2.0
 # Pin until the bootstrap.py plugin here can be updated.
 # Something with docutils==0.17 broke that plugin
