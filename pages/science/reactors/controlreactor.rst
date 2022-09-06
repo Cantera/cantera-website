@@ -13,7 +13,7 @@
       Cantera's Control Volume Reactor model.
 
       More information on the Control Volume Reactor class can be found `here. 
-      <https://cantera.org/documentation/docs-2.6/doxygen/html/dc/d5e/classCantera_1_1Reactor.html>`__
+      <{{% ct_docs doxygen/html/dc/d5e/classCantera_1_1Reactor.html %}}>`__
 
 Control Volume Reactor
 **********************
@@ -46,7 +46,7 @@ on the reactor :py:class:`Wall`.
 Where the subscripts *in* and *out* refer to the sum of the superscipted property
 over all inlets and outlets respectively. A dot above a variable signifies a time 
 derivative. A Reactor *wall* is defined `here.
-<http://127.0.0.1:8887/documentation/docs-2.6/sphinx/html/cython/zerodim.html#cantera.Wall>`__ 
+<{{% ct_docs sphinx/html/cython/zerodim.html#cantera.Wall %}}>`__ 
 
 The reactor volume changes as a function of time due to the motion of one or
 more walls:

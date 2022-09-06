@@ -13,7 +13,7 @@
       Cantera's Constant Pressure Reactor model.
       
       More information on the Constant Pressure Reactor class can be found `here. 
-      <https://cantera.org/documentation/docs-2.6/doxygen/html/d5/dfb/classCantera_1_1ConstPressureReactor.html>`__
+      <{{% ct_docs doxygen/html/d5/dfb/classCantera_1_1ConstPressureReactor.html %}}>`__
 
 Constant Pressure Reactor
 *************************
@@ -42,7 +42,7 @@ on the reactor :py:class:`Wall`:
 Where the subscripts *in* and *out* refer to the sum of the superscipted property
 over all inlets and outlets respectively. A dot above a variable signifies a time 
 derivative. A Reactor *wall* is defined `here.
-<http://127.0.0.1:8887/documentation/docs-2.6/sphinx/html/cython/zerodim.html#cantera.Wall>`__ 
+<{{% ct_docs sphinx/html/cython/zerodim.html#cantera.Wall %}}>`__ 
 
 Using the definition of the total enthalpy:
 
@@ -61,7 +61,7 @@ Noting that :math:`dp/dt = 0` and substituting into the energy equation yields:
                    \tag{2}
 
 Where the total specific enthalpy :math:`h` is defined as :math:`h = \sum_k{h_k Y_k}`.
-The enthalpy terms in equation 2 appear due to enthalpy flowing an and out 
+The enthalpy terms in equation 2 appear due to enthalpy flowing in and out 
 of the reactor. The rate of heat transfer :math:`\dot{Q}` can replace 
 :math:`\frac{d U}{d t} + p \frac{dV}{dt}` in the above equation due to the first law 
 of thermodynamics, which states :math:`\dot{Q} = \dot{H}` in a closed system where 

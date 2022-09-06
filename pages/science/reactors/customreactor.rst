@@ -14,8 +14,7 @@
 Custom Reactors
 ***************
 
-If the governing 
-equations must be entirely replaced or an integrator besides CVODES is 
+If using an external integrator (an integrator besides CVODES) is 
 desired, a `Custom Reactor </science/reactors/customreactor.html>`__
 may be the most appropriate Reactor class to use. In this situation, 
 Cantera can still be used to provide chemical and thermodynamic computations, 

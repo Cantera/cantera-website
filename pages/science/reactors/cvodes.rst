@@ -24,7 +24,7 @@ methods:
   CVODES determines the step size by <fill in half a sentence of detail>. The time 
   step must not be larger than a predefined maximum time step 
   :math:`\Delta t_{\mathrm{max}}`. The new time :math:`t_{\mathrm{new}}` at the end 
-  of the single step is returned by this function.This method produces the highest time 
+  of the single step is returned by this function. This method produces the highest time 
   resolution in the output data of the methods implemented in Cantera.
 
 - ``advance(t_new)``: This method computes the state of the system at the 
@@ -92,7 +92,7 @@ mixture (the gas state used in this example is arbitrary, but interesting becaus
 explosive). Then we'll advance the simulation in time to an (arbitrary) absolute time of 
 1 second, noting the changes in the state of the gas.
 
-.. code-block::
+.. code-block:: python
 
     >>> import cantera as ct                           #import Cantera's Python module
     >>> gas = ct.Solution("gri30.yaml")                #create a default GRI-Mech 3.0 gas mixture
@@ -104,9 +104,9 @@ explosive). Then we'll advance the simulation in time to an (arbitrary) absolute
     >>> gas()                #view the updated state of the mixture, reflecting properties at t = 1 sec
 
 For a more advanced example that adds inlets and outlets to the reactor, see Cantera's combustor example 
-(`Python <https://github.com/Cantera/cantera/blob/main/interfaces/cython/cantera/examples/reactors/combustor.py>`__ 
-| `C++ <https://github.com/Cantera/cantera/blob/main/samples/cxx/combustor/combustor.cpp>`__). Additional examples 
-can be found in the `Python Reactor Network Examples <https://cantera.org/examples/python/index.html#python-example-
+(`Python </examples/python/reactors/combustor.py.html>`__ 
+| `C++ </examples/cxx/combustor.html>`__). Additional examples can be found in the 
+`Python Reactor Network Examples <https://cantera.org/examples/python/index.html#python-example-
 reactors>`__ section of the Cantera website.
 
 Step 2: ``advance()`` method called
@@ -137,7 +137,7 @@ Step 4: Communicate with CVODES using a wrapper function
 
 Because ``CVODES`` is written in C, the ``CVodesIntegrator`` C++ wrapper is used to access the solver.
 The ``CVodesIntegrator`` class is a C++ wrapper class for ``CVODES``. (`Documentation 
-<https://cantera.org/documentation/docs-2.4/doxygen/html/d9/d6b/classCantera_1_1CVodesIntegrator.html>`__)
+<{{% ct_docs doxygen/html/d9/d6b/classCantera_1_1CVodesIntegrator.html %}}>`__)
 The ``CVodesIntegrator`` class makes the appropriate call to the ``CVODES`` driver function, ``CVode()``.
 
 Step 5: ``Cvode()`` driver function is called
@@ -149,7 +149,7 @@ see `CVODES User Guide <https://sundials.readthedocs.io/en/latest/cvodes/index.h
 
 The arguments taken by the ``CVode()`` method is shown below:
 
-.. code-block::
+.. code-block:: C++
 
     int CVode(void *cvode_mem, realtype tout, N_Vector yout, realtype *tret, int itask);
 
@@ -166,7 +166,7 @@ There are some interesting things to note about this call to ``CVode()``:
 The result of the ``CVode()`` method is assigned to the ``flag`` object. ``CVode()`` returns 1 or 0, correpsonding to 
 a successful or unsuccessful integration, respectively. 
 
-.. code-block::
+.. code-block:: C++
 
     int flag = CVode(m_cvode_mem, tout, m_y, &m_time, CV_NORMAL);
 
@@ -183,7 +183,7 @@ see `CVODES User Guide <https://sundials.readthedocs.io/en/latest/cvodes/Usage/S
 
 The ``CVodesIntegrator`` wrapper class provides a useful C++ interface for configuring this C function by pairing with 
 ``FuncEval``, an abstract base class for ODE right-hand-side function evaluators (`Documentation 
-<https://cantera.org/documentation/docs-2.6/doxygen/html/d1/dd1/classCantera_1_1FuncEval.html>`__). Classes derived 
+<{{% ct_docs doxygen/html/d1/dd1/classCantera_1_1FuncEval.html %}}>`__). Classes derived 
 from ``FuncEval`` will implement the evaluation of the provided ODE system.
 
 An ODE right-hand-side evaluator is always needed in the ODE solution process (it's the only way to describe the system!), and for that reason a `FuncEval` object is a required parameter 
@@ -209,7 +209,8 @@ coefficients for governing equations, length m_nv, default values 1
 @param[out] RHS pointer to start of vector of right-hand side 
 coefficients for governing equations, length m_nv, default values 0
     
-.. code-block::
+.. code-block:: C++
+
     virtual void eval(double t, double* LHS, double* RHS);
 
 ``eval()`` is called by ``ReactorNet::eval``.
@@ -224,21 +225,69 @@ Step 7: ``eval()`` is called to solve provided ODEs
 Along with the rest of ``FuncEval``'s virtual functions, an appropriate override is provided for ``FuncEval::eval()`` in 
 ``ReactorNet``
 
-.. code-block::
+.. code-block:: C++
 
-    void ReactorNet::eval(doublereal t, doublereal* y, doublereal* ydot, doublereal* p)
-    {
-        m_time = t; // This will be replaced at the end of the timestep
-        updateState(y);
+  void ReactorNet::eval(doublereal t, doublereal* y,
+                      doublereal* ydot, doublereal* p)
+  {
+    m_time = t;
+    updateState(y);
+    m_LHS.assign(m_nv, 1);
+    m_RHS.assign(m_nv, 0);
+    if (!m_checked_eval_deprecation) {
+        m_have_deprecated_eval.assign(m_reactors.size(), false);
         for (size_t n = 0; n < m_reactors.size(); n++) {
-            m_reactors[n]->evalEqs(t, y + m_start[n], ydot + m_start[n], p);
+            m_reactors[n]->applySensitivity(p);
+            try {
+                m_reactors[n]->evalEqs(t, y + m_start[n], ydot + m_start[n], p);
+                warn_deprecated(m_reactors[n]->type() +
+                    "::evalEqs(double t, double* y , double* ydot, double* params)",
+                    "Reactor time derivative evaluation now uses signature "
+                    "eval(double t, double* ydot)");
+                m_have_deprecated_eval[n] = true;
+            } catch (NotImplementedError&) {
+                m_reactors[n]->eval(t, m_LHS.data() + m_start[n], m_RHS.data() + m_start[n]);
+                size_t yEnd = 0;
+                if (n == m_reactors.size() - 1) {
+                    yEnd = m_RHS.size();
+                } else {
+                    yEnd = m_start[n + 1];
+                }
+                for (size_t i = m_start[n]; i < yEnd; i++) {
+                    ydot[i] = m_RHS[i] / m_LHS[i];
+                }
+            }
+            m_reactors[n]->resetSensitivity(p);
         }
-        checkFinite("ydot", ydot, m_nv);
+        m_checked_eval_deprecation = true;
+    } else {
+        for (size_t n = 0; n < m_reactors.size(); n++) {
+            m_reactors[n]->applySensitivity(p);
+            if (m_have_deprecated_eval[n]) {
+                m_reactors[n]->evalEqs(t, y + m_start[n], ydot + m_start[n], p);
+            } else {
+                m_reactors[n]->eval(t, m_LHS.data() + m_start[n], m_RHS.data() + m_start[n]);
+                size_t yEnd = 0;
+                if (n == m_reactors.size() - 1) {
+                    yEnd = m_RHS.size();
+                } else {
+                    yEnd = m_start[n + 1];
+                }
+                for (size_t i = m_start[n]; i < yEnd; i++) {
+                    ydot[i] = m_RHS[i] / m_LHS[i];
+                }
+            }
+            m_reactors[n]->resetSensitivity(p);
+        }
     }
+    checkFinite("ydot", ydot, m_nv);
+  }
 
 
-``ReactorNet``'s ``eval()`` method invokes calls to ``Reactor::evalEqs()``, to evaluate the governing equations of all 
-``Reactors`` contained in the network. This brings us right back to where we started; for more information see 
+
+``ReactorNet``'s ``eval()`` method evaluates the governing equations of all 
+``Reactors`` contained in the network. This brings us right back to where we started. Cantera still currently supports 
+the deprecated ``evalEqs()`` function, hence the deprecation warning. For more information see 
 Cantera's `reactor network science page </science/reactors/reactors.html>`__. 
 
 This documentation is based off @paulblum's `blog post <https://cantera.org/blog/gsoc-2020-blog-3.html>`__.
