@@ -21,10 +21,9 @@ Reactors' governing equations can be modified to the user's specific
 needs while still using the CVODES integrator. An Extensible Reactor allows 
 for modifications of a Reactor class' 
 `governing equations </science/reactors/reactors.html>`__. 
-An Extensible Reactor is also known as a Delegated Reactor. If the governing 
-equations must be entirely replaced or an integrator besides CVODES is 
-desired, a `Custom Reactor </science/reactors/customreactor.html>`__
-may be a more appropriate Reactor class to use.
+An Extensible Reactor is also known as a Delegated Reactor. If using an integrator 
+besides CVODES is desired, a `Custom Reactor </science/reactors/
+customreactor.html>`__ may be a more appropriate Reactor class to use.
 
 The variables in the governing equations that are differentiated with 
 respect to time are known as the state variables.
@@ -102,8 +101,8 @@ Will change to:
    m_{rock} c_{p,rock}\frac{dT}{dt} + m_{gas}\frac{dT}{dt} = - \dot{Q}
 
 The governing equations will be modified through the user created Python class' methods.
-For each method, the name should be prefixed with **before_**, **after_**, or 
-**replace_**, indicating whether the this method should be called before, after, 
+For each method, the name should be prefixed with ``before_``, ``after_``, or 
+``replace_``, indicating whether the this method should be called before, after, 
 or instead of the corresponding method from the base class.
 
 .. code-block:: python
@@ -161,21 +160,12 @@ The final state vector for your reactor network contains the final gas
 properties obtained from Cantera using the modified equation(s).
 
 Details on functions in addition to ``eval()`` 
-that are able to be modified with **before_**, **after_**, or 
-**replace_** can be found `here 
-<https://cantera.org/documentation/dev/sphinx/html/cython/zerodim.html?highlight=
-extensible#extensiblereactor>`__.
+that are able to be modified with ``before_``, ``after_``, or 
+``replace_`` can be found `here 
+<{{% ct_docs sphinx/html/cython/zerodim.html#extensiblereactor %}}>`__.
 
 An Extensible Reactor is also known as a Delegated Reactor.
 
-
-
-
-
-
-
 More in-depth documentation on the different ways to modify equations using
-an Extensible Reactor can be found `here <https://www.cantera.org/documentation
-/dev/doxygen/html/de/d7e/classCantera_1_1ReactorDelegator.html>`__ and `here 
-<https://cantera.org/documentation/dev/sphinx/html/cython/zerodim.html?highlight=
-extensible#extensiblereactor>`__.
+an Extensible Reactor can be found `here <{{% ct_docs doxygen/html/de/d7e/classCantera_1_1ReactorDelegator.html %}}>`__ and `here 
+<{{% ct_docs sphinx/html/cython/zerodim.html#extensiblereactor %}}>`__.

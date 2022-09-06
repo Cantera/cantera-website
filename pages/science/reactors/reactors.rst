@@ -50,7 +50,7 @@ another. Reactors may also be in contact with one another or the environment via
 heat or move to do work.
 
 Reactor Types and Governing Equations
-=======================================
+=====================================
 
 All reactor types are modelled using combinations of Cantera's governing equations of state. 
 The specific governing equations defining Cantera's supported reactor models are derived and described below.
