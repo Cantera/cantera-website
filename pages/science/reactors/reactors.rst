@@ -284,7 +284,7 @@ to the reactors previously mentioned:
   which all states are predefined and never change from their initial values.
   Typically, it represents a vessel to define temperature and composition of a
   stream of mass flowing into a reactor, or the ambient fluid surrounding the
-  reactor network. Besides, the fluid flow finally finally exiting a reactor
+  reactor network. Besides, the fluid flow finally exiting a reactor
   network has to flow into a reservoir. In the latter case, the state of the
   reservoir (except pressure) is irrelevant.
 
