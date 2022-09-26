@@ -117,8 +117,10 @@ The specific governing equations defining Cantera's supported reactor models are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for an Ideal Gas Reactor.
+                     Derivations of governing equations for an Ideal Gas
+                     Control Volume Reactor.
                      A reactor where all gasses follow the ideal gas law,
+                     volume is prescribed by the motion of the reactor's walls, 
                      and temperature is the energy equation state variable.
                      
 .. container:: container
