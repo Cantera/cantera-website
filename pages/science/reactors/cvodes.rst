@@ -21,8 +21,10 @@ methods:
 
 - ``step()``: The ``step()`` method computes the state of the system after one 
   time step. The size of the step is determined by CVODES when the method is called. 
-  CVODES determines the step size by <fill in half a sentence of detail>. The time 
-  step must not be larger than a predefined maximum time step 
+  CVODES determines the step size by estimating the local error at every step, which 
+  must satisfy tolerance conditions. The step is redone with reduced step size whenever 
+  that error test fails. CVODES also periodically checks if the maximum step size is 
+  being used. The time step must not be larger than a predefined maximum time step 
   :math:`\Delta t_{\mathrm{max}}`. The new time :math:`t_{\mathrm{new}}` at the end 
   of the single step is returned by this function. This method produces the highest time 
   resolution in the output data of the methods implemented in Cantera.
@@ -69,8 +71,8 @@ opening/closing valves; see also the `IC engine example </examples/python/reacto
 How Does Cantera's Reactor Network Time Integration Feature Actually Work?
 ==========================================================================
 
-There's a great description of the science behind Cantera's reactor network 
-simulation capabilities available on the Cantera website, 
+A description of the science behind Cantera's reactor network 
+simulation capabilities is available on the Cantera website, 
 `here <https://cantera.org/science/reactors/reactors.html>`__. This section will go into more 
 developer-oriented detail about how the last step, ``ReactorNet``'s 
 `time integration methods <https://cantera.org/science/reactors/reactors.html#time-
@@ -94,14 +96,15 @@ explosive). Then we'll advance the simulation in time to an (arbitrary) absolute
 
 .. code-block:: python
 
-    >>> import cantera as ct                           #import Cantera's Python module
-    >>> gas = ct.Solution("gri30.yaml")                #create a default GRI-Mech 3.0 gas mixture
-    >>> gas.TPX = 1000.0, ct.one_atm, "H2:2,O2:1,N2:4" #set gas to an interesting state
-    >>> reac = ct.IdealGasReactor(gas)                 #create a reactor containing the gas
-    >>> sim = ct.ReactorNet([reac])                    #add the reactor to a new ReactorNet simulator
-    >>> gas()                #view the initial state of the mixture (state summary will be printed to console)
-    >>> sim.advance(1)       #advance the simulation to the specified absolute time, t = 1 sec
-    >>> gas()                #view the updated state of the mixture, reflecting properties at t = 1 sec
+    import cantera as ct  # import Cantera's Python module
+
+    gas = ct.Solution("gri30.yaml")  # create a default GRI-Mech 3.0 gas mixture
+    gas.TPX = 1000.0, ct.one_atm, "H2:2,O2:1,N2:4"  # set gas to an interesting state
+    reac = ct.IdealGasReactor(gas)  # create a reactor containing the gas
+    sim = ct.ReactorNet([reac])  # add the reactor to a new ReactorNet simulator
+    gas()  # view the initial state of the mixture (state summary will be printed to console)
+    sim.advance(1)  # advance the simulation to the specified absolute time, t = 1 sec
+    gas()  # view the updated state of the mixture, reflecting properties at t = 1 sec
 
 For a more advanced example that adds inlets and outlets to the reactor, see Cantera's combustor example 
 (`Python </examples/python/reactors/combustor.py.html>`__ 
@@ -203,11 +206,12 @@ function, ``FuncEval::eval()``. Note that this is declared as a `pure virtual
 
 To evaluate the reactor governing equations the following parameters must be known:
 
-@param[in] t time.
-@param[out] LHS pointer to start of vector of left-hand side 
-coefficients for governing equations, length m_nv, default values 1
-@param[out] RHS pointer to start of vector of right-hand side 
-coefficients for governing equations, length m_nv, default values 0
+#. Time, t
+    Current time in seconds.
+#. LHS pointer to start of vector of left-hand side coefficients for governing equations. 
+    Has length m_nv, default values 1.
+#. RHS pointer to start of vector of right-hand side coefficients for governing equations.
+    Has length m_nv, default values 0.
     
 .. code-block:: C++
 
@@ -227,9 +231,9 @@ Along with the rest of ``FuncEval``'s virtual functions, an appropriate override
 
 .. code-block:: C++
 
-  void ReactorNet::eval(doublereal t, doublereal* y,
+    void ReactorNet::eval(doublereal t, doublereal* y,
                       doublereal* ydot, doublereal* p)
-  {
+    
     m_time = t;
     updateState(y);
     m_LHS.assign(m_nv, 1);
