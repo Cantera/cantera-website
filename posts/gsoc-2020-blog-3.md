@@ -10,7 +10,7 @@ author: Paul Blum
 
 ## _How Does Cantera's Reactor Network Time Integration Feature Work?_
 
-There's a great description of the science behind Cantera's reactor network simulation capabilities available on the Cantera website, [here](https://cantera.org/science/reactors.html). This post will go into more developer-oriented detail about how the last step, `ReactorNet`'s [time integration methods](https://cantera.org/science/reactors.html#time-integration), actually work. A `ReactorNet` object doesn't perform time integration on its own. It generates a system of ODE's based on the combined governing equations of all contained `Reactor`s, which is then passed off to an `Integrator` object for solution. What is an `Integrator`? How does this work?
+There's a great description of the science behind Cantera's reactor network simulation capabilities available on the Cantera website, [here](https://cantera.org/science/reactors/reactors.html). This post will go into more developer-oriented detail about how the last step, `ReactorNet`'s [time integration methods](https://cantera.org/science/reactors/reactors.html#time-integration-for-reactor-networks), actually work. A `ReactorNet` object doesn't perform time integration on its own. It generates a system of ODE's based on the combined governing equations of all contained `Reactor`s, which is then passed off to an `Integrator` object for solution. What is an `Integrator`? How does this work?
 <!-- TEASER_END -->
 
 ### Reactor Network Time Integration, Explained.
@@ -208,7 +208,7 @@ void ReactorNet::eval(doublereal t, doublereal* y, doublereal* ydot, doublereal*
 }
 ```
 
-`ReactorNet`'s `eval()` method invokes calls to `Reactor::evalEqs()`, to evaluate the governing equations of all `Reactor`s contained in the network. This brings us right back to where we started; for more information see Cantera's [reactor network science page](https://cantera.org/science/reactors.html#governing-equations-for-single-reactors).
+`ReactorNet`'s `eval()` method invokes calls to `Reactor::evalEqs()`, to evaluate the governing equations of all `Reactor`s contained in the network. This brings us right back to where we started; for more information see Cantera's [reactor network science page](https://cantera.org/science/reactors/reactors.html#governing-equations-for-single-reactors).
 
 Hope you enjoyed the post. 
 
