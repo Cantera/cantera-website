@@ -45,16 +45,11 @@ field. Supported models are:
 - :ref:`Debye-Huckel <sec-yaml-Debye-Huckel>`: A dilute liquid electrolyte which
   obeys the Debye-Hückel formulation for nonideality
 - :ref:`edge <sec-yaml-edge>`: A one-dimensional edge between two surfaces
-- :ref:`fixed-chemical-potential <sec-yaml-fixed-chemical-potential>`: An
-  incompressible, single-species phase with a fixed value for the chemical
-  potential
 - :ref:`fixed-stoichiometry <sec-yaml-fixed-stoichiometry>`: An incompressible,
   single-species phase
 - :ref:`HMW-electrolyte <sec-yaml-HMW-electrolyte>`: A dilute or concentrated
   liquid electrolyte which obeys the Pitzer formulation for nonideality
 - :ref:`ideal-gas <sec-yaml-ideal-gas>`: A mixture which obeys the ideal gas law
-- :ref:`ideal-gas-VPSS <sec-yaml-ideal-gas-VPSS>`: An ideal gas; Uses "variable
-  pressure standard state" methods for calculating thermodynamic properties
 - :ref:`ideal-molal-solution <sec-yaml-ideal-molal-solution>`: An ideal solution
   based on the mixing-rule assumption that all molality-based activity
   coefficients are equal to one
