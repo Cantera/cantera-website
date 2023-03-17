@@ -106,6 +106,14 @@ post on the `Google Users' Group <https://groups.google.com/forum/#!forum/canter
 
 ------------
 
+**RGFROSH**: A Python real and ideal gas frozen shock solver.
+
+| `Website <https://VasuLab.github.io/RGFROSH>`__
+| `Repository <https://github.com/VasuLab/RGFROSH>`__
+| Maintainer(s): Cory Kinney
+
+------------
+
 **RMG**: Reaction Mechanism Generator, a tool for automatically generating chemical reaction mechanisms for modeling reaction systems including pyrolysis, combustion, atmospheric science, and more.
 
 | `Website <https://rmg.mit.edu>`__
