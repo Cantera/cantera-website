@@ -1,19 +1,18 @@
 [project]
-name = ""
-version = ""
+name = "cantera-website"
 description = ""
 authors = [
     {name = "Cantera Developers", email = "developers@cantera.org"},
 ]
 dependencies = [
     "sphinx>=5.0.2",
-    "pydata-sphinx-theme>=0.9.0",
-    "myst-parser>=0.18.0",
-    "sphinx-design>=0.2.0",
+    "pydata-sphinx-theme>=0.13.0",
+    "myst-parser>=1.0.0",
+    "sphinx-design>=0.3.0",
+    "sphinx-autobuild",
 ]
 requires-python = ">=3.9"
 license = {text = "BSD-3-Clause"}
-[project.optional-dependencies]
 
 [tool.pdm]
 [tool.pdm.dev-dependencies]
@@ -21,6 +20,24 @@ lint = [
     "pre-commit>=2.19.0",
 ]
 
-[build-system]
-requires = ["pdm-pep517>=0.12.0"]
-build-backend = "pdm.pep517.api"
+[tool.pdm.scripts]
+build = {cmd = [
+  "sphinx-build",
+  "-b",
+  "html",
+  "-W",
+  "--keep-going",
+  "source",
+  "build/html",
+  "-a",
+]}
+rebuild = {cmd = [
+  "sphinx-autobuild",
+  "source",
+  "build/html",
+  "--watch",
+  "source",
+  "--port",
+  "0",
+  "--open-browser",
+]}
