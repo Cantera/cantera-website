@@ -5,9 +5,10 @@ with ``:class:`` style references.
 """
 from pathlib import Path
 
+from lxml.html import parse, tostring
 from nikola.plugin_categories import Task
 from nikola.utils import get_logger
-from lxml.html import tostring, parse
+
 
 class ParseDocs(Task):
     """Parse the documentation to find link targets."""
@@ -63,15 +64,20 @@ class ParseDocs(Task):
                     parts = elem_id.split(".")
                     try:
                         # This pattern worked for the Cantera 2.5.1 docs
-                        node = elem.xpath('code[contains(concat(" ", @class, " "), " descname ")]')
+                        node = elem.xpath(
+                            'code[contains(concat(" ", @class, " "), " descname ")]'
+                        )
                         if not len(node):
                             # Output from Sphinx 4.4.0 seems to fit this pattern
-                            node = elem.xpath('span[contains(concat(" ", @class, " "), " descname ")]')[0]
+                            node = elem.xpath(
+                                'span[contains(concat(" ", @class, " "), " descname ")]'
+                            )[0]
                         title = node[0].text
                     except IndexError as err:
                         self.logger.error(
-                            "Unknown title for class: {}\n{}".format(err,
-                                tostring(elem))
+                            "Unknown title for class: {}\n{}".format(
+                                err, tostring(elem)
+                            )
                         )
                         title = parts[-1]
 

@@ -25,9 +25,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-from docutils import nodes, utils
 import docutils
-from docutils.parsers.rst import directives, Directive
+from docutils import nodes, utils
+from docutils.parsers.rst import Directive, directives
 from nikola.plugin_categories import RestExtension
 
 

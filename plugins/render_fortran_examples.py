@@ -8,15 +8,15 @@ folder (relative to the ``OUTPUT_FOLDER``). The relevant source folder is found
 as the key associated with the value that contains the string ``fortran``,
 typically ``"../cantera/samples/f90": "examples/fortran"``.
 """
+import re
+from itertools import chain
 from pathlib import Path
 
-from nikola.plugin_categories import Task
-from nikola import utils
-from pygments import highlight
-from pygments.lexers import FortranLexer, FortranFixedLexer, CppLexer
-from itertools import chain
-import re
 import natsort
+from nikola import utils
+from nikola.plugin_categories import Task
+from pygments import highlight
+from pygments.lexers import CppLexer, FortranFixedLexer, FortranLexer
 
 
 def render_example_index(site, kw, headers, output_file):
@@ -69,9 +69,9 @@ def render_example(site, kw, in_name, out_name):
         A pathlib.Path instance pointing to the rendered output file
 
     """
-    if str(in_name).endswith('.cpp'):
+    if str(in_name).endswith(".cpp"):
         lexer = CppLexer()
-    elif str(in_name).endswith('.f'):
+    elif str(in_name).endswith(".f"):
         lexer = FortranFixedLexer()
     else:
         lexer = FortranLexer()
@@ -163,11 +163,15 @@ class RenderFortranExamples(Task):
             "fortran-example-index.tmpl"
         )
         folder = Path(self.input_folder).resolve()
-        fortran_examples = list(chain(
-            folder.glob("*.f90"),
-            folder.glob("../f77/*.f"),  # hack to combine all Fortran samples on one page
-            folder.glob("../f77/*.cpp"),
-        ))
+        fortran_examples = list(
+            chain(
+                folder.glob("*.f90"),
+                folder.glob(
+                    "../f77/*.f"
+                ),  # hack to combine all Fortran samples on one page
+                folder.glob("../f77/*.cpp"),
+            )
+        )
         fortran_headers = {
             "examples": {
                 "name": "Examples",
@@ -187,32 +191,37 @@ class RenderFortranExamples(Task):
             # Combination of detection for F77, F90, and C/C++ comments.
             fortran_headers["examples"]["files"].append(fortran_ex_file)
             doc = []
+
             def append_doc(line):
-                line = line.lstrip('/* !')
-                if line.startswith('@file'):
-                    line = re.sub(r'@file \w+.\w+\s*', '', line)
+                line = line.lstrip("/* !")
+                if line.startswith("@file"):
+                    line = re.sub(r"@file \w+.\w+\s*", "", line)
                 doc.append(line)
 
             in_block_comment = False
             for line in fortran_ex_file.read_text(encoding="utf-8").split("\n"):
                 line = line.strip()
-                if '*/' in line:
+                if "*/" in line:
                     in_block_comment = False
-                    append_doc(line[:line.find('*/')])
-                if line.startswith('/*'):
+                    append_doc(line[: line.find("*/")])
+                if line.startswith("/*"):
                     append_doc(line)
                     in_block_comment = True
-                if (in_block_comment or line.startswith('!') or line.startswith("//")
-                    or line.startswith('* ')):
+                if (
+                    in_block_comment
+                    or line.startswith("!")
+                    or line.startswith("//")
+                    or line.startswith("* ")
+                ):
                     append_doc(line)
-                elif line.startswith('c     '):
+                elif line.startswith("c     "):
                     append_doc(line[6:])
-                elif line == 'c':
-                    append_doc('')
+                elif line == "c":
+                    append_doc("")
                 elif any(doc):
                     break
 
-            title = ''
+            title = ""
             summary = []
             for line in doc:
                 if line and not title:
@@ -221,7 +230,7 @@ class RenderFortranExamples(Task):
                     summary.append(line)
                 elif summary:
                     break
-            summary = ' '.join(summary)
+            summary = " ".join(summary)
 
             if not summary:
                 self.logger.warn(
@@ -231,7 +240,7 @@ class RenderFortranExamples(Task):
             fortran_headers["examples"]["summaries"][fortran_ex_file.name] = summary
             fortran_headers["examples"]["titles"][fortran_ex_file.name] = title
             out_name = kw["output_folder"].joinpath(
-                self.examples_folder, fortran_ex_file.name + '.html'
+                self.examples_folder, fortran_ex_file.name + ".html"
             )
 
             yield {
@@ -239,7 +248,9 @@ class RenderFortranExamples(Task):
                 "name": str(out_name),
                 "file_dep": examples_template_deps + [fortran_ex_file],
                 "targets": [out_name],
-                "actions": [(render_example, [self.site, kw, fortran_ex_file, out_name])],
+                "actions": [
+                    (render_example, [self.site, kw, fortran_ex_file, out_name])
+                ],
                 # This is necessary to reflect changes in blog title,
                 # sidebar links, etc.
                 "uptodate": [utils.config_changed(uptodate, "fortran_examples:source")],

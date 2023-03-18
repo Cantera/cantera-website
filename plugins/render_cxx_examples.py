@@ -8,15 +8,15 @@ folder (relative to the ``OUTPUT_FOLDER``). The relevant source folder is found
 as the key associated with the value that contains the string ``cxx``,
 typically ``"../cantera/samples/cxx": "examples/cxx"``.
 """
+import re
+from itertools import chain
 from pathlib import Path
 
-from nikola.plugin_categories import Task
+import natsort
 from nikola import utils
+from nikola.plugin_categories import Task
 from pygments import highlight
 from pygments.lexers import CppLexer
-from itertools import chain
-import re
-import natsort
 
 
 def render_example_index(site, kw, headers, output_file):
@@ -74,13 +74,15 @@ def render_example(site, kw, in_names, out_name):
         code = highlight(
             source_file.read_bytes(),
             CppLexer(),
-            utils.NikolaPygmentsHTML(source_file.name)
+            utils.NikolaPygmentsHTML(source_file.name),
         )
-        items.append({
-            "code": code,
-            "title": source_file.name,
-            "source_link": source_file.name,
-        })
+        items.append(
+            {
+                "code": code,
+                "title": source_file.name,
+                "source_link": source_file.name,
+            }
+        )
 
     context = {
         "items": items,
@@ -176,7 +178,6 @@ class RenderCxxExamples(Task):
         uptodate["d"] = cxx_headings.keys()
         uptodate["f"] = list(map(str, cxx_examples))
 
-
         for subdir, cxx_ex_files in cxx_examples.items():
             if not cxx_ex_files:
                 # Skip items that are not directories containing C++ files
@@ -186,30 +187,35 @@ class RenderCxxExamples(Task):
             # Take the following comments, up to the next blank line
             # (not including comment characters) as the summary.
             doc = []
+
             def append_doc(line):
-                line = line.lstrip('/* !')
-                if line.startswith('@file'):
-                    line = re.sub(r'@file \w+.\w+\s*', '', line)
+                line = line.lstrip("/* !")
+                if line.startswith("@file"):
+                    line = re.sub(r"@file \w+.\w+\s*", "", line)
                 doc.append(line)
 
             for ex_file in cxx_ex_files:
-                if not ex_file.name.endswith('.cpp'):
+                if not ex_file.name.endswith(".cpp"):
                     continue
                 in_block_comment = False
                 for line in ex_file.read_text(encoding="utf-8").split("\n"):
                     line = line.strip()
-                    if '*/' in line:
+                    if "*/" in line:
                         in_block_comment = False
-                        append_doc(line[:line.find('*/')])
-                    elif line.startswith('/*'):
+                        append_doc(line[: line.find("*/")])
+                    elif line.startswith("/*"):
                         in_block_comment = True
                         append_doc(line)
-                    elif in_block_comment or line.startswith("//")  or line.startswith('* '):
+                    elif (
+                        in_block_comment
+                        or line.startswith("//")
+                        or line.startswith("* ")
+                    ):
                         append_doc(line)
                     elif any(doc):
                         break
 
-            title = ''
+            title = ""
             summary = []
             for line in doc:
                 if line and not title:
@@ -218,18 +224,18 @@ class RenderCxxExamples(Task):
                     summary.append(line)
                 elif summary:
                     break
-            summary = ' '.join(summary)
+            summary = " ".join(summary)
             if not summary:
                 self.logger.warn(
                     f"The C++ example {ex_file!s} doesn't have an appropriate summary"
                 )
-            name = subdir.stem.replace('_', '-')
+            name = subdir.stem.replace("_", "-")
 
             cxx_headings["examples"]["names"].append(name)
             cxx_headings["examples"]["titles"][name] = title
             cxx_headings["examples"]["summaries"][name] = summary
             out_name = kw["output_folder"].joinpath(
-                self.examples_folder, name + '.html'
+                self.examples_folder, name + ".html"
             )
 
             yield {
@@ -262,7 +268,7 @@ class RenderCxxExamples(Task):
         )
 
         out_name = kw["output_folder"].joinpath(self.examples_folder, kw["index_file"])
-        
+
         all_files = [str(name[0]) for name in chain(cxx_examples.values()) if name]
         yield {
             "basename": self.name,

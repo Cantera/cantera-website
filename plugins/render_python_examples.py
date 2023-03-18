@@ -8,13 +8,13 @@ folder (relative to the ``OUTPUT_FOLDER``). The relevant source folder is found
 as the key associated with the value that contains the string ``python``,
 typically ``"../cantera/samples/python": "examples/python"``.
 """
-from pathlib import Path
 import ast
 from collections import OrderedDict
+from pathlib import Path
 
-from nikola.plugin_categories import Task
-from nikola import utils
 import natsort
+from nikola import utils
+from nikola.plugin_categories import Task
 from pygments import highlight
 from pygments.lexers import Python3Lexer
 

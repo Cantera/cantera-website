@@ -7,9 +7,8 @@ to the appropriate target from the `process_ref_targets` plugin.
 
 from docutils import nodes
 from docutils.parsers.rst import roles
-
-from nikola.utils import split_explicit_title, get_logger
 from nikola.plugin_categories import RestExtension
+from nikola.utils import get_logger, split_explicit_title
 
 LOGGER = get_logger("rest_ref")
 

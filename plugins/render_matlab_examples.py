@@ -10,11 +10,11 @@ typically ``"../cantera/samples/matlab": "examples/matlab"``.
 """
 from pathlib import Path
 
-from nikola.plugin_categories import Task
+import natsort
 from nikola import utils
+from nikola.plugin_categories import Task
 from pygments import highlight
 from pygments.lexers import MatlabLexer
-import natsort
 
 
 def render_example_index(site, kw, headers, output_file):

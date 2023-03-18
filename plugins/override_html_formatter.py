@@ -8,9 +8,9 @@ a default HtmlFormatter object (from the pygments.formatters package).
 To create a codeblock to HTML formatter with nondefault options,
 call pygments.formatters.HtmlFormatter([options])
 """
+import nikola.utils
 from nikola.plugin_categories import RestExtension
 from pygments.formatters import HtmlFormatter
-import nikola.utils
 
 
 class OverrideHTMLFormatter(RestExtension):

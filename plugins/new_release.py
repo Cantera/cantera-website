@@ -12,13 +12,14 @@ created in (1).
 """
 
 import re
-from git import Repo
-from nikola.plugin_categories import Command
-import requests
 from datetime import datetime
 from pathlib import Path
-from nikola import utils
+
+import requests
+from git import Repo
 from lxml import etree, html
+from nikola import utils
+from nikola.plugin_categories import Command
 
 CANTERA_WEBSITE = Path(__file__).parent.parent
 

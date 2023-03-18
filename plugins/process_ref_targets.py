@@ -11,17 +11,17 @@ and stores the resulting page location and anchor tag for the
 label. This information is stored in the ``site.ref_targets``
 and ``site.anon_ref_targets` attributes.
 """
-from nikola.plugin_categories import Task
-from nikola.utils import get_logger, config_changed
-from docutils.io import StringInput, StringOutput
-from docutils import nodes
-from docutils.readers.standalone import Reader
-from docutils.core import Publisher
-from copy import copy
-
-from pathlib import Path
 import tempfile
+from copy import copy
+from pathlib import Path
+
 import requests
+from docutils import nodes
+from docutils.core import Publisher
+from docutils.io import StringInput, StringOutput
+from docutils.readers.standalone import Reader
+from nikola.plugin_categories import Task
+from nikola.utils import config_changed, get_logger
 
 HERE = Path(__file__).parent
 
@@ -97,9 +97,10 @@ class ProcessRefTargets(Task):
         cantera_version = self.site.config["CANTERA_VERSION"]
         yaml_rst_path = f"api-docs/docs-{cantera_version}/sphinx/html/_sources/yaml"
         for rest_file in Path(yaml_rst_path).glob("**/*.rst.txt"):
-            stem = rest_file.name.split('.')[0]
-            permalink = (f"/documentation/docs-{cantera_version}"
-                         f"/sphinx/html/yaml/{stem}.html"
+            stem = rest_file.name.split(".")[0]
+            permalink = (
+                f"/documentation/docs-{cantera_version}"
+                f"/sphinx/html/yaml/{stem}.html"
             )
             yield {
                 "basename": self.name,

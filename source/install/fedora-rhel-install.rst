@@ -65,4 +65,3 @@ above:
 .. code-block:: bash
 
     $ dnf copr enable fuller/cantera-test 
-

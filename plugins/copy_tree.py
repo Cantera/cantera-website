@@ -7,9 +7,9 @@ printed output to stdout during the copying process and is much
 faster. We prefer this plugin since we are copying folders around
 for the API documentation.
 """
-from shutil import copytree, ignore_patterns, rmtree
 import os
 from pathlib import Path
+from shutil import copytree, ignore_patterns, rmtree
 
 from nikola.plugin_categories import Task
 from nikola.utils import config_changed

@@ -8,18 +8,17 @@ folder (relative to the ``OUTPUT_FOLDER``). The relevant source folder is found
 as the key associated with the value that contains the string ``jupyter``,
 typically ``"../cantera-jupyter": "examples/jupyter"``.
 """
-from pathlib import Path
-import re
 import base64
-import mimetypes
-
-from collections import OrderedDict
-import lxml.html
 import json
+import mimetypes
+import re
+from collections import OrderedDict
+from pathlib import Path
 
-from nikola.plugin_categories import Task
-from nikola import utils
+import lxml.html
 import natsort
+from nikola import utils
+from nikola.plugin_categories import Task
 
 
 def render_example_index(site, kw, headers, output_file):
@@ -180,8 +179,12 @@ class RenderJupyterExamples(Task):
         jupyter_headers = OrderedDict(
             thermo=dict(name="Thermodynamics", files=[], summaries={}, titles={}),
             reactors=dict(name="Reactor Networks", files=[], summaries={}, titles={}),
-            flames=dict(name="One-Dimensional Flames", files=[], summaries={}, titles={}),
-            electrochemistry=dict(name="Electrochemistry", files=[], summaries={}, titles={}),
+            flames=dict(
+                name="One-Dimensional Flames", files=[], summaries={}, titles={}
+            ),
+            electrochemistry=dict(
+                name="Electrochemistry", files=[], summaries={}, titles={}
+            ),
             input=dict(name="Input Files", files=[], summaries={}, titles={}),
         )
 
