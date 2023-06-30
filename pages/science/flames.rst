@@ -85,7 +85,8 @@ heat capacity of species :math:`k`, :math:`h_k` is the enthalpy of species
 
 The tangential velocity :math:`w` has been assumed to be zero. The model is
 applicable to both ideal and non-ideal fluids, which follow ideal-gas or real-gas 
-(Redlich-Kwong and Peng-Robinson) equations of state.
+(Redlich-Kwong and Peng-Robinson) equations of state. The real-gas support for
+the flame models has been newly implemented as a part of Cantera 3.0.
 
 To help in the solution of the discretized problem, it is convenient to write a
 differential equation for the scalar :math:`\Lambda`:
