@@ -62,7 +62,7 @@ derived in Section 7.2 of [Kee2017]_:
 
    \rho c_p u \frac{\partial T}{\partial z} =
        \frac{\partial}{\partial z}\left(\lambda \frac{\partial T}{\partial z}\right)
-       - \sum_k j_k c_{p,k} \frac{\partial T}{\partial z}
+       - \sum_k j_k \frac{\partial h_k}{\partial z}
        - \sum_k h_k W_k \dot{\omega}_k
 
 *Species*:
@@ -83,8 +83,9 @@ heat capacity of species :math:`k`, :math:`h_k` is the enthalpy of species
 :math:`k`, :math:`W_k` is the molecular weight of species :math:`k`, and
 :math:`\dot{\omega}_k` is the molar production rate of species :math:`k`.
 
-The tangential velocity :math:`w` has been assumed to be zero, and the fluid has
-been assumed to behave as an ideal gas.
+The tangential velocity :math:`w` has been assumed to be zero. The model is
+applicable to both ideal and non-ideal fluids, which follow ideal-gas or real-gas 
+(Redlich-Kwong and Peng-Robinson) equations of state.
 
 To help in the solution of the discretized problem, it is convenient to write a
 differential equation for the scalar :math:`\Lambda`:
