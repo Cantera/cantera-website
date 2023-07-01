@@ -65,5 +65,5 @@ To install the Cantera Python package, see the :ref:`pip <sec-install-pip>` or
 
   .. code-block:: matlab
 
-     gas = IdealGasMix('gri30.yaml')
+     gas = Solution('gri30.yaml')
      h2o = Solution('liquidvapor.yaml', 'water')
