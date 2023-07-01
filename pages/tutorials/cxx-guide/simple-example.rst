@@ -29,16 +29,12 @@ might look like this:
 
 .. code:: bash
 
-   g++ combustor.cpp -o combustor -pthread -O3 -std=c++11 \
-   -I/opt/cantera-2.5.1/include -L/opt/cantera-2.5.1/lib \
-   -lcantera -lsundials_cvodes -lsundials_ida -lsundials_nvecserial -lfmt -lyaml-cpp
+   g++ combustor.cpp -o combustor -O3 $(pkg-config --cflags --libs cantera)
 
-The locations of the Cantera header files (specified by the ``-I`` option) and the
-libraries (specified by the ``-L`` option) will vary depending on where you
-installed Cantera, and the list of libraries (such as ``sundials_cvodes``) will
-vary depending on what options you used when compiling Cantera. For more
-advanced and flexible methods of compiling programs which use the Cantera C++
-library, see :doc:`compiling`.
+This example relies on the `pkg-config` tool to determine the appropriate compiler
+flags, such as those specifying the Cantera header and library files. For more advanced
+and flexible methods of compiling programs that use the Cantera C++ library, see
+:doc:`compiling`.
 
 This program produces the output below::
 
