@@ -24,7 +24,7 @@ linked below. This demonstrates an approach for solving problems where
 Cantera's reactor network model cannot be configured to describe the system 
 in question. If the existing governing equations *can* be modified to suit 
 the user's needs and the existing integrator is sufficient, an `Extensible
-Reactor </science/reactors/delegatedreactor.html>`__ may be better
+Reactor </science/reactors/extensiblereactor.html>`__ may be better
 suited.
 
 The process to bypass Cantera's existing governing equations can be
