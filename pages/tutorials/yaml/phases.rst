@@ -101,7 +101,10 @@ example:
 
 .. code:: yaml
 
-    elements: [H, C, O, Ar]
+    phases:
+    - name: my-mechanism
+      elements: [H, C, O, Ar]
+      ...
 
 To add elements from other top-level sections, from a different file, or from
 multiple such sources, a list of single-key mappings can be used
@@ -119,10 +122,18 @@ Example:
 
 .. code:: yaml
 
-    elements:
-    - default: [C, H, Ar]
-    - isotopes: [O18]
-    - myelements.yaml/uranium: [U235, U238]
+    my-isotopes:
+    - name: O18
+      atomic-weight: 17.9991603
+
+    phases:
+    - name: my-phase
+      elements:
+      - default: [C, H, Ar]
+      - my-isotopes: [O18]
+      - myelements.yaml/uranium: [U235, U238]
+      species: ...
+      ...
 
 The order of the elements specified in the input file determines the order of
 the elements in the phase when it is imported by Cantera.
@@ -140,7 +151,10 @@ To include specific species from the ``species`` section of the input file, the
 
 .. code:: yaml
 
-    species: [H2, O2, H2O]
+    phases:
+    - name: my-phase
+      species: [H2, O2, H2O]
+      ...
 
 If species are defined in multiple input file sections, the ``species`` entry
 can be a list of single-key mappings, where the key of each mapping specifies
@@ -152,10 +166,13 @@ file is searched first, followed by the Cantera data path. Example:
 
 .. code:: yaml
 
-    species:
-    - species: [O2, N2]
-    - more_species: all
-    - subdir/myfile.yaml/species: [NO2, N2O]
+    phases:
+    - name: my-phase
+      species:
+      - species: [O2, N2]
+      - more_species: all
+      - subdir/myfile.yaml/species: [NO2, N2O]
+      ...
 
 The order of species specified in the input file determines the order of the
 species in the phase when it is imported by Cantera.
@@ -172,6 +189,7 @@ hydrogen or oxygen, the phase definition could contain:
       elements: [H, O]
       species: all
       skip-undeclared-elements: true
+      ...
 
 Setting the Kinetics Model
 --------------------------
@@ -208,10 +226,14 @@ entry can be given as a list of section names, for example:
 
 .. code:: yaml
 
-    reactions:
-    - OH_submechanism
-    - otherfile.yaml/C1-reactions
-    - otherfile.yaml/C2-reactions
+    phases:
+    - name: my-phase
+      ...
+      reactions:
+      - OH_submechanism
+      - otherfile.yaml/C1-reactions
+      - otherfile.yaml/C2-reactions
+      ...
 
 To include reactions from multiple sections or other files while only including
 reactions involving declared species, a list of single-key mappings can be used,
@@ -220,10 +242,14 @@ either the string ``all`` or the string ``declared-species``. For example:
 
 .. code:: yaml
 
-    reactions:
-    - OH_submechanism: all
-    - otherfile.yaml/C1-reactions: all
-    - otherfile.yaml/C2-reactions: declared-species
+    phases:
+    - name: my-phase
+      ...
+      reactions:
+      - OH_submechanism: all
+      - otherfile.yaml/C1-reactions: all
+      - otherfile.yaml/C2-reactions: declared-species
+      ...
 
 To permit reactions containing third-body efficiencies for species not present
 in the phase, the additional field ``skip-undeclared-third-bodies`` may be added
@@ -271,7 +297,15 @@ same input file as the interface, they can be specified as a list of names:
 
 .. code:: yaml
 
-    adjacent: [gas, bulk]
+    phases:
+    - name: my-surface-phase
+      ...
+      adjacent: [gas, bulk]
+      ...
+    - name: gas
+      ...
+    - name: bulk
+      ...
 
 Alternatively, if the adjacent phase definitions are in other sections or other input
 files, they can be specified as a list of single-key mappings where the key is the
@@ -279,10 +313,18 @@ section name (or file and section name) and the value is the phase name:
 
 .. code:: yaml
 
-    adjacent:
-    - {sectionname: gas} # a phase defined in a different section of the same YAML file
-    - {path/to/other-file.yaml/phases: bulk} # a phase defined in the 'phases' section
-                                             # of a different YAML file
+    phases:
+    - name: my-surface-phase
+      ...
+      adjacent:
+      - {my-other-phases: gas}
+      - {path/to/other-file.yaml/phases: bulk} # a phase defined in the 'phases' section
+                                               # of a different YAML file
+      ...
+
+    my-other-phases:
+    - name: gas
+      ...
 
 Since an interface kinetics mechanism is defined for the lowest-dimensional phase
 involved in the mechanism, only higher-dimensional adjacent phases should be specified.
@@ -297,7 +339,7 @@ state, plus the composition. This state is specified as a mapping in the
 ``state`` field of ``phase`` entry.
 
 The thermodynamic state can be set in terms of two of the following properties,
-with the valid property pairs deplending on the phase model:
+with the valid property pairs depending on the phase model:
 
 - ``temperature`` or ``T``
 - ``pressure`` or ``P``
@@ -321,18 +363,22 @@ Examples:
 
 .. code:: yaml
 
-    state:
-      T: 300 K
-      P: 101325 Pa
-      X: {O2: 1.0, N2: 3.76}
-
-    state:
-      density: 100 kg/m^3
-      T: 298
-      Y:
-        CH4: 0.2
-        C3H8: 0.1
-        CO2: 0.7
+    phases:
+    - name: my-phase
+      ...
+      state:
+        T: 300 K
+        P: 101325 Pa
+        X: {O2: 1.0, N2: 3.76}
+    - name: my-other-phase
+      ...
+      state:
+        density: 100 kg/m^3
+        T: 298
+        Y:
+          CH4: 0.2
+          C3H8: 0.1
+          CO2: 0.7
 
 For pure fluid phases, the temperature, pressure, and vapor fraction may all be
 specified if and only if they define a consistent state.
