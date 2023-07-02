@@ -287,12 +287,9 @@ directory where they are located. Alternatively, you can call function
 
     >> adddir('/usr/local/cantera/my_data_files');
 
-Cantera currently supports three input formats for data. The primary format,
-introduced in Cantera 2.5.0, is the YAML format. Two older formats (CTI and XML)
-can also be used, but they are deprecated and support for them will be removed
-in a Cantera 3.0. Utilities are provided for converting existing CTI and XML
-files to YAML. For more info, see
-`Converting CTI and XML input files to YAML <legacy2yaml.html>`__.
+Cantera currently supports input files in the YAML format. Utilities are provided for
+converting CTI and XML files (used with older Cantera versions) to YAML. For more info,
+see `Converting CTI and XML input files to YAML <legacy2yaml.html>`__.
 
 To learn more about the input files already available with Cantera and how to
 create new input files, see :doc:`Working With Input Files <input-files>`.

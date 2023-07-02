@@ -11,8 +11,8 @@ the names of variables and classes:
 
 * **CK**: Chemkin
 * **CT**: Cantera
-* **CTI**: Cantera Input *(Deprecated in Cantera 2.5)*
-* **CTML**: Cantera Markup Language
+* **CTI**: Cantera Input *(Removed in Cantera 3.0)*
+* **CTML**: Cantera Markup Language *(Removed in Cantera 3.0)*
 * **HKFT**: Helgeson-Kirkham-Flowers-Tanger
 * **HMW**: Harvie, Møller, and Weare
 * **IAPWS**: International Association for the Properties of Water and Steam

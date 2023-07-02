@@ -53,5 +53,3 @@ site is built using the [Nikola](https://getnikola.com) static site generator.
   * `IC engine example </examples/python/reactors/ic_engine.py.html>`__
 * To link to a label in the YAML API docs:
   * :ref:`three-body <sec-yaml-three-body>`
-* To link to a class defined in `ctml_writer`:
-  * :cti:class:`falloff_reaction`

@@ -21,8 +21,7 @@ that definitions of elements are not often needed, since Cantera has definitions
 for the standard chemical elements. Explicit element definitions are usually
 only needed for isotopes.
 
-An element can be defined in the legacy CTI format using the :cti:class:`element`
-entry, or in the YAML format by adding entries to the :ref:`elements
+An element can be defined in the YAML format by adding entries to the :ref:`elements
 <sec-yaml-elements>` section of the input file.
 
 Species
@@ -30,8 +29,7 @@ Species
 
 For each species, a species definition is required.
 
-A species can be defined in the legacy CTI format using the :cti:class:`species` entry,
-or in the YAML format by adding an entry to the :ref:`species
+A species can be defined in the YAML format by adding an entry to the :ref:`species
 <sec-yaml-species>` section of the input file.
 
 Species Name
@@ -130,8 +128,7 @@ temperature regions. It is not compatible with the form used in the most recent
 version of the NASA equilibrium program, which uses 9 coefficients for each
 temperature region.
 
-A NASA-7 parameterization can be defined in the legacy CTI format using the
-:cti:class:`NASA` entry, or in the YAML format by specifying
+A NASA-7 parameterization can be defined in the YAML format by specifying
 :ref:`NASA7 <sec-yaml-nasa7>` as the ``model`` in the species ``thermo`` field.
 
 .. _sec-thermo-nasa9:
@@ -162,8 +159,7 @@ the following equations:
 A common source for species data in the NASA9 format is the
 :ref:`NASA ThermoBuild <sec-thermobuild>` tool.
 
-A NASA-9 parameterization can be defined in the legacy CTI format using the
-:cti:class:`NASA9` entry, or in the YAML format by specifying
+A NASA-9 parameterization can be defined in the YAML format by specifying
 :ref:`NASA9 <sec-yaml-nasa9>` as the ``model`` in the species ``thermo`` field.
 
 The Shomate Parameterization
@@ -187,8 +183,7 @@ properties in the `NIST Chemistry WebBook <http://webbook.nist.gov/chemistry>`__
 coefficients :math:`A` through :math:`G` should be entered precisely as shown there, with no units
 attached. Unit conversions to SI will be handled internally.
 
-A Shomate parameterization can be defined in the legacy CTI format using the
-:cti:class:`Shomate` entry, or in the YAML format by specifying
+A Shomate parameterization can be defined in the YAML format by specifying
 :ref:`Shomate <sec-yaml-shomate>` as the ``model`` in the species
 ``thermo`` field.
 
@@ -212,8 +207,7 @@ The parameterization uses four constants: :math:`T^\circ, \hat{c}_p^\circ(T^\cir
 \hat{h}^\circ(T^\circ), and \hat{s}^\circ(T)`. The default value of :math:`T^\circ` is 298.15 K; the
 default value for the other parameters is 0.0.
 
-A constant heat capacity parameterization can be defined in the legacy CTI format using
-the :cti:class:`const_cp` entry, or in the YAML format by specifying
+A constant heat capacity parameterization can be defined in the YAML format by specifying
 :ref:`constant-cp <sec-yaml-constcp>` as the ``model`` in the species ``thermo`` field.
 
 

@@ -23,7 +23,7 @@ The following interfaces and tools are installed by default:
 
 - C++ Libraries and header files for compiling your own programs that use Cantera.
 
-- `YAML tools <../tutorials/ck2yaml-tutorial.html>`__ and legacy `CTI tools <../tutorials/ck2cti-tutorial.html>`__ (``cti`` USE flag, optional).
+- `YAML tools <../tutorials/ck2yaml-tutorial.html>`__.
 
 - Python module for Python 3 (``python`` USE flag with appropriate ``PYTHON_SINGLE_TARGET``, optional).
 
