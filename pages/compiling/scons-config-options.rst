@@ -4,12 +4,27 @@ Options List
 .. _msvc-version:
 
 *  ``msvc_version``: [ ``string`` ]
-   Version of Visual Studio to use. The default is the newest
-   installed version. Specify ``12.0`` for Visual Studio 2013, ``14.0`` for
-   Visual Studio 2015, ``14.1`` (``14.1x``) Visual Studio 2017, ``14.2``
-   (``14.2x``) for Visual Studio 2019, or ``14.3`` (``14.3x``) for
-   Visual Studio 2022. For version numbers in parentheses,
-   ``x`` is a placeholder for a minor version number. Windows MSVC only.
+   Version of Visual Studio to use. The default is the newest installed version.
+   Note that since multiple MSVC toolsets can be installed for a single version of
+   Visual Studio, you probably want to use ``msvc_toolset_version`` unless you
+   specifically installed multiple versions of Visual Studio. Windows MSVC only.
+
+   -  default: ``''``
+
+.. _msvc-toolset-version:
+
+*  ``msvc_toolset_version``: [ ``string`` ]
+   Version of the MSVC toolset to use. The default is the default version for
+   the given ``msvc_version``. Note that the toolset selected here must be
+   installed in the MSVC version selected by ``msvc_version``. The default
+   toolsets associated with various Visual Studio versions are:
+   
+   * ``14.1`` (``14.1x``): Visual Studio 2017
+   * ``14.2`` (``14.2x``): Visual Studio 2019
+   * ``14.3`` (``14.3x``): Visual Studio 2022.
+   
+   For version numbers in parentheses, ``x`` is a placeholder for a minor version
+   number. Windows MSVC only.
 
    -  default: ``''``
 
@@ -33,6 +48,13 @@ Options List
 
       -  Windows: ``'msvc'``
 
+.. _ar:
+
+*  ``AR``: [ ``string`` ]
+   The archiver to use.
+
+   -  default: ``'${AR}'``
+
 .. _cxx:
 
 *  ``CXX``: [ ``string`` ]
@@ -44,13 +66,12 @@ Options List
 
 *  ``cxx_flags``: [ ``string`` ]
    Compiler flags passed to the C++ compiler only. Separate multiple
-   options with spaces, for example, ``"cxx_flags='-g -Wextra -O3 --std=c++11'"``
+   options with spaces, for example, ``"cxx_flags='-g -Wextra -O3 --std=c++14'"``
 
    -  default: compiler dependent
 
-      -  If using ``MSVC``: ``'/EHsc'``
-      -  If using ``Cygwin``: ``'-std=gnu++11'``
-      -  Otherwise: ``'-std=c++11'``
+      -  If using ``MSVC``: ``'/EHsc /std:c++17'``
+      -  Otherwise: ``'-std=c++17'``
 
 .. _cc:
 
@@ -254,6 +275,46 @@ Options List
 
    -  default: ``'default'``
 
+.. _hdf-support:
+
+*  ``hdf_support``: [ ``'n'`` | ``'y'`` | ``'default'`` ]
+   Select whether to support HDF5 container files natively (``y``), disable HDF5
+   support (``n``), or to decide automatically based on the system configuration
+   (``default``). Native HDF5 support uses the HDF5 library as well as the
+   header-only HighFive C++ wrapper (see option ``system_highfive``). Specifying
+   ``hdf_include`` or ``hdf_libdir`` changes the default to ``y``.
+
+   -  default: ``'default'``
+
+.. _hdf-include:
+
+*  ``hdf_include``: [ ``path/to/hdf_include`` ]
+   The directory where the HDF5 header files are installed. This should be the
+   directory that contains files ``H5Version.h`` and ``H5Public.h``, amongst others.
+   Not needed if the headers are installed in a standard location, for example,
+   ``/usr/include``.
+
+   -  default: ``''``
+
+.. _hdf-libdir:
+
+*  ``hdf_libdir``: [ ``path/to/hdf_libdir`` ]
+   The directory where the HDF5 libraries are installed. Not needed if the
+   libraries are installed in a standard location, for example, ``/usr/lib``.
+
+   -  default: ``''``
+
+.. _system-highfive:
+
+*  ``system_highfive``: [ ``'n'`` | ``'y'`` | ``'default'`` ]
+   Select whether to use HighFive from a system installation (``y``), from a
+   Git submodule (``n``), or to decide automatically (``default``). If HighFive
+   is not installed directly into a system include directory, for example, it
+   is installed in ``/opt/include/HighFive``, then you will need to add
+   ``/opt/include/HighFive`` to ``extra_inc_dirs``.
+
+   -  default: ``'default'``
+
 .. _system-yamlcpp:
 
 *  ``system_yamlcpp``: [ ``'n'`` | ``'y'`` | ``'default'`` ]
@@ -294,16 +355,32 @@ Options List
 
    -  default: ``''``
 
+.. _system-blas-lapack:
+
+*  ``system_blas_lapack``: [ ``'n'`` | ``'y'`` | ``'default'`` ]
+   Select whether to use BLAS/LAPACK from a system installation (``y``), use
+   Eigen linear algebra support (``n``), or to decide automatically based on
+   libraries detected on the system (``default``). Specifying ``blas_lapack_libs``
+   or ``blas_lapack_dir`` changes the default to ``y``, whereas installing the
+   Matlab toolbox changes the default to ``n``. On macOS, the ``default`` option
+   uses the Accelerate framework, whereas on other operating systems the
+   preferred option depends on the CPU manufacturer. In general, OpenBLAS
+   (``openblas``) is prioritized over standard libraries (``lapack,blas``), with
+   Eigen being used if no suitable BLAS/LAPACK libraries are detected. On Intel
+   CPU's, MKL (Windows: ``mkl_rt`` / Linux: ``mkl_rt,dl``) has the highest priority,
+   followed by the other options. Note that Eigen is required whether or not
+   BLAS/LAPACK libraries are used.
+
+   -  default: ``'default'``
+
 .. _blas-lapack-libs:
 
 *  ``blas_lapack_libs``: [ ``string`` ]
-   Cantera can use BLAS and LAPACK libraries available on your system if
-   you have optimized versions available (for example, Intel MKL). Otherwise,
-   Cantera will use Eigen for linear algebra support. To use BLAS
-   and LAPACK, set ``blas_lapack_libs`` to the the list of libraries
-   that should be passed to the linker, separated by commas, for example,
-   ``"lapack,blas"`` or ``"lapack,f77blas,cblas,atlas"``. Eigen is required
-   whether or not BLAS/LAPACK are used.
+   Cantera can use BLAS and LAPACK libraries installed on your system if you
+   have optimized versions available (see option ``system_blas_lapack``). To use
+   specific versions of BLAS and LAPACK, set ``blas_lapack_libs`` to the the list
+   of libraries that should be passed to the linker, separated by commas, for
+   example, ``"lapack,blas"`` or ``"lapack,f77blas,cblas,atlas"``.
 
    -  default: ``''``
 
@@ -315,15 +392,6 @@ Options List
    ``/usr/lib``.
 
    -  default: ``''``
-
-.. _lapack-names:
-
-*  ``lapack_names``: [ ``'lower'`` | ``'upper'`` ]
-   Set depending on whether the procedure names in the specified
-   libraries are lowercase or uppercase. If you don't know, run 'nm' on
-   the library file (for example, ``"nm libblas.a"``).
-
-   -  default: ``'lower'``
 
 .. _lapack-ftn-trailing-underscore:
 
@@ -359,7 +427,7 @@ Options List
    string ``all`` or a comma separated list of variable names, for example,
    ``LD_LIBRARY_PATH,HOME``.
 
-   -  default: ``'PATH,LD_LIBRARY_PATH,PYTHONPATH'``
+   -  default: ``'PATH,LD_LIBRARY_PATH,DYLD_LIBRARY_PATH,PYTHONPATH,USERPROFILE'``
 
 .. _use-pch:
 
@@ -521,9 +589,20 @@ Options List
 .. _verbose:
 
 *  ``VERBOSE``: [ ``'yes'`` | ``'no'`` ]
-   Create verbose output about what SCons is doing.
+   Create verbose output about what SCons is doing. Deprecated in Cantera 3.0
+   and to be removed thereafter; replaceable by ``logging=debug``.
 
    -  default: ``'no'``
+
+.. _logging:
+
+*  ``logging``: [ ``'debug'`` | ``'info'`` | ``'warning'`` | ``'error'`` | ``'default'`` ]
+   Select logging level for SCons output. By default, logging messages use
+   the ``info`` level for 'scons build' and the ``warning`` level for all other
+   commands. In case the SCons option ``--silent`` is passed, all messages below
+   the ``error`` level are suppressed.
+
+   -  default: ``'default'``
 
 .. _gtest-flags:
 
@@ -553,9 +632,10 @@ Options List
    actual library and ``libcantera_shared.so`` and ``libcantera_shared.so.2``
    as symlinks.
 
-   -  default: toolchain dependent
+   -  default: compiler dependent
 
       -  If using ``mingw``: ``'no'``
+      -  If using ``MSVC``: ``'no'``
       -  Otherwise: ``'yes'``
 
 .. _use-rpath-linkage:
@@ -582,24 +662,34 @@ Options List
 
 .. _layout:
 
-*  ``layout``: [ ``'standard'`` | ``'compact'`` | ``'debian'`` | ``'conda'`` ]
+*  ``layout``: [ ``'standard'`` | ``'compact'`` | ``'conda'`` ]
    The layout of the directory structure. ``standard`` installs files to
    several subdirectories under 'prefix', for example, ``prefix/bin``,
    ``prefix/include/cantera``, ``prefix/lib`` etc. This layout is best used in
    conjunction with ``"prefix='/usr/local'"``. ``compact`` puts all installed files
    in the subdirectory defined by 'prefix'. This layout is best with a prefix
-   like ``/opt/cantera``. ``debian`` installs to the stage directory in a layout
-   used for generating Debian packages. If the Python executable found during
-   compilation is managed by ``conda``, the layout will default to ``conda``
-   irrespective of operating system. For the ``conda`` layout, the Python package
-   as well as all libraries and header files are installed into the active
-   ``conda`` environment. Input data, samples, and other files are installed in
-   the ``shared/cantera`` subdirectory of the active ``conda`` environment.
+   like ``/opt/cantera``. If the Python executable found during compilation is
+   managed by ``conda``, the layout will default to ``conda`` irrespective of
+   operating system. For the ``conda`` layout, the Python package as well as all
+   libraries and header files are installed into the active ``conda`` environment.
+   Input data, samples, and other files are installed in the ``shared/cantera``
+   subdirectory of the active ``conda`` environment.
 
    -  default: platform dependent
 
       -  Windows: ``'compact'``
       -  Otherwise: ``'standard'``
+
+.. _package-build:
+
+*  ``package_build``: [ ``'yes'`` | ``'no'`` ]
+   Used in combination with packaging tools (example: ``conda-build``). If
+   enabled, the installed package will be independent from host and build
+   environments, with all external library and include paths removed. Packaged
+   C++ and Fortran samples assume that users will compile with local SDKs, which
+   should be backwards compatible with the tools used for the build process.
+
+   -  default: ``'no'``
 
 .. _fast-fail-tests:
 
@@ -628,28 +718,5 @@ Options List
 
 *  ``verbose_tests``: [ ``'yes'`` | ``'no'`` ]
    If enabled, verbose test output will be shown.
-
-   -  default: ``'no'``
-
-.. _legacy-rate-constants:
-
-*  ``legacy_rate_constants``: [ ``'yes'`` | ``'no'`` ]
-   If enabled, rate constant calculations include third-body concentrations
-   for three-body reactions, which corresponds to the legacy implementation.
-   For Cantera 2.6, the option remains enabled (no change compared to past
-   behavior). After Cantera 2.6, the default will be to disable this option,
-   and rate constant calculations will be consistent with conventional
-   definitions (see Eq. 9.75 in Kee, Coltrin and Glarborg, 'Chemically Reacting
-   Flow', Wiley Interscience, 2003).
-
-   -  default: ``'yes'``
-
-.. _no-legacy-reactions:
-
-*  ``no_legacy_reactions``: [ ``'yes'`` | ``'no'`` ]
-   If disabled (``no``/default), legacy ``Reaction`` and associated rate objects
-   that are deprecated in Cantera 2.6 are used. If enabled (``yes``), internal
-   objects will use new objects introduced in Cantera 2.6. The flag is used
-   for testing purposes only and has no effect on results.
 
    -  default: ``'no'``

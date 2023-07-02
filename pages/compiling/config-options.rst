@@ -11,7 +11,7 @@
    .. class:: lead
 
       This document lists the options available for compiling Cantera with
-      SCons. This list is for the current release of Cantera, version 2.6.0. For
+      SCons. This list is for the current release of Cantera, version 3.0.0. For
       the development version, see `this list <config-options-dev.html>`_.
 
    The default values are operating-system dependent. To see the defaults for your current operating
