@@ -1,4 +1,12 @@
 from __future__ import annotations
+
+# If extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here. If the directory is relative to the
+# documentation root, use os.path.abspath to make it absolute, like shown here.
+#
+import sys
+from pathlib import Path
+
 # Configuration file for the Sphinx documentation builder.
 #
 # This file only contains a selection of the most common options. For a full
@@ -7,14 +15,9 @@ from __future__ import annotations
 
 # -- Path setup --------------------------------------------------------------
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
-needs_sphinx = "5.0"
+sys.path.insert(0, str(Path(__file__).parent.resolve()))
+print(sys.path)
+needs_sphinx = "6.2"
 
 
 # -- Project information -----------------------------------------------------
@@ -46,11 +49,12 @@ extensions: list[str] = [
     "myst_parser",
     "sphinx.ext.duration",
     "sphinx.ext.mathjax",
+    "_extension.gallery_extension",
 ]
 
 myst_enable_extensions = ["colon_fence"]
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
+# templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -58,7 +62,10 @@ templates_path = ["_templates"]
 exclude_patterns = ["files"]
 html_extra_path = ["files/license/license.txt", "files/surveys/"]
 
-root_doc = "contents"
+root_doc = "index"
+
+# -- Internationalization ---------------------------------------------------
+language = "en"
 
 # -- Options for HTML output -------------------------------------------------
 
