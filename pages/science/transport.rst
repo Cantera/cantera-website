@@ -24,8 +24,7 @@ Transport property models in general require coefficients that express the
 effect of each species on the transport properties of the phase. Currently,
 ideal-gas transport property models are implemented.
 
-Transport properties can be defined in the CTI format using the
-:cti:class:`gas_transport` entry, or in the YAML format using the
+Transport properties can be defined in the YAML format using the
 :ref:`transport <sec-yaml-species-transport>` field of a ``species`` entry.
 
 .. _sec-phase-transport-models:

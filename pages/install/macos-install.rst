@@ -20,7 +20,6 @@
 To install the Cantera Python package, see the :ref:`pip <sec-install-pip>` or
 :ref:`conda <sec-install-conda>` instructions. The Python package is required if:
 
-- You need to work with legacy CTI or XML input files
 - You need to convert legacy input files to YAML
 - You need to convert Chemkin-format input files to YAML
 

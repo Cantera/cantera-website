@@ -22,10 +22,6 @@ The required input files can be provided via one of several methods:
   in Cantera 2.5)*
 - Create your own YAML file from scratch or by editing an existing file *(New in
   Cantera 2.5)*
-- Convert a pre-existing mechanism from Chemkin (CK) format to the legacy Cantera (CTI)
-  format *(Deprecated in Cantera 2.5; to be removed in Cantera 3.0)*
-- Create your own CTI file, either from scratch or by editing an existing file
-  *(Deprecated in Cantera 2.5; to be removed in Cantera 3.0)*
 
 The first option will suffice for tutorials and introductory work with thermodynamic
 phases and reaction kinetics. Most modern reaction mechanisms are published in Chemkin
@@ -49,8 +45,7 @@ liquid-vapor region (``liquidvapor.yaml``), and a few surface reaction mechanism
 ``ptcombust.yaml``, ``diamond.yaml``, etc.), among others. Under Windows, these files may be located
 in ``C:\Program Files\Cantera\data`` depending on how you installed Cantera and the options you
 specified. On a Unix/Linux/macOS machine, they are usually kept in the ``data`` subdirectory
-within the Cantera installation directory. Corresponding versions of these input files in the
-CTI and XML format are also installed, for backwards compatibility.
+within the Cantera installation directory.
 
 Please see the tutorials for :doc:`Python <python-tutorial>` and :doc:`Matlab <matlab-tutorial>`
 for instructions on how to import from these pre-existing files.
@@ -75,7 +70,7 @@ There are three primary options for creating a new Cantera input file:
             .. container::
                :tagname: a
                :attributes: href=ck2yaml-tutorial.html
-                            title="Chemkin File Conversion (YAML)"
+                            title="Chemkin File Conversion"
 
                .. container:: card-header section-card
 
@@ -87,29 +82,6 @@ There are three primary options for creating a new Cantera input file:
 
                   Convert a Chemkin-formatted ('CK') file to the Cantera YAML
                   format. *(New in Cantera 2.5)*
-
-         .. container:: card
-
-            .. container::
-               :tagname: a
-               :attributes: href=ck2cti-tutorial.html
-                            title="Chemkin File Conversion (CTI)"
-
-               .. container:: card-header section-card
-
-                  Conversion from Chemkin to CTI
-
-            .. container:: card-body
-
-               .. container:: card-text
-
-                  Convert a Chemkin-formatted ('CK') file to the Cantera legacy input
-                  format (CTI).
-                  *(Deprecated in Cantera 2.5; to be removed in Cantera 3.0)*
-
-   .. row::
-
-      .. container:: card-deck
 
          .. container:: card
 
@@ -129,25 +101,6 @@ There are three primary options for creating a new Cantera input file:
                   Create a completely new mechanism, by defining new species,
                   phases, and/or reactions, using the YAML format.
                   *(New in Cantera 2.5)*
-
-         .. container:: card
-
-            .. container::
-               :tagname: a
-               :attributes: href="cti/defining-phases-cti.html"
-                            title="Defining Phases in CTI"
-
-               .. container:: card-header section-card
-
-                  Create a new CTI file
-
-            .. container:: card-body
-
-               .. container:: card-text
-
-                  Create a completely new mechanism, by defining new species,
-                  phases, and/or reactions, using the legacy CTI format.
-                  *(Deprecated in Cantera 2.5; To be removed in Cantera 3.0)*
 
    .. row::
 
@@ -194,7 +147,7 @@ Understanding Input File Syntax
 
 For any of these options (adapting an existing Cantera input file, converting from CK, or creating a new input
 file), it can be helpful to understand the input file syntax requirements. Clearly, anyone writing directly
-in the CTI or YAML formats must conform to these standards. However, even when importing an
+in the YAML formats must conform to these standards. However, even when importing an
 externally-provided file or converting from CK format, understanding the input file syntax can
 help diagnose and correct any errors (although many/most of the CK conversion errors will be related
 to errors in the CK syntax formatting).
@@ -218,21 +171,3 @@ to errors in the CK syntax formatting).
 
             This tutorial covers the details of the YAML format and its syntax.
             *(New in Cantera 2.5)*
-
-   .. container:: card
-
-      .. container::
-         :tagname: a
-         :attributes: href="cti/cti-syntax.html"
-                      title="CTI Syntax Tutorial"
-
-         .. container:: card-header section-card
-
-            CTI Syntax Tutorial
-
-      .. container:: card-body
-
-         .. container:: card-text
-
-            This tutorial covers the details of the legacy CTI format and its syntax
-            *(Deprecated in Cantera 2.5; to be removed in Cantera 3.0)*

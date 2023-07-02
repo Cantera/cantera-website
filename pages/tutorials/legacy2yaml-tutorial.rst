@@ -48,7 +48,7 @@ is, ``cti2yaml`` can be used by running:
    python -m cantera.cti2yaml mymech.cti
 
 It is not necessary to use ``cti2yaml`` to convert any of the CTI input files
-included with Cantera. YAML versions of these files are already included with
+previously included with Cantera. YAML versions of these files are already included with
 Cantera.
 
 For input files where you have both the CTI and XML versions, ``cti2yaml`` is
