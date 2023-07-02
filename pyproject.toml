@@ -1,27 +1,23 @@
 [project]
 name = "cantera-website"
 description = ""
-authors = [
-    {name = "Cantera Developers", email = "developers@cantera.org"},
-]
+authors = [{ name = "Cantera Developers", email = "developers@cantera.org" }]
 dependencies = [
-    "sphinx>=5.0.2",
-    "pydata-sphinx-theme>=0.13.0",
-    "myst-parser>=1.0.0",
-    "sphinx-design>=0.3.0",
-    "sphinx-autobuild",
+  "sphinx>=6.2.1",
+  "pydata-sphinx-theme>=0.13.3",
+  "myst-parser>=2.0.0",
+  "sphinx-design>=0.4.1",
+  "sphinx-autobuild>=2021.3.14",
 ]
 requires-python = ">=3.9"
-license = {text = "BSD-3-Clause"}
+license = { text = "BSD-3-Clause" }
 
 [tool.pdm]
 [tool.pdm.dev-dependencies]
-lint = [
-    "pre-commit>=2.19.0",
-]
+lint = ["pre-commit>=3.3.3"]
 
 [tool.pdm.scripts]
-build = {cmd = [
+build = { cmd = [
   "sphinx-build",
   "-b",
   "html",
@@ -30,8 +26,8 @@ build = {cmd = [
   "source",
   "build/html",
   "-a",
-]}
-rebuild = {cmd = [
+] }
+rebuild = { cmd = [
   "sphinx-autobuild",
   "source",
   "build/html",
@@ -40,4 +36,10 @@ rebuild = {cmd = [
   "--port",
   "0",
   "--open-browser",
-]}
+] }
+
+[tool.pdm.options]
+add = ["--no-self"]
+sync = ["--no-self"]
+install = ["--no-self"]
+update = ["--no-self"]
