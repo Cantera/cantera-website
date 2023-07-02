@@ -8,7 +8,7 @@ site is built using the [Sphinx](https://sphinx-doc.org) static site generator.
 ### Using pdm (Recommended)
 
 1. Install [`pdm`](https://pdm.fming.dev/latest/). Recommended method is to use `pipx`.
-2. Run `pdm install --no-self` to create the virtual environment
+2. Run `pdm install` to create the virtual environment
 3. Run `pdm run build` to build the website, or run `pdm run rebuild` to automatically rebuild the website when a page changes.
 4. Run a web server to view the website:
 
@@ -17,7 +17,8 @@ site is built using the [Sphinx](https://sphinx-doc.org) static site generator.
    ```
 
 5. Open a browser to <http://localhost:8080>
-6. Close the web server with `C-c` (`CTRL-c`)
+
+When you're ready to shut things down, close the web server with `C-c` (`CTRL-c`)
 
 ### Using Conda (old instructions that aren't updated)
 
