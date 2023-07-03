@@ -126,7 +126,7 @@ Building the MATLAB toolbox requires an installed copy of MATLAB, and the path
 to the directory where MATLAB is installed must be specified using the following
 option:
 
-* :ref:`matlab_path <matlab-path>`
+* :ref:`matlab_path <matlab-path-dev>`
 
 Fortran Module Options
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -135,26 +135,26 @@ Building the Fortran module requires a compatible Fortran comiler. SCons will
 attempt to find a compatible compiler by default in the ``PATH`` environment
 variable. The following options control how the Fortran module is built:
 
-* :ref:`f90_interface <f90-interface>`
-* :ref:`FORTRAN <fortran>`
+* :ref:`f90_interface <f90-interface-dev>`
+* :ref:`FORTRAN <fortran-dev>`
 
 Documentation Options
 ^^^^^^^^^^^^^^^^^^^^^
 
 The following options control if the documentation is built:
 
-* :ref:`doxygen_docs <doxygen-docs>`
-* :ref:`sphinx_docs <sphinx-docs>`
+* :ref:`doxygen_docs <doxygen-docs-dev>`
+* :ref:`sphinx_docs <sphinx-docs-dev>`
 
 Less Common Options
 ^^^^^^^^^^^^^^^^^^^
 
-* :ref:`CC <cc>`
-* :ref:`CXX <cxx>`
-* :ref:`env_vars <env-vars>`
-* :ref:`layout <layout>`
-* :ref:`VERBOSE <verbose>`
-* :ref:`gtest_flags <gtest-flags>`
+* :ref:`CC <cc-dev>`
+* :ref:`CXX <cxx-dev>`
+* :ref:`env_vars <env-vars-dev>`
+* :ref:`layout <layout-dev>`
+* :ref:`VERBOSE <verbose-dev>`
+* :ref:`gtest_flags <gtest-flags-dev>`
 
 .. _sec-build-commands:
 
