@@ -17,8 +17,9 @@
 Determine configuration options
 ===============================
 
-* Run ``scons help`` to see a list of all of the configuration options for Cantera, or
-  see all of the options on the :ref:`Configuration Options <scons-config-dev>` page.
+* Run ``scons help --options`` to see a list of all of the configuration options for
+  Cantera, or see all of the options on the :ref:`Configuration Options <scons-config-dev>`
+  page.
 
 * Configuration options are specified as additional arguments to the ``scons``
   command. For example:
@@ -34,7 +35,7 @@ Determine configuration options
     * ``test``
     * ``clean``
 
-  Other commands are possible, and are explained in the :ref:`Build Commands <sec-build-commands>`
+  Other commands are explained in the :ref:`Build Commands <sec-build-commands-dev>`
   section.
 
 * SCons saves configuration options specified on the command line in the file
@@ -57,7 +58,14 @@ Determine configuration options
   :ref:`Configuration options <scons-config-dev>` page.
 
 Common Options
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
+
+* :ref:`debug <debug-dev>`
+* :ref:`optimize <optimize-dev>`
+* :ref:`prefix <prefix-dev>`
+
+Specifying Paths for Cantera's Dependencies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * :ref:`blas_lapack_libs <blas-lapack-libs-dev>`
 
@@ -67,11 +75,12 @@ Common Options
 
 * :ref:`blas_lapack_dir <blas-lapack-dir-dev>`
 * :ref:`boost_inc_dir <boost-inc-dir-dev>`
-* :ref:`debug <debug-dev>`
-* :ref:`optimize <optimize-dev>`
-* :ref:`prefix <prefix-dev>`
 * :ref:`sundials_include <sundials-include-dev>`
 * :ref:`sundials_libdir <sundials-libdir-dev>`
+* :ref:`hdf_include <hdf-include-dev>`
+* :ref:`hdf_libdir <hdf-libdir-dev>`
+* :ref:`extra_inc_dirs <extra-inc-dirs-dev>`
+* :ref:`extra_lib_dirs <extra-lib-dirs-dev>`
 
 Python Module Options
 ^^^^^^^^^^^^^^^^^^^^^
@@ -109,12 +118,13 @@ Windows Only Options
 * By default, SCons attempts to use the same architecture as the copy of Python
   that is running SCons, and the most recent installed version of the Visual
   Studio compiler. If you aren't building the Python module, you can override
-  this with the configuration options ``target_arch`` and ``msvc_version``.
+  this with the configuration options ``target_arch`` and ``msvc_toolset_version``.
 
 * To compile with MinGW, specify the :ref:`toolchain <toolchain-dev>` option::
 
     toolchain=mingw
 
+* :ref:`msvc_toolset_version <_msvc-toolset-version-dev>`
 * :ref:`msvc_version <msvc-version-dev>`
 * :ref:`target_arch <target-arch-dev>`
 * :ref:`toolchain <toolchain-dev>`
@@ -126,12 +136,13 @@ Building the MATLAB toolbox requires an installed copy of MATLAB, and the path
 to the directory where MATLAB is installed must be specified using the following
 option:
 
+* :ref:`matlab_toolbox <matlab-toolbox-dev>`
 * :ref:`matlab_path <matlab-path-dev>`
 
 Fortran Module Options
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Building the Fortran module requires a compatible Fortran comiler. SCons will
+Building the Fortran module requires a compatible Fortran compiler. SCons will
 attempt to find a compatible compiler by default in the ``PATH`` environment
 variable. The following options control how the Fortran module is built:
 
@@ -156,19 +167,21 @@ Less Common Options
 * :ref:`VERBOSE <verbose-dev>`
 * :ref:`gtest_flags <gtest-flags-dev>`
 
-.. _sec-build-commands:
+.. _sec-build-commands-dev:
 
 Build Commands
 ==============
 
-The following options are possible as commands to SCons (that is, the first
-argument after ``scons``):
+The following *commands* are possible as arguments to SCons:
 
 .. code:: bash
 
    scons command
 
 * ``scons help``
+    Print a list of available SCons commands.
+
+* ``scons help --options``
     Print a description of user-specifiable options.
 
 * ``scons build``
@@ -237,7 +250,7 @@ Compile Cantera & Test
     *******************************************************
 
 * If you do not see this message, check the output for errors to see what went
-  wrong.
+  wrong. You may also need to examine the contents of ``config.log``.
 
 * Cantera has a series of tests that can be run with the command:
 
