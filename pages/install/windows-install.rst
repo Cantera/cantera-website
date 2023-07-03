@@ -31,22 +31,11 @@ To install the Cantera Python package, see the :ref:`pip <sec-install-pip>` or
 **Install Cantera**
 
 - Go to the `Cantera Releases <https://github.com/Cantera/cantera/releases>`_
-  page and download **Cantera-2.6.0-x64.msi**.
+  page and download **Cantera-3.0.0-x64.msi**.
 
 - Run the installer and follow the prompts.
 
 **Configure Matlab**
-
-- If you have also installed the Python module, set the environment variable
-  ``PYTHON_CMD`` accordingly.
-
-  - From the *Start* menu, type "edit environment" and select
-    "Edit environment variables for your account".
-  - Add a *New* variable with ``PYTHON_CMD`` as the *name* and the full path
-    to the Python executable (for example, ``C:\python310\python.exe``) as the
-    *value*.
-  - Setting ``PYTHON_CMD`` is not necessary if the path to ``python.exe`` is
-    in your ``PATH`` (which can be set from the same configuration dialog).
 
 - Launch Matlab
 
