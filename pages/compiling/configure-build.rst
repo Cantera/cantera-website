@@ -9,7 +9,7 @@
 
    .. class:: lead
 
-      These directions are for the current release of Cantera, version 2.6. For
+      These directions are for the current release of Cantera, version 3.0. For
       the development version, see `these instructions <configure-build-dev.html>`_.
 
 .. _sec-determine-config:
@@ -17,8 +17,9 @@
 Determine configuration options
 ===============================
 
-* Run ``scons help`` to see a list of all of the configuration options for Cantera, or
-  see all of the options on the :ref:`Configuration Options <scons-config>` page.
+* Run ``scons help --options`` to see a list of all of the configuration options for
+  Cantera, or see all of the options on the :ref:`Configuration Options <scons-config>`
+  page.
 
 * Configuration options are specified as additional arguments to the ``scons``
   command. For example:
@@ -34,7 +35,7 @@ Determine configuration options
     * ``test``
     * ``clean``
 
-  Other commands are possible, and are explained in the :ref:`Build Commands <sec-build-commands>`
+  Other commands are explained in the :ref:`Build Commands <sec-build-commands>`
   section.
 
 * SCons saves configuration options specified on the command line in the file
@@ -57,7 +58,14 @@ Determine configuration options
   :ref:`Configuration options <scons-config>` page.
 
 Common Options
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
+
+* :ref:`debug <debug>`
+* :ref:`optimize <optimize>`
+* :ref:`prefix <prefix>`
+
+Specifying Paths for Cantera's Dependencies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * :ref:`blas_lapack_libs <blas-lapack-libs>`
 
@@ -67,11 +75,12 @@ Common Options
 
 * :ref:`blas_lapack_dir <blas-lapack-dir>`
 * :ref:`boost_inc_dir <boost-inc-dir>`
-* :ref:`debug <debug>`
-* :ref:`optimize <optimize>`
-* :ref:`prefix <prefix>`
 * :ref:`sundials_include <sundials-include>`
 * :ref:`sundials_libdir <sundials-libdir>`
+* :ref:`hdf_include <hdf-include>`
+* :ref:`hdf_libdir <hdf-libdir>`
+* :ref:`extra_inc_dirs <extra-inc-dirs>`
+* :ref:`extra_lib_dirs <extra-lib-dirs>`
 
 General Python Module Options
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -106,12 +115,13 @@ Windows Only Options
 * By default, SCons attempts to use the same architecture as the copy of Python
   that is running SCons, and the most recent installed version of the Visual
   Studio compiler. If you aren't building the Python module, you can override
-  this with the configuration options ``target_arch`` and ``msvc_version``.
+  this with the configuration options ``target_arch`` and ``msvc_toolset_version``.
 
 * To compile with MinGW, specify the :ref:`toolchain <toolchain>` option::
 
     toolchain=mingw
 
+* :ref:`msvc_toolset_version <msvc-toolset-version>`
 * :ref:`msvc_version <msvc-version>`
 * :ref:`target_arch <target-arch>`
 * :ref:`toolchain <toolchain>`
@@ -123,6 +133,7 @@ Building the MATLAB toolbox requires an installed copy of MATLAB, and the path
 to the directory where MATLAB is installed must be specified using the following
 option:
 
+* :ref:`matlab_toolbox <matlab-toolbox>`
 * :ref:`matlab_path <matlab-path>`
 
 Fortran Module Options
@@ -158,14 +169,16 @@ Less Common Options
 Build Commands
 ==============
 
-The following options are possible as commands to SCons (that is, the first
-argument after ``scons``):
+The following *commands* are possible as arguments to SCons:
 
 .. code:: bash
 
    scons command
 
 * ``scons help``
+    Print a list of available SCons commands.
+
+* ``scons help --options``
     Print a description of user-specifiable options.
 
 * ``scons build``
@@ -245,7 +258,7 @@ Compile Cantera & Test
     *******************************************************
 
 * If you do not see this message, check the output for errors to see what went
-  wrong.
+  wrong. You may also need to examine the contents of ``config.log``.
 
 * Cantera has a series of tests that can be run with the command:
 
