@@ -11,12 +11,7 @@
    .. raw:: html
 
       <h1 class="display-3">Installing Cantera</h1>
-
-   .. class:: lead
-
-      The following instructions detail how to install the different Cantera interfaces
-      on a variety of platforms. We highly recommend that all new users install the
-      Python interface via :ref:`Conda <sec-install-conda>`.
+      <p class="lead">The following instructions detail how to install the different Cantera interfaces on a variety of platforms. We highly recommend that all new users install the Python interface via :ref:`Conda <sec-install-conda>`.</p>
 
 Installing the Cantera Python Interface
 =======================================
@@ -46,6 +41,7 @@ Installing the Cantera Python Interface
 
 Installing the Cantera Matlab Toolbox
 =====================================
+
 - The Cantera Matlab toolbox can be installed on all operating systems using
   :ref:`Conda <sec-conda-matlab-interface>`.
 
@@ -58,6 +54,7 @@ Installing the Cantera Matlab Toolbox
 
 Installing the Cantera C++ Interface & Fortran 90 Module
 ========================================================
+
 - The Cantera development interface can be installed on all operating systems using
   :ref:`Conda <sec-conda-development-interface>` (*experimental*).
 

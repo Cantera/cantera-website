@@ -16,14 +16,13 @@ from pathlib import Path
 # -- Path setup --------------------------------------------------------------
 
 sys.path.insert(0, str(Path(__file__).parent.resolve()))
-print(sys.path)
 needs_sphinx = "6.2"
 
 
 # -- Project information -----------------------------------------------------
 
 project = "Cantera"
-copyright = "2022, Cantera Developers"
+copyright = "2023, Cantera Developers"
 author = "Cantera Developers"
 
 # The full version, including alpha/beta/rc tags
@@ -49,6 +48,7 @@ extensions: list[str] = [
     "myst_parser",
     "sphinx.ext.duration",
     "sphinx.ext.mathjax",
+    "_extension.bootstrap",
     "_extension.gallery_extension",
 ]
 
@@ -82,5 +82,56 @@ html_logo = "_static/img/cantera-logo.png"
 html_favicon = "_static/img/favicon.ico"
 html_css_files = ["css/custom.css"]
 html_js_files = ["js/copybutton.js"]
-html_additional_pages = {"index": "index.html"}
 html_sidebars: dict[str, list | list[str]] = {"index": []}
+html_theme_options = {
+    "external_links": [
+        {
+            "url": "https://numfocus.org/",
+            "name": "NumFocus",
+        },
+        {
+            "url": "https://numfocus.org/donate-to-cantera",
+            "name": "Donate to NumFocus",
+        },
+    ],
+    "github_url": "https://github.com/Cantera/cantera",
+    "twitter_url": "https://twitter.com/cantera-software",
+    "header_links_before_dropdown": 6,
+    "icon_links": [
+        {
+            "name": "PyPI",
+            "url": "https://pypi.org/project/cantera",
+            "icon": "fa-solid fa-box",
+        },
+    ],
+    # "logo": {
+    #     "text": "PyData Theme",
+    #     "image_dark": "_static/logo-dark.svg",
+    #     "alt_text": "PyData Theme",
+    # },
+    "use_edit_page_button": True,
+    "show_toc_level": 1,
+    # [left, content, right] For testing that the navbar items align properly
+    "navbar_align": "right",
+    # "navbar_center": ["version-switcher", "navbar-nav"],
+    # "announcement": "https://raw.githubusercontent.com/pydata/pydata-sphinx-theme/main/docs/_templates/custom-template.html",
+    # "show_nav_level": 2,
+    # "navbar_start": ["navbar-logo"],
+    # "navbar_end": ["theme-switcher", "navbar-icon-links"],
+    # "navbar_persistent": ["search-button"],
+    # "primary_sidebar_end": ["custom-template.html", "sidebar-ethical-ads.html"],
+    # "article_footer_items": ["prev-next.html", "test.html", "test.html"],
+    # "content_footer_items": ["prev-next.html", "test.html", "test.html"],
+    # "footer_start": ["test.html", "test.html"],
+    # "secondary_sidebar_items": ["page-toc.html"],  # Remove the source buttons
+    # "switcher": {
+    #     "json_url": json_url,
+    #     "version_match": version_match,
+    # },
+}
+html_context = {
+    "github_user": "cantera",
+    "github_repo": "cantera",
+    "github_version": "main",
+    "doc_path": "docs",
+}
