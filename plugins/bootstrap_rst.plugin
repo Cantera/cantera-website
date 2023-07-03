@@ -1,8 +1,0 @@
-[Core]
-Name = bootstrap_rst
-Module = bootstrap
-
-[Documentation]
-Author = Bryan Weber
-Version = 0.1
-Description = Add directives and roles for bootstrap

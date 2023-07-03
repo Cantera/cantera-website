@@ -173,5 +173,52 @@ Donate to Cantera
 </a>
 </div>
 :::::
-
 ::::::
+
+:::{toctree}
+:maxdepth: 1
+:caption: Install
+
+Install <install/index>
+:::
+
+:::{toctree}
+:caption: Tutorials
+
+Tutorials <tutorials/index>
+:::
+
+:::{toctree}
+:maxdepth: 1
+:caption: Examples
+
+Examples <examples/index>
+:::
+
+:::{toctree}
+:maxdepth: 1
+:caption: Community
+
+Community <community>
+:::
+
+:::{toctree}
+:maxdepth: 1
+:caption: Science
+
+Science <science/index>
+:::
+
+:::{toctree}
+:maxdepth: 1
+:caption: Documentation
+
+Documentation <documentation/index>
+:::
+
+:::{toctree}
+:maxdepth: 1
+:caption: Blog
+
+Blog <posts/index>
+:::

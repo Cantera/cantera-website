@@ -22,7 +22,7 @@ ready to begin using Cantera. The next steps, linked below the tutorials,
 provide information in this regard.
 
 First, let's pick an interface language and get started with the
-tutorials.  Note that while Cantera can be accessed via other interfaces
+tutorials. Note that while Cantera can be accessed via other interfaces
 (namely Fortran and directly in C++), Python and Matlab present the most
 convenient interfaces for learning about Cantera, and are the interface of
 preference for the vast majority of Cantera users.

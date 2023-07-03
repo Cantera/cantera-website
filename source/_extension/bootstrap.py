@@ -25,35 +25,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import docutils
 from docutils import nodes, utils
 from docutils.parsers.rst import Directive, directives
-from nikola.plugin_categories import RestExtension
-
-
-class Bootstrap(RestExtension):
-    """Extend the reST parser with directives for Bootstrap classes."""
-
-    name = "boostrap_rst"
-
-    def set_site(self, site):
-        """Set the Nikola site."""
-        self.site = site
-        directives.register_directive("container", Container)
-        directives.register_directive("jumbotron", Jumbotron)
-        directives.register_directive("row", Row)
-        directives.register_directive("section", Section)
-        directives.register_directive("card", Card)
-        directives.register_directive("card-deck", CardDeck)
-        directives.register_directive("card-body", CardBody)
-        directives.register_directive("card-header", CardHead)
-        directives.register_directive("card-footer", CardFoot)
-        directives.register_directive("button", Button)
-        directives.register_directive("accordion", Accordion)
-
-        add_node("container", visit_container, depart_container)
-
-        return super(Bootstrap, self).set_site(site)
 
 
 def visit_container(self, node):
@@ -72,6 +45,10 @@ def depart_container(self, node):
         self.body.append("</%s>\n" % node.tagname)
     else:
         pass
+
+
+class containernode(nodes.Admonition, nodes.Element):
+    pass
 
 
 class Container(Directive):
@@ -277,18 +254,18 @@ class Button(Container):
     default_tagname = "button"
 
 
-def add_node(node_name, visit_function=None, depart_function=None):
-    """Register a Docutils node class."""
-    nodes._add_node_class_names([node_name])
-    if visit_function is not None:
-        setattr(
-            docutils.writers._html_base.HTMLTranslator,
-            "visit_" + node_name,
-            visit_function,
-        )
-    if depart_function is not None:
-        setattr(
-            docutils.writers._html_base.HTMLTranslator,
-            "depart_" + node_name,
-            depart_function,
-        )
+def setup(app):
+    app.add_directive("container", Container)
+    app.add_directive("jumbotron", Jumbotron)
+    app.add_directive("row", Row)
+    app.add_directive("section", Section)
+    app.add_directive("card", Card)
+    app.add_directive("card-deck", CardDeck)
+    app.add_directive("card-body", CardBody)
+    app.add_directive("card-header", CardHead)
+    app.add_directive("card-footer", CardFoot)
+    app.add_directive("button", Button)
+    app.add_directive("accordion", Accordion)
+
+    app.add_node(containernode, html=(visit_container, depart_container))
+    return {"parallel_read_safe": True, "parallel_write_safe": True}

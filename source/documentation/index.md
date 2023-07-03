@@ -1,13 +1,14 @@
 <!--
 .. title: Cantera Documentation
-.. slug: index
 .. date: 2018-06-09 13:57:46 UTC-04:00
 .. description: API documentation for the Cantera interfaces
 .. type: text
 -->
 
+# Documentation
+
 <div class="jumbotron">
-  <h1 class="display-3">Documentation</h1>
+  <!--<h1 class="display-3">Documentation</h1>-->
   <p class="lead">
     Sometimes you just need a little more detail. You'll find documentation for
     (almost) every function in Cantera right here. This is the documentation for
