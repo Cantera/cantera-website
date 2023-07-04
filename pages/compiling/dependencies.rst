@@ -21,13 +21,13 @@ Fortran compiler is required only if you plan to build the Fortran module.
 
 * GNU compilers (C/C++/Fortran)
 
-  * Known to work with version 7.4 and 9.3. Expected to work with version >= 4.6.
+  * Known to work with versions 9.4 and 11.4. Expected to work with version >= 9.0.
 
 * Clang/LLVM (C/C++)
 
-  * Known to work with versions 3.5 and 3.8. Expected to work with version
-    >= 3.1.
-  * Works with the version included with Xcode 8.2.1 and 9.4.1.
+  * Known to work with versions 10 and 12. Expected to work with version
+    >= 5.0
+  * Works with the versions included in Xcode 13.0 and 14.3.1.
 
 * Intel compilers (C/C++/Fortran)
 
@@ -37,16 +37,14 @@ Fortran compiler is required only if you plan to build the Fortran module.
 
 * Microsoft compilers (C/C++)
 
-  * Known to work with Visual Studio 2015 (MSVC 14.0), Visual Studio 2017 (MSVC 14.1),
-    Visual Studio 2019 (MSVC 14.2) and Visual Studio 2022 (MSVC 14.3).
+  * Known to work with Visual Studio 2017 (MSVC 14.1), Visual Studio 2019 (MSVC 14.2)
+    and Visual Studio 2022 (MSVC 14.3).
 
 * MinGW (C/C++/Fortran)
 
-  * http://mingw-w64.org/doku.php (64-bit and 32-bit)
-  * http://tdm-gcc.tdragon.net/ (64-bit and 32-bit)
-  * Known to work with Mingw-w64 3.0, which provides GCC 4.8. Expected to work
-    with any version that provides a supported version of GCC and includes C++11
-    thread support.
+  * http://mingw-w64.org/doku.php (64-bit)
+  * http://tdm-gcc.tdragon.net/ (64-bit)
+  * Known to work with Mingw-w64 12.2.
 
 Other Required Software
 -----------------------
@@ -54,92 +52,68 @@ Other Required Software
 * SCons:
 
   * http://scons.org/tag/releases.html
-  * Cantera 2.3.0 **must** use SCons < 3.0.0
-  * Cantera 2.4.0 and up **must** use SCons >= 3.0.0
+  * Works with versions >= 3.0.0
+  * On Windows, more recent SCons versions are required to support each new version of
+    the MSVC compiler.
 
 * Python:
 
   * https://python.org/downloads/
-  * Works with versions >= 3.5.
+  * Works with versions >= 3.8.
 
 * Boost
 
   * https://www.boost.org/users/download/
-  * Known to work with version 1.54; Expected to work with versions >= 1.48
+  * Known to work with versions 1.71, 1.74, and 1.82; Expected to work with versions >= 1.70
   * Only the "header-only" portions of Boost are required. Cantera does not
     currently depend on any of the compiled Boost libraries.
 
 * SUNDIALS
 
-  * If SUNDIALS is not installed, it will be automatically downloaded and the
-    necessary portions will be compiled and installed with Cantera.
-  * https://computation.llnl.gov/projects/sundials/sundials-software
-  * Known to work with versions >= 2.4.
+  * If SUNDIALS is not installed and you have checked out the Cantera source code using
+    Git, SUNDIALS will be automatically downloaded and the necessary portions will be
+    compiled and installed with Cantera.
+  * https://computing.llnl.gov/projects/sundials
+  * Known to work with versions >= 3.0. Expected to work with versions <= 7.0.
   * To use SUNDIALS with Cantera on a Linux/Unix system, it must be compiled
-    with the ``-fPIC`` flag. You can specify this flag when configuring
-    SUNDIALS (2.4 or 2.5)::
-
-          configure --with-cflags=-fPIC
-
-    or SUNDIALS 2.6 or higher::
-
-          cmake -DCMAKE_C_FLAGS=-fPIC <other command-line options>
-
-  .. note:: If you are compiling SUNDIALS 2.5.0 on Windows using CMake, you need
-            to edit the ``CMakeLists.txt`` file first and change the lines::
-
-              SET(PACKAGE_STRING "SUNDIALS 2.4.0")
-              SET(PACKAGE_VERSION "2.4.0")
-
-            to read::
-
-              SET(PACKAGE_STRING "SUNDIALS 2.5.0")
-              SET(PACKAGE_VERSION "2.5.0")
-
-            instead, so that Cantera can correctly identify the version of
-            SUNDIALS.
+    with the ``-fPIC`` flag. You can specify this flag when configuring SUNDIALS as
+    ``cmake -DCMAKE_C_FLAGS=-fPIC <other command-line options>``
 
 * Eigen
 
-  * If Eigen is not installed, it will be automatically downloaded and installed
-    with Cantera.
-  * http://eigen.tuxfamily.org/index.php?title=Main_Page
-  * Known to work with version 3.2.8.
+  * If Eigen is not installed and you have checked out the Cantera source code using
+    Git, Eigen will be automatically downloaded and installed with Cantera.
+  * https://eigen.tuxfamily.org/index.php?title=Main_Page
+  * Known to work with version 3.4.0.
 
 * fmt
 
-  * If fmt (previously known as cppformat) is not installed, it will be
-    automatically downloaded and the necessary portions will be compiled and
-    installed with Cantera.
-  * http://fmtlib.net/latest/index.html
-  * Version 3.0.1 or newer is required.
+  * If fmt (previously known as cppformat) is not installed and you have checked out
+    the Cantera source code using Git, fmt will be automatically downloaded and the
+    necessary portions will be compiled and installed with Cantera.
+  * https://fmt.dev/latest/index.html
+  * Known to work with version 9.1.0.
 
 * yaml-cpp
 
-  * If yaml-cpp is not installed, it will be automatically downloaded and the
-    necessary portions will be compiled and installed with Cantera.
+  * If yaml-cpp is not installed and you have checked out the Cantera source code using
+    Git, it will be automatically downloaded and the necessary portions will be compiled
+    and installed with Cantera.
   * https://github.com/jbeder/yaml-cpp
-  * Known to work with version 0.6.3. Version 0.6.0 or newer is required.
+  * Known to work with version 0.7.0. Version 0.6.0 or newer is required.
 
-* Google Test
-
-  * If Google Test is not installed, it will be automatically downloaded and the
-    necessary portions will be compiled as part of the Cantera build process.
-  * https://github.com/google/googletest
-  * Known to work with version 1.7.0.
-
-Optional Programs
------------------
+Optional Dependencies
+---------------------
 
 * `Numpy <https://www.numpy.org/>`__
 
   * Required to build the Cantera Python module, and to run significant portions
     of the test suite.
-  * Expected to work with versions >= 1.12.0. 1.14.0 or newer is recommended.
+  * Expected to work with versions >= 1.12.0. 1.16.0 or newer is recommended.
 
-* `Cython <http://cython.org/>`__
+* `Cython <https://cython.org/>`__
 
-  * Required version >=0.23 to build the Python module.
+  * Required version >=0.29.31 to build the Python module.
 
 * `Ruamel.yaml <https://pypi.org/project/ruamel.yaml/>`__
 
@@ -148,10 +122,35 @@ Optional Programs
   * Known to work with versions 0.15.42, 0.15.87, and 0.16.5
   * Expected to work with versions >= 0.15.0
 
+* `libhdf5 <https://www.hdfgroup.org/solutions/hdf5/>`__
+
+  * Required to read and write data files in the HDF5 format
+  * Known to work with versions 1.12 and 1.14.
+
+* `HighFive <https://github.com/BlueBrain/HighFive>`__
+
+  * Required to read and write data files in the HDF5 format
+  * If HighFive is not installed and you have checked out the Cantera source code
+    using Git, HighFive will be automatically downloaded and the necessary portions will
+    be compiled as part of the Cantera build process.
+
+* `Google Test <https://github.com/google/googletest>`__
+
+  * If Google Test is not installed and you have checked out the Cantera source code
+    using Git, Google Test will be automatically downloaded and the necessary portions
+    will be compiled as part of the Cantera build process.
+  * Required to run significant portions of the test suite.
+  * Known to work with version 1.11.0.
+
+* `pytest <https://pytest.org>`__
+
+  * Required to run the Python test suite.
+  * Known to work with version 7.2.0
+
 * Matlab
 
   * Required to build the Cantera Matlab toolbox.
-  * Known to work with 2009a and 2014b. Expected to work with versions >= 2009a.
+  * Known to work with 2022a. Expected to work with versions >= 2009a.
 
 * `Windows Installer XML (WiX) toolset <http://wixtoolset.org/>`__
 
