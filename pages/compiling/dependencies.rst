@@ -115,7 +115,21 @@ Optional Dependencies
 
   * Required version >=0.29.31 to build the Python module.
 
-* `Ruamel.yaml <https://pypi.org/project/ruamel.yaml/>`__
+* `Pip <https://pip.pypa.io/en/stable/installing/>`__ (Python)
+
+  * Required to build the Cantera Python module.
+  * Provides the ``pip`` command which can be used to install most of
+    the other Python dependencies.
+
+* `wheel <https://pypi.org/project/wheel/>`__ (Python)
+
+  * Required to build the Cantera Python module.
+
+* `setuptools <https://pypi.org/project/setuptools/>`__ (Python)
+
+  * Required to build the Cantera Python module.
+
+* `Ruamel.yaml <https://pypi.org/project/ruamel.yaml/>`__ (Python)
 
   * Required to convert input files from Chemkin, CTI, and XML to the YAML
     format
@@ -156,11 +170,6 @@ Optional Dependencies
 
   * Required to build MSI installers on Windows.
   * Known to work with versions 3.5 and 3.8.
-
-* `Pip <https://pip.pypa.io/en/stable/installing/>`__ (Python)
-
-  * Provides the ``pip`` command which can be used to install most of
-    the other Python modules.
 
 * Packages required for building Sphinx documentation
 
