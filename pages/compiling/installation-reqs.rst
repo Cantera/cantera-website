@@ -63,8 +63,9 @@ General Notes
 Conda Requirements
 ^^^^^^^^^^^^^^^^^^
 
-* Install `Anaconda <https://www.anaconda.com/download/>`__ or
-  `Miniconda <https://conda.io/miniconda.html>`__.
+* Install `Anaconda <https://www.anaconda.com/download/>`__,
+  `Miniconda <https://conda.io/miniconda.html>`__, or
+  `Miniforge <https://github.com/conda-forge/miniforge>`__.
 
 * Launch the command line interface:
 
@@ -80,7 +81,7 @@ Conda Requirements
 
     .. code:: bash
 
-      /path/to/conda/install/folder/bin/conda init -all
+      /path/to/conda/install/folder/bin/conda init --all
 
     Then restart your terminal or shell.
 
@@ -108,9 +109,11 @@ Conda Requirements
      channels:
      - conda-forge
      dependencies:
-     - python  # Cantera supports Python 3.7 and up
+     - python  # Cantera supports Python 3.8 and up
      - scons  # build system
      - boost-cpp  # C++ dependency
+     - hdf5  # optional C++ dependency
+     # - highfive  # C++ dependency; uncomment to override Cantera default
      # - sundials  # uncomment to override Cantera default
      # - fmt  # uncomment to override Cantera default
      # - eigen  # uncomment to override Cantera default
@@ -118,10 +121,12 @@ Conda Requirements
      # - libgomp  # optional (OpenMP implementation when using GCC)
      - cython  # needed to build Python package
      - numpy  # needed to build Python package
+     - pip  # needed to build Python package
+     - wheel  # needed to build Python package
+     - setuptools  # needed to build Python package
      - pytest  # needed for the Python test suite
      # - pytest-cov  # optional (needed if running with test coverage enabled)
      - ruamel.yaml  # needed for converter scripts
-     # - h5py  # optional (needed for HDF/H5 output)
      # - pandas  # optional (needed for pandas interface)
      # - scipy  # optional (needed for some examples)
      # - matplotlib  # optional (needed for plots)
@@ -131,7 +136,6 @@ Conda Requirements
      # - sphinx  # optional (needed for documentation)
      # - doxygen  # optional (needed for documentation)
      # - graphviz  # optional (needed for documentation)
-     # - pip  # optional (needed if PyPI managed packages are used)
      # - pip:  # optional (list of PyPI managed packages)
      #   - sphinxcontrib-matlabdomain  # optional (needed for documentation)
      #   - sphinxcontrib-katex  # optional (needed for documentation)
@@ -160,7 +164,7 @@ Conda Requirements
   containing ``sphinx``, ``doxygen``, ``graphviz``, ``pip`` as well as all relevant
   items listed for the ``pip:`` entry in ``environment.yaml``.
 
-* (Cantera < 2.6 only) On previous Cantera versions, the build process requires
+* (Cantera < 2.6 only) On previous Cantera versions, the build process required
   configuration options ``boost_inc_dir`` and ``prefix`` (see
   `configuration options <https://cantera.org/compiling/configure-build.html>`__);
   starting with Cantera 2.6, these settings are detected automatically.
@@ -201,7 +205,7 @@ General Notes
 * Cython is only required to be installed for the version of Python that also
   has SCons installed; following the instructions below will install Cython for
   the version of Python installed in the system directories. The minimum
-  compatible Cython version is 0.23. If your distribution does not contain a
+  compatible Cython version is 0.29.31. If your distribution does not contain a
   suitable version, you may be able to install a more recent version using
   Pip.
 
@@ -219,16 +223,24 @@ Ubuntu & Debian
 
 * Ubuntu 20.04 LTS (Focal Fossa) or newer
 
-* Debian 10.0 (Buster) or newer
+* Debian 11.0 (Bullseye) or newer
 
 * The following packages must be installed to build any of the Cantera modules using
   your choice of package manager::
 
-      g++ python scons libboost-dev
+      g++ python3 scons libboost-dev libhdf5-dev
+
+* If you want to use system system packages to provide the following dependencies,
+  instead of the versions bundled with Cantera, you should also install:
+
+      libsundials-dev libeigen3-dev libyaml-cpp-dev libfmt-dev
 
 * In addition to the general packages, building the Python 3 module also requires::
 
-      cython python3 python3-dev python3-setuptools python3-numpy python3-ruamel.yaml python3-pytest python3-pytest-cov
+      cython3 python3-setuptools python3-wheel python3-numpy python3-ruamel.yaml python3-pytest
+
+  * Debian 12.0 (Bookworm) and Ubuntu 23.04 (Lunar Lobster) provide compatible Cython
+    versions. For older releases, install Cython using Pip.
 
 * In addition to the general packages, building the Fortran module also requires::
 
@@ -264,11 +276,16 @@ Fedora & RHEL
 * The following packages must be installed to build any of the Cantera modules using
   your choice of package manager::
 
-      gcc-c++ python scons boost-devel
+      gcc-c++ python3 scons boost-devel hdf5-devel
+
+* If you want to use system system packages to provide the following dependencies,
+  instead of the versions bundled with Cantera, you should also install:
+
+      sundials-devel eigen3-devel yaml-cpp-devel fmt-devel highfive-devel
 
 * In addition to the general packages, building the Python 3 module also requires::
 
-      python3 python3-setuptools python3-devel Cython python3-numpy python3-ruamel-yaml python3-pytest python3-pytest-cov
+      python3-devel Cython python3-numpy python3-ruamel-yaml python3-pytest
 
 * In addition to the general packages, building the Fortran module also requires::
 
@@ -301,20 +318,29 @@ Fedora & RHEL
 OpenSUSE & SUSE Linux Enterprise
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* OpenSUSE Leap 15.3 or newer recommended
+* OpenSUSE Leap 15.5 or newer recommended
 
 * The following packages must be installed to build any of the Cantera modules using
   your choice of package manager::
 
-      gcc-c++ python3 scons boost-devel
+      gcc11-c++ python311 libboost_headers1_75_0-devel hdf5-devel python311-pip
+
+  You can specify other version numbers for GCC, Python, and Boost, as long as they meet
+  Cantera's minimum requirements.
+
+* You will also need to install ``scons`` using the Pip version installed above.
 
 * In addition to the general packages, building the Python module also requires::
 
-      python3-devel python3-setuptools python3-numpy python3-numpy-devel python3-ruamel.yaml python3-pytest python3-pytest-cov
+      python3-devel
+
+  as well as the following packages installed using Pip:
+
+      numpy wheel cython ruamel.yaml pytest
 
 * In addition to the general packages, building the Fortran module also requires::
 
-      gcc-fortran
+      gcc11-fortran
 
 * In addition to the general packages, building the MATLAB toolbox also requires:
 
