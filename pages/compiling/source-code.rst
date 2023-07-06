@@ -12,7 +12,7 @@
 Stable Release
 --------------
 
-* **Option 1**: Check out the code using Git:
+* **Option 1**: Check out the code using Git (recommended):
 
   .. code:: bash
 
@@ -23,7 +23,7 @@ Stable Release
 
   .. code:: bash
 
-      git checkout tags/v2.5.0
+      git checkout tags/v3.0.0
       git submodule update
 
   A list of all the tags can be shown by:
@@ -34,7 +34,9 @@ Stable Release
 
 * **Option 2**: Download the most recent source ``.tar.gz`` or ``.zip`` file
   from `Github <https://github.com/Cantera/cantera/releases>`__ and extract the
-  contents.
+  contents. In this case, several dependencies that are linked to the Cantera Git
+  repository will not be available and will need to be installed elsewhere on your
+  system.
 
 Beta Release
 ------------
@@ -52,7 +54,7 @@ Beta Release
 
   .. code:: bash
 
-     git checkout tags/v2.5.0b1
+     git checkout tags/v3.0.0b1
      git submodule update
 
   Note that the most recent beta version might be older than the most recent
@@ -68,10 +70,19 @@ Beta Release
 
   .. code:: bash
 
-     git checkout 2.5
+     git checkout 3.0
      git submodule update
 
-  This branch has all the work on the 2.5.x version of the software.
+  This branch has all the work on the 3.0.x version of the software.
+
+  If you've already checked out the 3.0 branch, you can get the latest updates from the
+  main Cantera repository and synchronize your local repository by running:
+
+  .. code:: bash
+
+     git checkout 3.0
+     git fetch --all
+     git pull --ff-only
 
 Development Version
 -------------------
@@ -87,6 +98,16 @@ Note that by default, the ``main`` branch is checked out, containing all of
 the feature updates and bug fixes to the code since the previous stable release.
 The main branch is usually an alpha release, corresponding to the ``a`` in
 the version number, and does not usually get a tag.
+
+If you've previously checked out the repository, and haven't made any changes locally,
+you can get the latest updates from the main Cantera repository and synchronize your
+local repository by running:
+
+.. code:: bash
+
+   git checkout main
+   git fetch --all
+   git pull --ff-only
 
 .. container:: container
 
