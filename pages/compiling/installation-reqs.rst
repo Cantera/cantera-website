@@ -416,7 +416,7 @@ Windows Requirements
 
     * https://www.python.org/downloads/
 
-    * Cantera supports Python 3.5 and higher
+    * Cantera supports Python 3.8 and higher
 
     * Be sure to choose the appropriate architecture for your system - either
       32-bit or 64-bit
@@ -436,9 +436,8 @@ Windows Requirements
 
       * https://visualstudio.microsoft.com/downloads/
 
-      * Known to work with Visual Studio 2013 (MSVC 12.0), Visual Studio 2015
-        (MSVC 14.0), Visual Studio 2017 (MSVC 14.1), and Visual Studio 2019
-        (MSVC 14.2).
+      * Known to work with Visual Studio 2017 (MSVC 14.1), Visual Studio 2019
+        (MSVC 14.2), and Visual Studio 2022 (MSVC 14.3).
 
     * MinGW compilers
 
@@ -446,27 +445,22 @@ Windows Requirements
 
       * http://tdm-gcc.tdragon.net/
 
-      * Known to work with Mingw-w64 3.0, which provides GCC 4.8. Expected to
-        work with any version that provides a supported version of GCC and
-        includes C++11 thread support.
-
-      * The version of MinGW from http://www.mingw.org/ cannot be used to build
-        Cantera. Users must use MinGW-w64 or TDM-GCC.
+      * Known to work with Mingw-w64 12.2.
 
   * The Boost headers
 
-    * https://www.boost.org/doc/libs/1_63_0/more/getting_started/windows.html#get-boost
+    * https://www.boost.org/doc/libs/1_82_0/more/getting_started/windows.html#get-boost
 
     * It is not necessary to compile the Boost libraries since Cantera only uses
       the headers from Boost
 
 * In addition to the general software, building the Python module also requires
-  several Python packages: Cython, NumPy, Ruamel.yaml, pytest, and pytest-cov. All of
-  these can be installed using `pip`:
+  several Python packages: Cython, NumPy, setuptools, wheel, ruamel.yaml, and pytest.
+  All of these can be installed using `pip`:
 
   .. code:: bash
 
-     py -m pip install cython numpy ruamel.yaml pytest pytest-cov
+     py -m pip install setuptools wheel cython numpy ruamel.yaml pytest
 
 * In addition to the general software, building the MATLAB toolbox also requires:
 
