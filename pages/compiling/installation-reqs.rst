@@ -496,16 +496,14 @@ General Notes
   on your computer. You must install Python 3 from another source to be able to build
   Cantera. The instructions below use Homebrew.
 
-* To download the source code, installing ``git`` via HomeBrew is highly recommended.
-
 .. _sec-mac-os-reqs:
 
 macOS Requirements
 ^^^^^^^^^^^^^^^^^^
 
-* macOS 10.14 (Mojave) or newer required to install Homebrew
+* macOS 10.15 (Catalina) is required; Homebrew requires 11.0 or newer.
 
-* To build any of the Cantera modules, you will need to install
+* To build any of the Cantera interfaces, you will need to install
 
   * Xcode
 
@@ -533,16 +531,25 @@ macOS Requirements
 
     .. code:: bash
 
-       brew install python scons boost git libomp
+       brew install python scons boost git hdf5 libomp
 
-    Note that brew installs Python 3 by default, but does not over-write the existing system Python.
-    When you want to use the brew-installed Python, you should use ``$(brew --prefix)/bin/python3``.
+    Note that brew installs Python 3 by default, but does not over-write the existing
+    system Python. When you want to use the brew-installed Python, check to make sure
+    that ``python3`` and ``pip3`` refer to the Homebrew installation by running:
+
+    .. code:: bash
+
+        which python3
+        which pip3
+
+    If these commands do not include the Homebrew path, you can run the correct ones as
+    ``$(brew --prefix)/bin/python3`` and ``$(brew --prefix)/bin/pip3``.
 
 * In addition to the general software, building the Python module also requires:
 
   .. code:: bash
 
-     $(brew --prefix)/bin/pip3 install cython numpy ruamel.yaml pytest pytest-cov
+     $(brew --prefix)/bin/pip3 install cython numpy wheel setuptools ruamel.yaml pytest
 
 * In addition to the general software, building the Fortran module also requires:
 
@@ -559,6 +566,11 @@ macOS Requirements
         /Applications/MATLAB_R20YYn.app
 
       where ``YY`` is a two digit year and ``n`` is either ``a`` or ``b``
+
+* The Homebrew header and library directories will not be on the path for the system
+  compiler (Xcode), so when compiling Cantera, you will need to provide the command line
+  options ``extra_inc_dirs=$(brew --prefix)/include`` and
+  ``extra_lib_dirs=$(brew --prefix)/lib``.
 
 .. container:: container
 
