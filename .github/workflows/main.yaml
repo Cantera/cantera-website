@@ -34,7 +34,7 @@ jobs:
         submodules: recursive
         repository: Cantera/cantera
         path: cantera
-        ref: 2.6
+        ref: "3.0"
     - uses: actions/checkout@v2
       name: Checkout Cantera 'main' repository
       with:
