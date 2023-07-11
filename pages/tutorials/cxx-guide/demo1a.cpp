@@ -7,7 +7,7 @@ using namespace Cantera;
 void simple_demo()
 {
     // Create a new Solution object
-    auto sol = newSolution("h2o2.yaml", "ohmech", "None");
+    auto sol = newSolution("h2o2.yaml");
     auto gas = sol->thermo();
 
     // Set the thermodynamic state by specifying T (500 K) P (2 atm) and the mole
@@ -28,5 +28,7 @@ int main()
         simple_demo();
     } catch (CanteraError& err) {
         std::cout << err.what() << std::endl;
+        return 1;
     }
+    return 0;
 }
