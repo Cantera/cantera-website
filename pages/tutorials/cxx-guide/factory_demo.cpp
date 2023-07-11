@@ -59,6 +59,8 @@ int main()
         simple_demo2();
     } catch (std::exception& err) {
         std::cout << err.what() << std::endl;
+        return 1;
     }
+    return 0;
 }
 

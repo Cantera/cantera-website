@@ -6,7 +6,7 @@ using namespace Cantera;
 void thermo_demo(const std::string& file, const std::string& phase)
 {
     // Create a new Solution object
-    auto sol = newSolution("h2o2.yaml", "ohmech", "None");
+    auto sol = newSolution(file, phase);
     auto gas = sol->thermo();
 
     gas->setState_TPX(1500.0, 2.0*OneAtm, "O2:1.0, H2:3.0, AR:1.0");
@@ -25,11 +25,10 @@ void thermo_demo(const std::string& file, const std::string& phase)
     std::cout << gas->entropy_mass() << std::endl;
 
     // chemical potentials of the species
-    int numSpecies = gas->nSpecies();
+    size_t numSpecies = gas->nSpecies();
     vector_fp mu(numSpecies);
-    gas->getChemPotentials(&mu[0]);
-    int n;
-    for (n = 0; n < numSpecies; n++) {
+    gas->getChemPotentials(mu.data());
+    for (size_t n = 0; n < numSpecies; n++) {
         std::cout << gas->speciesName(n) << " " << mu[n] << std::endl;
     }
 }
