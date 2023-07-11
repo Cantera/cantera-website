@@ -94,6 +94,26 @@ To determine the appropriate settings for your system, take a look at one of the
 pre-configured ``SConstruct`` files that are provided with the C++ examples contained in
 the ``samples/cxx`` subdirectory of the Cantera installation directory.
 
+To build a program using SCons, simply run the following command from a shell in the
+directory containing the ``SConstruct`` file:
+
+.. code:: bash
+
+   scons
+
+If you installed SCons using Conda, you may need to activate the appropriate Conda
+environment so that the ``scons`` command will be on your path. On Windows, you may
+need to run this command from a shell with the appropriate Visual Studio environment
+variables set. This can be done either by starting the shell using the *Developer
+Command Prompt for VS 20xx* shortcut in the Start menu, or by running the batch file:
+
+.. code:: bat
+
+   C:\Program Files\Visual Studio 2022\VC\Auxiliary\Build\vcvars64.bat
+
+in an existing shell, where the path specified will depend on the version and
+installation path of Visual Studio.
+
 For more information on SCons, see the `SCons Wiki <https://github.com/SCons/scons/wiki/>`__
 and the `SCons homepage <https://www.scons.org>`__.
 
@@ -127,6 +147,30 @@ Several example ``CMakeLists.txt`` files are included with the C++ examples
 contained in the ``samples/cxx`` subdirectory of the Cantera installation directory,
 which have the paths and lists of libraries correctly configured for the
 system on which they are installed.
+
+To build a program using CMake on Linux or macOS, run the following commands from the
+directory containing the ``CMakeLists.txt`` file:
+
+.. code:: bash
+
+   mkdir build
+   cd build
+   cmake ..
+   cmake --build .
+
+This will create an executable named ``sample`` in the ``build`` directory.
+
+To build a program using CMake on Windows, run the following commands from the
+directory containing the ``CMakeLists.txt`` file:
+
+.. code:: bash
+
+   mkdir build
+   cd build
+   cmake ..
+   cmake --build . --config Release
+
+This will create an executable named ``sample.exe`` in the ``build\Release`` directory.
 
 Libraries & Library Paths
 *************************
