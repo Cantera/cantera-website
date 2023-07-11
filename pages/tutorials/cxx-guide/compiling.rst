@@ -15,22 +15,11 @@ Build Systems
 *************
 
 In general, it should be possible to use Cantera with any build system by
-specifying the appropriate header and library paths, and specifying the required
-libraries when linking. It is also necessary to specify the paths for libraries
-used by Cantera, such as Sundials, BLAS, and LAPACK.
-
-Instructions below assume a Linux operating system where Cantera's libraries are
-installed in a standard location such as ``/usr/lib`` or ``/usr/local/lib``. If Cantera
-is installed to a custom location, environment variables ``LD_LIBRARY_PATH`` and
-``PKG_CONFIG_PATH`` need to be specified. If they are not already set elsewhere, they
-can be set from the command line as:
-
-.. code:: bash
-
-   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/lib
-   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/path/to/lib/pkgconfig
-
-where ``/path/to/lib`` should be replaced by Cantera's library installation path.
+specifying the necessary header and library paths, as well as the appropriate compiler
+and linker options. The correct options and paths depend on your system configuration
+and the options that were used to compile Cantera. Cantera is installed with examples
+and configuration data that will help with determining the correct options for some
+common build systems.
 
 pkg-config
 ==========
@@ -59,7 +48,16 @@ Or in an SConstruct file:
 Note that ``pkg-config`` will work only if it can find the ``cantera.pc``
 file. If Cantera's libraries are not installed in a standard location such as
 ``/usr/lib`` or ``/usr/local/lib``, you may need to set the ``PKG_CONFIG_PATH``
-environment variable appropriately before using ``pkg-config``.
+environment variable appropriately before using ``pkg-config``, for example by running:
+
+.. code:: bash
+
+   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/path/to/lib/pkgconfig
+
+where ``/path/to/lib`` should be replaced by Cantera's library installation path.
+
+``pkg-config`` is available through system package managers for most Linux
+distributions, and can be installed using Conda or Homebrew on macOS.
 
 SCons
 =====
@@ -92,10 +90,9 @@ named ``env``, and sets the header (``CPPPATH``) and library (``LIBPATH``) paths
 to include the directories containing the Cantera headers and libraries. Then,
 a program named ``sample`` is compiled using the single source file ``sample.cpp``.
 
-The appropriate path definitions and flags depend on your system configuration and the
-options that were used to compile Cantera. Several example ``SConstruct`` files are
-included with the C++ examples contained in the ``samples/cxx`` subdirectory of the
-Cantera installation directory, with contents customized for your Cantera installation.
+To determine the appropriate settings for your system, take a look at one of the
+pre-configured ``SConstruct`` files that are provided with the C++ examples contained in
+the ``samples/cxx`` subdirectory of the Cantera installation directory.
 
 For more information on SCons, see the `SCons Wiki <https://github.com/SCons/scons/wiki/>`__
 and the `SCons homepage <https://www.scons.org>`__.
@@ -105,9 +102,10 @@ CMake
 
 CMake is a multi-platform build system that uses a high-level project
 description to generate platform-specific build scripts (for example, on Linux,
-CMake will generate Makefiles). The configuration file for a CMake project is
-called ``CMakeLists.txt``. A typical ``CMakeLists.txt`` file for compiling a
-program that uses Cantera might look like this:
+CMake will generate Makefiles, and on Windows, it can generate Visual Studio ``.sln``
+files). The configuration file for a CMake project is called ``CMakeLists.txt``. A
+typical ``CMakeLists.txt`` file for compiling a program that uses Cantera might look
+like this:
 
 .. code:: cmake
 
@@ -129,6 +127,89 @@ Several example ``CMakeLists.txt`` files are included with the C++ examples
 contained in the ``samples/cxx`` subdirectory of the Cantera installation directory,
 which have the paths and lists of libraries correctly configured for the
 system on which they are installed.
+
+Libraries & Library Paths
+*************************
+
+Choosing Libraries During Compilation
+=====================================
+
+Applications can be linked to either the Cantera static library or dynamically linked
+to the Cantera shared library. Dynamic linking is recommended generally, and required
+to enable features such as the use of ``ExtensibleRate`` objects. The pre-configured
+``CMakelists.txt`` and ``SConstruct`` files included with the Cantera examples are set
+up to use dynamic linking.
+
+The Cantera Library
+-------------------
+
+If Cantera was compiled with the ``renamed_shared_libraries=y`` option, then you can
+link to the Cantera shared library by specifying the library name ``cantera_shared`` or
+to the static library by specifying the library name ``cantera``. If Cantera was
+compiled with the ``renamed_shared_libraries=n`` option, then you can link to the shared
+library by specifying the library named ``cantera``.
+
+The ``renamed_shared_libraries=y`` option is the default if you compiled Cantera
+yourself, or if you installed packages for Windows. Cantera packages for Conda and
+Ubuntu use the setting ``renamed_shared_libraries=n``.
+
+Additional Dependencies
+-----------------------
+
+If you link to the Cantera shared library, you only need to link to that and any of your
+program's direct dependencies. You do not need to link to any of Cantera's dependencies
+unless your program also uses them directly. One unexpected direct dependency your
+program may have is on the ``fmt`` library, due to its use in C++ templates in Cantera.
+
+If you link to the Cantera static library, you will also need to specify all of
+Cantera's library dependencies when linking your program, as well as the directories
+containing these libraries (if they are not in standard search directories).
+
+Runtime Library Paths
+=====================
+
+Your operating system needs to be able to find the shared library dependencies of your
+program when it is run. This process is dependent primarily on your operating system.
+
+Linux & macOS
+-------------
+
+If you linked to the Cantera shared library, you will need to provide the information
+needed to find the Cantera library; the Cantera library then contains the information
+needed to find its own dependencies such as SUNDIALS, LAPACK, and yaml-cpp. If you
+linked to the Cantera static library, your program depends directly on Cantera's
+dependencies instead, and you need to provide the information on where to find these
+dependencies when you run your program.
+
+There are several options for specifying library search paths:
+
+1. Specify the "rpath" when compiling and linking your program. This is done with the
+   compiler option for GCC/Clang ``-Wl,-rpath,/path/to/libdir``, where
+   ``/path/to/libdir`` is the directory containing the Cantera shared library. The build
+   scripts provided with Cantera's examples are configured to use this option.
+
+2. If the libraries are installed into a standard system location, such as ``/usr/lib``
+   or ``/usr/local/lib`` on Linux, they should be found automatically.
+
+3. Set the ``LD_LIBRARY_PATH`` (Linux) or ``DYLD_LIBRARY_PATH`` (macOS) environment
+   variable before running your program. For example, on Linux, use the command:
+
+.. code:: bash
+
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/libdir
+
+Windows
+-------
+
+On Windows, all shared library (DLL) dependencies need to be on the ``PATH``. You can
+add the Cantera library directory to the ``PATH`` temporarily, for a single command
+prompt session, by running a command like:
+
+.. code:: bat
+
+   set PATH=%PATH%;C:\Program Files\Cantera\bin
+
+where the path added depends on where you installed Cantera.
 
 .. container:: container
 
