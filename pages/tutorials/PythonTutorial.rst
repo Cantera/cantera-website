@@ -236,7 +236,7 @@ Or to set the mass fractions while holding temperature and pressure constant:
 Working with a Subset of Species
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Many properties of a :py:class:`Solution` provide values for each species present in the
+Many properties of a :py:class:`cantera.Solution` provide values for each species present in the
 phase. If you want to get values only for a subset of these species, you can use
 Python's "slicing" syntax to select data for just the species of interest. To
 get the mole fractions of just the major species in ``gas1``, in the order
@@ -267,8 +267,8 @@ file included with Cantera. Several other reaction mechanism files are
 included with Cantera, including ones that model high- temperature air,
 a hydrogen/oxygen reaction mechanism, and a few surface
 reaction mechanisms. These files are usually located in the ``data``
-subdirectory of the Cantera installation directory, for example ``C:\\Program
-Files\\Cantera\\data`` on Windows or ``/usr/local/cantera/data/`` on
+subdirectory of the Cantera installation directory, for example ``C:\Program Files\Cantera\data``
+on Windows or ``/usr/local/cantera/data/`` on
 Unix/Linux/Mac OS X machines, depending on how you installed Cantera and the
 options you specified.
 
@@ -276,7 +276,7 @@ If for some reason Cantera has difficulty finding where these files are on your
 system, set environment variable ``CANTERA_DATA`` to the directory or
 directories (separated using ``;`` on Windows or ``:`` on other operating
 systems) where they are located. Alternatively, you can call function
-`add_directory` to add a directory to the Cantera search path:
+:py:func:`add_directory` to add a directory to the Cantera search path:
 
 .. code:: pycon
 
@@ -383,9 +383,9 @@ specific enthalpy and pressure can be held fixed:
 
 Other options are:
 
-    - ``UV`` fixed specific internal energy and specific volume
-    - ``SV`` fixed specific entropy and specific volume
-    - ``SP`` fixed specific entropy and pressure
+- ``UV``: fixed specific internal energy and specific volume
+- ``SV``: fixed specific entropy and specific volume
+- ``SP``: fixed specific entropy and pressure
 
 How can you tell if ``equilibrate`` has correctly found the chemical equilibrium
 state? One way is verify that the net rates of progress of all reversible
@@ -425,7 +425,7 @@ C++ code in `ChemEquil.h <{{% ct_docs doxygen/html/d4/dd4/ChemEquil_8h.html %}}>
 Chemical Kinetics
 =================
 
-:py:class:`Solution` objects are also :py:class:`Kinetics` objects, and provide all of the methods
+:py:class:`cantera.Solution` objects are also :py:class:`Kinetics` objects, and provide all of the methods
 necessary to compute the thermodynamic quantities associated with each reaction,
 reaction rates, and species creation and destruction rates. They also provide
 methods to inspect the quantities that define each reaction such as the rate
@@ -540,10 +540,10 @@ The contribution from just the selected reactions is:
 
 Or about 16% of the total heat release rate.
 
-Congratulations – Next Steps
-=============================
+Next Steps
+==========
 
-Congratulations – you have finished the Cantera Python tutorial! You should now
+Congratulations! You have finished the Cantera Python tutorial. You should now
 be ready to begin using Cantera on your own.  Please see the Next Steps
 section on the `Getting Started <index.html#cantera-next-steps>`__ page, for assistance with
 intermediate and advanced Cantera functionality.  Good luck!
