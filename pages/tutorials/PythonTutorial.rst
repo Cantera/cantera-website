@@ -38,28 +38,29 @@ function:
 
 You should see something like this:
 
-.. code:: python
+.. code::
 
      gri30:
 
-          temperature             300  K
-             pressure          101325  Pa
-              density       0.0818891  kg/m^3
-     mean mol. weight         2.01588  amu
+          temperature   300 K
+             pressure   1.0133e+05 Pa
+              density   0.081894 kg/m^3
+     mean mol. weight   2.016 kg/kmol
+      phase of matter   gas
 
-                             1 kg            1 kmol
-                          -----------      ------------
-             enthalpy         26470.1        5.336e+04     J
-      internal energy    -1.21087e+06       -2.441e+06     J
-              entropy         64913.9        1.309e+05     J/K
-       Gibbs function    -1.94477e+07        -3.92e+07     J
-    heat capacity c_p         14311.8        2.885e+04     J/K
-    heat capacity c_v         10187.3        2.054e+04     J/K
+                             1 kg             1 kmol
+                        ---------------   ---------------
+             enthalpy             26469             53361  J
+      internal energy       -1.2108e+06        -2.441e+06  J
+              entropy             64910        1.3086e+05  J/K
+       Gibbs function       -1.9447e+07       -3.9204e+07  J
+    heat capacity c_p             14311             28851  J/K
+    heat capacity c_v             10187             20536  J/K
 
-                              X                 Y          Chem. Pot. / RT
-                        -------------     ------------     ------------
-                   H2              1                1         -15.7173
-        [  +52 minor]              0                0
+                         mass frac. Y      mole frac. X     chem. pot. / RT
+                        ---------------   ---------------   ---------------
+                   H2                 1                 1           -15.717
+        [  +52 minor]                 0                 0
 
 What you have just done is to create an object, ``gas1`` that implements GRI-
 Mech 3.0, the 53-species, 325-reaction natural gas combustion mechanism
@@ -92,28 +93,29 @@ The state of the object can easily be changed. For example:
 sets the temperature to 1200 K and the pressure to 101325 Pa (Cantera always
 uses SI units). After this statement, calling ``gas1()`` results in:
 
-.. code:: python
+.. code::
 
      gri30:
 
-          temperature            1200  K
-             pressure          101325  Pa
-              density       0.0204723  kg/m^3
-     mean mol. weight         2.01588  amu
+          temperature   1200 K
+             pressure   1.0133e+05 Pa
+              density   0.020473 kg/m^3
+     mean mol. weight   2.016 kg/kmol
+      phase of matter   gas
 
-                             1 kg            1 kmol
-                          -----------      ------------
-             enthalpy     1.32956e+07         2.68e+07     J
-      internal energy     8.34619e+06        1.682e+07     J
-              entropy         85227.6        1.718e+05     J/K
-       Gibbs function    -8.89775e+07       -1.794e+08     J
-    heat capacity c_p         15377.9          3.1e+04     J/K
-    heat capacity c_v         11253.4        2.269e+04     J/K
+                             1 kg             1 kmol
+                        ---------------   ---------------
+             enthalpy        1.3295e+07        2.6802e+07  J
+      internal energy        8.3457e+06        1.6825e+07  J
+              entropy             85222        1.7181e+05  J/K
+       Gibbs function       -8.8972e+07       -1.7937e+08  J
+    heat capacity c_p             15377             31000  J/K
+    heat capacity c_v             11253             22686  J/K
 
-                              X                 Y          Chem. Pot. / RT
-                        -------------     ------------     ------------
-                   H2              1                1         -17.9775
-        [  +52 minor]              0                0
+                         mass frac. Y      mole frac. X     chem. pot. / RT
+                        ---------------   ---------------   ---------------
+                   H2                 1                 1           -17.978
+        [  +52 minor]                 0                 0
 
 Thermodynamics generally requires that *two* properties in addition to
 composition information be specified to fix the intensive state of a substance
@@ -170,30 +172,32 @@ properties of the mixture:
 
 results in:
 
-.. code:: python
+.. code::
 
      gri30:
 
-          temperature            1200  K
-             pressure          101325  Pa
-              density        0.280629  kg/m^3
-     mean mol. weight         27.6332  amu
+          temperature   1200 K
+             pressure   1.0133e+05 Pa
+              density   0.28063 kg/m^3
+     mean mol. weight   27.633 kg/kmol
+      phase of matter   gas
 
-                             1 kg            1 kmol
-                          -----------      ------------
-             enthalpy          861943        2.382e+07     J
-      internal energy          500879        1.384e+07     J
-              entropy          8914.3        2.463e+05     J/K
-       Gibbs function    -9.83522e+06       -2.718e+08     J
-    heat capacity c_p         1397.26        3.861e+04     J/K
-    heat capacity c_v         1096.38         3.03e+04     J/K
+                             1 kg             1 kmol
+                        ---------------   ---------------
+             enthalpy        8.6193e+05        2.3818e+07  J
+      internal energy        5.0087e+05        1.3841e+07  J
+              entropy            8914.2        2.4633e+05  J/K
+       Gibbs function       -9.8351e+06       -2.7178e+08  J
+    heat capacity c_p            1397.3             38611  J/K
+    heat capacity c_v            1096.4             30296  J/K
 
-                              X                 Y          Chem. Pot. / RT
-                        -------------     ------------     ------------
-                   O2       0.190114         0.220149         -28.7472
-                  CH4       0.095057        0.0551863          -35.961
-                   N2       0.714829         0.724665         -25.6789
-        [  +50 minor]              0                0
+                         mass frac. Y      mole frac. X     chem. pot. / RT
+                        ---------------   ---------------   ---------------
+                   O2           0.22014           0.19011           -28.747
+                  CH4          0.055187          0.095057           -35.961
+                   N2           0.72467           0.71483           -25.679
+        [  +50 minor]                 0                 0
+
 
 The composition above was specified using a string. The format is a comma-
 separated list of ``<species name>:<relative mole numbers>`` pairs. The mole
