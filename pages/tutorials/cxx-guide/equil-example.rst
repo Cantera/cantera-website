@@ -20,31 +20,35 @@ state of chemical equilibrium, holding the temperature and pressure fixed.
 
 The program output is::
 
-           temperature            1500  K
-              pressure          202650  Pa
-               density        0.316828  kg/m^3
-      mean mol. weight         19.4985  amu
+  ohmech:
 
-                              1 kg            1 kmol
-                           -----------      ------------
-              enthalpy    -4.17903e+06       -8.149e+07     J
-       internal energy    -4.81866e+06       -9.396e+07     J
-               entropy         11283.3          2.2e+05     J/K
-        Gibbs function     -2.1104e+07       -4.115e+08     J
-     heat capacity c_p         1893.06        3.691e+04     J/K
-     heat capacity c_v         1466.65         2.86e+04     J/K
+       temperature   1500 K
+          pressure   2.0265e+05 Pa
+           density   0.31683 kg/m^3
+  mean mol. weight   19.499 kg/kmol
+   phase of matter   gas
 
-                               X                 Y          Chem. Pot. / RT
-                         -------------     ------------     ------------
-                    H2       0.249996        0.0258462         -19.2954
-                     H    6.22521e-06        3.218e-07         -9.64768
-                     O    7.66933e-12      6.29302e-12         -26.3767
-                    O2     7.1586e-12      1.17479e-11         -52.7533
-                    OH    3.55353e-07      3.09952e-07         -36.0243
-                   H2O       0.499998         0.461963          -45.672
-                   HO2    7.30338e-15       1.2363e-14          -62.401
-                  H2O2    3.95781e-13      6.90429e-13         -72.0487
-                    AR       0.249999          0.51219         -21.3391
+                          1 kg             1 kmol
+                     ---------------   ---------------
+          enthalpy       -4.1789e+06       -8.1485e+07  J
+   internal energy       -4.8186e+06       -9.3957e+07  J
+           entropy             11283        2.2001e+05  J/K
+    Gibbs function       -2.1104e+07        -4.115e+08  J
+ heat capacity c_p              1893             36912  J/K
+ heat capacity c_v            1466.6             28597  J/K
+
+                      mass frac. Y      mole frac. X     chem. pot. / RT
+                     ---------------   ---------------   ---------------
+                H2          0.025847              0.25           -19.295
+                 H        3.2181e-07        6.2252e-06           -9.6477
+                 O        6.2927e-12        7.6693e-12           -26.377
+                O2        1.1747e-11        7.1586e-12           -52.753
+                OH        3.0994e-07        3.5535e-07           -36.024
+               H2O           0.46195               0.5           -45.672
+               HO2        1.2362e-14        7.3034e-15           -62.401
+              H2O2         6.904e-13        3.9578e-13           -72.049
+                AR           0.51221              0.25           -21.339
+                N2                 0                 0
 
 
 How can we tell that this is really a state of chemical equilibrium? Well, by
