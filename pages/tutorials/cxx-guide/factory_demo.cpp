@@ -1,7 +1,5 @@
-#include "cantera/base/Solution.h"
-#include "cantera/thermo.h"
-#include "cantera/kinetics.h"
-#include "cantera/transport.h"
+#include "cantera/core.h"
+#include <iostream>
 
 using namespace Cantera;
 

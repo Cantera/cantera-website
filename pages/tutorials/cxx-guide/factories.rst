@@ -21,9 +21,6 @@ object types from a ``Solution`` object:
 This program uses "factory" functions to create derived objects objects of the
 appropriate type which are specified in the input file ``gri30.yaml``.
 
-..
-   TODO: Update example to use "core.h" after release of Cantera 3.0
-
 .. include:: pages/tutorials/cxx-guide/factory_demo.cpp
    :code: c++
 

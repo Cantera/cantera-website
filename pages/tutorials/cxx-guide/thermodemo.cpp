@@ -1,5 +1,4 @@
-#include "cantera/thermo.h"
-#include "cantera/base/Solution.h"
+#include "cantera/core.h"
 #include <iostream>
 
 using namespace Cantera;

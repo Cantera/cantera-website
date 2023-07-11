@@ -1,5 +1,4 @@
-#include "cantera/base/Solution.h"
-#include "cantera/thermo.h"
+#include "cantera/core.h"
 #include <iostream>
 
 int main(int argc, char** argv)
