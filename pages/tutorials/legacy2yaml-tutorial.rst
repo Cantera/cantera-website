@@ -6,7 +6,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Converting CTI and XML input files to YAML</h1>
+      <h1 class="display-4">Converting CTI and XML input files to YAML</h1>
 
    .. class:: lead
 

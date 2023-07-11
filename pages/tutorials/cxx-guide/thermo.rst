@@ -5,7 +5,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Computing Thermodynamic Properties<h1>
+      <h1 class="display-4">Computing Thermodynamic Properties<h1>
 
    .. class:: lead
 

@@ -5,7 +5,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Ideal Gas Constant Pressure
+      <h1 class="display-4">Ideal Gas Constant Pressure
       Mole Reactor</h1>
 
    .. class:: lead

@@ -8,7 +8,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Installing on Fedora</h1>
+      <h1 class="display-4">Installing on Fedora</h1>
 
    .. class:: lead
 

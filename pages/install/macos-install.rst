@@ -9,7 +9,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Installing on macOS
+      <h1 class="display-4">Installing on macOS
 
    .. class:: lead
 

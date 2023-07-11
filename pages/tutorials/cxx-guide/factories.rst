@@ -4,7 +4,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Creating ThermoPhase, Kinetics, and Transport objects</h1>
+      <h1 class="display-4">Creating ThermoPhase, Kinetics, and Transport objects</h1>
 
    .. class:: lead
 

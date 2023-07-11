@@ -5,7 +5,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">YAML Format Tutorial</h1>
+      <h1 class="display-4">YAML Format Tutorial</h1>
 
    .. class:: lead
 

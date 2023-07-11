@@ -4,7 +4,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">C++ Interface Tutorial</h1>
+      <h1 class="display-4">C++ Interface Tutorial</h1>
 
    .. class:: lead
 

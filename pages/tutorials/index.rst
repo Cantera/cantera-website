@@ -7,7 +7,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Getting started with Cantera</h1>
+      <h1 class="display-4">Getting started with Cantera</h1>
 
    .. class:: lead
 

@@ -6,7 +6,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Calculating transport properties and rates in Cantera</h1>
+      <h1 class="display-4">Calculating transport properties and rates in Cantera</h1>
 
    .. class:: lead
 

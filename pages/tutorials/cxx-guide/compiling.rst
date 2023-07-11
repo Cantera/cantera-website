@@ -5,7 +5,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Compiling Cantera C++ Programs</h1>
+      <h1 class="display-4">Compiling Cantera C++ Programs</h1>
 
    .. class:: lead
 

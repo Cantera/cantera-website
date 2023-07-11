@@ -5,7 +5,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Ideal Gas Reactor</h1>
+      <h1 class="display-4">Ideal Gas Reactor</h1>
    .. class:: lead
 
       This page shows the derivation of the governing equations used in
