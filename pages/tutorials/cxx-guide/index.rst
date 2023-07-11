@@ -33,10 +33,8 @@
 
                   .. class:: card-text
 
-                     Instructions to compile Cantera C++ applications using a variety of build systems,
-                     including make, CMake, SCons, etc. Note: This section is about compiling Cantera
-                     applications that use the Cantera library; instructions to compile the Cantera library
-                     are over :doc:`there <installation-reqs>`.
+                     Instructions to compile C++ applications that use Cantera using a
+                     variety of build systems, including CMake, SCons, etc.
 
             .. container:: card
 
