@@ -1,27 +1,27 @@
-.. title: Creating Cantera Objects in C++
+.. title: Computing Reaction Rates and Transport Properties in C++
 
 .. jumbotron::
 
    .. raw:: html
 
-      <h1 class="display-4">Creating ThermoPhase, Kinetics, and Transport objects</h1>
+      <h1 class="display-4">Computing Reaction Rates and Transport Properties in C++</h1>
 
    .. class:: lead
 
-      Learn how to generate the major objects to represent phase information in C++
+      Learn how to use ``Kinetics`` and ``Transport`` objects to calculate reaction
+      rates and transport properties for a phase.
 
 The following program demonstrates the general method for accessing the following
 object types from a ``Solution`` object:
 
-- ``ThermoPhase`` - represents the thermodynamic properties of mixtures containing
-  one or more species)
-- ``Kinetics`` - represents a kinetic mechanism involving one or more phases)
-- ``Transport`` - computes transport properties for a `ThermoPhase`
+- ``ThermoPhase``: Represents the thermodynamic properties of mixtures containing one or
+  more species. Accessed using the ``thermo()`` method on the ``Solution`` object.
+- ``Kinetics``: Represents a kinetic mechanism involving one or more phases. Accessed
+  using the ``kinetics()`` method on the ``Solution`` object.
+- ``Transport``: Computes transport properties for a ``ThermoPhase``. Accessed using the
+  ``transport()`` method on the ``Solution`` object.
 
-This program uses "factory" functions to create derived objects objects of the
-appropriate type which are specified in the input file ``gri30.yaml``.
-
-.. include:: pages/tutorials/cxx-guide/factory_demo.cpp
+.. include:: pages/tutorials/cxx-guide/kinetics_transport.cpp
    :code: c++
 
 This program produces the output below::

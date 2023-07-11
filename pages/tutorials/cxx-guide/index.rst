@@ -119,16 +119,17 @@
 
                .. container::
                   :tagname: a
-                  :attributes: href=factories.html
-                              title="Creating ThermoPhase, Kinetics, and Transport objects"
+                  :attributes: href=kinetics-transport.html
+                              title="Reaction Rates and Transport Properties"
 
                   .. container:: card-header section-card
 
-                     Creating ThermoPhase, Kinetics, and Transport objects
+                     Reaction Rates and Transport Properties
 
                .. container:: card-body
 
                   .. class:: card-text
 
-                     How to create objects that allow calculation of thermodynamic properties and kinetic and
-                     transport rates.
+                     An example using the ``Kinetics`` and ``Transport`` objects
+                     associated with a ``Solution`` object to compute reaction rates,
+                     viscosity, and thermal conductivity.
