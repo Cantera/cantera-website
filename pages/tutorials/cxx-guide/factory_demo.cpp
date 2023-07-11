@@ -1,4 +1,5 @@
 #include "cantera/core.h"
+#include "cantera/kinetics/Reaction.h"
 #include <iostream>
 
 using namespace Cantera;
@@ -31,7 +32,8 @@ void simple_demo2()
     size_t kCO2 = gas->speciesIndex("CO2");
     for (size_t i = 0; i < kin->nReactions(); i++) {
         if (kin->reactantStoichCoeff(kCO2, i) || kin->productStoichCoeff(kCO2, i)) {
-            writelog("{:3d}  {:30s}  {: .8e}\n", i, kin->reactionString(i), wdot[i]);
+            auto rxn = kin->reaction(i);
+            writelog("{:3d}  {:30s}  {: .8e}\n", i, rxn->equation(), wdot[i]);
         }
     }
     writelog("\n");
