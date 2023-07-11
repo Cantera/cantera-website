@@ -132,49 +132,6 @@ contained in the ``samples`` subdirectory of the Cantera installation directory,
 which have the paths and lists of libraries correctly configured for the
 system on which they are installed.
 
-Make
-====
-
-Cantera is distributed with an "include Makefile" that can be used with
-Make-based build systems. This file ``Cantera.mak`` is located in the
-``samples`` subdirectory of the Cantera installation directory. To use it, add a
-line referencing this file to the top of your Makefile:
-
-.. code:: makefile
-
-    include path/to/Cantera.mak
-
-The path specified should be the relative path from the ``Makefile`` to
-``Cantera.mak``. This file defines several variables which can be used in your
-Makefile. The following is an example ``Makefile`` that uses the definitions
-contained in ``Cantera.mak``:
-
-.. code:: makefile
-
-   include ../../Cantera.mak
-
-   CC=gcc
-   CXX=g++
-   RM=rm -f
-   CCFLAGS=-g
-   CPPFLAGS=$(CANTERA_INCLUDES)
-   LDFLAGS=
-   LDLIBS=$(CANTERA_LIBS)
-
-   SRCS=sample.cpp
-   OBJS=$(subst .cpp,.o,$(SRCS))
-
-   all: sample
-
-   kinetics1: $(OBJS)
-		$(CXX) $(LDFLAGS) -o sample $(OBJS) $(LDLIBS)
-
-   clean:
-		$(RM) $(OBJS)
-
-   dist-clean: clean
-		$(RM) *~
-
 .. container:: container
 
    .. container:: row
