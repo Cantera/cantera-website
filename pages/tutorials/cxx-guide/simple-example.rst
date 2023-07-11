@@ -35,31 +35,35 @@ and flexible methods of compiling programs that use the Cantera C++ library, see
 
 This program produces the output below::
 
-          temperature             500  K
-             pressure          202650  Pa
-              density        0.361163  kg/m^3
-     mean mol. weight         7.40903  amu
+  ohmech:
 
-                             1 kg            1 kmol
-                          -----------      ------------
-             enthalpy    -2.47725e+06       -1.835e+07     J
-      internal energy    -3.03836e+06       -2.251e+07     J
-              entropy         20700.1        1.534e+05     J/K
-       Gibbs function    -1.28273e+07       -9.504e+07     J
-    heat capacity c_p         3919.29        2.904e+04     J/K
-    heat capacity c_v         2797.09        2.072e+04     J/K
+       temperature   500 K
+          pressure   2.0265e+05 Pa
+           density   0.36118 kg/m^3
+  mean mol. weight   7.4093 kg/kmol
+   phase of matter   gas
 
-                              X                 Y          Chem. Pot. / RT
-                        -------------     ------------     ------------
-                   H2            0.8         0.217667         -15.6441
-                    H              0                0
-                    O              0                0
-                   O2              0                0
-                   OH              0                0
-                  H2O            0.1         0.243153         -82.9531
-                  HO2              0                0
-                 H2O2              0                0
-                   AR            0.1          0.53918         -20.5027
+                          1 kg             1 kmol
+                     ---------------   ---------------
+          enthalpy       -2.4772e+06       -1.8354e+07  J
+   internal energy       -3.0382e+06       -2.2511e+07  J
+           entropy             20699        1.5337e+05  J/K
+    Gibbs function       -1.2827e+07       -9.5038e+07  J
+ heat capacity c_p            3919.1             29038  J/K
+ heat capacity c_v              2797             20724  J/K
+
+                      mass frac. Y      mole frac. X     chem. pot. / RT
+                     ---------------   ---------------   ---------------
+                H2           0.21767               0.8           -15.644
+                 H                 0                 0
+                 O                 0                 0
+                O2                 0                 0
+                OH                 0                 0
+               H2O           0.24314               0.1           -82.953
+               HO2                 0                 0
+              H2O2                 0                 0
+                AR           0.53919               0.1           -20.503
+                N2                 0                 0
 
 As C++ programs go, this one is *very* short. It is the Cantera equivalent of
 the "Hello, World" program most programming textbooks begin with. But it
