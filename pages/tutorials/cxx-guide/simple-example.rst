@@ -69,8 +69,8 @@ As C++ programs go, this one is *very* short. It is the Cantera equivalent of
 the "Hello, World" program most programming textbooks begin with. But it
 illustrates some important points in writing Cantera C++ programs.
 
-Catching `CanteraError`_ exceptions
-===================================
+Catching ``CanteraError`` exceptions
+====================================
 
 The entire body of the program is put inside a function that is invoked within
 a ``try`` block in the main program. In this way, exceptions thrown in the
@@ -81,13 +81,14 @@ throws exceptions of this type, so it is always a good idea to catch them.
 The ``report`` function
 =======================
 
-The ``report`` function generates a nicely-formatted report of the properties of
+The `ThermoPhase.report`_ function generates a nicely-formatted report of the properties of
 a phase, including its composition in both mole (X) and mass (Y) units. For
 each species present, the non-dimensional chemical potential is also printed.
 This is handy particularly when doing equilibrium calculations. This function
 is very useful to see at a glance the state of some phase.
 
 .. _CanteraError: {{% ct_docs doxygen/html/db/ddf/classCantera_1_1CanteraError.html %}}
+.. _ThermoPhase.report: {{% ct_docs doxygen/html/dc/d38/classCantera_1_1ThermoPhase.html#a046799f2a038fddf13b5752cd0cc7117 %}}
 
 .. container:: container
 
