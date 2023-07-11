@@ -6,7 +6,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Working With Input Files</h1>
+      <h1 class="display-4">Working With Input Files</h1>
 
    .. class:: lead
 

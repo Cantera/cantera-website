@@ -5,7 +5,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Configure & Build Cantera</h1>
+      <h1 class="display-4">Configure & Build Cantera</h1>
 
    .. class:: lead
 

@@ -7,7 +7,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Converting Data from NASA ThermoBuild</h1>
+      <h1 class="display-4">Converting Data from NASA ThermoBuild</h1>
 
 Thermodynamic data for a range of species can be obtained from the
 `NASA ThermoBuild <https://cearun.grc.nasa.gov/ThermoBuild/index_ds.html>`__ tool.

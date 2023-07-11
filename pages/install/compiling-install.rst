@@ -9,7 +9,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Compiling Cantera from Source</h1>
+      <h1 class="display-4">Compiling Cantera from Source</h1>
 
    .. class:: lead
 

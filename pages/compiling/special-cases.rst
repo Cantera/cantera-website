@@ -6,7 +6,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Special Compiling Cases</h1>
+      <h1 class="display-4">Special Compiling Cases</h1>
 
    .. class:: lead
 

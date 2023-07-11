@@ -6,7 +6,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Modeling Chemical Reactions in Cantera</h1>
+      <h1 class="display-4">Modeling Chemical Reactions in Cantera</h1>
 
    .. class:: lead
 

@@ -6,7 +6,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">In Memoriam: Dave Goodwin</h1>
+      <h1 class="display-4">In Memoriam: Dave Goodwin</h1>
 
 .. image:: images/dave-goodwin.jpg
    :alt: Dave Goodwin

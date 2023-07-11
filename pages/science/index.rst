@@ -8,7 +8,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Science & Theory</h1>
+      <h1 class="display-4">Science & Theory</h1>
 
    .. class:: lead
 
@@ -19,7 +19,7 @@
 
 .. raw:: html
 
-   <h2 class="display-4">Chemical Kinetic Theory</h2>
+   <h2>Chemical Kinetic Theory</h2>
 
 These sections describe some of the fundamental scientific theory underpinning the ways that Cantera models phases
 of matter. This involves calculations for thermodynamic and transport properties and chemical
@@ -88,7 +88,7 @@ extended to model a wide range of science and technology applications.
 
 .. raw:: html
 
-   <h2 class="display-4">Cantera Reactor and Flame Models</h2>
+   <h2>Cantera Reactor and Flame Models</h2>
 
 Cantera comes with a number of zero- and one-dimensional models: reactor and flame models for a
 number of well-defined and commonly encountered phenomena.  Below we give an overview of the theory

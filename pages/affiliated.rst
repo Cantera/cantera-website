@@ -6,7 +6,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Affiliated Packages</h1>
+      <h1 class="display-4">Affiliated Packages</h1>
 
    .. class:: lead
 

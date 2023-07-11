@@ -6,7 +6,7 @@
 
     .. raw:: html
 
-        <h1 class="display-3">Python Tutorial</h1>
+        <h1 class="display-4">Python Tutorial</h1>
 
 Getting Started
 ===============

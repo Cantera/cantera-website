@@ -6,7 +6,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3"> Compilation Requirements</h1>
+      <h1 class="display-4"> Compilation Requirements</h1>
 
    .. class:: lead
 

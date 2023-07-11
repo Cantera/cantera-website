@@ -9,7 +9,7 @@
 
    .. raw:: html
 
-      <h1 class="display-3">Installing on Ubuntu</h1>
+      <h1 class="display-4">Installing on Ubuntu</h1>
 
    .. class:: lead
 
