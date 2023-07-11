@@ -37,7 +37,7 @@ post on the `Google Users' Group <https://groups.google.com/forum/#!forum/canter
 
 **BIOVIA Materials Studio**: commercial modeling and simulation software for materials science and chemistry.
 
-| `Website <https://www.3dsbiovia.com/products/collaborative-science/biovia-materials-studio/>`__
+| `Website <https://www.3ds.com/products-services/biovia/products/molecular-modeling-simulation/biovia-materials-studio/>`__
 
 ------------
 
@@ -131,5 +131,5 @@ post on the `Google Users' Group <https://groups.google.com/forum/#!forum/canter
 
 **ChemCheck**: A tool to help Cantera users to detect chemical and syntax errors in kinetic models
 
- | `Repository <https://github.com/comocheng/ChemCheck>`__
- | Maintainer(s): Chao Xu, Richard West
+| `Repository <https://github.com/comocheng/ChemCheck>`__
+| Maintainer(s): Chao Xu, Richard West
