@@ -79,9 +79,9 @@ We'll see later how the ``equilibrate`` function really works.
          .. container:: btn btn-primary
             :tagname: a
             :attributes: href=thermo.html
-                         title="Computing Properties"
+                         title="Computing Thermodynamic Properties"
 
-            Previous: Computing Properties
+            Previous: Computing Thermodynamic Properties
 
       .. container:: col-lg-4 text-center
 
@@ -96,7 +96,7 @@ We'll see later how the ``equilibrate`` function really works.
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=factories.html
-                         title="Creating Cantera Phase objects"
+            :attributes: href=kinetics-transport.html
+                         title="Reaction Rates and Transport Properties"
 
-            Next: Creating Cantera Phase objects
+            Next: Reaction Rates and Transport Properties
