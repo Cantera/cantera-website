@@ -77,13 +77,11 @@ look like this:
 
    env = Environment()
 
-   env.Append(CCFLAGS='-g',
-              CPPPATH=['/usr/local/cantera/include',
-                       '/usr/local/sundials/include'],
-              LIBS=['cantera', 'sundials_cvodes', 'sundials_ida',
-                    'sundials_nvecserial', 'lapack', 'blas', 'fmt', 'yaml-cpp'],
-              LIBPATH=['/usr/local/cantera/lib',
-                       '/usr/local/sundials/lib'],
+   env.Append(CCFLAGS='-g -std=c++17',
+              CPPPATH=['/usr/local/cantera/include'],
+              LIBS=['cantera_shared'],
+              LIBPATH=['/usr/local/cantera/lib'],
+              RPATH=['/usr/local/cantera/lib']
               LINKFLAGS=['-g', '-pthread'])
 
    sample = env.Program('sample', 'sample.cpp')
@@ -91,16 +89,16 @@ look like this:
 
 This script establishes what SCons refers to as a "construction environment"
 named ``env``, and sets the header (``CPPPATH``) and library (``LIBPATH``) paths
-to include the directories containing the Cantera headers and libraries, as well
-as libraries that Cantera depends on, such as Sundials, BLAS, and LAPACK. Then,
-a program named ``sample`` is compiled using the single source file
-``sample.cpp``.
+to include the directories containing the Cantera headers and libraries. Then,
+a program named ``sample`` is compiled using the single source file ``sample.cpp``.
 
-Several other example ``SConstruct`` files are included with the C++ examples
-contained in the ``samples`` subdirectory of the Cantera installation directory.
+The appropriate path definitions and flags depend on your system configuration and the
+options that were used to compile Cantera. Several example ``SConstruct`` files are
+included with the C++ examples contained in the ``samples/cxx`` subdirectory of the
+Cantera installation directory, with contents customized for your Cantera installation.
 
-For more information on SCons, see the `SCons Wiki <http://scons.org/wiki/>`__
-and the `SCons homepage <http://www.scons.org>`__.
+For more information on SCons, see the `SCons Wiki <https://github.com/SCons/scons/wiki/>`__
+and the `SCons homepage <https://www.scons.org>`__.
 
 CMake
 =====
@@ -117,18 +115,18 @@ program that uses Cantera might look like this:
    project (sample)
 
    set(CMAKE_VERBOSE_MAKEFILE ON)
-   set(CMAKE_CXX_STANDARD 11)
+   set(CMAKE_CXX_STANDARD 17)
 
    find_package(Threads REQUIRED)
 
-   include_directories("/opt/cantera/include" "/opt/sundials-2.7.0/include")
-   link_directories("/opt/cantera/lib" "/opt/sundials-2.7.0/lib")
+   include_directories("/opt/cantera/include")
+   link_directories("/opt/cantera/lib")
 
    add_executable(sample sample.cpp)
-   target_link_libraries(sample cantera sundials_cvodes sundials_ida sundials_nvecserial fmt Threads::Threads)
+   target_link_libraries(sample cantera_shared Threads::Threads)
 
 Several example ``CMakeLists.txt`` files are included with the C++ examples
-contained in the ``samples`` subdirectory of the Cantera installation directory,
+contained in the ``samples/cxx`` subdirectory of the Cantera installation directory,
 which have the paths and lists of libraries correctly configured for the
 system on which they are installed.
 
