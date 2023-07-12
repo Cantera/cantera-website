@@ -45,7 +45,9 @@ liquid-vapor region (``liquidvapor.yaml``), and a few surface reaction mechanism
 ``ptcombust.yaml``, ``diamond.yaml``, etc.), among others. Under Windows, these files may be located
 in ``C:\Program Files\Cantera\data`` depending on how you installed Cantera and the options you
 specified. On a Unix/Linux/macOS machine, they are usually kept in the ``data`` subdirectory
-within the Cantera installation directory.
+within the Cantera installation directory. You can also browse the
+`list of data files <https://github.com/Cantera/cantera/tree/main/data>`__ in the
+Cantera source repository.
 
 Please see the tutorials for :doc:`Python <python-tutorial>` and :doc:`Matlab <matlab-tutorial>`
 for instructions on how to import from these pre-existing files.
@@ -57,7 +59,7 @@ If you want to model a phase not available in the input files distributed with C
 to either procure a new input file (there are a limited number of input files available on the web), or
 create a new one.
 
-There are three primary options for creating a new Cantera input file:
+There are several options for creating a new Cantera input file:
 
 .. container:: container
 
