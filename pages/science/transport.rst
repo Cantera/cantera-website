@@ -10,13 +10,23 @@
 
    .. class:: lead
 
-      Here, we describe how Cantera uses species and phase information to calculate transport properties and rates.
+      Here, we describe how Cantera uses species and phase information to calculate
+      transport properties and rates.
 
-   Similar to Cantera's approach to `thermodynamic properties </science/thermodynamics.html>`__, transport property calculations in Cantera depend on information at both the species and phase levels. The user must specify transport models for both levels, and these selections must be compatible with one another. 
-   
-   - The user must specify a transport model for each species and provide inputs that inform how species properties are calculated. For example, the user provides inputs that allow Cantera to calculate species collision integrals based on species-specific Lennard-Jones parameters.
-   - The user also selects a phase model. This model describes how the species interact with one another to determine phase-averaged properties (such viscosity or thermal conductivity) and species specific properties (such as diffusion coefficients), for a given thermodynamic state.
-  
+Similar to Cantera's approach to `thermodynamic properties
+</science/thermodynamics.html>`__, transport property calculations in Cantera depend on
+information at both the species and phase levels. The user must specify transport models
+for both levels, and these selections must be compatible with one another.
+
+- The user must specify a transport model for each species and provide inputs that
+  inform how species properties are calculated. For example, the user provides inputs
+  that allow Cantera to calculate species collision integrals based on species-specific
+  Lennard-Jones parameters.
+- The user also selects a phase model. This model describes how the species interact
+  with one another to determine phase-averaged properties (such viscosity or thermal
+  conductivity) and species specific properties (such as diffusion coefficients), for a
+  given thermodynamic state.
+
 Species Transport Coefficients
 ------------------------------
 
