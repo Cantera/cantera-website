@@ -43,7 +43,7 @@ The Cantera Users' Group
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 The `Cantera Users’ Group
-<https://groups.google.com/forum/#!forum/cantera-users>`__ on Google Groups is
+<https://groups.google.com/g/cantera-users>`__ on Google Groups is
 the forum where most Cantera users have their questions asked and answered. If
 you need help using Cantera and cannot find an answer in the tutorials or
 documentation at Cantera's website, consider joining and asking a question
