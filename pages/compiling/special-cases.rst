@@ -19,21 +19,7 @@ Building the Conda Package
 
 * The recipe for the Cantera Conda package is located at https://github.com/Cantera/conda-recipes
 
-* To build the Conda package, an installation of ``conda`` is required, with the package
-  ``conda-build`` installed.
-
-* Clone the package repository and build the recipe:
-
-  .. code:: bash
-
-     git clone https://github.com/Cantera/conda-recipes
-     cd conda-recipes
-     conda build cantera
-
-* This will build Cantera using the same version major version of Python as in the ``base``
-  environment. To build for a different version of Python, use the ``--python=X.Y`` flag to
-  the build command. To build for a different version of NumPy, use the ``--numpy=X.Y`` flag
-  to the build command.
+* See the ``README.md`` in that repository for instructions.
 
 .. _sec-intel-compilers:
 
