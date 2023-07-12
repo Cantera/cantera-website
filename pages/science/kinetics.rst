@@ -86,8 +86,34 @@ where :math:`C_k` is the concentration of species :math:`k`. Since any constant
 collision efficiency can be absorbed into the rate coefficient :math:`k_f(T)`, the default collision
 efficiency is 1.0.
 
+*New in Cantera 3.0*: The rate coefficient :math:`k_f(T)` may be implemented using any
+rate parameterization supported by Cantera, not just the modified Arrhenius form.
+
+Sometimes, accounting for a particular third body's collision efficiency may require an
+alternate set of rate parameters entirely. In this case, two reactions are written:
+
+.. math::
+
+     \mathrm{A + B + M \rightleftharpoons AB + M \quad (R1)}
+
+     \mathrm{A + B + C \rightleftharpoons AB + C \quad (R2)}
+
+where the third-body efficiency for C in the first reaction is set to zero.
+
 A three-body reaction may be defined in the YAML format using the
 :ref:`three-body <sec-yaml-three-body>` reaction ``type``.
+
+*Changed in Cantera 3.0*: The ``type`` field of the YAML entry may be omitted. Reactions
+containing the generic third body M (as in R1) are automatically identified as
+three-body reactions. Reactions are also identified as three-body reactions if all of
+the following conditions are met:
+
+- There is exactly one species appearing as both a reactant and product (as in reaction R2)
+- All reactants and products have integral stoichiometric coefficients
+- The sum of the stoichiometric coefficients for either the reactants or products is 3.
+
+If the third body efficiency of C in R1 is not set to zero, these are considered
+duplicate reactions and must be marked as such.
 
 Falloff Reactions
 -----------------
