@@ -16,7 +16,7 @@
 Elements
 ========
 
-In Cantera, an **element** may refer to a chemical element or an isotope. Note
+In Cantera, an *element* may refer to a chemical element or an isotope. Note
 that definitions of elements are not often needed, since Cantera has definitions
 for the standard chemical elements. Explicit element definitions are usually
 only needed for isotopes.
@@ -71,7 +71,7 @@ defined to be composed solely of electrons.
 Thermodynamic Properties
 ------------------------
 
-The phase models discussed in the `Phases section </science/phases-thermo.html>`__
+The phase models discussed in the `Phases section </science/phase-thermo.html>`__
 implement specific models for the thermodynamic properties appropriate for the
 type of phase or interface they represent. Although each one may use different
 expressions to compute the properties, they all require thermodynamic property
@@ -84,7 +84,9 @@ present, the properties needed are:
    temperature :math:`T^\circ`;
 3. the absolute molar entropy :math:`\hat{s}(T^\circ, p^\circ)` at :math:`(T^\circ, p^\circ)`.
 
-The superscript :math:`^\circ` here represents the *reference state*--a specified state (i.e. set of conditions :math:`T^\circ` and :math:`p^\circ` and fixed chemical composition) at which thermodynamic properties are known.
+The superscript :math:`^\circ` here represents the *reference state*--a specified state
+(that is, a set of conditions :math:`T^\circ` and :math:`p^\circ` and fixed chemical
+composition) at which thermodynamic properties are known.
 
 .. _sec-thermo-models:
 
@@ -93,7 +95,7 @@ Thermodynamic Property Models
 
 The models described in this section can be used to provide thermodynamic data
 for each species in a phase. Each model implements a different
-**parameterization** (functional form) for the heat capacity. Note that there is
+*parameterization* (functional form) for the heat capacity. Note that there is
 no requirement that all species in a phase use the same parameterization; each
 species can use the one most appropriate to represent how the heat capacity
 depends on temperature.
@@ -177,7 +179,7 @@ The Shomate parameterization is:
    \hat{s}^\circ(T) = A \ln t + B t + \frac{Ct^2}{2} + \frac{Dt^3}{3} -
                   \frac{E}{2t^2} + G
 
-where :math:`t = T / 1000 K`. It requires 7 coefficients :math:`A`, :math:`B`, :math:`C`, :math:`D`,
+where :math:`t = T / 1000\textrm{ K}`. It requires 7 coefficients :math:`A`, :math:`B`, :math:`C`, :math:`D`,
 :math:`E`, :math:`F`, and :math:`G`. This parameterization is used to represent reference-state
 properties in the `NIST Chemistry WebBook <http://webbook.nist.gov/chemistry>`__. The values of the
 coefficients :math:`A` through :math:`G` should be entered precisely as shown there, with no units
@@ -204,7 +206,7 @@ thermodynamic properties:
    \hat{s}^\circ(T) = \hat{s}^\circ(T_0) + \hat{c}_p^\circ \ln{\left(\frac{T}{T^\circ}\right)}
 
 The parameterization uses four constants: :math:`T^\circ, \hat{c}_p^\circ(T^\circ),
-\hat{h}^\circ(T^\circ), and \hat{s}^\circ(T)`. The default value of :math:`T^\circ` is 298.15 K; the
+\hat{h}^\circ(T^\circ)`, and :math:`\hat{s}^\circ(T)`. The default value of :math:`T^\circ` is 298.15 K; the
 default value for the other parameters is 0.0.
 
 A constant heat capacity parameterization can be defined in the YAML format by specifying
@@ -212,10 +214,6 @@ A constant heat capacity parameterization can be defined in the YAML format by s
 
 
 .. rubric:: References
-
-.. [#Kee1986] R. J. Kee, G. Dixon-Lewis, J. Warnatz, M. E. Coltrin, and J. A. Miller.
-   A FORTRAN Computer Code Package for the Evaluation of Gas-Phase, Multicomponent
-   Transport Properties. Technical Report SAND86-8246, Sandia National Laboratories, 1986.
 
 .. [#Mcbride2002] B. J. McBride, M. J. Zehe, S. Gordon. "NASA Glenn Coefficients
    for Calculating Thermodynamic Properties of Individual Species,"
