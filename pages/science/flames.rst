@@ -214,11 +214,10 @@ for each surface species :math:`i` are computed such that :math:`\dot{s}_i = 0`.
 
 The Drift-Diffusion Model
 =========================
-`IonFlow <{{% ct_docs doxygen/html/d4/db9/classCantera_1_1IonFlow.html %}}>`__.
 
-This feature is only available when using class `IonFlow <{{% ct_docs doxygen/html/d4/db9/classCantera_1_1IonFlow.html %}}>`__.
-To account for the transport of charged species in a flame, the drift term is added to
-the diffusive fluxes of the mixture-average formulation according to [Ped1993]_,
+To account for the transport of charged species in a flame, class `IonFlow <{{% ct_docs
+doxygen/html/d4/db9/classCantera_1_1IonFlow.html %}}>`__ adds the drift term to the
+diffusive fluxes of the mixture-average formulation according to [Ped1993]_,
 
 .. math::
 
