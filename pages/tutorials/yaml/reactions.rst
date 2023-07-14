@@ -54,7 +54,9 @@ The type of the rate coefficient parameterization may be specified in the
 - :ref:`elementary <sec-yaml-elementary>`: A reaction with a rate constant
   parameterized by a modified Arrhenius expression
 - :ref:`three-body <sec-yaml-three-body>`: A reaction involving a third-body
-  collision
+  collision. *Changed in Cantera 3.0: three body reactions are detected based on the
+  reaction equation; the rate parameterization is independent. For three body reactions
+  with Arrhenius rate parameterizations, specifying the "type" is optional.*
 - :ref:`falloff <sec-yaml-falloff>`: A pressure-dependent reaction where the
   rate depends on the third-body concentration at low pressure but not at high
   pressure
@@ -66,7 +68,7 @@ The type of the rate coefficient parameterization may be specified in the
   Arrhenius expressions at different pressures
 - :ref:`Chebyshev <sec-yaml-Chebyshev>`: A reaction rate parameterized by a
   bivariate Chebyshev polynomial in pressure and temperature
-- `Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-blowers-masel>`__: A
+- :ref:`Blowers-Masel <sec-yaml-blowers-masel>`: A
   reaction rate constant parameterized as a modified Arrhenius reaction with
   one additional bond energy parameter to scale the activation energy according
   to the enthalpy of the reaction *(New in Cantera 2.6)*
@@ -77,12 +79,9 @@ types are described in the documentation linked above.
 The default parameterization is ``elementary``. Reactions involving surface
 species are automatically identified as :ref:`interface <sec-yaml-interface-Arrhenius>`
 reactions, reactions involving surface species with specified ``type`` as ``Blowers-Masel``
-are treated as
-`surface-Blowers-Masel <https://cantera.org/documentation/dev/sphinx/html/yaml/reactions.html#sec-yaml-surface-blowers-masel>`__,
+are treated as :ref:`interface-Blowers-Masel <sec-yaml-interface-Blowers-Masel>`,
 and reactions involving charge transfer are automatically identified as
 :ref:`electrochemical <sec-yaml-electrochemical-reaction>` reactions.
-
-.. TODO: Update Blowers-Masel links once version 2.6 is released
 
 Arrhenius Expressions
 ---------------------
