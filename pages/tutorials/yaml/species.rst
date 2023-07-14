@@ -21,7 +21,7 @@ Elements
 
 Cantera provides built-in definitions for the chemical elements, including
 values for their atomic weights taken from IUPAC / CIAAW. These elements can be
-used by speciying the corresponding atomic symbols when specifying the
+used by specifying the corresponding atomic symbols when specifying the
 composition of species.
 
 In order to give a name to a particular isotope or a virtual element
@@ -151,13 +151,16 @@ parameterization used specified by the ``model`` field of the
 - :ref:`HKFT <sec-yaml-eos-hkft>`: The Helgeson-Kirkham-Flowers-Tanger model for
   aqueous species
 - :ref:`ideal-gas <sec-yaml-eos-ideal-gas>`: A species following the ideal gas
-  law
+  law. *Deprecated in Cantera 3.0; handled at the phase level for all species in an
+  ideal gas.*
 - :ref:`ions-from-neutral-molecule <sec-yaml-eos-ions-from-neutral>`: Used with
-  the `ions-from-neutral-molecule` phase model
+  the ``ions-from-neutral-molecule`` phase model; *Deprecated in Cantera 3.0*
 - :ref:`liquid-water-IAPWS95 <sec-yaml-eos-liquid-water-iapws95>`: The IAPWS95
   equation of state for water, applied only in the liquid region
 - :ref:`molar-volume-temperature-polynomial <sec-yaml-eos-molar-volume-temperature-polynomial>`:
   Molar volume parameterized using a cubic polynomial in temperature
+- :ref:`Peng-Robinson <sec-yaml-eos-peng-robinson>`: A species following the
+  Peng-Robinson real gas model; *New in Cantera 3.0*
 - :ref:`Redlich-Kwong <sec-yaml-eos-redlich-kwong>`:
   A species which follows the Redlich-Kwong equation of state
 
