@@ -25,8 +25,8 @@ are then composed as elements of nested mappings and sequences.
 Strings
 -------
 
-Strings may be generally written without qoutes, but may be enclosed in single
-quotes or double quotes if needed in order to avoid certain parsing ambiguties.
+Strings may be generally written without quotes, but may be enclosed in single
+quotes or double quotes if needed in order to avoid certain parsing ambiguities.
 
 .. code:: yaml
 

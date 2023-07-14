@@ -148,7 +148,7 @@ Conda Requirements
      conda env create -f environment.yaml
      conda activate ct-build
 
-  After creating the enviroment, it can be updated from within ``ct-build`` using
+  After creating the environment, it can be updated from within ``ct-build`` using
 
   .. code:: bash
 
