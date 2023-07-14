@@ -36,15 +36,18 @@ The thermodynamic model used to represent a phase is specified in the ``thermo``
 field. Supported models are:
 
 - :ref:`binary-solution-tabulated <sec-yaml-binary-solution-tabulated>`: A
-  binary mixture where the excess enthalpy and entropy are interpolated; *New in
-  Cantera 2.5.0* between tabulated values as a function of mole fraction
+  binary mixture where the excess enthalpy and entropy are interpolated between
+  tabulated values as a function of mole fraction; *New in Cantera 2.5*
 - :ref:`compound-lattice <sec-yaml-compound-lattice>`: A phase that is comprised
   of a fixed additive combination of other lattice phases
-- :ref:`constant-density <sec-yaml-constant-density>`: A phase with a fixed
-  density, regardless of composition; *Deprecated in Cantera 2.5.0*
+- :ref:`coverage-dependent-surface <sec-yaml-coverage-dependent-surface>`: A surface
+  phase where the enthalpy, entropy, and heat capacity of each species may depend on
+  the species' coverages. *New in Cantera 3.0*
 - :ref:`Debye-Huckel <sec-yaml-Debye-Huckel>`: A dilute liquid electrolyte which
   obeys the Debye-Hückel formulation for nonideality
 - :ref:`edge <sec-yaml-edge>`: A one-dimensional edge between two surfaces
+- :ref:`electron-cloud <sec-yaml-electron-cloud>`: A phase representing free
+  electrons in a metal
 - :ref:`fixed-stoichiometry <sec-yaml-fixed-stoichiometry>`: An incompressible,
   single-species phase
 - :ref:`HMW-electrolyte <sec-yaml-HMW-electrolyte>`: A dilute or concentrated
@@ -53,7 +56,7 @@ field. Supported models are:
 - :ref:`ideal-molal-solution <sec-yaml-ideal-molal-solution>`: An ideal solution
   based on the mixing-rule assumption that all molality-based activity
   coefficients are equal to one
-- :ref:`ideal-condensed <sec-yaml-ideal-condensed>`
+- :ref:`ideal-condensed <sec-yaml-ideal-condensed>`: An ideal liquid or solid solution
 - :ref:`ideal-solution-VPSS <sec-yaml-ideal-solution-VPSS>`: An ideal solution;
   Uses "variable pressure standard state" methods for calculating thermodynamic
   properties
@@ -61,7 +64,7 @@ field. Supported models are:
   phases
 - :ref:`ions-from-neutral-molecule <sec-yaml-ions-from-neutral-molecule>`: A
   phase for representing ionic species based on another phase where those ions
-  are components of neutral molecules
+  are components of neutral molecules; *Deprecated in Cantera 3.0*
 - :ref:`lattice <sec-yaml-lattice>`: A simple model for an incompressible
   lattice of solid atoms
 - :ref:`liquid-water-IAPWS95 <sec-yaml-liquid-water-IAPWS95>`: An implementation
@@ -69,9 +72,11 @@ field. Supported models are:
 - :ref:`Margules <sec-yaml-Margules>`: A model that employs the Margules
   approximation for the excess Gibbs free energy
 - :ref:`Maskell-solid-solution <sec-yaml-Maskell-solid-solution>`: A condensed,
-  binary, non-ideal solution
-- :ref:`electron-cloud <sec-yaml-electron-cloud>`: A phase representing free
-  electrons in a metal
+  binary, non-ideal solution; *Deprecated in Cantera 3.0*
+- :ref:`Peng-Robinson <sec-yaml-Peng-Robinson>`: A multi-species real gas following the
+  Peng-Robinson equation of state; *New in Cantera 3.0*
+- :ref:`plasma <sec-yaml-plasma>`: A phase defined by a distinct electron temperature or
+  detailed electron energy distribution function; *New in Cantera 2.6*
 - :ref:`pure-fluid <sec-yaml-pure-fluid>`: A phase representing one of several
   pure substances including liquid, vapor, two-phase, and supercritical regions
 - :ref:`Redlich-Kister <sec-yaml-Redlich-Kister>`: A model that employs the
