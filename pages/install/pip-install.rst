@@ -21,8 +21,8 @@ Prerequisites
 
 The first step in installing the Cantera Python module using ``pip`` is to make sure you
 have a compatible version of Python installed and are able to run ``pip`` from the
-command line. Packages for Cantera 2.6.0 are available for Python versions 3.7, 3.8,
-3.9, and 3.10.
+command line. Packages for Cantera 3.0.0 are available for Python versions 3.8, 3.9,
+3.10, and 3.11.
 
 If you don't already have Python installed, it can be downloaded from
 `python.org <https://www.python.org/>`__ or installed using your operating system's
@@ -91,30 +91,74 @@ using one. Then, run the command:
 
    py -m pip install cantera
 
-You can test that your installation is working by running one of the examples included
-with Cantera:
+You can test that your installation is working by importing the Cantera module and
+creating a ``Solution`` object:
 
 *Linux / macOS*:
 
 .. code:: shell
 
-   python3 -m cantera.examples.thermo.critical_properties
+   python3 -c 'import cantera; gas = cantera.Solution("gri30.yaml"); gas()'
 
 *Windows*:
 
 .. code:: bat
 
-   py -m cantera.examples.thermo.critical_properties
+   py -c "import cantera; gas = cantera.Solution('gri30.yaml'); gas()"
 
 You should get the following output::
 
-   Critical State Properties
-                  Fluid      Tc [K]     Pc [Pa]          Zc
-                  water        647.3    2.209E+07      0.2333
-               nitrogen        126.2      3.4E+06      0.2891
-                methane        190.6    4.599E+06      0.2904
-               hydrogen        32.94    1.284E+06      0.3013
-                 oxygen        154.6    5.043E+06      0.2879
-         carbon dioxide        304.2    7.384E+06      0.2769
-                heptane        537.7     2.62E+06      0.2972
-                hfc134a        374.2    4.059E+06        0.26
+    gri30:
+
+         temperature   300 K
+            pressure   1.0133e+05 Pa
+             density   0.081894 kg/m^3
+    mean mol. weight   2.016 kg/kmol
+     phase of matter   gas
+
+                            1 kg             1 kmol
+                       ---------------   ---------------
+            enthalpy             26469             53361  J
+     internal energy       -1.2108e+06        -2.441e+06  J
+             entropy             64910        1.3086e+05  J/K
+      Gibbs function       -1.9447e+07       -3.9204e+07  J
+   heat capacity c_p             14311             28851  J/K
+   heat capacity c_v             10187             20536  J/K
+
+                        mass frac. Y      mole frac. X     chem. pot. / RT
+                       ---------------   ---------------   ---------------
+                  H2                 1                 1           -15.717
+       [  +52 minor]                 0                 0
+
+Installing a Pre-release
+------------------------
+
+Sometimes, a pre-release (alpha or beta) version of Cantera may be available to install.
+However, ``pip`` defaults to installing the latest stable version. To allow installation
+of a pre-release, add the ``--pre`` flag:
+
+*Linux / macOS*:
+
+.. code:: shell
+
+   python3 -m pip install --pre cantera
+
+*Windows*:
+
+.. code:: bat
+
+   py -m pip install --pre cantera
+
+You can check the version that was installed by running:
+
+*Linux / macOS*:
+
+.. code:: shell
+
+   python3 -c 'import cantera; print(cantera.__version__)'
+
+*Windows*:
+
+.. code:: bat
+
+   py -c "import cantera; print(cantera.__version__)"
