@@ -16,19 +16,27 @@
       Ubuntu packages are provided for recent versions of Ubuntu using a Personal
       Package Archive (PPA).
 
-As of Cantera 2.6.0, packages are available for Ubuntu 20.04 (Focal Fossa), Ubuntu 21.10
-(Impish Indri), and Ubuntu 22.04 (Jammy Jellyfish). To see which Ubuntu releases and
-Cantera versions are currently supported, visit
+As of Cantera 3.0.0, packages are available for Ubuntu 20.04 (Focal Fossa), Ubuntu 22.04
+(Jammy Jellyfish), Ubuntu 22.10 (Karmic Koala) and Ubuntu 23.04 (Lunar Lobster). To see
+which Ubuntu releases and Cantera versions are currently supported, visit
 https://launchpad.net/~cantera-team/+archive/ubuntu/cantera.
 
 The available packages are:
 
 - ``cantera-python3`` - The Cantera Python module for Python 3.
 
-- ``cantera-dev`` - Libraries and header files for compiling your own C++ and
+- ``libcantera-dev`` - Libraries and header files for compiling your own C, C++ and
   Fortran 90 programs that use Cantera.
 
 - ``cantera-common`` - Cantera data files and example programs
+
+- ``libcantera3.0`` - The Cantera C++ library, for use by packaged C++ applications.
+
+- ``libcantera-fortran3.0`` - The Cantera Fortran 90 library, for use by packaged
+  Fortran 90 applications.
+
+- ``cantera`` - A metapackage that will install everything except for the development
+  files.
 
 Note that the Matlab packages are not available from this archive; to install the
 Matlab packages on Ubuntu, you must install it using
@@ -49,7 +57,7 @@ To install all of the Cantera packages:
 
 .. code-block:: bash
 
-   sudo apt install cantera-python3 cantera-dev
+   sudo apt install cantera-python3 libcantera-dev
 
 or install whichever subset you need by adjusting the above command. The ``cantera-common``
 package is installed as a dependency if any other Cantera packages are selected.
@@ -75,7 +83,7 @@ you have the latest available version installed by running:
     sudo apt update
     sudo apt install cantera-python3
 
-If you also have the ``cantera-dev`` package installed, it should also be included on
+If you also have the ``libcantera-dev`` package installed, it should also be included on
 the ``apt install`` command line.
 
 Installing pre-release Cantera versions
@@ -93,7 +101,7 @@ These packages can be installed by additionally enabling the
 .. code-block:: bash
 
     sudo apt-add-repository ppa:cantera-team/cantera-unstable
-    sudo apt install cantera-python3 cantera-dev
+    sudo apt install cantera-python3 libcantera-dev
 
 You should also have the ``cantera-team/cantera`` PPA enabled, since the
 ``cantera-unstable`` PPA *only* includes development versions.
@@ -104,5 +112,5 @@ version, run the commands:
 .. code-block:: bash
 
     sudo apt-add-repository --remove ppa:cantera-team/cantera-unstable
-    sudo apt remove cantera cantera-common cantera-dev cantera-python3
-    sudo apt install cantera-python3 cantera-dev
+    sudo apt remove cantera cantera-common libcantera-dev cantera-python3
+    sudo apt install cantera-python3 libcantera-dev
