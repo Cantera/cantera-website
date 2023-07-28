@@ -21,20 +21,24 @@
 
 **Quickstart**
 
-The recommended way to obtain a copy of the source code is directly from the main
-version control repository on GitHub via the command
+First, make sure you have all of the :ref:`compilation requirements
+<sec-compilation-reqs>` installed.
+
+Then, obtain a copy of the Cantera source code directly from the main version control
+repository on GitHub via the command
 
 .. code-block:: bash
 
-   git clone https://github.com/Cantera/cantera.git
+   git clone --recursive https://github.com/Cantera/cantera.git
    cd cantera
+   git checkout 3.0
 
 which clones the code into a folder called ``cantera`` and changes into that directory.
 At this point, you can run
 
 .. code-block:: bash
 
-   scons help
+   scons help --options
 
 to see a list of all of the configuration options, including their defaults. On
 \*nix-type systems, the defaults will usually pick up the appropriate compilers and
@@ -64,9 +68,13 @@ which may require super-user permissions if the installation directory is protec
 If you want or need more detail, the following sections go into depth on all of the
 options and requirements to build Cantera from source.
 
-* :ref:`Installation Requirements <sec-installation-reqs>`
+* :ref:`Compilation Requirements <sec-compilation-reqs>`
+
+  * :ref:`Cantera's Dependencies <sec-dependencies>`
+
 * :ref:`Getting the Source Code <sec-source-code>`
-* :ref:`Determine Configuration Options <sec-determine-config>`
-* :ref:`Cantera's Dependencies <sec-dependencies>`
+* :ref:`Determine Configuration Options & Compile Cantera <sec-determine-config>`
+
+  * :ref:`Show me all of the configuration options <scons-config>`
+
 * :ref:`Special Compiling Cases <sec-special-compiling-cases>`
-* :ref:`Show me all of the configuration options <scons-config>`

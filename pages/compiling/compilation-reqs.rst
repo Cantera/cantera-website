@@ -1,6 +1,6 @@
 .. title: Compilation Requirements
 
-.. _sec-installation-reqs:
+.. _sec-compilation-reqs:
 
 .. jumbotron::
 
