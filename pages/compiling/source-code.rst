@@ -117,7 +117,7 @@ local repository by running:
 
          .. container:: btn btn-primary
             :tagname: a
-            :attributes: href=installation-reqs.html
+            :attributes: href=compilation-reqs.html
 
             Previous: Compilation Requirements
 

@@ -12,7 +12,7 @@
       This guide shows you how to build C++ programs that use Cantera's features. Note:
       This section is about compiling applications that use the Cantera library;
       instructions to compile the Cantera library are over :doc:`over here
-      <installation-reqs>`.
+      <compiling-install>`.
 
 Build Systems
 *************
