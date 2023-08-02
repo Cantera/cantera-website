@@ -52,12 +52,12 @@ heat or move to do work.
 Reactor Types and Governing Equations
 =====================================
 
-All reactor types are modelled using combinations of Cantera's governing equations of state. 
+All reactor types are modelled using combinations of Cantera's governing equations of state.
 The specific governing equations defining Cantera's supported reactor models are derived and described below.
 
 .. container:: container
 
-   .. row:: 
+   .. row::
 
       .. container:: col-12
 
@@ -73,7 +73,7 @@ The specific governing equations defining Cantera's supported reactor models are
                   .. container:: card-header section-card
 
                      Control Volume Reactor
-                     
+
                      ..
 
 
@@ -82,7 +82,7 @@ The specific governing equations defining Cantera's supported reactor models are
                   .. container:: card-text
 
                      Derivations of governing equations for a Control Volume Reactor.
-                     A reactor where the volume is prescribed by the motion of the 
+                     A reactor where the volume is prescribed by the motion of the
                      reactor's walls.
             .. container:: card
 
@@ -120,17 +120,17 @@ The specific governing equations defining Cantera's supported reactor models are
                      Derivations of governing equations for an Ideal Gas
                      Control Volume Reactor.
                      A reactor where all gasses follow the ideal gas law,
-                     volume is prescribed by the motion of the reactor's walls, 
+                     volume is prescribed by the motion of the reactor's walls,
                      and temperature is the energy equation state variable.
-                     
+
 .. container:: container
 
-   .. row:: 
+   .. row::
 
       .. container:: col-12
 
          .. container:: card-deck
-            
+
             .. container:: card
 
                .. container::
@@ -149,9 +149,9 @@ The specific governing equations defining Cantera's supported reactor models are
                      Derivations of governing equations for an Ideal Gas Constant Pressure Reactor.
                      A reactor where all gasses follow the ideal gas law, pressure is held
                      constant, and temperature is the energy equation state variable.
-               
+
             .. container:: card
-               
+
                .. container::
                   :tagname: a
                   :attributes: href="pfr.html"
@@ -160,7 +160,7 @@ The specific governing equations defining Cantera's supported reactor models are
                   .. container:: card-header section-card
 
                      Plug Flow Reactor
-                     
+
                      ..
 
 
@@ -169,17 +169,111 @@ The specific governing equations defining Cantera's supported reactor models are
                   .. container:: card-text
 
                      Derivations of governing equations for a Plug Flow Reactor.
-                     A steady-state reactor channel where typically an ideal gas 
+                     A steady-state reactor channel where typically an ideal gas
                      flows through it at a constant mass flow rate.
 
-In some cases, Cantera's solver is insufficient to describe 
+A set of reactors with a mole based state vector were implemented to leverage preconditioning techniques which do not have the same applicability to traditional mass fraction based solutions.
+The primary difference in "Mole reactors" being that the governing equations are derived using moles instead of mass fractions.
+
+
+.. container:: container
+
+   .. row::
+
+      .. container:: col-12
+
+         .. container:: card-deck
+
+            .. container:: card
+
+               .. container::
+                  :tagname: a
+                  :attributes: href="molereactor.html"
+                              title="Mole Reactor"
+
+                  .. container:: card-header section-card
+
+                     Mole Reactor
+
+               .. container:: card-body
+
+                  .. container:: card-text
+
+                     Derivations of governing equations for a Mole Reactor.
+
+
+            .. container:: card
+
+               .. container::
+                  :tagname: a
+                  :attributes: href="constpresmolereactor.html"
+                              title="Constant Pressure Mole Reactor"
+
+                  .. container:: card-header section-card
+
+                     Constant Pressure Mole Reactor
+
+                     ..
+
+               .. container:: card-body
+
+                  .. container:: card-text
+
+                     Derivations of governing equations for a Constant Pressure Mole.
+                     A reactor where the pressure is held constant by varying the volume.
+   .. row::
+
+      .. container:: col-12
+
+         .. container:: card-deck
+
+            .. container:: card
+
+               .. container::
+                  :tagname: a
+                  :attributes: href="idealgasmolereactor.html"
+                              title="Ideal Gas Mole Reactor"
+
+                  .. container:: card-header section-card
+
+                     Ideal Gas Mole Reactor
+
+               .. container:: card-body
+
+                  .. container:: card-text
+
+                     Derivations of governing equations for a Mole Reactor.
+
+
+            .. container:: card
+
+               .. container::
+                  :tagname: a
+                  :attributes: href="idealgasconstpresmolereactor.html"
+                              title="Ideal Gas Constant Pressure Mole Reactor"
+
+                  .. container:: card-header section-card
+
+                     Ideal Gas Constant Pressure Mole Reactor
+
+                     ..
+
+               .. container:: card-body
+
+                  .. container:: card-text
+
+                     Derivations of governing equations for a Constant Pressure Mole.
+                     A reactor where the pressure is held constant by varying the volume.
+
+
+In some cases, Cantera's solver is insufficient to describe
 a certain configuration. In this situation, there are two options for customizing
 a reactor in Cantera. These two approaches are described below: Extensible Reactor and
 Custom Reactor.
 
 .. container:: container
 
-   .. row:: 
+   .. row::
 
       .. container:: col-12
 
@@ -195,7 +289,7 @@ Custom Reactor.
                   .. container:: card-header section-card
 
                      Extensible Reactor
-                     
+
                      ..
 
 
@@ -205,7 +299,7 @@ Custom Reactor.
 
                      Documentation for reactor type where the user can modify existing
                      governing equations of a chosen reactor.
-               
+
             .. container:: card
 
                .. container::
@@ -221,10 +315,10 @@ Custom Reactor.
 
                   .. container:: card-text
 
-                     Documentation for reactor type where Cantera provides chemical and 
-                     thermodynamic computations, but external ODE solvers can be applied 
+                     Documentation for reactor type where Cantera provides chemical and
+                     thermodynamic computations, but external ODE solvers can be applied
                      to solve user supplied governing equation(s).
-               
+
 
 Reactor Networks
 ================
@@ -233,13 +327,13 @@ While reactors by themselves just define the above governing equations of the
 reactor, the time integration is performed in reactor networks. In other words
 defining a reactor without assigning it to a reactor network prevents Cantera
 from performing time integration to solve the governing equations. A reactor
-network is therefore necessary to define even if only a single reactor is considered. 
+network is therefore necessary to define even if only a single reactor is considered.
 An example of a single reactor network can be found `here
 </examples/python/reactors/combustor.py.html>`__.
 
 .. container:: container
 
-   .. row:: 
+   .. row::
 
       .. container:: col-12
 
@@ -255,7 +349,7 @@ An example of a single reactor network can be found `here
                   .. container:: card-header section-card
 
                      Time Integration for Reactor Networks: CVODES
-                     
+
                      ..
 
 
@@ -263,8 +357,8 @@ An example of a single reactor network can be found `here
 
                   .. container:: card-text
 
-                     Cantera uses the CVODES solver from the `SUNDIALS 
-                     <https://computing.llnl.gov/projects/sundials>`__ 
+                     Cantera uses the CVODES solver from the `SUNDIALS
+                     <https://computing.llnl.gov/projects/sundials>`__
                      package to integrate the stiff ODEs of reacting systems. These stiff ODEs are referring to
                      the governing equations defining the reactors above.
                      More in-depth information on the CVODES solver can be found here.
@@ -272,9 +366,9 @@ An example of a single reactor network can be found `here
 Reactor Peripherals
 ===================
 
-Reactor networks are also how Cantera interconnects multiple reactors. Not 
-only mass flow from one reactor into another can be incorporated, but also heat 
-can be transferred, or the wall between reactors can move. Documentation 
+Reactor networks are also how Cantera interconnects multiple reactors. Not
+only mass flow from one reactor into another can be incorporated, but also heat
+can be transferred, or the wall between reactors can move. Documentation
 on the different ways to connect reactors is explained here.
 
 To set up a network, the following components can be defined in addition
@@ -375,7 +469,7 @@ to the reactors previously mentioned:
   since a reversal of the flow direction is not allowed.
 
   Cantera comes with a broad variety of well-commented example scrips for reactor
-  networks. Please see the `Cantera Examples </examples/index.html>`__ for further 
+  networks. Please see the `Cantera Examples </examples/index.html>`__ for further
   information.
 
 Wall Interactions
@@ -505,7 +599,7 @@ approach is to use the equilibrium composition of the reactants (which can be
 computed using Cantera's ``equilibrate`` function) as an initial guess.
 
 *Cantera always solves a transient problem. If you are interested in steady-state
-conditions, you can run your simulation for a long time until the states are converged (see the* 
+conditions, you can run your simulation for a long time until the states are converged (see the*
 `surface reactor example </examples/python/reactors/surf_pfr.py.html>`__ *and the* `combustor example
 </examples/python/reactors/combustor.html>`__ *).*
 
