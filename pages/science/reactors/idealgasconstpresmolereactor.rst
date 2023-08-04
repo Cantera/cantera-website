@@ -39,18 +39,18 @@ temperature:
 
 .. math::
 
-   \frac{dT}{dt} = \frac{\dot{Q} - \sum \bar{h}_k \dot{n}_k}{\sum_k n_k \bar{c}_{p,k} }
+   \sum_k n_k \bar{c}_{p,k} \frac{dT}{dt} = \dot{Q} - \sum \bar{h}_k \dot{n}_k
   \tag{1}
 
 The moles of each species in the reactor's contents changes as a result of flow through
 the reactor's inlets and outlets, and production of homogeneous gas phase species and reactions on the reactor :py:class:`Wall`.
 The rate of moles of species :math:`k` generated through homogeneous phase
 reactions is :math:`V \dot{\omega}_k`, and the total rate at which moles of species
-:math:`k` is generated is:
+:math:`k` changes is:
 
 .. math::
 
-   \frac{dn_k}{dt} = V \dot{\omega}_k + \sum_{in} \dot{n}_{in} - \sum_{out} \dot{n}_{out} + \dot{n}_{wall}
+   \frac{dn_k}{dt} = V \dot{\omega}_k + \sum_{in} \dot{n}_{k, in} - \sum_{out} \dot{n}_{k, out} + \dot{n}_{k, wall}
    \tag{2}
 
 Where the subscripts *in* and *out* refer to the sum of the superscripted property
@@ -59,4 +59,4 @@ derivative. Reactor *Walls* are defined `here. <{{% ct_docs sphinx/html/cython/z
 
 
 Equations 1-2 are the governing equations for an Ideal Gas Constant Pressure
-Reactor.
+Mole Reactor.

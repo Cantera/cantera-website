@@ -25,7 +25,7 @@ and :py:class:`Valve`.
 
 A Mole Reactor is defined by the three state variables:
 
-- :math:`U`, the total internal energy of the reactors contents (in J)
+- :math:`U`, the total internal energy of the reactor's contents (in J)
 
 - :math:`V`, the reactor volume (in m\ :sup:`3`)
 
@@ -38,7 +38,7 @@ for an open system:
 
    \frac{dU}{dt} = - p \frac{dV}{dt} + \dot{Q} +
                     \sum_{in} \dot{n}_{in} \bar{h}_{in} - \bar{h} \sum_{out} \dot{n}_{out}
-   \tag{3}
+   \tag{1}
 
 Where :math:`\dot{Q}` is the net rate of heat addition to the system.
 
@@ -59,11 +59,11 @@ The moles of each species in the reactor's contents changes as a result of flow 
 the reactor's inlets and outlets, and production of homogeneous gas phase species and reactions on the reactor :py:class:`Wall`.
 The rate of moles of species :math:`k` generated through homogeneous phase
 reactions is :math:`V \dot{\omega}_k`, and the total rate at which moles of species
-:math:`k` is generated is:
+:math:`k` changes is:
 
 .. math::
 
-   \frac{dn_k}{dt} = V \dot{\omega}_k + \sum_{in} \dot{n}_{in} - \sum_{out} \dot{n}_{out} + \dot{n}_{wall}
+   \frac{dn_k}{dt} = V \dot{\omega}_k + \sum_{in} \dot{n}_{k, in} - \sum_{out} \dot{n}_{k, out} + \dot{n}_{k, wall}
    \tag{3}
 
 Where the subscripts *in* and *out* refer to the sum of the superscripted property

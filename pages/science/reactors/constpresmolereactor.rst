@@ -21,7 +21,7 @@ Constant Pressure Mole Reactor
 For this reactor model, the pressure is held constant. The energy equation is
 defined by the total enthalpy.
 
-A Constant Pressure Reactor is defined by the two state variables:
+A Constant Pressure Mole Reactor is defined by the two state variables:
 
 - :math:`H`, the total enthalpy of the reactor's contents (in J)
 
@@ -55,15 +55,15 @@ The moles of each species in the reactor's contents changes as a result of flow 
 the reactor's inlets and outlets, and production of homogeneous gas phase species and reactions on the reactor :py:class:`Wall`.
 The rate of moles of species :math:`k` generated through homogeneous phase
 reactions is :math:`V \dot{\omega}_k`, and the total rate at which moles of species
-:math:`k` is generated is:
+:math:`k` changes is:
 
 .. math::
 
-   \frac{dn_k}{dt} = V \dot{\omega}_k + \sum_{in} \dot{n}_{in} - \sum_{out} \dot{n}_{out} + \dot{n}_{wall}
+   \frac{dn_k}{dt} = V \dot{\omega}_k + \sum_{in} \dot{n}_{k, in} - \sum_{out} \dot{n}_{k, out} + \dot{n}_{k, wall}
    \tag{2}
 
 Where the subscripts *in* and *out* refer to the sum of the superscripted property
 over all inlets and outlets respectively. A dot above a variable signifies a time
 derivative. Reactor *Walls* are defined `here. <{{% ct_docs sphinx/html/cython/zerodim.html#cantera.Wall %}}>`__
 
-Equations 1-2 are the governing equations for a Constant Pressure Reactor.
+Equations 1-2 are the governing equations for a Constant Pressure Mole Reactor.
