@@ -55,11 +55,11 @@ Where :math:`f_w = \pm 1` indicates the facing of the wall (whether moving the w
 Finally, the moles of each species in the reactor's contents changes as a result of flow through the reactor's inlets and outlets, and production of homogeneous gas phase species and reactions on the reactor :py:class:`Wall`.
 The rate of moles of species :math:`k` generated through homogeneous phase
 reactions is :math:`V \dot{\omega}_k`, and the total rate at which moles of species
-:math:`k` is generated is:
+:math:`k` changes is:
 
 .. math::
 
-   \frac{dn_k}{dt} = V \dot{\omega}_k + \sum_{in} \dot{n}_{in} - \sum_{out} \dot{n}_{out} + \dot{n}_{wall}
+   \frac{dn_k}{dt} = V \dot{\omega}_k + \sum_{in} \dot{n}_{k, in} - \sum_{out} \dot{n}_{k, out} + \dot{n}_{k, wall}
    \tag{3}
 
 Equations 1-3 are the governing equations for an Ideal Gas Mole Reactor.

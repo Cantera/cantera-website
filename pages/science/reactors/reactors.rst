@@ -173,6 +173,7 @@ The specific governing equations defining Cantera's supported reactor models are
                      flows through it at a constant mass flow rate.
 
 A set of reactors with a mole based state vector were implemented to leverage preconditioning techniques which do not have the same applicability to traditional mass fraction based solutions.
+More on preconditioning can be found in the CVODES time integration `here. <https://cantera.org/science/reactors/cvodes.html>`__
 The primary difference in "Mole reactors" being that the governing equations are derived using moles instead of mass fractions.
 
 
@@ -534,11 +535,18 @@ For each surface species :math:`i`, the rate of change of the site fraction
 
 .. math::
 
-   \frac{d\theta_{i,w}}{dt} = \frac{\dot{s}_{i,w} n_i}{\Gamma_w}
+   \frac{d\theta_{i,w}}{dt} = \frac{\dot{s}_{i,w} \sigma_i}{\Gamma_w}
 
 where :math:`\Gamma_w` is the total surface site density on wall :math:`w` and
-:math:`n_i` is the number of surface sites occupied by a molecule of species
+:math:`\sigma_i` is the number of surface sites occupied by a molecule of species
 :math:`i` (sometimes referred to within Cantera as the molecule's "size").
+
+In the case of mole based reactors,
+:math:`\dot{n}_{wall}` is needed which is calculated as:
+
+.. math::
+
+      \dot{n}_{k, wall} = A_{w}\sum_{w}\dot{s}_{w, k}
 
 Common Reactor Types and their Implementation in Cantera
 ========================================================
