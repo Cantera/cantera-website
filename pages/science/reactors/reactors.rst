@@ -269,10 +269,23 @@ terms of the moles of each species instead of total mass and the mass fractions.
                      A constant pressure reactor specialized for ideal gases, where the
                      state variables are the temperature and the moles of each species.
 
-In some cases, Cantera's solver is insufficient to describe
-a certain configuration. In this situation, there are two options for customizing
-a reactor in Cantera. These two approaches are described below: Extensible Reactor and
-Custom Reactor.
+Extensible Reactors
+-------------------
+
+In some cases, Cantera's built-in reactor types are insufficient to model a problem.
+In this situation, the ``ExtensibleReactor`` family of classes can be used to modify
+and governing equations, starting from one of the built-in reactor types.
+
+These reactor types allow the methods that implement the governing equations and related
+reactor configuration to be augmented or replaced with user-defined Python functions.
+New state variables can be added to the reactor, and existing ones can be redefined.
+User-defined ``ExtensibleReactor`` implementations can be used alongside the built-in
+reactor types to build reactor networks that can be integrated using the ``ReactorNet``
+integrator provided by Cantera.
+
+Several examples demonstrating the use of ``ExtensibleReactor`` classes are given below.
+Detailed API documentation can be found with the Python :py:class:`ExtensibleReactor`
+class.
 
 .. container:: container
 
@@ -287,40 +300,59 @@ Custom Reactor.
                .. container::
                   :tagname: a
                   :attributes: href="extensiblereactor.html"
-                              title="Extensible Reactor"
+                              title="Extensible Reactor Tutorial"
 
                   .. container:: card-header section-card
 
-                     Extensible Reactor
-
-                     ..
-
+                     Extensible Reactor Tutorial
 
                .. container:: card-body
 
                   .. container:: card-text
 
-                     Documentation for reactor type where the user can modify existing
-                     governing equations of a chosen reactor.
+                     A simple example of an ``ExtensibleReactor`` that walks through
+                     the definition of modified governing equations and shows how to
+                     define the Python methods that implement these changes to the
+                     equations.
 
             .. container:: card
 
                .. container::
                   :tagname: a
-                  :attributes: href="customreactor.html"
-                              title="Custom Reactor"
+                  :attributes: href="../../examples/python/reactors/custom2.py.html"
+                              title="Adding New State Variables"
 
                   .. container:: card-header section-card
 
-                     Custom Reactor
+                     Adding New State Variables
 
                .. container:: card-body
 
                   .. container:: card-text
 
-                     Documentation for reactor type where Cantera provides chemical and
-                     thermodynamic computations, but external ODE solvers can be applied
-                     to solve user supplied governing equation(s).
+                     An example that shows how to add a new state variable to an
+                     ``ExtensibleReactor``, in order to implement a reactor where an
+                     adjacent wall has inertia and takes time to respond to changes in
+                     the reactor's pressure.
+
+            .. container:: card
+
+               .. container::
+                  :tagname: a
+                  :attributes: href="../../examples/python/reactors/PorousMediaBurner.py.html"
+                              title="Complex Reactor Interactions"
+
+                  .. container:: card-header section-card
+
+                     Complex Reactor Interactions
+
+               .. container:: card-body
+
+                  .. container:: card-text
+
+                     An example that implements fully-customized governing equations
+                     to implement a porous media burner, with several new forms of
+                     interaction between adjacent reactors.
 
 
 Reactor Networks

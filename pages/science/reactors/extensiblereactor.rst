@@ -9,27 +9,17 @@
 
    .. class:: lead
 
-      This page defines and links to an example of an Extensible Reactor.
+      This page walks through the walks through defining modified governing equations
+      and shows how to implement these changes to the equations in Python.
 
-Extensible Reactors
-*******************
+Extensible Reactor Tutorial
+***************************
 
-In some cases, Cantera's existing governing equations are insufficient 
-in describing a certain configuration, but the internal integrator is 
-still well suited to solve the desired system. In this situation, Cantera 
-Reactors' governing equations can be modified to the user's specific 
-needs while still using the CVODES integrator. An Extensible Reactor allows 
-for modifications of a Reactor class' 
-`governing equations </science/reactors/reactors.html>`__. If using an integrator 
-besides CVODES is desired, a `Custom Reactor </science/reactors/
-customreactor.html>`__ may be a more appropriate Reactor class to use.
-
-The variables in the governing equations that are differentiated with 
-respect to time are known as the state variables.
-The state variables depend on the type of Reactor base class chosen. 
-For example, choosing an `Ideal Gas Constant Pressure Reactor 
-<idealgasconstpresreactor.html#ideal-gas-constant-pressure-reactor>`__ 
-allows the user to modify the governing equations corresponding to 
+The variables in the governing equations that are differentiated with respect to time
+are known as the state variables. The state variables depend on the type of Reactor
+base class chosen. For example, choosing an `Ideal Gas Constant Pressure Reactor
+<idealgasconstpresreactor.html#ideal-gas-constant-pressure-reactor>`__
+allows the user to modify the governing equations corresponding to
 the following state variables:
 
 - :math:`m`, the mass of the reactor's contents (in kg)
@@ -38,8 +28,8 @@ the following state variables:
 
 - :math:`Y_k`, the mass fractions for each species (dimensionless)
 
-As shown in the derivations of the governing equations for an Ideal Gas 
-Constant Pressure Reactor, the user may modify the 3 equations below:
+As shown in the derivations of the governing equations for an Ideal Gas
+Constant Pressure Reactor, the user may modify the three equations below:
 
 .. math::
 
@@ -63,7 +53,7 @@ There are two "sides" to each of these equations: the terms left of the equals
 sign and the terms to the right of the equals sign. This is the format
 in which the user will be editing the governing equations. For example,
 if the user wishes to add a term for a large mass (say a rock) inside
-the reactor to see the effects on reaction temperature:
+the reactor to see the effects on temperature:
 
 .. math::
 
@@ -75,12 +65,12 @@ Will change to:
 
 .. math::
 
-   m c_p \frac{dT}{dt} + m_{rock} c_{p,rock} \frac{dT}{dt} = - \dot{Q} - \sum_k h_k \dot{m}_{k,gen}
+   \left(m c_p + m_{rock} c_{p,rock}\right) \frac{dT}{dt} = - \dot{Q} - \sum_k h_k \dot{m}_{k,gen}
        + \sum_{in} \dot{m}_{in} \left(h_{in} - \sum_k h_k Y_{k,in} \right)
 
 A simple example is shown below to illustrate the process for implementing
 changes in Cantera's existing governing equations.
-We will be replacing the right-hand side (RHS) and left-hand side (LHS) of 
+We will be replacing the right-hand side (RHS) and left-hand side (LHS) of
 the temperature governing equation for an Ideal Gas Constant Pressure Reactor.
 All other governing equations defining an Ideal Gas Constant Pressure Reactor
 will remain as the default.
@@ -97,11 +87,11 @@ Will change to:
 
 .. math::
 
-   m_{rock} c_{p,rock}\frac{dT}{dt} + m_{gas}\frac{dT}{dt} = - \dot{Q}
+   \left( m_{rock} c_{p,rock} + m_{gas} \right) \frac{dT}{dt} = - \dot{Q}
 
 The governing equations will be modified through the user created Python class' methods.
-For each method, the name should be prefixed with ``before_``, ``after_``, or 
-``replace_``, indicating whether the this method should be called before, after, 
+For each method, the name should be prefixed with ``before_``, ``after_``, or
+``replace_``, indicating whether the this method should be called before, after,
 or instead of the corresponding method from the base class.
 
 .. code-block:: python
@@ -123,7 +113,7 @@ or instead of the corresponding method from the base class.
     n_steps = 300
 
     #2 Define a new custom Reactor class. Here we named it "RockReactor" and 
-    # chose the Ideal Gas Constant Pressure Reactor as the base class to inheret
+    # chose the Ideal Gas Constant Pressure Reactor as the base class to inherit
     # governing equations from. 
 
     # define a class representing reactor with a solid mass and gas inside of it
