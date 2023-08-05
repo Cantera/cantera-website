@@ -13,7 +13,7 @@
       Cantera's Ideal Gas Constant Pressure Reactor model.
 
       More information on the Ideal Gas Constant Pressure Reactor class can
-      be found `here. <https://cantera.org/documentation/docs-2.6/doxygen/html/dc/d5d/classCantera_1_1IdealGasConstPressureReactor.html>`__
+      be found `here. <{{% ct_docs doxygen/html/dc/d5d/classCantera_1_1IdealGasConstPressureReactor.html %}}>`__
 
 Ideal Gas Constant Pressure Reactor
 ***********************************
@@ -28,7 +28,7 @@ An Ideal Gas Constant Pressure Reactor is defined by the three state variables:
 
 The total mass of the reactor's contents changes as a result of flow through
 the reactor's inlets and outlets, and production of homogeneous phase species
-on the reactor :py:class:`Wall`:
+on :py:class:`ReactorSurface` objects:
 
 .. math::
 
@@ -38,8 +38,7 @@ on the reactor :py:class:`Wall`:
 
 Where the subscripts *in* and *out* refer to the sum of the superscipted property
 over all inlets and outlets respectively. A dot above a variable signifies a time 
-derivative. Reactor *Walls* are defined `here.
-<http://127.0.0.1:8887/documentation/docs-2.6/sphinx/html/cython/zerodim.html#cantera.Wall>`__ 
+derivative.
 
 As for the Ideal Gas Reactor, we replace the total enthalpy as a state
 variable with the temperature by writing the total enthalpy in terms of the
