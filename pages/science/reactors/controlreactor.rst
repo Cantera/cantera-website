@@ -18,10 +18,10 @@
 Control Volume Reactor
 **********************
 
-A homogeneous zero-dimensional reactor. By default, they are closed (no inlets or outlets), 
-have fixed volume, and have adiabatic, chemically-inert walls. These properties may all be 
-changed by adding appropriate components such as :py:class:`Wall`, :py:class:`MassFlowController` 
-and :py:class:`Valve`.
+A homogeneous zero-dimensional reactor. By default, they are closed (no inlets or outlets),
+have fixed volume, and have adiabatic, chemically-inert walls. These properties may all be
+changed by adding appropriate components such as :py:class:`Wall`, :py:class:`ReactorSurface`,
+:py:class:`MassFlowController`, and :py:class:`Valve`.
 
 A Control Volume Reactor is defined by the four state variables: 
 
@@ -43,10 +43,9 @@ on the reactor :py:class:`Wall`.
                     \dot{m}_{wall}
                     \tag{1}
 
-Where the subscripts *in* and *out* refer to the sum of the superscipted property
+Where the subscripts *in* and *out* refer to the sum of the corresponding property
 over all inlets and outlets respectively. A dot above a variable signifies a time 
-derivative. A Reactor *wall* is defined `here.
-<{{% ct_docs sphinx/html/cython/zerodim.html#cantera.Wall %}}>`__ 
+derivative.
 
 The reactor volume changes as a function of time due to the motion of one or
 more walls:

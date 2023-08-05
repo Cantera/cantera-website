@@ -29,7 +29,7 @@ An Ideal Gas Reactor is defined by the four state variables:
 
 The total mass of the reactor's contents changes as a result of flow through
 the reactor's inlets and outlets, and production of homogeneous phase species
-on the reactor walls:
+on :py:class:`ReactorSurface` objects:
 
 .. math::
 
@@ -37,13 +37,12 @@ on the reactor walls:
                     \dot{m}_{wall}
                     \tag{1}
 
-Where the subscripts *in* and *out* refer to the sum of the superscipted property
+Where the subscripts *in* and *out* refer to the sum of the corresponding property
 over all inlets and outlets respectively. A dot above a variable signifies a time 
-derivative. Reactor *Walls* are defined `here.
-<{{% ct_docs sphinx/html/cython/zerodim.html#cantera.Wall %}}>`__ 
+derivative.
 
 The reactor volume changes as a function of time due to the motion of one or
-more walls:
+more :py:class:`Wall` objects:
 
 .. math::
 
