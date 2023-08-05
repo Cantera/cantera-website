@@ -5,25 +5,25 @@
 
    .. raw:: html
 
-      <h1 class="display-4">CVODES and Time Integration in Cantera</h1>
+      <h1 class="display-4">Time Integration in Cantera using SUNDIALS</h1>
 
    .. class:: lead
 
       This guide explains ways Cantera can solve the governing equations of
       a transient Reactor Network problem. Additional insights
-      into the integrator utilized by Cantera (CVODES) are also provided.
+      into the integrator library SUNDIALS utilized by Cantera are also provided.
 
 Using Cantera to Advance a Reactor Network in Time
 **************************************************
 
-A ``ReactorNetwork`` can be advanced in time by one of the following three
+A ``ReactorNet`` can be advanced in time by one of the following three
 methods:
 
 - ``step()``: The ``step()`` method computes the state of the system after one
-  time step. The size of the step is determined by CVODES when the method is called.
-  CVODES determines the step size by estimating the local error at every step, which
+  time step. The size of the step is determined by SUNDIALS when the method is called.
+  SUNDIALS determines the step size by estimating the local error at every step, which
   must satisfy tolerance conditions. The step is redone with reduced step size whenever
-  that error test fails. CVODES also periodically checks if the maximum step size is
+  that error test fails. SUNDIALS also periodically checks if the maximum step size is
   being used. The time step must not be larger than a predefined maximum time step
   :math:`\Delta t_{\mathrm{max}}`. The new time :math:`t_{\mathrm{new}}` at the end
   of the single step is returned by this function. This method produces the highest time
@@ -32,8 +32,8 @@ methods:
 - ``advance(t_new)``: This method computes the state of the system at the
   user-provided time :math:`t_{\mathrm{new}}`. :math:`t_{\mathrm{new}}` is the absolute
   time from the initial time of the system. Although the user specifies the time when
-  integration should stop, CVODES chooses the time step size as the network is integrated.
-  Many of these internal CVODES time steps are usually required to reach
+  integration should stop, SUNDIALS chooses the time step size as the network is integrated.
+  Many of these internal SUNDIALS time steps are usually required to reach
   :math:`t_{\mathrm{new}}`. As such, ``advance(t_new)`` preserves the accuracy of using
   ``step()`` but allows consistent time step spacing in the output data.
 
@@ -144,21 +144,24 @@ governing equations through time, a process that's actually performed by an exte
 Step 3: Information about current gas state provided to an `Integrator`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``Integrator`` class is Cantera's interface for ODE system integrators.
+The ``Integrator`` class is Cantera's interface for ODE/DAE system integrators.
 
 ``Integrator`` is a `polymorphic base class <http://www.cplusplus.com/doc/tutorial/polymorphism/>`__; it
-defines a set of *virtual* functionalities that derived classes (the actual ODE system integrators) will
+defines a set of *virtual* methods that derived classes (the actual system integrators) will
 provide implementations for.
 
-**Integrator.h** creates a ``newIntegrator()``. Factory Method ``newIntegrator()`` creates and returns a
-pointer to an ``Integrator`` instance of type ``itype``. The ``newIntegrator()`` instance will automatically
-have an ``itype`` of ``CVODES``, which is installed with Cantera. The ``newIntegrator()`` will be stored as
-variable ``m_integ``.
+The ``newIntegrator()`` factory method creates and returns an ``Integrator`` object of
+the specified type. Calling ``newIntegrator("CVODE")`` creates a new ``CVodesIntegrator``
+object for integrating an ODE system, while calling ``newIntegrator("IDA")`` creates a
+new ``IdasIntegrator`` object for integrating a DAE system. The appropriate integrator
+type is determined by the ``ReactorNet`` class based on the types of the installed
+reactors. Below, the implementation of ``CvodesIntegrator`` is described; the
+``IdasIntegrator`` works in a similar way, though the function names are different.
 
-Step 4: Communicate with CVODES using a wrapper function
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Step 4: Communicate with SUNDIALS using a wrapper function
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Because ``CVODES`` is written in C, the ``CVodesIntegrator`` C++ wrapper is used to access the solver.
+Because SUNDIALS is written in C, the ``CVodesIntegrator`` C++ wrapper is used to access the solver.
 The ``CVodesIntegrator`` class is a C++ wrapper class for ``CVODES``. (`Documentation
 <{{% ct_docs doxygen/html/d9/d6b/classCantera_1_1CVodesIntegrator.html %}}>`__)
 The ``CVodesIntegrator`` class makes the appropriate call to the ``CVODES`` driver function, ``CVode()``.
@@ -186,7 +189,7 @@ There are some interesting things to note about this call to ``CVode()``:
   appropriate functionality for ``ReactorNet::advance()``. The alternate option, ``CV_ONE_STEP``, tells the solver to take
   a single internal step, and is used in ``ReactorNet::step()``.
 
-The result of the ``CVode()`` method is assigned to the ``flag`` object. ``CVode()`` returns 1 or 0, correpsonding to
+The result of the ``CVode()`` method is assigned to the ``flag`` object. ``CVode()`` returns 1 or 0, corresponding to
 a successful or unsuccessful integration, respectively.
 
 .. code-block:: C++
@@ -222,15 +225,14 @@ To be a valid ``FuncEval`` object, a ``ReactorNet`` needs to provide implementat
 virtual functions, particularly the actual ODE right-hand-side computation
 function, ``FuncEval::eval()``. Note that this is declared as a `pure virtual
 <https://en.cppreference.com/w/cpp/language/abstract_class>`__ function, which makes
-``FuncEval`` an abstract class:
+``FuncEval`` an abstract class.
 
 To evaluate the reactor governing equations the following parameters must be known:
 
-#. Time, t
-    Current time in seconds.
-#. LHS pointer to start of vector of left-hand side coefficients for governing equations.
+#. ``t``: Current time in seconds.
+#. ``LHS``: pointer to start of vector of left-hand side coefficients for governing equations.
     Has length m_nv, default values 1.
-#. RHS pointer to start of vector of right-hand side coefficients for governing equations.
+#. ``RHS``: pointer to start of vector of right-hand side coefficients for governing equations.
     Has length m_nv, default values 0.
 
 .. code-block:: C++
@@ -241,7 +243,7 @@ To evaluate the reactor governing equations the following parameters must be kno
 
 The above code shows the necessary inputs for solving the ODEs using the ``eval()`` function. ``eval()`` takes in the
 value of each state variable derivative (``ydot``) at a time ``t``, and will write the integrated values for each
-state varaible to the solution vector (``y``).
+state variable to the solution vector (``y``).
 
 Step 7: ``eval()`` is called to solve provided ODEs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -251,67 +253,32 @@ Along with the rest of ``FuncEval``'s virtual functions, an appropriate override
 
 .. code-block:: C++
 
-    void ReactorNet::eval(doublereal t, doublereal* y,
-                      doublereal* ydot, doublereal* p)
-
-    m_time = t;
-    updateState(y);
-    m_LHS.assign(m_nv, 1);
-    m_RHS.assign(m_nv, 0);
-    if (!m_checked_eval_deprecation) {
-        m_have_deprecated_eval.assign(m_reactors.size(), false);
+    void ReactorNet::eval(double t, double* y, double* ydot, double* p)
+    {
+        m_time = t;
+        updateState(y);
+        m_LHS.assign(m_nv, 1);
+        m_RHS.assign(m_nv, 0);
         for (size_t n = 0; n < m_reactors.size(); n++) {
             m_reactors[n]->applySensitivity(p);
-            try {
-                m_reactors[n]->evalEqs(t, y + m_start[n], ydot + m_start[n], p);
-                warn_deprecated(m_reactors[n]->type() +
-                    "::evalEqs(double t, double* y , double* ydot, double* params)",
-                    "Reactor time derivative evaluation now uses signature "
-                    "eval(double t, double* ydot)");
-                m_have_deprecated_eval[n] = true;
-            } catch (NotImplementedError&) {
-                m_reactors[n]->eval(t, m_LHS.data() + m_start[n], m_RHS.data() + m_start[n]);
-                size_t yEnd = 0;
-                if (n == m_reactors.size() - 1) {
-                    yEnd = m_RHS.size();
-                } else {
-                    yEnd = m_start[n + 1];
-                }
-                for (size_t i = m_start[n]; i < yEnd; i++) {
-                    ydot[i] = m_RHS[i] / m_LHS[i];
-                }
-            }
-            m_reactors[n]->resetSensitivity(p);
-        }
-        m_checked_eval_deprecation = true;
-    } else {
-        for (size_t n = 0; n < m_reactors.size(); n++) {
-            m_reactors[n]->applySensitivity(p);
-            if (m_have_deprecated_eval[n]) {
-                m_reactors[n]->evalEqs(t, y + m_start[n], ydot + m_start[n], p);
+            m_reactors[n]->eval(t, m_LHS.data() + m_start[n], m_RHS.data() + m_start[n]);
+            size_t yEnd = 0;
+            if (n == m_reactors.size() - 1) {
+                yEnd = m_RHS.size();
             } else {
-                m_reactors[n]->eval(t, m_LHS.data() + m_start[n], m_RHS.data() + m_start[n]);
-                size_t yEnd = 0;
-                if (n == m_reactors.size() - 1) {
-                    yEnd = m_RHS.size();
-                } else {
-                    yEnd = m_start[n + 1];
-                }
-                for (size_t i = m_start[n]; i < yEnd; i++) {
-                    ydot[i] = m_RHS[i] / m_LHS[i];
-                }
+                yEnd = m_start[n + 1];
+            }
+            for (size_t i = m_start[n]; i < yEnd; i++) {
+                ydot[i] = m_RHS[i] / m_LHS[i];
             }
             m_reactors[n]->resetSensitivity(p);
         }
+        checkFinite("ydot", ydot, m_nv);
     }
-    checkFinite("ydot", ydot, m_nv);
-  }
 
 
-
-``ReactorNet``'s ``eval()`` method evaluates the governing equations of all
-``Reactors`` contained in the network. This brings us right back to where we started. Cantera still currently supports
-the deprecated ``evalEqs()`` function, hence the deprecation warning. For more information see
-Cantera's `reactor network science page </science/reactors/reactors.html>`__.
+``ReactorNet``'s ``eval()`` method evaluates the governing equations of all ``Reactors``
+contained in the network. This brings us right back to where we started. For more
+information, see Cantera's `reactor network science page </science/reactors/reactors.html>`__.
 
 This documentation is based off @paulblum's `blog post <https://cantera.org/blog/gsoc-2020-blog-3.html>`__.
