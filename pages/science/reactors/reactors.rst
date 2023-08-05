@@ -81,9 +81,10 @@ The specific governing equations defining Cantera's supported reactor models are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for a Control Volume Reactor.
                      A reactor where the volume is prescribed by the motion of the
-                     reactor's walls.
+                     reactor's walls. The state variables are the volume, mass, total
+                     internal energy, and species mass fractions.
+
             .. container:: card
 
                .. container::
@@ -99,8 +100,9 @@ The specific governing equations defining Cantera's supported reactor models are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for a Constant Pressure Reactor.
                      A reactor where the pressure is held constant by varying the volume.
+                     The state variables are the mass, total enthalpy, and species mass
+                     fractions.
 
             .. container:: card
 
@@ -117,11 +119,10 @@ The specific governing equations defining Cantera's supported reactor models are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for an Ideal Gas
-                     Control Volume Reactor.
-                     A reactor where all gasses follow the ideal gas law,
-                     volume is prescribed by the motion of the reactor's walls,
-                     and temperature is the energy equation state variable.
+                     A reactor where the volume is prescribed by the
+                     motion of the reactor's walls, specialized for ideal gas mixtures.
+                     The state variables are the mass, volume, temperature, and species
+                     mass fractions.
 
 .. container:: container
 
@@ -146,9 +147,9 @@ The specific governing equations defining Cantera's supported reactor models are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for an Ideal Gas Constant Pressure Reactor.
-                     A reactor where all gasses follow the ideal gas law, pressure is held
-                     constant, and temperature is the energy equation state variable.
+                     A reactor where the pressure is held constant by varying the volume,
+                     specialized for ideal gas mixtures. The state variables are the
+                     mass, temperature,  and species mass fractions.
 
             .. container:: card
 
@@ -161,20 +162,20 @@ The specific governing equations defining Cantera's supported reactor models are
 
                      Plug Flow Reactor
 
-                     ..
-
-
                .. container:: card-body
 
                   .. container:: card-text
 
-                     Derivations of governing equations for a Plug Flow Reactor.
-                     A steady-state reactor channel where typically an ideal gas
-                     flows through it at a constant mass flow rate.
+                     A steady-state reactor channel with an ideal gas flowing through it
+                     and heterogeneous reactions occurring on the walls.
 
-A set of reactors with a mole based state vector were implemented to leverage preconditioning techniques which do not have the same applicability to traditional mass fraction based solutions.
-More on preconditioning can be found in the CVODES time integration `here. <https://cantera.org/science/reactors/cvodes.html>`__
-The primary difference in "Mole reactors" being that the governing equations are derived using moles instead of mass fractions.
+
+A set of reactors with a mole-based state vector are implemented to leverage
+preconditioning techniques which do not have the same applicability to traditional mass
+fraction based solutions. More on preconditioning can be found in description of the
+SUNDIALS time integration `here. <cvodes.html>`__
+The primary difference in "Mole reactors" is that the governing equations are derived in
+terms of the moles of each species instead of total mass and the mass fractions.
 
 
 .. container:: container
@@ -200,7 +201,8 @@ The primary difference in "Mole reactors" being that the governing equations are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for a Mole Reactor.
+                     A control volume reactor where the state variables are the volume,
+                     total internal energy, and moles of each species.
 
 
             .. container:: card
@@ -220,8 +222,9 @@ The primary difference in "Mole reactors" being that the governing equations are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for a Constant Pressure Mole.
-                     A reactor where the pressure is held constant by varying the volume.
+                     A constant pressure reactor where the state variables are the
+                     total enthalpy and the moles of each species.
+
    .. row::
 
       .. container:: col-12
@@ -243,7 +246,9 @@ The primary difference in "Mole reactors" being that the governing equations are
 
                   .. container:: card-text
 
-                     Derivations of governing equations for a Mole Reactor.
+                     A control volume reactor specialized for ideal gases, where the
+                     state variables are the volume, temperature, and the moles of each
+                     species.
 
 
             .. container:: card
@@ -257,15 +262,12 @@ The primary difference in "Mole reactors" being that the governing equations are
 
                      Ideal Gas Constant Pressure Mole Reactor
 
-                     ..
-
                .. container:: card-body
 
                   .. container:: card-text
 
-                     Derivations of governing equations for a Constant Pressure Mole.
-                     A reactor where the pressure is held constant by varying the volume.
-
+                     A constant pressure reactor specialized for ideal gases, where the
+                     state variables are the temperature and the moles of each species.
 
 In some cases, Cantera's solver is insufficient to describe
 a certain configuration. In this situation, there are two options for customizing
