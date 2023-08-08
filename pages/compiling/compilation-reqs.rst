@@ -230,8 +230,13 @@ Ubuntu & Debian
 
       g++ python3 scons libboost-dev libhdf5-dev
 
+  * The HDF5 headers and libraries are not installed to directories on the compiler's
+    default search path. When building Cantera, these paths need to be specified as
+    options to ``scons``, for example ``extra_inc_dirs=/usr/include/hdf5/serial`` and
+    ``extra_lib_dirs=/usr/lib/x86_64-linux-gnu/hdf5/serial``.
+
 * If you want to use system system packages to provide the following dependencies,
-  instead of the versions bundled with Cantera, you should also install:
+  instead of the versions bundled with Cantera, you should also install::
 
       libsundials-dev libeigen3-dev libyaml-cpp-dev libfmt-dev
 
