@@ -175,12 +175,12 @@ Optional Dependencies
 * Packages required for building Sphinx documentation
 
   * `Sphinx <http://www.sphinx-doc.org/en/stable/>`__
+  * `PyData Sphinx theme <https://pydata-sphinx-theme.readthedocs.io/en/stable/>`__
   * `Pygments <http://pygments.org/>`__
   * `pyparsing <https://sourceforge.net/projects/pyparsing/>`__
   * `sphinx-argparse <https://sphinx-argparse.readthedocs.io/en/latest/>`__
   * `doxylink <https://pythonhosted.org/sphinxcontrib-doxylink/>`__
   * `matlabdomain <https://pypi.org/project/sphinxcontrib-matlabdomain>`__
-  * `katex <https://github.com/hagenw/sphinxcontrib-katex/>`__
 
 * `Doxygen <http://doxygen.nl/>`__
 
