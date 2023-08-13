@@ -134,12 +134,12 @@ Conda Requirements
      - ipython  # optional (needed for nicer interactive command line)
      # - jupyter  # optional (needed for Jupyter Notebook)
      # - sphinx  # optional (needed for documentation)
+     # - pydata-sphinx-theme  # optional (needed for documentation)
      # - sphinx-argparse  # optional (needed for documentation)
      # - doxygen  # optional (needed for documentation)
      # - graphviz  # optional (needed for documentation)
      # - pip:  # optional (list of PyPI managed packages)
      #   - sphinxcontrib-matlabdomain  # optional (needed for documentation)
-     #   - sphinxcontrib-katex  # optional (needed for documentation)
      #   - sphinxcontrib-doxylink  # optional (needed for documentation)
 
   The environment is then created and activated using
