@@ -177,6 +177,7 @@ Optional Dependencies
   * `Sphinx <http://www.sphinx-doc.org/en/stable/>`__
   * `Pygments <http://pygments.org/>`__
   * `pyparsing <https://sourceforge.net/projects/pyparsing/>`__
+  * `sphinx-argparse <https://sphinx-argparse.readthedocs.io/en/latest/>`__
   * `doxylink <https://pythonhosted.org/sphinxcontrib-doxylink/>`__
   * `matlabdomain <https://pypi.org/project/sphinxcontrib-matlabdomain>`__
   * `katex <https://github.com/hagenw/sphinxcontrib-katex/>`__
