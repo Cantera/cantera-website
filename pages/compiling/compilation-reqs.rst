@@ -138,6 +138,8 @@ Conda Requirements
      # - sphinx-argparse  # optional (needed for documentation)
      # - doxygen  # optional (needed for documentation)
      # - graphviz  # optional (needed for documentation)
+     # - texlive-core  # optional (needed for documentation)
+     # - perl  # optional (needed for documentation)
      # - pip:  # optional (list of PyPI managed packages)
      #   - sphinxcontrib-matlabdomain  # optional (needed for documentation)
      #   - sphinxcontrib-doxylink  # optional (needed for documentation)
@@ -161,9 +163,9 @@ Conda Requirements
   forced by providing version numbers (example: replace ``sundials`` by
   ``sundials=5.8`` to install version ``5.8``).
 
-* (Optional) If you want to build the documentation, make sure to uncomment lines
-  containing ``sphinx``, ``doxygen``, ``graphviz``, ``pip`` as well as all relevant
-  items listed for the ``pip:`` entry in ``environment.yaml``.
+* (Optional) If you want to build the documentation, make sure to uncomment lines for
+  ``pip``, ``sphinx``, ``doxygen``, and any other lines marked as "needed for
+  documentation" in the ``environment.yaml`` sample above.
 
 * (Cantera < 2.6 only) On previous Cantera versions, the build process required
   configuration options ``boost_inc_dir`` and ``prefix`` (see
