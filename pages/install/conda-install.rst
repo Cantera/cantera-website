@@ -65,6 +65,7 @@ Cantera's Python interface is available from two channels:
    the ``cantera`` channel. Cantera packages are available in this channel for the
    following platforms:
 
+   - Windows (64-bit Intel)
    - Linux (64-bit Intel, 64-bit ARM, and 64-bit PPCLE)
    - macOS (64-bit Intel and 64-bit ARM (Apple Silicon))
 
