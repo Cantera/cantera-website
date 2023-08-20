@@ -17,7 +17,7 @@ exist that provide more specialized functionality and rely on Cantera. Here we p
 non-exhaustive, alphabetical, list of these packages; if you would like us to include your package, please
 `submit a pull request <https://github.com/cantera/cantera-website/pulls>`__,
 `file an issue <https://github.com/cantera/cantera-website/issues/new>`__, or
-post on the `Google Users' Group <https://groups.google.com/forum/#!forum/cantera-users>`__.
+post on the `Google Users' Group <https://groups.google.com/g/cantera-users>`__.
 
 ------------
 

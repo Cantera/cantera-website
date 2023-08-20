@@ -58,4 +58,4 @@ Here is the workflow of the application:
 
 My project code will be posted on <https://github.com/comocheng/ChemCheck>.
 
-Please feel free to post your suggestions about this project on the [Cantera group](https://groups.google.com/forum/#!forum/cantera-users), or email me <mailto:xu.chao@husky.neu.edu>.
+Please feel free to post your suggestions about this project on the [Cantera group](https://groups.google.com/g/cantera-users), or email me <mailto:xu.chao@husky.neu.edu>.
