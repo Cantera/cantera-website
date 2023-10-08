@@ -107,6 +107,7 @@ jobs:
       run: |
         rsync -avzP --checksum --exclude='*.map' --exclude='*.md5' \
         --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /documentation/dev/*' \
+        --filter='P /doc-versions.json' --filter='P /dev'
         "${WEBSITE_CLONE_DIR}/${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
     - name: Upload the docs
       if: env.DEPLOY == 'true' && endsWith(github.ref, 'testing')

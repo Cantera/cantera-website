@@ -17,7 +17,7 @@
   <div id="searchbox" style="display: inline-block" role="search">
     <h3>Search the documentation</h3>
       <div class="searchformwrapper">
-      <form class="search" action="{{% ct_dev_docs sphinx/html/search.html %}}" method="get">
+      <form class="search" action="{{% ct_dev_docs search.html %}}" method="get">
         <input type="text" name="q" size="50" />
         <input type="submit" value="Go" />
         <input type="hidden" name="check_keywords" value="yes" />
@@ -34,25 +34,25 @@
         Python
       </div>
       <div class="list-group list-group-flush">
-        <a href="{{% ct_dev_docs sphinx/html/cython/importing.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs python/importing.html %}}" class="list-group-item dev-docs">
           Objects Representing Phases (<code>Solution</code>s, <code>PureFluid</code>s, <code>Interface</code>s, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/cython/thermo.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs python/thermo.html %}}" class="list-group-item dev-docs">
           Thermodynamic Properties (Temperature, pressure, energy, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/cython/kinetics.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs python/kinetics.html %}}" class="list-group-item dev-docs">
           Chemical Kinetics (Reactions, rates of progress, reaction path analysis, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/cython/transport.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs python/transport.html %}}" class="list-group-item dev-docs">
           Transport Properties (Diffusion, viscosity, thermal conductivity, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/cython/zerodim.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs python/zerodim.html %}}" class="list-group-item dev-docs">
           Zero-Dimensional Reactor Networks (<code>Reactor</code>s, <code>IdealGasReactor</code>s, <code>Wall</code>s, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/cython/onedim.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs python/onedim.html %}}" class="list-group-item dev-docs">
           One-dimensional Reacting Flows (<code>FreeFlame</code>s, <code>BurnerFlame</code>s, Flow Domains, Boundaries, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/cython/constants.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs python/constants.html %}}" class="list-group-item dev-docs">
           Physical Constants (Universal constants, built into Cantera for convenience)
         </a>
       </div>
@@ -64,28 +64,28 @@
         Matlab
       </div>
       <div class="list-group list-group-flush">
-        <a href="{{% ct_dev_docs sphinx/html/matlab/importing.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs matlab/importing.html %}}" class="list-group-item dev-docs">
           Objects Representing Phases (<code>Solution</code>s, <code>PureFluid</code>s, <code>Interface</code>s, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/matlab/thermodynamics.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs matlab/thermodynamics.html %}}" class="list-group-item dev-docs">
           Thermodynamic Properties (Temperature, pressure, energy, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/matlab/kinetics.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs matlab/kinetics.html %}}" class="list-group-item dev-docs">
           Chemical Kinetics (Reactions, rates of progress, reaction path analysis, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/matlab/transport.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs matlab/transport.html %}}" class="list-group-item dev-docs">
           Transport Properties (Diffusion, viscosity, thermal conductivity, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/matlab/zero %}}-dim.html" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs matlab/zero %}}-dim.html" class="list-group-item dev-docs">
           Zero-Dimensional Reactor Networks (<code>Reactor</code>s, <code>IdealGasReactor</code>s, <code>Wall</code>s, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/matlab/one %}}-dim.html" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs matlab/one %}}-dim.html" class="list-group-item dev-docs">
           One-dimensional Reacting Flows (<code>FreeFlame</code>s, <code>BurnerFlame</code>s, Flow Domains, Boundaries, etc.)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/matlab/data.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs matlab/data.html %}}" class="list-group-item dev-docs">
           Physical Constants (Universal constants, built into Cantera for convenience)
         </a>
-        <a href="{{% ct_dev_docs sphinx/html/matlab/utilities.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs matlab/utilities.html %}}" class="list-group-item dev-docs">
           Utility functions (data directory manipulation, version information, etc.)
         </a>
       </div>
@@ -100,9 +100,9 @@
         C++
       </div>
       <div class="list-group list-group-flush">
-        <a href="{{% ct_dev_docs doxygen/html/modules.html %}}" class="list-group-item dev-docs">List of Cantera Modules</a>
-        <a href="{{% ct_dev_docs doxygen/html/classes.html %}}" class="list-group-item dev-docs">List of Cantera Classes</a>
-        <a href="{{% ct_dev_docs doxygen/html/da/d58/deprecated.html %}}" class="list-group-item dev-docs">List of Deprecated Functions and Classes</a>
+        <a href="{{% ct_dev_docs cxx/modules.html %}}" class="list-group-item dev-docs">List of Cantera Modules</a>
+        <a href="{{% ct_dev_docs cxx/classes.html %}}" class="list-group-item dev-docs">List of Cantera Classes</a>
+        <a href="{{% ct_dev_docs cxx/da/d58/deprecated.html %}}" class="list-group-item dev-docs">List of Deprecated Functions and Classes</a>
       </div>
     </div>
   </div>
@@ -117,7 +117,7 @@
         </a>
       </div>
       <div class="list-group list-group-flush">
-        <a href="{{% ct_dev_docs sphinx/html/yaml/index.html %}}" class="list-group-item dev-docs">
+        <a href="{{% ct_dev_docs yaml/index.html %}}" class="list-group-item dev-docs">
           YAML Input File API Reference
         </a>
       </div>
