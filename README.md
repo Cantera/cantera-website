@@ -53,3 +53,32 @@ site is built using the [Nikola](https://getnikola.com) static site generator.
   * `IC engine example </examples/python/reactors/ic_engine.py.html>`__
 * To link to a label in the YAML API docs:
   * :ref:`three-body <sec-yaml-three-body>`
+
+## Apache configuration
+To allow the version switcher to work smoothly between Cantera =< 3.0 and Cantera >= 3.1
+(where the directory structure changed significantly), we rely on several `mod_rewrite`
+rules, implemented in `.htaccess` files:
+
+* `/dev/.htaccess`:
+```conf
+RewriteBase "/dev/"
+
+RewriteRule "^cython/(.+)" "python/$1" [R]
+```
+
+* `/documentation/.htaccess`:
+```conf
+RewriteBase "/documentation/"
+
+RewriteRule "^dev/sphinx/html/cython/(.*)" "../dev/python/$1" [R]
+RewriteRule "^docs-3.0/sphinx/html/python/(.*)" "docs-3.0/sphinx/html/cython/$1" [R]
+RewriteRule "^dev/sphinx/html/(.+)"  "../dev/$1" [R]
+```
+
+* `/stable/.htaccess`:
+```conf
+RewriteBase "/stable/"
+
+RewriteRule "^cxx(.*)"  "../documentation/docs-3.0/doxygen/html/$1"
+RewriteRule "^(.*)"  "../documentation/docs-3.0/sphinx/html/$1"
+```
