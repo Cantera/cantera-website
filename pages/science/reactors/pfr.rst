@@ -56,7 +56,7 @@ The fluid satisfies the ideal gas law:
 
 .. math::
 
-   \rho = p \frac{R}{\overline{W}} T
+   \rho = \frac{p \overline{W}}{R T}
 
 where :math:`R` is the universal gas constant and :math:`\overline{W}` is the mixture
 molecular weight.
