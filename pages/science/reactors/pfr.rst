@@ -83,7 +83,7 @@ overall mass conservation equation for the reactor can then be written as:
 
 .. math::
 
-  \rho u \frac{du}{dz} = - u \sum_j \frac{A_{s,j}}{V} \dot{m}_s - \frac{dp}{dz}
+  \rho u \frac{du}{dz} = - u \dot{m}_s - \frac{dp}{dz}
   \tag{2}
 
 *Energy conservation:*
