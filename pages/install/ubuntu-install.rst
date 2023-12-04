@@ -17,8 +17,8 @@
       Package Archive (PPA).
 
 As of Cantera 3.0.0, packages are available for Ubuntu 20.04 (Focal Fossa), Ubuntu 22.04
-(Jammy Jellyfish), Ubuntu 22.10 (Karmic Koala) and Ubuntu 23.04 (Lunar Lobster). To see
-which Ubuntu releases and Cantera versions are currently supported, visit
+(Jammy Jellyfish), Ubuntu 23.04 (Lunar Lobster), and Ubuntu 23.10 (Mantic Minotaur). To
+see which Ubuntu releases and Cantera versions are currently supported, visit
 https://launchpad.net/~cantera-team/+archive/ubuntu/cantera.
 
 The available packages are:
