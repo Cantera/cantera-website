@@ -435,7 +435,7 @@ are used extensively within Cantera's
 and `1D flame model <{{% ct_docs sphinx/html/cython/onedim.html#sec-cython-onedim %}}>`__.
 
 Information about individual reactions that is independent of the thermodynamic
-state can be obtained by accessing :py:class:`Reaction` objects with the
+state can be obtained by accessing :py:class:`cantera.Reaction` objects with the
 :py:func:`Kinetics.reaction` method:
 
 .. code:: pycon
