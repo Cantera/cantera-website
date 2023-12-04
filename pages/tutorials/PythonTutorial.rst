@@ -399,7 +399,7 @@ reactions are zero. Here is the code to do this:
     >>> rf = g.forward_rates_of_progress
     >>> rr = g.reverse_rates_of_progress
     >>> for i in range(g.n_reactions):
-    ...     if g.is_reversible(i) and rf[i] != 0.0:
+    ...     if g.reaction(i).reversible and rf[i] != 0.0:
     ...         print(' %4i  %10.4g  ' % (i, (rf[i] - rr[i])/rf[i]))
 
 If the magnitudes of the numbers in this list are all very small, then each
