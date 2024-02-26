@@ -9,14 +9,16 @@ site is built using the [Sphinx](https://sphinx-doc.org) static site generator.
 
 1. Install [`pdm`](https://pdm.fming.dev/latest/). Recommended method is to use `pipx`.
 2. Run `pdm install` to create the virtual environment
-3. Run `pdm run build` to build the website, or run `pdm run rebuild` to automatically rebuild the website when a page changes.
-4. Run a web server to view the website:
+3. Copy or symlink the development version docs as `dev-docs`
+4. Run `python3 copy-api-docs.py` to copy API docs into the output directory
+5. Run `pdm run build` to build the website, or run `pdm run rebuild` to automatically rebuild the website when a page changes.
+6. Run a web server to view the website:
 
    ```shell
    python -m http.server 8080 --directory build/html
    ```
 
-5. Open a browser to <http://localhost:8080>
+7. Open a browser to <http://localhost:8080>
 
 When you're ready to shut things down, close the web server with `C-c` (`CTRL-c`)
 
