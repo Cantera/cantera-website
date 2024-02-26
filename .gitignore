@@ -1,5 +1,6 @@
 /dev-docs
 /dev-docs/
+pdm.lock
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
