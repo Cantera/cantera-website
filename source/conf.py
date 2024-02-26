@@ -54,7 +54,7 @@ extensions: list[str] = [
 
 myst_enable_extensions = ["colon_fence"]
 # Add any paths that contain templates here, relative to this directory.
-# templates_path = ["_templates"]
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -84,18 +84,15 @@ html_css_files = ["css/custom.css"]
 html_js_files = ["js/copybutton.js"]
 html_sidebars: dict[str, list | list[str]] = {"index": []}
 html_theme_options = {
-    "external_links": [
-        {
-            "url": "https://numfocus.org/",
-            "name": "NumFocus",
-        },
-        {
-            "url": "https://numfocus.org/donate-to-cantera",
-            "name": "Donate to NumFocus",
-        },
-    ],
+    "navbar_align": "left",
+    "navbar_center": ["initial-sections", "navbar-nav"],
+    "navbar_end": ["theme-switcher", "navbar-icon-links"],
+    "show_prev_next": False,
+    "logo": {
+        "link": "/index.html",
+        "alt_text": "Cantera",
+    },
     "github_url": "https://github.com/Cantera/cantera",
-    "twitter_url": "https://twitter.com/cantera-software",
     "header_links_before_dropdown": 6,
     "icon_links": [
         {
@@ -112,7 +109,6 @@ html_theme_options = {
     "use_edit_page_button": True,
     "show_toc_level": 1,
     # [left, content, right] For testing that the navbar items align properly
-    "navbar_align": "right",
     # "navbar_center": ["version-switcher", "navbar-nav"],
     # "announcement": "https://raw.githubusercontent.com/pydata/pydata-sphinx-theme/main/docs/_templates/custom-template.html",
     # "show_nav_level": 2,

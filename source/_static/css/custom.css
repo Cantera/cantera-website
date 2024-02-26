@@ -1,3 +1,52 @@
+html {
+    --pst-icon-external-link: "";
+}
+
+p + div.math {
+    /* Remove post-paragraph space ahead of equation to center vertically */
+    margin-top: -1.15em;
+}
+
+.bd-header .navbar-header-items__center, .bd-header .navbar-header-items__end {
+    /* Remove space between manually-inserted header items and Sphinx-generated ones */
+    column-gap: 0;
+}
+
+/* Make extra room for header section links when page isn't wide enough */
+@media(max-width: 1199.88px) {
+    /* Collapse search field to just a button */
+    button.search-button-field .search-button__default-text {
+        display: none;
+        visibility: hidden;
+    }
+    .search-button-field > :not(svg) {
+        display: none;
+        visibility: hidden;
+    }
+
+    /* Hide text portion of the Cantera logo */
+    .navbar-brand img {
+        width: 36px;
+        object-fit: cover;
+        object-position: left
+    }
+}
+
+/* Make "tip" background color different from "versionadded" */
+.admonition.tip,
+div.admonition.tip {
+  border-color:var(--pst-color-info)
+}
+.admonition.tip>.admonition-title:before,
+div.admonition.tip>.admonition-title:before {
+  background-color:var(--pst-color-info-bg);
+}
+.admonition.tip>.admonition-title:after,
+div.admonition.tip>.admonition-title:after {
+  color:var(--pst-color-info);
+  content:var(--pst-icon-admonition-tip)
+}
+
 #logo { width: 250px; }
 #cards { padding-bottom: 5%; }
 .jumbotron-text { text-align: center; padding-bottom: 16px; font-size: 1.5rem; font-weight: 500; }
