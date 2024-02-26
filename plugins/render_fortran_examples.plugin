@@ -1,8 +1,0 @@
-[Core]
-Name = render_fortran_examples
-Module = render_fortran_examples
-
-[Documentation]
-Author = Ray Speth
-Version = 0.1
-Description = Build the Cantera Fortran examples into the output

@@ -1,8 +1,0 @@
-[Core]
-Name = render_cxx_examples
-Module = render_cxx_examples
-
-[Documentation]
-Author = Ray Speth
-Version = 0.1
-Description = Build the Cantera C++ examples into the output

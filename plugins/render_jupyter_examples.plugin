@@ -1,8 +1,0 @@
-[Core]
-Name = render_jupyter_examples
-Module = render_jupyter_examples
-
-[Documentation]
-Author = Bryan Weber
-Version = 0.1
-Description = Build the Cantera Jupyter examples into the output

@@ -1,8 +1,0 @@
-[Core]
-name = process_ref_targets
-module = process_ref_targets
-
-[Documentation]
-author = Bryan Weber
-version = 1.0
-documentation = Process the reST targets that can be pointed to by :ref:
