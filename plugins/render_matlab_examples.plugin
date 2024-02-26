@@ -1,8 +1,0 @@
-[Core]
-Name = render_matlab_examples
-Module = render_matlab_examples
-
-[Documentation]
-Author = Bryan Weber
-Version = 0.1
-Description = Build the Cantera Matlab examples into the output

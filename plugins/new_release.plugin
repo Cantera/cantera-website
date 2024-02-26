@@ -1,8 +1,0 @@
-[Core]
-Name = new_release
-Module = new_release
-
-[Documentation]
-Author = Paul Blum
-Version = 1.0
-Description = Add release notes for the latest version of Cantera to the site
