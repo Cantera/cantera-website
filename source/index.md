@@ -45,39 +45,36 @@ Cantera is currently used for applications including combustion, detonations, el
 
 ::::{grid} 1 1 3 3
 
-:::{grid-item-card} New? Start here!
-:link: /tutorials/index.html
+:::{grid-item-card} <a href="stable/userguide/index.html#introductory-tutorials">Tutorials</a>
 
-Tutorials
-^^^^^^^^^
+_Where do I get started?_ The tutorials linked below will get you started using Cantera
+on your own machine.
 
-The tutorials linked below will get you started using Cantera on your own machine.
+{bdg-link-primary}`Python <stable/userguide/python-tutorial.html>`
+{bdg-link-primary}`Convert Input Files <stable/userguide/ck2yaml-tutorial.html>`
 
-<a href="/tutorials/python-tutorial.html" class="card-link" title="Python Tutorial">Python</a>
-<a href="/tutorials/matlab-tutorial.html" class="card-link" title="Matlab Tutorial">Matlab</a>
-<a href="/tutorials/ck2yaml-tutorial.html" class="card-link" title="CK2YAML Tutorial">Convert Input Files</a>
 :::
 
-:::{grid-item-card} What Can Cantera Do?
-:link: /examples/index.html
+:::{grid-item-card} <a href="stable/examples/index.html">Examples</a>
 
-Examples
-^^^^^^^^
+_What can Cantera do?_ We have a number of examples demonstrating the use of Cantera in
+some of our interfaces.
 
-We have a number of examples demonstrating the use of Cantera in some of our interfaces.
-
-<a href="/examples/python/index.html" class="card-link" title="Python Examples">Python</a>
-<a href="/examples/matlab/index.html" class="card-link" title="Matlab Examples">Matlab</a>
-<a href="/examples/jupyter/index.html" class="card-link" title="Jupyter Notebook Examples">Jupyter Notebook</a>
+{bdg-link-primary}`Python <stable/examples/python/index.html>`
+{bdg-link-primary}`Matlab (experimental)<stable/examples/matlab_experimental/index.html>`
+{bdg-link-primary}`C++ <stable/examples/cxx/index.html>`
 :::
 
-:::{grid-item-card}
-:link: /install/index.html
+:::{grid-item-card} <a href="stable/install/index.html">Install</a>
 
-Installing & Compiling
-^^^^^^^^^^^^^^^^^^^^^^
+_How do I install Cantera?_ Instructions for installing pre-built Cantera binaries can
+be found here.
 
-Instructions to install pre-built Cantera binaries or to build Cantera from the source
+{bdg-link-primary}`Conda <stable/install/conda.html>`
+{bdg-link-primary}`Pip <stable/install/pip.html>`
+{bdg-link-primary}`Ubuntu <stable/install/ubuntu.html>`
+{bdg-link-primary}`Compile from source <stable/develop/index.html#compiling-cantera-from-source>`
+
 :::
 ::::
 :::::
@@ -86,31 +83,34 @@ Instructions to install pre-built Cantera binaries or to build Cantera from the 
 
 ::::{grid} 1 1 3 3
 
-:::{grid-item-card}
-:link: /science/index.html
+:::{grid-item-card} <a href="stable/reference/index.html#science-reference">Science Reference</a>
 
-Science
-^^^^^^^
+_What equations does Cantera solve?_ Descriptions of the models implemented by Cantera,
+including equations of state, energy and mass conservation, and chemical kinetics.
 
-A description of the equations that Cantera solves, including equations of state, energy and mass conservation, and chemical kinetics.
+{bdg-link-primary}`Thermodynamics <stable/reference/thermo/index.html>`
+{bdg-link-primary}`Kinetics <stable/reference/kinetics/index.html>`
+{bdg-link-primary}`Transport <stable/reference/transport/index.html>`
+{bdg-link-primary}`Reactors <stable/reference/reactors/index.html>`
+{bdg-link-primary}`1D Flames <stable/reference/onedim/index.html>`
+
 :::
 
-:::{grid-item-card}
-:link: /documentation/index.html
+:::{grid-item-card} <a href="stable/reference/index.html#programming-reference">Programming Reference</a>
 
-Documentation
-^^^^^^^^^^^^^
+_How do I use Cantera's capabilities_? Documentation for the classes and functions that
+make up Cantera.
 
-Documentation for the classes and functions that make up Cantera.
+{bdg-link-primary}`Python <stable/python/index.html>`
+{bdg-link-primary}`C++ <stable/cxx/index.html>`
+{bdg-link-primary}`Matlab <stable/matlab/index.html>`
+{bdg-link-primary}`YAML <stable/yaml/index.html>`
 :::
 
-:::{grid-item-card} Try Cantera in Your Browser!
-:link: https://mybinder.org/v2/gh/Cantera/cantera-jupyter/main
+:::{grid-item-card} <a href="https://mybinder.org/v2/gh/Cantera/cantera-jupyter/main">Try Cantera in Your Browser!</a>
 
-Open Binder
-^^^^^^^^^^^
-
-The Binder service allows you to try out Cantera in the cloud without installing it on your computer. You'll see some of our examples and be able to run them yourself!
+The Binder service allows you to try out Cantera in the cloud without installing it on
+your computer. You'll see some of our examples and be able to run them yourself!
 
 <a href="https://mybinder.org/v2/gh/Cantera/cantera-jupyter/main" rel="nofollow" class="card-link">
 <img src="https://mybinder.org/badge_logo.svg" alt="Binder"
@@ -175,50 +175,11 @@ Donate to Cantera
 :::::
 ::::::
 
-:::{toctree}
-:maxdepth: 1
-:caption: Install
-
-Install <install/index>
-:::
-
-:::{toctree}
-:caption: Tutorials
-
-Tutorials <tutorials/index>
-:::
 
 :::{toctree}
 :maxdepth: 1
-:caption: Examples
-
-Examples <examples/index>
-:::
-
-:::{toctree}
-:maxdepth: 1
-:caption: Community
+:hidden:
 
 Community <community>
-:::
-
-:::{toctree}
-:maxdepth: 1
-:caption: Science
-
-Science <science/index>
-:::
-
-:::{toctree}
-:maxdepth: 1
-:caption: Documentation
-
-Documentation <documentation/index>
-:::
-
-:::{toctree}
-:maxdepth: 1
-:caption: Blog
-
 Blog <posts/index>
 :::
