@@ -77,14 +77,6 @@ a.release-notes:hover { background-color: #c80202; color: #ffffff; }
 
 .row { margin: 0 0 20px; }
 
-.docutils.literal {
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    font-weight: bold;
-    font-size: 1em;
-    color: #444;
-    word-break: break-word;
-}
-
 a > tt {
     color: inherit;
 }
