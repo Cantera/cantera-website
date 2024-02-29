@@ -1,6 +1,6 @@
 ---
 title: GSoC 2020 Blog Post 2
-date: 2020-06-29 14:00:00 UTC-04:00
+date: 2020-06-29 14:00
 slug: gsoc-2020-blog-2
 tags: GSoC 2020
 description: A recap of work during weeks 3 & 4.

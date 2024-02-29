@@ -186,6 +186,7 @@ Donate to Cantera {octicon}`link-external`
 :maxdepth: 1
 :hidden:
 
+News <news-index>
 Affiliated Packages <affiliated>
 Governance <governance>
 Dave Goodwin <dave-goodwin>

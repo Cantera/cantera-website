@@ -1,6 +1,6 @@
 ---
 title: Renaming Cantera's default branch
-date: 2020-07-10 17:33:00 UTC-05:00
+date: 2020-07-10 17:33
 slug: default-branch
 tags: git
 description: Renaming Cantera's default branch

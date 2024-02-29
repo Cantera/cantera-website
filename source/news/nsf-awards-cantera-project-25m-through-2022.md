@@ -1,7 +1,7 @@
 ---
 title: NSF awards Cantera Project $2.5M through 2022
 slug: nsf-awards-cantera-project-25m-through-2022
-date: '2019-09-09 15:07:07 UTC-04:00'
+date: '2019-09-09 15:07'
 tags: funding
 category: null
 link: null

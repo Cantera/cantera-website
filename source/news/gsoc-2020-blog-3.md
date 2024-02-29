@@ -1,6 +1,6 @@
 ---
 title: GSoC 2020 Blog Post 3
-date: 2020-07-26 16:20:00 UTC-04:00
+date: 2020-07-26 16:20
 slug: gsoc-2020-blog-3
 tags: GSoC 2020
 description: Developer-oriented detail about how ReactorNet's time integration methods actually work.

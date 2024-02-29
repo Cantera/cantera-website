@@ -1,6 +1,6 @@
 ---
 title: GSoC 2020 Blog Post 4
-date: 2020-08-18 16:20:00 UTC-04:00
+date: 2020-08-18 16:20
 slug: gsoc-2020-blog-4
 tags: GSoC 2020
 description: A description of the 0D steady-state solution method.
@@ -8,13 +8,14 @@ type: text
 author: Paul Blum
 ---
 
-This summer I've been working to add a dedicated steady-state solver to Cantera's `ZeroD` reactor network simulation module. Inspired by my study of `ZeroD`'s current ODE time-integration solver, `CVodesIntegrator` (see [this post](https://cantera.org/blog/gsoc-2020-blog-3)), I developed a nonlinear algebraic solver class called `Cantera_NonLinSol` to be used by `ReactorNet` to solve the steady-state problem:
+# GSoC 2020: A description of the 0D steady-state solution method
 
-- ***Class `Cantera_NonLinSol`***: A nonlinear algebraic system solver, built upon Cantera's 1D multi-domain damped newton solver as a simplified interface. 
-    - Implemented in **Cantera_NonLinSol.h** (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/include/cantera/numerics/Cantera_NonLinSol.h))
+This summer I've been working to add a dedicated steady-state solver to Cantera's `ZeroD` reactor network simulation module. Inspired by my study of `ZeroD`'s current ODE time-integration solver, `CVodesIntegrator` (see [this post](gsoc-2020-blog-3)), I developed a nonlinear algebraic solver class called `Cantera_NonLinSol` to be used by `ReactorNet` to solve the steady-state problem:
+
+- **Class `Cantera_NonLinSol`**: A nonlinear algebraic system solver, built upon Cantera's 1D multi-domain damped newton solver as a simplified interface.
+    - Implemented in `Cantera_NonLinSol.h` (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/include/cantera/numerics/Cantera_NonLinSol.h))
 
 This blog post will go into detail about the mathematical theory behind solving steady-state reactor systems, and how `Cantera_NonLinSol` can be used to facilitate the process.
-<!-- TEASER_END -->
 
 ## _Steady-State Solution in `ReactorNet` Simulations_
 

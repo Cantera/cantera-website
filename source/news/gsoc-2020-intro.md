@@ -1,6 +1,6 @@
 ---
 title: GSoC 2020 Introduction
-date: 2020-06-01 16:20:00 UTC-04:00
+date: 2020-06-01 16:20
 slug: gsoc-2020-intro
 tags: GSoC 2020
 description: GSoC 2020 has officially begun!

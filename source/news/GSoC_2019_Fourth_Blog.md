@@ -1,6 +1,6 @@
 ---
 title: GSoC 2019 Fourth Blog
-date: 2019-07-20 15:03 UTC-19:03
+date: 2019-07-20 15:03
 slug: GSoC_2019_Fourth_Blog
 tags: GSoC 2019
 description: 2019 Google Summer of Code Cantera Project Blog
