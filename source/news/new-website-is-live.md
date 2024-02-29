@@ -1,11 +1,8 @@
 ---
-title: New website is live!
-date: 2018-07-02 15:02:00 UTC
-slug: new-website-is-live
-tags: website
-description: The new Cantera website is here!
-type: text
-author: Bryan Weber
+date: 2018-07-02 15:02
+author: "Bryan Weber"
+category: website
+language: English
 ---
 
 # The New Cantera Website is Here!

@@ -50,6 +50,8 @@ extensions: list[str] = [
     "sphinx.ext.mathjax",
     "_extension.bootstrap",
     "_extension.gallery_extension",
+    "ablog",
+    "sphinx.ext.intersphinx",
 ]
 
 myst_enable_extensions = ["colon_fence", "deflist", "attrs_block"]
@@ -82,7 +84,12 @@ html_logo = "_static/img/cantera-logo.png"
 html_favicon = "_static/img/favicon.ico"
 html_css_files = ["css/custom.css"]
 html_js_files = ["js/copybutton.js"]
-html_sidebars: dict[str, list | list[str]] = {"index": []}
+html_sidebars: dict[str, list | list[str]] = {
+    "index": [],
+    "news/**": [
+          'ablog/postcard.html', 'ablog/recentposts.html',
+          'ablog/tagcloud.html']
+}
 html_theme_options = {
     "navbar_align": "left",
     "navbar_center": ["initial-sections", "navbar-nav"],
@@ -131,3 +138,9 @@ html_context = {
     "github_version": "main",
     "doc_path": "docs",
 }
+
+# ABlog options
+blog_path = "news"
+blog_title = "Cantera News"
+blog_baseurl = "https://cantera.org"
+blog_post_pattern = "news/*"

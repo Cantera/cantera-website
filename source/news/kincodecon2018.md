@@ -1,6 +1,7 @@
 ---
+blogpost: true
 title: KinCodeCon 2018
-date: 2018-11-21 14:30:00 UTC-08:00
+date: 2018-11-21 14:30
 slug: kincodecon2018
 tags: kincodecon, steering-committee
 description: KinCodeCon 2018 and NumFOCUS SDG

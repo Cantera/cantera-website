@@ -1,6 +1,6 @@
 ---
 title: GSoC 2019 First Evaluation
-date: 2019-06-22 17:41 UTC-21:41
+date: 2019-06-22 17:41
 slug: GSoC_2019_Project_First_Evaluation
 tags: GSoC 2019
 description: 2019 Google Summer of Code Cantera Project Blog

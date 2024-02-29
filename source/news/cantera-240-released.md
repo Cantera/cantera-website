@@ -1,6 +1,6 @@
 ---
 title: Cantera 2.4.0
-date: 2018-08-24 17:25:00 UTC-04:00
+date: 2018-08-24 17:25
 slug: cantera-240-released
 tags: release
 description: The new Cantera release is here!
