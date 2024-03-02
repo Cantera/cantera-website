@@ -32,6 +32,10 @@ p + div.math {
     }
 }
 
+.mermaid {
+    text-align: center;
+ }
+
 /* Make "tip" background color different from "versionadded" */
 .admonition.tip,
 div.admonition.tip {

@@ -11,12 +11,10 @@ author: Kyle Niemeyer
 
 # KinCodeCon 2018
 
-Thanks to the support of [NumFOCUS] via a
+Thanks to the support of [NumFOCUS](https://numfocus.org) via a
 [small development grant](https://numfocus.org/blog/fall-2018-open-source-development-grants),
-the [Cantera Steering Committee](/governance.html#current-steering-committee) met in
+the [Cantera Steering Committee](current-steering-committee) met in
 person on MIT's campus in Cambridge, MA, at the 3rd Annual KinCodeCon on November 16–18, 2018.
-
-<!-- TEASER_END -->
 
 The Steering Committee (SC) met virtually in 2016 and 2017 to discuss issues and plan for the future,
 and while we tried to include some live code sprinting, the virtual nature of the meetings made
@@ -39,11 +37,11 @@ the NumFOCUS umbrella to save on administrative overhead.
 
 After lunch, the SC discussed affiliated packages in the Cantera ecosystem. These packages
 tend to use Cantera in some way, although they are mostly not officially maintained by the
-Cantera developers. We have added an {{% doc %}}affiliated-packages{{% /doc %}} page that
+Cantera developers. We have added an [](/affiliated) page that
 lists the current packages the SC is aware of. The list will be "crowd-sourced" with input from the
 Users' Group on Google.
 
-On Saturday, the SC discussed the governance of the Cantera project. We identified the [Astropy]
+On Saturday, the SC discussed the governance of the Cantera project. We identified the [Astropy](http://www.astropy.org)
 project as an "aspirational peer" project because of their role in the astronomy community. We
 also identified their governance procedures as robust and relatively transparent, something we
 would like to strive towards.
@@ -96,8 +94,4 @@ individually.
 
 Cantera is now officially part of NumFOCUS. NumFOCUS is a 501(c)3 nonprofit dedicated to supporting
 the open source scientific computing community. If you are interested in learning more about
-NumFOCUS, please visit their website at [NumFOCUS], or our website at https://cantera.org/community.html#donations.
-
-[NumFOCUS]: https://numfocus.org
-[Cantera]: https://cantera.org
-[Astropy]: http://www.astropy.org
+NumFOCUS, please visit their website at [NumFOCUS](https://numfocus.org), or our website at <https://cantera.org/community.html#donations>.

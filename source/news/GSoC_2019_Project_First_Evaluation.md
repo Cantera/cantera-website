@@ -1,10 +1,6 @@
 ---
-title: GSoC 2019 First Evaluation
 date: 2019-06-22 17:41
-slug: GSoC_2019_Project_First_Evaluation
 tags: GSoC 2019
-description: 2019 Google Summer of Code Cantera Project Blog
-type: text
 author: Chao Xu
 ---
 
@@ -17,39 +13,62 @@ web-based application for visualizing and diagnosing syntax and chemical errors 
 functions that allow users to convert their mechanism files to Cantera YAML input files easily (Cantera input file is going to be changed
 from CTI file to YAML file, so we made some adjustments as well).
 
-<!-- TEASER_END -->
-
 ## Upload Page
 
 Users will upload their files to ChemCheck for checking, so we created an upload page which allows users to upload their mechanism, transport,
 thermo, and surface file. Here is the view of upload page.
 
-{{% thumbnail "/images/GSoC_2019_images/upload_page.png" alt="Upload Page" align="center" %}}<p class="text-center">Upload Page</p>{{% /thumbnail %}}
+:::{card} Upload Page
+```{image} /_static/images/GSoC_2019_images/upload_page.png
+:align: center
+:width: 100%
+```
+:::
 
 ## List Page
 
 After files are uploaded, ChemCheck returns to a list page which lists all uploaded files in the app with id for each group of files.
 Users are able to either click on "Details" button to do further operation to their files or hit "Upload new mechanism" button to upload new files.
 
-{{% thumbnail "/images/GSoC_2019_images/list_page.png" alt="List Page" align="center" %}}<p class="text-center">List Page</p>{{% /thumbnail %}}
+:::{card} List Page
+```{image} /_static/images/GSoC_2019_images/list_page.png
+:align: center
+:width: 100%
+```
+:::
 
 ## Detail Page
 
 In this page, users can either edit their files or hit the "convert to YAML" button to convert files. The editing function is still in development.
 Also, there is a "Back to mechanism list" link for users going back to list view.
 
-{{% thumbnail "/images/GSoC_2019_images/detail_page.png" alt="Detail Page" align="center" %}}<p class="text-center">Detail Page</p>{{% /thumbnail %}}
+:::{card} Detail Page
+```{image} /_static/images/GSoC_2019_images/detail_page.png
+:align: center
+:width: 100%
+```
+:::
 
 ## Convert Page
 
 If the file is converted successfully, a success message will be shown on the page.
 Users can see details and download the files from this page.
 
-{{% thumbnail "/images/GSoC_2019_images/convert_success.png" alt="Convert Success Page" align="center" %}}<p class="text-center">Convert Success Page</p>{{% /thumbnail %}}
+:::{card} Convert Success Page
+```{image} /_static/images/GSoC_2019_images/convert_success.png
+:align: center
+:width: 100%
+```
+:::
 
 However, if the file is not converted successfully, the error message will be shown.
 
-{{% thumbnail "/images/GSoC_2019_images/convert_fail.png" alt="Convert Fail Page" align="center" %}}<p class="text-center">Convert Fail Page</p>{{% /thumbnail %}}
+:::{card} Convert Fail Page
+```{image} /_static/images/GSoC_2019_images/convert_fail.png
+:align: center
+:width: 100%
+```
+:::
 
 ## Future Improvement
 

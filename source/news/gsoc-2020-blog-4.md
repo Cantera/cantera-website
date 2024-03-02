@@ -1,27 +1,25 @@
 ---
-title: GSoC 2020 Blog Post 4
 date: 2020-08-18 16:20
-slug: gsoc-2020-blog-4
 tags: GSoC 2020
-description: A description of the 0D steady-state solution method.
-type: text
 author: Paul Blum
 ---
 
 # GSoC 2020: A description of the 0D steady-state solution method
 
-This summer I've been working to add a dedicated steady-state solver to Cantera's `ZeroD` reactor network simulation module. Inspired by my study of `ZeroD`'s current ODE time-integration solver, `CVodesIntegrator` (see [this post](gsoc-2020-blog-3)), I developed a nonlinear algebraic solver class called `Cantera_NonLinSol` to be used by `ReactorNet` to solve the steady-state problem:
+This summer I've been working to add a dedicated steady-state solver to Cantera's `ZeroD` reactor network simulation module. Inspired by my study of `ZeroD`'s current ODE time-integration solver, `CVodesIntegrator` (see {ref}`this post <gsoc-2020-blog-3>`), I developed a nonlinear algebraic solver class called `Cantera_NonLinSol` to be used by `ReactorNet` to solve the steady-state problem:
 
 - **Class `Cantera_NonLinSol`**: A nonlinear algebraic system solver, built upon Cantera's 1D multi-domain damped newton solver as a simplified interface.
     - Implemented in `Cantera_NonLinSol.h` (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/include/cantera/numerics/Cantera_NonLinSol.h))
 
 This blog post will go into detail about the mathematical theory behind solving steady-state reactor systems, and how `Cantera_NonLinSol` can be used to facilitate the process.
 
-## _Steady-State Solution in `ReactorNet` Simulations_
+## Steady-State Solution in `ReactorNet` Simulations
 
-Steady-state is reached in a reactor when all internal state variables become constant while time advances, as different internal processes that would normally change these variables become perfectly balanced with each other. The governing equations discussed on Cantera’s [Reactor Science](https://cantera.org/science/reactors.html) page will still dictate the physical properties of the system, but their time derivatives become zero as properties become steady. This means that the governing equations, normally a system of ordinary differential equations, can be reduced to a system of nonlinear algebraic equations:
+Steady-state is reached in a reactor when all internal state variables become constant while time advances, as different internal processes that would normally change these variables become perfectly balanced with each other. The governing equations discussed on Cantera’s {doc}`stable:reference/reactors/index` page will still dictate the physical properties of the system, but their time derivatives become zero as properties become steady. This means that the governing equations, normally a system of ordinary differential equations, can be reduced to a system of nonlinear algebraic equations:
 
-{{% thumbnail "/images/gsoc-2020/steady-state-eqs.png" align="center" %}}
+```{image} /_static/images/gsoc-2020/steady-state-eqs.png
+:align: center
+```
 
 The system can now be solved with a nonlinear algebraic solver, which finds solution values for the state variables that will satisfy the system of equations. This means finding the zeroes to the functions defined on the right-hand-side of each equation. This is standard practice for any algebraic solution, and as such, nonlinear algebraic solvers typically require users to input a *residual function* that evaluates a specific system's right-hand-side functions.
 
@@ -29,40 +27,40 @@ Cantera has a built-in damped Newton/time-stepping hybrid solver, defined in the
 
 What follows is a general outline of how to use this solver, with specific implementation examples included from my work in `ZeroD`:
 
-#### *Include the `Cantera_NonLinSol.h` header in your code.*
+### Include the `Cantera_NonLinSol.h` header in your code.
 
-**ReactorNet.h**, line 12 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/include/cantera/zeroD/ReactorNet.h#L12))
+`ReactorNet.h`, line 12 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/include/cantera/zeroD/ReactorNet.h#L12))
 
 ```c++
 #include "cantera/numerics/Cantera_NonLinSol.h"
 ```
 
-#### *Derive a class from `Cantera_NonLinSol` to inherit nonlinear algebraic solution capabilities and define your specific problem.*
+### Derive a class from `Cantera_NonLinSol` to inherit nonlinear algebraic solution capabilities and define your specific problem.
 
-**ReactorNet.h**, line 24 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/include/cantera/zeroD/ReactorNet.h#L24))
+`ReactorNet.h`, line 24 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/include/cantera/zeroD/ReactorNet.h#L24))
 
 ```c++
 class ReactorNet : public FuncEval, public Cantera_NonLinSol
 ```
 
-`ReactorNet` now exhibits *multiple inheritance*, since it was already a child of class `FuncEval`. The `FuncEval` parent class is used by `Integrator` during ODE time-integration, and its inheritance makes `ReactorNet` an *ODE right-hand-side evaluator*. (Confused? See my [last blog post](https://cantera.org/blog/gsoc-2020-blog-3)!)
+`ReactorNet` now exhibits *multiple inheritance*, since it was already a child of class `FuncEval`. The `FuncEval` parent class is used by `Integrator` during ODE time-integration, and its inheritance makes `ReactorNet` an *ODE right-hand-side evaluator*. (Confused? See my {ref}`last blog post <gsoc-2020-blog-3>`!)
 
 *Notice that the existing time-integration solver, `Integrator`, is not a parent class to `ReactorNet`.* `Integrator` is an external solver object that uses user-defined functions from *another* class, `FuncEval`. This requires the inclusion of two headers, explicit construction of an external object, and the passing of the `this` pointer to locate user definitions:
 
-**ReactorNet.h**, lines 10-11 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/include/cantera/zeroD/ReactorNet.h#L10))
+`ReactorNet.h`, lines 10-11 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/include/cantera/zeroD/ReactorNet.h#L10))
 
 ```c++
 #include "cantera/numerics/FuncEval.h"
 #include "cantera/numerics/Integrator.h"
 ```
 
-**ReactorNet.cpp**, line 18 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L18))
+`ReactorNet.cpp`, line 18 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L18))
 
 ```c++
 m_integ(newIntegrator("CVODE")),
 ```
     
-**ReactorNet.cpp**, line 112 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L112))
+`ReactorNet.cpp`, line 112 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L112))
 
 ```c++
 m_integ->initialize(m_time, *this);
@@ -70,15 +68,17 @@ m_integ->initialize(m_time, *this);
 
 In contrast, `Cantera_NonLinSol` is written as an abstract base class that provides nonlinear algebraic solution capability to its children. User-defined function implementations are provided by *overriding* pure virtual functions declared in the parent class. `Cantera_NonLinSol` requires a single header inclusion, is automatically constructed by the child class, and can call user-provided functions without the use of a pointer.
 
-#### *Implement the problem-specific user-defined functions, to provide the solver with the number of equations (`ctNLS_nEqs()`), initial values (`ctNLS_initialValue()`), and residual function (`ctNLS_residFunction()`).*
+### Implement the problem-specific user-defined functions, to provide the solver with the number of equations (`ctNLS_nEqs()`), initial values (`ctNLS_initialValue()`), and residual function (`ctNLS_residFunction()`).
 
 Steady-state solution is implemented using the same solution vector as in the transient case. This vector is a concatenation of solution vectors for each reactor in the network, with each sub-vector having the following format:
 
-{{% thumbnail "/images/gsoc-2020/sol-vector.png" align="center" %}}
+```{image} /_static/images/gsoc-2020/sol-vector.png
+:align: center
+```
 
 The size, `m_nv`, of the overall network solution vector is determined during `ReactorNet` initialization, and is returned by `ctNLS_nEqs()`:
 
-**ReactorNet.cpp**, lines 371-377 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L371))
+`ReactorNet.cpp`, lines 371-377 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L371))
 
 ```c++
 m_nv = 0;
@@ -90,7 +90,7 @@ for (size_t n = 0; n < m_reactors.size(); n++) {
 }
 ```
 
-**ReactorNet.cpp**, lines 397-400 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L397))
+`ReactorNet.cpp`, lines 397-400 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L397))
 
 ```c++
 size_t ReactorNet::ctNLS_nEqs()
@@ -103,7 +103,7 @@ Numerical solution of the steady-state equations is an initial-value problem, an
 
 In the source code, `ReactorNet::ctNLS_initialValue()` calls the `initialValue()` method of the appropriate `Reactor`, which returns the initial value of the requested solution component:
 
-**ReactorNet.cpp**, lines 382-388 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L382))
+`ReactorNet.cpp`, lines 382-388 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L382))
 
 ```c++
 doublereal ReactorNet::ctNLS_initialValue(size_t i)
@@ -115,7 +115,7 @@ doublereal ReactorNet::ctNLS_initialValue(size_t i)
 }
 ```
 
-**Reactor.cpp**, lines 547-559 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/Reactor.cpp#L547))
+`Reactor.cpp`, lines 547-559 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/Reactor.cpp#L547))
 
 ```c++
 doublereal Reactor::initialValue(size_t i) {
@@ -142,7 +142,7 @@ Lastly, the residual function that defines the specific nonlinear algebraic syst
 
 These assumptions allow updating a `Reactor`'s internal state based on the known pressure and specific enthalpy, along with the iteration mass fractions computed by the solver. Residuals for mass, volume, and energy are set based on corresponding values in the updated reactor, while species conservation residuals are calculated using the built-in `evalEqs()` method:
 
-**Reactor.cpp**, lines 500-543 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/Reactor.cpp#L500))
+`Reactor.cpp`, lines 500-543 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/Reactor.cpp#L500))
 
 ```c++
 void Reactor::residFunction(double *sol, double *rsd)
@@ -167,9 +167,9 @@ void Reactor::residFunction(double *sol, double *rsd)
 }
 ```
 
-#### *Call the inherited `solve()` function, which will update the network to its steady-state.*
+### Call the inherited `solve()` function, which will update the network to its steady-state.
 
-**ReactorNet.cpp**, line 379 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L379))
+`ReactorNet.cpp`, line 379 (see this on [GitHub](https://github.com/paulblum/cantera/blob/ca36e253bd28c6d507eace5b6f1199cac64d8909/src/zeroD/ReactorNet.cpp#L379))
 
 ```c++
 Cantera_NonLinSol::solve();
@@ -177,16 +177,8 @@ Cantera_NonLinSol::solve();
 
 Note that the `Cantera_NonLinSol` namespace is included in this call only for clarity.
 
-This solver is still in its initial development phase, and feedback or suggestions you may be able to provide would definitely contribute to its success! Leave me a comment on [GitHub](https://github.com/Cantera/enhancements/issues/31), the [Cantera User's Group](https://groups.google.com/g/cantera-users), or email me at paul_d_blum@yahoo.com.
+This solver is still in its initial development phase, and feedback or suggestions you may be able to provide would definitely contribute to its success! Leave me a comment on [GitHub](https://github.com/Cantera/enhancements/issues/31), the [Cantera User's Group](https://groups.google.com/g/cantera-users), or email me at <paul_d_blum@yahoo.com>.
 
 Thanks for reading!
 
-@paulblum
-
-### Keep Reading:
-
-Next Post - [GSoC 2020 Project Summary](https://cantera.org/blog/gsoc-2020-final)
-
-Previous Post - [GSoC 2020 Blog Post 3](https://cantera.org/blog/gsoc-2020-blog-3)
-
-Start from the Beginning - [Introduction](https://cantera.org/blog/gsoc-2020-intro)
+[@paulblum](https://github.com/paulblum/)
