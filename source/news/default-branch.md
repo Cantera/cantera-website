@@ -1,12 +1,10 @@
 ---
-title: Renaming Cantera's default branch
 date: 2020-07-10 17:33
-slug: default-branch
 tags: git
-description: Renaming Cantera's default branch
-type: text
 author: Raymond Speth
 ---
+
+# Renaming Cantera's default branch
 
 There has been a growing awareness that the use of the name `master` for the
 default branch in Git repositories perpetuates the use of the language of
@@ -56,7 +54,7 @@ myfork  git@github.com:your_username/cantera.git (fetch)
 myfork  git@github.com:your_username/cantera.git (push)
 ```
 
-#### Case 1: tracked remote is `Cantera/cantera`
+### Case 1: tracked remote is `Cantera/cantera`
 If the remote being tracked (in this example, `origin`) is the main Cantera
 repository, that is, `Cantera/cantera.git`, then you can set the `main` branch
 of `Cantera/cantera` as the upstream for your `main` branch:
@@ -75,7 +73,7 @@ Then, you can push the updated main branch to your fork (in this example,
 $ git push main myfork
 ```
 
-#### Case 2: tracked remote is your fork
+### Case 2: tracked remote is your fork
 
 If the remote listed is your fork of Cantera, then you may want to rename the
 branch on your fork as well. If the remote name for your fork is `myfork`, this
@@ -85,7 +83,7 @@ can be changed by running:
 $ git push -u myfork main
 ```
 
-### Deleting the old branch from your fork
+## Deleting the old branch from your fork
 
 Once you have pushed the new `main` branch to your fork, visit the GitHub
 website for your fork, go to **Settings**, then **Branches**, then

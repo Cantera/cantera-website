@@ -1,18 +1,12 @@
 ---
-title: GSoC 2019 PyCanChemAndYouCan2
 date: 2019-06-07 12:33
-slug: GSoC_2019_Project_Introduction
 tags: GSoC 2019
-description: 2019 Google Summer of Code Cnatera Project Blog
-type: text
 author: Chao Xu
 ---
 
-# GSoC 2019 PyCanChemAndYouCan2 (ChemCheck)
+# GSoC 2019: PyCanChemAndYouCan2 (ChemCheck)
 
-Hi everyone! I'm Chao Xu, a master student in Chemical Engineering at Northeastern University. I am working on a Cantera project in GSoC 2019 with my mentor Richard West([@rwest](https://github.com/rwest)) and other Cantera committee members([@bryanwweber](https://github.com/bryanwweber), [@kyleniemeyer](https://github.com/kyleniemeyer)). I am glad to introduce my project here!
-
-<!-- TEASER_END -->
+Hi everyone! I'm Chao Xu, a master student in Chemical Engineering at Northeastern University. I am working on a Cantera project in GSoC 2019 with my mentor Richard West ([@rwest](https://github.com/rwest)) and other Cantera committee members ([@bryanwweber](https://github.com/bryanwweber), [@kyleniemeyer](https://github.com/kyleniemeyer)). I am glad to introduce my project here!
 
 ## What is PyCanChemAndYouCan2(ChemCheck)
 
@@ -53,8 +47,14 @@ The debugging tool PyCanChemAndYouCan2 is a web-based application developed in D
 
 Here is the workflow of the application:
 
-    [upload files] --> [list files] --> [choose one and execute by ck2cti.py and wrapper script] 
-    --> [show input file with added comments on ACE editor] --> [edit file] --> [download edited file] 
+```{mermaid}
+flowchart TB
+    A[upload files] --> B[list files]
+    B --> C[choose one and execute by ck2cti.py and wrapper script]
+    C --> D[show input file with added comments on ACE editor]
+    D --> E[edit file]
+    E --> F[download edited file]
+```
 
 My project code will be posted on <https://github.com/comocheng/ChemCheck>.
 

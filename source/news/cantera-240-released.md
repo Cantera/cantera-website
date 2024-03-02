@@ -32,12 +32,10 @@ contributions from 14 developers: [@speth](https://github.com/speth),
 [@vdevgan](https://github.com/vdevgan), [@KyleLinevitchJr](https://github.com/KyleLinevitchJr), and
 [@MarcDuQuesne](https://github.com/MarcDuQuesne).
 
-<!-- TEASER_END -->
-
 For installation and compilation instructions for Cantera 2.4.0, please see the directions on the
 [Cantera website](https://cantera.org/install/index.html). In addition to Conda packages, Windows
 installers, and Ubuntu packages, this release also features the addition of a pre-compiled Matlab
-toolbox for macOS users, replacing Homebrew as the prefered method of installing Cantera for Matlab
+toolbox for macOS users, replacing Homebrew as the preferred method of installing Cantera for Matlab
 on macOS.
 
 Thanks to a small development grant from NumFOCUS (see more about NumFOCUS below),
@@ -52,8 +50,8 @@ everyone.
 
 Cantera is now officially part of NumFOCUS. NumFOCUS is a 501(c)3 nonprofit dedicated to supporting
 the open source scientific computing community. If you are interested in learning more about
-NumFOCUS, please visit their website at https://numfocus.org, or our website at
-https://cantera.org/community.html#donations.
+NumFOCUS, please visit their website at <https://numfocus.org>, or our website at
+<https://cantera.org/community.html#donations>.
 
 Cantera 2.4.0 is the last release that will be compatible with Python 2.7. Support for Python 2.7
 from the Python Software Foundation will [end January 1,
@@ -74,7 +72,7 @@ page](https://github.com/Cantera/cantera/releases/tag/v2.4.0). Major changes are
 
 ### Bugs fixed
 
-- Fix inconstencies and bugs in several `ThermoPhase` derived classes, including `PDSS_IdealGas`, `IonsFromNeutralVPSSTP`, `PDSS_IonsFromNeutral`, `PDSS_HKFT`, `LatticePhase`, `PDSS_SSVol`, `ConstDensityThermo`, and `PureFluidPhase`
+- Fix inconsistencies and bugs in several `ThermoPhase` derived classes, including `PDSS_IdealGas`, `IonsFromNeutralVPSSTP`, `PDSS_IonsFromNeutral`, `PDSS_HKFT`, `LatticePhase`, `PDSS_SSVol`, `ConstDensityThermo`, and `PureFluidPhase`
 - Preserve constant property pair when multiplying `Quantity` objects
 - Fix using pure fluids in reactors
 - Add temperature dependence of rotational relaxation in transport calculations

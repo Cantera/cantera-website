@@ -24,6 +24,7 @@ Cantera Users' Group moderators
 : Members of the moderators team moderate the Users' Group, and have power to
   enable/disable posting of community members at their discretion.
 
+(current-steering-committee)=
 ## Current Steering Committee
 
 The role of the steering committee is to ensure the long-term health of the Cantera

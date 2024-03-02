@@ -48,13 +48,17 @@ extensions: list[str] = [
     "myst_parser",
     "sphinx.ext.duration",
     "sphinx.ext.mathjax",
-    "_extension.bootstrap",
-    "_extension.gallery_extension",
+    "sphinxcontrib.mermaid",
     "ablog",
     "sphinx.ext.intersphinx",
 ]
 
 myst_enable_extensions = ["colon_fence", "deflist", "attrs_block"]
+myst_url_schemes = {
+    "http": None,
+    "https": None,
+    "mailto": {"url": "mailto:{{path}}", "title": "{{path}}"},
+}
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
@@ -68,6 +72,13 @@ root_doc = "index"
 
 # -- Internationalization ---------------------------------------------------
 language = "en"
+
+intersphinx_mapping = {
+    'stable': ('/stable', '../dev-docs/objects.inv'),
+    'dev': ('/dev', '../dev-docs/objects.inv'),
+    'ct30': ('/3.0', '../api-docs/docs-3.0/sphinx/html/objects.inv'),
+    'ct26': ('/2.6', '../api-docs/docs-2.6/sphinx/html/objects.inv'),
+}
 
 # -- Options for HTML output -------------------------------------------------
 

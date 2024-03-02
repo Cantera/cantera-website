@@ -1,19 +1,12 @@
 ---
-title: GSoC 2019 Fourth Blog
 date: 2019-07-20 15:03
-slug: GSoC_2019_Fourth_Blog
 tags: GSoC 2019
-description: 2019 Google Summer of Code Cantera Project Blog
-type: text
 author: Chao Xu
 ---
 
 # GSoC 2019 Fourth Blog
 
-After two months, the functions of ChemCheck are fairly robust. We improved editing and ck2yaml error reporting pages this week, and we
-added pages for user account management.
-
-<!-- TEASER_END -->
+After two months, the functions of ChemCheck are fairly robust. We improved editing and ck2yaml error reporting pages this week, and we added pages for user account management.
 
 We have included a download function for the editing page, so users can download the edited file to their local directory. It would be more convenient
 if changes can be saved to the original file online, so that users do not have to re-upload their files, but we will leave it for now since an
@@ -21,28 +14,48 @@ editing function is not the most important part. The current exception handling 
 be recognized by ace-editor, and it could also be improved by implementing some Python library to guess the encoding of the file in the future.
 Here is what the page looks like:
 
-{{% thumbnail "/images/GSoC_2019_images/updated_editor.png" alt="Updated Editor Page" align="center" %}}<p class="text-center">Editor Page</p>{{% /thumbnail %}}
+:::{card} Updated Editor Page
+```{image} /_static/images/GSoC_2019_images/updated_editor.png
+:align: center
+:width: 100%
+```
+:::
+
 
 The page shown when conversion fails is also improved. Logging messages are added to error messages if a conversion failed. In addition, ChemCheck looks through
 four lines ahead and after the line where the error occurs, so that users could have an idea about how to fix the error. Here is the page:
 
-{{% thumbnail "/images/GSoC_2019_images/convert_fail_page.png" alt="Convert Fail Page" align="center" %}}<p class="text-center">Convert Fail Page</p>{{% /thumbnail %}}
+:::{card} Convert Fail Page
+```{image} /_static/images/GSoC_2019_images/convert_fail_page.png
+:align: center
+:width: 100%
+```
+:::
 
 A series of account management pages including signup page, login page, logout page, password change page (changing password for users who are logged in), and password reset (for users who forget their password) pages, among others.
 have been included. The signup function will be used only if users want to retrieve their uploaded files. A built-in Django module (`django.contrib.auth.urls`) is implemented for this part; however, the password reset page did not work as expected, because it did not send an email to the user to reset the password.
 I am working on getting this part to work. Except the password reset function, other pages work well.
 
-Signup Page:
+:::{card} Signup Page
+```{image} /_static/images/GSoC_2019_images/signup.png
+:align: center
+:width: 100%
+```
+:::
 
-{{% thumbnail "/images/GSoC_2019_images/signup.png" alt="Signup Page" align="center" %}}<p class="text-center">Signup Page</p>{{% /thumbnail %}}
+:::{card} Login Page
+```{image} /_static/images/GSoC_2019_images/login.png
+:align: center
+:width: 100%
+```
+:::
 
-Login Page:
-
-{{% thumbnail "/images/GSoC_2019_images/login.png" alt="Login Page" align="center" %}}<p class="text-center">Login Page</p>{{% /thumbnail %}}
-
-Password Change Page:
-
-{{% thumbnail "/images/GSoC_2019_images/password_change.png" alt="Password Change Page" align="center" %}}<p class="text-center">Password Change Page</p>{{% /thumbnail %}}
+:::{card} Password Change Page
+```{image} /_static/images/GSoC_2019_images/password_change.png
+:align: center
+:width: 100%
+```
+:::
 
 ## Goals in next two weeks
 

@@ -1,19 +1,14 @@
 ---
-title: GSoC 2020 Blog Post 3
 date: 2020-07-26 16:20
-slug: gsoc-2020-blog-3
 tags: GSoC 2020
-description: Developer-oriented detail about how ReactorNet's time integration methods actually work.
-type: text
 author: Paul Blum
 ---
 
-## _How Does Cantera's Reactor Network Time Integration Feature Work?_
+# GSoC 2020: How Does Cantera's Reactor Network Time Integration Feature Work?
 
-There's a great description of the science behind Cantera's reactor network simulation capabilities available on the Cantera website, [here](https://cantera.org/science/reactors/reactors.html). This post will go into more developer-oriented detail about how the last step, `ReactorNet`'s [time integration methods](https://cantera.org/science/reactors/reactors.html#time-integration-for-reactor-networks), actually work. A `ReactorNet` object doesn't perform time integration on its own. It generates a system of ODE's based on the combined governing equations of all contained `Reactor`s, which is then passed off to an `Integrator` object for solution. What is an `Integrator`? How does this work?
-<!-- TEASER_END -->
+There's a great description of the science behind Cantera's reactor network simulation capabilities available on the Cantera website, {doc}`here <stable:reference/reactors/index>`. This post will go into more developer-oriented detail about how the last step, `ReactorNet`'s {doc}`time integration methods <stable:develop/reactor-integration>`, actually work. A `ReactorNet` object doesn't perform time integration on its own. It generates a system of ODE's based on the combined governing equations of all contained `Reactor`s, which is then passed off to an `Integrator` object for solution. What is an `Integrator`? How does this work?
 
-### Reactor Network Time Integration, Explained.
+## Reactor Network Time Integration, Explained
 
 First, let's take a look at a basic example to see how we might utilize Cantera's time integration functionality. We'll simulate an isolated reactor that is homogeneously filled by a gas mixture (the gas state used in this example is arbitrary, but interesting because it's explosive). Then we'll advance the simulation in time to an (arbitrary) absolute time of 1 second, noting the changes in the state of the gas. Follow along by typing this code into an interactive Python interpreter (like [IPython](https://www.codecademy.com/articles/how-to-use-ipython)):
 
@@ -40,20 +35,20 @@ int main() {
     reac.insert(gas);                     //fill the reactor with the specified gas
     ReactorNet sim;                       //create an empty ReactorNet simulator
     sim.addReactor(reac);                 //add the reactor to the ReactorNet
-    std::cout << gas->thermo()->report(); //print the intitial state of the mixture to the console
+    std::cout << gas->thermo()->report(); //print the initial state of the mixture to the console
     sim.advance(1);                       //advance the simulation to absolute time t = 1 sec
     std::cout << gas->thermo()->report(); //print the updated state of the mixture to the console
     return 0;
 }
 ```
 
-For a more advanced example that adds inlets and outlets to the reactor, see Cantera's combustor example ([Python](https://github.com/Cantera/cantera/blob/main/interfaces/cython/cantera/examples/reactors/combustor.py) | [C++](https://github.com/Cantera/cantera/blob/main/samples/cxx/combustor/combustor.cpp)). Additional examples can be found in the [Python Reactor Network Examples](https://cantera.org/examples/python/index.html#python-example-reactors) section of the Cantera website.
+For a more advanced example that adds inlets and outlets to the reactor, see Cantera's combustor example ({doc}`Python <stable:examples/python/reactors/combustor>` | {doc}`C++ <stable:examples/cxx/combustor>`). Additional examples can be found in the {doc}`Python Reactor Network Examples <stable:examples/python/reactors/index>` section of the Cantera website.
 
 In any case, after properly configuring a reactor network and its components in Cantera, a call to the `ReactorNet`'s `advance()` method can be used to predict the state of the network at a specified time. Transient physical and chemical interactions are simulated by integrating the network's system of ODE governing equations through time, a process that's actually performed by an external `Integrator` object. What is an `Integrator`?
 
 The `Integrator` class is Cantera's interface for ODE system integrators. This general-purpose ODE system integration tool can be accessed in any Cantera project by including the **Integrator.h** header file in your code:
 
-- ***Class `Integrator`***: A base class interface for ODE system integrators. ([Documentation](https://cantera.org/documentation/docs-2.4/doxygen/html/d8/d6f/classCantera_1_1Integrator.html))
+- ***Class `Integrator`***: A base class interface for ODE system integrators. (<a href="/2.4/doxygen/html/d8/d6f/classCantera_1_1Integrator.html">Documentation</a>)
     - Declared and (virtually) implemented in **Integrator.h**, line 52 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/include/cantera/numerics/Integrator.h#L52))
 
 `Integrator` is a *[polymorphic base class](http://www.cplusplus.com/doc/tutorial/polymorphism/)*; it defines a set of *virtual* functionalities that derived classes (the actual ODE system integrators) will provide implementations for. This is done so that different types of `Integrator`s can be used interchangeably, without having to modify their references in code. Method implementations in *different* `Integrator` subclasses can be executed using *the same* call to the `Integrator` base class's `virtual` function—the base class will refer the call to the appropriate subclass implementation, based on the `Integrator` object's type. How do you set the type of an `Integrator`?
@@ -65,11 +60,11 @@ Conveniently, **Integrator.h** provides `newIntegrator()`, a *[factory method](h
     - Declared in **Integrator.h**, line 237 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/include/cantera/numerics/Integrator.h#L237))
     - Implemented in **ODE_integrators.cpp**, line 13 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/ODE_integrators.cpp#L13))
 
-The header files of different `Integrator` implementations are included near the top of **ODE_integrators.cpp** (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/ODE_integrators.cpp#L8)). Cantera only includes one type of `Integrator` by default, the `CVODES` ODE solver, which automatically installs alongside Cantera. `CVODES` is an externally developed and maintained solver, a part of @LLNL's SUNDIALS library. If you're interested in learning more specific details about how `CVODES` actually solves an ODE system, I recommend that you read through the [`CVODES` User Guide](https://computing.llnl.gov/sites/default/files/public/cvs_guide.pdf) for detailed documentation and explanation of the module. Note that `ReactorNet` configures `CVODES` to solve via Backward Differentiation Formulas (see [`CVODES` User Guide](https://computing.llnl.gov/sites/default/files/public/cvs_guide.pdf), section 2.1), based on linear system solutions provided by the SUNDIALS `SUNLinSol_LapackDense` module (see [`CVODES` User Guide](https://computing.llnl.gov/sites/default/files/public/cvs_guide.pdf), section 10.7). 
+The header files of different `Integrator` implementations are included near the top of **ODE_integrators.cpp** (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/ODE_integrators.cpp#L8)). Cantera only includes one type of `Integrator` by default, the `CVODES` ODE solver, which automatically installs alongside Cantera. `CVODES` is an externally developed and maintained solver, a part of @LLNL's SUNDIALS library. If you're interested in learning more specific details about how `CVODES` actually solves an ODE system, I recommend that you read through the [`CVODES` User Guide](https://computing.llnl.gov/sites/default/files/cv_guide-5.7.0.pdf) for detailed documentation and explanation of the module. Note that `ReactorNet` configures `CVODES` to solve via Backward Differentiation Formulas (see [`CVODES` User Guide](https://computing.llnl.gov/sites/default/files/cv_guide-5.7.0.pdf), section 2.1), based on linear system solutions provided by the SUNDIALS `SUNLinSol_LapackDense` module (see [`CVODES` User Guide](https://computing.llnl.gov/sites/default/files/cv_guide-5.7.0.pdf), section 10.7).
 
 Because `CVODES` is written in C, the `CVodesIntegrator` C++ wrapper is used to access the solver:
 
-- ***Class `CVodesIntegrator`***: A C++ wrapper class for `CVODES`. ([Documentation](https://cantera.org/documentation/docs-2.4/doxygen/html/d9/d6b/classCantera_1_1CVodesIntegrator.html))
+- ***Class `CVodesIntegrator`***: A C++ wrapper class for `CVODES`. (<a href="/2.4/doxygen/html/d9/d6b/classCantera_1_1CVodesIntegrator.html">Documentation</a>)
     - Declared in **CVodesIntegrator.h**, line 25 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/include/cantera/numerics/CVodesIntegrator.h#L25))
     - Implemented in **CVodesIntegrator.cpp**, line 79 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/CVodesIntegrator.cpp#L79))
     - Included in **ODE_integrators.cpp**, line 8 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/ODE_integrators.cpp#L8))
@@ -123,7 +118,7 @@ m_integ->integrate(time);
 
 The `CVodesIntegrator` wrapper class will then make the appropriate call to the `CVODES` driver function, `CVode()`:
 
-- ***Method `CVode()`***: Main driver of the `CVODES` package. Integrates over a time interval defined by the user, by calling `cvStep()` to do internal time steps. (*Documentation:* see [`CVODES` User Guide](https://computing.llnl.gov/sites/default/files/public/cvs_guide.pdf), section 4.5.6)
+- ***Method `CVode()`***: Main driver of the `CVODES` package. Integrates over a time interval defined by the user, by calling `cvStep()` to do internal time steps. (*Documentation:* see [`CVODES` User Guide](https://computing.llnl.gov/sites/default/files/cv_guide-5.7.0.pdf), section 4.5.6)
     - `int CVode(void *cvode_mem, realtype tout, N_Vector yout, realtype *tret, int itask)`;
     - Implemented in **cvodes.c**, line 2771 (see this on [GitHub](https://github.com/LLNL/sundials/blob/887af4374af2271db9310d31eaa9b5aeff49e829/src/cvodes/cvodes.c#L2771))
 
@@ -139,11 +134,11 @@ There are some interesting things to note about this call to `CVode()`:
 - After execution, `m_y` will contain the computed solution vector, and will later be used to update the `ReactorNet` to its time-integrated state .
 - The `CV_NORMAL` option tells the solver that it should continue taking internal timesteps until it has reached user-specified `tout` (or just passed it, in which case solutions are reached by interpolation). This provides the appropriate functionality for `ReactorNet::advance()`. The alternate option, `CV_ONE_STEP`, tells the solver to take a single internal step, and is used in `ReactorNet::step()`.
 
-How does `CVODES` know what ODE system it should be solving? The ODE system was actually already specified using `CVodeInit()`, one of the methods automatically invoked during the `ReactorNet::initialize()` routine. `CVODES` requires that its user provide a C function that defines their ODE, able to compute the right-hand side of the ODE system (d`y`/d`t`) for a given value of the independent variable, `t`, and the state vector, `y`. For more information about ODE right-hand side function requirements, see [`CVODES` User Guide](https://computing.llnl.gov/sites/default/files/public/cvs_guide.pdf), section 4.6.1.
+How does `CVODES` know what ODE system it should be solving? The ODE system was actually already specified using `CVodeInit()`, one of the methods automatically invoked during the `ReactorNet::initialize()` routine. `CVODES` requires that its user provide a C function that defines their ODE, able to compute the right-hand side of the ODE system (d`y`/d`t`) for a given value of the independent variable, `t`, and the state vector, `y`. For more information about ODE right-hand side function requirements, see [`CVODES` User Guide](https://computing.llnl.gov/sites/default/files/cv_guide-5.7.0.pdf), section 4.6.1.
 
 The `CVodesIntegrator` wrapper class provides a useful C++ interface for configuring this C function by pairing with `FuncEval`, an abstract base class for ODE right-hand-side function evaluators. Like the `Integrator` base class, `FuncEval` defines virtual functions that derived classes will provide the implementations for. In this case, classes derived from `FuncEval` will implement the actual evaluation of their particular ODE system.
 
-- ***Class `FuncEval`***: An abstract base class for ODE right-hand-side function evaluators. ([Documentation](https://cantera.org/documentation/docs-2.4/doxygen/html/d1/dd1/classCantera_1_1FuncEval.html))
+- ***Class `FuncEval`***: An abstract base class for ODE right-hand-side function evaluators. (<a href="/2.4/doxygen/html/d1/dd1/classCantera_1_1FuncEval.html">Documentation</a>)
     - Declared in **FuncEval.h**, line 26 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/include/cantera/numerics/FuncEval.h#L26))
     - Implemented in **FuncEval.cpp**, line 7 (see this on [GitHub](https://github.com/Cantera/cantera/blob/cf1c0816e7d535a1fc385063aebb8b8e93a85233/src/numerics/FuncEval.cpp#L7))
 
@@ -208,16 +203,8 @@ void ReactorNet::eval(doublereal t, doublereal* y, doublereal* ydot, doublereal*
 }
 ```
 
-`ReactorNet`'s `eval()` method invokes calls to `Reactor::evalEqs()`, to evaluate the governing equations of all `Reactor`s contained in the network. This brings us right back to where we started; for more information see Cantera's [reactor network science page](https://cantera.org/science/reactors/reactors.html#governing-equations-for-single-reactors).
+`ReactorNet`'s `eval()` method invokes calls to `Reactor::evalEqs()`, to evaluate the governing equations of all `Reactor`s contained in the network. This brings us right back to where we started; for more information see Cantera's {doc}`reactor network science page <stable:reference/reactors/index>`.
 
-Hope you enjoyed the post. 
+Hope you enjoyed the post.
 
-@paulblum
-
-### Keep Reading:
-
-Next Post - [GSoC 2020 Blog Post 4](https://cantera.org/blog/gsoc-2020-blog-4)
-
-Previous Post - [GSoC 2020 Blog Post 2](https://cantera.org/blog/gsoc-2020-blog-2)
-
-Start from the Beginning - [Introduction](https://cantera.org/blog/gsoc-2020-intro)
+[@paulblum](https://github.com/paulblum/)
