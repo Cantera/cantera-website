@@ -24,6 +24,7 @@ needs_sphinx = "6.2"
 project = "Cantera"
 copyright = "2023, Cantera Developers"
 author = "Cantera Developers"
+html_title = "Cantera"
 
 # The full version, including alpha/beta/rc tags
 version = "2.6"
@@ -53,7 +54,7 @@ extensions: list[str] = [
     "sphinx.ext.intersphinx",
 ]
 
-myst_enable_extensions = ["colon_fence", "deflist", "attrs_block"]
+myst_enable_extensions = ["colon_fence", "deflist", "attrs_block", "attrs_inline"]
 myst_url_schemes = {
     "http": None,
     "https": None,

@@ -6,6 +6,13 @@ myst:
 html_theme.sidebar_secondary.remove: true
 ---
 
+<!-- The following workaround is used to set the HTML page title -->
+<div style="visibility: hidden; display: none;">
+
+# Open-source chemical kinetics, thermodynamics, and transport
+
+</div>
+
 <p class="jumbotron-text">Cantera is an open-source suite of tools for problems involving chemical kinetics, thermodynamics, and transport processes.</p>
 
 ::::{grid} 1 2 2 4
@@ -129,11 +136,11 @@ data-canonical-src="https://mybinder.org/badge_logo.svg" style="max-width:100%;"
 ::::{grid} 2
 :::{grid-item}
 :columns: 9
-The <a href="https://groups.google.com/forum/#!forum/cantera-users">Cantera Users’ Group</a> on Google Groups is the forum where most Cantera users have their questions asked and answered. If you need help using Cantera and cannot find an answer in the tutorials or documentation at Cantera's website, consider joining and asking a question there. Find more information in our <a href="/community.html#the-cantera-users-group">Community section</a>.
+The <a href="https://groups.google.com/g/cantera-users">Cantera Users’ Group</a> on Google Groups is the forum where most Cantera users have their questions asked and answered. If you need help using Cantera and cannot find an answer in the tutorials or documentation at Cantera's website, consider joining and asking a question there. Find more information in our <a href="/community.html#the-cantera-users-group">Community section</a>.
 :::
 :::{grid-item}
 :columns: 3
-<a href="https://groups.google.com/forum/#!forum/cantera-users" rel="nofollow">
+<a href="https://groups.google.com/g/cantera-users" rel="nofollow">
 <img alt="Google Groups" class="align-center" src="/_static/img/Groups_Logo.png" style="width: 100px;">
 </a>
 :::
@@ -162,16 +169,21 @@ Donations to Cantera are managed by NumFOCUS. For donors in the United States, y
 
 If you have found Cantera to be useful to your research or company, please consider making a <a href="https://numfocus.org/donate-to-cantera" title="Donate to Cantera" rel="nofollow">donation</a> to support our efforts. All donations will be used exclusively to fund the development of Cantera's source code, documentation, or community.
 
-<a href="https://numfocus.org">
-<img alt="Powered by NumFOCUS" class="align-center" src="/_static/img/SponsoredProject.png"
-style="width: 250px;">
-</a>
-<div class="text-center">
-<a class="btn btn-primary" rel="nofollow" href="https://numfocus.org/donate-to-cantera"
-title="Donate to Cantera">
-Donate to Cantera
-</a>
-</div>
+```{image} /_static/img/SponsoredProject.png
+:alt: Powered by NumFOCUS
+:target: https://numfocus.org
+:width: 250px
+:align: center
+```
+
+&nbsp;
+
+```{button-link} https://numfocus.org/donate-to-cantera
+:align: center
+:color: secondary
+:shadow:
+Donate to Cantera {octicon}`link-external`
+```
 :::::
 ::::::
 
@@ -181,5 +193,4 @@ Donate to Cantera
 :hidden:
 
 Community <community>
-Blog <posts/index>
 :::
