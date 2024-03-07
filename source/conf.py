@@ -106,6 +106,9 @@ html_theme_options = {
     "navbar_align": "left",
     "navbar_center": ["initial-sections", "navbar-nav"],
     "navbar_end": ["theme-switcher", "navbar-icon-links"],
+    # Search bar is overridden to the stable docs except for the "News" section
+    "navbar_persistent": ["search-button-field", "search-stable"],
+
     "show_prev_next": False,
     "logo": {
         "link": "/index.html",
