@@ -36,6 +36,10 @@ p + div.math {
     text-align: center;
  }
 
+.theme-switch-button span {
+    padding: 1.6em;
+}
+
 /* Make "tip" background color different from "versionadded" */
 .admonition.tip,
 div.admonition.tip {

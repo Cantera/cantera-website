@@ -116,13 +116,6 @@ html_theme_options = {
     },
     "github_url": "https://github.com/Cantera/cantera",
     "header_links_before_dropdown": 6,
-    "icon_links": [
-        {
-            "name": "PyPI",
-            "url": "https://pypi.org/project/cantera",
-            "icon": "fa-solid fa-box",
-        },
-    ],
     # "logo": {
     #     "text": "PyData Theme",
     #     "image_dark": "_static/logo-dark.svg",
