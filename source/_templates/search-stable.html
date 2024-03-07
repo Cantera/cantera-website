@@ -1,0 +1,10 @@
+{# Override path to search page so we search the stable docs, except for News pages #}
+<script>
+  if (window.location.pathname.startsWith("/news")) {
+    inp = document.getElementById('search-input');
+    inp.placeholder = "Search news ...";
+    inp.ariaLabel = "Search news ...";
+  } else {
+    document.getElementsByClassName('bd-search')[0].action = "/stable/search.html";
+  }
+</script>
