@@ -20,6 +20,8 @@ for p in Path('api-docs').glob('docs-*'):
     version_string = p.name.split('-')[1]
     shutil.copytree(str(p), dest / version_string, dirs_exist_ok=True)
 
+shutil.copytree('api-docs/assets', dest / 'assets')
+
 shutil.copytree('dev-docs', dest / 'dev', dirs_exist_ok=True)
 
 # TODO: After the 3.1 release, this should be updated to copy from 'api-docs/docs-3.1'
