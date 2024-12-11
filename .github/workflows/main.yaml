@@ -13,83 +13,39 @@ on:
       - testing
 
 env:
-  NIKOLA_OUTPUT_DIR: output
-  WEBSITE_CLONE_DIR: website
+  SPHINX_OUTPUT_DIR: build/html
   RSYNC_USER: "ctdeploy"
   RSYNC_SERVER: "cantera.org"
   DEPLOY: ${{ github.event_name == 'push' && github.repository_owner == 'Cantera' && (endswith(github.ref, 'main') || endsWith(github.ref, 'testing')) }}
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       name: Checkout the repository
       with:
         submodules: recursive
-        path: ${{ env.WEBSITE_CLONE_DIR }}
-    - uses: actions/checkout@v2
-      name: Checkout Cantera repository
-      with:
-        submodules: recursive
-        repository: Cantera/cantera
-        path: cantera
-        ref: 2.6
-    - uses: actions/checkout@v2
-      name: Checkout Cantera 'main' repository
-      with:
-        submodules: recursive
-        repository: Cantera/cantera
-        path: cantera-dev
-    - uses: actions/checkout@v2
-      name: Checkout Cantera Jupyter repository
-      with:
-        repository: Cantera/cantera-jupyter
-        path: cantera-jupyter
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.9
-        architecture: x64
-    - name: Upgrade pip
-      run: python3 -m pip install -U pip setuptools wheel
-    - name: Get pip cache dir
-      id: pip-cache
-      run: echo "::set-output name=dir::$(python3 -m pip cache dir)"
-
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.pip-cache.outputs.dir }}
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: ${{ runner.os }}-pip-
-
-    - name: Install dependencies
-      run: python3 -m pip install -r requirements.txt
-      working-directory: ${{ env.WEBSITE_CLONE_DIR }}
-
-    # Parse SCons configuration for development version and move reST file
-    - name: Parse configuration options from Cantera SConstruct as reST
+        python-version: 3.13
+    - name: Install pdm
       run: |
-        cd cantera-dev
-        python3 `which scons` help --restructured-text --dev --output=scons-config-options-dev.rst
-        cd ..
-        mv -f cantera-dev/scons-config-options-dev.rst ${{ env.WEBSITE_CLONE_DIR }}/pages/compiling/
-
+        python3 -m pip install pdm
+        pdm install
     - name: Build the site
-      run: NIKOLA_DEBUG=1 nikola build
-      working-directory: ${{ env.WEBSITE_CLONE_DIR }}
+      run: pdm run build
 
     # Create artifact containing output
     - name: Create archive for website output
       run: |
-        cd ${{ env.WEBSITE_CLONE_DIR }}; \
-        tar -czf website.tar.gz ${{ env.NIKOLA_OUTPUT_DIR }}
+        tar -czf website.tar.gz ${{ env.SPHINX_OUTPUT_DIR }}
     - name: Store archive of website output
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
-        path: ${{ env.WEBSITE_CLONE_DIR }}/website.tar.gz
-        retention-days: 5
+        path: website.tar.gz
+        retention-days: 14
 
     # The known_hosts key is generated with `ssh-keygen -F cantera.org` from a
     # machine that has previously logged in to cantera.org and trusts
@@ -106,13 +62,15 @@ jobs:
         RSYNC_DEST: "cantera"
       run: |
         rsync -avzP --checksum --exclude='*.map' --exclude='*.md5' \
-        --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /documentation/dev/*' \
-        "${WEBSITE_CLONE_DIR}/${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
+        --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /dev' \
+        --filter='P /?.?' --filter='P /stable' \
+        "${SPHINX_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
     - name: Upload the docs
       if: env.DEPLOY == 'true' && endsWith(github.ref, 'testing')
       env:
         RSYNC_DEST: "testing.cantera.org"
       run: |
         rsync -avzP --checksum --exclude='*.map' --exclude='*.md5' \
-        --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /documentation/dev/*' \
-        "${WEBSITE_CLONE_DIR}/${NIKOLA_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
+        --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /dev' \
+        --filter='P /?.?' --filter='P /stable' \
+        "${SPHINX_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
