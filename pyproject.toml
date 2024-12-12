@@ -1,5 +1,6 @@
 [project]
 name = "cantera-website"
+version = "3.1"
 description = ""
 authors = [{ name = "Cantera Developers", email = "developers@cantera.org" }]
 dependencies = [
@@ -17,6 +18,8 @@ license = { text = "BSD-3-Clause" }
 [tool.pdm]
 [tool.pdm.dev-dependencies]
 lint = ["pre-commit>=3.3.3"]
+package-type = "application"
+
 
 [tool.pdm.scripts]
 build = { cmd = [
@@ -39,9 +42,3 @@ rebuild = { cmd = [
   "0",
   "--open-browser",
 ] }
-
-[tool.pdm.options]
-add = ["--no-self"]
-sync = ["--no-self"]
-install = ["--no-self"]
-update = ["--no-self"]
