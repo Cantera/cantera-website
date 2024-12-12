@@ -75,10 +75,10 @@ root_doc = "index"
 language = "en"
 
 intersphinx_mapping = {
-    'stable': ('/stable', '../dev-docs/objects.inv'),
-    'dev': ('/dev', '../dev-docs/objects.inv'),
-    'ct30': ('/3.0', '../api-docs/docs-3.0/sphinx/html/objects.inv'),
-    'ct26': ('/2.6', '../api-docs/docs-2.6/sphinx/html/objects.inv'),
+    'stable': ('https://testing.cantera.org/stable', None),
+    'dev': ('https://testing.cantera.org/dev', None),
+    'ct30': ('https://testing.cantera.org/3.0/sphinx/html', None),
+    'ct26': ('https://testing.cantera.org/2.6/sphinx/html', None),
 }
 
 # -- Options for HTML output -------------------------------------------------
