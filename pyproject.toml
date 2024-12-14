@@ -16,10 +16,10 @@ requires-python = ">=3.10"
 license = { text = "BSD-3-Clause" }
 
 [tool.pdm]
-[tool.pdm.dev-dependencies]
-lint = ["pre-commit>=3.3.3"]
 package-type = "application"
 
+[tool.pdm.dev-dependencies]
+lint = ["pre-commit>=3.3.3"]
 
 [tool.pdm.scripts]
 build = { cmd = [
