@@ -33,7 +33,7 @@ jobs:
     - name: Install pdm
       run: |
         python3 -m pip install pdm
-        pdm install
+        pdm install --verbose
     - name: Build the site
       run: pdm run build
 
