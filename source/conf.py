@@ -22,7 +22,7 @@ needs_sphinx = "6.2"
 # -- Project information -----------------------------------------------------
 
 project = "Cantera"
-copyright = "2023, Cantera Developers"
+copyright = "2024, Cantera Developers"
 author = "Cantera Developers"
 html_title = "Cantera"
 
@@ -44,7 +44,7 @@ keep_warnings = True
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions: list[str] = [
+extensions = [
     "sphinx_design",
     "myst_parser",
     "sphinx.ext.duration",
@@ -75,10 +75,10 @@ root_doc = "index"
 language = "en"
 
 intersphinx_mapping = {
-    'stable': ('https://testing.cantera.org/stable', None),
-    'dev': ('https://testing.cantera.org/dev', None),
-    'ct30': ('https://testing.cantera.org/3.0/sphinx/html', None),
-    'ct26': ('https://testing.cantera.org/2.6/sphinx/html', None),
+    'stable': ('https://cantera.org/stable', None),
+    'dev': ('https://cantera.org/dev', None),
+    'ct30': ('https://cantera.org/3.0/sphinx/html', None),
+    'ct26': ('https://cantera.org/2.6/sphinx/html', None),
 }
 
 # -- Options for HTML output -------------------------------------------------
