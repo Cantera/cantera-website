@@ -26,10 +26,6 @@ copyright = "2024, Cantera Developers"
 author = "Cantera Developers"
 html_title = "Cantera"
 
-# The full version, including alpha/beta/rc tags
-version = "2.6"
-release = "2.6.0"
-
 source_suffix = {
     ".rst": "restructuredtext",
     ".txt": "restructuredtext",
