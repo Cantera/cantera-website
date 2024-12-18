@@ -1,0 +1,44 @@
+[project]
+name = "cantera-website"
+version = "3.1"
+description = ""
+authors = [{ name = "Cantera Developers", email = "developers@cantera.org" }]
+dependencies = [
+  "sphinx>=6.2.1",
+  "pydata-sphinx-theme==0.15.2",
+  "myst-parser>=2.0.0",
+  "sphinx-design>=0.4.1",
+  "sphinx-autobuild>=2021.3.14",
+  "ablog>=0.11.6",
+  "sphinxcontrib.mermaid",
+]
+requires-python = ">=3.10"
+license = { text = "BSD-3-Clause" }
+
+[tool.pdm]
+package-type = "application"
+
+[tool.pdm.dev-dependencies]
+lint = ["pre-commit>=3.3.3"]
+
+[tool.pdm.scripts]
+build = { cmd = [
+  "sphinx-build",
+  "-b",
+  "html",
+  "-W",
+  "--keep-going",
+  "source",
+  "build/html",
+  "-a",
+] }
+rebuild = { cmd = [
+  "sphinx-autobuild",
+  "source",
+  "build/html",
+  "--watch",
+  "source",
+  "--port",
+  "0",
+  "--open-browser",
+] }
