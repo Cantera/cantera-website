@@ -116,6 +116,14 @@ models.
 Maintainer(s): Phillip Mestas, Kyle Niemeyer
 :::
 
+:::{grid-item-card} Quasi-2D-Packbed
+A quasi-two-dimensional C++ code for modeling a catalytic packed-bed membrane reactor
+
+[Repository](https://github.com/Cantera/Quasi-2D-packbed)
+
+Maintainer(s): Gandhali Kogekar
+:::
+
 :::{grid-item-card} reactorch
 A Differentiable Reacting Flow Simulation Package in PyTorch.
 
