@@ -130,7 +130,7 @@ Cantera is as follows:
 > David G. Goodwin, Harry K. Moffat, Ingmar Schoegl, Raymond L. Speth, and Bryan W.
 > Weber. *Cantera: An object-oriented software toolkit for chemical kinetics,
 > thermodynamics, and transport processes*. <https://www.cantera.org>,
-> 2023. Version 3.0.0. doi:10.5281/zenodo.8137090
+> 2024. Version 3.1.0. doi:10.5281/zenodo.14455267
 
 The following BibTeX entry may also be used:
 
@@ -140,10 +140,10 @@ The following BibTeX entry may also be used:
               Speth and Bryan W. Weber",
     title = "Cantera: An Object-oriented Software Toolkit for Chemical
              Kinetics, Thermodynamics, and Transport Processes",
-    year = 2023,
-    note = "Version 3.0.0",
+    year = 2024,
+    note = "Version 3.1.0",
     howpublished = "\url{https://www.cantera.org}",
-    doi = {10.5281/zenodo.8137090}
+    doi = {10.5281/zenodo.14455267}
 }
 ```
 
