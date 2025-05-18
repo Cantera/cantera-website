@@ -12,7 +12,8 @@ ensuring that the software will remain open source and available for all to use.
 In this vein, Cantera software relies exclusively upon the volunteer contributions of
 its users. These contributions range from diagnosing and reporting problems/bugs, to
 helping others learn to use Cantera, to developing and implementing new software
-capabilities.
+capabilities. For a brief overview, see our {doc}`getting involved <getting-involved>`
+page.
 
 While Cantera provides some standalone models and applications, numerous external
 packages exist that provide more specialized functionality and rely on Cantera. We
@@ -188,6 +189,7 @@ Donate to Cantera {octicon}`link-external`
 :hidden:
 
 News <news-index>
+Getting Involved <getting-involved>
 Affiliated Packages <affiliated>
 Governance <governance>
 Dave Goodwin <dave-goodwin>
