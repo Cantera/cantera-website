@@ -1,6 +1,12 @@
 # The Cantera Community
 
-_Resources to help you participate in the community of Cantera users and developers_
+:::{admonition} Supporting Cantera
+If you would like support the Cantera project, please check out our
+{doc}`getting involved <getting-involved>` page. If you use Cantera in a publication,
+we would appreciate if you {doc}`cited Cantera <citations>`. If you have found Cantera
+to be useful to your research or company, please consider making a
+[donation](sec-donations) to support our efforts.
+:::
 
 ## About the Cantera Community
 
@@ -93,6 +99,7 @@ please see the [Contributors' guide](https://github.com/Cantera/cantera/blob/mai
 for assistance in getting started. There are also plenty of current contributors who are
 happy to help, if you do not know how to get started.
 
+(sec-bug-reporting)=
 ### Bug Reporting
 
 **What should I do if I think I've found a bug in Cantera?**
@@ -118,78 +125,13 @@ happy to help, if you do not know how to get started.
 - The necessary *input* to generate the reported behavior
 - The full text of any error message you receive
 
-## Supporting Cantera
-
-### Citing Cantera
-
-If you use Cantera in a publication, we would appreciate if you cited the version of
-Cantera that you used. This helps to improve the reproducibility of your work, as well
-as giving credit to the many [authors](https://github.com/Cantera/cantera/blob/main/AUTHORS)
-who have contributed their time to developing Cantera. The recommended citation for
-Cantera is as follows:
-
-> David G. Goodwin, Harry K. Moffat, Ingmar Schoegl, Raymond L. Speth, and Bryan W.
-> Weber. *Cantera: An object-oriented software toolkit for chemical kinetics,
-> thermodynamics, and transport processes*. <https://www.cantera.org>,
-> 2024. Version 3.1.0. doi:10.5281/zenodo.14455267
-
-The following BibTeX entry may also be used:
-
-```bibtex
-@misc{cantera,
-    author = "David G. Goodwin and Harry K. Moffat and Ingmar Schoegl and Raymond L.
-              Speth and Bryan W. Weber",
-    title = "Cantera: An Object-oriented Software Toolkit for Chemical
-             Kinetics, Thermodynamics, and Transport Processes",
-    year = 2024,
-    note = "Version 3.1.0",
-    howpublished = "\url{https://www.cantera.org}",
-    doi = {10.5281/zenodo.14455267}
-}
-```
-
-If you are using a different version of Cantera, update the `year`, `note` and `doi`
-fields accordingly. You can find the correct DOI for other versions of Cantera in
-[Cantera's Zenodo Entry](https://doi.org/10.5281/zenodo.742000).
-
-### Donations
-
-Finally, please consider financially supporting Cantera's development! Cantera is a
-fiscally sponsored project of NumFOCUS, a 501(c)3 nonprofit dedicated to supporting the
-open source scientific computing community. If you have found Cantera to be useful to
-your research or company, please consider making a
-[donation](https://numfocus.org/donate-to-cantera) to support our efforts. All donations
-will be used exclusively to fund the development of Cantera's source code,
-documentation, or community.
-
-::::{grid} 1 2 2 2
-
-:::{grid-item}
-```{image} _static/img/SponsoredProject.png
-:align: center
-:alt: Powered by NumFOCUS
-:target: https://numfocus.org
-:width: 250px
-```
-:::
-
-:::{grid-item}
-```{button-link} https://numfocus.org/donate-to-cantera
-:color: primary
-:shadow:
-:align: center
-Donate to Cantera {octicon}`link-external`
-```
-:::
-
-::::
-
 :::{toctree}
 :maxdepth: 1
 :hidden:
 
 News <news-index>
 Getting Involved <getting-involved>
+Citing Cantera <citations>
 Affiliated Packages <affiliated>
 Governance <governance>
 Dave Goodwin <dave-goodwin>
