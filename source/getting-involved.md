@@ -49,8 +49,10 @@ ensure a welcoming environment for everyone.
 ## Recognition
 
 Your contributions are valuable! If you make significant improvements, feel free to add
-your name to the `AUTHORS` file in your pull request. We appreciate and acknowledge the
-efforts of all our contributors.
+your name to the
+[Cantera authors](https://github.com/Cantera/cantera/blob/main/AUTHORS.md) file
+`AUTHORS.md` in your pull request. We appreciate and acknowledge the efforts of all our
+contributors.
 
 (sec-donations)=
 ## Donations
