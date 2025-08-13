@@ -42,3 +42,4 @@ rebuild = { cmd = [
   "0",
   "--open-browser",
 ] }
+add_htaccess = { cmd = "cp -r mod_rewrite/. build/html" }
