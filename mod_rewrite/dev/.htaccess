@@ -1,0 +1,5 @@
+RewriteBase "/dev/"
+
+RewriteRule "^cython/(.+)" "python/$1" [R]
+RewriteRule "^cxx/d2/db3/classCantera_1_1Poly13(.*)" "cxx/d7/d32/classCantera_1_1Poly1$1" [L]
+RewriteRule "^cxx/d0/dc8/classCantera_1_1FlowDeviceFactory(.*)" "cxx/dd/d77/classCantera_1_1ConnectorFactory$1" [L]

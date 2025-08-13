@@ -1,0 +1,3 @@
+RewriteBase "/3.0/"
+
+RewriteRule "^sphinx/html/python/(.+)" "sphinx/html/cython/$1" [R]
