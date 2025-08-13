@@ -1,0 +1,61 @@
+#logo { width: 250px; }
+#cards { padding-bottom: 5%; }
+.jumbotron-text { text-align: center; padding-bottom: 16px; font-size: 1.5rem; font-weight: 500; }
+.jumbotron { background-color: white; margin-top: 30px; margin-bottom: 48px; padding: 0 0; }
+.img-container { text-align: center; }
+
+a.headerlink { visibility: hidden; padding: 0 4px 0 4px; }
+h1:hover > a.headerlink,
+h2:hover > a.headerlink,
+h3:hover > a.headerlink,
+h4:hover > a.headerlink,
+h5:hover > a.headerlink,
+h6:hover > a.headerlink {
+    visibility: visible;
+}
+
+.example-header { padding: 20px 0; }
+.example-row { padding-bottom: 20px; }
+
+.tutorials { margin: 40px 0; padding: 0 0 !important; }
+
+section { margin-top: 20px; margin-bottom: 20px; padding: 0 0; }
+
+a.docs:hover { background-color: #007994; color: #ffffff; }
+a.docs, a.dev-docs, a.release-notes { color: #000000; }
+a.dev-docs:hover { background-color: #fd7f03; color: #ffffff; }
+a.release-notes:hover { background-color: #c80202; color: #ffffff; }
+
+.row { margin: 0 0 20px; }
+
+.docutils.literal {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-weight: bold;
+    font-size: 1em;
+    color: #444;
+    word-break: break-word;
+}
+
+a > tt {
+    color: inherit;
+}
+
+.section-card {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.footer li {
+    display: inline-block;
+    text-decoration: none;
+}
+.footer li::after {
+    content: " |";
+}
+.footer li:last-of-type::after {
+    content: "";
+}
+.footer-text {
+    margin-left: 0;
+    padding-left: 0;
+}
