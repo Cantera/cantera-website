@@ -68,7 +68,7 @@ _What can Cantera do?_ We have a number of examples demonstrating the use of Can
 some of our interfaces.
 
 {bdg-link-primary}`Python <stable/examples/python/index.html>`
-{bdg-link-primary}`Matlab (experimental)<stable/examples/matlab_experimental/index.html>`
+{bdg-link-primary}`Matlab (experimental) <dev/examples/matlab_experimental/index.html>`
 {bdg-link-primary}`C++ <stable/examples/cxx/index.html>`
 :::
 
@@ -110,7 +110,7 @@ make up Cantera.
 
 {bdg-link-primary}`Python <stable/python/index.html>`
 {bdg-link-primary}`C++ <stable/cxx/index.html>`
-{bdg-link-primary}`Matlab <stable/matlab/index.html>`
+{bdg-link-primary}`Matlab (experimental) <dev/matlab/index.html>`
 {bdg-link-primary}`YAML <stable/yaml/index.html>`
 :::
 
