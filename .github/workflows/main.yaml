@@ -64,8 +64,8 @@ jobs:
         RSYNC_DEST: "cantera"
       run: |
         rsync -avzP --checksum --exclude='*.map' --exclude='*.md5' \
-        --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /dev' \
-        --filter='P /?.?' --filter='P /stable' \
+        --delete --delete-excluded --filter='P /mw_headers.git/***' \
+        --filter='P /dev/***' --filter='P /?.?/***' --filter='P /stable' \
         "${SPHINX_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
     - name: Upload the docs
       if: env.DEPLOY == 'true' && endsWith(github.ref, 'testing')
@@ -73,6 +73,6 @@ jobs:
         RSYNC_DEST: "testing.cantera.org"
       run: |
         rsync -avzP --checksum --exclude='*.map' --exclude='*.md5' \
-        --delete --delete-excluded --filter='P /mw_headers.git' --filter='P /dev' \
-        --filter='P /?.?' --filter='P /stable' \
+        --delete --delete-excluded --filter='P /mw_headers.git/***' \
+        --filter='P /dev/***' --filter='P /?.?/***' --filter='P /stable' \
         "${SPHINX_OUTPUT_DIR}/" ${RSYNC_USER}@${RSYNC_SERVER}:${RSYNC_DEST}
