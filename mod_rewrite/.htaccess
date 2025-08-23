@@ -114,14 +114,18 @@ RewriteRule "^examples/jupyter/input/ck2yaml_demo.ipynb.html" "stable/userguide/
 
 RewriteRule "^examples/jupyter/reactors/1D_packbed.ipynb.html" "stable/examples/python/reactors/1D_packed_bed.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/reactors/1D_pfr_surfchem.ipynb.html" "stable/examples/python/reactors/1D_pfr_surfchem.html" [R=permanent,L]
-RewriteRule "^examples/jupyter/reactors/batch_reactor_ignition_delay_NTC.ipynb.html" "stable/examples/python/reactors/NonIdealShockTube.html" [R=permanent,L]
+RewriteRule "^examples/jupyter/reactors/batch_reactor_ignition_delay_NTC.ipynb.html" "stable/examples/python/reactors/non_ideal_shock_tube.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/reactors/interactive_path_diagram.ipynb.html" "stable/examples/python/kinetics/interactive_path_diagram.html" [R=permanent,L]
-RewriteRule "^examples/jupyter/reactors/nonideal_shock_tube.ipynb.html" "stable/examples/python/reactors/NonIdealShockTube.html" [R=permanent,L]
+RewriteRule "^examples/jupyter/reactors/nonideal_shock_tube.ipynb.html" "stable/examples/python/reactors/non_ideal_shock_tube.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/reactors/stirred_reactor.ipynb.html" "stable/examples/python/reactors/continuous_reactor.html" [R=permanent,L]
 
 RewriteRule "^examples/jupyter/thermo/equations_of_state.ipynb.html" "stable/examples/python/thermo/equations_of_state.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/thermo/flame_temperature.ipynb.html" "stable/userguide/flame-temperature.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/thermo/heating_value.ipynb.html" "stable/userguide/heating-value.html" [R=permanent,L]
+
+# Redirect from CamelCase to snake_case examples
+RewriteRule "^stable/examples/python/reactors/NonIdealShockTube.html$" "stable/examples/python/reactors/non_ideal_shock_tube.html" [R=permanent,L]
+RewriteRule "^stable/examples/python/reactors/PorousMediaBurner.html$" "stable/examples/python/reactors/porous_media_burner.html" [R=permanent,L]
 
 # Someday, these MATLAB rules will be updated to point to a non-experimental version of the toolbox
 RewriteRule "^examples/matlab/surfreactor\.m\.html" "stable/examples/matlab_experimental/surf_reactor.html" [R,L]
