@@ -169,4 +169,13 @@ explosions using realistic thermochemistry and detailed chemical kinetics.
 Maintainer(s): Joseph E. Shepherd
 :::
 
+:::{grid-item-card} StanShock
+StanShock is a quasi-1D gas dynamics solver designed to model shock tube experiments
+and, more recently, scramjet engines.
+
+[Website](https://github.com/IhmeGroup/StanShock)
+
+Maintainer(s): Matthias Ihme
+:::
+
 ::::
