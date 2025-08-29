@@ -1,3 +1,4 @@
 RewriteBase "/2.4/"
+RewriteOptions Inherit
 
 RewriteRule "^sphinx/_static/(.+)" "sphinx/html/_static/$1" [R,L]
