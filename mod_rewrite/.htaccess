@@ -124,8 +124,10 @@ RewriteRule "^examples/jupyter/thermo/flame_temperature.ipynb.html" "stable/user
 RewriteRule "^examples/jupyter/thermo/heating_value.ipynb.html" "stable/userguide/heating-value.html" [R=permanent,L]
 
 # Redirect from CamelCase to snake_case examples
-RewriteRule "^stable/examples/python/reactors/NonIdealShockTube.html$" "stable/examples/python/reactors/non_ideal_shock_tube.html" [R=permanent,L]
-RewriteRule "^stable/examples/python/reactors/PorousMediaBurner.html$" "stable/examples/python/reactors/porous_media_burner.html" [R=permanent,L]
+RewriteRule "^3.1/examples/python/reactors/non_ideal_shock_tube.html" "3.1/examples/python/reactors/NonIdealShockTube.html" [R=permanent,L]
+RewriteRule "^(stable|dev|\d.\d)/examples/python/reactors/NonIdealShockTube.html$" "$1/examples/python/reactors/non_ideal_shock_tube.html" [R=permanent,L]
+RewriteRule "^3.1/examples/python/reactors/porous_media_burner.html" "3.1/examples/python/reactors/PorousMediaBurner.html" [R=permanent,L]
+RewriteRule "^(stable|dev|\d.\d)/examples/python/reactors/PorousMediaBurner.html$" "$1/examples/python/reactors/porous_media_burner.html" [R=permanent,L]
 
 # Someday, these MATLAB rules will be updated to point to a non-experimental version of the toolbox
 RewriteRule "^examples/matlab/surfreactor\.m\.html" "stable/examples/matlab_experimental/surf_reactor.html" [R,L]
