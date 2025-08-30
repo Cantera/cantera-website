@@ -115,15 +115,21 @@ RewriteRule "^examples/jupyter/input/ck2yaml_demo.ipynb.html" "stable/userguide/
 
 RewriteRule "^examples/jupyter/reactors/1D_packbed.ipynb.html" "stable/examples/python/reactors/1D_packed_bed.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/reactors/1D_pfr_surfchem.ipynb.html" "stable/examples/python/reactors/1D_pfr_surfchem.html" [R=permanent,L]
-RewriteRule "^examples/jupyter/reactors/batch_reactor_ignition_delay_NTC.ipynb.html" "stable/examples/python/reactors/NonIdealShockTube.html" [R=permanent,L]
+RewriteRule "^examples/jupyter/reactors/batch_reactor_ignition_delay_NTC.ipynb.html" "stable/examples/python/reactors/non_ideal_shock_tube.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/reactors/interactive_path_diagram.ipynb.html" "stable/examples/python/kinetics/interactive_path_diagram.html" [R=permanent,L]
-RewriteRule "^examples/jupyter/reactors/nonideal_shock_tube.ipynb.html" "stable/examples/python/reactors/NonIdealShockTube.html" [R=permanent,L]
+RewriteRule "^examples/jupyter/reactors/nonideal_shock_tube.ipynb.html" "stable/examples/python/reactors/non_ideal_shock_tube.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/reactors/stirred_reactor.ipynb.html" "stable/examples/python/reactors/continuous_reactor.html" [R=permanent,L]
 
 RewriteRule "^examples/jupyter/thermo/equations_of_state.ipynb.html" "stable/examples/python/thermo/equations_of_state.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/thermo/flame_temperature.ipynb.html" "stable/userguide/flame-temperature.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/thermo/heating_value.ipynb.html" "stable/userguide/heating-value.html" [R=permanent,L]
 RewriteRule "^examples/jupyter.*" "stable/examples/python/index.html" [R=permanent,L]
+
+# Redirect from CamelCase to snake_case examples
+RewriteRule "^3.1/examples/python/reactors/non_ideal_shock_tube.html" "3.1/examples/python/reactors/NonIdealShockTube.html" [R=permanent,L]
+RewriteRule "^(stable|dev|\d.\d)/examples/python/reactors/NonIdealShockTube.html$" "$1/examples/python/reactors/non_ideal_shock_tube.html" [R=permanent,L]
+RewriteRule "^3.1/examples/python/reactors/porous_media_burner.html" "3.1/examples/python/reactors/PorousMediaBurner.html" [R=permanent,L]
+RewriteRule "^(stable|dev|\d.\d)/examples/python/reactors/PorousMediaBurner.html$" "$1/examples/python/reactors/porous_media_burner.html" [R=permanent,L]
 
 # Someday, these MATLAB rules will be updated to point to a non-experimental version of the toolbox
 RewriteRule "^examples/matlab/surfreactor\.m\.html" "stable/examples/matlab_experimental/surf_reactor.html" [R,L]
@@ -143,3 +149,17 @@ RewriteRule "^examples/cxx/(.+)-(.+)\.html" "stable/examples/cxx/$1_$2.html" [R=
 RewriteRule "^examples/fortran/demo.f.html" "stable/examples/fortran/f77_demo.html" [R=permanent,L]
 RewriteRule "^examples/fortran/index.html" "stable/examples/fortran/index.html" [R=permanent,L]
 RewriteRule "^examples/fortran/(\w+)\.(f|f90|cpp).html" "stable/examples/fortran/$1.html" [R=permanent,L]
+
+# Redirects specific to Cantera 3.1
+RewriteRule "^3.1/cxx/d7/d32/classCantera_1_1Poly1(.*)" "3.1/cxx/d2/db3/classCantera_1_1Poly13$1" [L]
+RewriteRule "^3.1/cxx/dd/d77/classCantera_1_1ConnectorFactory(.*)" "3.1/cxx/d0/dc8/classCantera_1_1FlowDeviceFactory$1" [L]
+
+# Redirects specific to Cantera 3.0
+RewriteRule "^3.0/sphinx/html/python/(.+)" "3.0/sphinx/html/cython/$1" [R]
+
+# Redirects specific to Cantera 2.4
+RewriteRule "^2.4/sphinx/_static/(.+)" "2.4/sphinx/html/_static/$1" [R,L]
+
+# Redirects specific to the development version (3.2)
+RewriteRule "^dev/cxx/d2/db3/classCantera_1_1Poly13(.*)" "dev/cxx/d7/d32/classCantera_1_1Poly1$1" [L]
+RewriteRule "^dev/cxx/d0/dc8/classCantera_1_1FlowDeviceFactory(.*)" "dev/cxx/dd/d77/classCantera_1_1ConnectorFactory$1" [L]
