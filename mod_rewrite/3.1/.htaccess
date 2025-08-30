@@ -1,6 +1,0 @@
-RewriteBase "/3.1/"
-RewriteOptions Inherit
-
-RewriteRule "^cython/(.+)" "python/$1" [R]
-RewriteRule "^cxx/d7/d32/classCantera_1_1Poly1(.*)" "cxx/d2/db3/classCantera_1_1Poly13$1" [L]
-RewriteRule "^cxx/dd/d77/classCantera_1_1ConnectorFactory(.*)" "cxx/d0/dc8/classCantera_1_1FlowDeviceFactory$1" [L]

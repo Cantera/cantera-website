@@ -147,3 +147,17 @@ RewriteRule "^examples/cxx/(.+)-(.+)\.html" "stable/examples/cxx/$1_$2.html" [R=
 RewriteRule "^examples/fortran/demo.f.html" "stable/examples/fortran/f77_demo.html" [R=permanent,L]
 RewriteRule "^examples/fortran/index.html" "stable/examples/fortran/index.html" [R=permanent,L]
 RewriteRule "^examples/fortran/(\w+)\.(f|f90|cpp).html" "stable/examples/fortran/$1.html" [R=permanent,L]
+
+# Redirects specific to Cantera 3.1
+RewriteRule "^3.1/cxx/d7/d32/classCantera_1_1Poly1(.*)" "3.1/cxx/d2/db3/classCantera_1_1Poly13$1" [L]
+RewriteRule "^3.1/cxx/dd/d77/classCantera_1_1ConnectorFactory(.*)" "3.1/cxx/d0/dc8/classCantera_1_1FlowDeviceFactory$1" [L]
+
+# Redirects specific to Cantera 3.0
+RewriteRule "^3.0/sphinx/html/python/(.+)" "3.0/sphinx/html/cython/$1" [R]
+
+# Redirects specific to Cantera 2.4
+RewriteRule "^2.4/sphinx/_static/(.+)" "2.4/sphinx/html/_static/$1" [R,L]
+
+# Redirects specific to the development version (3.2)
+RewriteRule "^dev/cxx/d2/db3/classCantera_1_1Poly13(.*)" "dev/cxx/d7/d32/classCantera_1_1Poly1$1" [L]
+RewriteRule "^dev/cxx/d0/dc8/classCantera_1_1FlowDeviceFactory(.*)" "dev/cxx/dd/d77/classCantera_1_1ConnectorFactory$1" [L]
