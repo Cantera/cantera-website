@@ -11,7 +11,6 @@ RewriteRule "^documentation/docs-(\d\.\d/.*)" "$1" [R=permanent,L]
 RewriteRule "^documentation/release_notes/v(\d\.\d)\.\d\.html" "stable/reference/releasenotes/v$1.html" [R=permanent,L]
 RewriteRule "^documentation/dev/doxygen/html/(.+)" "dev/cxx/$1" [R=permanent,L]
 RewriteRule "^documentation/dev/sphinx/html/_tags/(.+)" "stable/_tags/$1" [R=permanent,L]
-RewriteRule "^documentation/?" "stable/reference/" [R=permanent,L]
 
 RewriteRule "^docs/sphinx/html/index.html" "stable/reference/index.html" [R=permanent,L]
 RewriteRule "^docs/sphinx/html/faq.html" "stable/userguide/faq.html" [R=permanent,L]
@@ -123,7 +122,6 @@ RewriteRule "^examples/jupyter/reactors/stirred_reactor.ipynb.html" "stable/exam
 RewriteRule "^examples/jupyter/thermo/equations_of_state.ipynb.html" "stable/examples/python/thermo/equations_of_state.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/thermo/flame_temperature.ipynb.html" "stable/userguide/flame-temperature.html" [R=permanent,L]
 RewriteRule "^examples/jupyter/thermo/heating_value.ipynb.html" "stable/userguide/heating-value.html" [R=permanent,L]
-RewriteRule "^examples/jupyter.*" "stable/examples/python/index.html" [R=permanent,L]
 
 # Someday, these MATLAB rules will be updated to point to a non-experimental version of the toolbox
 RewriteRule "^examples/matlab/surfreactor\.m\.html" "stable/examples/matlab_experimental/surf_reactor.html" [R,L]
