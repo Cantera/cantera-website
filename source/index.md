@@ -68,8 +68,11 @@ _What can Cantera do?_ We have a number of examples demonstrating the use of Can
 some of our interfaces.
 
 {bdg-link-primary}`Python <stable/examples/python/index.html>`
-{bdg-link-primary}`Matlab (experimental) <dev/examples/matlab_experimental/index.html>`
+{bdg-link-primary}`Matlab <stable/examples/matlab/index.html>`
 {bdg-link-primary}`C++ <stable/examples/cxx/index.html>`
+{bdg-link-primary}`C <stable/examples/clib/index.html>`
+{bdg-link-primary}`.NET <stable/examples/dotnet/index.html>`
+{bdg-link-primary}`Fortran <stable/examples/fortran/index.html>`
 :::
 
 :::{grid-item-card} <a href="stable/install/index.html">Install</a>
@@ -110,7 +113,8 @@ make up Cantera.
 
 {bdg-link-primary}`Python <stable/python/index.html>`
 {bdg-link-primary}`C++ <stable/cxx/index.html>`
-{bdg-link-primary}`Matlab (experimental) <dev/matlab/index.html>`
+{bdg-link-primary}`C <stable/cxx/d6/d51/CAPImain.html>`
+{bdg-link-primary}`Matlab <stable/matlab/index.html>`
 {bdg-link-primary}`YAML <stable/yaml/index.html>`
 :::
 
