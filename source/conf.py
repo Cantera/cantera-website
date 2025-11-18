@@ -6,6 +6,7 @@ from __future__ import annotations
 #
 import sys
 from pathlib import Path
+from datetime import date
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -22,7 +23,8 @@ needs_sphinx = "6.2"
 # -- Project information -----------------------------------------------------
 
 project = "Cantera"
-copyright = "2024, Cantera Developers"
+year = date.today().year
+copyright = f"2001-{year}, Cantera Developers"
 author = "Cantera Developers"
 html_title = "Cantera"
 
